@@ -274,3 +274,4 @@ $RECYCLE.BIN/
 .mvn
 mvnw
 mvnw.cmd
+/src/main/webapp/WEB-INF/config/env.properties
