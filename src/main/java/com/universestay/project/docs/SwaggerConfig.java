@@ -22,12 +22,10 @@ public class SwaggerConfig {
 
     @Bean
     public Docket api() {
-
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("com.universestay.project"))
                 .build();
     }
 
