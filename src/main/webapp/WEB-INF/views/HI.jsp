@@ -9,9 +9,8 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="/resources/css/global/global.css">
 </head>
-<body style="font-family: Airbnb-Extra-bold">
+<body>
  HI;;;;;
 </body>
 </html>
