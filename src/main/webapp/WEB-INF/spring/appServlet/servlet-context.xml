@@ -14,6 +14,8 @@
 
     <!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
     <resources mapping="/resources/**" location="/resources/" />
+
+    <beans:bean id="swagger2Config" class="com.universestay.project.docs.SwaggerConfig"></beans:bean>
     <resources location="classpath:/META-INF/resources/" mapping="swagger-ui.html"></resources>
     <resources location="classpath:/META-INF/resources/webjars/" mapping="/webjars/**"></resources>
 
