@@ -5,11 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("hello")
+@RequestMapping("css")
 public class CssTest {
 
-    @GetMapping("hi")
+    @GetMapping("test")
     public String cssTest(){
-        return "hi";
+        return "cssTest";
     }
 }
