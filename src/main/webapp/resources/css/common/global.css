@@ -1,0 +1,89 @@
+@charset "UTF-8";
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+/*body { line-height: 1; }: 이 규칙은 페이지의 전체 텍스트에 적용되며, 텍스트의 줄 간격을 1로 설정합니다. 이는 텍스트의 줄 간격을 글꼴 크기의 1배로 만들어 텍스트가 보다 밀집하게 나타나도록 합니다.*/
+body {
+  line-height: 1;
+}
+
+
+/*ol, ul { list-style: none; }: 이 부분은 'ordered list'와 'unordered list' 요소에 적용됩니다. list-style: none;은 목록 요소의 기본적인 마커(숫자, 기호 등)를 없애고, 리스트 마커를 보이지 않게 만듭니다.*/
+ol, ul {
+  list-style: none;
+}
+
+/*blockquote, q { quotes: none; }: 이 규칙은 인용문을 감싸는 <blockquote>와 <q> 요소에 적용됩니다. quotes: none;은 인용 부호를 표시하지 않도록 설정합니다.*/
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+
+/*table { border-collapse: collapse; border-spacing: 0; }: 이 규칙은 테이블 요소에 적용됩니다. border-collapse: collapse;는 테이블 셀 사이의 경계를 병합하여 경계선을 하나로 만들어 줍니다. border-spacing: 0;은 테이블 셀 사이의 공간을 없애 줍니다.*/
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/*------------------화면 기본너비설정-----------------------*/
+html {
+  width: 1920px;
+}
+
+/*------------------폰트 이름 설정(위에서 아래로 가장굵음 > 가장 얇은 순서)-----------------------*/
+
+
+@font-face {
+  font-family: 'Airbnb-Extra-bold';
+  src: url("/resources/font/AirbnbCereal_W_XBd.otf") format('truetype');
+}
+
+@font-face {
+  font-family: 'Airbnb-Bold';
+  src: url("/resources/font/AirbnbCereal_W_Bd.otf") format('truetype');
+}
+
+@font-face {
+  font-family: 'Airbnb-Medium';
+  src: url("/resources/font/AirbnbCereal_W_Md.otf") format('truetype');
+}
+
+@font-face {
+  font-family: 'Airbnb-Light';
+  src: url("/resources/font/AirbnbCereal_W_Bk.otf") format('truetype');
+}
+
+@font-face {
+  font-family: 'Airbnb-Extra-Light';
+  src: url("/resources/font/AirbnbCereal_W_Lt.otf") format('truetype');
+}
