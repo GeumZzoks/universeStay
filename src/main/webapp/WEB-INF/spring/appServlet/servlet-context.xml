@@ -17,6 +17,10 @@
     <resources location="classpath:/META-INF/resources/" mapping="swagger-ui.html"></resources>
     <resources location="classpath:/META-INF/resources/webjars/" mapping="/webjars/**"></resources>
 
+    <beans:bean id="swagger2Config" class="com.universestay.project.docs.SwaggerConfig"></beans:bean>
+    <resources location="classpath:/META-INF/resources/" mapping="swagger-ui.html"></resources>
+    <resources location="classpath:/META-INF/resources/webjars/" mapping="/webjars/**"></resources>
+
     <!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
     <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <beans:property name="prefix" value="/WEB-INF/views/" />
