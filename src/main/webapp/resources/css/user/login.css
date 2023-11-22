@@ -1,0 +1,237 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Airbnb-Medium';
+}
+
+body {
+  font-family: 'Airbnb-Medium';
+  /* 가로 정렬 : body의 자식(wrapper)에게 적용 */
+  display: flex;
+  justify-content: center;
+
+  /* 세로 정렬
+  /* height의 %는 부모의 의존적으로 적용, vh(or vw)(view height, view width는 부모와 무관하게 적용됨 */
+  align-items: center;
+  min-height: 100vh;
+
+  background: #fff;
+
+}
+
+.login-wrapper {
+  border: 2px solid rgba(255, 255, 255, .2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+
+  width: 420px;
+  background: transparent;
+  background: #fff;
+
+
+  /* wrapper 아래 모든 폰트 컬러 */
+  color: #F48475;
+  border-radius: 10px;
+  padding: 30px 40px;
+}
+
+.login-wrapper .logo-universe {
+  width: 100%;
+}
+
+/* 메인 로그인 */
+.login-wrapper .main-login {
+  position: relative; /* position: absolute의 시작점을 잡아주는 애 */
+  width: 100%;
+  height: 50px;
+  margin: 5px 0;
+}
+
+.main-login input {
+  /* 인풋박스 크기 / 효과 설정 */
+  width: 100%;
+  height: 100%;
+  background: transparent;
+
+  /*인풋박스 border(테두리) 효과 */
+  border: none;
+  outline: none;
+  border: 1px solid #F48475;
+  border-radius: 5px;
+
+  font-size: 13px;
+  padding: 20px 45px 20px 50px; /*아이콘과 거리두기*/
+}
+
+.main-login input::placeholder {
+  color: #bdbdbd;
+}
+
+.main-login i {
+  position: absolute; /*absolute: block속성과 상관없이 i를 position: relative에 해당되는 애 기준으로 움직일 수 있음 */
+
+  /* 아이콘 위치 조정 */
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+
+}
+
+.btn {
+  margin: 5px 0;
+  position: relative; /* .img-의 기준 */
+
+  width: 100%; /*부모한테 padding이 있어서 패딩 제외하고 100%*/
+  height: 45px;
+
+  /* 버튼의 기본 속성 제거 */
+  border: none;
+  outline: none;
+
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+  cursor: pointer;
+
+  /* 폰트! airbnb적용해야함 */
+  font-size: 16px;
+  font-weight: 600;
+
+  /* color: #3b1c14; */
+  background: #F48475;
+}
+
+.main-login__btn {
+  color: #fff;
+  margin-bottom: 14px;
+}
+
+label {
+  color: #bdbdbd;
+}
+
+.main-login__checkbox {
+  accent-color: #F48475;
+  margin-right: 3px;
+}
+
+/* a 링크 */
+.link {
+  /* display: flex; */
+  /* justify-content: space-between; */
+  justify-content: space-around;
+
+  font-size: 14px;
+
+  /* margin: -15px 0 15px; */
+  margin: 4px;
+
+}
+
+
+.link a {
+  display: inline-block;
+  color: #bdbdbd;
+  text-decoration: none;
+
+  font-size: 14px;
+  margin: 20px 15px;
+}
+
+.link a:hover {
+  text-decoration: underline;
+}
+
+.link div {
+  display: inline-block;
+  width: 50%;
+  text-align: center;
+  display: inline-block;
+  float: left;
+}
+
+
+/* 또는 */
+.contour {
+  position: relative; /*span의 기준*/
+  height: 40px;
+  margin-top: 50px;
+  margin-bottom: 8px;
+}
+
+.contour span {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 10;
+  width: 50px;
+  height: 40px;
+  margin: 0 0 0 -25px;
+  background: #fff;
+  font-size: 14px;
+  line-height: 40px;
+  color: rgba(0, 0, 0, 0.38);
+  text-align: center;
+}
+
+/* 또는 선 */
+/* 얘는 누가 relative인지 모르겠네.. contour인가? */
+.contour:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+/* 카카오텍스트랑 구글텍스트랑 글자수가 달라서ㅠㅠ공통으로 묶어 적용이 이상함.. */
+.sns-login__kakao {
+  /* position: absolute;  */
+  color: #3b1c14;
+}
+
+.sns-login__goolgle {
+  /* position: absolute; */
+  background-color: #fff;
+}
+
+/* 버튼 텍스트 가운데 정렬 */
+.login-wrapper .sns-login__kakao div {
+  padding-left: 50px;
+}
+
+.sns-login__goolgle div {
+  padding-left: 50px;
+}
+
+.sns-login__kakao {
+  background-color: #fee426;
+}
+
+
+.sns-login__icon-kakao {
+  position: absolute;
+  left: 87px;
+  width: 21px;
+  height: 20px;
+
+  top: 55%; /*아이콘 위아래 조정*/
+  transform: translateY(-50%);
+  font-size: 20px;
+
+}
+
+.sns-login__icon-google {
+  position: absolute;
+  left: 99px;
+  width: 20px;
+  height: 20px;
+
+  top: 50%; /*아이콘 위아래 조정*/
+  transform: translateY(-50%);
+  font-size: 20px;
+
+}
