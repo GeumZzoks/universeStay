@@ -22,32 +22,26 @@ li {
   margin-top: 100px;
 }
 
-.wrapper h1 {
-  background: var(--main-bg-color3);
+h1 {
   font-size: 36px;
   font-weight: 800;
   margin-bottom: 40px;
 }
 
-.wrapper .info-1 {
+.info-1 {
   margin-bottom: 32px;
   color: #737373;
 }
 
-.wrapper .info-2 {
+.info-2 {
   font-size: 20px;
   font-weight: 600;
 }
 
-.wrapper .info-3 {
+.info-3 {
   color: #737373;
   margin-top: 8px;
   padding-left: 18px;
-}
-
-.wrapper .select-1 {
-  color: #242424;
-  margin-top: 16px;
 }
 
 .survey {
@@ -84,7 +78,7 @@ li {
   transform: rotate(-225deg);
 }
 
-.dropdown input {
+.dropdown__textBox {
   position: absolute;
   top: 0;
   left: 0;
@@ -99,7 +93,7 @@ li {
   border-radius: 10px;
 }
 
-.dropdown .option {
+.dropdown__option {
   position: absolute;
   top: 60px;
   width: 100%;
@@ -110,16 +104,16 @@ li {
   display: none;
 }
 
-.dropdown.active .option {
+.dropdown.active .dropdown__option {
   display: block;
 }
 
-.dropdown .option div {
+.dropdown .dropdown__option div {
   padding: 6px 20px;
   cursor: pointer;
 }
 
-.dropdown .option div:hover {
+.dropdown .dropdown__option div:hover {
   background: #62baea;
   color: #fff;
 }
@@ -133,7 +127,7 @@ h2 {
   margin-bottom: 25px;
 }
 
-.wrapper .info-4 {
+.info-4 {
   color: #737373;
   margin-top: 8px;
   padding-left: 18px;
@@ -168,7 +162,7 @@ h2 {
   align-items: center;
 }
 
-.btn-back {
+.box-back-delete__btn-back {
   background: #FFFFFF;
   width: 70px;
   height: 40px;
@@ -180,11 +174,11 @@ h2 {
   border-radius: 10px;
 }
 
-.btn-back:hover {
+.box-back-delete__btn-back:hover {
   background: #F7F7F7;
 }
 
-.btn-delete {
+.box-back-delete__btn-delete {
   width: 100px;
   height: 50px;
   cursor: pointer;
@@ -197,6 +191,6 @@ h2 {
   border-radius: 10px;
 }
 
-.btn-delete:hover {
+.box-back-delete__btn-back:hover {
   background: #000000;
 }

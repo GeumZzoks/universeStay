@@ -38,9 +38,9 @@
     </div>
 
     <div class="dropdown">
-        <input type="text" class="textBox"
+        <input type="text" class="dropdown__textBox"
                placeholder="이유를 선택하세요(선택 사항)." readonly>
-        <div class="option">
+        <div class="dropdown__option">
             <div onclick="show('에어비앤비 이용 경험이 불만족스럽습니다.')">
                 에어비앤비 이용 경험이 불만족스럽습니다.
             </div>
@@ -59,7 +59,7 @@
         </div>
     </div>
 
-    <img class="img-caution" src="../../../resources/img/icon2/caution.png" alt="">
+    <img class="img-caution" src="../../../resources/img/symbol/caution.png" alt="">
 
     <h2>계정을 삭제하시겠어요?</h2>
     <ul class="info-4">
@@ -69,14 +69,14 @@
     <button class="btn-unactivate">계정 비활성화</button>
     <div class="contour"></div>
     <div class="box-back-delete">
-        <button class="btn-back">뒤로</button>
-        <button class="btn-delete">계정 삭제</button>
+        <button class="box-back-delete__btn-back">뒤로</button>
+        <button class="box-back-delete__btn-delete">계정 삭제</button>
     </div>
 </div>
 
 <script>
   function show(anything) {
-    document.querySelector('.textBox').value = anything;
+    document.querySelector('.dropdown__textBox').value = anything;
   }
 
   let dropdown = document.querySelector('.dropdown');
