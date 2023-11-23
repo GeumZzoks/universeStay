@@ -277,3 +277,4 @@ mvnw
 mvnw.cmd
 src/main/resources/config/*
 /.idea/codeStyles/codeStyleConfig.xml
+log
