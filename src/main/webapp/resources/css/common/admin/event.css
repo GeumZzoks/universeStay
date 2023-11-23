@@ -1,0 +1,24 @@
+body {background-color: gainsboro; width:1920px;}
+a {text-decoration: none; color: white;}
+.content {width: 1140px; height: 600px; position: absolute; float: left; margin:50px 100px 0 190px; padding: 0 20px 0 20px; background-color: white;}
+.content-search {position: absolute; margin: -40px 0 0 946px;}
+.content-search__btn {height:20px; background-color: indianred; color: white; border: 0;}
+.content-table {width:100%;}
+.content-table__writer {width:80px;}
+.content-table__regdate {width:100px;}
+.content-table__viewcnt {width:50px;}
+.content-top__btn {width:50px; height: 20px; background-color: indianred; color: white; border: 0; position: absolute; margin: -100px 0 0 1010px;}
+.content-top__btn:hover {transition-duration: 200ms; transform: scale(1.1, 1.1);}
+.content-bottom {position: absolute; margin: 600px 0 0 1200px;}
+.content-bottom__btn {width:150px; height: 20px; border: 0; background-color: indianred; color: white;}
+.content-bottom__btn:hover {transition-duration: 200ms; transform: scale(1.1, 1.1);}
+.bar-top {width:100%; height: 30px; background-color:white; position:fixed; top:0; right:0;}
+.bar-top__btn {float:right; margin: 7px 20px 0 0; background-color: transparent; color: black; border:0;}
+.bar-top__btn:hover {transition-duration: 200ms; transform: scale(1.1, 1.1);}
+.bar-side {width: 150px; background-color: indianred; position: fixed; top:0; bottom:0; left:0; overflow: hidden; z-index: 2;}
+.bar-side__homebtn {font-size:20px; font-weight: 800; color: white; border:0; margin:30px 0 50px 5px; background-color: transparent;}
+.bar-side__homebtn:hover {transition-duration: 200ms; transform: scale(1.1, 1.1);}
+.bar-side__btn {color:white; font-size:16px; width:100%; height:50px; margin-top: 5px; background-color: transparent; border: 0;}
+.bar-side__btn:hover {transition-duration: 200ms; transform: scale(1.1, 1.1);}
+.bar-side__btn:active { background-color: white; color: indianred; font-weight: 800;}
+
