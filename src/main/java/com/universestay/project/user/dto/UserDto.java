@@ -3,7 +3,6 @@ package com.universestay.project.user.dto;
 import io.swagger.annotations.ApiModelProperty;
 import java.sql.Date;
 import java.sql.Timestamp;
-import java.util.Objects;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -22,7 +21,7 @@ public class UserDto {
     @ApiModelProperty(notes = "유저 ID", example = "0ca24692-89ea-11ee-b9d1-0242ac120002", required = true)
     private String user_id;
 
-    @ApiModelProperty(notes = "추천 유저 ID", example = "0ca24692-89ea-11ee-b9d1-0242ac120002", required = false)
+    @ApiModelProperty(notes = "추천 유저 ID", example = "ae405ce0-8a9b-11ee-b9d8-0242ac120002", required = false)
     private String user_id2;
 
     @ApiModelProperty(notes = "상태코드", example = "U01", required = true)
