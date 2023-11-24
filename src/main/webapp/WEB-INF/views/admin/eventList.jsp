@@ -11,7 +11,7 @@
 <html>
 <head>
     <title>이벤트</title>
-    <link rel="stylesheet" href="../../../resources/css/common/admin/event.css">
+    <link rel="stylesheet" href="../../../resources/css/admin/event.css">
 </head>
 <body>
 <div class="bar-top">
