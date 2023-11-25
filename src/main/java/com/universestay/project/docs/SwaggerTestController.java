@@ -1,18 +1,27 @@
 package com.universestay.project.docs;
 
 
-
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/test")
 public class SwaggerTestController {
+
+    @GetMapping("header")
+    public String test() {
+        return "common/user/header";
+    }
+
 
     // GET 요청에 대한 예시
     @ApiOperation(value = "사용자 정보 조회", notes = "사용자의 ID를 이용해 정보를 조회합니다.")

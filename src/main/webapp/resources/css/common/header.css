@@ -1,0 +1,140 @@
+
+* {
+  font-size: 14px;
+  font-family: NotoSansKR-Regular;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  font-family: NotoSansKR-Regular;
+}
+
+.logo {
+  width: 200px;
+}
+
+button {
+  height: 100%;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.header {
+  padding: 0 80px;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.header__logo {
+  width: 300px;
+  height: 100%;
+
+}
+
+/*검색 서치바*/
+
+.header__searchbar {
+  display: flex;
+  justify-content: center;
+}
+
+.header__searchbar__inner {
+  border: rgb(221, 221, 221) 0.5px solid;
+  border-radius: 30px;
+  width: 400px;
+  height: 48px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  box-shadow: 1px 1px 3px rgb(221, 221, 221);
+  transition: box-shadow 0.1s ease;
+}
+
+.header__searchbar__inner:hover {
+  box-shadow: 2.5px 2.5px 2px rgb(221, 221, 221);
+}
+
+.header__searchbar__search-btn {
+  background-color: rgba(244, 132, 117, 1);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  position: relative;
+}
+
+.header__searchbar__search-btn > img {
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  left: 30%;
+  top: 30%;
+}
+
+.header__searchbar__divide-line {
+  height: 24px;
+  width: 1px;
+  background-color: rgb(221, 221, 221);
+}
+
+/*프로필영역*/
+.header__profile {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.header__profile__to-host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 160px;
+  border-radius: 30px;
+  margin-right: 15px;
+}
+
+.header__profile__to-host:hover {
+  background-color: rgb(248, 248, 248);
+}
+
+.header__profile__my-profile {
+  border: rgb(221, 221, 221) 0.5px solid;
+  border-radius: 30px;
+  width: 100px;
+  height: 48px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 1px 1px 3px rgb(221, 221, 221);
+  transition: box-shadow 0.1s ease;
+}
+
+.header__profile__my-profile:hover {
+  box-shadow: 2.5px 2.5px 2px rgb(221, 221, 221);
+}
+
+.header__profile__my-profile__btn {
+  width: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__profile__img {
+  width: 25px;
+  height: 25px;
+}
+
+
+/*최하단 구분선*/
+
+.line {
+  width: 100%;
+  height: 0;
+  border-top: rgb(221, 221, 221) 0.5px solid;
+}
