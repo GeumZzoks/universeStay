@@ -197,13 +197,13 @@
 <script>
   // 이메일 인증
   $('#mail_Check_Btn').click(function () {
-    const email = $('#signup-email').val(); // 이메일 주소값 얻어오기!
+    const email = $('#signup_email').val(); // 이메일 주소값 얻어오기!
     console.log('완성된 이메일 : ' + email); // 이메일 오는지 확인
     const checkInput = $('.code_check_input') // 인증번호 입력하는곳
 
     $.ajax({
       type: 'get',
-      url: '<c:url value ="/mailCheck?email="/>' + email, // GET방식이라 Url 뒤에 email을 뭍힐수있다.
+      url: '<c:url value ="/user/mailCheck?email="/>' + email,
       success: function (data) {
         checkInput.attr('disabled', false);
         code = data;
