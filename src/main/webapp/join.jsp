@@ -6,9 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <title>네이버 회원가입</title>
+    <link rel="stylesheet" href="resources/css/common/global.css">
     <link rel="stylesheet" href="resources/css/user/join.css">
-
-
 </head>
 
 <body>
