@@ -1,3 +1,4 @@
+<%@ page import="javax.servlet.http.Cookie" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
@@ -13,31 +14,45 @@
 
 </head>
 
+<%
+// 쿠키
+    String userEmail = "";
+    boolean hasCookie = false;
+    Cookie[] cookies = request.getCookies();
+    if(cookies != null) {
+        for(Cookie cookie: cookies) {
+            if(cookie.getName().equals("user_email")) {
+                userEmail = cookie.getValue();
+                hasCookie = true;
+            }
+        }
+    }
+%>
 <body>
 
 <div class="login-wrapper">
 
-    <form action="">
+    <form action="/userLogin" method="post">
 
-        <img src="/resources/img/logo/logo.png" ; class="logo-universe">
+        <img src="/resources/img/logo/logo.png" class="logo-universe">
 
         <!-- 메인 로그인 -->
         <div class="main-login">
-            <input type="text" placeholder="이메일 주소" class="main-login__input-email" required>
+            <input type="text" placeholder="이메일 주소" class="main-login__input-email" name="user_email" value="<%=userEmail%>" required>
             <i class="bx bxs-envelope main-login__icon"></i>
         </div>
         <div class="main-login">
-            <input type="password" placeholder="비밀번호" class="main-login__input-pwd" required>
+            <input type="password" placeholder="비밀번호" class="main-login__input-pwd" name="user_pwd" required>
             <i class="bx bxs-lock-alt main-login__icon"></i>
         </div>
 
         <button type="submit" class="btn main-login__btn">로그인</button>
 
-        <label>
-            <input type="checkbox" class="main-login__checkbox" name="remember-id" value="id">
-            아이디 저장
-        </label>
-
+        <% if (hasCookie) { %>
+        <label><input type="checkbox" class="main-login__checkbox" name="remember_id" autocomplete="off" checked>아이디 저장</label>
+        <% } else { %>
+        <label><input type="checkbox" class="main-login__checkbox" autocomplete="off" name="remember_id">아이디 저장</label>
+        <% } %>
         <!-- 이동 링크 -->
         <div class="link">
             <div>
@@ -61,7 +76,6 @@
                 <img class="sns-login__icon-google" src="/resources/img/logo/btn-logo-google.png">
                 <div>Google로 로그인</div>
             </button>
-
         </div>
 
     </form>
