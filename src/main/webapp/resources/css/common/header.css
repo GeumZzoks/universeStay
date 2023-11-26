@@ -21,9 +21,10 @@ button {
   cursor: pointer;
 }
 
+
 .header {
   padding: 0 80px;
-  height: 80px;
+  height: 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -45,9 +46,9 @@ button {
 
 .header__searchbar__inner {
   border: rgb(221, 221, 221) 0.5px solid;
-  border-radius: 30px;
-  width: 400px;
-  height: 48px;
+  border-radius: 40px;
+  width: 600px;
+  height: 70px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -59,6 +60,57 @@ button {
   box-shadow: 2.5px 2.5px 2px rgb(221, 221, 221);
 }
 
+.header__searchbar__where.show {
+  display: flex;
+  justify-content: space-between;
+  align-content: space-around;
+  flex-wrap: wrap;
+  top: 130%;
+  left: 10%;
+  width: 400px;
+  height: 200px;
+  background-color: white;
+  border-radius: 20px;
+  border: 0.1px solid rgb(221, 221, 221);
+  box-shadow: 1px 1px 3px rgb(221, 221, 221);
+  padding: 20px 20px 30px 20px;
+}
+
+.header__searchbar__where > .dropdown__option {
+  width: 80px;
+}
+
+.header__searchbar__where > .dropdown__option > span {
+  color: #737373;
+}
+
+.header__searchbar__where > .dropdown__option > span:hover {
+  font-weight: bold;
+  color: #464646;
+}
+
+.header__searchbar__txt {
+  font-size: 15px;
+}
+
+.header__searchbar__sub_txt {
+  font-size: 13px;
+  color: #737373;
+}
+
+.header__searchbar__where > input {
+  width: 400px;
+  height: 40px;
+  border: 0.5px solid lightgray;
+  border-radius: 10px;
+  padding-left: 20px;
+}
+
+.header__searchbar__where > div {
+  width: 30px;
+}
+
+/*검색 돋보기 버튼*/
 .header__searchbar__search-btn {
   background-color: rgba(244, 132, 117, 1);
   border-radius: 50%;
@@ -66,6 +118,16 @@ button {
   height: 32px;
   position: relative;
 }
+
+.header__searchbar__inner button {
+  transition: font-size 0.1s ease;
+}
+
+/*.header__searchbar__inner button:hover {*/
+/*  font-size: 15px;*/
+/*  font-weight: bold;*/
+/*}*/
+
 
 .header__searchbar__search-btn > img {
   width: 14px;
@@ -132,25 +194,14 @@ button {
   height: 25px;
 }
 
-.dropdown {
-  position: relative;
-}
-
-.dropdown-div {
-  display: none;
-}
-
-
-/*드롭다운 토글*/
-.show {
-  display: block;
+/*드롭다운 이후에 보여지는 화면 속성*/
+.show.header__profile__option {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
   width: 200%;
   height: 230px;
-  position: absolute;
   top: 120%;
   right: 5%;
   background-color: white;
@@ -160,7 +211,7 @@ button {
   padding: 20px 0px;
 }
 
-.dropdown__option {
+.header__profile__option div {
   width: 100%;
   flex: 1;
   display: flex;
@@ -168,13 +219,32 @@ button {
   align-items: center;
 }
 
-.dropdown__option:hover {
+.header__profile__option .dropdown__option:hover {
   background-color: rgb(243, 243, 243);
 }
 
-.dropdown__option > span {
+.header__profile__option .dropdown__option > span {
   padding-left: 20px;
 }
+
+/*드롭다운 토글 (전역)*/
+/*-------------------*/
+.dropdown {
+  position: relative;
+}
+
+
+.dropdown-div {
+  display: none;
+  position: absolute;
+}
+
+.show {
+  position: absolute;
+}
+
+/*-------------------*/
+
 
 /*최하단 구분선*/
 .line {
