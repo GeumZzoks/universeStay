@@ -1,4 +1,4 @@
-
+/*전역 설정*/
 * {
   font-size: 14px;
   font-family: NotoSansKR-Regular;
@@ -21,7 +21,7 @@ button {
   cursor: pointer;
 }
 
-
+/*헤더 설정*/
 .header {
   padding: 0 80px;
   height: 100px;
@@ -34,7 +34,6 @@ button {
 .header__logo {
   width: 300px;
   height: 100%;
-
 }
 
 /*검색 서치바*/
@@ -60,6 +59,7 @@ button {
   box-shadow: 2.5px 2.5px 2px rgb(221, 221, 221);
 }
 
+/*'어디로' 눌렀을때 나오는 드롭다운*/
 .header__searchbar__where.show {
   display: flex;
   justify-content: space-between;
@@ -108,6 +108,33 @@ button {
 
 .header__searchbar__where > div {
   width: 30px;
+}
+
+/* '여행자' 버튼 눌렀을때 나오는 드롭다운 */
+.header__searchbar__people.show {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-content: center;
+  top: 200%;
+  left: 10%;
+  width: 100px;
+  height: 30px;
+  background-color: white;
+  border-radius: 20px;
+  border: 0.1px solid rgb(221, 221, 221);
+  box-shadow: 1px 1px 3px rgb(221, 221, 221);
+  padding: 20px 20px 30px 20px;
+}
+
+.header__searchbar__people_count {
+  color: #737373;
+  width: 30px;
+  font-size: 20px;
+}
+
+.header__searchbar__people > div {
+  padding-top: 5px;
 }
 
 /*검색 돋보기 버튼*/
