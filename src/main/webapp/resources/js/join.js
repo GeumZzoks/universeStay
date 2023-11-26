@@ -37,16 +37,7 @@ function search_postcode() {
       }
 
       // 우편번호와 주소 정보를 해당 필드에 넣는다.
-      document.getElementById('address_postcode').value = data.zonecode;
       document.getElementById("address_roadAddress").value = roadAddr;
-      document.getElementById("address_jibunAddress").value = data.jibunAddress;
-
-      // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
-      if (roadAddr !== '') {
-        document.getElementById("address_extraAddress").value = extraRoadAddr;
-      } else {
-        document.getElementById("address_extraAddress").value = '';
-      }
 
       var guideTextBox = document.getElementById("guide");
       // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
@@ -66,3 +57,62 @@ function search_postcode() {
     }
   }).open();
 }
+
+// 회원가입 버튼 클릭 시
+$(document).ready(function () {
+  // 가입하기 버튼 클릭 이벤트
+  $("#signup_btn").click(function () {
+    // 사용자가 입력한 정보
+    var user_nickname = $("#signup_id").val();
+    var user_pwd = $("#signup_pw").val();
+    var user_confirmPassword = $("#signup_pww").val();
+    var user_name = $("#signup_name").val();
+    var user_birthYear = $("#signup_birth_yy").val();
+    var user_birthMonth = $(".dropdown__textBox").val();
+    var user_birthDay = $("#signup_birth_dd").val();
+    var user_email = $("#signup_email").val();
+    var user_phone_num1 = $("#signup_phone_1").val();
+    var user_phone_num2 = $("#signup_phone_2").val();
+    var address = $("#address_roadAddress").val();
+    var address_detail = $("#address_detailAddress").val();
+
+    if (user_pwd !== user_confirmPassword) {
+      alert("비밀번호와 비밀번호 재확인이 일치하지 않습니다.");
+      return;
+    }
+
+    // 서버로 전송할 데이터를 객체
+    var userDto = {
+      user_nickname: user_nickname,
+      user_pwd: user_pwd,
+      user_name: user_name,
+      user_birth: new Date(user_birthYear, user_birthMonth - 1,
+          user_birthDay),
+      user_email: user_email,
+      user_phone_num1: user_phone_num1,
+      user_phone_num2: user_phone_num2,
+      user_address: `${address} ${address_detail}`,
+    };
+
+    // 서버에 가입 요청
+    $.ajax({
+      type: "POST",
+      url: "user/join", // 가입 요청을 처리하는 컨트롤러의 엔드포인트 주소
+      contentType: "application/json",
+      data: JSON.stringify(userDto),
+      success: function (response) {
+        // 가입 성공 시 처리
+        console.log("가입 성공!");
+        // 성공에 대한 추가적인 동작을 수행할 수 있습니다.
+      },
+      error: function (error) {
+        // 가입 실패 시 처리
+        console.error("가입 실패:", error);
+        // 실패에 대한 추가적인 동작을 수행
+      }
+    });
+  });
+});
+
+
+
