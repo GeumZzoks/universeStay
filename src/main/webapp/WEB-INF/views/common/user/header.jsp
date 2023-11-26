@@ -43,11 +43,27 @@
                 <div>호스트 모드로 전환</div>
             </a>
         </div>
-        <div class="header__profile__my-profile">
-            <button class="header__profile__my-profile__btn">
-                <img src="/resources/img/icon/bars-3.png"/>
-                <img class="header__profile__img"
-                     src="/resources/img/icon/default_profile_icon.png"/>
+        <div class="header__profile__my-profile dropdown">
+            <button class="header__profile__my-profile__btn" onclick="toggleDropdown()">
+                <div header__profile__my-profile__wrapper>
+                    <img src="/resources/img/icon/bars-3.png"/>
+                    <img class="header__profile__img"
+                         src="/resources/img/icon/default_profile_icon.png"/>
+                </div>
+                <div class="header__profile__option dropdown-div">
+                    <div class="dropdown__option dropdown__option-msg" onclick=""><span>메시지</span>
+                    </div>
+                    <div class="dropdown__option dropdown__option-reservation" onclick="">
+                        <span>여행</span></div>
+                    <div class="dropdown__option dropdown__option-wishlist" onclick="">
+                        <span>위시리스트</span></div>
+                    <div class="dropdown__option dropdown__option-reviews" onclick="">
+                        <span>나의 리뷰</span></div>
+                    <div class="dropdown__option dropdown__option-account" onclick="">
+                        <span>계정</span></div>
+                    <div class="dropdown__option dropdown__option-log-out" onclick="">
+                        <span>로그아웃</span></div>
+                </div>
             </button>
         </div>
 
@@ -59,4 +75,13 @@
 <div class="line"></div>
 
 </body>
+
+<script>
+
+    const toggleDropdown = function () {
+        const dropdownDiv = document.getElementsByClassName("dropdown-div")[0];
+        dropdownDiv.classList.toggle('show')
+    }
+
+</script>
 </html>

@@ -82,6 +82,7 @@ button {
 }
 
 /*프로필영역*/
+/*호스트모드로 전환 버튼*/
 .header__profile {
   display: flex;
   justify-content: flex-end;
@@ -102,6 +103,7 @@ button {
   background-color: rgb(248, 248, 248);
 }
 
+/*마이프로필 버튼 영역*/
 .header__profile__my-profile {
   border: rgb(221, 221, 221) 0.5px solid;
   border-radius: 30px;
@@ -130,9 +132,51 @@ button {
   height: 25px;
 }
 
+.dropdown {
+  position: relative;
+}
+
+.dropdown-div {
+  display: none;
+}
+
+
+/*드롭다운 토글*/
+.show {
+  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 200%;
+  height: 230px;
+  position: absolute;
+  top: 120%;
+  right: 5%;
+  background-color: white;
+  border-radius: 20px;
+  border: 0.1px solid rgb(221, 221, 221);
+  box-shadow: 1px 1px 3px rgb(221, 221, 221);
+  padding: 20px 0px;
+}
+
+.dropdown__option {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.dropdown__option:hover {
+  background-color: rgb(243, 243, 243);
+}
+
+.dropdown__option > span {
+  padding-left: 20px;
+}
 
 /*최하단 구분선*/
-
 .line {
   width: 100%;
   height: 0;
