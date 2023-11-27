@@ -2,13 +2,9 @@ package com.universestay.project.dto;
 
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.*;
+
 import java.sql.Timestamp;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
@@ -17,7 +13,6 @@ import lombok.ToString;
 @EqualsAndHashCode
 @ToString
 public class EventDto {
-
 
     @ApiModelProperty(notes = "이벤트 ID", example = "1", required = true)
     private Integer event_id;
@@ -41,10 +36,10 @@ public class EventDto {
     private String event_is_open;
 
     @ApiModelProperty(notes = "이벤트 시작일", example = "YYYY-MM-DD hh:mm:ss.000000", required = false)
-    private Timestamp event_start_date;
+    private String event_start_date;
 
     @ApiModelProperty(notes = "이벤트 만료일", example = "YYYY-MM-DD hh:mm:ss.000000", required = false)
-    private Timestamp event_expire_date;
+    private String event_expire_date;
 
     @ApiModelProperty(notes = "생성 날짜", example = "YYYY-MM-DD hh:mm:ss.000000", required = true)
     private Timestamp created_at;

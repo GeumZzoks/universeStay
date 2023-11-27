@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.universestay.project.mybatis.mapper.admin.EventMapper">
+
+    <insert id="insert" parameterType="com.universestay.project.dto.EventDto">
+        INSERT into Event (admin_id, status_id, event_title, event_ctt, event_is_open,
+                           event_start_date, event_expire_date, created_id, updated_id)
+        VALUES (#{admin_id}, #{status_id}, #{event_title}, #{event_ctt}, #{event_is_open},
+                #{event_start_date}, #{event_expire_date}, #{created_id}, #{updated_id})
+    </insert>
+
+    <select id="select" parameterType="int" resultType="com.universestay.project.dto.EventDto">
+        SELECT *
+        FROM Event
+        WHERE event_id = #{event_id}
+    </select>
+
+    <select id="selectAll" resultType="com.universestay.project.dto.EventDto">
+        SELECT *
+        FROM Event
+        ORDER BY created_at DESC
+    </select>
+
+    <update id="update" parameterType="com.universestay.project.dto.EventDto">
+        UPDATE Event
+        SET status_id         = #{status_id},
+            event_title       = #{event_title},
+            event_ctt         = #{event_ctt},
+            event_is_open     = #{event_is_open},
+            event_start_date  = #{event_start_date},
+            event_expire_date = #{event_expire_date},
+            updated_at        = now(),
+            updated_id        = #{updated_id}
+        WHERE event_id = #{event_id}
+    </update>
+
+    <delete id="delete">
+        DELETE
+        FROM Event
+        WHERE event_id = #{event_id}
+    </delete>
+
+    <!--검색은 아직 미구현입니다.-->
+    <!--    <select id="search" parameterType="int" resultType="com.universestay.project.dto.EventDto">-->
+    <!--        SELECT *-->
+    <!--        FROM Event-->
+    <!--        WHERE event_title LIKE concat('%', #{search}, '%')-->
+    <!--        ORDER BY created_at DESC-->
+    <!--    </select>-->
+</mapper>

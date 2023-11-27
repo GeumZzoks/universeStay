@@ -9,32 +9,26 @@
 <html>
 <head>
     <title>이벤트</title>
-    <link rel="stylesheet" href="../../../resources/css/common/admin/event.css">
+    <link rel="stylesheet" href="../../../resources/css/admin/event.css">
 </head>
 <body>
-    <div class="bar-top">
-        <button class="bar-top__btn">로그아웃</button>
-        <button class="bar-top__btn">관리자 1</button>
-    </div>
+<jsp:include page="/WEB-INF/views/common/admin/header.jsp"/>
+flush="false"/>
 
-    <aside class="bar-side">
-        <button class="bar-side__homebtn"><a href="/event/list">
-            UniverseStay</a></button>
-        <button class="bar-side__btn">유저관리</button><br>
-        <button class="bar-side__btn">호스트관리</button><br>
-        <button class="bar-side__btn">공지사항</button><br>
-        <button class="bar-side__btn">이벤트</button><br>
-        <button class="bar-side__btn">1:1문의</button>
-    </aside>
+<jsp:include page="/WEB-INF/views/common/admin/navigation.jsp"/>
+flush="false"/>
 
+<jsp:include page="/WEB-INF/views/common/admin/footer.jsp"/>
+flush="false"/>
 
-
-
-    <div class="content">
-        <h3 style="color: indianred;">이벤트</h3>
-        <h5 style="font-size: 20px; font-weight: 800;">이벤트 제목입니다</h5>
-        <button class="content-top__btn">수정</button>
-        <form><button class="content-top__btn" style="margin-left: 1080px;">삭제</button></form>
-    </div>
+<div class="content">
+    <h3 style="color: indianred;">이벤트</h3>
+    <h5 style="font-size: 20px; font-weight: 800; margin-left: 20px">${eventDto.event_title}</h5>
+    <h5 style="white-space:pre; margin-left: 20px">${eventDto.event_ctt}</h5>
+    <button class="content-top__btn" onclick="location.href='/event/update/${eventDto.event_id}'">수정</button>
+    <form action="/event/${eventDto.event_id}" method="post">
+        <button type="submit" class="content-top__btn" style="right: 20px">삭제</button>
+    </form>
+</div>
 </body>
 </html>
