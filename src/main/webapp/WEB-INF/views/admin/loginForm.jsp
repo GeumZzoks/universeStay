@@ -32,7 +32,7 @@
 
     <form
             class="right-side__login-form"
-            action="/admin/loginForm"
+            action="/adminLogin/loginForm"
             method="post"
     >
         <input type="text" name="username" placeholder="username" required/>
