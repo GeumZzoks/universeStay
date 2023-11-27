@@ -22,14 +22,13 @@ public class JoinController {
     @Autowired
     private JoinService joinService;
 
-    //    회원가입 페이지
+    // 회원가입 페이지
     @GetMapping("/join")
     public String join() {
         return "user/join";
     }
 
     @PostMapping("/join")
-    @ResponseBody
     public String join(@RequestBody UserDto userDto) {
         System.out.println(userDto.getUser_address());
 
@@ -37,14 +36,10 @@ public class JoinController {
         try {
             result = joinService.registerUser(userDto);
 
-            String viewPage = null;
             if (result == 1) {
-                viewPage = "redirect:/user/login";
-                return viewPage;
+                return "user/login";
             } else {
-                System.out.println("회원가입 실패");
-                viewPage = "redirect:/user/join";
-                return viewPage;
+                return "user/join";
             }
 
         } catch (Exception e) {
@@ -52,7 +47,7 @@ public class JoinController {
         }
     }
 
-    //이메일 인증
+    // 이메일 인증
     @GetMapping("/mailCheck")
     @ResponseBody
     public String mailCheck(String email) {
@@ -64,6 +59,7 @@ public class JoinController {
         }
     }
 
+    // 닉네임 중복체크
     @PostMapping("/checkNickname")
     //@ResponseBody ajax 값을 바로jsp 로 보내기위해 사용
     public ResponseEntity<String> checkId(@RequestParam("user_nickname") String user_nickname) {
@@ -82,7 +78,6 @@ public class JoinController {
             result = "Y";
         }
         return ResponseEntity.ok(result);
-
     }
 }
 
