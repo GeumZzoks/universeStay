@@ -27,7 +27,7 @@
         <div>
             <!--아이디,비번,비번재확인-->
 
-            <h3>아이디</h3>
+            <h3>아이디*</h3>
             <%--            <span class="signup_input">--%>
             <%--                <input id="signup_id" type="text" name="user_nickname" placeholder="아이디"></input>--%>
             <div style="display: flex;">
@@ -49,7 +49,7 @@
             </div>
             <%--            </span>--%>
 
-            <h3>비밀번호</h3>
+            <h3>비밀번호*</h3>
             <span class="signup_input">
                 <input type="password" id="signup_pw" name="user_pwd" placeholder="비밀번호"
                        class="input"
@@ -57,19 +57,23 @@
                 <span class="pw_lock"></span>
             </span>
 
-            <h3>비밀번호 재확인</h3>
+            <h3>비밀번호 재확인*</h3>
             <span class="signup_input">
                 <input type="password" id="signup_pww" name="user_pwd_2" placeholder="비밀번호 재확인"
                        class="input" value="" maxlength="20" autocomplete="new-password"
                        aria-autocomplete="list">
                 <span class="pww_lock"></span>
             </span>
+            <div>
+                <span class="helper_text_span" id="pwd_input_helper_text"></span>
+            </div>
+
 
         </div>
 
         <div style="margin-top: 35px;">
             <!--이름,생년월일,성별,이메일-->
-            <h3>이름</h3>
+            <h3>이름*</h3>
             <span class="signup_input">
                     <input id="signup_name" name="user_name" type="text"></input>
                 </span>
@@ -104,7 +108,7 @@
                     </span>
             </span>
 
-            <h3>본인 확인 이메일</h3>
+            <h3>본인 확인 이메일*</h3>
             <div style="display: flex;">
                 <span class="signup_input" style="width:100%; margin: 10px 0px 0px 0px">
                     <input id="signup_email" type="text" class="form-control" name="user_email"
@@ -126,7 +130,7 @@
 
         <div style="margin-top: 35px;">
             <!--휴대전화-->
-            <h3>휴대전화 1</h3>
+            <h3>휴대전화 1*</h3>
             <span class="signup_input">
                     <input id="signup_phone_1" type="text" name="user_phone_num1"
                            placeholder="전화번호 입력"></input>

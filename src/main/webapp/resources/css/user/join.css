@@ -300,21 +300,6 @@ h3 {
   border-radius: 5px;
 }
 
-/* Apply styles to the result_checkId span */
-#result_checkId {
-  font-size: 12px;
-}
-
-/* Apply styles to highlight the input availability */
-#result_checkId.available {
-  color: green;
-}
-
-/* Apply styles to highlight the input unavailability */
-#result_checkId.unavailable {
-  color: red;
-}
-
 .helper_text_span {
   display: flex;
   font-size: 14px;
