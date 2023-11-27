@@ -1,3 +1,7 @@
+* {
+  font-family: NotoSansKR-Regular;
+}
+
 .main {
   width: 100%;
   display: flex;
