@@ -15,13 +15,13 @@
 </head>
 
 <%
-// 쿠키
+    // 쿠키
     String userEmail = "";
     boolean hasCookie = false;
     Cookie[] cookies = request.getCookies();
-    if(cookies != null) {
-        for(Cookie cookie: cookies) {
-            if(cookie.getName().equals("user_email")) {
+    if (cookies != null) {
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("user_email")) {
                 userEmail = cookie.getValue();
                 hasCookie = true;
             }
@@ -38,20 +38,32 @@
 
         <!-- 메인 로그인 -->
         <div class="main-login">
-            <input type="text" placeholder="이메일 주소" class="main-login__input-email" name="user_email" value="<%=userEmail%>" required>
+            <input type="text" placeholder="이메일 주소" class="main-login__input-email"
+                   name="user_email" value="<%=userEmail%>">
             <i class="bx bxs-envelope main-login__icon"></i>
         </div>
+        <c:if test="${error.containsKey('user_email')}">
+            <p class="field-error">${error['user_email']}</p>
+        </c:if>
         <div class="main-login">
-            <input type="password" placeholder="비밀번호" class="main-login__input-pwd" name="user_pwd" required>
+            <input type="password" placeholder="비밀번호" class="main-login__input-pwd" name="user_pwd">
             <i class="bx bxs-lock-alt main-login__icon"></i>
         </div>
+        <c:if test="${error.containsKey('user_pwd')}">
+            <p class="field-error">${error['user_pwd']}</p>
+        </c:if>
+        <c:if test="${error.containsKey('id null or pwd invalid')}">
+            <p class="field-error">${error['id null or pwd invalid']}</p>
+        </c:if>
 
         <button type="submit" class="btn main-login__btn">로그인</button>
 
         <% if (hasCookie) { %>
-        <label><input type="checkbox" class="main-login__checkbox" name="remember_id" autocomplete="off" checked>아이디 저장</label>
+        <label><input type="checkbox" class="main-login__checkbox" name="remember_id"
+                      autocomplete="off" checked>아이디 저장</label>
         <% } else { %>
-        <label><input type="checkbox" class="main-login__checkbox" autocomplete="off" name="remember_id">아이디 저장</label>
+        <label><input type="checkbox" class="main-login__checkbox" autocomplete="off"
+                      name="remember_id">아이디 저장</label>
         <% } %>
         <!-- 이동 링크 -->
         <div class="link">
