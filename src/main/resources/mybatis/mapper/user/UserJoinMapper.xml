@@ -12,6 +12,12 @@
             #{user_phone_num1}, #{user_phone_num2}, #{user_address}, #{user_birth}, #{user_img_url},
             #{status_id}, #{created_id}, #{updated_id})
   </insert>
-  
+
+  <select id="checkId" parameterType="String" resultType="int">
+    select count(*)
+    from User
+    where user_nickname = #{user_nickname}
+  </select>
+
 </mapper>
 

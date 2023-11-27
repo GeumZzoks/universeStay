@@ -75,6 +75,8 @@ $(document).ready(function () {
     var user_phone_num2 = $("#signup_phone_2").val();
     var address = $("#address_roadAddress").val();
     var address_detail = $("#address_detailAddress").val();
+    var user_img_url = $("#user_img_url").val();
+    console.log(user_img_url);
 
     if (user_pwd !== user_confirmPassword) {
       alert("비밀번호와 비밀번호 재확인이 일치하지 않습니다.");
@@ -92,6 +94,7 @@ $(document).ready(function () {
       user_phone_num1: user_phone_num1,
       user_phone_num2: user_phone_num2,
       user_address: `${address} ${address_detail}`,
+      user_img_url: user_img_url
     };
 
     // 서버에 가입 요청
@@ -101,18 +104,48 @@ $(document).ready(function () {
       contentType: "application/json",
       data: JSON.stringify(userDto),
       success: function (response) {
-        // 가입 성공 시 처리
-        console.log("가입 성공!");
-        // 성공에 대한 추가적인 동작을 수행할 수 있습니다.
       },
       error: function (error) {
-        // 가입 실패 시 처리
         console.error("가입 실패:", error);
-        // 실패에 대한 추가적인 동작을 수행
       }
     });
   });
 });
 
+$(function () {
+  $("#id_Check_Btn").click(function () {
+    let user_nickname = $("#signup_id").val();
 
+    $.ajax({
+      type: 'post',
+      url: "/user/checkNickname",
+      data: {"user_nickname": user_nickname},
+      success: function (data) {
+        if (data == "N") { // 성공한 경우
+          result = "이 아이디를 사용할 수 있습니다.";
 
+          // result_checkId 내용과 스타일 업데이트
+          $("#id_input_helper_text").html(result).removeClass(
+              "unavailable")
+
+          // 다음 입력 필드에 포커스 설정 (만약 필요하다면)
+          // $("#user_pwd").trigger("focus");
+
+        } else { // 실패한 경우
+          const result = "이 아이디는 이미 사용 중입니다.";
+          $("#id_input_helper_text").html(result).addClass(
+              "unavailable");
+
+          // 사용자 아이디 필드를 지우고 해당 필드에 포커스 설정
+          $("#signup_id").val("").trigger("focus");
+        }
+      },
+      error: function (error) {
+        const result = "이 아이디는 이미 사용 중입니다.";
+        $("#id_input_helper_text").html(result).addClass(
+            "unavailable");
+        // alert(error);
+      },
+    });
+  });
+});

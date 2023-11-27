@@ -1,14 +1,16 @@
 package com.universestay.project.user.controller;
 
-import com.universestay.project.user.dto.UserRequestDto;
+import com.universestay.project.user.dto.UserDto;
 import com.universestay.project.user.service.JoinService;
 import com.universestay.project.user.service.MailSendService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -28,13 +30,12 @@ public class JoinController {
 
     @PostMapping("/join")
     @ResponseBody
-    public String join(@RequestBody UserRequestDto userRequestDto) {
-        System.out.println("test");
-        System.out.println(userRequestDto.getUser_address());
+    public String join(@RequestBody UserDto userDto) {
+        System.out.println(userDto.getUser_address());
 
         int result = 0;
         try {
-            result = joinService.registerUser(userRequestDto);
+            result = joinService.registerUser(userDto);
 
             String viewPage = null;
             if (result == 1) {
@@ -61,6 +62,27 @@ public class JoinController {
             e.printStackTrace();
             return "에러 발생: " + e.getMessage();
         }
+    }
+
+    @PostMapping("/checkNickname")
+    //@ResponseBody ajax 값을 바로jsp 로 보내기위해 사용
+    public ResponseEntity<String> checkId(@RequestParam("user_nickname") String user_nickname) {
+        System.out.println("user_nickname = " + user_nickname);
+        String result = "N";
+
+        int flag = 0;
+        try {
+            flag = joinService.checkNickname(user_nickname);
+            System.out.println("flag = " + flag);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        if (flag == 1) {
+            result = "Y";
+        }
+        return ResponseEntity.ok(result);
+
     }
 }
 

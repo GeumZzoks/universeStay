@@ -21,4 +21,10 @@ public class UserJoinDaoImpl implements UserJoinDao {
             return e.getMessage().length();
         }
     }
+
+    @Override
+    public int checkNickname(String user_nickname) throws Exception {
+        System.out.println("user_nickname = " + user_nickname);
+        return session.selectOne(namespace + "checkId", user_nickname);
+    }
 }
