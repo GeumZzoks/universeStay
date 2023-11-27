@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -31,16 +30,10 @@ public class UserLoginController {
             HttpServletResponse response, HttpSession session,
             RedirectAttributes redirectAttributes) throws Exception {
 
-        userLoginService.setCookie(user_email, remember_id, response);
-
         Map<String, String> error = new HashMap<>();
 
-        if (!StringUtils.hasText(user_email)) {
-            error.put("user_email", "이메일 입력은 필수입니다.");
-        }
-        if (!StringUtils.hasText(user_pwd)) {
-            error.put("user_pwd", "비밀번호 입력은 필수입니다.");
-        }
+        userLoginService.setCookie(user_email, remember_id, response);
+        userLoginService.isCredentialsPresent(error, user_email, user_pwd);
 
         if (!error.isEmpty()) {
             redirectAttributes.addFlashAttribute("error", error);

@@ -2,11 +2,13 @@ package com.universestay.project.user.service;
 
 import com.universestay.project.user.dao.UserLoginDao;
 import com.universestay.project.user.dto.UserDto;
+import java.util.Map;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 @Service
 public class UserLoginServiceImpl implements UserLoginService {
@@ -27,6 +29,17 @@ public class UserLoginServiceImpl implements UserLoginService {
             cookie = new Cookie("user_email", "");
             cookie.setMaxAge(0);
             response.addCookie(cookie);
+        }
+    }
+
+    @Override
+    public void isCredentialsPresent(Map<String, String> error, String user_email, String user_pwd)
+            throws Exception {
+        if (!StringUtils.hasText(user_email)) {
+            error.put("user_email", "이메일 입력은 필수입니다.");
+        }
+        if (!StringUtils.hasText(user_pwd)) {
+            error.put("user_pwd", "비밀번호 입력은 필수입니다.");
         }
     }
 
