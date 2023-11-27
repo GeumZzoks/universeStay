@@ -12,7 +12,7 @@ public class UserWithdrawalDaoImpl implements UserWithdrawalDao {
     private static String namespace = "com.universestay.project.user.dao.UserWithdrawalDao.";
 
     @Override
-    public int deleteUser(String user_id) throws Exception {
-        return session.update(namespace + "deleteUser", user_id);
+    public int deleteUser(String user_email) throws Exception {
+        return session.update(namespace + "deleteUser", user_email);
     }
 }

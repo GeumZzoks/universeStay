@@ -14,16 +14,16 @@ public class UserWithdrawalServiceImpl implements UserWithdrawalService {
     /**
      * feature : 회원 탈퇴
      *
-     * @param user_id
+     * @param user_email
      * @return
      * @throws Exception
      */
     @Override
-    public int withdrawal(String user_id, HttpSession session) throws Exception {
+    public int withdrawal(String user_email, HttpSession session) throws Exception {
         // 1. 로그아웃한다.
         session.invalidate();
 
         // 2. 회원 상태를 활성에서 탈퇴로 변경한다.
-        return userWithDrawalDao.deleteUser(user_id);
+        return userWithDrawalDao.deleteUser(user_email);
     }
 }
