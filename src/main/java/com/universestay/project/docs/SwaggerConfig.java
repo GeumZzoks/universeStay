@@ -7,6 +7,7 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+// TODO: Swagger Model 적용 안됨, 확인해 볼 것
 @EnableSwagger2
 public class SwaggerConfig {
 
