@@ -67,8 +67,19 @@ body {
   outline: none;
 }
 
-.right-side__login-form + a {
-  margin-top: 20px;
+.right-side__login-form input:last-child {
+  background-color: #F48475;
+  color: whitesmoke;
+  transition: background-color 0.3s ease-in-out;
 }
 
+.right-side__login-form input:last-child:hover {
+  background-color: #3b1c14;
+  cursor: pointer;
+}
+
+.right-side__login-form + a {
+  color: inherit;
+  text-decoration: none;
+}
 
