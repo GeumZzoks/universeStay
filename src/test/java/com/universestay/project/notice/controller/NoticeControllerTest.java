@@ -1,6 +1,5 @@
 package com.universestay.project.notice.controller;
 
-import lombok.extern.log4j.Log4j;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +17,7 @@ import org.springframework.web.context.WebApplicationContext;
 @ContextConfiguration({
         "file:src/main/webapp/WEB-INF/spring/root-context.xml",
         "file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"})
-@Log4j
+//@Log4j
 public class NoticeControllerTest {
 
     @Autowired
