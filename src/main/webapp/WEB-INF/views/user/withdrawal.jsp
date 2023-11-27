@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../../../resources/css/user/withdrawal.css">
 </head>
 <body>
+
 <div class="wrapper">
     <h1>계정 삭제하기</h1>
     <div class="info-1">
@@ -73,6 +74,8 @@
         <button class="box-back-delete__btn-delete">계정 삭제</button>
     </div>
 </div>
+
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 
 <script>
   function show(anything) {
