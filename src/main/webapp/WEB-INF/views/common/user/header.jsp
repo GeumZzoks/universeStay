@@ -6,6 +6,10 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/resources/css/common/global.css">
     <link rel="stylesheet" href="/resources/css/common/header.css">
+    <link rel="stylesheet" href="/resources/css/common/header_price-slider.css">
+
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
     <title>header</title>
 </head>
 <body>
@@ -26,7 +30,7 @@
 
             <button class="dropdown header__searchbar__where-btn">
                 <span class="header__searchbar__main_txt">어디로</span>
-                <div class="header__searchbar__sub_txt where__default">___</div>
+                <div class="header__searchbar__sub_txt where__default">국내 전체</div>
                 <div class="dropdown-div header__searchbar__where">
                     <input class="dropdown__input" placeholder="가고싶은 지역을 입력하세요."/>
                     <div class="dropdown__option"><span>국내 전체</span></div>
@@ -47,26 +51,18 @@
 
             <span class="header__searchbar__divide-line"></span>
             <div>
-                <button>
-                    <span class="header__searchbar__main_txt">체크인</span>
-                    <div class="header__searchbar__sub_txt">____</div>
+                <button class="dropdown header__searchbar__checkin-btn">
+                    <span class="header__searchbar__main_txt">체크인 · 체크아웃</span><br>
+                    <input class="calender" type="text" name="datefilter" value=""/>
                 </button>
 
             </div>
-            <span class="header__searchbar__divide-line"></span>
-            <div>
-                <button>
-                    <span class="header__searchbar__main_txt">체크아웃</span>
-                    <div class="header__searchbar__sub_txt">____</div>
-                </button>
 
-
-            </div>
             <span class="header__searchbar__divide-line"></span>
             <div>
                 <button class="dropdown header__searchbar__people-btn">
                     <span class="header__searchbar__main_txt">여행자</span>
-                    <div class="header__searchbar__sub_txt people_default">____</div>
+                    <div class="header__searchbar__sub_txt people_default">2</div>
                     <div class="dropdown-div header__searchbar__people">
                         <ion-icon class="header__searchbar__people_count"
                                   size="large" name="remove-circle-outline"></ion-icon>
@@ -78,10 +74,46 @@
             </div>
             <span class="header__searchbar__divide-line"></span>
             <div>
-                <button>
-                    <span class="header__searchbar__main_txt">예산은</span>
-                    <div class="header__searchbar__sub_txt">____원~____원</div>
+                <button class="dropdown header__searchbar__money-btn">
+                    <span class="header__searchbar__main_txt">1박당 예산</span>
+                    <div class="header__searchbar__sub_txt"><span
+                            class="header__searchbar__sub_txt__min">5</span>만원 부터 <span
+                            class="header__searchbar__sub_txt__max">20</span>만원 까지
+                    </div>
+
+                    <div class="dropdown-div header__searchbar__money">
+                        <div class="range-slider">
+                            <span class="slider-track"></span>
+                            <input type="range" name="min_val" class="min-val" min="10000"
+                                   max="1000000" value="50000" oninput="slideMin()">
+                            <input type="range" name="max_val" class="max-val" min="10000"
+                                   max="1000000" value="200000" oninput="slideMax()">
+                            <div class="tooltip min-tooltip"></div>
+                            <div class="tooltip max-tooltip"></div>
+                        </div>
+                        <div class="input-box">
+                            <div class="min-box">
+                                <div class="input-wrap">
+                                    <input type="text" name="min_input"
+                                           class="input-field min-input" onchange="setMinInput()">
+                                    <span class="input-addon">원</span>
+
+                                </div>
+                            </div>
+                            <div class="max-box">
+                                <div class="input-wrap">
+                                    <input type="text" name="max_input"
+                                           class="input-field max-input" onchange="setMaxInput()">
+                                    <span class="input-addon">원</span>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
                 </button>
+
             </div>
             <button class="header__searchbar__search-btn">
                 <img src="/resources/img/icon/search-icon-white.png">
@@ -130,109 +162,13 @@
 
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script src="/resources/js/common/header.js"></script>
+<script src="/resources/js/common/header_slider.js"></script>
 
 </body>
-
-<script>
-    const dropdownDiv = document.getElementsByClassName("dropdown-div");
-
-    // '어디로'를 눌렀을때 발현하는 함수
-    const toggleDropdown1 = function () {
-        dropdownDiv[0].classList.toggle('show')
-    }
-
-    // '여행자'를 눌렀을때 발현하는 함수
-    const toggleDropdown4 = function () {
-        dropdownDiv[1].classList.toggle('show')
-    }
-
-    // 마이프로필 버튼을 눌렀을때 발현하는 함수
-    const toggleDropdown6 = function () {
-        dropdownDiv[2].classList.toggle('show')
-    }
-
-    //'어디로' 버튼 이벤트 추가
-    const headerSearchbarWhereBtn = document.querySelector(".header__searchbar__where-btn");
-    headerSearchbarWhereBtn.addEventListener("click", toggleDropdown1);
-
-    const headerSearchbarPeopleBtn = document.querySelector(".header__searchbar__people-btn");
-    headerSearchbarPeopleBtn.addEventListener("click", toggleDropdown4);
-
-    //마이프로필 버튼 이벤트 추가
-    const headerMyProfileBtn = document.querySelector(".header__profile__my-profile__btn");
-    headerMyProfileBtn.addEventListener("click", toggleDropdown6);
-
-    //이벤트 전파로 인한 버그 방지 코드
-    const inputField = document.querySelector('.header__searchbar__where input');
-    inputField.addEventListener('click', function (event) {
-        event.stopPropagation(); // 이벤트 전파 중단
-    });
-
-    //'어디로'검색 인풋에 글자 입력하면 화면에 띄워주는 코드
-    inputField.addEventListener('input', function (event) {
-        const text = event.target.value; // 입력된 텍스트 값
-        const destinationDiv = document.querySelector('.header__searchbar__where-btn div');
-        destinationDiv.textContent = text; // 입력된 텍스트가 없을 경우 기본값으로 설정
-    });
-    // 스페이스바 입력 시 기본 동작 방지
-    inputField.addEventListener('keydown', function (event) {
-        if (event.key === ' ') {
-            event.preventDefault();
-        }
-    });
-
-    const dropdownOptions = document.querySelectorAll('.dropdown__option');
-    const whereSubTextElement = document.querySelector('.where__default');
-
-    // 서울, 제주 등 키워드를 누르면 그 키워드가 입력되도록 하는 코드
-    dropdownOptions.forEach(option => {
-        option.addEventListener('click', function () {
-            const selectedText = this.querySelector('span').innerText;
-            whereSubTextElement.textContent = selectedText;
-        });
-    });
-
-    //'여행자' 숫자를 조절하는 함수
-    const minusCount = document.getElementsByName("remove-circle-outline")[0];
-    const plusCount = document.getElementsByName("add-circle-outline")[0];
-    const peopleCount = document.getElementsByClassName("people-count")[0];
-    const peopleSubTextElement = document.querySelector('.people_default');
-
-    let count = 2; // 초기값 설정 (기본 2명)
-
-    //마이너스 버튼 클릭시
-    minusCount.addEventListener('click', function (event) {
-        event.stopPropagation(); // 이벤트 전파 중단
-        if (count > 1) {
-            count--;
-            updatePeopleCount();
-        }
-    });
-
-    // 플러스 버튼 클릭 시
-    plusCount.addEventListener('click', function (event) {
-        event.stopPropagation(); // 이벤트 전파 중단
-        count++;
-        updatePeopleCount();
-    });
-
-    // peopleCount 업데이트 함수
-    function updatePeopleCount() {
-        peopleCount.textContent = count;
-        peopleSubTextElement.textContent = count; // 텍스트로 반영
-    }
-
-    // 문서 전체에서 드롭다운 메뉴가 아닌 다른 곳을 클릭했을 때는 'show'라는 클래스 이름을 제거한다.
-    document.addEventListener('click', function (event) {
-        const dropdowns = document.querySelectorAll('.dropdown-div');
-        const buttons = document.querySelectorAll('.dropdown');
-
-        dropdowns.forEach((dropdown, index) => {
-            if (!dropdown.contains(event.target) && !buttons[index].contains(event.target)) {
-                dropdown.classList.remove('show');
-            }
-        });
-    });
-
-</script>
 </html>

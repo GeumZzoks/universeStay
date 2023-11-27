@@ -110,6 +110,24 @@ button {
   width: 30px;
 }
 
+/*'체크인' 버튼 눌렀을 때 나오는 드롭다운 캘린더*/
+.header__searchbar__checkin.show {
+  display: block;
+  top: 100%;
+  width: 100px;
+  height: 40px;
+}
+
+.header__searchbar__checkin.show input {
+  cursor: pointer;
+}
+
+.calender {
+  border: #b7b7b7 0.5px solid;
+  border-width: 0px 0px 0.5px 0px;
+  color: #737373;
+}
+
 /* '여행자' 버튼 눌렀을때 나오는 드롭다운 */
 .header__searchbar__people.show {
   display: flex;
@@ -137,6 +155,20 @@ button {
   padding-top: 5px;
 }
 
+/*1박당 예산 영역*/
+.header__searchbar__money.show {
+  display: block;
+  top: 180%;
+  width: 280px;
+  height: 150px;
+  background-color: white;
+  border-radius: 20px;
+  border: 0.1px solid rgb(221, 221, 221);
+  box-shadow: 1px 1px 3px rgb(221, 221, 221);
+  padding: 30px 30px 30px 30px;
+}
+
+
 /*검색 돋보기 버튼*/
 .header__searchbar__search-btn {
   background-color: rgba(244, 132, 117, 1);
@@ -149,12 +181,6 @@ button {
 .header__searchbar__inner button {
   transition: font-size 0.1s ease;
 }
-
-/*.header__searchbar__inner button:hover {*/
-/*  font-size: 15px;*/
-/*  font-weight: bold;*/
-/*}*/
-
 
 .header__searchbar__search-btn > img {
   width: 14px;
@@ -271,6 +297,7 @@ button {
 }
 
 /*-------------------*/
+/*캘린더*/
 
 
 /*최하단 구분선*/
