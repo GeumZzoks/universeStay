@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.universestay.project.notice.dao.NoticeDao">
+    <select id="selectAll" resultType="com.universestay.project.notice.dto.NoticeDto">
+        select *
+        from Notice
+        order by notice_id DESC
+    </select>
+
+    <select id="select" resultType="com.universestay.project.notice.dto.NoticeDto">
+        select *
+        from Notice
+        where notice_id = #{notice_id}
+    </select>
+
+    <delete id="delete" parameterType="int">
+        delete
+        from Notice
+        where notice_id = #{notice_id}
+    </delete>
+
+    <insert id="insert" parameterType="com.universestay.project.notice.dto.NoticeDto">
+        insert into Notice
+        (admin_id, notice_title, notice_ctt, created_at, created_id, updated_at, updated_id)
+        values (#{admin_id}, #{notice_title}, #{notice_ctt}, now(), #{admin_id}, now(), #{admin_id})
+    </insert>
+
+    <update id="update" parameterType="com.universestay.project.notice.dto.NoticeDto">
+        update Notice
+        set notice_title   = #{notice_title},
+            notice_ctt     = #{notice_ctt},
+            notice_is_open = #{notice_is_open},
+            updated_at     = now(),
+            updated_id     = #{updated_id}
+        where notice_id = #{notice_id}
+    </update>
+</mapper>
