@@ -1,4 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String loginEmail = (String) session.getAttribute("user_email");
+%>
 <html>
 <head>
     <title>withdrawal</title>
@@ -71,7 +74,8 @@
     <div class="contour"></div>
     <div class="box-back-delete">
         <button class="box-back-delete__btn-back">뒤로</button>
-        <button class="box-back-delete__btn-delete">계정 삭제</button>
+        <button class="box-back-delete__btn-delete" onclick="withdrawalUser()">계정삭제</button>
+        <%--        <button class="box-back-delete__btn-delete" onclick="withdrawalUser()">계정삭제</button>--%>
     </div>
 </div>
 
@@ -86,6 +90,16 @@
 
   dropdown.onclick = function () {
     dropdown.classList.toggle('active');
+  }
+
+  function withdrawalUser() {
+    if (!confirm("정말 삭제하시겠습니까?")) return;
+
+    let f = document.createElement('form');
+    f.setAttribute('method', 'post');
+    f.setAttribute('action', '/user/withdrawal?user_email=<%= loginEmail %>');
+    document.body.appendChild(f);
+    f.submit();
   }
 </script>
 </body>

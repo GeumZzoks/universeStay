@@ -16,17 +16,21 @@ public class UserLoginController {
     UserLoginService userLoginService;
 
     @RequestMapping("/loginForm")
-    public String loginForm() { return "user/loginForm"; }
+    public String loginForm() {
+        return "user/loginForm";
+    }
 
     @PostMapping("/userLogin")
-    public String login(String user_email, String user_pwd, String remember_id, HttpServletResponse response, HttpSession session) throws Exception {
+    public String login(String user_email, String user_pwd, String remember_id,
+            HttpServletResponse response, HttpSession session) throws Exception {
         // 로그인 처리
         // 서비스 호출 : 조회할 email, pwd, cookie를 서비스에게 넘겨줌.
         // 조회된 정보는 UserDto 타입에 담고, 받아온 파라미터의 정보와 일치 유무에 따라 다른 뷰를 보여줌
-        UserDto userInfo = userLoginService.signin(user_email, user_pwd, remember_id, response, session);
+        UserDto userInfo = userLoginService.signin(user_email, user_pwd, remember_id, response,
+                session);
 
         // try-catch를 안해도 되나?
-        if(userInfo != null) {
+        if (userInfo != null) {
             return "HI";
         } else {
             return "user/loginForm";
