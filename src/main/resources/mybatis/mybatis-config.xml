@@ -3,10 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-  <typeAliases>
-    <!--        <typeAlias alias="userDto" type="com.example.mywebsitespring.domain.UserDto"/>-->
-    <!--        <typeAlias alias="studyBoardDto" type="com.example.mywebsitespring.domain.StudyBoarfdDto"/>-->
-    <!--        <typeAlias alias="commentDto" type="com.example.mywebsitespring.domain.CommentDto"/>-->
-    <typeAlias alias="UserDto" type="com.universestay.project.user.dto.UserDto"/>
-  </typeAliases>
+    <typeAliases>
+        <typeAlias alias="UserDto" type="com.universestay.project.user.dto.UserDto"/>
+        <!--        <typeAlias alias="userDto" type="com.example.mywebsitespring.domain.UserDto"/>-->
+        <!--        <typeAlias alias="studyBoardDto" type="com.example.mywebsitespring.domain.StudyBoardDto"/>-->
+        <!--        <typeAlias alias="commentDto" type="com.example.mywebsitespring.domain.CommentDto"/>-->
+    </typeAliases>
 </configuration>

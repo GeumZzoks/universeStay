@@ -14,86 +14,62 @@
     <link rel="stylesheet" href="../../../resources/css/admin/event.css">
 </head>
 <body>
-<div class="bar-top">
-    <button class="bar-top__btn">로그아웃</button>
-    <button class="bar-top__btn">관리자 1</button>
-</div>
+<jsp:include page="/WEB-INF/views/common/admin/header.jsp"/>
+flush="false"/>
 
-<aside class="bar-side">
-    <button class="bar-side__homebtn"><a href="/event/list">
-        UniverseStay</a></button>
-    <button class="bar-side__btn">유저관리</button>
-    <br>
-    <button class="bar-side__btn">호스트관리</button>
-    <br>
-    <button class="bar-side__btn">공지사항</button>
-    <br>
-    <button class="bar-side__btn">이벤트</button>
-    <br>
-    <button class="bar-side__btn">1:1문의</button>
-</aside>
+<jsp:include page="/WEB-INF/views/common/admin/navigation.jsp"/>
+flush="false"/>
+
+<jsp:include page="/WEB-INF/views/common/admin/footer.jsp"/>
+flush="false"/>
 
 <div class="content">
     <h3 style="color: indianred;">이벤트</h3>
-    <form class="content-search">
-        <input type="text" placeholder="검색" style="width:150px;">
+    <form class="content-search" action="/event/list/${search}">
+        <input name="search" type="text" placeholder="검색" style="width:150px; height: 24px;">
         <button type="submit" class="content-search__btn">검색</button>
     </form>
-    <table class="content-table">
-        <tr>
-            <th class="content-table__no" style="width:60px; border-bottom: 1px solid #444444;">번호
-            </th>
-            <th class="content-table__title"
-                style="text-align:center; width:500px; border-bottom: 1px solid #444444;">이벤트
-            </th>
-            <th class="content-table__writer" style="border-bottom: 1px solid #444444;">게시자</th>
-            <th class="content-table__regdate" style="border-bottom: 1px solid #444444;">등록일</th>
-            <th class="content-table__viewcnt" style="border-bottom: 1px solid #444444;">조회수</th>
-        </tr>
-        <c:forEach var="eventDto" items="${list}">
+
+    <div class="content-table-div">
+        <table class="content-table">
             <tr>
-                <td class="content-table__no"
-                    style="text-align:center; border-bottom: 1px solid #444444;">1
-                </td>
-                <!-- <td class="no" style="text-align:center; border-bottom: 1px solid #444444;">${eventDto.bno}</td> -->
-
-                <td class="content-table__title"
-                    style="text-align:left; border-bottom: 1px solid #444444;">
-                    <a href="event.html"
-                       style="margin-left: 20px; text-decoration: none; color:indianred">이벤트 제목
-                        예시입니다</a></td>
-                <!-- <td class="title" style="text-align:left; border-bottom: 1px solid #444444;"><a href="<c:url value="/board/read/${eventDto.bno}"/>">${eventDto.title}</a></td> -->
-
-                <td class="content-table__writer"
-                    style="border-bottom: 1px solid #444444; text-align: center;">관리자
-                </td>
-                <!-- <td class="writer" style="border-bottom: 1px solid #444444;">${eventDto.writer}</td> -->
-
-                <td class="content-table__regdate"
-                    style="text-align: center; border-bottom: 1px solid #444444;"><fmt:formatDate
-                        value="${eventDto.reg_date}" pattern="HH:mm" type="time"/>2023-11-19
-                </td>
-                    <%--            <!-- <c:when test="${eventDto.reg_date.time >= startOfToday}">--%>
-                    <%--                        <td class="regdate"><fmt:formatDate value="${eventDto.reg_date}" pattern="HH:mm" type="time"/></td>--%>
-                    <%--                    </c:when>--%>
-                    <%--                    <c:otherwise>--%>
-                    <%--                        <td class="regdate"><fmt:formatDate value="${eventDto.reg_date}" pattern="yyyy-MM-dd" type="date"/></td>--%>
-                    <%--                    </c:otherwise>--%>
-                    <%--                </c:choose> -->--%>
-
-                <td class="content-table__viewcnt"
-                    style="text-align: center; border-bottom: 1px solid #444444;">0
-                </td>
-                <!-- <td class="viewcnt" style="border-bottom: 1px solid #444444;">${eventDto.view_cnt}</td> -->
-
+                <th class="content-table__no">번호</th>
+                <th class="content-table__title" style="text-align: center">이벤트</th>
+                <th class="content-table__writer">게시자</th>
+                <th class="content-table__regdate">등록일</th>
+                <th class="content-table__viewcnt">조회수</th>
             </tr>
-        </c:forEach>
-    </table>
+            <c:forEach var="eventDto" items="${eventList}">
+                <tr>
+                    <td class="content-table__no" style="font-size: 12px">${eventDto.event_id}</td>
+                    <td class="content-table__title"><a
+                            href="<c:url value="/event/${eventDto.event_id}"/>"
+                            class="content-table__title__a">${eventDto.event_title}</a>
+                    </td>
+                    <td class="content-table__writer">${eventDto.admin_id}</td>
+                    <c:choose>
+                        <c:when test="${eventDto.created_at.time >= startOfToday}">
+                            <td class="content-table__regdate" style="font-size: 14px"><fmt:formatDate
+                                    value="${eventDto.created_at}" pattern="HH:mm"
+                                    type="time"/></td>
+                        </c:when>
+                        <c:otherwise>
+                            <td class="content-table__regdate" style="font-size: 14px"><fmt:formatDate
+                                    value="${eventDto.created_at}"
+                                    pattern="yyyy-MM-dd" type="date"/></td>
+                        </c:otherwise>
+                    </c:choose>
+                    <td class="content-table__viewcnt"
+                        style="font-size: 14px">${eventDto.event_hit}</td>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>
     <br>
 </div>
-<div class="content-bottom"><a href="eventInput.html">
-    <button class="content-bottom__btn">이벤트 게시글 작성</button>
-</a></div>
+<div class="content-bottom">
+    <button class="content-bottom__btn"><a href="/event/write" class="content-bottom__btn__a">이벤트 작성</a></button>
+</div>
 
 </body>
 </html>

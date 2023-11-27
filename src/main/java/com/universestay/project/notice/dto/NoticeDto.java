@@ -1,10 +1,11 @@
-package com.universestay.project.dto;
+package com.universestay.project.notice.dto;
 
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.sql.Timestamp;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 @ToString
 @ApiModel(description = "Notice DTO")
+@Data
 public class NoticeDto {
 
 
