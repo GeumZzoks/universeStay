@@ -79,12 +79,12 @@
 
         <!-- 소셜 로그인 -->
         <div class="sns-login">
-            <button type="submit" class="btn sns-login__kakao">
+            <button type="button" class="btn sns-login__kakao">
                 <div>카카오톡으로 로그인</div>
                 <img class="sns-login__icon-kakao" src="/resources/img/logo/btn-logo-kakao.png">
             </button>
 
-            <button type="submit" class="btn sns-login__goolgle ">
+            <button type="button" class="btn sns-login__goolgle ">
                 <img class="sns-login__icon-google" src="/resources/img/logo/btn-logo-google.png">
                 <div>Google로 로그인</div>
             </button>
@@ -92,6 +92,24 @@
 
     </form>
 </div>
+
+<script>
+  function loginGoogle() {
+    let f = document.createElement('form');
+    f.setAttribute('method', 'post');
+    f.setAttribute('action', '/oauth2/google');
+    document.body.appendChild(f);
+    f.submit();
+  }
+
+  function loginKakao() {
+    let f = document.createElement('form');
+    f.setAttribute('method', 'post');
+    f.setAttribute('action', '/oauth2/kakao');
+    document.body.appendChild(f);
+    f.submit();
+  }
+</script>
 
 </body>
 </html>
