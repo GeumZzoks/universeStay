@@ -6,8 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <title>유니버스테이 회원가입</title>
-    <link rel="stylesheet" href="../../../resources/css/common/global.css">
-    <link rel="stylesheet" href="../../../resources/css/user/join.css">
+    <link rel="stylesheet" href="/resources/css/common/global.css">
+    <link rel="stylesheet" href="/resources/css/user/join.css">
 </head>
 
 <body>
@@ -16,8 +16,8 @@
     <header>
         <!--UniverseStay LOGO-->
         <div class="logo">
-            <a href="../../../index.jsp" title="유니버스테이 홈페이지">
-                <img src="../../../resources/img/logo/logo.png" class="logo_image"></a>
+            <a href="/main.jsp" title="유니버스테이 홈페이지">
+                <img src="/resources/img/logo/logo.png" class="logo_image"></a>
         </div>
     </header>
 

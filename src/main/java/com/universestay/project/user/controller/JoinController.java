@@ -29,7 +29,7 @@ public class JoinController {
     }
 
     @PostMapping("/join")
-    public String join(@RequestBody UserDto userDto) {
+    public ResponseEntity<Integer> join(@RequestBody UserDto userDto) {
         System.out.println(userDto.getUser_address());
 
         int result = 0;
@@ -37,9 +37,9 @@ public class JoinController {
             result = joinService.registerUser(userDto);
 
             if (result == 1) {
-                return "user/login";
+                return ResponseEntity.ok(result);
             } else {
-                return "user/join";
+                return ResponseEntity.ok(result);
             }
 
         } catch (Exception e) {
