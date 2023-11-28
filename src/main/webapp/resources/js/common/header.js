@@ -87,7 +87,7 @@ inputField.addEventListener('keydown', function (event) {
     }
 });
 
-const dropdownOptions = document.querySelectorAll('.dropdown__place-option');
+const dropdownOptions = document.querySelectorAll('.dropdown__option');
 const whereSubTextElement = document.querySelector('.where__default');
 
 // 서울, 제주 등 키워드를 누르면 그 키워드가 입력되도록 하는 코드

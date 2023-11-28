@@ -79,28 +79,28 @@
     </div>
 </div>
 
-<jsp:include page="/WEB-INF/views/common/user/footer.jsp"/>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 
 <script>
-    function show(anything) {
-        document.querySelector('.dropdown__textBox').value = anything;
-    }
+  function show(anything) {
+    document.querySelector('.dropdown__textBox').value = anything;
+  }
 
-    let dropdown = document.querySelector('.dropdown');
+  let dropdown = document.querySelector('.dropdown');
 
-    dropdown.onclick = function () {
-        dropdown.classList.toggle('active');
-    }
+  dropdown.onclick = function () {
+    dropdown.classList.toggle('active');
+  }
 
-    function withdrawalUser() {
-        if (!confirm("정말 삭제하시겠습니까?")) return;
+  function withdrawalUser() {
+    if (!confirm("정말 삭제하시겠습니까?")) return;
 
-        let f = document.createElement('form');
-        f.setAttribute('method', 'post');
-        f.setAttribute('action', '/user/withdrawal?user_email=<%= loginEmail %>');
-        document.body.appendChild(f);
-        f.submit();
-    }
+    let f = document.createElement('form');
+    f.setAttribute('method', 'post');
+    f.setAttribute('action', '/user/withdrawal?user_email=<%= loginEmail %>');
+    document.body.appendChild(f);
+    f.submit();
+  }
 </script>
 </body>
 </html>

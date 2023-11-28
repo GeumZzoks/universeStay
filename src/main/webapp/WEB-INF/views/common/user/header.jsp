@@ -33,19 +33,19 @@
                 <div class="header__searchbar__sub_txt where__default">국내 전체</div>
                 <div class="dropdown-div header__searchbar__where">
                     <input class="dropdown__input" placeholder="가고싶은 지역을 입력하세요."/>
-                    <div class="dropdown__place-option"><span>국내 전체</span></div>
-                    <div class="dropdown__place-option"><span>서울</span></div>
-                    <div class="dropdown__place-option"><span>강원</span></div>
-                    <div class="dropdown__place-option"><span>부산</span></div>
-                    <div class="dropdown__place-option"><span>경기</span></div>
-                    <div class="dropdown__place-option"><span>충청</span></div>
-                    <div class="dropdown__place-option"><span>경상</span></div>
-                    <div class="dropdown__place-option"><span>전라</span></div>
-                    <div class="dropdown__place-option"><span>인천</span></div>
-                    <div class="dropdown__place-option"><span>광주</span></div>
-                    <div class="dropdown__place-option"><span>대전</span></div>
-                    <div class="dropdown__place-option"><span>대구</span></div>
-                    <div class="dropdown__place-option"><span>울산</span></div>
+                    <div class="dropdown__option"><span>국내 전체</span></div>
+                    <div class="dropdown__option"><span>서울</span></div>
+                    <div class="dropdown__option"><span>강원</span></div>
+                    <div class="dropdown__option"><span>부산</span></div>
+                    <div class="dropdown__option"><span>경기</span></div>
+                    <div class="dropdown__option"><span>충청</span></div>
+                    <div class="dropdown__option"><span>경상</span></div>
+                    <div class="dropdown__option"><span>전라</span></div>
+                    <div class="dropdown__option"><span>인천</span></div>
+                    <div class="dropdown__option"><span>광주</span></div>
+                    <div class="dropdown__option"><span>대전</span></div>
+                    <div class="dropdown__option"><span>대구</span></div>
+                    <div class="dropdown__option"><span>울산</span></div>
                 </div>
             </button>
 

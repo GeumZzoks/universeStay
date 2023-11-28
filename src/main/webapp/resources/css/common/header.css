@@ -12,7 +12,6 @@ a {
 
 .logo {
   width: 200px;
-  margin-top: 20px;
 }
 
 button {
@@ -77,15 +76,15 @@ button {
   padding: 20px 20px 30px 20px;
 }
 
-.header__searchbar__where > .dropdown__place-option {
+.header__searchbar__where > .dropdown__option {
   width: 80px;
 }
 
-.header__searchbar__where > .dropdown__place-option > span {
+.header__searchbar__where > .dropdown__option > span {
   color: #737373;
 }
 
-.header__searchbar__where > .dropdown__place-option > span:hover {
+.header__searchbar__where > .dropdown__option > span:hover {
   font-weight: bold;
   color: #464646;
 }
@@ -135,7 +134,7 @@ button {
   flex-direction: row;
   justify-content: space-around;
   align-content: center;
-  top: 130%;
+  top: 200%;
   left: 10%;
   width: 100px;
   height: 30px;
