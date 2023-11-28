@@ -19,7 +19,7 @@ public class SwaggerTestController {
 
     @GetMapping("main")
     public String test() {
-        return "user/main";
+        return "/WEB-INF/main.jsp";
     }
 
 
