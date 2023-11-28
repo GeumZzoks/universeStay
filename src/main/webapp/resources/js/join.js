@@ -77,6 +77,7 @@ $(document).ready(function () {
     var address_detail = $("#address_detailAddress").val();
     var user_img_url = $("#user_img_url").val();
     console.log(user_img_url);
+    console.log(user_nickname);
 
     // 서버로 전송할 데이터를 객체
     var userDto = {
@@ -92,13 +93,24 @@ $(document).ready(function () {
       user_img_url: user_img_url
     };
 
+    console.log(userDto.user_nickname);
+
     // 서버에 가입 요청
     $.ajax({
-      type: "POST",
-      url: "user/join", // 가입 요청을 처리하는 컨트롤러의 엔드포인트 주소
+      type: "post",
+      url: "/user/join", // 가입 요청을 처리하는 컨트롤러의 엔드포인트 주소
       contentType: "application/json",
       data: JSON.stringify(userDto),
       success: function (response) {
+        console.log(response);
+        if (response == 1) {
+          alert("회원가입에 성공하였습니다.");
+          location.href = "/loginForm";
+        } else {
+          alert("회원가입에 실패하였습니다.");
+          location.href = "/user/join";
+
+        }
       },
       error: function (error) {
         console.error("가입 실패:", error);

@@ -29,17 +29,18 @@ public class JoinController {
     }
 
     @PostMapping("/join")
-    public String join(@RequestBody UserDto userDto) {
-        System.out.println(userDto.getUser_address());
+    public ResponseEntity<Integer> join(@RequestBody UserDto userDto) {
 
         int result = 0;
         try {
             result = joinService.registerUser(userDto);
+            System.out.println("result = " + result);
 
             if (result == 1) {
-                return "user/login";
+                System.out.println("result2 = " + result);
+                return ResponseEntity.ok(result);
             } else {
-                return "user/join";
+                return ResponseEntity.ok(result);
             }
 
         } catch (Exception e) {
@@ -61,7 +62,6 @@ public class JoinController {
 
     // 닉네임 중복체크
     @PostMapping("/checkNickname")
-    //@ResponseBody ajax 값을 바로jsp 로 보내기위해 사용
     public ResponseEntity<String> checkId(@RequestParam("user_nickname") String user_nickname) {
         System.out.println("user_nickname = " + user_nickname);
         String result = "N";
