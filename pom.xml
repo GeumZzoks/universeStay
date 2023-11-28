@@ -193,6 +193,13 @@
       <version>${org.springframework-version}</version>
     </dependency>
 
+    <!-- KAKAO API 로그인을 위한 json-simple (JSONParser, JSONObject) -->
+    <dependency>
+      <groupId>com.googlecode.json-simple</groupId>
+      <artifactId>json-simple</artifactId>
+      <version>1.1.1</version>
+    </dependency>
+
   </dependencies>
 
   <profiles>
