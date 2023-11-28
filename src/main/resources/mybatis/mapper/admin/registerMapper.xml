@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.universestay.project.resources.mybatis.mapper.admin.registerMapper">
+
+    <insert id="insert" parameterType="AdminDto">
+        INSERT INTO Admin
+        VALUES (#{admin_id}, #{admin_nickname}, #{admin_pwd}, #{admin_phone_num}, #{admin_email},
+                #{created_at}, #{created_id}, #{updated_at}, #{updated_id});
+    </insert>
+
+    <delete id="delete" parameterType="String">
+        DELETE
+        FROM Admin
+        WHERE admin_id = #{admin_id};
+    </delete>
+
+    <delete id="deleteAll">
+        DELETE
+        FROM Admin
+    </delete>
+
+    <update id="update" parameterType="AdminDto">
+        UPDATE Admin
+        SET admin_pwd       = #{admin_pwd},
+            admin_phone_num = #{admin_phone_num},
+            admin_email     = #{admin_email},
+            updated_at      = now(),
+            updated_id      = #{updated_id}
+        WHERE admin_id = #{admin_id};
+    </update>
+
+    <select id="select" parameterType="String" resultType="Integer">
+        SELECT count(*)
+        FROM Admin
+        WHERE admin_id = #{admin_id};
+    </select>
+
+    <!--    <select id="select" parameterType="String" resultType="AdminDto">-->
+    <!--        SELECT *-->
+    <!--        FROM Admin-->
+    <!--        WHERE admin_id = #{admin_id};-->
+    <!--    </select>-->
+
+</mapper>
