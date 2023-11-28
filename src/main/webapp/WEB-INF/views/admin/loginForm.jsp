@@ -9,8 +9,6 @@
 <html lang="ko">
 <head>
     <link rel="stylesheet" href="/resources/css2/style.css">
-    <%--    <link rel="stylesheet" href="/resources/css/common/global.css">--%>
-    <%--    <link rel="stylesheet" href="/resources/css/admin/loginForm.css">--%>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>로그인</title>
