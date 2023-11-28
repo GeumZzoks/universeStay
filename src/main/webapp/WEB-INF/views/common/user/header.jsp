@@ -116,7 +116,7 @@
 
             </div>
             <button class="header__searchbar__search-btn">
-                <img src="/resources/img/icon/search-icon-white.png">
+                <img src="/resources/img/user/search-icon-white.png">
             </button>
         </div>
     </div>
@@ -131,9 +131,9 @@
         <div class="header__profile__my-profile dropdown">
             <button class="header__profile__my-profile__btn">
                 <div header__profile__my-profile__wrapper>
-                    <img src="/resources/img/icon/bars-3.png"/>
+                    <img src="/resources/img/user/bars-3.png"/>
                     <img class="header__profile__img"
-                         src="/resources/img/icon/default_profile_icon.png"/>
+                         src="/resources/img/user/default_profile_icon.png"/>
                 </div>
                 <div class="header__profile__option dropdown-div">
                     <div class="dropdown__option dropdown__option-msg"><span>메시지</span>
