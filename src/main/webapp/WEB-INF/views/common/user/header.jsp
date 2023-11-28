@@ -28,9 +28,11 @@
     <div class="header__searchbar">
         <div class="header__searchbar__inner">
 
+            <%--'어디로'버튼--%>
             <button class="dropdown header__searchbar__where-btn">
                 <span class="header__searchbar__main_txt">어디로</span>
                 <div class="header__searchbar__sub_txt where__default">국내 전체</div>
+                <%--'어디로'버튼 드롭다운--%>
                 <div class="dropdown-div header__searchbar__where">
                     <input class="dropdown__input" placeholder="가고싶은 지역을 입력하세요."/>
                     <div class="dropdown__place-option"><span>국내 전체</span></div>
@@ -50,29 +52,40 @@
             </button>
 
             <span class="header__searchbar__divide-line"></span>
+
+            <%--체크인/체크아웃 버튼 --%>
             <div>
                 <button class="dropdown header__searchbar__checkin-btn">
                     <span class="header__searchbar__main_txt">체크인 · 체크아웃</span><br>
+                    <%--달력--%>
                     <input class="calender" type="text" name="datefilter" value=""/>
                 </button>
 
             </div>
 
             <span class="header__searchbar__divide-line"></span>
+
+            <%--여행자 증감 버튼--%>
             <div>
                 <button class="dropdown header__searchbar__people-btn">
                     <span class="header__searchbar__main_txt">여행자</span>
                     <div class="header__searchbar__sub_txt people_default">2</div>
                     <div class="dropdown-div header__searchbar__people">
+
+                        <%--마이너스 버튼--%>
                         <ion-icon class="header__searchbar__people_count"
                                   size="large" name="remove-circle-outline"></ion-icon>
                         <div class="header__searchbar__people_count people-count">2</div>
+                        <%--플러스 버튼--%>
                         <ion-icon class="header__searchbar__people_count"
                                   size="large" name="add-circle-outline"></ion-icon>
                     </div>
                 </button>
             </div>
+
             <span class="header__searchbar__divide-line"></span>
+
+            <%--예산 버튼 (수정 필요)--%>
             <div>
                 <button class="dropdown header__searchbar__money-btn">
                     <span class="header__searchbar__main_txt">1박당 예산</span>
@@ -81,6 +94,7 @@
                             class="header__searchbar__sub_txt__max">20</span>만원 까지
                     </div>
 
+                    <%--예산 버튼 눌렀을때 드롭다운 (수정 필요)--%>
                     <div class="dropdown-div header__searchbar__money">
                         <div class="range-slider">
                             <span class="slider-track"></span>
@@ -113,11 +127,13 @@
 
                     </div>
                 </button>
-
             </div>
+
+            <%--검색(돋보기)버튼--%>
             <button class="header__searchbar__search-btn">
                 <img src="/resources/img/user/search-icon-white.png">
             </button>
+
         </div>
     </div>
 
@@ -135,6 +151,8 @@
                     <img class="header__profile__img"
                          src="/resources/img/user/default_profile_icon.png"/>
                 </div>
+
+                <%-- 마이프로필 버튼 눌렀을때 나오는 드롭다운--%>
                 <div class="header__profile__option dropdown-div">
 
                     <% //세션에 'user_email'이라는 값이 저장되어 있으면? (즉, 로그인 상태면) 아래 드롭다운을 보여준다.
@@ -156,7 +174,6 @@
                     } else  //세션에 'user_email'이라는 값이 저장되어 있지 않으면(즉, 로그아웃 상태면) 아래 드롭다운을 보여준다.
                     {
                     %>
-
                     <div class="dropdown__option dropdown__option-sign-up" onclick="">
                         <span>회원가입</span></div>
                     <div class="dropdown__option dropdown__option-sign-in" onclick="">

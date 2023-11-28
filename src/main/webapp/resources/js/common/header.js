@@ -1,17 +1,3 @@
-// document.addEventListener('click', function (event) {
-//     const dropdownDivs = document.querySelectorAll('.dropdown-div');
-//     const dropdownButtons = document.querySelectorAll('.dropdown');
-//
-//     dropdownDivs.forEach((dropdownDiv, index) => {
-//         const isInsideDropdown = dropdownDiv.contains(event.target)
-//                 || dropdownButtons[index].contains(event.target);
-//
-//         if (!isInsideDropdown) {
-//             dropdownDivs[index].classList.remove('show');
-//         }
-//     });
-// });
-
 const dropdowns = document.querySelectorAll('.dropdown-div');
 
 dropdowns.forEach(dropdown => {
@@ -28,7 +14,6 @@ const toggleDropdown1 = function () {
     console.log(dropdownDiv[0].classList);
     dropdownDiv[0].classList.toggle('show')
     console.log(dropdownDiv[0].classList);
-
 }
 
 // '여행자'를 눌렀을때 발현하는 함수
@@ -37,7 +22,6 @@ const toggleDropdown2 = function () {
     dropdownDiv[1].classList.toggle('show')
     console.log(dropdownDiv[1].classList);
 }
-
 //  '1박당 예산을 눌렀을 때 발현하는 함수
 const toggleDropdown3 = function () {
     dropdownDiv[2].classList.toggle('show');
@@ -73,6 +57,7 @@ inputField.addEventListener('click', function (event) {
     event.stopPropagation(); // 이벤트 전파 중단
 });
 
+//---------------------- '어디로' 버튼 관련 코드 --------------------------------------------
 //'어디로'검색 인풋에 글자 입력하면 화면에 띄워주는 코드
 inputField.addEventListener('input', function (event) {
     const text = event.target.value; // 입력된 텍스트 값
@@ -80,7 +65,8 @@ inputField.addEventListener('input', function (event) {
             '.header__searchbar__where-btn div');
     destinationDiv.textContent = text; // 입력된 텍스트가 없을 경우 기본값으로 설정
 });
-// 스페이스바 입력 시 기본 동작 방지
+
+// 스페이스바 입력 시 드롭다운이 자꾸 꺼져서, 기본 동작을 방지하는 코드 작성
 inputField.addEventListener('keydown', function (event) {
     if (event.key === ' ') {
         event.preventDefault();
@@ -97,6 +83,8 @@ dropdownOptions.forEach(option => {
         whereSubTextElement.textContent = selectedText;
     });
 });
+
+//---------------------- '여행자' 숫자 증감  관련 --------------------------------------------
 
 //'여행자' 숫자를 조절하는 함수
 const minusCount = document.getElementsByName("remove-circle-outline")[0];
@@ -128,7 +116,7 @@ function updatePeopleCount() {
     peopleSubTextElement.textContent = count; // 텍스트로 반영
 }
 
-//캘린더 라이브러리
+//---------------------- 캘린더 라이브러리 --------------------------------------------
 $(function () {
     $('input[name="datefilter"]').daterangepicker({
         autoUpdateInput: true,
@@ -150,7 +138,7 @@ $(function () {
             });
 });
 
-// 각 메뉴 & 컨트롤러 맵핑
+//---------------------- 각 메뉴 & 컨트롤러 맵핑 --------------------------------------------
 
 const signUpBtn = document.querySelector(".dropdown__option-sign-up");
 const signInBtn = document.querySelector(".dropdown__option-sign-in");
