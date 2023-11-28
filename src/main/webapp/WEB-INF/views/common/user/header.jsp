@@ -18,7 +18,7 @@
 
         <!-- 헤더 로고 영역-->
         <div class="header__logo">
-            <a href="#" class="logo__link">
+            <a href="/" class="logo__link">
                 <img class="logo" src="/resources/img/logo/small_logo_no_bgd2.png"/>
             </a>
         </div>
@@ -136,6 +136,10 @@
                          src="/resources/img/user/default_profile_icon.png"/>
                 </div>
                 <div class="header__profile__option dropdown-div">
+
+                    <% //세션에 'user_email'이라는 값이 저장되어 있으면? (즉, 로그인 상태면) 아래 드롭다운을 보여준다.
+                        if (session.getAttribute("user_email") != null) {
+                    %>
                     <div class="dropdown__option dropdown__option-msg"><span>메시지</span>
                     </div>
                     <div class="dropdown__option dropdown__option-reservation" onclick="">
@@ -148,6 +152,17 @@
                         <span>계정</span></div>
                     <div class="dropdown__option dropdown__option-log-out" onclick="">
                         <span>로그아웃</span></div>
+                    <%
+                    } else  //세션에 'user_email'이라는 값이 저장되어 있지 않으면(즉, 로그아웃 상태면) 아래 드롭다운을 보여준다.
+                    {
+                    %>
+
+                    <div class="dropdown__option dropdown__option-sign-up" onclick="">
+                        <span>회원가입</span></div>
+                    <div class="dropdown__option dropdown__option-sign-in" onclick="">
+                        <span>로그인</span></div>
+                    <%}%>
+
                 </div>
             </button>
         </div>

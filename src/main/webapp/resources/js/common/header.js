@@ -149,3 +149,22 @@ $(function () {
                 $(this).val('');
             });
 });
+
+// 각 메뉴 & 컨트롤러 맵핑
+
+const signUpBtn = document.querySelector(".dropdown__option-sign-up");
+const signInBtn = document.querySelector(".dropdown__option-sign-in");
+const logOutBtn = document.querySelector(".dropdown__option-log-out");
+
+//회원가입 컨트롤러 이동
+signUpBtn.addEventListener("click", () => {
+    location.href = "/user/join";
+})
+
+signInBtn.addEventListener("click", () => {
+    location.href = "/user/loginForm";
+})
+
+logOutBtn.addEventListener("click", () => {
+    location.href = "/user/withdrawal";
+});
