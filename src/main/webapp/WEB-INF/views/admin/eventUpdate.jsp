@@ -24,7 +24,7 @@ flush="false"/>
 
 <div class="content">
     <h3 style="color:indianred;">이벤트 수정</h3>
-    <form action='/event/update/${eventDto.event_id}' method='post'>
+    <form action='/admin/event/update/${eventDto.event_id}' method='post'>
         <input type='hidden' value='${eventDto.event_id}'>
         <div style="margin-left: 20px">
             <h5 class="content-input__type">이벤트 제목</h5>

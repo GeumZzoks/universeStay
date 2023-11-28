@@ -18,19 +18,26 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("/event")
+@RequestMapping("/admin/event")
 public class EventController {
 
+    // 의존성 주입
     @Autowired
     EventDao eventDao;
 
     @GetMapping("/list")
     public String list(Model m) throws Exception {
-        List<EventDto> eventDto = eventDao.selectAll();
-        m.addAttribute("eventList", eventDto);
-        Instant startOfToday = LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant();
-        m.addAttribute("startOfToday", startOfToday.toEpochMilli());
-
+        try {
+            List<EventDto> eventDto = eventDao.selectAll();
+            m.addAttribute("eventList", eventDto);
+            Instant startOfToday = LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant();
+            m.addAttribute("startOfToday", startOfToday.toEpochMilli());
+        } catch (Exception e) {
+            // 이벤트 게시글 목록 조회 실패 메세지 추가예정
+            e.printStackTrace();
+            // 목록 조회 실패 시 관리자 메인 대시보드로 이동
+            return "admin/dashboard";
+        }
         return "admin/eventList";
     }
 
@@ -46,9 +53,14 @@ public class EventController {
 //    }
 
     @GetMapping("/{event_id}")
-    public String read(@PathVariable Integer event_id, Model m) throws Exception {
-        EventDto eventDto = eventDao.select(event_id);
-        m.addAttribute(eventDto);
+    public String read(@PathVariable Integer event_id, Model m) {
+        try {
+            EventDto eventDto = eventDao.select(event_id);
+            m.addAttribute(eventDto);
+        } catch (Exception e) {
+            // 조회 실패 메세지 추가예정
+            return "redirect:/admin/event/list";
+        }
         return "admin/event";
     }
 
@@ -59,54 +71,77 @@ public class EventController {
 
     @PostMapping("/write")
     public String write(EventDto eventDto, HttpSession session, Model m) {
-        // 로그인 기능이 없어 가데이터로 추가된 관리자 id로 선언해놨습니다.
-        String admin_id = "0ca24692-89ea-11ee-b9d1-0242ac120002";
+        // 로그인 기능에 세션 추가 시 사용할 코드
+        String writer = (String) session.getAttribute("id");
+        // 이벤트 시작일 입력 시 시작일과 종료일이 오늘보다 이전이면 안되기 때문에 시간을 구분하기 위한 코드
         Instant startOfToday = LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant();
         m.addAttribute("startOfToday", startOfToday.toEpochMilli());
         try {
-            // 현재 입력할 수 없거나 구현되지 않은 데이터들은 setter로 임시로 설정했습니다.
-            // 기능 구현 확인을 위해 어쩔 수 없어서 화요일 전에 수정하겠습니다.
-            eventDto.setAdmin_id(admin_id);
-            eventDto.setCreated_id(admin_id);
-            eventDto.setUpdated_id(admin_id);
+            // 세션에서 가져온 id로 작성자 설정
+            eventDto.setAdmin_id(writer);
+            eventDto.setCreated_id(writer);
+            eventDto.setUpdated_id(writer);
             eventDao.insert(eventDto);
         } catch (Exception e) {
+            // 작성에 실패했다는 메세지 추가예정
             e.printStackTrace();
-            return "redirect:/event/list";
+            // 게시글 작성 실패 시 이벤트 목록으로 이동
+            return "redirect:/admin/event/list";
         }
-        return "redirect:/event/list";
+        return "redirect:/admin/event/list";
     }
 
     @PostMapping("/{event_id}")
-    public String delete(@PathVariable Integer event_id, HttpSession session)
-            throws Exception {
-        // 마찬가지로 구현 확인을 위해 관리자 id를 데이터에 입력된 값으로 설정해놨습니다.
-        String admin_id = "0ca24692-89ea-11ee-b9d1-0242ac120002";
-        String getAdmin_id = eventDao.select(event_id).getAdmin_id();
-
-        if (admin_id.equals(getAdmin_id)) {
-            eventDao.delete(event_id);
-        } else {
-            return "redirect:/event/" + event_id;
+    public String delete(@PathVariable Integer event_id, HttpSession session) {
+        try {
+            // 마찬가지로 구현 확인을 위해 관리자 id를 데이터에 입력된 값으로 설정해놨습니다.
+            String admin_id = (String) session.getAttribute("id");
+            String getAdmin_id = eventDao.select(event_id).getAdmin_id();
+            // 작성자와 현재 세션에 로그인된 관리자가 같으면 삭제
+            if (admin_id.equals(getAdmin_id)) {
+                eventDao.delete(event_id);
+            } else return "redirect:/admin/event/" + event_id;
+            // 관리자와 게시자가 다르거나 예외 발생 시 삭제처리되지 않고 다시 현재 페이지로 리다이렉트
+        } catch (Exception e) {
+            // 예외 발생 경고창 추가예정
+            e.printStackTrace();
+            return "redirect:/admin/event/" + event_id;
         }
-        return "redirect:/event/list";
+        return "redirect:/admin/event/list";
     }
 
     @GetMapping("/update/{event_id}")
-    public String update(@PathVariable Integer event_id, Model m) throws Exception {
-        EventDto eventDto = eventDao.select(event_id);
-        m.addAttribute(eventDto);
+    public String update(@PathVariable Integer event_id, Model m, HttpSession session) {
+        try {
+            String writer = (String) session.getAttribute("id");
+            String id = eventDao.select(event_id).getAdmin_id();
+            // 수정페이지로 이동하려는 사람이 작성자와 일치하는지 확인
+            if (writer.equals(id)) {
+                EventDto eventDto = eventDao.select(event_id);
+                m.addAttribute(eventDto);
+            } else return "redirect:/admin/event/" + event_id;
+            // 아닐경우 or 기타 등등 에러 시 원래 페이지 유지
+        } catch (Exception e) {
+            // 오류 발생 메세지 추가예정
+            e.printStackTrace();
+            return "redirect:/admin/event/" + event_id;
+        }
         return "admin/eventUpdate";
     }
 
     @PostMapping("/update/{event_id}")
-    public String update(@PathVariable Integer event_id, EventDto eventDto) throws Exception {
-        // 마찬가지로 구현 확인을 위해 관리자 id를 데이터에 입력된 값으로 설정해놨습니다.
-        String admin_id = "0ca24692-89ea-11ee-b9d1-0242ac120002";
-
-        eventDto.setEvent_id(event_id);
-        eventDto.setUpdated_id(admin_id);
-        eventDao.update(eventDto);
-        return "redirect:/event/" + event_id;
+    public String update(@PathVariable Integer event_id, EventDto eventDto, HttpSession session) {
+        try {
+            // 수정창에 접근할때 이미 작성자 여부를 확인했으므로 수정만 진행하면 됨
+            String admin_id = (String) session.getAttribute("id");
+            eventDto.setEvent_id(event_id);
+            eventDto.setUpdated_id(admin_id);
+            eventDao.update(eventDto);
+        } catch (Exception e) {
+            e.printStackTrace();
+            // 예외 발생시(입력값 누락 등) 다시 수정창 그대로 리다이렉트
+            return "redirect:/admin/event/update/" + event_id;
+        }
+        return "redirect:/admin/event/" + event_id;
     }
 }
