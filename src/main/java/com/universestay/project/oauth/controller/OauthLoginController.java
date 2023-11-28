@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.ResponseEntity;
@@ -104,7 +105,9 @@ public class OauthLoginController {
             return "redirect:/main.jsp";
         } else {
             model.addAttribute("userEmail", userEmail);
-//            model.addAttribute("userPwd", userPwd);
+            String allowedCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_-+=<>?";
+            String userPwd = RandomStringUtils.random(20, allowedCharacters);
+            model.addAttribute("userPwd", userPwd);
 
             return "user/join";
         }

@@ -48,26 +48,26 @@
                 <span class="helper_text_span" id="id_input_helper_text"></span>
             </div>
             <%--            </span>--%>
+            <div class="signup_pwd_wrapper">
+                <h3>비밀번호*</h3>
+                <span class="signup_input">
+                    <input type="password" id="signup_pw" name="user_pwd" placeholder="비밀번호"
+                           class="input"
+                           value="" maxlength="20" autocomplete="new-password" aria-autocomplete="list">
+                    <span class="pw_lock"></span>
+                </span>
 
-            <h3>비밀번호*</h3>
-            <span class="signup_input">
-                <input type="password" id="signup_pw" name="user_pwd" placeholder="비밀번호"
-                       class="input"
-                       value="" maxlength="20" autocomplete="new-password" aria-autocomplete="list">
-                <span class="pw_lock"></span>
-            </span>
-
-            <h3>비밀번호 재확인*</h3>
-            <span class="signup_input">
-                <input type="password" id="signup_pww" name="user_pwd_2" placeholder="비밀번호 재확인"
-                       class="input" value="" maxlength="20" autocomplete="new-password"
-                       aria-autocomplete="list">
-                <span class="pww_lock"></span>
-            </span>
-            <div>
-                <span class="helper_text_span" id="pwd_input_helper_text"></span>
+                <h3>비밀번호 재확인*</h3>
+                <span class="signup_input">
+                    <input type="password" id="signup_pww" name="user_pwd_2" placeholder="비밀번호 재확인"
+                           class="input" value="" maxlength="20" autocomplete="new-password"
+                           aria-autocomplete="list">
+                    <span class="pww_lock"></span>
+                </span>
+                <div>
+                    <span class="helper_text_span" id="pwd_input_helper_text"></span>
+                </div>
             </div>
-
 
         </div>
 
@@ -107,24 +107,25 @@
                                placeholder="일"></input>
                     </span>
             </span>
+            <div class="signup_email_wrapper">
+                <h3>본인 확인 이메일*</h3>
+                <div style="display: flex;">
+                    <span class="signup_input" style="width:100%; margin: 10px 0px 0px 0px">
+                        <input id="signup_email" type="text" class="form-control" name="user_email"
+                               placeholder="이메일 입력"></input>
+                    </span>
+                    <span class="mail_Check_Btn_wrap">
+                        <input type="button" class="btn btn-primary" id="mail_Check_Btn"
+                               value="인증번호 보내기"> <br>
+                    </span>
+                </div>
 
-            <h3>본인 확인 이메일*</h3>
-            <div style="display: flex;">
-                <span class="signup_input" style="width:100%; margin: 10px 0px 0px 0px">
-                    <input id="signup_email" type="text" class="form-control" name="user_email"
-                           placeholder="이메일 입력"></input>
-                </span>
-                <span class="mail_Check_Btn_wrap">
-                    <input type="button" class="btn btn-primary" id="mail_Check_Btn"
-                           value="인증번호 보내기"> <br>
-                </span>
-            </div>
-
-            <div style="margin-top: 10px;">
-                <span class="signup_input">
-                    <input id="code_check_input" type="text" class="form-control"
-                           name="code_check_input" placeholder="인증번호 입력"></input>
-                </span>
+                <div style="margin-top: 10px;">
+                    <span class="signup_input">
+                        <input id="code_check_input" type="text" class="form-control"
+                               name="code_check_input" placeholder="인증번호 입력"></input>
+                    </span>
+                </div>
             </div>
         </div>
 
@@ -228,6 +229,22 @@
       }
     }); // end ajax
   }); // end send email
+
+  // 만약 Oauth로 회원가입을 들어오면 email, pwd 입력란 value 채우고 hidden으로 바꾼다.
+  if ("${userEmail}" != null && "${userEmail}" != "") {
+    $('#signup_pw')
+        .attr('value', '${userPwd}');
+    $('#signup_pww')
+        .attr('value', '${userPwd}');
+    $('#signup_email')
+        .attr('value', '${userEmail}');
+
+    $('.signup_pwd_wrapper')
+        .hide();
+    $('.signup_email_wrapper')
+        .hide();
+  }
+
 
 </script>
 
