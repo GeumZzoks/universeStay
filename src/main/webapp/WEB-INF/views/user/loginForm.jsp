@@ -79,12 +79,12 @@
 
         <!-- 소셜 로그인 -->
         <div class="sns-login">
-            <button type="button" class="btn sns-login__kakao">
+            <button type="button" class="btn sns-login__kakao" onclick="loginKakao()">
                 <div>카카오톡으로 로그인</div>
                 <img class="sns-login__icon-kakao" src="/resources/img/logo/btn-logo-kakao.png">
             </button>
 
-            <button type="button" class="btn sns-login__goolgle ">
+            <button type="button" class="btn sns-login__goolgle " onclick="loginGoogle()">
                 <img class="sns-login__icon-google" src="/resources/img/logo/btn-logo-google.png">
                 <div>Google로 로그인</div>
             </button>
@@ -101,7 +101,7 @@
     document.body.appendChild(f);
     f.submit();
   }
-
+    // 하나로
   function loginKakao() {
     let f = document.createElement('form');
     f.setAttribute('method', 'post');

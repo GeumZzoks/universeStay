@@ -36,6 +36,7 @@ public class OauthLoginController {
     @Value("${KAKAO_REDIRECT_URL}")
     private String KAKAO_REDIRECT_URL;
 
+    // loginService 한개로
     private final KakaoLoginService kakaoLoginService;
     private final GoogleLoginService googleLoginService;
     private final UserLoginService userLoginService;

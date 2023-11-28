@@ -249,6 +249,7 @@
     </resources>
 
     <plugins>
+
       <!-- plugin: maven build plugin 종류, 버전, 인코딩 설정 등 -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

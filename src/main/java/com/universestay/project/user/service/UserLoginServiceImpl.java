@@ -66,6 +66,7 @@ public class UserLoginServiceImpl implements UserLoginService {
 
         } catch (Exception e) {
             e.printStackTrace();
+            // return null;
             throw new Exception();
         }
     }
