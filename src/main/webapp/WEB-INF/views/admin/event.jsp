@@ -25,8 +25,8 @@ flush="false"/>
     <h3 style="color: indianred;">이벤트</h3>
     <h5 style="font-size: 20px; font-weight: 800; margin-left: 20px">${eventDto.event_title}</h5>
     <h5 style="white-space:pre; margin-left: 20px">${eventDto.event_ctt}</h5>
-    <button class="content-top__btn" onclick="location.href='/event/update/${eventDto.event_id}'">수정</button>
-    <form action="/event/${eventDto.event_id}" method="post">
+    <button class="content-top__btn" onclick="location.href='/admin/event/update/${eventDto.event_id}'">수정</button>
+    <form action="/admin/event/${eventDto.event_id}" method="post">
         <button type="submit" class="content-top__btn" style="right: 20px">삭제</button>
     </form>
 </div>

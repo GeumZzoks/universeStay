@@ -43,7 +43,7 @@ flush="false"/>
                 <tr>
                     <td class="content-table__no" style="font-size: 12px">${eventDto.event_id}</td>
                     <td class="content-table__title"><a
-                            href="<c:url value="/event/${eventDto.event_id}"/>"
+                            href="<c:url value="/admin/event/${eventDto.event_id}"/>"
                             class="content-table__title__a">${eventDto.event_title}</a>
                     </td>
                     <td class="content-table__writer">${eventDto.admin_id}</td>
@@ -68,7 +68,7 @@ flush="false"/>
     <br>
 </div>
 <div class="content-bottom">
-    <button class="content-bottom__btn"><a href="/event/write" class="content-bottom__btn__a">이벤트 작성</a></button>
+    <button class="content-bottom__btn"><a href="/admin/event/write" class="content-bottom__btn__a">이벤트 작성</a></button>
 </div>
 
 </body>
