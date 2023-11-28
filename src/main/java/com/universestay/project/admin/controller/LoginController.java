@@ -31,7 +31,7 @@ public class LoginController {
             throws Exception {
 
         if (!loginCheck(username, password, request)) {
-            // TODO: message jsp 설정 or 예외 처리 생각해보기
+            // TODO: message jsp 설정(Validator) or Exception Handler 에러 페이지 반환
             String msg = URLEncoder.encode("아이디 또는 비밀번호가 일치하지 않습니다.", "utf-8");
 
             return "redirect:/adminLogin/loginForm";

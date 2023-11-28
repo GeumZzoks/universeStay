@@ -2,6 +2,7 @@ package com.universestay.project.admin.service;
 
 import com.universestay.project.admin.dao.LoginAdminDao;
 import com.universestay.project.admin.dto.AdminDto;
+import com.universestay.project.common.exception.CommonException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class LoginAdminServiceImpl implements LoginAdminService {
 
 
     /**
-     * feature : admin user 확인
+     * feat: 관리자 유저 ID/PWD 확인
      *
      * @param id, password, request
      * @return boolean
@@ -27,12 +28,12 @@ public class LoginAdminServiceImpl implements LoginAdminService {
      */
     @Override
     public boolean confirmUser(String id, String password, HttpServletRequest request)
-            throws Exception {
+            throws CommonException {
 
-        // TODO: username을 UUID로 변환
+        // TODO: username을 UUID로 변환하는 UUID 클래스 만들기(timestamp + hashcode 조합 사용 예정)
 
         AdminDto adminDto = loginAdminDao.selectUser(id);
-        System.out.println("adminDto = " + adminDto);
+        // TODO: 예외 처리하기(예외 던지기)
 
         // TODO: Optional 객체로 변환하기
         if (adminDto == null) {
