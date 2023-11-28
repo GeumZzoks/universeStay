@@ -1,0 +1,173 @@
+body {
+    background-color: gainsboro;
+    width: 100vw;
+    height: 95%;
+}
+
+.content {
+    width: 1150px;
+    height: 80%;
+    min-height: 580px;
+    position: absolute;
+    float: left;
+    margin: 50px 100px 0 222px;
+    padding: 0 20px 0 20px;
+    background-color: white;
+}
+
+.content-search {
+    position: absolute;
+    margin: -40px 0 0 958px;
+}
+
+.content-search__btn {
+    height: 24px;
+    background-color: indianred;
+    color: white;
+    border: 0;
+    border-radius: 2px;
+}
+
+.content-search__btn:hover {
+    color: black;
+    transition-duration: 200ms;
+    transform: scale(1.04, 1.04);
+    cursor: pointer;
+}
+
+.content-table {
+    width: 100%;
+    margin-bottom: 10px;
+    padding-right: 10px;
+}
+
+.content-table-div {
+    width: 100%;
+    height: 78%;
+    overflow-y: scroll;
+}
+
+.content-table__no {
+    width: 70px;
+    border-bottom: 1px solid #444444;
+    text-align: center;
+}
+
+.content-table__title {
+    color: black;
+    border-bottom: 1px solid #444444;
+    text-align: left;
+}
+
+.content-table__title__a {
+    text-decoration: none;
+    color: black;
+}
+
+.content-table__title__a:hover {
+    color: #F48475;
+}
+
+.content-table__title__a:visited {
+    color: #B0B0B0;
+}
+
+.content-table__writer {
+    width: 100px;
+    border-bottom: 1px solid #444444;
+    text-align: center;
+}
+
+.content-table__regdate {
+    width: 120px;
+    border-bottom: 1px solid #444444;
+    text-align: center;
+}
+
+.content-table__viewcnt {
+    width: 50px;
+    border-bottom: 1px solid #444444;
+    text-align: center;
+}
+
+.content-top__btn {
+    position: absolute;
+    top: 20px;
+    right: 90px;
+    width: 60px;
+    height: 24px;
+    background-color: indianred;
+    color: white;
+    border: 0;
+    border-radius: 2px;
+}
+
+.content-top__btn:hover {
+    transition-duration: 200ms;
+    transform: scale(1.04, 1.04);
+    cursor: pointer;
+}
+
+.content-bottom {
+    position: absolute;
+    right: 40px;
+    bottom: 50px;
+}
+
+.content-bottom__btn {
+    width: 150px;
+    height: 24px;
+    background-color: indianred;
+    color: white;
+    border: 0;
+    border-radius: 2px;
+}
+
+.content-bottom__btn:hover {
+    color: black;
+    transition-duration: 200ms;
+    transform: scale(1.04, 1.04);
+}
+
+.content-bottom__btn__a {
+    text-decoration: none;
+    color: white;
+}
+
+.content-bottom__btn__submit {
+    position: absolute;
+    width: 150px;
+    height: 24px;
+    background-color: indianred;
+    color: white;
+    border: 0;
+    border-radius: 2px;
+    right: 20px;
+    bottom: 20px;
+}
+
+.content-bottom__btn__submit:hover {
+    color: black;
+    transition-duration: 200ms;
+    transform: scale(1.04, 1.04);
+}
+
+.content-input-div {
+    width: 200px;
+    position: absolute;
+    margin: -440px 0 0 870px;
+    padding: 0 0 50px 40px;
+    border: 2px solid indianred;
+    border-radius: 10px;
+}
+
+.content-input-div__radio {
+    accent-color: indianred;
+}
+
+.content-input__type {
+}
+
+.content-input__date {
+}
+
