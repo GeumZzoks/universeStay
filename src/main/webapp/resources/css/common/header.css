@@ -255,7 +255,7 @@ button {
   justify-content: space-between;
   align-items: flex-start;
   width: 200%;
-  height: 230px;
+  /*height: 230px;*/
   top: 120%;
   right: 5%;
   background-color: white;
@@ -267,7 +267,8 @@ button {
 
 .header__profile__option div {
   width: 100%;
-  flex: 1;
+  height: 40px;
+  /*flex: 1;*/
   display: flex;
   justify-content: flex-start;
   align-items: center;
