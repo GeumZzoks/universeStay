@@ -17,4 +17,8 @@ public class UserInfoDaoImpl implements UserInfoDao {
         return session.selectOne(namespace + "selectUserInfo", user_email);
     }
 
+    @Override
+    public int updateUserInfo(UserDto userDto) throws Exception {
+        return session.update(namespace + "updateUserInfo", userDto);
+    }
 }
