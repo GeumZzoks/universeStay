@@ -154,7 +154,7 @@
                         <span>로그아웃</span></div>
                     <%
                     } else  //세션에 'user_email'이라는 값이 저장되어 있지 않으면(즉, 로그아웃 상태면) 아래 드롭다운을 보여준다.
-                        // {
+                    {
                     %>
 
                     <div class="dropdown__option dropdown__option-sign-up" onclick="">
