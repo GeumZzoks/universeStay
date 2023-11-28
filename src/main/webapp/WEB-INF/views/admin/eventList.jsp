@@ -12,6 +12,8 @@
 <head>
     <title>이벤트</title>
     <link rel="stylesheet" href="../../../resources/css/admin/event.css">
+    <link href="../../../resources/css/common/global.css" rel="stylesheet"/>
+
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/admin/header.jsp"/>
@@ -24,7 +26,7 @@ flush="false"/>
 flush="false"/>
 
 <div class="content">
-    <h3 style="color: indianred;">이벤트</h3>
+    <h3 style="color: indianred; margin-top: 20px">이벤트</h3>
     <form class="content-search" action="/event/list/${search}">
         <input name="search" type="text" placeholder="검색" style="width:150px; height: 24px;">
         <button type="submit" class="content-search__btn">검색</button>
