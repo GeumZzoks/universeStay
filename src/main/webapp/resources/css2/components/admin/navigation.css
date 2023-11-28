@@ -1,0 +1,40 @@
+.navigation {
+  position: fixed;
+  width: 200px;
+  top: 70px;
+  bottom: 20px;
+  left: 10px;
+  border-radius: 10px;
+  background-color: dimgrey;
+  z-index: 1;
+}
+
+.navigation-ul {
+  margin: 70px 0 0 40px;
+}
+
+.navigation-ul-li {
+  list-style-type: none;
+  margin-top: 40px;
+  width: 210px;
+  text-align: left;
+}
+
+.navigation-ul-li__a {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.navigation-ul-li__a:hover {
+  transition-duration: 200ms;
+  color: black;
+}
+
+.navigation-ul-li__img {
+  width: 20px;
+  height: 20px;
+  vertical-align: bottom;
+  margin-right: 20px;
+}
