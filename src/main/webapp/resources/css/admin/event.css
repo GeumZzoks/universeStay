@@ -10,14 +10,14 @@ body {
     min-height: 580px;
     position: absolute;
     float: left;
-    margin: 50px 100px 0 222px;
+    margin: 60px 100px 0 222px;
     padding: 0 20px 0 20px;
     background-color: white;
 }
 
 .content-search {
     position: absolute;
-    margin: -40px 0 0 958px;
+    margin: -20px 0 0 958px;
 }
 
 .content-search__btn {
@@ -37,7 +37,7 @@ body {
 
 .content-table {
     width: 100%;
-    margin-bottom: 10px;
+    margin: 30px 0 10px 0;
     padding-right: 10px;
 }
 
@@ -155,8 +155,8 @@ body {
 .content-input-div {
     width: 200px;
     position: absolute;
-    margin: -440px 0 0 870px;
-    padding: 0 0 50px 40px;
+    margin: -430px 0 0 870px;
+    padding: 30px 0 80px 40px;
     border: 2px solid indianred;
     border-radius: 10px;
 }
@@ -166,8 +166,10 @@ body {
 }
 
 .content-input__type {
+    margin: 20px 0 10px 0;
 }
 
 .content-input__date {
+
 }
 
