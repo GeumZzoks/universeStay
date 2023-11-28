@@ -41,11 +41,6 @@ public class OauthLoginController {
     private final GoogleLoginService googleLoginService;
     private final UserLoginService userLoginService;
 
-    // view 에서 구글로 로그인 버튼을 누르면 method="post", action="/oauth2/google" 로 전달되고
-    // 아래의 @RequestMapping을 통과하게 된다. googleClientId, GOOGLE_REDIRECT_URL을 활용해서
-    // 리다이렉트하여 인가(리소스에 접근할 수 있는 권한) 승인을 요청한다.
-    // 로그인하면 인가 승인을 하여 (인증 코드를 파라미터로 보내준다.)
-    //  GOOGLE_REDIRECT_URL로 리다이렉트 (인증코드는 파라미터에 포함되어있다.)
     @PostMapping("/google")
     public String loginUrlGoogle() {
         String reqUrl = "https://accounts.google.com/o/oauth2/v2/auth?client_id="
@@ -58,7 +53,6 @@ public class OauthLoginController {
         return "redirect:" + reqUrl;
     }
 
-    // GOOGLE_REDIRECT_URL로 리다이렉트시에 아래 @RequestMapping을 통과한다.
     @GetMapping("/google")
     public String loginGoogle(@RequestParam(value = "code") String authCode, HttpSession session)
             throws Exception {
@@ -104,13 +98,11 @@ public class OauthLoginController {
         UserDto userDto = userLoginService.checkSignUp(userEmail);
 
         if (userDto != null) {
-            // 있으면 로그인 하고 홈
             String userPwd = userDto.getUser_pwd();
             userLoginService.signin(userEmail, userPwd, session);
 
-            return "HI";
+            return "redirect:/main.jsp";
         } else {
-            // 없으면 이메일 정보 가지고 회원가입 폼으로 이동
             model.addAttribute("userEmail", userEmail);
 //            model.addAttribute("userPwd", userPwd);
 
