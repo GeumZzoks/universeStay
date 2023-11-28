@@ -9,8 +9,9 @@
 <html>
 <head>
     <title>nav</title>
-    <link rel="stylesheet" href="/resources/css/common/global.css">
-    <link rel="stylesheet" href="/resources/css/common/nav.css">
+    <link rel="stylesheet" href="/resources/css2/style.css">
+    <%--    <link rel="stylesheet" href="/resources/css/common/global.css">--%>
+    <%--    <link rel="stylesheet" href="/resources/css/common/nav.css">--%>
 </head>
 <body>
 <nav class="components-user-nav__nav">

@@ -9,8 +9,9 @@
 <html>
 <head>
     <title>main</title>
-    <link rel="stylesheet" href="/resources/css/common/global.css">
-    <link rel="stylesheet" href="/resources/css/user/main.css">
+    <link rel="stylesheet" href="/resources/css2/style.css">
+    <%--    <link rel="stylesheet" href="/resources/css/common/global.css">--%>
+    <%--    <link rel="stylesheet" href="/resources/css/user/main.css">--%>
 
 </head>
 <body>
