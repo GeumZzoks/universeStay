@@ -132,7 +132,8 @@ $(function () {
     $('input[name="datefilter"]').daterangepicker({
         autoUpdateInput: true,
         locale: {
-            cancelLabel: 'Clear'
+            cancelLabel: '취소',
+            applyLabel: '확인'
         }
     });
 
