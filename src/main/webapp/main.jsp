@@ -29,6 +29,207 @@
                     class="screens-user-main__room-price">100000</span><span> /박</span>
             </div>
         </div>
+        <div class="screens-user-main__room__wrapper">
+            <img class="screens-user-main__room-img" src="/resources/img/mock/room-mock-img2.png">
+            <span class="screens-user-main__room-location">경기도 남양주시 별내동</span>
+            <span class="screens-user-main__room-title">아늑한 별내동의 오로라 하우스입니다.</span>
+
+            <div class="screens-user-main__room-price__wrapper">
+                <span>₩</span> <span
+                    class="screens-user-main__room-price">100000</span><span> /박</span>
+            </div>
+        </div>
+        <div class="screens-user-main__room__wrapper">
+            <img class="screens-user-main__room-img" src="/resources/img/mock/room-mock-img2.png">
+            <span class="screens-user-main__room-location">경기도 남양주시 별내동</span>
+            <span class="screens-user-main__room-title">아늑한 별내동의 오로라 하우스입니다.</span>
+
+            <div class="screens-user-main__room-price__wrapper">
+                <span>₩</span> <span
+                    class="screens-user-main__room-price">100000</span><span> /박</span>
+            </div>
+        </div>
+        <div class="screens-user-main__room__wrapper">
+            <img class="screens-user-main__room-img" src="/resources/img/mock/room-mock-img2.png">
+            <span class="screens-user-main__room-location">경기도 남양주시 별내동</span>
+            <span class="screens-user-main__room-title">아늑한 별내동의 오로라 하우스입니다.</span>
+
+            <div class="screens-user-main__room-price__wrapper">
+                <span>₩</span> <span
+                    class="screens-user-main__room-price">100000</span><span> /박</span>
+            </div>
+        </div>
+        <div class="screens-user-main__room__wrapper">
+            <img class="screens-user-main__room-img" src="/resources/img/mock/room-mock-img2.png">
+            <span class="screens-user-main__room-location">경기도 남양주시 별내동</span>
+            <span class="screens-user-main__room-title">아늑한 별내동의 오로라 하우스입니다.</span>
+
+            <div class="screens-user-main__room-price__wrapper">
+                <span>₩</span> <span
+                    class="screens-user-main__room-price">100000</span><span> /박</span>
+            </div>
+        </div>
+        <div class="screens-user-main__room__wrapper">
+            <img class="screens-user-main__room-img" src="/resources/img/mock/room-mock-img2.png">
+            <span class="screens-user-main__room-location">경기도 남양주시 별내동</span>
+            <span class="screens-user-main__room-title">아늑한 별내동의 오로라 하우스입니다.</span>
+
+            <div class="screens-user-main__room-price__wrapper">
+                <span>₩</span> <span
+                    class="screens-user-main__room-price">100000</span><span> /박</span>
+            </div>
+        </div>
+        <div class="screens-user-main__room__wrapper">
+            <img class="screens-user-main__room-img" src="/resources/img/mock/room-mock-img2.png">
+            <span class="screens-user-main__room-location">경기도 남양주시 별내동</span>
+            <span class="screens-user-main__room-title">아늑한 별내동의 오로라 하우스입니다.</span>
+
+            <div class="screens-user-main__room-price__wrapper">
+                <span>₩</span> <span
+                    class="screens-user-main__room-price">100000</span><span> /박</span>
+            </div>
+        </div>
+        <div class="screens-user-main__room__wrapper">
+            <img class="screens-user-main__room-img" src="/resources/img/mock/room-mock-img2.png">
+            <span class="screens-user-main__room-location">경기도 남양주시 별내동</span>
+            <span class="screens-user-main__room-title">아늑한 별내동의 오로라 하우스입니다.</span>
+
+            <div class="screens-user-main__room-price__wrapper">
+                <span>₩</span> <span
+                    class="screens-user-main__room-price">100000</span><span> /박</span>
+            </div>
+        </div>
+        <div class="screens-user-main__room__wrapper">
+            <img class="screens-user-main__room-img" src="/resources/img/mock/room-mock-img2.png">
+            <span class="screens-user-main__room-location">경기도 남양주시 별내동</span>
+            <span class="screens-user-main__room-title">아늑한 별내동의 오로라 하우스입니다.</span>
+
+            <div class="screens-user-main__room-price__wrapper">
+                <span>₩</span> <span
+                    class="screens-user-main__room-price">100000</span><span> /박</span>
+            </div>
+        </div>
+        <div class="screens-user-main__room__wrapper">
+            <img class="screens-user-main__room-img" src="/resources/img/mock/room-mock-img2.png">
+            <span class="screens-user-main__room-location">경기도 남양주시 별내동</span>
+            <span class="screens-user-main__room-title">아늑한 별내동의 오로라 하우스입니다.</span>
+
+            <div class="screens-user-main__room-price__wrapper">
+                <span>₩</span> <span
+                    class="screens-user-main__room-price">100000</span><span> /박</span>
+            </div>
+        </div>
+        <div class="screens-user-main__room__wrapper">
+            <img class="screens-user-main__room-img" src="/resources/img/mock/room-mock-img2.png">
+            <span class="screens-user-main__room-location">경기도 남양주시 별내동</span>
+            <span class="screens-user-main__room-title">아늑한 별내동의 오로라 하우스입니다.</span>
+
+            <div class="screens-user-main__room-price__wrapper">
+                <span>₩</span> <span
+                    class="screens-user-main__room-price">100000</span><span> /박</span>
+            </div>
+        </div>
+        <div class="screens-user-main__room__wrapper">
+            <img class="screens-user-main__room-img" src="/resources/img/mock/room-mock-img2.png">
+            <span class="screens-user-main__room-location">경기도 남양주시 별내동</span>
+            <span class="screens-user-main__room-title">아늑한 별내동의 오로라 하우스입니다.</span>
+
+            <div class="screens-user-main__room-price__wrapper">
+                <span>₩</span> <span
+                    class="screens-user-main__room-price">100000</span><span> /박</span>
+            </div>
+        </div>
+        <div class="screens-user-main__room__wrapper">
+            <img class="screens-user-main__room-img" src="/resources/img/mock/room-mock-img2.png">
+            <span class="screens-user-main__room-location">경기도 남양주시 별내동</span>
+            <span class="screens-user-main__room-title">아늑한 별내동의 오로라 하우스입니다.</span>
+
+            <div class="screens-user-main__room-price__wrapper">
+                <span>₩</span> <span
+                    class="screens-user-main__room-price">100000</span><span> /박</span>
+            </div>
+        </div>
+        <div class="screens-user-main__room__wrapper">
+            <img class="screens-user-main__room-img" src="/resources/img/mock/room-mock-img2.png">
+            <span class="screens-user-main__room-location">경기도 남양주시 별내동</span>
+            <span class="screens-user-main__room-title">아늑한 별내동의 오로라 하우스입니다.</span>
+
+            <div class="screens-user-main__room-price__wrapper">
+                <span>₩</span> <span
+                    class="screens-user-main__room-price">100000</span><span> /박</span>
+            </div>
+        </div>
+        <div class="screens-user-main__room__wrapper">
+            <img class="screens-user-main__room-img" src="/resources/img/mock/room-mock-img2.png">
+            <span class="screens-user-main__room-location">경기도 남양주시 별내동</span>
+            <span class="screens-user-main__room-title">아늑한 별내동의 오로라 하우스입니다.</span>
+
+            <div class="screens-user-main__room-price__wrapper">
+                <span>₩</span> <span
+                    class="screens-user-main__room-price">100000</span><span> /박</span>
+            </div>
+        </div>
+        <div class="screens-user-main__room__wrapper">
+            <img class="screens-user-main__room-img" src="/resources/img/mock/room-mock-img2.png">
+            <span class="screens-user-main__room-location">경기도 남양주시 별내동</span>
+            <span class="screens-user-main__room-title">아늑한 별내동의 오로라 하우스입니다.</span>
+
+            <div class="screens-user-main__room-price__wrapper">
+                <span>₩</span> <span
+                    class="screens-user-main__room-price">100000</span><span> /박</span>
+            </div>
+        </div>
+        <div class="screens-user-main__room__wrapper">
+            <img class="screens-user-main__room-img" src="/resources/img/mock/room-mock-img2.png">
+            <span class="screens-user-main__room-location">경기도 남양주시 별내동</span>
+            <span class="screens-user-main__room-title">아늑한 별내동의 오로라 하우스입니다.</span>
+
+            <div class="screens-user-main__room-price__wrapper">
+                <span>₩</span> <span
+                    class="screens-user-main__room-price">100000</span><span> /박</span>
+            </div>
+        </div>
+        <div class="screens-user-main__room__wrapper">
+            <img class="screens-user-main__room-img" src="/resources/img/mock/room-mock-img2.png">
+            <span class="screens-user-main__room-location">경기도 남양주시 별내동</span>
+            <span class="screens-user-main__room-title">아늑한 별내동의 오로라 하우스입니다.</span>
+
+            <div class="screens-user-main__room-price__wrapper">
+                <span>₩</span> <span
+                    class="screens-user-main__room-price">100000</span><span> /박</span>
+            </div>
+        </div>
+        <div class="screens-user-main__room__wrapper">
+            <img class="screens-user-main__room-img" src="/resources/img/mock/room-mock-img2.png">
+            <span class="screens-user-main__room-location">경기도 남양주시 별내동</span>
+            <span class="screens-user-main__room-title">아늑한 별내동의 오로라 하우스입니다.</span>
+
+            <div class="screens-user-main__room-price__wrapper">
+                <span>₩</span> <span
+                    class="screens-user-main__room-price">100000</span><span> /박</span>
+            </div>
+        </div>
+        <div class="screens-user-main__room__wrapper">
+            <img class="screens-user-main__room-img" src="/resources/img/mock/room-mock-img2.png">
+            <span class="screens-user-main__room-location">경기도 남양주시 별내동</span>
+            <span class="screens-user-main__room-title">아늑한 별내동의 오로라 하우스입니다.</span>
+
+            <div class="screens-user-main__room-price__wrapper">
+                <span>₩</span> <span
+                    class="screens-user-main__room-price">100000</span><span> /박</span>
+            </div>
+        </div>
+        <div class="screens-user-main__room__wrapper">
+            <img class="screens-user-main__room-img" src="/resources/img/mock/room-mock-img2.png">
+            <span class="screens-user-main__room-location">경기도 남양주시 별내동</span>
+            <span class="screens-user-main__room-title">아늑한 별내동의 오로라 하우스입니다.</span>
+
+            <div class="screens-user-main__room-price__wrapper">
+                <span>₩</span> <span
+                    class="screens-user-main__room-price">100000</span><span> /박</span>
+            </div>
+        </div>
+
 
     </div>
 </section>

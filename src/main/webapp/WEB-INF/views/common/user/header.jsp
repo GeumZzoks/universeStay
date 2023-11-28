@@ -96,22 +96,12 @@
 
                     <%--예산 버튼 눌렀을때 드롭다운 (수정 필요)--%>
                     <div class="dropdown-div header__searchbar__money">
-                        <div class="range-slider">
-                            <span class="slider-track"></span>
-                            <input type="range" name="min_val" class="min-val" min="10000"
-                                   max="1000000" value="50000" oninput="slideMin()">
-                            <input type="range" name="max_val" class="max-val" min="10000"
-                                   max="1000000" value="200000" oninput="slideMax()">
-                            <div class="tooltip min-tooltip"></div>
-                            <div class="tooltip max-tooltip"></div>
-                        </div>
                         <div class="input-box">
                             <div class="min-box">
                                 <div class="input-wrap">
                                     <input type="text" name="min_input"
                                            class="input-field min-input" onchange="setMinInput()">
                                     <span class="input-addon">원</span>
-
                                 </div>
                             </div>
                             <div class="max-box">
@@ -119,7 +109,6 @@
                                     <input type="text" name="max_input"
                                            class="input-field max-input" onchange="setMaxInput()">
                                     <span class="input-addon">원</span>
-
                                 </div>
                             </div>
                         </div>
