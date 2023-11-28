@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/test")
 public class SwaggerTestController {
 
-    @GetMapping("header")
+    @GetMapping("main")
     public String test() {
-        return "common/user/header";
+        return "/WEB-INF/main.jsp";
     }
 
 
