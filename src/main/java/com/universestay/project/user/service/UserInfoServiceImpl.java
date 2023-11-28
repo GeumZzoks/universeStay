@@ -37,6 +37,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 //        2. 새로운 프로필 이미지 등록 : 새로운 ProfileImg db가 하나 생성되고, 해당 db의 profile_img_id를 참조하여 User 테이블에서 profile_img_id를 바꾼다
 //        3. user.setProfile_img_id("새로운 프로필 이미지 아이디"); 를 통해서 user에 새로운 프로필 이미지 아이디를 넣는다.
 
-        return userInfoDao.updateUserInfo(user);
+//        return userInfoDao.updateUserInfo(user);
+        return 0;
     }
 }
