@@ -62,61 +62,48 @@ function search_postcode() {
 $(document).ready(function () {
   // 가입하기 버튼 클릭 이벤트
   $("#signup_btn").click(function () {
+    // 사용자가 입력한 정보
+    var user_nickname = $("#signup_id").val();
+    var user_pwd = $("#signup_pw").val();
+    var user_confirmPassword = $("#signup_pww").val();
+    var user_name = $("#signup_name").val();
+    var user_birthYear = $("#signup_birth_yy").val();
+    var user_birthMonth = $(".dropdown__textBox").val();
+    var user_birthDay = $("#signup_birth_dd").val();
+    var user_email = $("#signup_email").val();
+    var user_phone_num1 = $("#signup_phone_1").val();
+    var user_phone_num2 = $("#signup_phone_2").val();
+    var address = $("#address_roadAddress").val();
+    var address_detail = $("#address_detailAddress").val();
+    var user_img_url = $("#user_img_url").val();
+    console.log(user_img_url);
 
-    if (fnSubmit()) {
+    // 서버로 전송할 데이터를 객체
+    var userDto = {
+      user_nickname: user_nickname,
+      user_pwd: user_pwd,
+      user_name: user_name,
+      user_birth: new Date(user_birthYear, user_birthMonth - 1,
+          user_birthDay),
+      user_email: user_email,
+      user_phone_num1: user_phone_num1,
+      user_phone_num2: user_phone_num2,
+      user_address: `${address} ${address_detail}`,
+      user_img_url: user_img_url
+    };
 
-      // 사용자가 입력한 정보
-      var user_nickname = $("#signup_id").val();
-      var user_pwd = $("#signup_pw").val();
-      var user_confirmPassword = $("#signup_pww").val();
-      var user_name = $("#signup_name").val();
-      var user_birthYear = $("#signup_birth_yy").val();
-      var user_birthMonth = $(".dropdown__textBox").val();
-      var user_birthDay = $("#signup_birth_dd").val();
-      var user_email = $("#signup_email").val();
-      var user_phone_num1 = $("#signup_phone_1").val();
-      var user_phone_num2 = $("#signup_phone_2").val();
-      var address = $("#address_roadAddress").val();
-      var address_detail = $("#address_detailAddress").val();
-      var user_img_url = $("#user_img_url").val();
-
-      // 서버로 전송할 데이터를 객체
-      var userDto = {
-        user_nickname: user_nickname,
-        user_pwd: user_pwd,
-        user_name: user_name,
-        user_birth: new Date(user_birthYear, user_birthMonth - 1,
-            user_birthDay),
-        user_email: user_email,
-        user_phone_num1: user_phone_num1,
-        user_phone_num2: user_phone_num2,
-        user_address: `${address} ${address_detail}`,
-        user_img_url: user_img_url
-      };
-
-      // 서버에 가입 요청
-      $.ajax({
-        type: "post",
-        url: "/user/join", // 가입 요청을 처리하는 컨트롤러 주소
-        contentType: "application/json",
-        data: JSON.stringify(userDto),
-        success: function (response) {
-          console.log(response);
-          if (response == 1) {
-            alert("회원가입에 성공하였습니다.");
-            location.href = "/loginForm";
-          } else {
-            alert("회원가입에 실패하였습니다.");
-            location.href = "/user/join";
-
-          }
-        },
-        error: function (error) {
-          console.error("가입 실패:", error);
-        }
-      });
-    }
-
+    // 서버에 가입 요청
+    $.ajax({
+      type: "POST",
+      url: "user/join", // 가입 요청을 처리하는 컨트롤러의 엔드포인트 주소
+      contentType: "application/json",
+      data: JSON.stringify(userDto),
+      success: function (response) {
+      },
+      error: function (error) {
+        console.error("가입 실패:", error);
+      }
+    });
   });
 });
 
@@ -154,6 +141,7 @@ $(function () {
 });
 
 $(function () {
+  // Bind the logic to the input event for the password fields
   $("#signup_pw, #signup_pww").on('input', function () {
     let user_pw = $("#signup_pw").val();
     let user_pww = $("#signup_pww").val();
@@ -167,64 +155,3 @@ $(function () {
     }
   });
 });
-
-function fnSubmit() {
-
-  var email_rule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-  // var tel_rule = /^\d{2,3}-\d{3,4}-\d{4}$/;
-
-  if ($("#signup_id").val() == null || $("#signup_id").val() == "") {
-    alert("아이디를 입력해주세요.");
-    $("#signup_id").focus();
-
-    return false;
-  }
-
-  if ($("#signup_pw").val() == null || $("signup_pw").val() == "") {
-    alert("비밀번호를 입력해주세요.");
-    $("#signup_pw").focus();
-
-    return false;
-  }
-
-  if ($("#signup_pww").val() == null || $("#signup_pww").val() == "") {
-    alert("비밀번호 확인을 입력해주세요.");
-    $("#signup_pww").focus();
-
-    return false;
-  }
-
-  if ($("#signup_name").val() == null || $("#signup_name").val() == "") {
-    alert("이름을 입력해주세요.");
-    $("#signup_name").focus();
-
-    return false;
-  }
-
-  if ($("#signup_email").val() == null || $("#signup_email").val() == "") {
-    alert("이메일을 입력해주세요.");
-    $("#signup_email").focus();
-
-    return false;
-  }
-
-  if (!email_rule.test($("#signup_email").val())) {
-    alert("이메일을 형식에 맞게 입력해주세요. ex) 1234@naver.com");
-    $("#signup_email").focus();
-    return false;
-  }
-
-  if ($("#code_check_input").val() == null || $("#code_check_input").val()
-      == "") {
-    alert("인증번호를 입력해주세요.");
-    $("#code_check_input").focus();
-
-    return false;
-  }
-
-  if (confirm("회원가입하시겠습니까?")) {
-    $("#signup_btn").submit();
-    return true;
-  }
-
-}
