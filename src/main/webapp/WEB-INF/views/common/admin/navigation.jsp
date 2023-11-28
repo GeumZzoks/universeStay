@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>Navigation</title>
+    <link href="/resources/css/common/global.css" rel="stylesheet"/>
     <style>
         .navigation {
             position: fixed;
@@ -23,7 +24,7 @@
         }
 
         .navigation-ul {
-            margin-top: 70px;
+            margin: 70px 0 0 40px;
         }
 
         .navigation-ul-li {
@@ -68,8 +69,9 @@
         <li class="navigation-ul-li"><a class="navigation-ul-li__a" href=""><img class="navigation-ul-li__img"
                                                                                  src="/resources/img/admin/navigation/notice.png">공지사항</a>
         </li>
-        <li class="navigation-ul-li"><a class="navigation-ul-li__a" href=""><img class="navigation-ul-li__img"
-                                                                                 src="/resources/img/admin/navigation/event.png">이벤트</a>
+        <li class="navigation-ul-li"><a class="navigation-ul-li__a" href="/admin/event/list"><img
+                class="navigation-ul-li__img"
+                src="/resources/img/admin/navigation/event.png">이벤트</a>
         </li>
         <li class="navigation-ul-li"><a class="navigation-ul-li__a" href=""><img class="navigation-ul-li__img"
                                                                                  src="/resources/img/admin/navigation/inquiry.png">문의사항</a>
