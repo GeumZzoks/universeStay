@@ -1,0 +1,20 @@
+package com.universestay.project.user.dao;
+
+import com.universestay.project.user.dto.UserDto;
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class UserInfoDaoImpl implements UserInfoDao {
+
+    @Autowired
+    SqlSession session;
+    private static String namespace = "com.universestay.project.user.dao.UserInfoDao.";
+
+    @Override
+    public UserDto getUserInfo(String user_email) throws Exception {
+        return session.selectOne(namespace + "selectUserInfo", user_email);
+    }
+
+}

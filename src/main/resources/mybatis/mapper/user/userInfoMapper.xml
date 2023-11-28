@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.universestay.project.user.dao.UserInfoDao">
+    <select id="selectUserInfo" resultType="UserDto">
+        select *
+        from User
+        where user_email = #{user_email}
+    </select>
+</mapper>
