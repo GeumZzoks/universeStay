@@ -11,11 +11,10 @@
     <link rel="stylesheet" href="/resources/css/common/global.css">
     <link rel="stylesheet" href="/resources/css/user/login.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
 </head>
 
 <%
-    // 쿠키
+    // 쿠키를 가지고 있는지 확인하는 과정
     String userEmail = "";
     boolean hasCookie = false;
     Cookie[] cookies = request.getCookies();
@@ -58,13 +57,10 @@
 
         <button type="submit" class="btn main-login__btn">로그인</button>
 
-        <% if (hasCookie) { %>
+        <%-- 쿠키 시작점 - checked: 쿠키 생성 요청, "": noCookie --%>
         <label><input type="checkbox" class="main-login__checkbox" name="remember_id"
-                      autocomplete="off" checked>아이디 저장</label>
-        <% } else { %>
-        <label><input type="checkbox" class="main-login__checkbox" autocomplete="off"
-                      name="remember_id">아이디 저장</label>
-        <% } %>
+                      autocomplete="off" <%= hasCookie ? "checked" : "" %>>아이디 저장</label>
+
         <!-- 이동 링크 -->
         <div class="link">
             <div>
@@ -79,12 +75,12 @@
 
         <!-- 소셜 로그인 -->
         <div class="sns-login">
-            <button type="submit" class="btn sns-login__kakao">
+            <button type="button" class="btn sns-login__kakao">
                 <div>카카오톡으로 로그인</div>
                 <img class="sns-login__icon-kakao" src="/resources/img/logo/btn-logo-kakao.png">
             </button>
 
-            <button type="submit" class="btn sns-login__goolgle ">
+            <button type="button" class="btn sns-login__goolgle ">
                 <img class="sns-login__icon-google" src="/resources/img/logo/btn-logo-google.png">
                 <div>Google로 로그인</div>
             </button>
