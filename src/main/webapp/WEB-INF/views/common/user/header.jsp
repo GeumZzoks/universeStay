@@ -18,7 +18,7 @@
 
         <!-- 헤더 로고 영역-->
         <div class="header__logo">
-            <a href="#" class="logo__link">
+            <a href="/" class="logo__link">
                 <img class="logo" src="/resources/img/logo/small_logo_no_bgd2.png"/>
             </a>
         </div>
