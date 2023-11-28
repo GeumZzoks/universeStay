@@ -149,23 +149,23 @@
                     %>
                     <div class="dropdown__option dropdown__option-msg"><span>메시지</span>
                     </div>
-                    <div class="dropdown__option dropdown__option-reservation" onclick="">
+                    <div class="dropdown__option dropdown__option-reservation">
                         <span>여행</span></div>
-                    <div class="dropdown__option dropdown__option-wishlist" onclick="">
+                    <div class="dropdown__option dropdown__option-wishlist">
                         <span>위시리스트</span></div>
-                    <div class="dropdown__option dropdown__option-reviews" onclick="">
+                    <div class="dropdown__option dropdown__option-reviews">
                         <span>나의 리뷰</span></div>
-                    <div class="dropdown__option dropdown__option-account" onclick="">
+                    <div class="dropdown__option dropdown__option-account">
                         <span>계정</span></div>
-                    <div class="dropdown__option dropdown__option-log-out" onclick="">
+                    <div class="dropdown__option dropdown__option-log-out">
                         <span>로그아웃</span></div>
                     <%
                     } else  //세션에 'user_email'이라는 값이 저장되어 있지 않으면(즉, 로그아웃 상태면) 아래 드롭다운을 보여준다.
                     {
                     %>
-                    <div class="dropdown__option dropdown__option-sign-up" onclick="">
+                    <div class="dropdown__option dropdown__option-sign-up">
                         <span>회원가입</span></div>
-                    <div class="dropdown__option dropdown__option-sign-in" onclick="">
+                    <div class="dropdown__option dropdown__option-sign-in">
                         <span>로그인</span></div>
                     <%}%>
 
