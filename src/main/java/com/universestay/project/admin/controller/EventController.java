@@ -1,7 +1,7 @@
 package com.universestay.project.admin.controller;
 
+import com.universestay.project.admin.dto.EventDto;
 import com.universestay.project.admin.service.EventService;
-import com.universestay.project.dto.EventDto;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;

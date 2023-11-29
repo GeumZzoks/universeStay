@@ -8,6 +8,6 @@
         <typeAlias alias="SearchCondition"
                 type="com.universestay.project.admin.dto.SearchCondition"/>
         <typeAlias alias="AdminDto" type="com.universestay.project.admin.dto.AdminDto"/>
-        <typeAlias alias="EventDto" type="com.universestay.project.dto.EventDto"/>
+        <typeAlias alias="EventDto" type="com.universestay.project.admin.dto.EventDto"/>
     </typeAliases>
 </configuration>

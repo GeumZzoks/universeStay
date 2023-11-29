@@ -1,10 +1,14 @@
-package com.universestay.project.dto;
+package com.universestay.project.admin.dto;
 
 
 import io.swagger.annotations.ApiModelProperty;
-import lombok.*;
-
 import java.sql.Timestamp;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
