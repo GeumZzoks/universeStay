@@ -1,19 +1,6 @@
-* {
-  font-family: 'Airbnb-Medium';
-}
-
-body {
-  flex-direction: column;
-  min-height: 100vh;
-  font-family: 'Airbnb-Medium';
+.screens-user-withdrawal__wrapper {
+  font-family: 'NotoSansKR-Regular';
   line-height: 25px;
-}
-
-li {
-  list-style: outside;
-}
-
-.wrapper {
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
@@ -23,42 +10,46 @@ li {
   margin-top: 100px;
 }
 
-h1 {
+screens-user-withdrawal__li {
+  list-style: outside;
+}
+
+.screens-user-withdrawal__h1 {
   font-size: 36px;
   font-weight: 800;
   margin-bottom: 40px;
 }
 
-.info-1 {
+.screens-user-withdrawal__info-1 {
   margin-bottom: 32px;
   color: #737373;
 }
 
-.info-2 {
+.screens-user-withdrawal__info-2 {
   font-size: 20px;
   font-weight: 600;
 }
 
-.info-3 {
+.screens-user-withdrawal__info-3 {
   color: #737373;
   margin-top: 8px;
   padding-left: 18px;
 }
 
-.survey {
+.screens-user-withdrawal__survey {
   font-size: 18px;
   font-weight: 600;
   margin-top: 16px;
 }
 
-.dropdown {
+.screens-user-withdrawal__dropdown {
   position: relative;
   width: 100%;
   height: 50px;
   margin: 20px 0 30px;
 }
 
-.dropdown::before {
+.screens-user-withdrawal__dropdown::before {
   content: '';
   position: absolute;
   right: 20px;
@@ -74,12 +65,12 @@ h1 {
   pointer-events: none;
 }
 
-.dropdown.active::before {
+.screens-user-withdrawal__dropdown.active::before {
   top: 22px;
   transform: rotate(-225deg);
 }
 
-.dropdown__textBox {
+.screens-user-withdrawal__dropdown__textBox {
   position: absolute;
   top: 0;
   left: 0;
@@ -94,7 +85,7 @@ h1 {
   border-radius: 10px;
 }
 
-.dropdown__option {
+.screens-user-withdrawal__dropdown__option {
   position: absolute;
   top: 60px;
   width: 100%;
@@ -105,37 +96,37 @@ h1 {
   display: none;
 }
 
-.dropdown.active .dropdown__option {
+.screens-user-withdrawal__dropdown.active .screens-user-withdrawal__dropdown__option {
   display: block;
 }
 
-.dropdown .dropdown__option div {
+.screens-user-withdrawal__dropdown .screens-user-withdrawal__dropdown__option div {
   padding: 6px 20px;
   cursor: pointer;
 }
 
-.dropdown .dropdown__option div:hover {
+.screens-user-withdrawal__dropdown .screens-user-withdrawal__dropdown__option div:hover {
   background: #62baea;
   color: #fff;
 }
 
-.img-caution {
+.screens-user-withdrawal__img-caution {
   width: 70px;
   margin-bottom: 25px;
 }
 
-h2 {
+.screens-user-withdrawal__h2 {
   margin-bottom: 25px;
 }
 
-.info-4 {
+.screens-user-withdrawal__info-4 {
   color: #737373;
   margin-top: 8px;
   padding-left: 18px;
   margin-bottom: 25px;
 }
 
-.btn-unactivate {
+.screens-user-withdrawal__btn-unactivate {
   width: 100%;
   height: 50px;
   cursor: pointer;
@@ -148,22 +139,22 @@ h2 {
   margin-bottom: 25px;
 }
 
-.btn-unactivate:hover {
+.screens-user-withdrawal__btn-unactivate:hover {
   background: #F7F7F7;
 }
 
-.contour {
+.screens-user-withdrawal__contour {
   border-top: solid 1px #DDDDDD;
   margin-bottom: 25px;
 }
 
-.box-back-delete {
+.screens-user-withdrawal__box-back-delete {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.box-back-delete__btn-back {
+.screens-user-withdrawal__box-back-delete__btn-back {
   background: #FFFFFF;
   width: 70px;
   height: 40px;
@@ -175,11 +166,11 @@ h2 {
   border-radius: 10px;
 }
 
-.box-back-delete__btn-back:hover {
+.screens-user-withdrawal__box-back-delete__btn-back:hover {
   background: #F7F7F7;
 }
 
-.box-back-delete__btn-delete {
+.screens-user-withdrawal__box-back-delete__btn-delete {
   width: 100px;
   height: 50px;
   cursor: pointer;
@@ -193,6 +184,6 @@ h2 {
   margin-bottom: 30px;
 }
 
-.box-back-delete__btn-back:hover {
+.screens-user-withdrawal__box-back-delete__btn-back:hover {
   background: #000000;
 }
