@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.universestay.project.admin.dao.LoginAdminDao">
+<mapper namespace="com.universestay.project.resources.mybatis.mapper.admin.LoginAdminDao">
     <select id="select" parameterType="String" resultType="AdminDto">
         SELECT *
         FROM Admin
