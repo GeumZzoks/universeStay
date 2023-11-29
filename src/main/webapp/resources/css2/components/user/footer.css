@@ -1,4 +1,4 @@
-.footer {
+.components-user-footer__wrapper {
   overflow: hidden;
   clear: both;
   position: relative;
@@ -9,46 +9,46 @@
   color: rgba(0, 0, 0, 0.38);
 }
 
-a {
+.components-user-footer__a {
   color: rgba(0, 0, 0, 0.38);
   text-decoration: none;
   outline: none
 }
 
-a:hover, a:active {
+.components-user-footer__a:hover, .components-user-footer__a:active {
   text-decoration: none;
   color: rgba(0, 0, 0, 0.38);
 }
 
-ol, ul, li {
+.components-user-footer__ul, .components-user-footer__li {
   list-style: none;
 }
 
-ul {
+.components-user-footer__ul {
   overflow: hidden;
   margin-bottom: 15px;
 }
 
-li {
+components-user-footer__li {
   display: inline-block;
 }
 
-li span {
+components-user-footer__li span {
   display: inline-block;
   margin: 0 5px 0 5px;
 }
 
-p {
+.components-user-footer__p {
   margin-bottom: 15px;
 }
 
-p b {
+.components-user-footer__p b {
   font-size: 11px;
   font-weight: bolder;
   margin-right: 5px;
 }
 
-.order {
+.components-user-footer__order {
   display: inline-block;
   margin-bottom: 15px;
 }
