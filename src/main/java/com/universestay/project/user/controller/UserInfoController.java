@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Slf4j
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/user/myPage")
 public class UserInfoController {
 
     @Autowired
@@ -27,8 +27,9 @@ public class UserInfoController {
         String userEmail = (String) (session.getAttribute("user_email"));
         //user정보를 가져와서 model에 담아 화면으로 반환
         UserDto user = userInfoService.getUserInfo(userEmail);
+        System.out.println(user.toString() + user.getUser_name());
         model.addAttribute("user", user);
-        return "/user/myPage";
+        return "/user/myPage/userInfo";
     }
 
     //나의 정보 수정
