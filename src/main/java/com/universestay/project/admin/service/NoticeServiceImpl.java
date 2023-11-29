@@ -1,7 +1,7 @@
-package com.universestay.project.notice.service;
+package com.universestay.project.admin.service;
 
-import com.universestay.project.notice.dao.NoticeDao;
-import com.universestay.project.notice.dto.NoticeDto;
+import com.universestay.project.admin.dao.NoticeDao;
+import com.universestay.project.admin.dto.NoticeDto;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
-package com.universestay.project.notice.controller;
+package com.universestay.project.admin.controller;
 
-import com.universestay.project.notice.dto.NoticeDto;
-import com.universestay.project.notice.service.NoticeService;
+import com.universestay.project.admin.dto.NoticeDto;
+import com.universestay.project.admin.service.NoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
