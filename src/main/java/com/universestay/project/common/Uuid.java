@@ -42,4 +42,9 @@ public final class Uuid {
         return new UUID(uniqueBit,
                 getHashcode(argument)).toString(); // 50000000-0033-9763-0000-000000339763
     }
+
+    // 보류
+    public static String getUUID(String uuid) {
+        return null;
+    }
 }
