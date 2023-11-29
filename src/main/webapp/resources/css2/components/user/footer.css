@@ -29,11 +29,11 @@
   margin-bottom: 15px;
 }
 
-components-user-footer__li {
+.components-user-footer__li {
   display: inline-block;
 }
 
-components-user-footer__li span {
+.components-user-footer__li span {
   display: inline-block;
   margin: 0 5px 0 5px;
 }

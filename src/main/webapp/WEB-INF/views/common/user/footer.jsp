@@ -13,8 +13,8 @@
 <body>
 
 <div class="components-user-footer__wrapper">
-    <ul class=".components-user-footer__ul">
-        <li class=".components-user-footer__li">
+    <ul class="components-user-footer__ul">
+        <li class="components-user-footer__li">
             <a class="components-user-footer__a" href="#" target="_blank">회사소개</a>
             <span>|</span>
         </li>
