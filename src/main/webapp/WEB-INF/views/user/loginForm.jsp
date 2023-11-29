@@ -28,7 +28,7 @@
         }
     }
 %>
-  
+
 <body class="screens-user-login">
 
 <div class="screens-user-login__container">
