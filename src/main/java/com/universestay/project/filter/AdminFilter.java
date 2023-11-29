@@ -40,7 +40,7 @@ public class AdminFilter implements Filter {
                 "Filter - request.getServletPath() = " + request.getServletPath()); // /board1.jsp
         System.out.println();
 
-        boolean isNotLogin = (session == null || session.getAttribute("id") == null);
+        boolean isNotLogin = (session == null || session.getAttribute("admin_id") == null);
         if (isNotLogin) {
             session.setAttribute("URL", request.getRequestURI());
             respone.sendRedirect("/adminLogin/loginForm");
