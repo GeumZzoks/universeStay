@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter(filterName = "AdminFilter", urlPatterns = {"/admin/*"})
-public class AdminFilter implements Filter {
+
+// TODO : 이후 화면 만들어질때 urlPatterns 추가 필요 (유저 접근 권한 필요한 곳들 경로 통일 필요 Ex. "/user/myPage/info")
+@WebFilter(filterName = "UserFilter", urlPatterns = {"/user/myPage/*"})
+public class UserFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -40,10 +42,10 @@ public class AdminFilter implements Filter {
                 "Filter - request.getServletPath() = " + request.getServletPath()); // /board1.jsp
         System.out.println();
 
-        boolean isNotLogin = (session == null || session.getAttribute("admin_id") == null);
+        boolean isNotLogin = (session == null || session.getAttribute("user_email") == null);
         if (isNotLogin) {
             session.setAttribute("URL", request.getRequestURI());
-            respone.sendRedirect("/adminLogin/loginForm");
+            respone.sendRedirect("/");
         } else {
             filterChain.doFilter(request, respone);
         }

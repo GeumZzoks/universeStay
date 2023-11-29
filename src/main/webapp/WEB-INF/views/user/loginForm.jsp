@@ -28,7 +28,7 @@
         }
     }
 %>
-  
+
 <body class="screens-user-login">
 
 <div class="screens-user-login__container">
@@ -81,13 +81,13 @@
 
                 <!-- 소셜 로그인 -->
                 <div class="screens-user-login__sns-login">
-                    <button type="button" class="screens-user-login__btn screens-user-login__sns-login__kakao">
+                    <button type="button" class="screens-user-login__btn screens-user-login__sns-login__kakao" onclick="loginKakao()">
                         <div>카카오톡으로 로그인</div>
                         <img class="screens-user-login__sns-login__icon-kakao"
                              src="/resources/img/logo/btn-logo-kakao.png">
                     </button>
 
-                    <button type="button" class="screens-user-login__btn screens-user-login__sns-login__goolgle ">
+                    <button type="button" class="screens-user-login__btn screens-user-login__sns-login__goolgle " onclick="loginGoogle()">
                         <img class="screens-user-login__sns-login__icon-google"
                              src="/resources/img/logo/btn-logo-google.png">
                         <div>Google로 로그인</div>
