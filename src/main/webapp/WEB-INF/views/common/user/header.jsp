@@ -164,10 +164,11 @@
                 <div>호스트 모드로 전환</div>
             </a>
         </div>
+
         <div class="components-user-header__header__profile__my-profile components-user-header__dropdown">
             <button class="components-user-header__header__profile__my-profile__btn components-user-header__button">
                 <div components-user-header__header__profile__my-profile__wrapper>
-                    <img src="/resources/img/user/bars-3.png"/>
+                    <img class="components-user-header__header__profile__hamburger" src="/resources/img/user/bars-3.png"/>
                     <img class="components-user-header__header__profile__img"
                          src="/resources/img/user/default_profile_icon.png"/>
                 </div>
