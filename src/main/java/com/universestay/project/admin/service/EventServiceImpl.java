@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
+
 
 @Service
 public class EventServiceImpl implements EventService {
@@ -21,11 +21,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Integer write(EventDto dto, HttpSession session) throws Exception {
-        String writer = (String) session.getAttribute("id");
-        dto.setAdmin_id(writer);
-        dto.setCreated_id(writer);
-        dto.setUpdated_id(writer);
+    public Integer write(EventDto dto) throws Exception {
         return eventDao.insert(dto);
     }
 
@@ -50,9 +46,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Integer update(EventDto eventDto, HttpSession session) throws Exception {
-        String admin_id = (String) session.getAttribute("id");
-        eventDto.setUpdated_id(admin_id);
+    public Integer update(EventDto eventDto) throws Exception {
         return eventDao.update(eventDto);
     }
 
