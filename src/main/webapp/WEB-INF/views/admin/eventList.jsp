@@ -70,7 +70,7 @@ flush="false"/>
     <br>
 </div>
 <div class="content-bottom">
-    <button class="content-bottom__btn"><a href="/admin/event/write" class="content-bottom__btn__a">이벤트 작성</a></button>
+    <button class="content-bottom__btn" onclick="location.href='/admin/event/write'">이벤트 작성</button>
 </div>
 
 </body>

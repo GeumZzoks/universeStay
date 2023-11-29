@@ -41,6 +41,11 @@ public class EventDaoImpl implements EventDao {
     }
 
     @Override
+    public Integer update_hit(Integer event_id) throws Exception {
+        return session.update(namespace + "update_hit", event_id);
+    }
+
+    @Override
     public Integer delete(Integer event_id) throws Exception {
         return session.delete(namespace + "delete", event_id);
     }

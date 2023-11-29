@@ -14,6 +14,8 @@ public interface EventDao {
 
     Integer update(EventDto dto) throws Exception;
 
+    Integer update_hit(Integer event_id) throws Exception;
+
     Integer delete(Integer event_id) throws Exception;
 
     List<EventDto> search(String search) throws Exception;
