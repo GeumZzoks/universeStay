@@ -1,7 +1,7 @@
-package com.universestay.project.notice.controller;
+package com.universestay.project.admin.controller;
 
-import com.universestay.project.notice.dto.NoticeDto;
-import com.universestay.project.notice.service.NoticeService;
+import com.universestay.project.admin.dto.NoticeDto;
+import com.universestay.project.admin.service.NoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("/notice")
+@RequestMapping("/admin/notice")
 public class NoticeController {
 
     @Autowired
@@ -21,13 +21,13 @@ public class NoticeController {
     @GetMapping("/list")
     public String list(Model model) throws Exception {
         model.addAttribute("list", noticeService.getList());
-        return "noticeList";
+        return "/admin/noticeList";
     }
 
     @GetMapping("/read")
     public String read(@RequestParam("notice_id") Integer notice_id, Model model) throws Exception {
         model.addAttribute("noticeDto", noticeService.read(notice_id));
-        return "notice";
+        return "/admin/notice";
     }
 
     @PostMapping("/remove")
@@ -35,18 +35,18 @@ public class NoticeController {
         if (noticeService.remove(notice_id) == 1) {
             rttr.addFlashAttribute("result", "삭제 성공!!!");
         }
-        return "redirect:/notice/noticeList";
+        return "redirect:/admin/notice/list";
     }
 
     @GetMapping("/write")
     public String getWrite() throws Exception {
-        return "noticeWrite";
+        return "/admin/noticeWrite";
     }
 
     @PostMapping("/write")
     public String postWrite(NoticeDto noticeDto) throws Exception {
         noticeService.write(noticeDto);
-        return "redirect:/notice/noticeList";
+        return "redirect:/admin/notice/list";
     }
 
     @PostMapping("/modify")
@@ -54,6 +54,6 @@ public class NoticeController {
         if (noticeService.modify(noticeDto) == 1) {
             rttr.addFlashAttribute("result", "수정 성공!!!");
         }
-        return "redirect:/notice/noticeList";
+        return "redirect:/admin/notice/list";
     }
 }

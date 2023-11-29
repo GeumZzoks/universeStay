@@ -1,6 +1,6 @@
-package com.universestay.project.notice.service;
+package com.universestay.project.admin.service;
 
-import com.universestay.project.notice.dto.NoticeDto;
+import com.universestay.project.admin.dto.NoticeDto;
 import java.util.List;
 
 public interface NoticeService {

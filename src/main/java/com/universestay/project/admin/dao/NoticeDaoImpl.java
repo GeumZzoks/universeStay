@@ -1,6 +1,6 @@
-package com.universestay.project.notice.dao;
+package com.universestay.project.admin.dao;
 
-import com.universestay.project.notice.dto.NoticeDto;
+import com.universestay.project.admin.dto.NoticeDto;
 import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ public class NoticeDaoImpl implements NoticeDao {
     @Autowired
     private SqlSession session;
 
-    private static String namespace = "com.universestay.project.notice.dao.NoticeDao.";
+    private static String namespace = "com.universestay.project.admin.dao.NoticeDao.";
 
     @Override
     public List<NoticeDto> selectAll() throws Exception {
