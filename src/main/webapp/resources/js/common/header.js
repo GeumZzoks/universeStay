@@ -1,3 +1,43 @@
+// document.addEventListener('click', function (event) {
+//     const dropdown = document.querySelector(
+//             '.components-user-header__dropdown-div');
+//     console.log(dropdown);
+//     const targetElement = event.target;
+//     console.log(targetElement);
+//
+//     // 클릭된 요소가 드롭다운 내부에 속하지 않는 경우 'show' 클래스 제거
+//     console.log(
+//             !dropdown.contains(targetElement) && dropdown.classList.contains(
+//                     'show'))
+//     if (dropdown.classList.contains('show') && !dropdown.contains(
+//             targetElement)) {
+//         dropdown.classList.remove('show');
+//     }
+// });
+
+//---------------------- 캘린더 라이브러리 --------------------------------------------
+$(function () {
+    $('input[name="datefilter"]').daterangepicker({
+        autoUpdateInput: true,
+        locale: {
+            cancelLabel: '취소',
+            applyLabel: '확인'
+        }
+    });
+
+    $('input[name="datefilter"]').on('apply.daterangepicker',
+            function (ev, picker) {
+                $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - '
+                        + picker.endDate.format(
+                                'MM/DD/YYYY'));
+            });
+
+    $('input[name="datefilter"]').on('cancel.daterangepicker',
+            function (ev, picker) {
+                $(this).val('');
+            });
+});
+
 //버튼들을 누르면 드롭다운이 내려오면서 클래스 이름에 'show'가 토글됨, 그런데 드롭다운 하위 요소들에게도 이벤트가 전파되어서 드롭다운 요소를 누르면 드롭다운이 자꾸 꺼짐.
 //그것을 막기 위한 이벤트 전파 중단 코드
 const dropdowns = document.querySelectorAll(
@@ -127,28 +167,34 @@ function updatePeopleCount() {
     peopleSubTextElement.textContent = count; // 텍스트로 반영
 }
 
-//---------------------- 캘린더 라이브러리 --------------------------------------------
-$(function () {
-    $('input[name="datefilter"]').daterangepicker({
-        autoUpdateInput: true,
-        locale: {
-            cancelLabel: '취소',
-            applyLabel: '확인'
-        }
-    });
+//---------------- 1박당 예산 관련 코드 -------------
+const minInput = document.querySelector('.components-user-header__min-input');
+const maxInput = document.querySelector('.components-user-header__max-input');
 
-    $('input[name="datefilter"]').on('apply.daterangepicker',
-            function (ev, picker) {
-                $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - '
-                        + picker.endDate.format(
-                                'MM/DD/YYYY'));
-            });
+// 입력된 숫자를 만원 단위로 변환하는 함수
+function convertToTenThousand(value) {
+    if (!value || isNaN(value)) {
+        return '';
+    } // 값이 없거나 숫자가 아니면 빈 문자열 반환
+    const number = parseFloat(value);
+    const tenThousandValue = number / 10000; // 만원 단위로 변환
+    return tenThousandValue.toFixed(1); // 소수점 첫째 자리까지 반환
+}
 
-    $('input[name="datefilter"]').on('cancel.daterangepicker',
-            function (ev, picker) {
-                $(this).val('');
-            });
-});
+// 입력 필드에서 값이 변경될 때 마다 호출될 함수
+function syncValues() {
+    const minTxtElement = document.querySelector(
+            '.components-user-header__header__searchbar__sub_txt__min');
+    const maxTxtElement = document.querySelector(
+            '.components-user-header__header__searchbar__sub_txt__max');
+
+    minTxtElement.textContent = `${convertToTenThousand(minInput.value)}`; // minInput 값 변환하여 적용
+    maxTxtElement.textContent = `${convertToTenThousand(maxInput.value)}`; // maxInput 값 변환하여 적용
+}
+
+// 입력 필드에서 값이 변경될 때마다 syncValues 함수 호출
+minInput.addEventListener('input', syncValues);
+maxInput.addEventListener('input', syncValues);
 
 //---------------------- 각 메뉴 & 컨트롤러 맵핑 --------------------------------------------
 const signUpBtn = document.querySelector(

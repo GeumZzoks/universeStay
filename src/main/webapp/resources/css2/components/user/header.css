@@ -160,7 +160,7 @@
   display: block;
   top: 130%;
   width: 300px;
-  height: 150px;
+  height: 100%;
   background-color: white;
   border-radius: 20px;
   border: 0.1px solid rgb(221, 221, 221);
@@ -171,9 +171,10 @@
 
 .components-user-header__input-box {
   display: flex;
+
 }
 
-.components-user-header__min-box, .max-box {
+.components-user-header__min-box, .components-user-header__max-box {
   width: 50%;
 }
 
@@ -185,9 +186,16 @@
 .components-user-header__input-wrap {
   position: relative;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   align-items: stretch;
   width: 100%;
+}
+
+.components-user-header__input-wrap > span {
+  margin-top: 3px;
+  font-family: NotoSansKR-Regular;
+  color: #737373;
 }
 
 .components-user-header__input-addon {
@@ -214,7 +222,7 @@
   border-radius: .25rem;
   position: relative;
   flex: 1 1 auto;
-  width: 1%;
+  width: 100%;
   mint-width: 0;
   color: #4b566b;
   background-color: white;
@@ -222,7 +230,11 @@
   border: 1px solid #d4d7e5;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+}
 
+.components-user-header__input-field::placeholder {
+  text-align: right;
+  font-family: NotoSansKR-Regular;
 }
 
 .components-user-header__input-field:focus {

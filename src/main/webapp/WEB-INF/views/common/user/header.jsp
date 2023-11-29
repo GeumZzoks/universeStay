@@ -125,19 +125,21 @@
                     <div class="components-user-header__dropdown-div components-user-header__header__searchbar__money">
                         <div class="components-user-header__input-box">
                             <div class="components-user-header__min-box">
-                                <div class="input-wrap">
+                                <div class="components-user-header__input-wrap">
                                     <input type="text" name="min_input"
                                            class="components-user-header__input-field components-user-header__min-input"
+                                           placeholder="~원 부터"
                                     >
-                                    <span class="components-user-header__input-addon">원</span>
+                                    <span>최소 금액</span>
                                 </div>
                             </div>
                             <div class="components-user-header__max-box">
                                 <div class="components-user-header__input-wrap">
                                     <input type="text" name="max_input"
                                            class="components-user-header__input-field components-user-header__max-input"
+                                           placeholder="~원 까지"
                                     >
-                                    <span class="components-user-header__input-addon">원</span>
+                                    <span>최대 금액</span>
                                 </div>
                             </div>
                         </div>
