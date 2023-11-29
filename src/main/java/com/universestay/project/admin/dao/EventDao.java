@@ -1,7 +1,6 @@
 package com.universestay.project.admin.dao;
 
-import com.universestay.project.dto.EventDto;
-
+import com.universestay.project.admin.dto.EventDto;
 import java.util.List;
 
 public interface EventDao {
