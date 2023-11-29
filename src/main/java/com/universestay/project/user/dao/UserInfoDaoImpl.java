@@ -21,4 +21,9 @@ public class UserInfoDaoImpl implements UserInfoDao {
     public int updateUserInfo(UserDto userDto) throws Exception {
         return session.update(namespace + "updateUserInfo", userDto);
     }
+
+    @Override
+    public int deleteUser(String user_email) throws Exception {
+        return session.delete(namespace + "deleteUser", user_email);
+    }
 }

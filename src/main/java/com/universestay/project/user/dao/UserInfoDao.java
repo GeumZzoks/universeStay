@@ -10,5 +10,6 @@ public interface UserInfoDao {
     /* 유저 정보 수정 */
     public int updateUserInfo(UserDto userDto) throws Exception;
 
-    public int deleteUser()
+    /* 유저 삭제 (테스트 코드를 위한 것) */
+    public int deleteUser(String user_email) throws Exception;
 }
