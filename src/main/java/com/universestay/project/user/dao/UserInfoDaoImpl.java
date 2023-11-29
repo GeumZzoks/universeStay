@@ -10,7 +10,7 @@ public class UserInfoDaoImpl implements UserInfoDao {
 
     @Autowired
     SqlSession session;
-    private static String namespace = "com.universestay.project.user.dao.UserInfoDao.";
+    final private static String namespace = "com.universestay.project.user.dao.UserInfoDao.";
 
     @Override
     public UserDto getUserInfo(String user_email) throws Exception {
