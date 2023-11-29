@@ -9,8 +9,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <link rel="stylesheet" href="/resources/css2/style.css">
     <title>Footer</title>
+    <link rel="stylesheet" href="/resources/css2/style.css">
 </head>
 <body>
 <div class="components-admin-footer">Copyright © UniverseStay. All rights reserved.</div>
