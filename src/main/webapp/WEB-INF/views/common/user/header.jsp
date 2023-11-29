@@ -169,7 +169,8 @@
         <div class="components-user-header__header__profile__my-profile components-user-header__dropdown">
             <button class="components-user-header__header__profile__my-profile__btn components-user-header__button">
                 <div components-user-header__header__profile__my-profile__wrapper>
-                    <img class="components-user-header__header__profile__hamburger" src="/resources/img/user/bars-3.png"/>
+                    <img class="components-user-header__header__profile__hamburger"
+                         src="/resources/img/user/bars-3.png"/>
                     <img class="components-user-header__header__profile__img"
                          src="/resources/img/user/default_profile_icon.png"/>
                 </div>
@@ -189,7 +190,8 @@
                         <span>위시리스트</span></div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-reviews">
                         <span>나의 리뷰</span></div>
-                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-account">
+                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-account"
+                         onclick="location.href ='/user/myPage/info'">
                         <span>계정</span></div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-log-out"
                          onclick="location.href ='/user/userLogout'">
