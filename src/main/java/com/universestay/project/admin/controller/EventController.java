@@ -2,6 +2,11 @@ package com.universestay.project.admin.controller;
 
 import com.universestay.project.admin.service.EventService;
 import com.universestay.project.dto.EventDto;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,12 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.servlet.http.HttpSession;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.List;
 
 
 @Controller
@@ -103,14 +102,16 @@ public class EventController {
     public String delete(@PathVariable Integer event_id, HttpSession session) {
         try {
             // 삭제할 권한이 있는 작성자인지 확인하기 위해 선언
-            String admin_id = (String) session.getAttribute("id");
+            String admin_id = (String) session.getAttribute("admin_id");
             String getAdmin_id = eventService.select(event_id).getAdmin_id();
             // 작성자와 현재 세션에 로그인된 관리자가 같으면 삭제
             if (admin_id.equals(getAdmin_id)) {
                 // 이벤트 서비스로 변경
                 // if 문으로 작성자가 맞는지 먼저 확인하기 때문에 삭제 시 admin_id 는 확인하지 않음
                 eventService.delete(event_id);
-            } else return "redirect:/admin/event/" + event_id;
+            } else {
+                return "redirect:/admin/event/" + event_id;
+            }
             // 관리자와 게시자가 다르거나 예외 발생 시 삭제처리되지 않고 다시 현재 페이지로 리다이렉트
         } catch (Exception e) {
             // 예외 발생 경고창 추가예정
@@ -126,14 +127,16 @@ public class EventController {
     public String update(@PathVariable Integer event_id, Model m, HttpSession session) {
         try {
             // 수정할 권한이 있는 작성자인지 확인하기 위해 선언
-            String writer = (String) session.getAttribute("id");
+            String writer = (String) session.getAttribute("admin_id");
             String id = eventService.select(event_id).getAdmin_id();
             // 수정페이지로 이동하려는 사람이 작성자와 일치하는지 확인
             // 일치하지 않으면 아예 수정페이지로 접근할 수 없다
             if (writer.equals(id)) {
                 EventDto eventDto = eventService.select(event_id);
                 m.addAttribute(eventDto);
-            } else return "redirect:/admin/event/" + event_id;
+            } else {
+                return "redirect:/admin/event/" + event_id;
+            }
             // 작성자와 게시자가 일치하지 않을 경우 or 기타 등등 에러 시 원래 페이지 유지
         } catch (Exception e) {
             // 오류 발생 메세지 추가예정
