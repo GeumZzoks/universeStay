@@ -23,15 +23,15 @@ flush="false"/>
 flush="false"/>
 
 <div class="content">
-    <h3 style="color:indianred;">이벤트 수정</h3>
-    <form action='/event/update/${eventDto.event_id}' method='post'>
+    <h3 style="color:indianred; margin-top: 20px; font-weight: 600;">이벤트 수정</h3>
+    <form action='/admin/event/update/${eventDto.event_id}' method='post'>
         <input type='hidden' value='${eventDto.event_id}'>
         <div style="margin-left: 20px">
             <h5 class="content-input__type">이벤트 제목</h5>
             <input name="event_title" type="text" style="width: 50%;" value="${eventDto.event_title}">
             <h5 class="content-input__type">이벤트 내용</h5>
             <textarea name="event_ctt"
-                      style="white-space:pre; width:70%; height: 300px; overflow: scroll;">${eventDto.event_ctt}</textarea>
+                      style="white-space:pre; width:70%; height: 340px; overflow: scroll;">${eventDto.event_ctt}</textarea>
         </div>
         <div class="content-input-div">
             <h5 class="content-input__type">이벤트 상태</h5>
@@ -47,9 +47,9 @@ flush="false"/>
             <input name="event_start_date" type="date" class="content-input__date" min="${startOfToday}">
             <h5 class="content-input__type">이벤트 종료일</h5>
             <input name="event_expire_date" type="date" class="content-input__date">
-            <h5>첨부파일(이미지)</h5>
+            <h5 class="content-input__type">첨부파일(이미지)</h5>
             <input type="file"
-                   style="position: absolute; margin-top: -15px; background-color: transparent">
+                   style="position: absolute; background-color: transparent">
         </div>
         <button class='content-bottom__btn__submit' type='submit'>수정</button>
     </form>

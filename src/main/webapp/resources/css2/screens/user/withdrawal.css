@@ -1,0 +1,189 @@
+.screens-user-withdrawal__wrapper {
+  font-family: 'NotoSansKR-Regular';
+  line-height: 25px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  border-radius: 10px;
+  padding: 30px 40px;
+  margin-top: 100px;
+}
+
+screens-user-withdrawal__li {
+  list-style: outside;
+}
+
+.screens-user-withdrawal__h1 {
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 40px;
+}
+
+.screens-user-withdrawal__info-1 {
+  margin-bottom: 32px;
+  color: #737373;
+}
+
+.screens-user-withdrawal__info-2 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.screens-user-withdrawal__info-3 {
+  color: #737373;
+  margin-top: 8px;
+  padding-left: 18px;
+}
+
+.screens-user-withdrawal__survey {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 16px;
+}
+
+.screens-user-withdrawal__dropdown {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  margin: 20px 0 30px;
+}
+
+.screens-user-withdrawal__dropdown::before {
+  content: '';
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  z-index: 1000;
+  width: 8px;
+  height: 8px;
+  border: 2px solid #333;
+  border-top: 2px solid #fff;
+  border-right: 2px solid #fff;
+  transform: rotate(-45deg);
+  transition: 0.5s;
+  pointer-events: none;
+}
+
+.screens-user-withdrawal__dropdown.active::before {
+  top: 22px;
+  transform: rotate(-225deg);
+}
+
+.screens-user-withdrawal__dropdown__textBox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #B0B0B0;
+  outline: none;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  padding: 12px 20px;
+  border-radius: 10px;
+}
+
+.screens-user-withdrawal__dropdown__option {
+  position: absolute;
+  top: 60px;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 30px 30px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  overflow: hidden;
+  display: none;
+}
+
+.screens-user-withdrawal__dropdown.active .screens-user-withdrawal__dropdown__option {
+  display: block;
+}
+
+.screens-user-withdrawal__dropdown .screens-user-withdrawal__dropdown__option div {
+  padding: 6px 20px;
+  cursor: pointer;
+}
+
+.screens-user-withdrawal__dropdown .screens-user-withdrawal__dropdown__option div:hover {
+  background: #62baea;
+  color: #fff;
+}
+
+.screens-user-withdrawal__img-caution {
+  width: 70px;
+  margin-bottom: 25px;
+}
+
+.screens-user-withdrawal__h2 {
+  margin-bottom: 25px;
+}
+
+.screens-user-withdrawal__info-4 {
+  color: #737373;
+  margin-top: 8px;
+  padding-left: 18px;
+  margin-bottom: 25px;
+}
+
+.screens-user-withdrawal__btn-unactivate {
+  width: 100%;
+  height: 50px;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #B0B0B0;
+  outline: none;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  padding: 12px 20px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+}
+
+.screens-user-withdrawal__btn-unactivate:hover {
+  background: #F7F7F7;
+}
+
+.screens-user-withdrawal__contour {
+  border-top: solid 1px #DDDDDD;
+  margin-bottom: 25px;
+}
+
+.screens-user-withdrawal__box-back-delete {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.screens-user-withdrawal__box-back-delete__btn-back {
+  background: #FFFFFF;
+  width: 70px;
+  height: 40px;
+  cursor: pointer;
+  text-decoration: underline;
+  border: none;
+  outline: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+}
+
+.screens-user-withdrawal__box-back-delete__btn-back:hover {
+  background: #F7F7F7;
+}
+
+.screens-user-withdrawal__box-back-delete__btn-delete {
+  width: 100px;
+  height: 50px;
+  cursor: pointer;
+  color: #fff;
+  background: #222222;
+  border: 1px solid #B0B0B0;
+  outline: none;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  padding: 12px 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.screens-user-withdrawal__box-back-delete__btn-back:hover {
+  background: #000000;
+}

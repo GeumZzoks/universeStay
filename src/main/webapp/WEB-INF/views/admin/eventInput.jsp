@@ -23,13 +23,13 @@ flush="false"/>
 flush="false"/>
 
 <div class="content">
-    <h3 style="color:indianred;">이벤트 등록</h3>
-    <form action='/event/write' method='post'><input type='hidden' value='${eventDto.event_id}'>
+    <h3 style="color:indianred; margin-top: 20px; font-weight: 600;">이벤트 등록</h3>
+    <form action='/admin/event/write' method='post'><input type='hidden' value='${eventDto.event_id}'>
         <h5 class="content-input__type">이벤트 제목</h5>
         <input name="event_title" type="text" style="width: 50%;">
         <h5 class="content-input__type">이벤트 내용</h5>
         <textarea name="event_ctt"
-                  style="white-space:pre; width:70%; height: 300px; overflow: scroll;"></textarea>
+                  style="white-space:pre; width:70%; height: 340px; overflow: scroll;"></textarea>
         <div class="content-input-div">
             <h5 class="content-input__type">이벤트 상태</h5>
             <select name="status_id">
@@ -44,9 +44,9 @@ flush="false"/>
             <input name="event_start_date" type="date" class="content-input__date" min="${startOfToday}">
             <h5 class="content-input__type">이벤트 종료일</h5>
             <input name="event_expire_date" type="date" class="content-input__date">
-            <h5>첨부파일(이미지)</h5>
+            <h5 class="content-input__type">첨부파일(이미지)</h5>
             <input type="file"
-                   style="position: absolute; margin-top: -15px; background-color: transparent">
+                   style="position: absolute; background-color: transparent">
         </div>
         <button class='content-bottom__btn__submit' type='submit'>등록</button>
     </form>

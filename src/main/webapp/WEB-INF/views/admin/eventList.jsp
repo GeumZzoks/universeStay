@@ -12,6 +12,8 @@
 <head>
     <title>이벤트</title>
     <link rel="stylesheet" href="../../../resources/css/admin/event.css">
+    <link href="../../../resources/css/common/global.css" rel="stylesheet"/>
+
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/admin/header.jsp"/>
@@ -24,7 +26,7 @@ flush="false"/>
 flush="false"/>
 
 <div class="content">
-    <h3 style="color: indianred;">이벤트</h3>
+    <h3 style="color: indianred; margin-top: 20px">이벤트</h3>
     <form class="content-search" action="/event/list/${search}">
         <input name="search" type="text" placeholder="검색" style="width:150px; height: 24px;">
         <button type="submit" class="content-search__btn">검색</button>
@@ -43,7 +45,7 @@ flush="false"/>
                 <tr>
                     <td class="content-table__no" style="font-size: 12px">${eventDto.event_id}</td>
                     <td class="content-table__title"><a
-                            href="<c:url value="/event/${eventDto.event_id}"/>"
+                            href="<c:url value="/admin/event/${eventDto.event_id}"/>"
                             class="content-table__title__a">${eventDto.event_title}</a>
                     </td>
                     <td class="content-table__writer">${eventDto.admin_id}</td>
@@ -68,7 +70,7 @@ flush="false"/>
     <br>
 </div>
 <div class="content-bottom">
-    <button class="content-bottom__btn"><a href="/event/write" class="content-bottom__btn__a">이벤트 작성</a></button>
+    <button class="content-bottom__btn" onclick="location.href='/admin/event/write'">이벤트 작성</button>
 </div>
 
 </body>

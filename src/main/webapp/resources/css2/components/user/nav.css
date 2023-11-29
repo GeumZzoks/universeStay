@@ -1,0 +1,43 @@
+.nav {
+  margin-top: 20px;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+}
+
+.nav__wrapper {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.icon__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.icon__wrapper:hover {
+  transform: scale(1.1);
+}
+
+.icon__img {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 5px;
+}
+
+.icon__wrapper span {
+  font-size: 13px;
+  color: #737373;
+}
+
+.line {
+  width: 100%;
+  height: 0;
+  border-top: rgb(221, 221, 221) 0.5px solid;
+}

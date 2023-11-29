@@ -9,6 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link href="/resources/css/common/global.css" rel="stylesheet"/>
     <title>Footer</title>
     <style>
         .footer {

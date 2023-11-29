@@ -206,6 +206,7 @@ h3 {
 /*회원가입버튼*/
 #signup_btn {
   width: 100px;
+  height: 100%;
   background-color: #F48475;
   border: none;
   color: #fff;
@@ -241,6 +242,7 @@ h3 {
 /*인증번호버튼*/
 #mail_Check_Btn, #address_Check_Btn {
   width: 115px;
+  height: 100%;
   background-color: #F48475;
   border: none;
   color: #fff;
@@ -250,4 +252,62 @@ h3 {
   border-radius: 5px;
 }
 
+/*인증번호버튼*/
+#id_Check_Btn, #id_Check_Btn {
+  width: 115px;
+  height: 100%;
+  background-color: #F48475;
+  border: none;
+  color: #fff;
+  font-size: 15px;
+  outline: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
 
+.hiddenFileInput > input {
+  height: 0;
+  width: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.hiddenFileInput > label {
+  width: 115px;
+  height: 100%;
+  display: contents;
+  background-color: #F48475;
+  border: none;
+  color: #fff;
+  font-size: 15px;
+  outline: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.hiddenFileInput {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 115px;
+  height: 52px;
+  background-color: #F48475;
+  border: none;
+  color: #fff;
+  font-size: 15px;
+  outline: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.helper_text_span {
+  display: flex;
+  font-size: 14px;
+  margin-left: 4px;
+  margin-top: 4px;
+  color: green;
+}
+
+.helper_text_span.unavailable {
+  color: red;
+}
