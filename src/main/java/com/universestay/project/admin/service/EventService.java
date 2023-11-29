@@ -3,6 +3,7 @@ package com.universestay.project.admin.service;
 import com.universestay.project.dto.EventDto;
 
 import java.util.List;
+import javax.servlet.http.HttpSession;
 
 public interface EventService {
 

@@ -87,4 +87,11 @@ public class UserLoginServiceImpl implements UserLoginService {
     public UserDto checkSignUp(String user_email) throws Exception {
         return userLoginDao.selectUser(user_email);
     }
+
+    @Override
+    public int userLastLogin(String user_email) throws Exception {
+        return userLoginDao.updateLastLogin(user_email);
+    }
+
+
 }
