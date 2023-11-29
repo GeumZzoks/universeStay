@@ -11,67 +11,66 @@
 <html>
 <head>
     <title>이벤트</title>
-    <link rel="stylesheet" href="../../../resources/css/admin/event.css">
-    <link href="../../../resources/css/common/global.css" rel="stylesheet"/>
-
+    <link rel="stylesheet" href="/resources/css2/style.css">
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/common/admin/header.jsp"/>
-flush="false"/>
+<div class="screens-admin-event__container">
+    
+    <jsp:include page="/WEB-INF/views/common/admin/header.jsp"/>
+    <jsp:include page="/WEB-INF/views/common/admin/navigation.jsp"/>
+    <jsp:include page="/WEB-INF/views/common/admin/footer.jsp"/>
 
-<jsp:include page="/WEB-INF/views/common/admin/navigation.jsp"/>
-flush="false"/>
+    <div class="screens-admin-event__content">
+        <h3 style="color: indianred; margin-top: 20px">이벤트</h3>
+        <form class="screens-admin-event__content-search" action="/event/list/${search}">
+            <input name="search" type="text" placeholder="검색" style="width:150px; height: 24px;">
+            <button type="submit" class="screens-admin-event__content-search__btn">검색</button>
+        </form>
 
-<jsp:include page="/WEB-INF/views/common/admin/footer.jsp"/>
-flush="false"/>
-
-<div class="content">
-    <h3 style="color: indianred; margin-top: 20px">이벤트</h3>
-    <form class="content-search" action="/event/list/${search}">
-        <input name="search" type="text" placeholder="검색" style="width:150px; height: 24px;">
-        <button type="submit" class="content-search__btn">검색</button>
-    </form>
-
-    <div class="content-table-div">
-        <table class="content-table">
-            <tr>
-                <th class="content-table__no">번호</th>
-                <th class="content-table__title" style="text-align: center">이벤트</th>
-                <th class="content-table__writer">게시자</th>
-                <th class="content-table__regdate">등록일</th>
-                <th class="content-table__viewcnt">조회수</th>
-            </tr>
-            <c:forEach var="eventDto" items="${eventList}">
+        <div class="screens-admin-event__content-table-div">
+            <table class="screens-admin-event__content-table">
                 <tr>
-                    <td class="content-table__no" style="font-size: 12px">${eventDto.event_id}</td>
-                    <td class="content-table__title"><a
-                            href="<c:url value="/admin/event/${eventDto.event_id}"/>"
-                            class="content-table__title__a">${eventDto.event_title}</a>
-                    </td>
-                    <td class="content-table__writer">${eventDto.admin_id}</td>
-                    <c:choose>
-                        <c:when test="${eventDto.created_at.time >= startOfToday}">
-                            <td class="content-table__regdate" style="font-size: 14px"><fmt:formatDate
-                                    value="${eventDto.created_at}" pattern="HH:mm"
-                                    type="time"/></td>
-                        </c:when>
-                        <c:otherwise>
-                            <td class="content-table__regdate" style="font-size: 14px"><fmt:formatDate
-                                    value="${eventDto.created_at}"
-                                    pattern="yyyy-MM-dd" type="date"/></td>
-                        </c:otherwise>
-                    </c:choose>
-                    <td class="content-table__viewcnt"
-                        style="font-size: 14px">${eventDto.event_hit}</td>
+                    <th class="screens-admin-event__content-table__no">번호</th>
+                    <th class="screens-admin-event__content-table__title" style="text-align: center">이벤트</th>
+                    <th class="screens-admin-event__content-table__writer">게시자</th>
+                    <th class="screens-admin-event__content-table__regdate">등록일</th>
+                    <th class="screens-admin-event__content-table__viewcnt">조회수</th>
                 </tr>
-            </c:forEach>
-        </table>
+                <c:forEach var="eventDto" items="${eventList}">
+                    <tr>
+                        <td class="screens-admin-event__content-table__no"
+                            style="font-size: 12px">${eventDto.event_id}</td>
+                        <td class="screens-admin-event__content-table__title"><a
+                                href="<c:url value="/admin/event/${eventDto.event_id}"/>"
+                                class="screens-admin-event__content-table__title__a">${eventDto.event_title}</a>
+                        </td>
+                        <td class="screens-admin-event__content-table__writer">${eventDto.admin_id}</td>
+                        <c:choose>
+                            <c:when test="${eventDto.created_at.time >= startOfToday}">
+                                <td class="screens-admin-event__content-table__regdate" style="font-size: 14px">
+                                    <fmt:formatDate
+                                            value="${eventDto.created_at}" pattern="HH:mm"
+                                            type="time"/></td>
+                            </c:when>
+                            <c:otherwise>
+                                <td class="screens-admin-event__content-table__regdate" style="font-size: 14px">
+                                    <fmt:formatDate
+                                            value="${eventDto.created_at}"
+                                            pattern="yyyy-MM-dd" type="date"/></td>
+                            </c:otherwise>
+                        </c:choose>
+                        <td class="screens-admin-event__content-table__viewcnt"
+                            style="font-size: 14px">${eventDto.event_hit}</td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </div>
+        <br>
     </div>
-    <br>
+    <div class="screens-admin-event__content-bottom">
+        <button class="screens-admin-event__content-bottom__btn" onclick="location.href='/admin/event/write'">이벤트 작성
+        </button>
+    </div>
 </div>
-<div class="content-bottom">
-    <button class="content-bottom__btn" onclick="location.href='/admin/event/write'">이벤트 작성</button>
-</div>
-
 </body>
 </html>

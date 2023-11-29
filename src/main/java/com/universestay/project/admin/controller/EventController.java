@@ -25,6 +25,7 @@ public class EventController {
     @Autowired
     EventService eventService;
 
+
     @GetMapping("/list")
     // 이벤트 목록 조회 코드
     public String list(Model m) throws Exception {
@@ -76,12 +77,17 @@ public class EventController {
 
     @PostMapping("/write")
     // 이벤트 게시글 작성 코드
-    public String write(EventDto eventDto, HttpSession session, Model m) {
+    public String write(EventDto eventDto, Model m, HttpSession session) {
+        // 현재 세션 ID로 작성자 선언
+        String writer = (String) session.getAttribute("admin_id");
         // 이벤트 시작일 입력 시 시작일과 종료일이 오늘보다 이전이면 안되기 때문에 시간을 구분하기 위한 코드(구현예정)
         Instant startOfToday = LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant();
         m.addAttribute("startOfToday", startOfToday.toEpochMilli());
         try {
             // 이벤트 서비스로 변경
+            eventDto.setAdmin_id(writer);
+            eventDto.setCreated_id(writer);
+            eventDto.setUpdated_id(writer);
             eventService.write(eventDto);
         } catch (Exception e) {
             // 작성에 실패했다는 메세지 추가예정
@@ -119,6 +125,7 @@ public class EventController {
     // 이벤트 수정 화면으로 이동하는 코드
     public String update(@PathVariable Integer event_id, Model m, HttpSession session) {
         try {
+            // 수정할 권한이 있는 작성자인지 확인하기 위해 선언
             String writer = (String) session.getAttribute("id");
             String id = eventService.select(event_id).getAdmin_id();
             // 수정페이지로 이동하려는 사람이 작성자와 일치하는지 확인
@@ -139,9 +146,11 @@ public class EventController {
     @PostMapping("/update/{event_id}")
     // 이벤트 게시글 수정 코드
     public String update(@PathVariable Integer event_id, EventDto eventDto, HttpSession session) {
+        String admin_id = (String) session.getAttribute("admin_id");
         try {
             // 수정창에 접근할때 이미 작성자 여부를 확인했으므로 수정만 진행하면 됨
             eventDto.setEvent_id(event_id);
+            eventDto.setUpdated_id(admin_id);
             eventService.update(eventDto);
         } catch (Exception e) {
             e.printStackTrace();

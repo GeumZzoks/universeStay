@@ -9,20 +9,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <link href="/resources/css/common/global.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/resources/css2/style.css">
     <title>Footer</title>
-    <style>
-        .footer {
-            position: absolute;
-            left: 50%;
-            bottom: 6px;
-            transform: translate(-50%, 0);
-            font-size: 12px;
-            color: dimgrey;
-        }
-    </style>
 </head>
 <body>
-<div class="footer">Copyright © UniverseStay. All rights reserved.</div>
+<div class="components-admin-footer">Copyright © UniverseStay. All rights reserved.</div>
 </body>
 </html>
