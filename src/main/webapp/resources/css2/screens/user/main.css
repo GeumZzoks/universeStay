@@ -1,21 +1,17 @@
-* {
-  font-family: NotoSansKR-Regular;
-}
-
-.main {
+.screens-user-main__main {
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
-.main__wrapper {
+.screens-user-main__main__wrapper {
   width: 90%;
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
 
-.room__wrapper {
+.screens-user-main__room__wrapper {
   width: 350px;
   margin-bottom: 20px;
   height: 400px;
@@ -25,18 +21,26 @@
   cursor: pointer;
 }
 
-.room-img {
+.screens-user-main__room-img {
   width: 350px;
   height: 350px;
   border-radius: 10px;
 }
 
-.room-location {
+.screens-user-main__room-location {
   margin-top: 8px;
   font-size: 15px;
+  font-family: NotoSansKR-Regular;
 }
 
-.room-price {
-  font-weight: bold;
+.screens-user-main__room-title {
+  font-family: NotoSansKR-Regular;
   font-size: 14px;
 }
+
+.screens-user-main__room-price {
+  font-weight: bold;
+  font-size: 14px;
+  font-family: NotoSansKR-Regular;
+}
+

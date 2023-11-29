@@ -43,6 +43,12 @@
         WHERE event_id = #{event_id}
     </delete>
 
+    <update id="update_hit" parameterType="com.universestay.project.dto.EventDto">
+        UPDATE Event
+        SET event_hit = event_hit + 1
+        WHERE event_id = #{event_id}
+    </update>
+
     <!--검색은 아직 미구현입니다.-->
     <!--    <select id="search" parameterType="int" resultType="com.universestay.project.dto.EventDto">-->
     <!--        SELECT *-->

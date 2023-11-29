@@ -1,26 +1,27 @@
 /* Project Font Style */
-/*@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap");*/
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap");
 
-/* Project Init CSS */
+/*Project Init CSS*/
+
 @import url(reset.css);
 @import url(variable.css);
 
 /* Components */
-@import url(components/admin/footer.css);
-@import url(components/admin/header.css);
-@import url(components/admin/navigation.css);
+/*@import url(components/admin/footer.css);*/
+/*@import url(components/admin/header.css);*/
+/*@import url(components/admin/navigation.css);*/
 
 @import url(components/user/footer.css);
 @import url(components/user/header.css);
 @import url(components/user/header_price-slider.css);
 @import url(components/user/nav.css);
 
-/* Screens */
+/*!* Screens *!*/
 
-@import url(screens/admin/event.css);
-@import url(screens/admin/loginForm.css);
+/*!*@import url(screens/admin/event.css);*!*/
+/*!*@import url(screens/admin/loginForm.css);*!*/
 
-@import url(screens/user/join.css);
-@import url(screens/user/login.css);
+/*!*@import url(screens/user/join.css);*!*/
+/*!*@import url(screens/user/login.css);*!*/
 @import url(screens/user/main.css);
 @import url(screens/user/withdrawal.css);
