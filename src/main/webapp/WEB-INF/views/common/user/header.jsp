@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -190,7 +191,8 @@
                         <span>나의 리뷰</span></div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-account">
                         <span>계정</span></div>
-                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-log-out">
+                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-log-out"
+                         onclick="location.href ='/user/userLogout'">
                         <span>로그아웃</span></div>
                     <%
                     } else  //세션에 'user_email'이라는 값이 저장되어 있지 않으면(즉, 로그아웃 상태면) 아래 드롭다운을 보여준다.
@@ -222,5 +224,7 @@
 <script type="text/javascript"
         src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script src="/resources/js/common/header.js"></script>
+
+<script></script>
 </body>
 </html>
