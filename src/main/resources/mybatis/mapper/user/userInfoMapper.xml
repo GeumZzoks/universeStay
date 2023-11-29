@@ -21,4 +21,12 @@
             updated_at      = now()
         Where user_email = #{user_email}
     </update>
+
+    <!--    테스트 코드를 위해 만들어놓은 Delete 매퍼-->
+    <delete id="deleteUser">
+        delete
+        * from User
+        where user_email =
+        #{user_email}
+    </delete>
 </mapper>
