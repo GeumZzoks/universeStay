@@ -17,4 +17,11 @@ public class UserLoginDaoImpl implements UserLoginDao {
         return session.selectOne(namespace + "selectUser", user_email);
     }
 
+    // 업데이트가 됐으면 1로 반환을 받고 싶어서 반환타입 int 설정
+    @Override
+    public Integer updateLastLogin(String user_email) throws Exception {
+        return session.update(namespace+"updateLastLogin", user_email);
+    }
+
+
 }

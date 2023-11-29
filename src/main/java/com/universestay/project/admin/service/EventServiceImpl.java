@@ -15,17 +15,13 @@ public class EventServiceImpl implements EventService {
     @Autowired
     EventDao eventDao;
 
-    @Autowired
-    HttpSession session;
-
-
     @Override
     public EventDto select(Integer event_id) throws Exception {
         return eventDao.select(event_id);
     }
 
     @Override
-    public Integer write(EventDto dto) throws Exception {
+    public Integer write(EventDto dto, HttpSession session) throws Exception {
         String writer = (String) session.getAttribute("id");
         dto.setAdmin_id(writer);
         dto.setCreated_id(writer);
@@ -54,7 +50,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Integer update(EventDto eventDto) throws Exception {
+    public Integer update(EventDto eventDto, HttpSession session) throws Exception {
         String admin_id = (String) session.getAttribute("id");
         eventDto.setUpdated_id(admin_id);
         return eventDao.update(eventDto);

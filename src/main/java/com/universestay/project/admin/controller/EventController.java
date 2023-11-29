@@ -82,7 +82,7 @@ public class EventController {
         m.addAttribute("startOfToday", startOfToday.toEpochMilli());
         try {
             // 이벤트 서비스로 변경
-            eventService.write(eventDto);
+            eventService.write(eventDto ,session);
         } catch (Exception e) {
             // 작성에 실패했다는 메세지 추가예정
             e.printStackTrace();
@@ -142,7 +142,7 @@ public class EventController {
         try {
             // 수정창에 접근할때 이미 작성자 여부를 확인했으므로 수정만 진행하면 됨
             eventDto.setEvent_id(event_id);
-            eventService.update(eventDto);
+            eventService.update(eventDto, session);
         } catch (Exception e) {
             e.printStackTrace();
             // 예외 발생시(입력값 누락 등) 다시 수정창 그대로 리다이렉트

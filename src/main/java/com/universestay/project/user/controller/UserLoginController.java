@@ -50,6 +50,9 @@ public class UserLoginController {
 
         try {
             if (userInfo != null) { // 3. 로그인 성공 시 메인으로 이동
+
+                // 로그인 시 최근 로그인 날짜를 디비에 저장
+                userLoginService.userLastLogin(user_email);
                 return "redirect:/main.jsp";
             }
             // 여기에 오는 경우가
@@ -71,5 +74,4 @@ public class UserLoginController {
         } // 화면
 
     }
-
 }

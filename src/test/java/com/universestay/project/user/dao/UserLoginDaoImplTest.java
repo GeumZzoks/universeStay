@@ -23,4 +23,10 @@ public class UserLoginDaoImplTest {
         UserDto userDto = userLoginDao.selectUser("val@gmail.com");
         assertTrue(userDto != null);
     }
+
+    @Test
+    public void updateLastLogin() throws Exception {
+        Integer plzSuccess = userLoginDao.updateLastLogin("abc@abc.com");
+        assertTrue(plzSuccess == 1);
+    }
 }

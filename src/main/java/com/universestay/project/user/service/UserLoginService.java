@@ -17,4 +17,6 @@ public interface UserLoginService {
 
     public UserDto checkSignUp(String user_email) throws Exception;
 
+    public int userLastLogin(String user_email) throws Exception;
+
 }
