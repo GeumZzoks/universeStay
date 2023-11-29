@@ -28,6 +28,7 @@
         }
     }
 %>
+  
 <body class="screens-user-login">
 
 <div class="screens-user-login__container">
@@ -95,11 +96,27 @@
 
             </form>
 
-    </div>
-
+    </div>  
 
 </div>
 
-
+<script>
+  function loginGoogle() {
+    let f = document.createElement('form');
+    f.setAttribute('method', 'post');
+    f.setAttribute('action', '/oauth2/google');
+    document.body.appendChild(f);
+    f.submit();
+  }
+    // 하나로
+  function loginKakao() {
+    let f = document.createElement('form');
+    f.setAttribute('method', 'post');
+    f.setAttribute('action', '/oauth2/kakao');
+    document.body.appendChild(f);
+    f.submit();
+  }
+</script>
+  
 </body>
 </html>
