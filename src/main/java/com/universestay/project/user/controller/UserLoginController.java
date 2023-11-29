@@ -50,7 +50,7 @@ public class UserLoginController {
 
         try {
             if (userInfo != null) { // 3. 로그인 성공 시 메인으로 이동
-                return "main";
+                return "redirect:/main.jsp";
             }
             // 여기에 오는 경우가
             // 4. 사용자가 아이디 또는 비밀번호를 틀렸을 경우
