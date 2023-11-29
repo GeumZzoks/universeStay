@@ -86,7 +86,7 @@ input[type="range"]::-moz-range-thumb {
   margin-right: .5rem;
 }
 
-.input-wrap {
+.components-user-header__input-wrap {
   position: relative;
   display: flex;
   flex-wrap: wrap;

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.universestay.project.admin.dao.UserManagementMapper">
+    <select id="countUser" resultType="int">
+        select count(*)
+        from User;
+    </select>
+
+    <select id="selectUser" parameterType="String" resultType="UserDto">
+        select *
+        from User
+        where user_id = #{user_id}
+    </select>
+
+    <update id="updateUser" parameterType="UserDto">
+        update User
+        set user_id2                = #{user_id2},
+            status_id               = #{status_id},
+            profile_img_id          = #{profile_img_id},
+            user_pwd                = #{user_pwd},
+            user_nickname           = #{user_nickname},
+            user_name               = #{user_name},
+            user_email              = #{user_email},
+            user_last_login         = #{user_last_login},
+            user_phone_num1         = #{user_phone_num1},
+            user_phone_num2         = #{user_phone_num2},
+            user_address            = #{user_address},
+            user_birth              = #{user_birth},
+            user_is_certificated    = #{user_is_certificated},
+            user_is_host            = #{user_is_host},
+            user_hosting_started_at = #{user_hosting_started_at},
+            user_img_url            = #{user_img_url},
+            user_bio                = #{user_bio},
+            created_at              = #{created_at},
+            updated_at              = #{updated_at},
+            created_id              = #{created_id},
+            updated_id              = #{updated_id}
+        where user_id = #{user_id}
+    </update>
+
+    <insert id="insertUser" parameterType="UserDto">
+        insert into User(user_id, user_id2, status_id, profile_img_id, user_pwd,
+                         user_nickname, user_name, user_email, user_phone_num1, user_phone_num2,
+                         user_address, user_birth, user_is_certificated, user_is_host,
+                         user_img_url, user_bio, created_id, updated_id)
+        values (#{user_id}, #{user_id2}, #{status_id}, #{profile_img_id}, #{user_pwd},
+                #{user_nickname}, #{user_name}, #{user_email}, #{user_phone_num1}, #{user_phone_num2},
+                #{user_address}, #{user_birth}, #{user_is_certificated}, #{user_is_host},
+                #{user_img_url}, #{user_bio}, #{created_id}, #{updated_id})
+    </insert>
+
+    <delete id="deleteUser" parameterType="string">
+        delete
+        from User
+        where user_id = #{user_id}
+    </delete>
+
+    <select id="selectPage" parameterType="hashmap" resultType="UserDto">
+        select *
+        from User
+        ORDER BY created_at DESC, user_id desc LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="selectAll" resultType="UserDto">
+        select *
+        from User
+    </select>
+
+    <select id="searchResultCount" parameterType="SearchCondition" resultType="int">
+        SELECT count(*)
+        FROM User
+        WHERE true
+        <choose>
+            <when test='option=="user_nickname"'>
+                AND user_nickname LIKE concat('%', #{keyword}, '%')
+            </when>
+            <when test='option=="user_birth"'>
+                AND user_birth LIKE concat('%', #{keyword}, '%')
+            </when>
+            <when test='option=="status_id"'>
+                AND status_id LIKE concat('%', #{keyword}, '%')
+            </when>
+            <otherwise>
+                AND (user_nickname LIKE concat('%', #{keyword}, '%')
+                OR user_birth LIKE concat('%', #{keyword}, '%'))
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="searchSelectPage" parameterType="SearchCondition" resultType="UserDto">
+        select *
+        from User where true
+        <choose>
+            <when test='option=="user_nickname"'>
+                AND user_nickname LIKE concat('%', #{keyword}, '%')
+            </when>
+            <when test='option=="user_birth"'>
+                AND user_birth LIKE concat('%', #{keyword}, '%')
+            </when>
+            <when test='option=="status_id"'>
+                AND status_id LIKE concat('%', #{keyword}, '%')
+            </when>
+            <otherwise>
+                AND (user_nickname LIKE concat('%', #{keyword}, '%')
+                OR user_birth LIKE concat('%', #{keyword}, '%'))
+            </otherwise>
+        </choose>
+        order by created_at desc, user_id desc LIMIT #{offset}, #{pageSize}
+    </select>
+
+</mapper>
