@@ -9,4 +9,6 @@ public interface UserInfoDao {
 
     /* 유저 정보 수정 */
     public int updateUserInfo(UserDto userDto) throws Exception;
+
+    public int deleteUser()
 }
