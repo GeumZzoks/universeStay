@@ -131,7 +131,7 @@
         <div class="header__profile__my-profile dropdown">
             <button class="header__profile__my-profile__btn">
                 <div header__profile__my-profile__wrapper>
-                    <img src="/resources/img/user/bars-3.png"/>
+                    <img class="header__profile__hamburger" src="/resources/img/user/bars-3.png"/>
                     <img class="header__profile__img"
                          src="/resources/img/user/default_profile_icon.png"/>
                 </div>
