@@ -1,7 +1,7 @@
 package com.universestay.project.admin.service;
 
 import com.universestay.project.admin.dao.UserManagementDao;
-import com.universestay.project.admin.dto.SearchCondition;
+import com.universestay.project.common.SearchCondition;
 import com.universestay.project.user.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
