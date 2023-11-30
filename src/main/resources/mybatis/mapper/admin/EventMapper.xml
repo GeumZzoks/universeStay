@@ -5,26 +5,26 @@
 
 <mapper namespace="com.universestay.project.mybatis.mapper.admin.EventMapper">
 
-    <insert id="insert" parameterType="com.universestay.project.dto.EventDto">
+    <insert id="insert" parameterType="EventDto">
         INSERT into Event (admin_id, status_id, event_title, event_ctt, event_is_open,
                            event_start_date, event_expire_date, created_id, updated_id)
         VALUES (#{admin_id}, #{status_id}, #{event_title}, #{event_ctt}, #{event_is_open},
                 #{event_start_date}, #{event_expire_date}, #{created_id}, #{updated_id})
     </insert>
 
-    <select id="select" parameterType="int" resultType="com.universestay.project.dto.EventDto">
+    <select id="select" parameterType="int" resultType="EventDto">
         SELECT *
         FROM Event
         WHERE event_id = #{event_id}
     </select>
 
-    <select id="selectAll" resultType="com.universestay.project.dto.EventDto">
+    <select id="selectAll" resultType="EventDto">
         SELECT *
         FROM Event
         ORDER BY created_at DESC
     </select>
 
-    <update id="update" parameterType="com.universestay.project.dto.EventDto">
+    <update id="update" parameterType="EventDto">
         UPDATE Event
         SET status_id         = #{status_id},
             event_title       = #{event_title},
@@ -43,8 +43,14 @@
         WHERE event_id = #{event_id}
     </delete>
 
+    <update id="update_hit" parameterType="EventDto">
+        UPDATE Event
+        SET event_hit = event_hit + 1
+        WHERE event_id = #{event_id}
+    </update>
+
     <!--검색은 아직 미구현입니다.-->
-    <!--    <select id="search" parameterType="int" resultType="com.universestay.project.dto.EventDto">-->
+    <!--    <select id="search" parameterType="int" resultType="EventDto">-->
     <!--        SELECT *-->
     <!--        FROM Event-->
     <!--        WHERE event_title LIKE concat('%', #{search}, '%')-->

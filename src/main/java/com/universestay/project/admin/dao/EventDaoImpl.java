@@ -1,11 +1,10 @@
 package com.universestay.project.admin.dao;
 
-import com.universestay.project.dto.EventDto;
+import com.universestay.project.admin.dto.EventDto;
+import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 public class EventDaoImpl implements EventDao {
@@ -38,6 +37,11 @@ public class EventDaoImpl implements EventDao {
     @Override
     public Integer update(EventDto dto) throws Exception {
         return session.update(namespace + "update", dto);
+    }
+
+    @Override
+    public Integer update_hit(Integer event_id) throws Exception {
+        return session.update(namespace + "update_hit", event_id);
     }
 
     @Override

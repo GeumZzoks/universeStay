@@ -4,7 +4,7 @@ import com.universestay.project.user.dto.UserDto;
 
 public interface UserLoginDao {
 
-    public UserDto selectUser(String user_id) throws Exception;
-
+    public UserDto selectUser(String user_email) throws Exception;
+    public Integer updateLastLogin(String user_email) throws Exception;
 
 }

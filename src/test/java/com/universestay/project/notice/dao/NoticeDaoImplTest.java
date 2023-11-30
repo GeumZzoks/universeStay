@@ -1,6 +1,7 @@
 package com.universestay.project.notice.dao;
 
-import com.universestay.project.notice.dto.NoticeDto;
+import com.universestay.project.admin.dao.NoticeDao;
+import com.universestay.project.admin.dto.NoticeDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

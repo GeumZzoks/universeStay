@@ -56,7 +56,6 @@
                 <span class="screens-user-join_pww_lock"></span>
             </span>
         <span class="screens-user-join_helper_text_span" id="pwd_input_helper_text"></span>
-
         <div style="margin-top: 35px;">
             <!--이름,생년월일,성별,이메일-->
             <h5 class="screens-user-join_h5" style="margin-bottom: 0px;">이름*</h5>
@@ -201,6 +200,22 @@
       }
     });
   });
+
+  // 만약 Oauth로 회원가입을 들어오면 email, pwd 입력란 value 채우고 hidden으로 바꾼다.
+  if ("${userEmail}" != null && "${userEmail}" != "") {
+    $('#signup_pw')
+        .attr('value', '${userPwd}');
+    $('#signup_pww')
+        .attr('value', '${userPwd}');
+    $('#signup_email')
+        .attr('value', '${userEmail}');
+
+    $('.signup_pwd_wrapper')
+        .hide();
+    $('.signup_email_wrapper')
+        .hide();
+  }
+
 
 </script>
 

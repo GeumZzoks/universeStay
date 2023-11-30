@@ -1,6 +1,7 @@
 package com.universestay.project.admin.dao;
 
 import com.universestay.project.admin.dto.AdminDto;
+import com.universestay.project.common.exception.CommonException;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class LoginAdminDaoImpl implements LoginAdminDao {
 
-    private final String namespace = "com.universestay.project.admin.dao.LoginAdminDao.";
+    private final String namespace = "com.universestay.project.resources.mybatis.mapper.admin.LoginAdminDao.";
     private final SqlSession session;
 
 
@@ -18,7 +19,7 @@ public class LoginAdminDaoImpl implements LoginAdminDao {
     }
 
     @Override
-    public AdminDto selectUser(String admin_id) {
+    public AdminDto selectUser(String admin_id) throws CommonException {
         return session.selectOne(namespace + "select", admin_id);
     }
 }

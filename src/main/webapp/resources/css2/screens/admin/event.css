@@ -1,26 +1,26 @@
-body {
+.screens-admin-event__container {
     background-color: gainsboro;
     width: 100vw;
     height: 95%;
 }
 
-.content {
+.screens-admin-event__content {
     width: 1150px;
     height: 80%;
     min-height: 580px;
     position: absolute;
     float: left;
-    margin: 50px 100px 0 222px;
+    margin: 60px 100px 0 222px;
     padding: 0 20px 0 20px;
     background-color: white;
 }
 
-.content-search {
+.screens-admin-event__content-search {
     position: absolute;
-    margin: -40px 0 0 958px;
+    margin: -20px 0 0 958px;
 }
 
-.content-search__btn {
+.screens-admin-event__content-search__btn {
     height: 24px;
     background-color: indianred;
     color: white;
@@ -28,69 +28,73 @@ body {
     border-radius: 2px;
 }
 
-.content-search__btn:hover {
+.screens-admin-event__content-search__btn:hover {
     color: black;
     transition-duration: 200ms;
     transform: scale(1.04, 1.04);
     cursor: pointer;
 }
 
-.content-table {
+.screens-admin-event__content-table {
     width: 100%;
-    margin-bottom: 10px;
+    margin: 30px 0 10px 0;
     padding-right: 10px;
 }
 
-.content-table-div {
+.screens-admin-event__content-table-div {
     width: 100%;
     height: 78%;
     overflow-y: scroll;
 }
 
-.content-table__no {
+.screens-admin-event__content-table-div::-webkit-scrollbar {
+    display: none;
+}
+
+.screens-admin-event__content-table__no {
     width: 70px;
     border-bottom: 1px solid #444444;
     text-align: center;
 }
 
-.content-table__title {
+.screens-admin-event__content-table__title {
     color: black;
     border-bottom: 1px solid #444444;
     text-align: left;
 }
 
-.content-table__title__a {
+.screens-admin-event__content-table__title__a {
     text-decoration: none;
     color: black;
 }
 
-.content-table__title__a:hover {
+.screens-admin-event__content-table__title__a:hover {
     color: #F48475;
 }
 
-.content-table__title__a:visited {
+.screens-admin-event__content-table__title__a:visited {
     color: #B0B0B0;
 }
 
-.content-table__writer {
+.screens-admin-event__content-table__writer {
     width: 100px;
     border-bottom: 1px solid #444444;
     text-align: center;
 }
 
-.content-table__regdate {
+.screens-admin-event__content-table__regdate {
     width: 120px;
     border-bottom: 1px solid #444444;
     text-align: center;
 }
 
-.content-table__viewcnt {
+.screens-admin-event__content-table__viewcnt {
     width: 50px;
     border-bottom: 1px solid #444444;
     text-align: center;
 }
 
-.content-top__btn {
+.screens-admin-event__content-top__btn {
     position: absolute;
     top: 20px;
     right: 90px;
@@ -102,19 +106,19 @@ body {
     border-radius: 2px;
 }
 
-.content-top__btn:hover {
+.screens-admin-event__content-top__btn:hover {
     transition-duration: 200ms;
     transform: scale(1.04, 1.04);
     cursor: pointer;
 }
 
-.content-bottom {
+.screens-admin-event__content-bottom {
     position: absolute;
-    right: 40px;
-    bottom: 50px;
+    right: 48px;
+    bottom: 51px;
 }
 
-.content-bottom__btn {
+.screens-admin-event__content-bottom__btn {
     width: 150px;
     height: 24px;
     background-color: indianred;
@@ -123,18 +127,19 @@ body {
     border-radius: 2px;
 }
 
-.content-bottom__btn:hover {
+.screens-admin-event__content-bottom__btn:hover {
     color: black;
     transition-duration: 200ms;
     transform: scale(1.04, 1.04);
+    cursor: pointer;
 }
 
-.content-bottom__btn__a {
+.screens-admin-event__content-bottom__btn__a {
     text-decoration: none;
     color: white;
 }
 
-.content-bottom__btn__submit {
+.screens-admin-event__content-bottom__btn__submit {
     position: absolute;
     width: 150px;
     height: 24px;
@@ -146,28 +151,28 @@ body {
     bottom: 20px;
 }
 
-.content-bottom__btn__submit:hover {
+.screens-admin-event__content-bottom__btn__submit:hover {
     color: black;
     transition-duration: 200ms;
     transform: scale(1.04, 1.04);
+    cursor: pointer;
 }
 
-.content-input-div {
+.screens-admin-event__content-input-div {
     width: 200px;
     position: absolute;
-    margin: -440px 0 0 870px;
-    padding: 0 0 50px 40px;
+    margin: -430px 0 0 870px;
+    padding: 30px 0 80px 40px;
     border: 2px solid indianred;
     border-radius: 10px;
 }
 
-.content-input-div__radio {
+.screens-admin-event__content-input-div__radio {
     accent-color: indianred;
 }
 
-.content-input__type {
+.screens-admin-event__content-input__type {
+    margin: 20px 0 10px 0;
 }
 
-.content-input__date {
-}
 

@@ -158,7 +158,6 @@ $(function () {
         // alert(error);
       },
     });
-  });
 });
 
 $(function () {
@@ -174,7 +173,6 @@ $(function () {
           const result = "비밀번호가 일치하지 않습니다.";
           $("#pwd_input_helper_text").html(result).addClass("unavailable");
         }
-      });
 });
 
 function fnSubmit() {

@@ -1,7 +1,8 @@
 /* Project Font Style */
-/*@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap");*/
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap");
 
-/* Project Init CSS */
+/*Project Init CSS*/
+
 @import url(reset.css);
 @import url(variable.css);
 
@@ -15,8 +16,7 @@
 @import url(components/user/header_price-slider.css);
 @import url(components/user/nav.css);
 
-/* Screens */
-
+/*!* Screens *!*/
 @import url(screens/admin/event.css);
 @import url(screens/admin/loginForm.css);
 

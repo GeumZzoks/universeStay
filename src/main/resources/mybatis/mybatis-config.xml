@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration
-  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
         <typeAlias alias="UserDto" type="com.universestay.project.user.dto.UserDto"/>
+        <typeAlias alias="SearchCondition"
+                type="com.universestay.project.common.SearchCondition"/>
         <typeAlias alias="AdminDto" type="com.universestay.project.admin.dto.AdminDto"/>
+        <typeAlias alias="EventDto" type="com.universestay.project.admin.dto.EventDto"/>
+        <typeAlias alias="CouponDto" type="com.universestay.project.admin.dto.CouponDto"/>
+        <typeAlias alias="InquiryDto" type="com.universestay.project.admin.dto.InquiryDto"/>
+        <typeAlias alias="NoticeDto" type="com.universestay.project.admin.dto.NoticeDto"/>
+
     </typeAliases>
 </configuration>

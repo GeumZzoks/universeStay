@@ -1,5 +1,7 @@
 package com.universestay.project.filter;
 
+import org.springframework.util.PatternMatchUtils;
+
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -15,6 +17,8 @@ import javax.servlet.http.HttpSession;
 @WebFilter(filterName = "AdminFilter", urlPatterns = {"/admin/*"})
 public class AdminFilter implements Filter {
 
+    private static final String[] whitelist = {"/admin/user/list", "/admin/user/info"};
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         Filter.super.init(filterConfig);
@@ -25,8 +29,9 @@ public class AdminFilter implements Filter {
             FilterChain filterChain) throws IOException, ServletException {
 
         HttpServletRequest request = (HttpServletRequest) servletRequest;
-        HttpServletResponse respone = (HttpServletResponse) servletResponse;
+        HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpSession session = request.getSession();
+        String requestURI = request.getRequestURI();
 
         // 세션이 없거나 조회 되지 않는다면
         // TODO: 삭제 예정
@@ -40,14 +45,20 @@ public class AdminFilter implements Filter {
                 "Filter - request.getServletPath() = " + request.getServletPath()); // /board1.jsp
         System.out.println();
 
-        boolean isNotLogin = (session == null || session.getAttribute("id") == null);
+        if (!isLoginCheckPath(requestURI)) filterChain.doFilter(request, response);
+
+        boolean isNotLogin = (session == null || session.getAttribute("admin_id") == null);
         if (isNotLogin) {
             session.setAttribute("URL", request.getRequestURI());
-            respone.sendRedirect("/adminLogin/loginForm");
+            response.sendRedirect("/adminLogin/loginForm");
         } else {
-            filterChain.doFilter(request, respone);
+            filterChain.doFilter(request, response);
         }
 
+    }
+
+    private boolean isLoginCheckPath(String requestURI) {
+        return !PatternMatchUtils.simpleMatch(whitelist, requestURI);
     }
 
     @Override
