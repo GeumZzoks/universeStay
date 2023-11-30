@@ -19,7 +19,7 @@
     <button class="components-admin-header__header__btn" style="background-color: indianred;">홈페이지</button>
     <button class="components-admin-header__header__btn" style="background-color: gray;">로그아웃</button>
     <button class="components-admin-header__header__adminbtn"><a href="" style="color: dimgrey;"><img
-            class="header__img"
+            class="components-admin-header__header__img"
             src="/resources/img/admin/header/admin.png">관리자1</a>
     </button>
 </div>

@@ -2,10 +2,13 @@ package com.universestay.project.admin.service;
 
 import com.universestay.project.admin.dao.EventDao;
 import com.universestay.project.admin.dto.EventDto;
-import java.util.List;
+import com.universestay.project.admin.dto.SearchCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Map;
 
 
 @Service
@@ -17,6 +20,10 @@ public class EventServiceImpl implements EventService {
     @Override
     public EventDto select(Integer event_id) throws Exception {
         return eventDao.select(event_id);
+    }
+
+    public String getAdminNickname(String admin_id) throws Exception {
+        return eventDao.getAdminNickname(admin_id);
     }
 
     @Override
@@ -40,8 +47,23 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<EventDto> search() throws Exception {
-        return null;
+    public List<EventDto> getList() throws Exception {
+        return eventDao.selectAll();
+    }
+
+    @Override
+    public List<EventDto> getPage(Map map) throws Exception {
+        return eventDao.selectPage(map);
+    }
+
+    @Override
+    public int getSearchResultCnt(SearchCondition sc) throws Exception {
+        return eventDao.searchResultCnt(sc);
+    }
+
+    @Override
+    public List<EventDto> getSearchResultPage(SearchCondition sc) throws Exception {
+        return eventDao.searchSelectPage(sc);
     }
 
     @Override
