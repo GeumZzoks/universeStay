@@ -20,8 +20,8 @@ public class HostingManagementController {
     @GetMapping()
     public String list(HttpServletRequest request, Model model) {
         try {
-            List<RoomDto> list = hostingManagementService.list();
-            model.addAttribute("list", list);
+            List<RoomDto> roomList = hostingManagementService.list();
+            model.addAttribute("roomList", roomList);
         } catch (Exception e) {
             // TODO:숙소 목록 조회 실패시 에러 알림 추가
             e.printStackTrace();
