@@ -12,7 +12,8 @@ public class SearchCondition {
     public static final int DEFAULT_PAGE_SIZE = 10;
     public static final int MAX_PAGE_SIZE = 20;
 
-    public SearchCondition() {}
+    public SearchCondition() {
+    }
 
     public SearchCondition(Integer page, Integer pageSize) {
         this(page, pageSize, "", "");
