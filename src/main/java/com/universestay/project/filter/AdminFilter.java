@@ -46,8 +46,8 @@ public class AdminFilter implements Filter {
         System.out.println();
 
         if (!isLoginCheckPath(requestURI)) filterChain.doFilter(request, response);
-
-        boolean isNotLogin = (session == null || session.getAttribute("admin_id") == null);
+      
+        boolean isNotLogin = (session == null || session.getAttribute("admin_email") == null);
         if (isNotLogin) {
             session.setAttribute("URL", request.getRequestURI());
             response.sendRedirect("/adminLogin/loginForm");
