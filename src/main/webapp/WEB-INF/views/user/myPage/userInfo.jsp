@@ -126,7 +126,7 @@
             <div class="screens-user-userInfo__section3">
                 <div>
                     <span>회원 탈퇴</span>
-                    <button>회원 탈퇴</button>
+                    <button class="screens-user-userInfo__user-withdrawal">회원 탈퇴</button>
                 </div>
             </div>
 
@@ -195,6 +195,12 @@
         phoneInput.setAttribute("readonly", true)
         phone2Input.setAttribute("readonly", true)
     });
+
+    // 회원탈퇴
+    const withdrawalBtn = document.querySelector(".screens-user-userInfo__user-withdrawal");
+    withdrawalBtn.addEventListener("click", () => {
+        location.href = "/user/myPage/withdrawal";
+    })
 
 </script>
 </body>
