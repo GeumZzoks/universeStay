@@ -4,6 +4,7 @@ import com.universestay.project.user.dto.UserDto;
 import com.universestay.project.user.service.JoinService;
 import com.universestay.project.user.service.MailSendService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/user")
@@ -29,55 +29,39 @@ public class JoinController {
     }
 
     @PostMapping("/join")
-    public String join(@RequestBody UserDto userDto) {
-        System.out.println(userDto.getUser_address());
-
-        int result = 0;
+    public ResponseEntity<Integer> join(@RequestBody UserDto userDto) {
         try {
-            result = joinService.registerUser(userDto);
-
-            if (result == 1) {
-                return "user/login";
-            } else {
-                return "user/join";
+            if (joinService.registerUser(userDto) != 1) {
+                throw new RuntimeException("등록 실패");
             }
-
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(0);
         }
-    }
-
-    // 이메일 인증
-    @GetMapping("/mailCheck")
-    @ResponseBody
-    public String mailCheck(String email) {
-        try {
-            return mailSendService.joinEmail(email);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "에러 발생: " + e.getMessage();
-        }
+        return ResponseEntity.ok(1);
     }
 
     // 닉네임 중복체크
     @PostMapping("/checkNickname")
     //@ResponseBody ajax 값을 바로jsp 로 보내기위해 사용
     public ResponseEntity<String> checkId(@RequestParam("user_nickname") String user_nickname) {
-        System.out.println("user_nickname = " + user_nickname);
-        String result = "N";
-
-        int flag = 0;
         try {
-            flag = joinService.checkNickname(user_nickname);
-            System.out.println("flag = " + flag);
+            if (joinService.checkNickname(user_nickname) != 1) {
+                return ResponseEntity.ok("N");
+            }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Y");
+    }
 
-        if (flag == 1) {
-            result = "Y";
+    // 이메일 인증
+    @GetMapping("/mailCheck")
+    public String mailCheck(String email) {
+        try {
+            return mailSendService.joinEmail(email);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "redirect:/user/join";
         }
-        return ResponseEntity.ok(result);
     }
 }
-

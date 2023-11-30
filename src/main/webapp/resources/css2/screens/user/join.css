@@ -1,57 +1,62 @@
-body {
+
+screens-user-join_header {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+screens-user-join_body {
   background-color: #fff;
 }
 
-a {
+screens-user-join_a {
   color: black;
   text-decoration: none;
 }
 
-input {
+screens-user-join_input {
   cursor: pointer
 }
 
 /*저작권 표시X*/
-footer {
+screens-user-join_footer {
   display: none;
 }
 
-/*가로 800px 이상일때*/
-@media (min-width: 800px) {
-  .main {
-    width: 460px;
-    margin: auto;
-  }
-
-  /*로고설정*/
-  .logo_image {
-    width: 100%;
-  }
-
-
-  /*저작권 표시*/
-  footer {
-    display: block;
-  }
-
-}
-
-
-/*회원가입 부분*/
-.main_signup {
-  text-align: center;
+.main {
   width: 460px;
   margin: auto;
 }
 
-h3 {
-  margin: 19px 0px 8px;
-  text-align: left;
-  font-size: 14px;
-  font-family: Dotum, '돋움', Helvetica, sans-serif;
+/*로고설정*/
+.screens-user-join_logo_image {
+  width: 100%;
 }
 
-.signup_input {
+
+/*저작권 표시*/
+screens-user-join_footer {
+  display: block;
+}
+
+
+/*회원가입 부분*/
+.screens-user-join_main_signup {
+  width: 460px;
+  margin: auto;
+}
+
+screens-user-join_h5 {
+  text-align: left;
+  font-size: 14px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.screens-user-join_signup_input {
   display: flex;
   padding: 10px;
   background: #fff;
@@ -60,17 +65,18 @@ h3 {
   font-size: 16px;
   color: #fff;
   border: 1px solid #F48475;
+  margin-top: 10px;
 
 }
 
-#signup_id, #signup_pw, #signup_pww, #signup_phone_1, #signup_phone_2, #code_check_input {
+#screens-user-join_signup_id, #screens-user-join_signup_pw, #screens-user-join_signup_pww, #screens-user-join_signup_phone_1, #screens-user-join_signup_phone_2, #screens-user-join_code_check_input {
   height: 29px;
   border: none;
   outline: none;
   width: 100%;
 }
 
-.pw_lock {
+.screens-user-join_pw_lock {
   /* content: ''; */
   /* display: inline-block; */
   top: 50%;
@@ -83,7 +89,7 @@ h3 {
   cursor: pointer;
 }
 
-.pww_lock {
+.screens-user-join_pww_lock {
   /* content: ''; */
   /* display: inline-block; */
   top: 50%;
@@ -97,7 +103,7 @@ h3 {
 }
 
 
-.signup_input_birth {
+.screens-user-join_signup_input_birth {
   display: block;
   position: relative;
   width: 100%;
@@ -109,7 +115,7 @@ h3 {
   border-radius: 5px;
 }
 
-#signup_birth_yy, #signup_birth_dd, #dropdown__textBox {
+#screens-user-join_signup_birth_yy, #screens-user-join_signup_birth_dd, #screens-user-join_dropdown__textBox {
   width: 113px;
   height: 29px;
   border: none;
@@ -117,7 +123,7 @@ h3 {
   border-radius: 5px;
 }
 
-.dropdown {
+.screens-user-join_dropdown {
   display: block;
   position: relative;
   width: 100%;
@@ -127,7 +133,7 @@ h3 {
   box-sizing: border-box;
 }
 
-.dropdown::before {
+.screens-user-join_dropdown::before {
   position: absolute;
   right: 20px;
   top: 15px;
@@ -142,7 +148,7 @@ h3 {
   pointer-events: none;
 }
 
-.dropdown__textBox {
+.screens-user-join_dropdown__textBox {
   position: absolute;
   width: 113px;
   height: 29px;
@@ -157,7 +163,7 @@ h3 {
   padding: 10px 20px;
 }
 
-.dropdown__option {
+.screens-user-join_dropdown__option {
   position: absolute;
   top: 60px;
   width: 155px;
@@ -168,23 +174,23 @@ h3 {
   display: none;
 }
 
-.dropdown.active .dropdown__option {
+.screens-user-join_dropdown.active .screens-user-join_dropdown__option {
   display: block;
   left: 0;
 }
 
-.dropdown .dropdown__option div {
+.screens-user-join_dropdown .screens-user-join_dropdown__option div {
   padding: 6px 20px;
   cursor: pointer;
 }
 
-.dropdown .dropdown__option div:hover {
+.screens-user-join_dropdown .screens-user-join_dropdown__option div:hover {
   background: #F48475;
   color: #fff;
 }
 
 
-#signup_name, #signup_email, #signup_phone_1, #signup_phone_2, #code_check_input, #address_postcode, #address_roadAddress, #address_jibunAddress, #address_detailAddress, #address_extraAddress {
+#screens-user-join_signup_name, #screens-user-join_signup_email, #screens-user-join_signup_phone_1, #screens-user-join_signup_phone_2, #screens-user-join_code_check_input, #screens-user-join_address_roadAddress, #screens-user-join_address_detailAddress {
   width: 100%;
   height: 29px;
   border: none;
@@ -192,7 +198,7 @@ h3 {
 }
 
 /*회원가입버튼박스*/
-.signup_btn_wrap {
+.screens-user-join_signup_btn_wrap {
   height: 52px;
   line-height: 55px;
   margin: 10px 0px 50px 0px;
@@ -204,7 +210,7 @@ h3 {
 }
 
 /*회원가입버튼*/
-#signup_btn {
+#screens-user-join_signup_btn {
   width: 100px;
   height: 100%;
   background-color: #F48475;
@@ -214,10 +220,11 @@ h3 {
   outline: none;
   cursor: pointer;
   border-radius: 5px;
+  text-align: center;
 }
 
 /*인증번호버튼박스*/
-.mail_Check_Btn_wrap {
+.screens-user-join_mail_Check_Btn_wrap {
   height: 52px;
   line-height: 55px;
   margin: 10px 0px 0px 10px;
@@ -228,7 +235,7 @@ h3 {
   border-radius: 5px;
 }
 
-.address_Check_Btn_wrap {
+.screens-user-join_address_Check_Btn_wrap {
   height: 52px;
   line-height: 55px;
   margin: 10px 0px 0px 10px;
@@ -240,7 +247,7 @@ h3 {
 }
 
 /*인증번호버튼*/
-#mail_Check_Btn, #address_Check_Btn {
+#screens-user-join_mail_Check_Btn, #screens-user-join_address_Check_Btn {
   width: 115px;
   height: 100%;
   background-color: #F48475;
@@ -253,7 +260,7 @@ h3 {
 }
 
 /*인증번호버튼*/
-#id_Check_Btn, #id_Check_Btn {
+#screens-user-join_id_Check_Btn {
   width: 115px;
   height: 100%;
   background-color: #F48475;
@@ -265,42 +272,7 @@ h3 {
   border-radius: 5px;
 }
 
-.hiddenFileInput > input {
-  height: 0;
-  width: 0;
-  opacity: 0;
-  cursor: pointer;
-}
-
-.hiddenFileInput > label {
-  width: 115px;
-  height: 100%;
-  display: contents;
-  background-color: #F48475;
-  border: none;
-  color: #fff;
-  font-size: 15px;
-  outline: none;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.hiddenFileInput {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 115px;
-  height: 52px;
-  background-color: #F48475;
-  border: none;
-  color: #fff;
-  font-size: 15px;
-  outline: none;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.helper_text_span {
+.screens-user-join_helper_text_span {
   display: flex;
   font-size: 14px;
   margin-left: 4px;
@@ -308,10 +280,7 @@ h3 {
   color: green;
 }
 
-.helper_text_span.unavailable {
+.screens-user-join_helper_text_span.unavailable {
   color: red;
 }
 
-.screens-user-join__welcome-header__title {
-
-}
