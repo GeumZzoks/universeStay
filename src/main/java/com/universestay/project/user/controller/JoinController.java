@@ -44,20 +44,14 @@ public class JoinController {
     @PostMapping("/checkNickname")
     //@ResponseBody ajax 값을 바로jsp 로 보내기위해 사용
     public ResponseEntity<String> checkId(@RequestParam("user_nickname") String user_nickname) {
-        System.out.println("user_nickname = " + user_nickname);
-        String result = "N";
-
-        int flag = 0;
         try {
-            flag = joinService.checkNickname(user_nickname);
-            System.out.println("flag = " + flag);
+            if (joinService.checkNickname(user_nickname) != 1) {
+                return ResponseEntity.ok("N");
+            }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        if (flag == 1) {
-            result = "Y";
-        }
-        return ResponseEntity.ok(result);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Y");
     }
 
     // 이메일 인증
@@ -70,6 +64,4 @@ public class JoinController {
             return "redirect:/user/join";
         }
     }
-
-
 }
