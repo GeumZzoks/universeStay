@@ -21,18 +21,12 @@
     <jsp:include page="/WEB-INF/views/common/admin/footer.jsp"/>
 
     <div class="screens-admin-hostingManagement__content">
-        <h3 style="color: indianred; margin-top: 20px">이벤트</h3>
-        <form class="screens-admin-hostingManagement__content-search"
-              action="/event/list/${search}">
-            <input name="search" type="text" placeholder="검색" style="width:150px; height: 24px;">
-            <button type="submit" class="screens-admin-hostingManagement__content-search__btn">검색
-            </button>
-        </form>
+        <h3 style="color: indianred; margin-top: 20px">호스팅관리</h3>
 
         <div class="screens-admin-hostingManagement__content-table-div">
             <table class="screens-admin-hostingManagement__content-table">
                 <tr>
-                    <th class="screens-admin-hostingManagement__content-table__name">
+                    <th class="screens-admin-hostingManagement__content-table__check-all">
                         <input type="checkbox">
                     </th>
                     <th class="screens-admin-hostingManagement__content-table__name">숙소 이름</th>
@@ -59,7 +53,9 @@
                 </tr>
                 <c:forEach var="room" items="${roomList}">
                     <tr>
-                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox"
+                                   class="screens-admin-hostingManagement__content-table__check">
+                        </td>
                         <td> ${room.room_name} </td>
                         <td> ${room.room_total_desc} </td>
                         <td> ${room.room_space_desc} </td>
@@ -75,11 +71,9 @@
         </div>
         <br>
     </div>
-    <div class="screens-admin-hostingManagement__content-bottom">
-        <button class="screens-admin-hostingManagement__content-bottom__btn"
-                onclick="location.href='/admin/event/write'">이벤트 작성
-        </button>
-    </div>
 </div>
+
+<script src="../../../resources/js/admin/hostingManagement.js"></script>
+
 </body>
 </html>
