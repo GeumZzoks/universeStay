@@ -1,14 +1,19 @@
 package com.universestay.project.admin.controller;
 
+import com.universestay.project.admin.dto.HostingManagementDto;
 import com.universestay.project.admin.service.HostingManagementService;
 import com.universestay.project.dto.RoomDto;
+import java.util.Arrays;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/admin/hostingManagement")
@@ -31,5 +36,15 @@ public class HostingManagementController {
 
         }
         return "admin/hostingManagement";
+    }
+
+    @PutMapping()
+    @ResponseBody
+    public String update(@RequestBody HostingManagementDto hostingManagementDto) {
+        String[] test = hostingManagementDto.getRoom_id();
+        System.out.println("status = " + hostingManagementDto.getStatus());
+        System.out.println("test = " + Arrays.toString(test));
+
+        return "";
     }
 }
