@@ -6,9 +6,7 @@
     <typeAliases>
         <typeAlias alias="UserDto" type="com.universestay.project.user.dto.UserDto"/>
         <typeAlias alias="SearchCondition"
-                type="com.universestay.project.admin.dto.SearchCondition"/>
-
-        
+                type="com.universestay.project.common.SearchCondition"/>
         <typeAlias alias="AdminDto" type="com.universestay.project.admin.dto.AdminDto"/>
         <typeAlias alias="EventDto" type="com.universestay.project.admin.dto.EventDto"/>
         <typeAlias alias="CouponDto" type="com.universestay.project.admin.dto.CouponDto"/>

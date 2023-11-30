@@ -9,6 +9,7 @@
     <style>
 
         .screen-admin-userList__container {
+            box-sizing: border-box;
             position: fixed;
             overflow: auto;
             left: 250px;
@@ -53,7 +54,7 @@
             color: black;
         }
 
-        .screen-admin-userList__container__table > tbody > tr > td > a:hover{
+        .screen-admin-userList__container__table > tbody > tr > td > a:hover {
             font-weight: bold;
         }
 
@@ -77,8 +78,8 @@
 <article class="screen-admin-userList__container">
     <section class="screen-admin-userList__container__1">
         <div class="screen-admin-userList__container__search-bar">
-<%--            ?page=10&pageSize=10&option=A&keyword=title  --%>
-            <form action="<c:url value="/admin/userlist"/>" method="get">
+            <%--            ?page=10&pageSize=10&option=A&keyword=title  --%>
+            <form action="<c:url value="/admin/user/list"/>" method="get">
                 <select name="option">
                     <option value="status_id">상태코드</option>
                     <option value="user_nickname">닉네임</option>
@@ -89,7 +90,7 @@
                         name="keyword"
                         placeholder="검색어를 입력해주세요."
                 />
-<%--                todo 아래 두줄 안 넣어 주면 searchcondition으로 못받음--%>
+                <%--                todo 아래 두줄 안 넣어 주면 searchcondition으로 못받음--%>
                 <input hidden="hidden" type="text" name="page" value="1"/>
                 <input hidden="hidden" type="text" name="pageSize" value="10"/>
                 <button type="submit">검색</button>
@@ -100,20 +101,21 @@
                 <caption style="margin: 30px; font-size: 2rem;">유저 목록</caption>
                 <thead>
                 <tr>
-                    <td width="350px">ID</td>
-                    <td width="150px">이름</td>
-                    <td width="150px">닉네임</td>
-                    <td width="100px">회원상태</td>
-                    <td width="230px">마지막로그인</td>
-                    <td width="230px">회원가입일</td>
-                    <td width="100px">호스트 여부</td>
+                    <td style="width: 350px">ID</td>
+                    <td style="width: 150px">이름</td>
+                    <td style="width: 150px">닉네임</td>
+                    <td style="width: 100px">회원상태</td>
+                    <td style="width: 230px">마지막로그인</td>
+                    <td style="width: 230px">회원가입일</td>
+                    <td style="width: 100px">호스트 여부</td>
                 </tr>
                 </thead>
                 <tbody style="margin: 30px;">
                 <c:forEach var="userDto" items="${list}" varStatus="status">
                     <tr>
                         <td class="" style="text-align: center;"><a
-                                href="/admin/userinfo?user_id=${userDto.user_id}">${userDto.user_id}</a></td>
+                                href="/admin/user/info${ph.getQueryString()}&user_id=${userDto.user_id}">${userDto.user_id}</a>
+                        </td>
                         <td style="text-align: center;">${userDto.user_name}</td>
                         <td style="text-align: center;">${userDto.user_nickname}</td>
                         <td style="text-align: center;">${userDto.status_id}</td>
@@ -129,22 +131,23 @@
         </div>
         <div class="screen-admin-userList__container__page" style="text-align: center; margin-top: 20px;">
             <%--  todo <,> 버튼 min, max 넘겼을 때 처리하기  --%>
-            ${ph.beginPage} || ${ph.endPage}
-            <a href="<c:url value='/admin/userlist${ph.getQueryString(1)}'/>">처음</a>
-            <a href="<c:url value='/admin/userlist${ph.getQueryString(ph.sc.page-1)}'/>"><</a>
+            <a href="<c:url value='/admin/user/list${ph.getQueryString(1)}'/>">처음</a>
+            <a id="prevbtn" href="<c:url value='/admin/user/list${ph.getQueryString(ph.sc.page-1)}'/>"><</a>
             <c:forEach var="page" begin="${ph.beginPage}" end="${ph.endPage}" varStatus="">
-                <a id="pagenum${page}" href="<c:url value="/admin/userlist${ph.getQueryString(page)}"/>">${page}</a>
+                <a id="pagenum${page}" href="<c:url value="/admin/user/list${ph.getQueryString(page)}"/>">${page}</a>
             </c:forEach>
-            <a href="<c:url value='/admin/userlist${ph.getQueryString(ph.sc.page+1)}'/>">></a>
-            <a href="<c:url value='/admin/userlist${ph.getQueryString(ph.totalPage)}'/>">마지막</a>
+            <a id="nextbtn" href="<c:url value='/admin/user/list${ph.getQueryString(ph.sc.page+1)}'/>">></a>
+            <a href="<c:url value='/admin/user/list${ph.getQueryString(ph.totalPage)}'/>">마지막</a>
         </div>
     </section>
 </article>
 <script>
     var colorPage = document.getElementById("pagenum${ph.sc.page}");
     colorPage.style.backgroundColor = "gray";
+
+    if ('${ph.sc.page}' == 1) document.getElementById("prevbtn").href = "";
+    if (${ph.sc.page} == ${ph.totalPage}) document.getElementById("nextbtn").href = "";
+
 </script>
 </body>
 </html>
-
-
