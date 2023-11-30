@@ -1,4 +1,4 @@
-package com.universestay.project.admin.dto;
+package com.universestay.project.common;
 
 import org.springframework.web.util.UriComponentsBuilder;
 

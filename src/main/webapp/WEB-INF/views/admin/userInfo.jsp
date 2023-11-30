@@ -34,6 +34,7 @@
             border: 2px solid lightgray;
             border-radius: 20px;
             width: 1500px;
+            height: 800px;
             top: 30px;
             left: 50px;
         }
@@ -52,14 +53,14 @@
 <jsp:include page="/WEB-INF/views/common/admin/footer.jsp" flush="false"/>
 
 <article class="screen-admin-userInfo__container">
-    <div class="screen-admin-userInfo__container__1">
-        <a>
+    <section class="screen-admin-userInfo__container__1">
+        <a href="/admin/user/list${sc.getQueryString()}">
             <button>목록</button>
         </a>
         <a>
             <button>수정</button>
         </a>
-    </div>
+    </section>
     <section class="screen-admin-userInfo__container__2">
         <p>ID : ${dto.user_id}</p>
         <p>추천인 ID : ${dto.user_id2}</p>
