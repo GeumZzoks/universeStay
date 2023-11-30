@@ -1,4 +1,4 @@
-package com.universestay.project.dto;
+package com.universestay.project.admin.dto;
 
 
 import io.swagger.annotations.ApiModelProperty;
