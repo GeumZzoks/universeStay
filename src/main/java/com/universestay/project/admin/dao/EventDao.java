@@ -1,7 +1,7 @@
 package com.universestay.project.admin.dao;
 
 import com.universestay.project.admin.dto.EventDto;
-import com.universestay.project.admin.dto.SearchCondition;
+import com.universestay.project.common.SearchCondition;
 
 import java.util.List;
 import java.util.Map;

@@ -2,7 +2,7 @@ package com.universestay.project.admin.service;
 
 import com.universestay.project.admin.dao.EventDao;
 import com.universestay.project.admin.dto.EventDto;
-import com.universestay.project.admin.dto.SearchCondition;
+import com.universestay.project.common.SearchCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

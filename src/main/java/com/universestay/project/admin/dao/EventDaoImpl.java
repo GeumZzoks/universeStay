@@ -1,7 +1,7 @@
 package com.universestay.project.admin.dao;
 
 import com.universestay.project.admin.dto.EventDto;
-import com.universestay.project.admin.dto.SearchCondition;
+import com.universestay.project.common.SearchCondition;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

@@ -1,9 +1,9 @@
 package com.universestay.project.admin.controller;
 
 import com.universestay.project.admin.dto.EventDto;
-import com.universestay.project.admin.dto.PageHandler;
-import com.universestay.project.admin.dto.SearchCondition;
 import com.universestay.project.admin.service.EventService;
+import com.universestay.project.common.PageHandler;
+import com.universestay.project.common.SearchCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
