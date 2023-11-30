@@ -1,6 +1,5 @@
 package com.universestay.project.user.service;
 
-import com.universestay.project.user.dao.ProfileImgDao;
 import com.universestay.project.user.dao.UserJoinDao;
 import com.universestay.project.user.dto.UserDto;
 import java.io.UnsupportedEncodingException;
@@ -20,9 +19,6 @@ public class JoinServiceImpl implements JoinService {
 
     @Autowired
     UserJoinDao userJoinDao;
-
-    @Autowired
-    ProfileImgDao profileImgDao;
 
     private String uuid_user_id;
 
