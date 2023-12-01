@@ -195,10 +195,14 @@
       url: '<c:url value ="/user/mailCheck?email="/>' + email,
       success: function (data) {
         checkInput.attr('disabled', false);
-        code = data;
-        alert('인증번호가 전송되었습니다.')
+        console.log(data)
+        if ("Y" == data) {
+          alert('인증번호가 전송되었습니다.')
+        }
       },
       error: function (xhr, status, error) {
+        alert('이미 가입된 이메일입니다. 다시 입력해주세요');
+        $("#screens-user-join_signup_email").focus();
         console.error("Ajax 요청 실패:", status, error);
         console.log(xhr.responseText);
       }

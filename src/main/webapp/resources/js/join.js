@@ -274,4 +274,5 @@ $(function () {
       $("#pwd_input_first_helper_text").html(result).removeClass(
           "unavailable");
     }
-  });
+  })
+});
