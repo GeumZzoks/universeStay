@@ -7,5 +7,6 @@
         <typeAlias alias="UserDto" type="com.universestay.project.user.dto.UserDto"/>
         <typeAlias alias="SearchCondition" type="com.universestay.project.admin.dto.SearchCondition"/>
         <typeAlias alias="AdminDto" type="com.universestay.project.admin.dto.AdminDto"/>
+        <typeAlias alias="NoticeDto" type="com.universestay.project.notice.dto.NoticeDto"/>
     </typeAliases>
 </configuration>

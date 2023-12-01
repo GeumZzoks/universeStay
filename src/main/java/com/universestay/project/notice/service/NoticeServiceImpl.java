@@ -3,6 +3,7 @@ package com.universestay.project.notice.service;
 import com.universestay.project.notice.dao.NoticeDao;
 import com.universestay.project.notice.dto.NoticeDto;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +14,18 @@ public class NoticeServiceImpl implements NoticeService {
     NoticeDao noticeDao;
 
     @Override
+    public int getCount() throws Exception {
+        return noticeDao.count();
+    }
+
+    @Override
     public List<NoticeDto> getList() throws Exception {
         return noticeDao.selectAll();
+    }
+
+    @Override
+    public List<NoticeDto> getPage(Map map) throws Exception {
+        return noticeDao.selectPage(map);
     }
 
     @Override

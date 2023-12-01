@@ -16,22 +16,31 @@ public class NoticeServiceImplTest {
     NoticeService noticeService;
 
     @Test
+    public void getCount() throws Exception {
+        System.out.println(noticeService.getCount());
+    }
+
+    @Test
     public void getList() throws Exception {
+        // 공지사항 목록 출력
         System.out.println(noticeService.getList());
     }
 
     @Test
     public void read() throws Exception {
+        // 공지사항 조회 출력
         System.out.println(noticeService.read(18));
     }
 
     @Test
     public void remove() throws Exception {
-        System.out.println(noticeService.remove(18));
+        // 공지사항 삭제(1개 삭제되면 1로 반환 삭제되지 않으면 0)
+        System.out.println("remove COUNT : " + noticeService.remove(18));
     }
 
     @Test
     public void write() throws Exception {
+        // 공지사항 등록(NoticeDto에 데아터 담아서 noticeService.write 메서드로 데이터 전달, 글 등록 완료 시 1 / 등록이 안될 시 0 반환)
         NoticeDto noticeDto = new NoticeDto();
         noticeDto.setAdmin_id("0ca24692-89ea-11ee-b9d1-0242ac120002");
         noticeDto.setNotice_title("2023/11/25 토요일 - 서버 점검이 있습니다.");
@@ -44,6 +53,7 @@ public class NoticeServiceImplTest {
 
     @Test
     public void modify() throws Exception {
+        // 공지사항 수정(NoticeDto에 데이터 담아서 noticeService.modify 메서드로 입력한 데이터 전달, 글 수정 완료 시 1 / 안됐을 시 0 반환)
         NoticeDto noticeDto = new NoticeDto();
         noticeDto.setNotice_id(19);
         noticeDto.setNotice_title("변경된 제목!!!");
