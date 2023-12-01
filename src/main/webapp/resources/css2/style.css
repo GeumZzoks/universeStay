@@ -25,4 +25,10 @@
 @import url(screens/user/login.css);
 @import url(screens/user/main.css);
 @import url(screens/user/withdrawal.css);
+<<<<<<< HEAD
 @import url(screens/user/userInfo.css);
+=======
+
+@import url(screens/admin/notice_style.css);
+@import url(screens/admin/notice_media.css);
+>>>>>>> 4feaa10 (feat: 관리자 공지사항 목록, 작성 페이지 VIEW 구현 중)
