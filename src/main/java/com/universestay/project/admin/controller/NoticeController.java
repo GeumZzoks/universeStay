@@ -3,15 +3,11 @@ package com.universestay.project.admin.controller;
 
 import com.universestay.project.admin.dto.NoticeDto;
 import com.universestay.project.admin.service.NoticeService;
-
-import com.universestay.project.notice.dto.NoticeDto;
 import com.universestay.project.notice.dto.NoticePageHandler;
-import com.universestay.project.notice.service.NoticeService;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,11 +26,6 @@ public class NoticeController {
 
     // 공지사항 목록
     @GetMapping("/list")
-<<<<<<< HEAD:src/main/java/com/universestay/project/admin/controller/NoticeController.java
-    public String list(Model model) throws Exception {
-        model.addAttribute("list", noticeService.getList());
-        return "/admin/noticeList";
-=======
     public String list(@RequestParam(defaultValue = "1") Integer page,
             @RequestParam(defaultValue = "10") Integer pageSize, Model m,
             HttpServletRequest request)
@@ -63,16 +54,10 @@ public class NoticeController {
             m.addAttribute("msg", "LIST_ERR");
         }
         return "/notice/noticeList2";
->>>>>>> 3745084 (feat: 공지사항 목록 페이징 처리 구현 중):src/main/java/com/universestay/project/notice/controller/NoticeController.java
     }
 
     // 공지사항 조회
     @GetMapping("/read")
-<<<<<<< HEAD:src/main/java/com/universestay/project/admin/controller/NoticeController.java
-    public String read(@RequestParam("notice_id") Integer notice_id, Model model) throws Exception {
-        model.addAttribute("noticeDto", noticeService.read(notice_id));
-        return "/admin/notice";
-=======
     public String read(@RequestParam("notice_id") Integer notice_id, Model model,
             RedirectAttributes rttr) {
         // DB에 있는 공지사항 번호이면 보여주고, 없으면 에러 메시지 뷰에 전달
@@ -83,7 +68,6 @@ public class NoticeController {
             rttr.addFlashAttribute("msg", "READ_ERR");
         }
         return "/notice/notice";
->>>>>>> 3745084 (feat: 공지사항 목록 페이징 처리 구현 중):src/main/java/com/universestay/project/notice/controller/NoticeController.java
     }
 
     // 공지사항 삭제
@@ -100,37 +84,21 @@ public class NoticeController {
             e.printStackTrace();
             msg = "DEL_ERR";
         }
-<<<<<<< HEAD:src/main/java/com/universestay/project/admin/controller/NoticeController.java
-        return "redirect:/admin/notice/list";
-=======
 
         // 삭제 되었으면 삭제 성공 메세지 뷰에 전달
         rttr.addFlashAttribute("msg", msg);
         return "redirect:/notice/noticeList";
->>>>>>> 3745084 (feat: 공지사항 목록 페이징 처리 구현 중):src/main/java/com/universestay/project/notice/controller/NoticeController.java
     }
 
     // 공지사항 등록(get 요청)
     @GetMapping("/write")
-<<<<<<< HEAD:src/main/java/com/universestay/project/admin/controller/NoticeController.java
-    public String getWrite() throws Exception {
-        return "/admin/noticeWrite";
-=======
     public String getWrite() {
         return "/notice/noticeWrite";
->>>>>>> 3745084 (feat: 공지사항 목록 페이징 처리 구현 중):src/main/java/com/universestay/project/notice/controller/NoticeController.java
     }
 
     // 공지사항 등록(post 요청)
     @PostMapping("/write")
-<<<<<<< HEAD:src/main/java/com/universestay/project/admin/controller/NoticeController.java
-    public String postWrite(NoticeDto noticeDto) throws Exception {
-        noticeService.write(noticeDto);
-        return "redirect:/admin/notice/list";
-    }
-=======
     public String postWrite(NoticeDto noticeDto, RedirectAttributes rttr, Model model) {
->>>>>>> 3745084 (feat: 공지사항 목록 페이징 처리 구현 중):src/main/java/com/universestay/project/notice/controller/NoticeController.java
 
         try {
             // 공지사항 등록 실패 시
