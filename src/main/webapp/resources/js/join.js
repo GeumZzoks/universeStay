@@ -155,7 +155,6 @@ $(function () {
         const result = "이 아이디는 이미 사용 중입니다.";
         $("#id_input_helper_text").html(result).addClass(
             "unavailable");
-        // alert(error);
       },
     });
   });
@@ -253,21 +252,6 @@ $(function () {
     });
   });
 });
-//
-// $(function () {
-//   $("#screens-user-join_signup_pw, #screens-user-join_signup_pww").on('input',
-//       function () {
-//         let user_pw = $("#screens-user-join_signup_pw").val();
-//         let user_pww = $("#screens-user-join_signup_pww").val();
-//
-//         if (user_pw == user_pww) {
-//           result = "비밀번호가 일치합니다.";
-//           $("#pwd_input_helper_text").html(result).removeClass("unavailable");
-//         } else { // In case of failure
-//           const result = "비밀번호가 일치하지 않습니다.";
-//           $("#pwd_input_helper_text").html(result).addClass("unavailable");
-//         }
-//       });
 
 $(function () {
   $("#screens-user-join_signup_pw").on('input', function () {
