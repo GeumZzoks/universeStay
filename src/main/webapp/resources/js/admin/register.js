@@ -1,17 +1,17 @@
 // 월 선택 박스
 function show(anything) {
   document.querySelector(
-      '.screens-user-join_dropdown__textBox').value = anything;
+      '.screens-admin-register_dropdown__textBox').value = anything;
 }
 
-let dropdown = document.querySelector('.screens-user-join_dropdown');
+let dropdown = document.querySelector('.screens-admin-register_dropdown');
 
 dropdown.onclick = function () {
   dropdown.classList.toggle('active');
 
   // 다른 영역 클릭 시 드롭다운 닫기
   $(document).mouseup(function (e) {
-    let container = $(".screens-user-join_dropdown");
+    let container = $(".screens-admin-register_dropdown");
     if (container.has(e.target).length === 0) {
       container.removeClass('active');
     }
@@ -47,7 +47,7 @@ function search_postcode() {
 
       // 우편번호와 주소 정보를 해당 필드에 넣는다.
       document.getElementById(
-          "screens-user-join_address_roadAddress").value = roadAddr;
+          "screens-admin-register_address_roadAddress").value = roadAddr;
 
       var guideTextBox = document.getElementById("guide");
       // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
@@ -71,23 +71,25 @@ function search_postcode() {
 // 회원가입 버튼 클릭 시
 $(document).ready(function () {
   // 가입하기 버튼 클릭 이벤트
-  $("#screens-user-join_signup_btn").click(function () {
+  $("#screens-admin-register_signup_btn").click(function () {
 
     if (fnSubmit()) {
 
       // 사용자가 입력한 정보
-      var user_nickname = $("#screens-user-join_signup_id").val();
-      var user_pwd = $("#screens-user-join_signup_pw").val();
-      var user_confirmPassword = $("#screens-user-join_signup_pww").val();
-      var user_name = $("#screens-user-join_signup_name").val();
-      var user_birthYear = $("#screens-user-join_signup_birth_yy").val();
-      var user_birthMonth = $(".screens-user-join_dropdown__textBox").val();
-      var user_birthDay = $("#screens-user-join_signup_birth_dd").val();
-      var user_email = $("#screens-user-join_signup_email").val();
-      var user_phone_num1 = $("#screens-user-join_signup_phone_1").val();
-      var user_phone_num2 = $("#screens-user-join_signup_phone_2").val();
-      var address = $("#screens-user-join_address_roadAddress").val();
-      var address_detail = $("#screens-user-join_address_detailAddress").val();
+      var user_nickname = $("#screens-admin-register_signup_id").val();
+      var user_pwd = $("#screens-admin-register_signup_pw").val();
+      var user_confirmPassword = $("#screens-admin-register_signup_pww").val();
+      var user_name = $("#screens-admin-register_signup_name").val();
+      var user_birthYear = $("#screens-admin-register_signup_birth_yy").val();
+      var user_birthMonth = $(
+          ".screens-admin-register_dropdown__textBox").val();
+      var user_birthDay = $("#screens-admin-register_signup_birth_dd").val();
+      var user_email = $("#screens-admin-register_signup_email").val();
+      var user_phone_num1 = $("#screens-admin-register_signup_phone_1").val();
+      var user_phone_num2 = $("#screens-admin-register_signup_phone_2").val();
+      var address = $("#screens-admin-register_address_roadAddress").val();
+      var address_detail = $(
+          "#screens-admin-register_address_detailAddress").val();
       var user_img_url = $("#file").val();
       // 서버로 전송할 데이터를 객체
       var userDto = {
@@ -129,8 +131,8 @@ $(document).ready(function () {
 });
 
 $(function () {
-  $("#screens-user-join_id_Check_Btn").click(function () {
-    let user_nickname = $("#screens-user-join_signup_id").val();
+  $("#screens-admin-register_id_Check_Btn").click(function () {
+    let user_nickname = $("#screens-admin-register_signup_id").val();
 
     $.ajax({
       type: 'post',
@@ -148,130 +150,105 @@ $(function () {
           $("#id_input_helper_text").html(result).addClass(
               "unavailable");
 
-          $("#screens-user-join_signup_id").val("").trigger("focus");
+          $("#screens-admin-register_signup_id").val("").trigger("focus");
         }
       },
       error: function (error) {
         const result = "이 아이디는 이미 사용 중입니다.";
         $("#id_input_helper_text").html(result).addClass(
             "unavailable");
+        // alert(error);
       },
     });
   });
 
   $(function () {
-    $("#screens-user-join_signup_pw, #screens-user-join_signup_pww").on('input',
+    $("#screens-admin-register_signup_pw, #screens-admin-register_signup_pww").on(
+        'input',
         function () {
-          let user_pw = $("#screens-user-join_signup_pw").val();
-          let user_pww = $("#screens-user-join_signup_pww").val();
+          let user_pw = $("#screens-admin-register_signup_pw").val();
+          let user_pww = $("#screens-admin-register_signup_pww").val();
 
-          if (user_pw === user_pww && user_pww !== null && user_pw !== null
-              && user_pww !== "" && user_pw !== "") {
+          if (user_pw == user_pww) {
             result = "비밀번호가 일치합니다.";
             $("#pwd_input_helper_text").html(result).removeClass("unavailable");
-          } else if (user_pw !== user_pww) { // In case of failure
+          } else { // In case of failure
             const result = "비밀번호가 일치하지 않습니다.";
-            $("#pwd_input_helper_text").html(result).addClass("unavailable");
-          } else if (user_pww == null || user_pw == null || user_pww == ""
-              || user_pw == "") {
-            const result = "비밀번호 확인을 입력해주세요.";
             $("#pwd_input_helper_text").html(result).addClass("unavailable");
           }
         });
 
-    $(function fnSubmit() {
+    function fnSubmit() {
 
       var email_rule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
       var tel_rule = /^\d{2,3}-\d{3,4}-\d{4}$/;
 
-      if ($("#screens-user-join_signup_id").val() == null || $(
-          "#screens-user-join_signup_id").val() == "") {
+      if ($("#screens-admin-register_signup_id").val() == null || $(
+          "#screens-admin-register_signup_id").val() == "") {
         alert("아이디를 입력해주세요.");
-        $("#screens-user-join_signup_id").focus();
+        $("#screens-admin-register_signup_id").focus();
 
         return false;
       }
 
-      if ($("#screens-user-join_signup_pw").val() == null || $(
+      if ($("#screens-admin-register_signup_pw").val() == null || $(
           "screens-user-join_signup_pw").val() == "") {
         alert("비밀번호를 입력해주세요.");
-        $("#screens-user-join_signup_pw").focus();
+        $("#screens-admin-register_signup_pw").focus();
 
         return false;
       }
 
-      if ($("#screens-user-join_signup_pww").val() == null || $(
-          "#screens-user-join_signup_pww").val() == "") {
+      if ($("#screens-admin-register_signup_pww").val() == null || $(
+          "#screens-admin-register_signup_pww").val() == "") {
         alert("비밀번호 확인을 입력해주세요.");
-        $("#screens-user-join_signup_pww").focus();
+        $("#screens-admin-register_signup_pww").focus();
 
         return false;
       }
 
-      if ($("#screens-user-join_signup_name").val() == null || $(
-          "#screens-user-join_signup_name").val() == "") {
+      if ($("#screens-admin-register_signup_name").val() == null || $(
+          "#screens-admin-register_signup_name").val() == "") {
         alert("이름을 입력해주세요.");
-        $("#screens-user-join_signup_name").focus();
+        $("#screens-admin-register_signup_name").focus();
 
         return false;
       }
 
-      if ($("#screens-user-join_signup_email").val() == null || $(
-          "#screens-user-join_signup_email").val() == "") {
+      if ($("#screens-admin-register_signup_email").val() == null || $(
+          "#screens-admin-register_signup_email").val() == "") {
         alert("이메일을 입력해주세요.");
-        $("#screens-user-join_signup_email").focus();
+        $("#screens-admin-register_signup_email").focus();
 
         return false;
       }
 
-      if (!email_rule.test($("#screens-user-join_signup_email").val())) {
+      if (!email_rule.test($("#screens-admin-register_signup_email").val())) {
         alert("이메일을 형식에 맞게 입력해주세요. ex) 1234@naver.com");
-        $("#screens-user-join_signup_email").focus();
+        $("#screens-admin-register_signup_email").focus();
         return false;
       }
 
-      if ($("#screens-user-join_code_check_input").val() == null || $(
-              "#screens-user-join_code_check_input").val()
+      if ($("#screens-admin-register_code_check_input").val() == null || $(
+              "#screens-admin-register_code_check_input").val()
           == "") {
         alert("인증번호를 입력해주세요.");
-        $("#screens-user-join_code_check_input").focus();
+        $("#screens-admin-register_code_check_input").focus();
 
         return false;
       }
 
-      if (!tel_rule.test($("#screens-user-join_signup_phone_1").val())) {
+      if (!tel_rule.test($("#screens-admin-register_signup_phone_1").val())) {
         alert("전화번호 형식에 맞게 입력해주세요. ex) 010-0000-0000");
-        $("#screens-user-join_signup_phone_1").focus();
+        $("#screens-admin-register_signup_phone_1").focus();
         return false;
       }
 
       if (confirm("회원가입하시겠습니까?")) {
-        $("#screens-user-join_signup_btn").submit();
+        $("#screens-admin-register_signup_btn").submit();
         return true;
       }
-    });
-  });
-});
 
-$(function () {
-  $("#screens-user-join_signup_pw").on('input', function () {
-    var pw = $("#screens-user-join_signup_pw").val();
-    var num = pw.search(/[0-9]/g);
-    var eng = pw.search(/[a-z]/ig);
-    var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
-
-    if (pw.length < 8 || pw.length > 20) {
-      result = "8자리 ~ 20자리 이내로 입력해주세요.";
-      $("#pwd_input_first_helper_text").html(result).addClass("unavailable");
-    } else if (pw.search(/\s/) != -1) {
-      result = "비밀번호는 공백 없이 입력해주세요.";
-      $("#pwd_input_first_helper_text").html(result).addClass("unavailable");
-    } else if (num < 0 || eng < 0 || spe < 0) {
-      result = "영문,숫자, 특수문자를 혼합하여 입력해주세요.";
-      $("#pwd_input_first_helper_text").html(result).addClass("unavailable");
-    } else {
-      result = "사용 가능한 비밀번호입니다.";
-      $("#pwd_input_first_helper_text").html(result).removeClass(
-          "unavailable");
     }
   });
+});

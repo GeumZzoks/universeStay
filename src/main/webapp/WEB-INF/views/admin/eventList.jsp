@@ -12,23 +12,63 @@
 <head>
     <title>이벤트</title>
     <link rel="stylesheet" href="/resources/css2/style.css">
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <style>
+        .paging {
+            color: black;
+            width: 100%;
+            align-items: center;
+        }
+
+        .page {
+            color: black;
+            padding: 6px;
+            margin-right: 10px;
+        }
+
+        .page:active {
+            background-color: indianred;
+        }
+
+        .paging:active {
+            color: indianred;
+        }
+
+        .paging-container {
+            height: 10px;
+            display: flex;
+            position: absolute;
+            left: 50%;
+            bottom: 30px;
+            transform: translate(-50%, 0);
+            z-index: 5;
+        }
+    </style>
 </head>
 <body>
 <div class="screens-admin-event__container">
-    
+
     <jsp:include page="/WEB-INF/views/common/admin/header.jsp"/>
     <jsp:include page="/WEB-INF/views/common/admin/navigation.jsp"/>
     <jsp:include page="/WEB-INF/views/common/admin/footer.jsp"/>
 
     <div class="screens-admin-event__content">
         <h3 style="color: indianred; margin-top: 20px">이벤트</h3>
-        <form class="screens-admin-event__content-search" action="/event/list/${search}">
-            <input name="search" type="text" placeholder="검색" style="width:150px; height: 24px;">
-            <button type="submit" class="screens-admin-event__content-search__btn">검색</button>
+        <form action="<c:url value='/admin/event/list'/>" class="screens-admin-event__content-search" method="get"
+              style="width:150px; height: 24px;">
+            <select class="screens-admin-event__content-search-option" name="option">
+                <option value="T" ${ph.sc.option=='T' ? "selected" : ""}>제목</option>
+                <option value="W" ${ph.sc.option=='W' ? "selected" : ""}>작성자</option>
+            </select>
+            <input type="text" name="keyword" class="screens-admin-event__content-search-input" type="text"
+                   value="${ph.sc.keyword}"
+                   placeholder="검색어를 입력해주세요">
+            <input type="submit" class="screens-admin-event__content-search__btn" value="검색">
+
         </form>
 
         <div class="screens-admin-event__content-table-div">
-            <table class="screens-admin-event__content-table">
+            <table class="screens-admin-event__content-table" style="table-layout: fixed">
                 <tr>
                     <th class="screens-admin-event__content-table__no">번호</th>
                     <th class="screens-admin-event__content-table__title" style="text-align: center">이벤트</th>
@@ -36,7 +76,7 @@
                     <th class="screens-admin-event__content-table__regdate">등록일</th>
                     <th class="screens-admin-event__content-table__viewcnt">조회수</th>
                 </tr>
-                <c:forEach var="eventDto" items="${eventList}">
+                <c:forEach var="eventDto" items="${list}">
                     <tr>
                         <td class="screens-admin-event__content-table__no"
                             style="font-size: 12px">${eventDto.event_id}</td>
@@ -66,11 +106,34 @@
             </table>
         </div>
         <br>
+
+        <div class="screens-admin-event__content-bottom">
+            <button class="screens-admin-event__content-bottom__btn" onclick="location.href='/admin/event/write'">이벤트 작성
+            </button>
+        </div>
+        <div class="paging-container">
+            <div class="paging">
+                <c:if test="${totalCnt==null || totalCnt==0}">
+                    <div> 게시물이 없습니다.</div>
+                </c:if>
+                <c:if test="${totalCnt!=null && totalCnt!=0}">
+                    <c:if test="${ph.showPrev}">
+                        <a class="page"
+                           href="<c:url value="/admin/event/list${ph.sc.getQueryString(ph.beginPage-1)}"/>">&lt;</a>
+                    </c:if>
+                    <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
+                        <a class="page ${i==ph.sc.page? "paging-active" : ""}"
+                           href="<c:url value="/admin/event/list${ph.sc.getQueryString(i)}"/>">${i}</a>
+                    </c:forEach>
+                    <c:if test="${ph.showNext}">
+                        <a class="page"
+                           href="<c:url value="/admin/event/list${ph.sc.getQueryString(ph.endPage+1)}"/>">&gt;</a>
+                    </c:if>
+                </c:if>
+            </div>
+        </div>
     </div>
-    <div class="screens-admin-event__content-bottom">
-        <button class="screens-admin-event__content-bottom__btn" onclick="location.href='/admin/event/write'">이벤트 작성
-        </button>
-    </div>
+
 </div>
 </body>
 </html>

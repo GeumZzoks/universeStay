@@ -19,8 +19,10 @@
 /*!* Screens *!*/
 @import url(screens/admin/event.css);
 @import url(screens/admin/loginForm.css);
+@import url(screens/admin/register.css);
 
 @import url(screens/user/join.css);
 @import url(screens/user/login.css);
 @import url(screens/user/main.css);
 @import url(screens/user/withdrawal.css);
+@import url(screens/user/userInfo.css);

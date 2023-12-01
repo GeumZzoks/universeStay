@@ -5,5 +5,5 @@ import com.universestay.project.common.exception.CommonException;
 
 public interface LoginAdminDao {
 
-    AdminDto selectUser(String admin_id) throws CommonException;
+    AdminDto selectUser(String admin_email) throws CommonException;
 }

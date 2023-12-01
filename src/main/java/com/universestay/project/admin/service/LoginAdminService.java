@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface LoginAdminService {
 
-    boolean confirmUser(String username, String password, HttpServletRequest request)
+    boolean confirmUser(String userEmail, String password, HttpServletRequest request)
             throws CommonException;
 
 }
