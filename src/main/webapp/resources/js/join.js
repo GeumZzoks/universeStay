@@ -155,7 +155,6 @@ $(function () {
         const result = "이 아이디는 이미 사용 중입니다.";
         $("#id_input_helper_text").html(result).addClass(
             "unavailable");
-        // alert(error);
       },
     });
   });
@@ -166,16 +165,21 @@ $(function () {
           let user_pw = $("#screens-user-join_signup_pw").val();
           let user_pww = $("#screens-user-join_signup_pww").val();
 
-          if (user_pw == user_pww) {
+          if (user_pw === user_pww && user_pww !== null && user_pw !== null
+              && user_pww !== "" && user_pw !== "") {
             result = "비밀번호가 일치합니다.";
             $("#pwd_input_helper_text").html(result).removeClass("unavailable");
-          } else { // In case of failure
+          } else if (user_pw !== user_pww) { // In case of failure
             const result = "비밀번호가 일치하지 않습니다.";
+            $("#pwd_input_helper_text").html(result).addClass("unavailable");
+          } else if (user_pww == null || user_pw == null || user_pww == ""
+              || user_pw == "") {
+            const result = "비밀번호 확인을 입력해주세요.";
             $("#pwd_input_helper_text").html(result).addClass("unavailable");
           }
         });
 
-    function fnSubmit() {
+    $(function fnSubmit() {
 
       var email_rule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
       var tel_rule = /^\d{2,3}-\d{3,4}-\d{4}$/;
@@ -245,7 +249,29 @@ $(function () {
         $("#screens-user-join_signup_btn").submit();
         return true;
       }
-
-    }
+    });
   });
 });
+
+$(function () {
+  $("#screens-user-join_signup_pw").on('input', function () {
+    var pw = $("#screens-user-join_signup_pw").val();
+    var num = pw.search(/[0-9]/g);
+    var eng = pw.search(/[a-z]/ig);
+    var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+
+    if (pw.length < 8 || pw.length > 20) {
+      result = "8자리 ~ 20자리 이내로 입력해주세요.";
+      $("#pwd_input_first_helper_text").html(result).addClass("unavailable");
+    } else if (pw.search(/\s/) != -1) {
+      result = "비밀번호는 공백 없이 입력해주세요.";
+      $("#pwd_input_first_helper_text").html(result).addClass("unavailable");
+    } else if (num < 0 || eng < 0 || spe < 0) {
+      result = "영문,숫자, 특수문자를 혼합하여 입력해주세요.";
+      $("#pwd_input_first_helper_text").html(result).addClass("unavailable");
+    } else {
+      result = "사용 가능한 비밀번호입니다.";
+      $("#pwd_input_first_helper_text").html(result).removeClass(
+          "unavailable");
+    }
+  });
