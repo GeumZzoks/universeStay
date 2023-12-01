@@ -55,20 +55,6 @@ public class JoinController {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Y");
     }
 
-    // 이메일 중복체크
-//    @PostMapping("/checkEmail")
-//    public ResponseEntity<String> checkEmail(@RequestParam("user_email") String user_email) {
-//        try {
-//            if (joinService.checkEmail(user_email) != 1) {
-//                return ResponseEntity.ok("N");
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            throw new RuntimeException(e);
-//        }
-//        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Y");
-//    }
-
     // 이메일 인증
     @GetMapping("/mailCheck")
     public ResponseEntity<String> mailCheck(String email) {
