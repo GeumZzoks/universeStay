@@ -4,12 +4,15 @@
 
 <mapper namespace="com.universestay.project.user.dao.ProfileImgDao">
 
+
     <insert id="insertProfileImg" parameterType="map">
-        insert into ProfileImg (user_id, profile_img_url, profile_img_is_remove, created_at,
+        insert into ProfileImg (profile_img_id, user_id, profile_img_url, profile_img_is_remove,
+                                created_at,
                                 created_id,
                                 updated_at, updated_id)
-        values (#{user_id}, #{profile_img_url}, 'N', now(), #{user_id}, now(),
-                #{user_id})
+        values (#{profile_img_id}, #{user_id}, #{profile_img_url}, 'N', now(), #{user_id}, now(),
+                #{user_id});
     </insert>
+
 
 </mapper>
