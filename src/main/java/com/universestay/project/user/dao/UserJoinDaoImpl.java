@@ -27,5 +27,10 @@ public class UserJoinDaoImpl implements UserJoinDao {
         return session.selectOne(namespace + "checkId", user_nickname);
     }
 
+    @Override
+    public int checkEmail(String user_email) throws Exception {
+        return session.selectOne(namespace + "checkEmail", user_email);
+    }
+
 
 }
