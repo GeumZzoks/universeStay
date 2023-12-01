@@ -25,3 +25,6 @@
 /*!*@import url(screens/user/login.css);*!*/
 @import url(screens/user/main.css);
 @import url(screens/user/withdrawal.css);
+
+@import url(screens/admin/notice_style.css);
+@import url(screens/admin/notice_media.css);
