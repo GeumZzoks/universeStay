@@ -98,6 +98,5 @@ public class UserManagementController {
             e.printStackTrace();
         }
         return "/admin/userInfo";
-
     }
 }

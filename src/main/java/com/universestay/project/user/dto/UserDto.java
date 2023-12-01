@@ -27,9 +27,6 @@ public class UserDto {
     @ApiModelProperty(notes = "상태코드", example = "U01", required = true)
     private String status_id;
 
-    @ApiModelProperty(notes = "프로필이미지ID", example = "0ca24692-89ea-11ee-b9d1-0242ac120002", required = true)
-    private String profile_img_id;
-
     @ApiModelProperty(notes = "비밀번호", example = "DSTdmfkaksjtm12!!", required = true)
     private String user_pwd;
 
@@ -65,9 +62,6 @@ public class UserDto {
 
     @ApiModelProperty(notes = "호스팅 시작 일자", example = "YYYY-MM-DD hh:mm:ss.000000", required = false)
     private Timestamp user_hosting_started_at;
-
-    @ApiModelProperty(notes = "프로필이미지url", example = "http://down.edunet4u.net/KEDNCM/A000800002_20140423/e6_so_44_01_image01_01.jpg", required = false)
-    private String user_img_url;
 
     @ApiModelProperty(notes = "자기소개", example = "여행이 취미입니다만,", required = false)
     private String user_bio;

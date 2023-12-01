@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.universestay.project.user.dao.ProfileImgDao">
+
+
+    <insert id="insertProfileImg" parameterType="map">
+        insert into ProfileImg (profile_img_id, user_id, profile_img_url, profile_img_is_remove,
+                                created_at,
+                                created_id,
+                                updated_at, updated_id)
+        values (#{profile_img_id}, #{user_id}, #{profile_img_url}, 'N', now(), #{user_id}, now(),
+                #{user_id});
+    </insert>
+
+
+</mapper>

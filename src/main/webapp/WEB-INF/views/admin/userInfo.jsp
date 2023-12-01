@@ -6,43 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>유저 정보</title>
     <style>
-        .screen-admin-userInfo__container {
-            /*float: right;*/
-            /*display: flex;*/
-            /*flex-direction: column;*/
-            position: fixed;
-            overflow: auto;
-            left: 250px;
-            top: 70px;
-            width: calc(100% - 250px);
-            height: calc(100% - 70px);
-        }
+      .screen-admin-userInfo__container {
+        /*float: right;*/
+        /*display: flex;*/
+        /*flex-direction: column;*/
+        position: fixed;
+        overflow: auto;
+        left: 250px;
+        top: 70px;
+        width: calc(100% - 250px);
+        height: calc(100% - 70px);
+      }
 
-        .screen-admin-userInfo__container__1 {
-            float: right;
-            margin-right: 100px;
-            margin-bottom: 20px;
-            /*justify-content: flex-end;*/
-        }
+      .screen-admin-userInfo__container__1 {
+        float: right;
+        margin-right: 100px;
+        margin-bottom: 20px;
+        /*justify-content: flex-end;*/
+      }
 
-        .screen-admin-userInfo__container__1 > a {
-            /*justify-content: flex-end;*/
-        }
+      .screen-admin-userInfo__container__1 > a {
+        /*justify-content: flex-end;*/
+      }
 
-        .screen-admin-userInfo__container__2 {
-            position: absolute;
-            border: 2px solid lightgray;
-            border-radius: 20px;
-            width: 1500px;
-            height: 800px;
-            top: 30px;
-            left: 50px;
-        }
+      .screen-admin-userInfo__container__2 {
+          position: absolute;
+          border: 2px solid lightgray;
+          border-radius: 20px;
+          width: 1500px;
+          height: 800px;
+          top: 30px;
+          left: 50px;
+      }
 
-        .screen-admin-userInfo__container__2 > p {
-            margin-bottom: 10px;
-            font-size: 20px;
-        }
+      .screen-admin-userInfo__container__2 > p {
+        margin-bottom: 10px;
+        font-size: 20px;
+      }
     </style>
 </head>
 <body>
@@ -65,7 +65,6 @@
         <span>ID : </span><span>${dto.user_id}</span><br>
         <span>추천인 ID : </span><span>${dto.user_id2}</span><br>
         <span>상태코드 : </span><span>${dto.status_id}</span><br>
-        <span>프로필이미지 ID : </span><span>${dto.profile_img_id}</span><br>
         <span>비밀번호 : </span><span>${dto.user_pwd}</span><br>
         <span>닉네임 : </span><span>${dto.user_nickname}</span><br>
         <span>이름 : </span><span>${dto.user_name}</span><br>
@@ -78,7 +77,6 @@
         <span>신분증 인증 : </span><span>${dto.user_is_certificated}</span><br>
         <span>호스트 여부 : </span><span>${dto.user_is_host}</span><br>
         <span>호스트 전환일자 : </span><span>${dto.user_hosting_started_at}</span><br>
-        <span>프로필 이미지 URL : </span><span>${dto.user_img_url}</span><br>
         <span>자기소개 : </span><span>${dto.user_bio}</span><br>
         <span>최초등록일자 : </span><span>${dto.created_at}</span><br>
         <span>최초등록자 ID : </span><span>${dto.created_id}</span><br>

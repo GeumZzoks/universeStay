@@ -18,10 +18,27 @@
         WHERE event_id = #{event_id}
     </select>
 
+    <select id="getAdminNickname" parameterType="String" resultType="String">
+        SELECT admin_nickname
+        FROM Admin
+        WHERE admin_id = #{admin_id}
+    </select>
+
     <select id="selectAll" resultType="EventDto">
         SELECT *
         FROM Event
-        ORDER BY created_at DESC
+        ORDER BY created_at DESC;
+    </select>
+
+    <sql id="selectFromEvent">
+        SELECT event_id, admin_id, event_title, event_ctt, event_hit, created_at
+        FROM Event
+    </sql>
+
+    <select id="selectPage" parameterType="map" resultType="EventDto">
+        <include refid="selectFromEvent"/>
+        ORDER BY created_at DESC, event_id DESC
+        LIMIT #{offset}, #{pageSize}
     </select>
 
     <update id="update" parameterType="EventDto">
@@ -49,11 +66,31 @@
         WHERE event_id = #{event_id}
     </update>
 
-    <!--검색은 아직 미구현입니다.-->
-    <!--    <select id="search" parameterType="int" resultType="EventDto">-->
-    <!--        SELECT *-->
-    <!--        FROM Event-->
-    <!--        WHERE event_title LIKE concat('%', #{search}, '%')-->
-    <!--        ORDER BY created_at DESC-->
-    <!--    </select>-->
+    <sql id="searchCondition">
+        <choose>
+            <when test='option=="T"'>
+                AND event_title LIKE concat('%', #{keyword}, '%')
+            </when>
+            <otherwise>
+                AND admin_id LIKE concat('%', #{keyword}, '%')
+            </otherwise>
+        </choose>
+    </sql>
+
+    <select id="searchSelectPage" parameterType="SearchCondition" resultType="EventDto">
+        SELECT event_id, admin_id, event_title, event_ctt, event_hit, created_at
+        FROM Event
+        WHERE true
+        <include refid="searchCondition"/>
+        ORDER BY created_at DESC, event_id DESC
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="searchResultCnt" parameterType="SearchCondition" resultType="int">
+        SELECT count(*)
+        FROM Event
+        WHERE true
+        <include refid="searchCondition"/>
+    </select>
+
 </mapper>

@@ -91,8 +91,6 @@
             color: black;
         }
 
-
-
         .screen-admin-userList__container__table > tbody > tr > td > a:hover {
             box-sizing: border-box;
             font-weight: bold;
