@@ -3,6 +3,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.universestay.project.admin.dao.NoticeDao">
+
+    <select id="count" resultType="int">
+        SELECT count(*)
+        FROM Notice
+    </select>
+
+
     <select id="selectAll" resultType="NoticeDto">
         select *
         from Notice
@@ -13,6 +20,17 @@
         select *
         from Notice
         where notice_id = #{notice_id}
+    </select>
+
+    <sql id="selectFromNotice">
+        SELECT notice_id, notice_title, admin_id, created_at, notice_is_open
+        FROM Notice
+    </sql>
+
+    <select id="selectPage" parameterType="map" resultType="NoticeDto">
+        <include refid="selectFromNotice"/>
+        ORDER BY notice_id DESC
+        LIMIT #{offset}, #{pageSize}
     </select>
 
     <delete id="delete" parameterType="int">
@@ -36,4 +54,5 @@
             updated_id     = #{updated_id}
         where notice_id = #{notice_id}
     </update>
+
 </mapper>

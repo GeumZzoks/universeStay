@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/user/myPage")
 public class UserWithdrawalController {
 
     @Autowired
@@ -18,7 +18,7 @@ public class UserWithdrawalController {
 
     @GetMapping("/withdrawal")
     public String withdrawalForm() {
-        return "user/withdrawal";
+        return "user/myPage/withdrawal";
     }
 
     @PostMapping(value = "/withdrawal")
@@ -30,6 +30,6 @@ public class UserWithdrawalController {
             e.printStackTrace();
         }
 
-        return "HI";
+        return "redirect:/main.jsp";
     }
 }

@@ -1,5 +1,5 @@
 
-screens-user-join_header {
+screens-admin-register_header {
   margin: 0;
   padding: 0;
   border: 0;
@@ -8,21 +8,21 @@ screens-user-join_header {
   vertical-align: baseline;
 }
 
-screens-user-join_body {
+screens-admin-register_body {
   background-color: #fff;
 }
 
-screens-user-join_a {
+screens-admin-register_a {
   color: black;
   text-decoration: none;
 }
 
-screens-user-join_input {
+screens-admin-register_input {
   cursor: pointer
 }
 
 /*저작권 표시X*/
-screens-user-join_footer {
+screens-admin-register_footer {
   display: none;
 }
 
@@ -32,31 +32,32 @@ screens-user-join_footer {
 }
 
 /*로고설정*/
-.screens-user-join_logo_image {
+.screens-admin-register_logo_image {
   width: 100%;
 }
 
 
 /*저작권 표시*/
-screens-user-join_footer {
+screens-admin-register_footer {
   display: block;
 }
 
 
 /*회원가입 부분*/
-.screens-user-join_main_signup {
+.screens-admin-register_main_signup {
   width: 460px;
   margin: auto;
 }
 
-screens-user-join_h5 {
+.screens-admin-register_h5 {
   text-align: left;
-  font-size: 14px;
-  margin-top: 0px;
-  margin-bottom: 0px;
+  font-size: 15px;
+  /*margin-top: 0px;*/
+  /*margin-bottom: 0px;*/
+  margin: 5px 0px;
 }
 
-.screens-user-join_signup_input {
+.screens-admin-register_signup_input {
   display: flex;
   padding: 10px;
   background: #fff;
@@ -69,14 +70,14 @@ screens-user-join_h5 {
 
 }
 
-#screens-user-join_signup_id, #screens-user-join_signup_pw, #screens-user-join_signup_pww, #screens-user-join_signup_phone_1, #screens-user-join_signup_phone_2, #screens-user-join_code_check_input {
+#screens-admin-register_signup_id, #screens-admin-register_signup_pw, #screens-admin-register_signup_pww, #screens-admin-register_signup_phone_1, #screens-admin-register_signup_phone_2, #screens-admin-register_code_check_input {
   height: 29px;
   border: none;
   outline: none;
   width: 100%;
 }
 
-.screens-user-join_pw_lock {
+.screens-admin-register_pw_lock {
   /* content: ''; */
   /* display: inline-block; */
   top: 50%;
@@ -89,7 +90,7 @@ screens-user-join_h5 {
   cursor: pointer;
 }
 
-.screens-user-join_pww_lock {
+.screens-admin-register_pww_lock {
   /* content: ''; */
   /* display: inline-block; */
   top: 50%;
@@ -103,7 +104,7 @@ screens-user-join_h5 {
 }
 
 
-.screens-user-join_signup_input_birth {
+.screens-admin-register_signup_input_birth {
   display: block;
   position: relative;
   width: 100%;
@@ -115,7 +116,7 @@ screens-user-join_h5 {
   border-radius: 5px;
 }
 
-#screens-user-join_signup_birth_yy, #screens-user-join_signup_birth_dd, #screens-user-join_dropdown__textBox {
+#screens-admin-register_signup_birth_yy, #screens-admin-register_signup_birth_dd, #screens-admin-register_dropdown__textBox {
   width: 113px;
   height: 29px;
   border: none;
@@ -123,7 +124,7 @@ screens-user-join_h5 {
   border-radius: 5px;
 }
 
-.screens-user-join_dropdown {
+.screens-admin-register_dropdown {
   display: block;
   position: relative;
   width: 100%;
@@ -133,7 +134,7 @@ screens-user-join_h5 {
   box-sizing: border-box;
 }
 
-.screens-user-join_dropdown::before {
+.screens-admin-register_dropdown::before {
   position: absolute;
   right: 20px;
   top: 15px;
@@ -148,7 +149,7 @@ screens-user-join_h5 {
   pointer-events: none;
 }
 
-.screens-user-join_dropdown__textBox {
+.screens-admin-register_dropdown__textBox {
   position: absolute;
   width: 113px;
   height: 29px;
@@ -163,7 +164,7 @@ screens-user-join_h5 {
   padding: 10px 20px;
 }
 
-.screens-user-join_dropdown__option {
+.screens-admin-register_dropdown__option {
   position: absolute;
   top: 60px;
   width: 155px;
@@ -174,23 +175,23 @@ screens-user-join_h5 {
   display: none;
 }
 
-.screens-user-join_dropdown.active .screens-user-join_dropdown__option {
+.screens-admin-register_dropdown.active .screens-admin-register_dropdown__option {
   display: block;
   left: 0;
 }
 
-.screens-user-join_dropdown .screens-user-join_dropdown__option div {
+.screens-admin-register_dropdown .screens-admin-register_dropdown__option div {
   padding: 6px 20px;
   cursor: pointer;
 }
 
-.screens-user-join_dropdown .screens-user-join_dropdown__option div:hover {
+.screens-admin-register_dropdown .screens-admin-register_dropdown__option div:hover {
   background: #F48475;
   color: #fff;
 }
 
 
-#screens-user-join_signup_name, #screens-user-join_signup_email, #screens-user-join_signup_phone_1, #screens-user-join_signup_phone_2, #screens-user-join_code_check_input, #screens-user-join_address_roadAddress, #screens-user-join_address_detailAddress {
+#screens-admin-register_signup_name, #screens-admin-register_signup_email, #screens-admin-register_signup_phone_1, #screens-admin-register_signup_phone_2, #screens-admin-register_code_check_input, #screens-admin-register_address_roadAddress, #screens-admin-register_address_detailAddress {
   width: 100%;
   height: 29px;
   border: none;
@@ -198,7 +199,7 @@ screens-user-join_h5 {
 }
 
 /*회원가입버튼박스*/
-.screens-user-join_signup_btn_wrap {
+.screens-admin-register_signup_btn_wrap {
   height: 52px;
   line-height: 55px;
   margin: 10px 0px 50px 0px;
@@ -210,7 +211,7 @@ screens-user-join_h5 {
 }
 
 /*회원가입버튼*/
-#screens-user-join_signup_btn {
+#screens-admin-register_signup_btn {
   width: 100px;
   height: 100%;
   background-color: #F48475;
@@ -224,7 +225,7 @@ screens-user-join_h5 {
 }
 
 /*인증번호버튼박스*/
-.screens-user-join_mail_Check_Btn_wrap {
+.screens-admin-register_mail_Check_Btn_wrap {
   height: 52px;
   line-height: 55px;
   margin: 10px 0px 0px 10px;
@@ -235,7 +236,7 @@ screens-user-join_h5 {
   border-radius: 5px;
 }
 
-.screens-user-join_address_Check_Btn_wrap {
+.screens-admin-register_address_Check_Btn_wrap {
   height: 52px;
   line-height: 55px;
   margin: 10px 0px 0px 10px;
@@ -247,7 +248,7 @@ screens-user-join_h5 {
 }
 
 /*인증번호버튼*/
-#screens-user-join_mail_Check_Btn, #screens-user-join_address_Check_Btn {
+#screens-admin-register_mail_Check_Btn, #screens-admin-register_address_Check_Btn {
   width: 115px;
   height: 100%;
   background-color: #F48475;
@@ -260,7 +261,7 @@ screens-user-join_h5 {
 }
 
 /*인증번호버튼*/
-#screens-user-join_id_Check_Btn {
+#screens-admin-register_id_Check_Btn {
   width: 115px;
   height: 100%;
   background-color: #F48475;
@@ -272,7 +273,7 @@ screens-user-join_h5 {
   border-radius: 5px;
 }
 
-.screens-user-join_helper_text_span {
+.screens-admin-register_helper_text_span {
   display: flex;
   font-size: 14px;
   margin-left: 4px;
@@ -280,7 +281,7 @@ screens-user-join_h5 {
   color: green;
 }
 
-.screens-user-join_helper_text_span.unavailable {
+.screens-admin-register_helper_text_span.unavailable {
   color: red;
 }
 

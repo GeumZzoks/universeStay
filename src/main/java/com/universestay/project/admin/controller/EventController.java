@@ -2,11 +2,8 @@ package com.universestay.project.admin.controller;
 
 import com.universestay.project.admin.dto.EventDto;
 import com.universestay.project.admin.service.EventService;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.List;
-import javax.servlet.http.HttpSession;
+import com.universestay.project.common.PageHandler;
+import com.universestay.project.common.SearchCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpSession;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.List;
 
 
 @Controller
@@ -24,13 +27,19 @@ public class EventController {
     @Autowired
     EventService eventService;
 
-
     @GetMapping("/list")
     // 이벤트 목록 조회 코드
-    public String list(Model m) throws Exception {
+    public String list(SearchCondition sc, Model m) {
         try {
-            List<EventDto> eventDto = eventService.list();
-            m.addAttribute("eventList", eventDto);
+            int totalCnt = eventService.getSearchResultCnt(sc);
+            m.addAttribute("totalCnt", totalCnt);
+            sc.setPageSize(15);
+            PageHandler pageHandler = new PageHandler(totalCnt, sc);
+
+            List<EventDto> list = eventService.getSearchResultPage(sc);
+            m.addAttribute("list", list);
+            m.addAttribute("ph", pageHandler);
+
             // 목록에서 시간별로 게시 날짜를 구분하기 위해 선언
             Instant startOfToday = LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant();
             m.addAttribute("startOfToday", startOfToday.toEpochMilli());
@@ -42,17 +51,6 @@ public class EventController {
         }
         return "admin/eventList";
     }
-
-    //검색은 아직 미구현입니다
-//    @GetMapping("/list/{search}")
-//    public String search(@PathVariable String search, Model m) throws Exception {
-//        List<EventDto> eventDto = eventDao.search(search);
-//        m.addAttribute("eventList", eventDto);
-//        Instant startOfToday = LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant();
-//        m.addAttribute("startOfToday", startOfToday.toEpochMilli());
-//
-//        return "admin/eventList/" + search;
-//    }
 
     @GetMapping("/{event_id}")
     // 이벤트 개별 조회 코드
@@ -76,7 +74,7 @@ public class EventController {
 
     @PostMapping("/write")
     // 이벤트 게시글 작성 코드
-    public String write(EventDto eventDto, Model m, HttpSession session) {
+    public String write(EventDto eventDto, Model m, HttpSession session) throws Exception {
         // 현재 세션 ID로 작성자 선언
         String writer = (String) session.getAttribute("admin_id");
         // 이벤트 시작일 입력 시 시작일과 종료일이 오늘보다 이전이면 안되기 때문에 시간을 구분하기 위한 코드(구현예정)

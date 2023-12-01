@@ -22,7 +22,6 @@ import lombok.ToString;
 @Data
 public class NoticeDto {
 
-
     @ApiModelProperty(notes = "공지 번호 ID", example = "1", required = true)
     private Integer notice_id;
 

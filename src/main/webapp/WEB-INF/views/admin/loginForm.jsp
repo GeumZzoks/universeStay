@@ -34,7 +34,7 @@
                 action="/adminLogin/loginForm"
                 method="post"
         >
-            <input type="text" name="username" placeholder="username" required/>
+            <input type="text" name="userEmail" placeholder="email" required/>
             <input
                     type="password"
                     name="password"

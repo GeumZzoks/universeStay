@@ -27,10 +27,10 @@ public class LoginController {
 
 
     @PostMapping("/loginForm")
-    public String loginForm(String username, String password, HttpServletRequest request)
+    public String loginForm(String userEmail, String password, HttpServletRequest request)
             throws Exception {
 
-        if (!loginCheck(username, password, request)) {
+        if (!loginCheck(userEmail, password, request)) {
             // TODO: Validator 설정 - jsp로 message 반환
             String msg = URLEncoder.encode("아이디 또는 비밀번호가 일치하지 않습니다.", "utf-8");
             // TODO: Exception Handler 에러 페이지 반환
@@ -41,10 +41,10 @@ public class LoginController {
     }
 
 
-    public boolean loginCheck(String username, String password, HttpServletRequest request)
+    public boolean loginCheck(String userEmail, String password, HttpServletRequest request)
             throws Exception {
 
-        boolean result = loginAdminService.confirmUser(username, password, request);
+        boolean result = loginAdminService.confirmUser(userEmail, password, request);
 
         return result;
     }

@@ -19,5 +19,11 @@
     where user_nickname = #{user_nickname}
   </select>
 
+  <select id="checkEmail" parameterType="String" resultType="int">
+    select count(*)
+    from User
+    where user_email = #{user_email}
+  </select>
+
 </mapper>
 
