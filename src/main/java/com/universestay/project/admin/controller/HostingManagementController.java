@@ -41,10 +41,23 @@ public class HostingManagementController {
     @PutMapping()
     @ResponseBody
     public String update(@RequestBody HostingManagementDto hostingManagementDto) {
-        String[] test = hostingManagementDto.getRoom_id();
+        String status_id = hostingManagementDto.getStatus();
+        String[] roomIdList = hostingManagementDto.getRoom_id();
+
         System.out.println("status = " + hostingManagementDto.getStatus());
-        System.out.println("test = " + Arrays.toString(test));
+        System.out.println("test = " + Arrays.toString(roomIdList));
+
+        try {
+            hostingManagementService.updateRoomStatus(status_id, roomIdList);
+        } catch (Exception e) {
+            // TODO:숙소 목록 조회 실패시 에러 알림 추가
+            e.printStackTrace();
+            // 목록 조회 실패시 호스팅관리 페이지로 이동
+            return "redirect:admin/hostingManagement";
+        }
 
         return "";
     }
 }
+
+

@@ -10,4 +10,13 @@
         ORDER BY created_at DESC
     </select>
 
+    <update id="updateAll" parameterType="map">
+        UPDATE Room
+        SET status_id = #{status_id}
+        WHERE room_id IN
+        <foreach item="room_id" collection="roomIdsList" open="(" separator="," close=")">
+            #{room_id}
+        </foreach>
+    </update>
+
 </mapper>
