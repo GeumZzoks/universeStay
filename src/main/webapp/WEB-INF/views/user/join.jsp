@@ -46,8 +46,9 @@
                    value="" maxlength="20" autocomplete="new-password" aria-autocomplete="list">
             <span class="screens-user-join_pw_lock"></span>
         </span>
+        <span class="screens-user-join_helper_text_span" id="pwd_input_first_helper_text"></span>
 
-        <h5 class="screens-user-join_h5" style="margin-bottom: 0px;">비밀번호 재확인*</h5>
+        <h5 class="screens-user-join_h5" style="margin-top: 25px;">비밀번호 재확인*</h5>
         <span class="screens-user-join_signup_input">
                 <input type="password" id="screens-user-join_signup_pww" placeholder="비밀번호 재확인"
                        class="screens-user-join_input" value="" maxlength="20"
@@ -99,6 +100,9 @@
                     <input id="screens-user-join_signup_email" type="text" class="form-control"
                            placeholder="이메일 입력"></input>
                 </span>
+                <span class="screens-user-join_helper_text_span"
+                      id="email_input_helper_text"></span>
+
                 <span class="screens-user-join_mail_Check_Btn_wrap">
                     <input type="button" class="btn btn-primary"
                            id="screens-user-join_mail_Check_Btn"
@@ -204,16 +208,16 @@
   // 만약 Oauth로 회원가입을 들어오면 email, pwd 입력란 value 채우고 hidden으로 바꾼다.
   if ("${userEmail}" != null && "${userEmail}" != "") {
     $('#signup_pw')
-        .attr('value', '${userPwd}');
+    .attr('value', '${userPwd}');
     $('#signup_pww')
-        .attr('value', '${userPwd}');
+    .attr('value', '${userPwd}');
     $('#signup_email')
-        .attr('value', '${userEmail}');
+    .attr('value', '${userEmail}');
 
     $('.signup_pwd_wrapper')
-        .hide();
+    .hide();
     $('.signup_email_wrapper')
-        .hide();
+    .hide();
   }
 
 
