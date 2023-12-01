@@ -82,10 +82,12 @@
                 <form>
                     <div>
                         <span>프로필 사진</span>
-                        <img src="${user.profile_img_id}">
+                        <img src="#">
                         <input class="screens-user-userInfo__img-insert-btn hidden" type="file">
                     </div>
                     <div>
+                        <input class="screens-user-userInfo__user-id-input" type="hidden"
+                               value="${user.user_id}">
                         <span>닉네임</span>
                         <div>
                             <input class="screens-user-userInfo__nickname-input"
@@ -201,6 +203,45 @@
     withdrawalBtn.addEventListener("click", () => {
         location.href = "/user/myPage/withdrawal";
     })
+
+    // 예시jQuery코드
+    $('form').submit(function (e) {
+        e.preventDefault(); // 기본 제출 행동 방지
+
+        var formData = new FormData();
+        var file = $('.screens-user-userInfo__img-insert-btn')[0].files[0];
+        formData.append('file', file);
+
+        var user = {
+            user_id: $('.screens-user-userInfo__user-id-input').val(),
+            nickname: $('.screens-user-userInfo__nickname-input').val(),
+            bio: $('.screens-user-userInfo__bio-input').val(),
+            phone: $('.screens-user-userInfo__phone-input').val(),
+            phone2: $('.screens-user-userInfo__phone2-input').val()
+            // 필요한 다른 데이터들을 추가
+        };
+
+        formData.append('userData', JSON.stringify(user)); // JSON 데이터 추가
+
+        // FormData를 서버로 보냄
+        $.ajax({
+            url: '/user/myPage/info/update',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                console.log("성공")
+            },
+            error: function (xhr, status, error) {
+                console.log("file :", file);
+                console.log("user :", user);
+
+                console.log("실패")
+            }
+        });
+    });
+
 
 </script>
 </body>
