@@ -1,16 +1,25 @@
 package com.universestay.project.user.service;
 
+import com.universestay.project.user.dao.ProfileImgDao;
 import com.universestay.project.user.dao.UserInfoDao;
 import com.universestay.project.user.dto.UserDto;
+import java.io.File;
+import java.sql.Timestamp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class UserInfoServiceImpl implements UserInfoService {
 
     @Autowired
+    private String uploadPath;
+
+    @Autowired
     UserInfoDao userInfoDao;
 
+    @Autowired
+    ProfileImgDao profileImgDao;
 
     @Override
     public UserDto getUserInfo(String user_email) throws Exception {
@@ -26,18 +35,20 @@ public class UserInfoServiceImpl implements UserInfoService {
     }
 
     @Override
-    public int updateUserInfo(UserDto userDto) throws Exception {
+    public int updateUserInfo(MultipartFile img, UserDto userDto) throws Exception {
 
-        //---- 아직 profileImg mapper, Dao를 만들지 못해서 보류---//
+        Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+        //확장자를 포함한 파일 이름 전체 추출
+        String originalName = img.getOriginalFilename();
+        //확장자 이름 추출
+        String fileExtension = originalName.substring(originalName.lastIndexOf('.'));
+        //현재 시간 + 원래 파일 이름 => 고유한 파일명 생성하기
+        String savedName = currentTime + originalName;
 
-        // To-do (추후)
-//        UserDto user = userInfoDao.getUserInfo(userDto.getUser_email());
-//        1.이미지 삭제 : 어떤 한 유저가 갖고있는 profile_img_id를 참조해서 ProfileImg 테이블을 뒤진다음 해당 프로필 이미지 삭제여부는 Y로 바꾼다.
-//        String profileImgId = user.getProfile_img_id();
-//        2. 새로운 프로필 이미지 등록 : 새로운 ProfileImg db가 하나 생성되고, 해당 db의 profile_img_id를 참조하여 User 테이블에서 profile_img_id를 바꾼다
-//        3. user.setProfile_img_id("새로운 프로필 이미지 아이디"); 를 통해서 user에 새로운 프로필 이미지 아이디를 넣는다.
-
-//        return userInfoDao.updateUserInfo(user);
+        //업로드 패스에 저장된 이름으로 파일을 전송한다.
+        img.transferTo(new File(uploadPath, savedName));
+        profileImgDao.insertProfileImg(userDto.getUser_id(), uploadPath + "/" + savedName);
+        userInfoDao.updateUserInfo(userDto);
         return 0;
     }
 }

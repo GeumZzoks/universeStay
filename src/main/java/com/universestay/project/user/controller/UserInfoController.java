@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 
 @Slf4j
 @Controller
@@ -18,7 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserInfoController {
 
     @Autowired
-    UserInfoService userInfoService;
+    private UserInfoService userInfoService;
+
 
     //마이페이지 나의 정보 조회
     @GetMapping("/info")
@@ -34,12 +37,17 @@ public class UserInfoController {
 
     //나의 정보 수정
     @PostMapping("/info/update")
-    public String updateInfo(Model model, UserDto user, HttpSession session) throws Exception {
-        //로그인 상태일때 세션에서 이메일 값을 가져와서 String으로 변환
+    public String updateInfo(Model model,
+            @RequestPart(value = "img", required = false) MultipartFile img,
+            @RequestPart(value = "user", required = false) UserDto user,
+            HttpSession session) throws Exception {
+
+        System.out.println(img);
+        System.out.println(user);
+
         String userEmail = (String) (session.getAttribute("user_email"));
-        //user update때  Where user_email = #{user_email} 조건절이 있기 때문에 세션에서 이메일 값을 가져와 user에 세팅해준다.
         user.setUser_email(userEmail);
-        userInfoService.updateUserInfo(user);
-        return "redirect:/user/myPage";
+        userInfoService.updateUserInfo(img, user);
+        return "redirect:/user/myPage/info";
     }
 }
