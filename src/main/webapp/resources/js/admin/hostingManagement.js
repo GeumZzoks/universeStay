@@ -3,10 +3,8 @@ const checkAllBox = document.querySelector(
     ".screens-admin-hostingManagement__content-table__check-all");
 const checkBoxs = document.querySelectorAll(
     ".screens-admin-hostingManagement__content-table__check");
-const approveBtn = document.querySelector(
-    '.screens-admin-hostingManagement__btn-approve');
-const rejectBtn = document.querySelector(
-    '.screens-admin-hostingManagement__btn-reject');
+const statusBtns = document.querySelectorAll(
+    '.screens-admin-hostingManagement__btn-status');
 
 checkAllBox.addEventListener("click", function (e) {
   if (e.target.checked) {
@@ -21,63 +19,56 @@ checkAllBox.addEventListener("click", function (e) {
 });
 
 // 승인 완료, 반려 버튼 ajax 통신
-approveBtn.addEventListener("click", function (e) {
+statusBtns.forEach(statusBtn => {
+  statusBtn.addEventListener("click", function (e) {
 
-  // 누른 버튼의 텍스트
-  const status = e.target.innerText;
+    // 누른 버튼의 텍스트
+    const status = e.target.innerText;
 
-  // 체크된 숙소의 아이디를 배열에 저장
-  const roomList = [];
-  checkBoxs.forEach(checkBox => {
-    if (checkBox.checked) {
-      roomList.push(checkBox.value);
-    }
-  });
+    // 체크된 숙소의 아이디를 배열에 저장
+    const roomList = [];
+    checkBoxs.forEach(checkBox => {
+      if (checkBox.checked) {
+        roomList.push(checkBox.value);
+      }
+    });
 
-  console.dir(roomList);
+    console.dir(roomList);
 
-  const requestData = {
-    status: status, room_id: roomList
-  };
+    const requestData = {
+      status: status, room_id: roomList
+    };
 
-  console.dir(requestData);
+    console.dir(requestData);
 
 // AJAX 요청 보내고 응답을 처리하는 함수 호출
-  sendAjaxRequest('http://localhost:8080/admin/hostingManagement', 'PUT',
-      requestData, function (error, response) {
-        if (error) {
-          console.error('AJAX request error:', error);
-        } else {
-          console.log('AJAX response:', response);
-          // 여기서 응답 데이터를 처리합니다.
-        }
-      });
+    sendAjaxRequest('http://localhost:8080/admin/hostingManagement', 'PUT',
+        requestData, function (error, response) {
+          if (error) {
+            // 에러 발생시
+            console.error('AJAX request error:', error);
+            location.href = "http://localhost:8080/admin/hostingManagement";
+          } else {
+            // 여기서 응답 데이터를 처리합니다.
+            console.log('AJAX response:', response);
 
-});
+            roomList.forEach(room_id => {
+              const status_id = document.querySelector(
+                  "td[value='" + room_id + "']");
+              console.log(status_id);
+              console.log(status);
+              status_id.innerHTML = (status === "승인 완료") ? 'RA02' : 'RA03';
+            });
 
-rejectBtn.addEventListener("click", function (e) {
-  // 누른 버튼의 텍스트
-  const status = e.target.innerText;
-
-  // 체크된 숙소의 아이디를 배열에 저장
-  const roomList = [];
-  checkBoxs.forEach(checkBox => {
-    if (checkBox.checked) {
-      roomList.push(checkBox.value);
-    }
+            checkBoxs.forEach(checkBox => {
+              checkBox.checked = false;
+            });
+          }
+        });
   });
-
-  console.dir(roomList);
-
-  const requestData = {
-    status: status, room_id: roomList
-  };
-
-  console.dir(requestData);
 });
 
 // AJAX 요청을 보내는 함수
-
 function sendAjaxRequest(url, method, data, callback) {
   // XMLHttpRequest 객체 생성
   var xhr = new XMLHttpRequest();

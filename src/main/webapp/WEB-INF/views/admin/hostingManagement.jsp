@@ -24,10 +24,10 @@
         <h3 style="color: indianred; margin-top: 20px">호스팅관리</h3>
 
         <div class="screens-admin-hostingManagement__btn-box">
-            <button class="screens-admin-hostingManagement__btn screens-admin-hostingManagement__btn-approve">
+            <button class="screens-admin-hostingManagement__btn-status screens-admin-hostingManagement__btn-approve">
                 승인 완료
             </button>
-            <button class="screens-admin-hostingManagement__btn screens-admin-hostingManagement__btn-reject">
+            <button class="screens-admin-hostingManagement__btn-status screens-admin-hostingManagement__btn-reject">
                 승인 반려
             </button>
         </div>
@@ -62,7 +62,8 @@
                 </tr>
                 <c:forEach var="room" items="${roomList}">
                     <tr>
-                        <td><input type="checkbox"
+                        <td>
+                            <input type="checkbox"
                                    value="${room.room_id}"
                                    class="screens-admin-hostingManagement__content-table__check">
                         </td>
@@ -74,7 +75,10 @@
                         <td> ${room.room_weekend_price} </td>
                         <td> ${room.room_extra_person_fee} </td>
                         <td> ${room.created_at} </td>
-                        <td> ${room.status_id} </td>
+                        <td value="${room.room_id}"
+                            class="screens-admin-hostingManagement__content-table__status-id-td">
+                                ${room.status_id}
+                        </td>
                     </tr>
                 </c:forEach>
             </table>
