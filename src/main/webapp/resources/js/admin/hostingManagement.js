@@ -1,11 +1,22 @@
-// 체크 박스 기능
+// DOM 객체
 const checkAllBox = document.querySelector(
     ".screens-admin-hostingManagement__content-table__check-all");
+const checkAllBoxBtn = document.querySelector(
+    ".screens-admin-hostingManagement__content-table__check-all-btn");
 const checkBoxs = document.querySelectorAll(
     ".screens-admin-hostingManagement__content-table__check");
 const statusBtns = document.querySelectorAll(
     '.screens-admin-hostingManagement__btn-status');
+const searchBtn = document.querySelector(
+    '.screens-admin-hostingManagement__search__btn');
+const searchSelect = document.querySelector(
+    '.screens-admin-hostingManagement__search__select');
+const searchInput = document.querySelector(
+    '.screens-admin-hostingManagement__search__input');
+const contentTable = document.querySelector(
+    '.screens-admin-hostingManagement__content-table');
 
+// 체크 박스 기능
 checkAllBox.addEventListener("click", function (e) {
   if (e.target.checked) {
     checkBoxs.forEach(checkBox => {
@@ -18,7 +29,7 @@ checkAllBox.addEventListener("click", function (e) {
   }
 });
 
-// 승인 완료, 반려 버튼 ajax 통신
+// 승인 완료, 반려 버튼 AJAX 통신 (vanilla JS 사용)
 statusBtns.forEach(statusBtn => {
   statusBtn.addEventListener("click", function (e) {
 
@@ -33,13 +44,9 @@ statusBtns.forEach(statusBtn => {
       }
     });
 
-    console.dir(roomList);
-
     const requestData = {
       status: status, room_id: roomList
     };
-
-    console.dir(requestData);
 
 // AJAX 요청 보내고 응답을 처리하는 함수 호출
     sendAjaxRequest('http://localhost:8080/admin/hostingManagement', 'PUT',
@@ -55,16 +62,79 @@ statusBtns.forEach(statusBtn => {
             roomList.forEach(room_id => {
               const status_id = document.querySelector(
                   "td[value='" + room_id + "']");
-              console.log(status_id);
-              console.log(status);
               status_id.innerHTML = (status === "승인 완료") ? 'RA02' : 'RA03';
             });
+
+            checkAllBoxBtn.checked = false;
 
             checkBoxs.forEach(checkBox => {
               checkBox.checked = false;
             });
           }
         });
+  });
+});
+
+// 검색 기능 (fetch API 사용)
+searchBtn.addEventListener('click', function () {
+
+  fetch('http://localhost:8080/admin/hostingManagement', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      status_id: searchSelect.value,
+      room_name: searchInput.value
+    })
+  })
+  .then(response => {
+    if (response.ok) {
+      return response.json(); // Parse the JSON data
+    } else {
+      throw new Error('Server error');
+    }
+  })
+  .then(data => {
+
+    let html = '';
+    html += '<tr>';
+    html += '<th class="screens-admin-hostingManagement__content-table__check-all"><input type="checkbox" class="screens-admin-hostingManagement__content-table__check-all-btn"></th>';
+    html += '<th class="screens-admin-hostingManagement__content-table__name">숙소 이름</th>';
+    html += '<th class="screens-admin-hostingManagement__content-table__advances-desc">숙소 장점 설명</th>';
+    html += '<th className="screens-admin-hostingManagement__content-table__sapce-desc">공간 상세 설명</th>';
+    html += '<th className="screens-admin-hostingManagement__content-table__etc-desc">기타 상세 설명</th>';
+    html += '<th className="screens-admin-hostingManagement__content-table__price-weekday">주중 1박 요금</th>';
+    html += '<th className="screens-admin-hostingManagement__content-table__price-weekend">주말 1박 요금 </th>';
+    html += '<th className="screens-admin-hostingManagement__content-table__price-add">인원 추가 요금</th>';
+    html += '<th className="screens-admin-hostingManagement__content-table__created-at">등록일자</th>';
+    html += '<th className="screens-admin-hostingManagement__content-table__status-approve">숙소 승인 상태</th>';
+    html += '</tr>';
+
+    for (let i = 0; i < data.length; i++) {
+      const room = data[i];
+
+      html += '<tr>';
+      html += '<td><input type="checkbox" value="' + room.room_id
+          + '"className="screens-admin-hostingManagement__content-table__check"></td>';
+      html += '<td>' + room.room_name + '</td>';
+      html += '<td>' + room.room_total_desc + '</td>';
+      html += '<td>' + room.room_space_desc + '</td>';
+      html += '<td>' + room.room_etc_desc + '</td>';
+      html += '<td>' + room.room_weekday_price + '</td>';
+      html += '<td>' + room.room_weekend_price + '</td>';
+      html += '<td>' + room.room_extra_person_fee + '</td>';
+      html += '<td>' + room.created_at + '</td>';
+      html += '<td value="' + room.room_id
+          + '"className="screens-admin-hostingManagement__content-table__status-id-td">'
+          + room.status_id + '</td>';
+      html += '</tr>';
+    }
+
+    contentTable.innerHTML = html;
+  })
+  .catch(error => {
+    console.error('Error in Fetch request:', error);
   });
 });
 

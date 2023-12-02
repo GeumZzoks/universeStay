@@ -21,6 +21,14 @@ public class HostingManagementServiceImpl implements HostingManagementService {
     }
 
     @Override
+    public List<RoomDto> searchRoomList(String status_id, String room_name) throws Exception {
+        Map<String, String> map = new HashMap<>();
+        map.put("status_id", status_id);
+        map.put("room_name", room_name);
+        return hostingManagementDao.searchList(map);
+    }
+
+    @Override
     public Integer updateRoomStatus(String status_id, String[] room_id_arr) throws Exception {
 
         System.out.println("status_id = " + status_id);

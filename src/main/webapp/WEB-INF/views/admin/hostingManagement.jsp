@@ -23,20 +23,41 @@
     <div class="screens-admin-hostingManagement__content">
         <h3 style="color: indianred; margin-top: 20px">호스팅관리</h3>
 
-        <div class="screens-admin-hostingManagement__btn-box">
-            <button class="screens-admin-hostingManagement__btn-status screens-admin-hostingManagement__btn-approve">
-                승인 완료
-            </button>
-            <button class="screens-admin-hostingManagement__btn-status screens-admin-hostingManagement__btn-reject">
-                승인 반려
-            </button>
+        <div class="screens-admin-hostingManagement__control-box">
+            <div class="screens-admin-hostingManagement__search">
+                <label for="status_id">승인 상태 : </label>
+                <select class="screens-admin-hostingManagement__search__select" name="status_id"
+                        id="status_id">
+                    <option value="all">전체</option>
+                    <option value="RA01">승인 전</option>
+                    <option value="RA02">승인 완료</option>
+                    <option value="RA03">승인 반려</option>
+                </select>
+
+                <label for="search-input">숙소 이름 : </label>
+                <input class="screens-admin-hostingManagement__search__input" type="text" value=""
+                       id="search-input" placeholder="숙소 이름 입력">
+
+                <input class="screens-admin-hostingManagement__search__btn" type="button"
+                       value="검색">
+            </div>
+
+            <div class="screens-admin-hostingManagement__btn-box">
+                <button class="screens-admin-hostingManagement__btn-status screens-admin-hostingManagement__btn-approve">
+                    승인 완료
+                </button>
+                <button class="screens-admin-hostingManagement__btn-status screens-admin-hostingManagement__btn-reject">
+                    승인 반려
+                </button>
+            </div>
         </div>
 
         <div class="screens-admin-hostingManagement__content-table-div">
             <table class="screens-admin-hostingManagement__content-table">
                 <tr>
                     <th class="screens-admin-hostingManagement__content-table__check-all">
-                        <input type="checkbox">
+                        <input type="checkbox"
+                               class="screens-admin-hostingManagement__content-table__check-all-btn">
                     </th>
                     <th class="screens-admin-hostingManagement__content-table__name">숙소 이름</th>
                     <th class="screens-admin-hostingManagement__content-table__advances-desc">숙소 장점

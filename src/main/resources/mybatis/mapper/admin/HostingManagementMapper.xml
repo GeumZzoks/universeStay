@@ -19,4 +19,18 @@
         </foreach>
     </update>
 
+    <select id="searchList" parameterType="map" resultType="RoomDto">
+        SELECT *
+        FROM Room
+        <choose>
+            <when test='status_id == "all"'>
+                WHERE room_name LIKE concat('%', #{room_name}, '%')
+            </when>
+            <otherwise>
+                WHERE room_name LIKE concat('%', #{room_name}, '%')
+                AND status_id = #{status_id}
+            </otherwise>
+        </choose>
+    </select>
+
 </mapper>

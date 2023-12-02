@@ -21,6 +21,11 @@ public class HostingManagementDaoImpl implements HostingManagementDao {
     }
 
     @Override
+    public List<RoomDto> searchList(Map<String, String> map) throws Exception {
+        return session.selectList(namespace + "searchList", map);
+    }
+
+    @Override
     public Integer updateAll(Map<String, Object> paramMap) throws Exception {
         return session.update(namespace + "updateAll", paramMap);
     }

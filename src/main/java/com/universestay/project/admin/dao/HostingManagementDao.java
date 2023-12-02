@@ -8,5 +8,7 @@ public interface HostingManagementDao {
 
     List<RoomDto> selectAll() throws Exception;
 
+    List<RoomDto> searchList(Map<String, String> map) throws Exception;
+
     Integer updateAll(Map<String, Object> paramMap) throws Exception;
 }
