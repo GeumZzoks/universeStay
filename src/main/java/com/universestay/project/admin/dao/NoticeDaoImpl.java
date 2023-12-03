@@ -27,7 +27,7 @@ public class NoticeDaoImpl implements NoticeDao {
 
     @Override
     public List<NoticeDto> selectPage(Map map) throws Exception {
-        return session.selectList(namespace + "selectPage");
+        return session.selectList(namespace + "selectPage", map);
     }
 
     @Override
