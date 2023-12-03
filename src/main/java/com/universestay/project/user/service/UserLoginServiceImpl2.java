@@ -6,11 +6,11 @@ import java.util.Map;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
-@Service
-public class UserLoginServiceImpl implements UserLoginService {
+//@Service
+public class UserLoginServiceImpl2 implements UserLoginService {
 
 //    @Autowired
     UserLoginDao userLoginDao;
@@ -71,9 +71,12 @@ public class UserLoginServiceImpl implements UserLoginService {
                     session.setAttribute("user_email", user_email);
                     session.setMaxInactiveInterval(30 * 60);
                     return userInfo; // 세션에 저장 후 UserDto타입을 리턴
-
                 } else { // 4. 아이디 또는 비밀번호가 일치하지 않는다면 null을 반환 (ctr에서 맞는 뷰 보여줌)
+
+
                     return null;
+
+
 
                 }
             } else { // null이면 => 6.없는 회원정보(로그인/비밀번호)로 로그인을 시도한 경우
@@ -82,8 +85,8 @@ public class UserLoginServiceImpl implements UserLoginService {
 
         } catch (Exception e) {
             e.printStackTrace();
-             return null;
-//            throw new Exception();
+            // return null;
+            throw new Exception();
         }
     }
 
@@ -98,9 +101,6 @@ public class UserLoginServiceImpl implements UserLoginService {
     }
 
     // 유저 활동 상태(U01~4)에 따라 보여줄 메서드가 필요.
-    // 반환타입을 어떤걸로 줘야하는 걸까?
-//    public void userStatusError() throws Exception {
-//
-//    }
+
 
 }
