@@ -1,52 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns="http://www.springframework.org/schema/beans"
-  xmlns:context="http://www.springframework.org/schema/context"
-  xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.springframework.org/schema/beans"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
-  <context:property-placeholder location="classpath:config/env.properties"/>
+    <context:property-placeholder location="classpath:config/env.properties"/>
 
-  <!-- Root Context: defines shared resources visible to all other web components -->
-  <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-    <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+    <!-- Root Context: defines shared resources visible to all other web components -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
 
-    <property name="url" value="${DB_HOST}"></property>
-    <property name="username" value="${DB_USERNAME}"></property>
-    <property name="password" value="${DB_PASSWORD}"></property>
-  </bean>
+        <property name="url" value="${DB_HOST}"></property>
+        <property name="username" value="${DB_USERNAME}"></property>
+        <property name="password" value="${DB_PASSWORD}"></property>
+    </bean>
 
 
-  <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-    <property name="dataSource" ref="dataSource"/>
-    <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
-    <property name="mapperLocations" value="classpath:mybatis/mapper/**/*Mapper.xml"/>
-  </bean>
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
+        <property name="mapperLocations" value="classpath:mybatis/mapper/**/*Mapper.xml"/>
+    </bean>
 
-  <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-    <constructor-arg ref="sqlSessionFactory"/>
-  </bean>
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg ref="sqlSessionFactory"/>
+    </bean>
 
-  <!-- 이메일 인증 관련 빈 등록 -->
-  <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-    <property name="host" value="smtp.gmail.com"/>
-    <property name="port" value="587"/>
-    <property name="username" value="${email.account}"/>
-    <property name="password" value="${email.password}"/>
-    <property name="javaMailProperties">
-      <props>
-        <prop key="mail.transport.protocol">smtp</prop>
-        <prop key="mail.smtp.auth">true</prop>
-        <!-- gmail의 경우 보안문제 업데이트로 인해 SSLSocketFactory를 추가해야 smtp 사용 가능. -->
-        <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
-        <prop key="mail.smtp.starttls.enable">true</prop>
-        <prop key="mail.debug">false</prop>
-        <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
-        <prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
-      </props>
-    </property>
-  </bean>
+    <!-- 이메일 인증 관련 빈 등록 -->
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="smtp.gmail.com"/>
+        <property name="port" value="587"/>
+        <property name="username" value="${email.account}"/>
+        <property name="password" value="${email.password}"/>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.transport.protocol">smtp</prop>
+                <prop key="mail.smtp.auth">true</prop>
+                <!-- gmail의 경우 보안문제 업데이트로 인해 SSLSocketFactory를 추가해야 smtp 사용 가능. -->
+                <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.debug">false</prop>
+                <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+                <prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
+            </props>
+        </property>
+    </bean>
 
-  <context:component-scan base-package="com.universestay.project"/>
+    <!--    이미지 업로드를 위한 multipartResolver 를 bean으로 등록-->
+    <bean id="multipartResolver"
+            class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!--        10메가바이트로 설정-->
+        <property name="maxUploadSize" value="10485760"/>
+        <property name="maxUploadSizePerFile" value="10485760"/>
+        <property name="maxInMemorySize" value="10485760"/>
+    </bean>
+
+
+    <!-- 현재 파일시스템에 업로드 된 파일 저장할 경로 -->
+    <bean id="uploadPath" class="java.lang.String">
+        <constructor-arg value="src/main/webapp/resources/upload-imgs"/>
+    </bean>
+
+    <context:component-scan base-package="com.universestay.project"/>
 </beans>

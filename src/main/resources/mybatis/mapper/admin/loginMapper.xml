@@ -6,6 +6,6 @@
     <select id="select" parameterType="String" resultType="AdminDto">
         SELECT *
         FROM Admin
-        WHERE admin_id = #{admin_id}
+        WHERE admin_email = #{admin_email}
     </select>
 </mapper>
