@@ -43,7 +43,6 @@ public class UserInfoDaoImplTest {
         userDto.setUser_phone_num2("010-1021-10221");
         userDto.setUser_address("경기도 남양주시");
         userDto.setUser_birth(new Date(1998, 01, 12));
-        userDto.setUser_img_url("url");
         userDto.setStatus_id("U01");
         userDto.setCreated_at(new Timestamp(System.currentTimeMillis()));
         userDto.setUpdated_at(new Timestamp(System.currentTimeMillis()));

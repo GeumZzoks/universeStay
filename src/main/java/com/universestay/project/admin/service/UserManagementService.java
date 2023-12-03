@@ -1,6 +1,6 @@
 package com.universestay.project.admin.service;
 
-import com.universestay.project.admin.dto.SearchCondition;
+import com.universestay.project.common.SearchCondition;
 import com.universestay.project.user.dto.UserDto;
 
 import java.util.List;

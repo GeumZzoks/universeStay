@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.universestay.project.resources.mybatis.mapper.admin.dashBoardMapper">
+
+    <!-- 유저 관리 -->
+    <!-- 최근 생성한 활성 유저 20명 출력 -->
+    <select id="selectUserManagement" resultType="UserDto">
+        SELECT *
+        FROM User
+        WHERE status_id = U01
+        ORDER BY created_at DESC LIMIT 20;
+    </select>
+
+    <!-- 호스팅 관리 -->
+    <select id="selectHostManagement" resultType="int">
+
+    </select>
+
+
+    <!-- 공지사항 -->
+    <!-- 최근 생성한 공지사항 20개 출력 -->
+    <select id="selectNotice" resultType="NoticeDto">
+        SELECT *
+        FROM Notice
+        ORDER BY created_at DESC LIMIT 20;
+    </select>
+
+
+    <!-- 이벤트 -->
+    <!-- 최근 생성한 이벤트 중 진행 중인 이벤트 20개 출력 -->
+    <select id="selectEvent" resultType="EventDto">
+        SELECT *
+        FROM Event
+        WHERE status_id = E02
+        ORDER BY created_at DESC LIMIT 20;
+    </select>
+
+    <!-- 문의사항 -->
+    <!-- TODO: 문의사항 상태 코드 있어야 하지 않나? -->
+    <select id="selectInquiry" resultType="InquiryDto">
+        SELECT *
+        FROM Inquiry
+        ORDER BY created_at DESC LIMIT 20;
+    </select>
+
+    <!-- 쿠폰 -->
+    <!-- TODO: 쿠폰 상태 코드 있어야 하지 않나? -->
+    <select id="selectCoupon" resultType="CouponDto">
+        SELECT *
+        FROM Coupon
+        ORDER BY created_at DESC LIMIT 20;
+    </select>
+
+
+</mapper>
