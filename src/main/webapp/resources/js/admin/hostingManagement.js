@@ -1,11 +1,11 @@
 // DOM 객체
-const checkAllBox = document.querySelector(
+let checkAllBox = document.querySelector(
     ".screens-admin-hostingManagement__content-table__check-all");
-const checkAllBoxBtn = document.querySelector(
+let checkAllBoxBtn = document.querySelector(
     ".screens-admin-hostingManagement__content-table__check-all-btn");
-const checkBoxs = document.querySelectorAll(
+let checkBoxs = document.querySelectorAll(
     ".screens-admin-hostingManagement__content-table__check");
-const statusBtns = document.querySelectorAll(
+let statusBtns = document.querySelectorAll(
     '.screens-admin-hostingManagement__btn-status');
 const searchBtn = document.querySelector(
     '.screens-admin-hostingManagement__search__btn');
@@ -17,7 +17,7 @@ const contentTable = document.querySelector(
     '.screens-admin-hostingManagement__content-table');
 
 // 체크 박스 기능
-checkAllBox.addEventListener("click", function (e) {
+function handleCheckAllClick(e) {
   if (e.target.checked) {
     checkBoxs.forEach(checkBox => {
       checkBox.checked = true;
@@ -27,53 +27,59 @@ checkAllBox.addEventListener("click", function (e) {
       checkBox.checked = false;
     });
   }
-});
+}
 
-// 승인 완료, 반려 버튼 AJAX 통신 (vanilla JS 사용)
-statusBtns.forEach(statusBtn => {
-  statusBtn.addEventListener("click", function (e) {
+function handleStatusBtnClick(e) {
+  // 누른 버튼의 텍스트
+  const status = e.target.innerText;
 
-    // 누른 버튼의 텍스트
-    const status = e.target.innerText;
+  // 체크된 숙소의 아이디를 배열에 저장
+  const roomList = [];
+  checkBoxs.forEach(checkBox => {
+    if (checkBox.checked) {
+      roomList.push(checkBox.value);
+    }
+  });
 
-    // 체크된 숙소의 아이디를 배열에 저장
-    const roomList = [];
-    checkBoxs.forEach(checkBox => {
-      if (checkBox.checked) {
-        roomList.push(checkBox.value);
-      }
-    });
-
-    const requestData = {
-      status: status, room_id: roomList
-    };
+  const requestData = {
+    status: status, room_id: roomList
+  };
 
 // AJAX 요청 보내고 응답을 처리하는 함수 호출
-    sendAjaxRequest('http://localhost:8080/admin/hostingManagement', 'PUT',
-        requestData, function (error, response) {
-          if (error) {
-            // 에러 발생시
-            console.error('AJAX request error:', error);
-            location.href = "http://localhost:8080/admin/hostingManagement";
-          } else {
-            // 여기서 응답 데이터를 처리합니다.
-            console.log('AJAX response:', response);
+  sendAjaxRequest('http://localhost:8080/admin/hostingManagement', 'PUT',
+      requestData, function (error, response) {
+        if (error) {
+          // 에러 발생시
+          console.error('AJAX request error:', error);
+          location.href = "http://localhost:8080/admin/hostingManagement";
+        } else {
+          // 여기서 응답 데이터를 처리합니다.
+          console.log('AJAX response:', response);
 
-            roomList.forEach(room_id => {
-              const status_id = document.querySelector(
-                  "td[value='" + room_id + "']");
-              status_id.innerHTML = (status === "승인 완료") ? 'RA02' : 'RA03';
-            });
+          roomList.forEach(room_id => {
+            const status_id = document.querySelector(
+                "td[value='" + room_id + "']");
+            status_id.innerHTML = (status === "승인 완료") ? 'RA02' : 'RA03';
+          });
 
-            checkAllBoxBtn.checked = false;
+          checkAllBoxBtn.checked = false;
 
-            checkBoxs.forEach(checkBox => {
-              checkBox.checked = false;
-            });
-          }
-        });
+          checkBoxs.forEach(checkBox => {
+            checkBox.checked = false;
+          });
+        }
+      });
+}
+
+function setupEventListeners() {
+
+  // Attach event listener to a common ancestor element of checkBoxs
+  checkAllBoxBtn.addEventListener('click', handleCheckAllClick);
+
+  statusBtns.forEach(statusBtn => {
+    statusBtn.addEventListener("click", handleStatusBtnClick);
   });
-});
+}
 
 // 검색 기능 (fetch API 사용)
 searchBtn.addEventListener('click', function () {
@@ -102,13 +108,13 @@ searchBtn.addEventListener('click', function () {
     html += '<th class="screens-admin-hostingManagement__content-table__check-all"><input type="checkbox" class="screens-admin-hostingManagement__content-table__check-all-btn"></th>';
     html += '<th class="screens-admin-hostingManagement__content-table__name">숙소 이름</th>';
     html += '<th class="screens-admin-hostingManagement__content-table__advances-desc">숙소 장점 설명</th>';
-    html += '<th className="screens-admin-hostingManagement__content-table__sapce-desc">공간 상세 설명</th>';
-    html += '<th className="screens-admin-hostingManagement__content-table__etc-desc">기타 상세 설명</th>';
-    html += '<th className="screens-admin-hostingManagement__content-table__price-weekday">주중 1박 요금</th>';
-    html += '<th className="screens-admin-hostingManagement__content-table__price-weekend">주말 1박 요금 </th>';
-    html += '<th className="screens-admin-hostingManagement__content-table__price-add">인원 추가 요금</th>';
-    html += '<th className="screens-admin-hostingManagement__content-table__created-at">등록일자</th>';
-    html += '<th className="screens-admin-hostingManagement__content-table__status-approve">숙소 승인 상태</th>';
+    html += '<th class="screens-admin-hostingManagement__content-table__sapce-desc">공간 상세 설명</th>';
+    html += '<th class="screens-admin-hostingManagement__content-table__etc-desc">기타 상세 설명</th>';
+    html += '<th class="screens-admin-hostingManagement__content-table__price-weekday">주중 1박 요금</th>';
+    html += '<th class="screens-admin-hostingManagement__content-table__price-weekend">주말 1박 요금 </th>';
+    html += '<th class="screens-admin-hostingManagement__content-table__price-add">인원 추가 요금</th>';
+    html += '<th class="screens-admin-hostingManagement__content-table__created-at">등록일자</th>';
+    html += '<th class="screens-admin-hostingManagement__content-table__status-approve">숙소 승인 상태</th>';
     html += '</tr>';
 
     for (let i = 0; i < data.length; i++) {
@@ -116,7 +122,7 @@ searchBtn.addEventListener('click', function () {
 
       html += '<tr>';
       html += '<td><input type="checkbox" value="' + room.room_id
-          + '"className="screens-admin-hostingManagement__content-table__check"></td>';
+          + '"class="screens-admin-hostingManagement__content-table__check"></td>';
       html += '<td>' + room.room_name + '</td>';
       html += '<td>' + room.room_total_desc + '</td>';
       html += '<td>' + room.room_space_desc + '</td>';
@@ -126,12 +132,21 @@ searchBtn.addEventListener('click', function () {
       html += '<td>' + room.room_extra_person_fee + '</td>';
       html += '<td>' + room.created_at + '</td>';
       html += '<td value="' + room.room_id
-          + '"className="screens-admin-hostingManagement__content-table__status-id-td">'
+          + '"class="screens-admin-hostingManagement__content-table__status-id-td">'
           + room.status_id + '</td>';
       html += '</tr>';
     }
 
     contentTable.innerHTML = html;
+
+    checkAllBoxBtn = document.querySelector(
+        ".screens-admin-hostingManagement__content-table__check-all-btn");
+    checkBoxs = document.querySelectorAll(
+        ".screens-admin-hostingManagement__content-table__check");
+    statusBtns = document.querySelectorAll(
+        '.screens-admin-hostingManagement__btn-status');
+
+    setupEventListeners();
   })
   .catch(error => {
     console.error('Error in Fetch request:', error);
@@ -163,3 +178,5 @@ function sendAjaxRequest(url, method, data, callback) {
   // 요청 데이터를 JSON 문자열로 변환하여 전송
   xhr.send(JSON.stringify(data));
 }
+
+setupEventListeners();
