@@ -54,7 +54,7 @@
 
         <div class="screens-admin-hostingManagement__content-table-div">
             <table class="screens-admin-hostingManagement__content-table">
-                <tr>
+                <tr class="screens-admin-hostingManagement__content-table__header">
                     <th class="screens-admin-hostingManagement__content-table__check-all">
                         <input type="checkbox"
                                class="screens-admin-hostingManagement__content-table__check-all-btn">
@@ -95,7 +95,6 @@
                         <td> ${room.room_weekday_price} </td>
                         <td> ${room.room_weekend_price} </td>
                         <td> ${room.room_extra_person_fee} </td>
-                            <%--                        <td> ${room.created_at} </td>--%>
                         <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm"
                                             value="${room.created_at}"/></td>
                         <td value="${room.room_id}"

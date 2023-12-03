@@ -81,6 +81,32 @@ function setupEventListeners() {
   });
 }
 
+// AJAX 요청을 보내는 함수
+function sendAjaxRequest(url, method, data, callback) {
+  // XMLHttpRequest 객체 생성
+  var xhr = new XMLHttpRequest();
+
+  // 요청을 열고 초기화
+  xhr.open(method, url, true);
+
+  // 요청 상태가 변경될 때마다 호출되는 콜백 함수 설정
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) { // 요청이 완료되었을 때
+      if (xhr.status === 200) { // 응답 상태 코드가 200 (성공)인 경우
+        callback(null, xhr.responseText); // 콜백 함수 호출 (오류 없음)
+      } else {
+        callback(new Error('Request failed with status: ' + xhr.status), null); // 콜백 함수 호출 (오류 발생)
+      }
+    }
+  };
+
+  // 요청 헤더 설정
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  // 요청 데이터를 JSON 문자열로 변환하여 전송
+  xhr.send(JSON.stringify(data));
+}
+
 // 검색 기능 (fetch API 사용)
 searchBtn.addEventListener('click', function () {
 
@@ -158,31 +184,5 @@ searchBtn.addEventListener('click', function () {
     console.error('Error in Fetch request:', error);
   });
 });
-
-// AJAX 요청을 보내는 함수
-function sendAjaxRequest(url, method, data, callback) {
-  // XMLHttpRequest 객체 생성
-  var xhr = new XMLHttpRequest();
-
-  // 요청을 열고 초기화
-  xhr.open(method, url, true);
-
-  // 요청 상태가 변경될 때마다 호출되는 콜백 함수 설정
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4) { // 요청이 완료되었을 때
-      if (xhr.status === 200) { // 응답 상태 코드가 200 (성공)인 경우
-        callback(null, xhr.responseText); // 콜백 함수 호출 (오류 없음)
-      } else {
-        callback(new Error('Request failed with status: ' + xhr.status), null); // 콜백 함수 호출 (오류 발생)
-      }
-    }
-  };
-
-  // 요청 헤더 설정
-  xhr.setRequestHeader('Content-Type', 'application/json');
-
-  // 요청 데이터를 JSON 문자열로 변환하여 전송
-  xhr.send(JSON.stringify(data));
-}
 
 setupEventListeners();

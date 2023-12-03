@@ -41,6 +41,12 @@
   padding-right: 10px;
 }
 
+.screens-admin-hostingManagement__content-table__header {
+  position: sticky;
+  top: 0px;
+  background: #8a8a8a;
+}
+
 .screens-admin-hostingManagement__content-table-div {
   width: 100%;
   height: 78%;
