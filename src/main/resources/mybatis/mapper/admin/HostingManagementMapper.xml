@@ -7,7 +7,7 @@
     <select id="selectAll" resultType="RoomDto">
         SELECT *
         FROM Room
-        ORDER BY created_at DESC
+        ORDER BY created_at
     </select>
 
     <update id="updateAll" parameterType="map">
@@ -31,6 +31,7 @@
                 AND status_id = #{status_id}
             </otherwise>
         </choose>
+        ORDER BY created_at
     </select>
 
 </mapper>

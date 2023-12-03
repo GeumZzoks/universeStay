@@ -95,7 +95,9 @@
                         <td> ${room.room_weekday_price} </td>
                         <td> ${room.room_weekend_price} </td>
                         <td> ${room.room_extra_person_fee} </td>
-                        <td> ${room.created_at} </td>
+                            <%--                        <td> ${room.created_at} </td>--%>
+                        <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm"
+                                            value="${room.created_at}"/></td>
                         <td value="${room.room_id}"
                             class="screens-admin-hostingManagement__content-table__status-id-td">
                                 ${room.status_id}
