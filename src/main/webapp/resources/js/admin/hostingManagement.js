@@ -119,6 +119,11 @@ searchBtn.addEventListener('click', function () {
 
     for (let i = 0; i < data.length; i++) {
       const room = data[i];
+      room.created_at = new Date(room.created_at).getFullYear() + '-' + ('0'
+          + (new Date(room.created_at).getMonth() + 1)).slice(-2) + '-' + ('0'
+          + (new Date(room.created_at).getDate())).slice(-2) + ' ' + ('0'
+          + (new Date(room.created_at).getHours())).slice(-2) + ':' + ('0'
+          + (new Date(room.created_at).getMinutes())).slice(-2);
 
       html += '<tr>';
       html += '<td><input type="checkbox" value="' + room.room_id
@@ -139,6 +144,7 @@ searchBtn.addEventListener('click', function () {
 
     contentTable.innerHTML = html;
 
+    // 이벤트리스너 다시 달아줌
     checkAllBoxBtn = document.querySelector(
         ".screens-admin-hostingManagement__content-table__check-all-btn");
     checkBoxs = document.querySelectorAll(
