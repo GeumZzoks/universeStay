@@ -15,27 +15,9 @@
   background-color: white;
 }
 
-.screens-admin-hostingManagement__content-search {
-  position: absolute;
-  margin: -20px 0 0 958px;
-}
-
-.screens-admin-hostingManagement__content-search__btn {
-  height: 24px;
-  background-color: indianred;
-  color: white;
-  border: 0;
-  border-radius: 2px;
-}
-
-.screens-admin-hostingManagement__content-search__btn:hover {
-  color: black;
-  transition-duration: 200ms;
-  transform: scale(1.04, 1.04);
-  cursor: pointer;
-}
-
 .screens-admin-hostingManagement__control-box {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 30px;
 }
 
@@ -59,135 +41,6 @@
 
 .screens-admin-hostingManagement__content-table-div::-webkit-scrollbar {
   display: none;
-}
-
-.screens-admin-hostingManagement__content-table__no {
-  width: 70px;
-  border-bottom: 1px solid #444444;
-  text-align: center;
-}
-
-.screens-admin-hostingManagement__content-table__title {
-  color: black;
-  border-bottom: 1px solid #444444;
-  text-align: left;
-}
-
-.screens-admin-hostingManagement__content-table__title__a {
-  text-decoration: none;
-  color: black;
-}
-
-.screens-admin-hostingManagement__content-table__title__a:hover {
-  color: #F48475;
-}
-
-.screens-admin-hostingManagement__content-table__title__a:visited {
-  color: #B0B0B0;
-}
-
-.screens-admin-hostingManagement__content-table__writer {
-  width: 100px;
-  border-bottom: 1px solid #444444;
-  text-align: center;
-}
-
-.screens-admin-hostingManagement__content-table__regdate {
-  width: 120px;
-  border-bottom: 1px solid #444444;
-  text-align: center;
-}
-
-.screens-admin-hostingManagement__content-table__viewcnt {
-  width: 50px;
-  border-bottom: 1px solid #444444;
-  text-align: center;
-}
-
-.screens-admin-hostingManagement__content-top__btn {
-  position: absolute;
-  top: 20px;
-  right: 90px;
-  width: 60px;
-  height: 24px;
-  background-color: indianred;
-  color: white;
-  border: 0;
-  border-radius: 2px;
-}
-
-.screens-admin-hostingManagement__content-top__btn:hover {
-  transition-duration: 200ms;
-  transform: scale(1.04, 1.04);
-  cursor: pointer;
-}
-
-.screens-admin-hostingManagement__content-bottom {
-  position: absolute;
-  right: 48px;
-  bottom: 51px;
-}
-
-.screens-admin-hostingManagement__content-bottom__btn {
-  width: 150px;
-  height: 24px;
-  background-color: indianred;
-  color: white;
-  border: 0;
-  border-radius: 2px;
-}
-
-.screens-admin-hostingManagement__content-bottom__btn:hover {
-  color: black;
-  transition-duration: 200ms;
-  transform: scale(1.04, 1.04);
-  cursor: pointer;
-}
-
-.screens-admin-hostingManagement__content-bottom__btn__a {
-  text-decoration: none;
-  color: white;
-}
-
-.screens-admin-hostingManagement__content-bottom__btn__submit {
-  position: absolute;
-  width: 150px;
-  height: 24px;
-  background-color: indianred;
-  color: white;
-  border: 0;
-  border-radius: 2px;
-  right: 20px;
-  bottom: 20px;
-}
-
-.screens-admin-hostingManagement__content-bottom__btn__submit:hover {
-  color: black;
-  transition-duration: 200ms;
-  transform: scale(1.04, 1.04);
-  cursor: pointer;
-}
-
-.screens-admin-hostingManagement__content-input-div {
-  width: 200px;
-  position: absolute;
-  margin: -430px 0 0 870px;
-  padding: 30px 0 80px 40px;
-  border: 2px solid indianred;
-  border-radius: 10px;
-}
-
-.screens-admin-hostingManagement__content-input-div__radio {
-  accent-color: indianred;
-}
-
-.screens-admin-hostingManagement__content-input__type {
-  margin: 20px 0 10px 0;
-}
-
-.screens-admin-hostingManagement__control-box {
-  display: flex;
-  justify-content: space-between;
 }
 
 .screens-admin-hostingManagement__content-table__status-id-td[data-status="승인전"] {
