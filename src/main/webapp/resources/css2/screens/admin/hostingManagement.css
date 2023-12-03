@@ -35,9 +35,13 @@
   cursor: pointer;
 }
 
+.screens-admin-hostingManagement__control-box {
+  margin-bottom: 30px;
+}
+
 .screens-admin-hostingManagement__content-table {
   width: 100%;
-  margin: 30px 0 10px 0;
+  /*margin: 30px 0 10px 0;*/
   padding-right: 10px;
 }
 
@@ -184,4 +188,16 @@
 .screens-admin-hostingManagement__control-box {
   display: flex;
   justify-content: space-between;
+}
+
+.screens-admin-hostingManagement__content-table__status-id-td[data-status="승인전"] {
+  background: yellow;
+}
+
+.screens-admin-hostingManagement__content-table__status-id-td[data-status="승인 완료"] {
+  background: green;
+}
+
+.screens-admin-hostingManagement__content-table__status-id-td[data-status="승인 반려"] {
+  background: red;
 }

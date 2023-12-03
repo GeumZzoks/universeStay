@@ -59,7 +59,15 @@ function handleStatusBtnClick(e) {
           roomList.forEach(room_id => {
             const status_id = document.querySelector(
                 "td[value='" + room_id + "']");
-            status_id.innerHTML = (status === "승인 완료") ? 'RA02' : 'RA03';
+            status_id.innerHTML = (status === "승인 완료") ? '승인 완료' : '승인 반려';
+
+            if (status_id.innerHTML === "승인 전") {
+              status_id.style.background = 'yellow';
+            } else if (status_id.innerHTML === "승인 완료") {
+              status_id.style.background = 'green';
+            } else {
+              status_id.style.background = 'red';
+            }
           });
 
           checkAllBoxBtn.checked = false;
@@ -130,7 +138,7 @@ searchBtn.addEventListener('click', function () {
   .then(data => {
 
     let html = '';
-    html += '<tr>';
+    html += '<tr class="screens-admin-hostingManagement__content-table__header">';
     html += '<th class="screens-admin-hostingManagement__content-table__check-all"><input type="checkbox" class="screens-admin-hostingManagement__content-table__check-all-btn"></th>';
     html += '<th class="screens-admin-hostingManagement__content-table__name">숙소 이름</th>';
     html += '<th class="screens-admin-hostingManagement__content-table__advances-desc">숙소 장점 설명</th>';
@@ -150,6 +158,9 @@ searchBtn.addEventListener('click', function () {
           + (new Date(room.created_at).getDate())).slice(-2) + ' ' + ('0'
           + (new Date(room.created_at).getHours())).slice(-2) + ':' + ('0'
           + (new Date(room.created_at).getMinutes())).slice(-2);
+      room.status_id = room.status_id == "RA01" ? "승인전" : (room.status_id
+      == "RA02" ? "승인 완료"
+          : "승인 반려");
 
       html += '<tr>';
       html += '<td><input type="checkbox" value="' + room.room_id
@@ -163,7 +174,8 @@ searchBtn.addEventListener('click', function () {
       html += '<td>' + room.room_extra_person_fee + '</td>';
       html += '<td>' + room.created_at + '</td>';
       html += '<td value="' + room.room_id
-          + '"class="screens-admin-hostingManagement__content-table__status-id-td">'
+          + '"class="screens-admin-hostingManagement__content-table__status-id-td" data-status="'
+          + room.status_id + '">'
           + room.status_id + '</td>';
       html += '</tr>';
     }

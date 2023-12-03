@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
+
 <html>
 <head>
     <title>이벤트</title>
@@ -98,8 +99,9 @@
                         <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm"
                                             value="${room.created_at}"/></td>
                         <td value="${room.room_id}"
-                            class="screens-admin-hostingManagement__content-table__status-id-td">
-                                ${room.status_id}
+                            class="screens-admin-hostingManagement__content-table__status-id-td"
+                            data-status="${room.status_id == "RA01" ? "승인전" : (room.status_id == "RA02" ? "승인 완료" : "승인 반려")}">
+                                ${room.status_id == "RA01" ? "승인전" : (room.status_id == "RA02" ? "승인 완료" : "승인 반려")}
                         </td>
                     </tr>
                 </c:forEach>
