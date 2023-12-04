@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 
 @Service
@@ -45,7 +46,7 @@ public class UserLoginServiceImpl implements UserLoginService {
         }
     }
 
-    public UserDto signin(String user_email, String user_pwd, HttpSession session)
+    public UserDto signin(String user_email, String user_pwd, HttpSession session, Model model)
             throws Exception {
 
         // 로그인을 시도한 경우 중  3,4,5 상황이 있을 수 있음
@@ -61,6 +62,7 @@ public class UserLoginServiceImpl implements UserLoginService {
         try {
             // 다오 호출 : 조회 시 유저 정보가 있을수도 있고, 없을 수도 있어, 조회해서 UserDto타입에 일단 담아 놓고
             UserDto userInfo = userLoginDao.selectUser(user_email);
+            String statusId = userInfo.getStatus_id();
 
             // 만약 유저 정보가 널이 아니면 == 조회가 됐단 뜻
             if (userInfo != null) {
@@ -69,13 +71,22 @@ public class UserLoginServiceImpl implements UserLoginService {
 
                 // 그리고 일치하는 정보가 db에 있다면 => 3. 로그인이 문제없이 성공한 경우
                 if (userEmail != null && user_pwd.equals(userPwd)) {
+
+                    // 여기서 유저상태에 따른 다른 리턴값 처리?
+                    // u02는 휴면 해제하면 세션에 저장하고 로그인되게 해야하니까.. 얘는 여기 아래에 안끼는 거지!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    if (statusId.equals("U03") || statusId.equals("U04")) {
+//                        model.addAttribute("statusId", statusId); => 담지마 컨트롤러에서 담아보자.
+
+                        // 널주니까 컨트롤러에서 에러가나 얘도 걍 디티오 객체를 주긴해야하네
+                        // 세션에 저장하지 않고 디티오 반환
+                        return userInfo;
+                    }
+
                     session.setAttribute("user_email", user_email);
                     session.setMaxInactiveInterval(30 * 60);
                     return userInfo; // 세션에 저장 후 UserDto타입을 리턴
-
                 } else { // 4. 아이디 또는 비밀번호가 일치하지 않는다면 null을 반환 (ctr에서 맞는 뷰 보여줌)
                     return null;
-
                 }
             } else { // null이면 => 6.없는 회원정보(로그인/비밀번호)로 로그인을 시도한 경우
                 return null; // null 반환(ctr에서 맞는 뷰 보여줌)
@@ -83,7 +94,7 @@ public class UserLoginServiceImpl implements UserLoginService {
 
         } catch (Exception e) {
             e.printStackTrace();
-//             return null;
+            // return null;
             throw new Exception();
         }
     }
@@ -99,9 +110,6 @@ public class UserLoginServiceImpl implements UserLoginService {
     }
 
     // 유저 활동 상태(U01~4)에 따라 보여줄 메서드가 필요.
-    // 반환타입을 어떤걸로 줘야하는 걸까?
-//    public void userStatusError() throws Exception {
-//
-//    }
+
 
 }

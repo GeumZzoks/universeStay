@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Slf4j
-//@Controller
-//@RequestMapping("/user")
+@Controller
+@RequestMapping("/user")
 public class UserLoginController {
 
-//    @Autowired
+    @Autowired
     UserLoginService userLoginService; // 명확한 이름 지어주기 // 고민해보기
 
     @GetMapping("/loginForm")
@@ -31,7 +31,7 @@ public class UserLoginController {
     @PostMapping("/login")
     public String login(String user_email, String user_pwd, String remember_id,
             HttpServletResponse response, HttpSession session,
-            RedirectAttributes redirectAttributes) throws Exception {
+            RedirectAttributes redirectAttributes, Model model) throws Exception {
 
         // 1. 쿠키 요청이 있는지 먼저 확인
         userLoginService.setCookie(user_email, remember_id, response);
@@ -46,22 +46,38 @@ public class UserLoginController {
             return "redirect:/user/loginForm";
         }
 
-        // 조회하기 전에 user_pwd를 암호화한 다음 암호한 애를 db에서 조회해야지
-
-
         // 사용자가 로그인을 시도하면 DB 조회
-        UserDto userInfo = userLoginService.signin(user_email, user_pwd, session);
-        System.out.println("userInfo.getStatus_id() = " + userInfo.getStatus_id());
+        UserDto userInfo = userLoginService.signin(user_email, user_pwd, session, model);
+
+        String statusId = userInfo.getStatus_id();
 
         try {
-            if (userInfo != null) { // 3. 로그인 성공 시  메인으로 이동
+            if (userInfo != null) { // 3. 로그인 시도 시
+                // 유저 상태 담기
+//                System.out.println("statusId 들어오니= " + statusId);
+//                // 회원탈퇴한 유저가 로그인 시도 시 메인으로 이동 후 알럿창 띄우기
+
+                if (statusId.equals("U02")) {
+                    userLoginService.userLastLogin(user_email);
+                }
+                if (!statusId.equals("U01")) {
+                    model.addAttribute("statusId", statusId);
+                    return "main/main";
+                }
+
+                // 정상적으로 로그인 됐을 때,
                 userLoginService.userLastLogin(user_email);
-                return "redirect:/main.jsp"; // 메인으로 이동
+                return "redirect:/main.jsp";
+                // 회원 활동 상태(U01~04)에 따라 다른 로직 처리 필요 => 서비스로 넘기자.
+
             }
             // 여기에 오는 경우가
             // 4. 사용자가 아이디 또는 비밀번호를 틀렸을 경우
             // 5. 사용자가 없는 회원정보로 로그인을 시도한 경우
             else { // 유저에게 에러메세지와 함께 다시 로그인폼을 보여준다.
+
+                // 서비스임플에서 uo2,u04일때 널을 보내서 여기서 처리할라니까. 겟아이디가 없으니 널포인트 익셉션이 난다.
+
                 error.put("id null or pwd invalid", "아이디가 존재하지 않거나 비밀번호가 일치하지 않습니다.");
                 redirectAttributes.addFlashAttribute("error", error);
                 return "redirect:/user/loginForm";
@@ -77,7 +93,4 @@ public class UserLoginController {
         } // 화면
 
     }
-
-
-
 }
