@@ -79,11 +79,11 @@
             <div class="screens-user-userInfo__line"></div>
 
             <div class="screens-user-userInfo__section2">
-                <form>
+                <form class="screens-user-userInfo__user-info-modify-form">
                     <div>
                         <span>프로필 사진</span>
-                        <img src="#">
-                        <input class="screens-user-userInfo__img-insert-btn hidden" type="file">
+                        <img class="screens-user-userInfo__profile-img" src="${profileImgUrl}"  >
+                        <input class="screens-user-userInfo__img-insert-btn hidden" type="file" onchange="readURL(this);">
                     </div>
                     <div>
                         <input class="screens-user-userInfo__user-id-input" type="hidden"
@@ -92,12 +92,12 @@
                         <div>
                             <input class="screens-user-userInfo__nickname-input"
                                    value="${user.user_nickname}" readonly>
-                            <span>유효성검사하는 글자 스팬</span>
+                            <span class = "screens-user-userInfo__nickname-helper-text"></span>
                             <ul> - 길이는 최대 15자 이내로 작성해주세요.</ul>
                             <ul> - 중복 닉네임 불가합니다.</ul>
                             <ul> - 이모티콘 및 일부 특수문자 사용 불가합니다. &<>()'/"</ul>
                         </div>
-                        <button type="button">중복 확인</button>
+                        <button class= "screens-user-userInfo__nickname-check-btn hidden" type="button">중복 확인</button>
                     </div>
                     <div>
                         <span>자기소개</span>
@@ -114,7 +114,7 @@
                         <input class="screens-user-userInfo__phone2-input"
                                value="${user.user_phone_num2}" readonly>
                     </div>
-                    <button type="submit"
+                    <button type="button"
                             class="screens-user-userInfo__user-info-modify-cancel-btn hidden">취소
                     </button>
                     <button class="screens-user-userInfo__user-info-modify-done-btn hidden">수정완료
@@ -171,6 +171,7 @@
     const bioInput = document.querySelector(".screens-user-userInfo__bio-input");
     const phoneInput = document.querySelector(".screens-user-userInfo__phone-input");
     const phone2Input = document.querySelector(".screens-user-userInfo__phone2-input");
+    const checkUserNickname = document.querySelector(".screens-user-userInfo__nickname-check-btn");
 
     const showUserInfoModifyBtn = () => {
         //수정하기 버튼 누르면 취소, 수정완료 버튼 보이게 하고 수정하기 버튼 숨기기
@@ -178,6 +179,7 @@
         userInfoModifyCancelBtn.classList.toggle("hidden");
         userInfoModifyBtn.classList.toggle("hidden");
         imgInput.classList.toggle("hidden");
+        checkUserNickname.classList.toggle("hidden");
 
         //readonly였던 Input들 활성화 시키기.
         nicknameInput.removeAttribute("readonly")
@@ -187,15 +189,18 @@
     };
 
     userInfoModifyBtn.addEventListener("click", showUserInfoModifyBtn);
+
     userInfoModifyCancelBtn.addEventListener("click", () => {
         userInfoModifyDoneBtn.classList.add("hidden");
         userInfoModifyCancelBtn.classList.add("hidden");
-        imgInput.classList.add("hidden")
+        imgInput.classList.add("hidden");
+        checkUserNickname.classList.add("hidden");
         userInfoModifyBtn.classList.remove("hidden");
 
         bioInput.setAttribute("readonly", true)
         phoneInput.setAttribute("readonly", true)
         phone2Input.setAttribute("readonly", true)
+        window.location.href = '/user/myPage/info';
     });
 
     // 회원탈퇴
@@ -204,41 +209,92 @@
         location.href = "/user/myPage/withdrawal";
     })
 
-    // 예시jQuery코드
-    $('form').submit(function (e) {
-        e.preventDefault(); // 기본 제출 행동 방지
+    //프로필 이미지 미리보여주기
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                document.querySelector('.screens-user-userInfo__profile-img').src = e.target.result;
+            };
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            document.querySelector('.screens-user-userInfo__profile-img').src = "";
+        }
+    }
 
+    // 예시jQuery코드
+    $('.screens-user-userInfo__user-info-modify-form').submit(function (e) {
+        e.preventDefault(); // 기본 제출 행동 방지
         var formData = new FormData();
-        var file = $('.screens-user-userInfo__img-insert-btn')[0].files[0];
-        formData.append('file', file);
+        var img = $('.screens-user-userInfo__img-insert-btn')[0].files[0];
+        formData.append('img', img);
 
         var user = {
             user_id: $('.screens-user-userInfo__user-id-input').val(),
-            nickname: $('.screens-user-userInfo__nickname-input').val(),
-            bio: $('.screens-user-userInfo__bio-input').val(),
-            phone: $('.screens-user-userInfo__phone-input').val(),
-            phone2: $('.screens-user-userInfo__phone2-input').val()
+            user_nickname: $('.screens-user-userInfo__nickname-input').val(),
+            user_bio: $('.screens-user-userInfo__bio-input').val(),
+            user_phone_num1: $('.screens-user-userInfo__phone-input').val(),
+            user_phone_num2: $('.screens-user-userInfo__phone2-input').val()
             // 필요한 다른 데이터들을 추가
         };
 
-        formData.append('userData', JSON.stringify(user)); // JSON 데이터 추가
+        formData.append('user', new Blob([JSON.stringify(user)], {type: "application/json"})); // JSON 데이터 추가
 
         // FormData를 서버로 보냄
         $.ajax({
             url: '/user/myPage/info/update',
             type: 'POST',
             data: formData,
+            enctype: 'multipart/form-data',
             contentType: false,
             processData: false,
-            success: function (response) {
-                console.log("성공")
+            success: function (response, status, xhr) {
+                if(response === "Success") {
+                    alert("수정이 완료되었습니다.")
+                    window.location.href = '/user/myPage/info';
+                }
             },
             error: function (xhr, status, error) {
-                console.log("file :", file);
-                console.log("user :", user);
-
-                console.log("실패")
+                if(xhr.responseText === "DuplicateKeyError" ){
+                    alert("닉네임 중복확인을 진행해주세요.")
+                }  else if (xhr.responseText === 'ServerError') {
+                    alert('서버 에러 발생');
+                }
             }
+        });
+    });
+
+
+    $(function () {
+        $(".screens-user-userInfo__nickname-check-btn").click(function () {
+            let user_nickname = $(".screens-user-userInfo__nickname-input").val();
+            console.log(user_nickname);
+
+            $.ajax({
+                type: 'post',
+                url: "/user/myPage/info/checkNickname",
+                data: {"user_nickname": user_nickname},
+                success: function (response) {
+                    if (response == "Y") {
+                        const result = "이 닉네임을 사용할 수 있습니다.";
+
+                        $(".screens-user-userInfo__nickname-helper-text").html(result).removeClass(
+                                "unavailable")
+
+                    } else { // 실패한 경우
+                        const result = "이 닉네임은 이미 사용 중입니다.";
+                        $(".screens-user-userInfo__nickname-helper-text").html(result).addClass(
+                                "unavailable");
+
+                        $(".screens-user-userInfo__nickname-input").val("").trigger("focus");
+                    }
+                },
+                error: function (error) {
+                    const result = "이 닉네임은 이미 사용 중입니다.";
+                    $(".screens-user-userInfo__nickname-helper-text").html(result).addClass(
+                            "unavailable");
+                },
+            });
         });
     });
 

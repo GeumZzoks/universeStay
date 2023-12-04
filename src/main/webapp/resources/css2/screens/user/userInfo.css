@@ -60,3 +60,19 @@
 }
 
 
+.screens-user-userInfo__profile-img {
+  max-width: 130px;
+  max-height: 130px;
+}
+
+.screens-user-userInfo__nickname-helper-text{
+  color: green;
+}
+
+.screens-user-userInfo__nickname-helper-text.unavailable{
+  color: red;
+}
+
+.screens-user-userInfo__nickname-check-btn.hidden{
+  display: none;
+}
