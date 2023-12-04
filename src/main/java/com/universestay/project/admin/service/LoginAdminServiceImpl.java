@@ -35,7 +35,6 @@ public class LoginAdminServiceImpl implements LoginAdminService {
 //        AdminDto adminDto = loginAdminDao.selectUser(admin_id);
         String admin_id = UUID.randomUUID().toString();
         AdminDto adminDto = loginAdminDao.selectUser(userEmail);
-        System.out.println("adminDto = " + adminDto);
 
         // ID, PASSWORD 확인 및 세션 객체 생성
         if (checkUserAccountIdPwd(adminDto, userEmail, password)) {
