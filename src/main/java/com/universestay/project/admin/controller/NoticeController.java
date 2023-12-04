@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,7 +31,6 @@ public class NoticeController {
     public String list(@RequestParam(defaultValue = "1") Integer page,
             @RequestParam(defaultValue = "10") Integer pageSize, Model m,
             HttpServletRequest request) {
-
         try {
             int totalCnt = noticeService.getCount();
             NoticePageHandler nph = new NoticePageHandler(totalCnt, page, pageSize);
@@ -100,24 +100,27 @@ public class NoticeController {
         return "admin/noticeWrite";
     }
 
-    // 공지사항 등록(post 요청)
+    // 공지사항 등록
     @PostMapping("/write")
-    public String postWrite(NoticeDto noticeDto, RedirectAttributes rttr, Model model) {
-
+    public String postWrite(NoticeDto noticeDto, RedirectAttributes rttr, Model m,
+            HttpSession session) {
+        String writer = (String) session.getAttribute("admin_email");
         try {
-            // 공지사항 등록 실패 시
+            noticeDto.setAdmin_id(noticeService.getAdminId(writer));
+            noticeDto.setCreated_id(noticeService.getAdminId(writer));
+            noticeDto.setUpdated_id(noticeService.getAdminId(writer));
             if (noticeService.write(noticeDto) != 1) {
                 throw new Exception("Write failed.");
             }
-
             // 공지사항 등록 성공 시
-            rttr.addFlashAttribute("msg", "Write OK");
-            return "redirect:/admin/noticeList";
+            return "redirect:/admin/notice/" + noticeDto.getNotice_id();
         } catch (Exception e) {
+            // 공지사항 등록 실패 시 (실패하는 경우가 어떤 경우가 있을지 생각)
             e.printStackTrace();
-            // @@@@@@@@@@@@ 코드 작성 해야함 @@@@@@@@@@@@
+            m.addAttribute(noticeDto);
+            m.addAttribute("msg", "WRT_ERR");
+            return "admin/noticeWrite";
         }
-        return "redirect:/admin/noticeList2";
     }
 
     // 공지사항 수정
@@ -128,7 +131,6 @@ public class NoticeController {
             if (noticeService.modify(noticeDto) != 1) {
                 throw new Exception("Modify Failed.");
             }
-
             // 수정 성공 시
             rttr.addFlashAttribute("msg", "MOD_OK");
             return "redirect:/notice/noticeList";
