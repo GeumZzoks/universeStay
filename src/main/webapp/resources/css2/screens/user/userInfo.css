@@ -76,3 +76,20 @@
 .screens-user-userInfo__nickname-check-btn.hidden{
   display: none;
 }
+
+/*신규 비밀번호 유효성검사 */
+.screens-user-userInfo__change-pwd-helper-txt.unavailable{
+  color: red;
+}
+
+.screens-user-userInfo__change-pwd-helper-txt{
+  color: green;
+}
+
+/*신규 비밀번호 재확인 유효성 검사*/
+.screens-user-userInfo__change-pwd2-helper-txt.unavailable{
+  color: red;
+}
+.screens-user-userInfo__change-pwd2-helper-txt{
+ color: green;
+}
