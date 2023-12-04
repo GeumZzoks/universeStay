@@ -239,31 +239,6 @@
 
 
 <jsp:include page="/WEB-INF/views/common/user/footer.jsp"/>
-
-<%--<script>--%>
-<%--&lt;%&ndash;  &lt;%&ndash;%>--%>
-<%--&lt;%&ndash;      String statusId = (String) request.getAttribute("statusId");&ndash;%&gt;--%>
-
-
-<%--&lt;%&ndash;      System.out.println("statusId = " + statusId);&ndash;%&gt;--%>
-<%--&lt;%&ndash;      if (statusId.equals("U04")) {&ndash;%&gt;--%>
-<%--&lt;%&ndash;  %>&ndash;%&gt;--%>
-
-
-<%--  // window.onload = function() {--%>
-<%--  //   alert("현재 휴면 상태입니다. 해제하시겠습니까?")--%>
-<%--  // };--%>
-
-<%--&lt;%&ndash;  <% } else if(statusId.equals("U04")) {&ndash;%&gt;--%>
-<%--&lt;%&ndash;  %>&ndash;%&gt;--%>
-
-<%--&lt;%&ndash;  window.onload = function() {&ndash;%&gt;--%>
-<%--&lt;%&ndash;    alert("회원탈퇴된 아이디 입니다. 관리자에게 문의하세요")&ndash;%&gt;--%>
-<%--&lt;%&ndash;  };&ndash;%&gt;--%>
-
-<%--&lt;%&ndash;<%}%>&ndash;%&gt;--%>
-
-<%--</script>--%>
 <script>
   let statusId = "${statusId}";
   if (statusId=="U02") alert("현재 휴면 상태입니다. 해제 하시겠습니까?");

@@ -48,15 +48,13 @@ public class UserLoginController {
 
         // 사용자가 로그인을 시도하면 DB 조회
         UserDto userInfo = userLoginService.signin(user_email, user_pwd, session, model);
-
+        // 유저 상태 담기
         String statusId = userInfo.getStatus_id();
 
         try {
             if (userInfo != null) { // 3. 로그인 시도 시
-                // 유저 상태 담기
-//                System.out.println("statusId 들어오니= " + statusId);
-//                // 회원탈퇴한 유저가 로그인 시도 시 메인으로 이동 후 알럿창 띄우기
 
+                // 회원탈퇴한 유저가 로그인 시도 시 메인으로 이동 후 알럿창 띄우기
                 if (statusId.equals("U02")) {
                     userLoginService.userLastLogin(user_email);
                 }
@@ -68,7 +66,6 @@ public class UserLoginController {
                 // 정상적으로 로그인 됐을 때,
                 userLoginService.userLastLogin(user_email);
                 return "redirect:/main.jsp";
-                // 회원 활동 상태(U01~04)에 따라 다른 로직 처리 필요 => 서비스로 넘기자.
 
             }
             // 여기에 오는 경우가
