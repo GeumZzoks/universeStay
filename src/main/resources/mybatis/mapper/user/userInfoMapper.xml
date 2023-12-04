@@ -11,8 +11,7 @@
 
     <update id="updateUserInfo" parameterType="UserDto">
         UPDATE User
-        SET profile_img_id  = #{profile_img_id},
-            user_nickname   = #{user_nickname},
+        SET user_nickname   = #{user_nickname},
             user_pwd        = #{user_pwd},
             user_phone_num1 = #{user_phone_num1},
             user_phone_num2 = #{user_phone_num2},

@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 @WebFilter(filterName = "AdminFilter", urlPatterns = {"/admin/*"})
 public class AdminFilter implements Filter {
 
-    private static final String[] whitelist = {"/admin/user/list", "/admin/user/info"};
+    private static final String[] whitelist = {"/admin/user/list", "/admin/user/info", "/admin/user/update"};
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -26,7 +26,7 @@ public class AdminFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
-            FilterChain filterChain) throws IOException, ServletException {
+                         FilterChain filterChain) throws IOException, ServletException {
 
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
@@ -46,15 +46,15 @@ public class AdminFilter implements Filter {
         System.out.println();
 
         if (!isLoginCheckPath(requestURI)) filterChain.doFilter(request, response);
-      
-        boolean isNotLogin = (session == null || session.getAttribute("admin_email") == null);
-        if (isNotLogin) {
-            session.setAttribute("URL", request.getRequestURI());
-            response.sendRedirect("/adminLogin/loginForm");
-        } else {
-            filterChain.doFilter(request, response);
+        else {
+            boolean isNotLogin = (session == null || session.getAttribute("admin_id") == null);
+            if (isNotLogin) {
+                session.setAttribute("URL", request.getRequestURI());
+                response.sendRedirect("/adminLogin/loginForm");
+            } else {
+                filterChain.doFilter(request, response);
+            }
         }
-
     }
 
     private boolean isLoginCheckPath(String requestURI) {

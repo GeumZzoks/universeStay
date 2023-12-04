@@ -8,11 +8,15 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
 
 @Service
 public class JoinServiceImpl implements JoinService {
@@ -49,9 +53,27 @@ public class JoinServiceImpl implements JoinService {
         }
     }
 
+    // 회원가입 시, 유효성 체크
+    public Map<String, String> validateHandling(Errors errors) {
+        Map<String, String> validatorResult = new HashMap<>();
+
+        for (FieldError error : errors.getFieldErrors()) {
+            String validKeyName = String.format("valid_%s", error.getField());
+            validatorResult.put(validKeyName, error.getDefaultMessage());
+        }
+
+        return validatorResult;
+    }
+
+
     @Override
     public int checkNickname(String user_nickname) throws Exception {
         return userJoinDao.checkNickname(user_nickname);
+    }
+
+    @Override
+    public int checkEmail(String user_email) throws Exception {
+        return userJoinDao.checkEmail(user_email);
     }
 
     // 비밀번호 암호화
