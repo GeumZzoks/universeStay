@@ -10,4 +10,6 @@ public interface UserInfoService {
     public UserDto getUserInfo(String email) throws Exception;
 
     public int updateUserInfo(MultipartFile img, UserDto userDto) throws Exception;
+
+    public String checkNickname(String user_email,  String user_nickname) throws Exception;
 }
