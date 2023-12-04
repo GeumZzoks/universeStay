@@ -1,0 +1,81 @@
+@media (max-width: 1000px) {
+  .notice_wrap {
+    width: 100%;
+    min-width: 320px;
+    padding: 0 30px;
+    box-sizing: border-box;
+  }
+
+  .notice_list .num,
+  .notice_list .writer,
+  .notice_list .count {
+    display: none;
+  }
+
+  .notice_list .date {
+    width: 40%;
+  }
+
+  .notice_list .title {
+    text-indent: 10px;
+  }
+
+  .notice_list .top .title {
+    text-indent: 0;
+  }
+
+  .notice_page a {
+    width: 26px;
+    height: 26px;
+  }
+
+  .notice_page a.bt {
+    padding-top: 7px;
+  }
+
+  .notice_page a.num {
+    padding-top: 6px;
+  }
+
+  .notice_view .info dl {
+    width: 50%;
+    padding: 0;
+  }
+
+  .notice_view .info dl:nth-child(-n+2) {
+    margin-bottom: 5px;
+  }
+
+  .notice_view .info dl::before {
+    display: none;
+  }
+
+  .notice_view .info dl dt,
+  .notice_view .info dl dd {
+    font-size: 1.2rem;
+  }
+
+  .notice_write .info dl {
+    width: 49%;
+  }
+
+  .notice_write .info dl:first-child {
+    margin-right: 2%;
+  }
+
+  .notice_write .title dt,
+  .notice_write .info dt {
+    display: none;
+  }
+
+  .notice_write .title dd,
+  .notice_write .info dd {
+    width: 100%;
+  }
+
+  .notice_write .title input[type="text"],
+  .notice_write .info input[type="text"],
+  .notice_write .info input[type="password"] {
+    width: 100%;
+  }
+}

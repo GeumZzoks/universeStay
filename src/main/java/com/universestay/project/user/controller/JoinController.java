@@ -35,6 +35,7 @@ public class JoinController {
                 throw new RuntimeException("등록 실패");
             }
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(0);
         }
         return ResponseEntity.ok(1);
@@ -42,13 +43,13 @@ public class JoinController {
 
     // 닉네임 중복체크
     @PostMapping("/checkNickname")
-    //@ResponseBody ajax 값을 바로jsp 로 보내기위해 사용
     public ResponseEntity<String> checkId(@RequestParam("user_nickname") String user_nickname) {
         try {
             if (joinService.checkNickname(user_nickname) != 1) {
                 return ResponseEntity.ok("N");
             }
         } catch (Exception e) {
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Y");
@@ -56,12 +57,19 @@ public class JoinController {
 
     // 이메일 인증
     @GetMapping("/mailCheck")
-    public String mailCheck(String email) {
+    public ResponseEntity<String> mailCheck(String email) {
         try {
-            return mailSendService.joinEmail(email);
+            System.out.println(joinService.checkEmail(email));
+            if (joinService.checkEmail(email) != 1) {
+                System.out.println("이메일 인증");
+                mailSendService.joinEmail(email);
+                return ResponseEntity.ok("Y");
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("N");
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            return "redirect:/user/join";
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("N");
         }
     }
 }

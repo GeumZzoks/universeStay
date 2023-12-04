@@ -6,6 +6,7 @@ $(document).ready(function () {
     if (fnSubmit()) {
 
       // 사용자가 입력한 정보
+
       let admin_nickname = $("#screens-admin-register_signup_id").val();
       let admin_pwd = $("#screens-admin-register_signup_pw").val();
       let admin_email = $("#screens-admin-register_signup_email").val();
@@ -45,6 +46,7 @@ $(document).ready(function () {
   });
 });
 
+
 /**
  * [관리자 - 회원가입] 아이디 중복 유효성 검사
  * 입력한 비밀번호가 동일한지 확인
@@ -63,6 +65,7 @@ $(function () {
       data: {"admin_nickname": admin_nickname},
       success: function (res) {
         if (res === "N") {
+
           result = "이 아이디를 사용할 수 있습니다.";
 
           $("#id_input_helper_text").html(result).removeClass(
@@ -75,13 +78,16 @@ $(function () {
         //
         //   $("#screens-admin-register_signup_id").val("").trigger("focus");
         // }
+
       },
       error: function (error) {
         const result = "이 아이디는 이미 사용 중입니다.";
         $("#id_input_helper_text").html(result).addClass(
             "unavailable");
 
+
         $("#screens-admin-register_signup_id").val("").trigger("focus");
+
       },
     });
   });
@@ -90,10 +96,12 @@ $(function () {
     $("#screens-admin-register_signup_pw, #screens-admin-register_signup_pww").on(
         'input',
         function () {
+
           let admin_pwd1 = $("#screens-admin-register_signup_pw").val();
           let admin_pwd2 = $("#screens-admin-register_signup_pww").val();
 
           if (admin_pwd1 == admin_pwd2) {
+
             result = "비밀번호가 일치합니다.";
             $("#pwd_input_helper_text").html(result).removeClass("unavailable");
           } else { // In case of failure
@@ -101,6 +109,7 @@ $(function () {
             $("#pwd_input_helper_text").html(result).addClass("unavailable");
           }
         });
+
 
   });
 });
