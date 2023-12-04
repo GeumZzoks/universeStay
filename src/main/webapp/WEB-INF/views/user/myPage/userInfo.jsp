@@ -46,24 +46,24 @@
                         <span>비밀번호</span>
                         <div>
                             <div>
-                                <span>현재 비밀번호</span>
+                                <span >현재 비밀번호</span>
                                 <div>
-                                    <input>
-                                    <span>유효성검사하는 글자 스팬</span>
+                                    <input class="screens-user-userInfo__current-pwd" type="password">
+                                    <span class="screens-user-userInfo__current-pwd-helper-txt"></span>
                                 </div>
                             </div>
                             <div>
                                 <span>신규 비밀번호</span>
                                 <div>
-                                    <input>
-                                    <span>유효성검사하는 글자 스팬</span>
+                                    <input class="screens-user-userInfo__change-pwd" type="password">
+                                    <span class="screens-user-userInfo__change-pwd-helper-txt"></span>
                                 </div>
                             </div>
                             <div>
                                 <span>신규 비밀번호</span>
                                 <div>
-                                    <input>
-                                    <span>유효성검사하는 글자 스팬</span>
+                                    <input class="screens-user-userInfo__change-pwd2" type="password">
+                                    <span class="screens-user-userInfo__change-pwd2-helper-txt"></span>
                                 </div>
                             </div>
                             <button class="screens-user-userInfo__password-modify-cancel-btn">취소
@@ -222,6 +222,53 @@
         }
     }
 
+    // 신규 비밀번호 유효성 검사
+    $(function () {
+        $(".screens-user-userInfo__change-pwd").on('input', function () {
+            var pw = $(".screens-user-userInfo__change-pwd").val();
+            var num = pw.search(/[0-9]/g);
+            var eng = pw.search(/[a-z]/ig);
+            var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+
+            if (pw.length < 8 || pw.length > 20) {
+                result = "8자리 ~ 20자리 이내로 입력해주세요.";
+                $(".screens-user-userInfo__change-pwd-helper-txt").html(result).addClass("unavailable");
+            } else if (pw.search(/\s/) != -1) {
+                result = "비밀번호는 공백 없이 입력해주세요.";
+                $(".screens-user-userInfo__change-pwd-helper-txt").html(result).addClass("unavailable");
+            } else if (num < 0 || eng < 0 || spe < 0) {
+                result = "영문,숫자, 특수문자를 혼합하여 입력해주세요.";
+                $(".screens-user-userInfo__change-pwd-helper-txt").html(result).addClass("unavailable");
+            } else {
+                result = "사용 가능한 비밀번호입니다.";
+                $(".screens-user-userInfo__change-pwd-helper-txt").html(result).removeClass(
+                        "unavailable");
+            }
+        })
+    });
+
+    //신규 비밀번호 재입력 유효성검사
+    $(function () {
+        $(".screens-user-userInfo__change-pwd, .screens-user-userInfo__change-pwd2").on('input',
+                function () {
+                    let user_pw = $(".screens-user-userInfo__change-pwd").val();
+                    let user_pw2 = $(".screens-user-userInfo__change-pwd2").val();
+
+                    if (user_pw === user_pw2 && user_pw2 !== null && user_pw !== null
+                            && user_pw2 !== "" && user_pw !== "") {
+                        result = "비밀번호가 일치합니다.";
+                        $(".screens-user-userInfo__change-pwd2-helper-txt").html(result).removeClass("unavailable");
+                    } else if (user_pw !== user_pw2) { // In case of failure
+                        const result = "비밀번호가 일치하지 않습니다.";
+                        $(".screens-user-userInfo__change-pwd2-helper-txt").html(result).addClass("unavailable");
+                    } else if (user_pw2 == null || user_pw == null || user_pw2 == ""
+                            || user_pw == "") {
+                        const result = "비밀번호 확인을 입력해주세요.";
+                        $(".screens-user-userInfo__change-pwd2-helper-txt").html(result).addClass("unavailable");
+                    }
+                });
+    });
+
     // 예시jQuery코드
     $('.screens-user-userInfo__user-info-modify-form').submit(function (e) {
         e.preventDefault(); // 기본 제출 행동 방지
@@ -297,6 +344,8 @@
             });
         });
     });
+
+
 
 
 </script>
