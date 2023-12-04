@@ -12,14 +12,19 @@
     <update id="updateUserInfo" parameterType="UserDto">
         UPDATE User
         SET user_nickname   = #{user_nickname},
-            user_pwd        = #{user_pwd},
             user_phone_num1 = #{user_phone_num1},
             user_phone_num2 = #{user_phone_num2},
-            user_address    = #{user_address},
             user_bio        = #{user_bio},
             updated_at      = now()
-        Where user_email = #{user_email}
+        Where user_id = #{user_id}
     </update>
+
+    <select id="checkNickname" parameterType="map" resultType="int">
+        select count(*)
+        from User
+        where user_nickname = #{user_nickname}
+        AND user_email != #{user_email}
+    </select>
 
     <!--    테스트 코드를 위해 만들어놓은 Delete 매퍼-->
     <delete id="deleteUser" parameterType="UserDto">
