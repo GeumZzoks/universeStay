@@ -21,7 +21,7 @@
     <!--회원가입 부분-->
     <section>
         <!--닉네임, 비번, 비번재확인-->
-        <h5 class="screens-admin-register_h5">닉네임*</h5>
+        <h5 class="screens-admin-register_h5">관리자 닉네임*</h5>
         <div style="display: flex;">
             <span class="screens-admin-register_signup_input"
                   style="width:100%;">
@@ -59,42 +59,7 @@
         <%-- JS 비밀번호 유효성 검사 체크 --%>
         <span class="screens-admin-register_helper_text_span" id="pwd_input_helper_text"></span>
         <div style="margin-top: 35px;">
-            <!--이름,생년월일,성별,이메일-->
-            <h5 class="screens-admin-register_h5">이름*</h5>
-            <span class="screens-admin-register_signup_input">
-                    <input id="screens-admin-register_signup_name" type="text"/>
-                </span>
-            <h5 class="screens-admin-register_h5">생년월일</h5>
-            <span style="display: flex;">
-                    <span class="screens-admin-register_signup_input_birth">
-                        <input id="screens-admin-register_signup_birth_yy" type="text"
-                               placeholder="년(4자)"/>
-                    </span>
-                   <span class="screens-admin-register_dropdown" style="margin-left: 10px;">
-                            <input type="text" class="screens-admin-register_dropdown__textBox"
-                                   placeholder="월" readonly>
-                            <div class="screens-admin-register_dropdown__option"
-                                 style="text-align: center">
-                                <div onclick="show('1')">1</div>
-                                <div onclick="show('2')">2</div>
-                                <div onclick="show('3')">3</div>
-                                <div onclick="show('4')">4</div>
-                                <div onclick="show('5')">5</div>
-                                <div onclick="show('6')">6</div>
-                                <div onclick="show('7')">7</div>
-                                <div onclick="show('8')">8</div>
-                                <div onclick="show('9')">9</div>
-                                <div onclick="show('10')">10</div>
-                                <div onclick="show('11')">11</div>
-                                <div onclick="show('12')">12</div>
-                            </div>
-                    </span>
-                    <span class="screens-admin-register_signup_input_birth"
-                          style="margin-left: 10px;">
-                        <input id="screens-admin-register_signup_birth_dd" type="text"
-                               placeholder="일"></input>
-                    </span>
-            </span>
+            <!-- 이메일 -->
             <h5 class="screens-admin-register_h5" style="margin-bottom: 0px;">본인 확인 이메일*</h5>
             <div style="display: flex;">
                 <span class="screens-admin-register_signup_input"
@@ -119,49 +84,11 @@
         </div>
 
         <div style="margin-top: 35px;">
-            <h5 class="screens-admin-register_h5">휴대전화 1*</h5>
+            <h5 class="screens-admin-register_h5">휴대전화*</h5>
             <span class="screens-admin-register_signup_input">
                     <input id="screens-admin-register_signup_phone_1" type="text"
                            placeholder="전화번호 입력"/>
             </span>
-
-            <h5 class="screens-admin-register_h5">휴대전화 2</h5>
-            <span class="screens-admin-register_signup_input">
-                    <input id="screens-admin-register_signup_phone_2" type="text"
-                           placeholder="전화번호 입력"/>
-                </span>
-        </div>
-
-
-        <div style="margin-top: 35px;">
-            <!--주소-->
-            <h5 class="screens-admin-register_h5">주소</h5>
-            <div style="display: flex;">
-                <span class="screens-admin-register_signup_input"
-                      style="width:100%; margin: 10px 0px 0px 0px">
-                  <input id="screens-admin-register_address_roadAddress" type="text"
-                         class="form-control"
-                         name="screens-admin-register_address_roadAddress"
-                         placeholder="도로명 주소"/>
-                </span>
-
-                <span class="screens-admin-register_address_Check_Btn_wrap">
-                <input type="button" id="screens-admin-register_address_Check_Btn"
-                       onclick="search_postcode()"
-                       value="주소 찾기"> <br>
-                </span>
-            </div>
-
-            <div style="margin-top: 10px;">
-              <span class="screens-admin-register_signup_input">
-                  <input id="screens-admin-register_address_detailAddress" type="text"
-                         class="form-control"
-                         name="screens-admin-register_address_detailAddress"
-                         placeholder="상세 주소"></input>
-              </span>
-            </div>
-
-            <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
         </div>
 
         <div>
@@ -174,7 +101,7 @@
 
     <!--저작권 정보-->
     <footer class="screens-admin-register_footer">
-        <div style="font-size: 12px; text-align: center">
+        <div class="screens-admin-register_footer__div">
             <span>이용약관 | 개인정보처리방침 | 책임의 한계와 고지 | 회원정보 고객센터</span>
             <div>© UniverseStay Corp.</div>
         </div>
@@ -193,7 +120,7 @@
     const checkInput = $('#screens-admin-register_code_check_input') // 인증번호 입력하는곳
 
     $.ajax({
-      type: 'get',
+      type: 'GET',
       url: '<c:url value ="/admin/register/mailCheck?email="/>' + email,
       success: function (data) {
         console.log(data);

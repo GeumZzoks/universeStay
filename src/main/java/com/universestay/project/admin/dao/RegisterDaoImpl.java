@@ -43,6 +43,11 @@ public class RegisterDaoImpl implements RegisterDao {
     }
 
     @Override
+    public Integer checkUniqueId(String admin_nickname) throws CommonException {
+        return session.selectOne(namespace + "checkUniqueId", admin_nickname);
+    }
+
+    @Override
     public Integer updateUser(AdminDto adminDto) throws CommonException {
         return session.update(namespace + "update", adminDto);
     }
