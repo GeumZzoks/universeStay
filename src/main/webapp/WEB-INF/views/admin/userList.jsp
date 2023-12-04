@@ -7,14 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>유저 리스트</title>
     <style>
-
         .screen-admin-userList__container {
             box-sizing: border-box;
             position: fixed;
             overflow: auto;
             left: 230px;
             top: 100px;
-            width: calc(100% - 290px);
+            width: calc(100% - 190px);
             height: calc(100% - 120px);
         }
 
@@ -41,28 +40,29 @@
             border-radius: 20px;
             background-color: white;
             display: block;
-            width: 1400px;
-            height: 500px;
-            border-collapse: separate;
-            border-spacing: 0 1rem;
-            table-layout: fixed;
+            width: 1500px; /* 고정된 테이블 폭을 설정합니다. */
+            height: 600px;
+            table-layout: fixed; /* 테이블의 레이아웃을 고정합니다. */
             word-break: break-all;
             text-overflow: fade;
             white-space: nowrap;
             overflow: hidden;
+            border-collapse: separate;
+            border-spacing: 20px 20px;
+
         }
 
         .screen-admin-userList__container__table > thead > tr > th {
             box-sizing: border-box;
             text-align: center;
             border-bottom: 1px solid black;
-            width: 50px;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space:nowrap;
+            font-size: 20px;
+            font-weight: bold;
+
         }
 
         .screen-admin-userList__container__table > tbody > tr > td {
+            font-size: 20px;
             box-sizing: border-box;
             text-decoration: none;
             color: black;
@@ -72,18 +72,38 @@
             white-space:nowrap;
         }
 
-        .screen-admin-userList__container__table {
-            /*width: 350px;*/
-
+        .screen-admin-userList__container__table > tbody > tr > td:nth-of-type(1) {
+            width: 450px;
+            max-width: 450px;
         }
-
-        .screen-admin-userList__container__table-col1 {  width: 100px; color: green;  background: green;   }
-        .screen-admin-userList__container__table-col2 {  width: 100px;     }
-        .screen-admin-userList__container__table-col3 {  width: 100px;     }
-        .screen-admin-userList__container__table-col4 {  width: 100px;     }
-        .screen-admin-userList__container__table-col5 {  width: 500px;     }
-        .screen-admin-userList__container__table-col6 {  width: 100px;     }
-        .screen-admin-userList__container__table-col7 {  width: 100px;     }
+        .screen-admin-userList__container__table > tbody > tr > td:nth-of-type(2) {
+            width: 100px;
+            max-width: 100px;
+        }
+        .screen-admin-userList__container__table > tbody > tr > td:nth-of-type(3) {
+            width: 100px;
+            max-width: 100px;
+        }
+        .screen-admin-userList__container__table > tbody > tr > td:nth-of-type(4) {
+            width: 100px;
+            max-width: 100px;
+            text-align: center;
+        }
+        .screen-admin-userList__container__table > tbody > tr > td:nth-of-type(5) {
+            width: 250px;
+            max-width: 250px;
+            text-align: center;
+        }
+        .screen-admin-userList__container__table > tbody > tr > td:nth-of-type(6) {
+            width: 250px;
+            max-width: 250px;
+            text-align: center;
+        }
+        .screen-admin-userList__container__table > tbody > tr > td:nth-of-type(7) {
+            width: 50px;
+            max-width: 50px;
+            text-align: center;
+        }
 
         .screen-admin-userList__container__table > tbody > tr > td > a {
             box-sizing: border-box;
@@ -94,11 +114,17 @@
         .screen-admin-userList__container__table > tbody > tr > td > a:hover {
             box-sizing: border-box;
             font-weight: bold;
+            letter-spacing: -0.5px;
+        }
+
+        .screen-admin-userList__container__page {
+            margin-top: 20px;
+            text-align: center;
         }
 
         .screen-admin-userList__container__page a {
             box-sizing: border-box;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             text-decoration: none;
             color: black;
             padding: 15px;
@@ -143,7 +169,7 @@
         </div>
         <div class="screen-admin-userList__container__list">
             <table class="screen-admin-userList__container__table">
-                <caption style="margin: 30px; font-size: 2rem;">유저 목록</caption>
+                <caption style="margin: 30px; font-size: 3rem;">유저 목록</caption>
                 <thead>
                 <tr>
                     <th class="screen-admin-userList__container__table-col1">ID</th>
