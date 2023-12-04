@@ -114,7 +114,6 @@ public class NoticeController {
             }
             // 공지사항 등록 성공 시
             return "redirect:/admin/notice/" + noticeDto.getNotice_id();
-
         } catch (Exception e) {
             // 공지사항 등록 실패 시 (실패하는 경우가 어떤 경우가 있을지 생각)
             e.printStackTrace();
