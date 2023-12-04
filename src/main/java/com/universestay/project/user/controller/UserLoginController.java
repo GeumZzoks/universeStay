@@ -9,17 +9,18 @@ import javax.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Slf4j
-@Controller
-@RequestMapping("/user")
+//@Controller
+//@RequestMapping("/user")
 public class UserLoginController {
 
-    @Autowired
+//    @Autowired
     UserLoginService userLoginService; // 명확한 이름 지어주기 // 고민해보기
 
     @GetMapping("/loginForm")
@@ -50,6 +51,7 @@ public class UserLoginController {
 
         // 사용자가 로그인을 시도하면 DB 조회
         UserDto userInfo = userLoginService.signin(user_email, user_pwd, session);
+        System.out.println("userInfo.getStatus_id() = " + userInfo.getStatus_id());
 
         try {
             if (userInfo != null) { // 3. 로그인 성공 시  메인으로 이동
@@ -75,5 +77,7 @@ public class UserLoginController {
         } // 화면
 
     }
+
+
 
 }

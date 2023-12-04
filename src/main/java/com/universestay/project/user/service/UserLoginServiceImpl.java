@@ -6,13 +6,14 @@ import java.util.Map;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 @Service
 public class UserLoginServiceImpl implements UserLoginService {
 
-//    @Autowired
+    @Autowired
     UserLoginDao userLoginDao;
 
     public void setCookie(String user_email, String remember_id, HttpServletResponse response)
@@ -82,8 +83,8 @@ public class UserLoginServiceImpl implements UserLoginService {
 
         } catch (Exception e) {
             e.printStackTrace();
-             return null;
-//            throw new Exception();
+//             return null;
+            throw new Exception();
         }
     }
 
