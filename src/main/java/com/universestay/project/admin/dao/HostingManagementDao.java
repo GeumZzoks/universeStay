@@ -1,6 +1,6 @@
 package com.universestay.project.admin.dao;
 
-import com.universestay.project.dto.RoomDto;
+import com.universestay.project.room.dto.RoomDto;
 import java.util.List;
 import java.util.Map;
 
