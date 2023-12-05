@@ -40,11 +40,16 @@ public class NoticeServiceImpl implements NoticeService {
 
     @Override
     public int write(NoticeDto noticeDto) throws Exception {
-        return noticeDao.insert(noticeDto);
+        return noticeDao.insertSelectKey(noticeDto);
     }
 
     @Override
     public int modify(NoticeDto noticeDto) throws Exception {
         return noticeDao.update(noticeDto);
+    }
+
+    @Override
+    public String getAdminId(String admin_email) throws Exception {
+        return noticeDao.selectAdminId(admin_email);
     }
 }

@@ -27,7 +27,7 @@ public class NoticeDaoImpl implements NoticeDao {
 
     @Override
     public List<NoticeDto> selectPage(Map map) throws Exception {
-        return session.selectList(namespace + "selectPage");
+        return session.selectList(namespace + "selectPage", map);
     }
 
     @Override
@@ -46,8 +46,18 @@ public class NoticeDaoImpl implements NoticeDao {
     }
 
     @Override
+    public int insertSelectKey(NoticeDto noticeDto) throws Exception {
+        return session.insert(namespace + "insertSelectKey", noticeDto);
+    }
+
+    @Override
     public int update(NoticeDto noticeDto) throws Exception {
         return session.update(namespace + "update", noticeDto);
+    }
+
+    @Override
+    public String selectAdminId(String admin_email) throws Exception {
+        return session.selectOne(namespace + "selectAdminId", admin_email);
     }
 
 

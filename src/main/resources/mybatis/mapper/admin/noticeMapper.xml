@@ -3,12 +3,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.universestay.project.admin.dao.NoticeDao">
-
     <select id="count" resultType="int">
         SELECT count(*)
         FROM Notice
     </select>
-
 
     <select id="selectAll" resultType="NoticeDto">
         select *
@@ -41,8 +39,22 @@
 
     <insert id="insert" parameterType="NoticeDto">
         insert into Notice
-        (admin_id, notice_title, notice_ctt, created_at, created_id, updated_at, updated_id)
-        values (#{admin_id}, #{notice_title}, #{notice_ctt}, now(), #{admin_id}, now(), #{admin_id})
+        (admin_id, notice_title, notice_ctt, notice_is_open, created_at, created_id, updated_at,
+         updated_id)
+        values (#{admin_id}, #{notice_title}, #{notice_ctt}, #{notice_is_open}, now(), #{admin_id},
+                now(), #{admin_id})
+    </insert>
+
+    <insert id="insertSelectKey" parameterType="NoticeDto">
+        insert into Notice
+        (admin_id, notice_title, notice_ctt, notice_is_open, created_at, created_id, updated_at,
+        updated_id)
+        values (#{admin_id}, #{notice_title}, #{notice_ctt}, #{notice_is_open}, now(), #{admin_id},
+        now(), #{admin_id})
+
+        <selectKey keyProperty="notice_id" order="AFTER" resultType="int">
+            select LAST_INSERT_ID()
+        </selectKey>
     </insert>
 
     <update id="update" parameterType="NoticeDto">
@@ -54,5 +66,11 @@
             updated_id     = #{updated_id}
         where notice_id = #{notice_id}
     </update>
+
+    <select id="selectAdminId" parameterType="String" resultType="String">
+        select admin_id
+        from Admin
+        where admin_email = #{admin_email}
+    </select>
 
 </mapper>

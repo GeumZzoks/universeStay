@@ -64,4 +64,9 @@ public class NoticeServiceImplTest {
         System.out.println("modify COUNT = " + noticeService.modify(noticeDto));
     }
 
+    @Test
+    public void getAdminId() throws Exception {
+        System.out.println(noticeService.getAdminId("alskadmlcraz1@gmail.com"));
+    }
+
 }

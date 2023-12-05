@@ -10,15 +10,19 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 <head>
-    <title>noticeList2 Page</title>
+    <title>공지사항 - UNIVERSESTAY</title>
     <link rel="stylesheet" href="/resources/css2/style.css">
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/admin/header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/admin/navigation.jsp"/>
+<jsp:include page="/WEB-INF/views/common/admin/footer.jsp"/>
+
 <div class="notice_wrap">
     <div class="notice_title">
         <strong>공지사항</strong>
         <div class="bt_wrap" style="margin-left: 900px;">
-            <a href="write.html" class="on">등록</a>
+            <a href="<c:url value='/admin/notice/write'/>" class="on">등록</a>
         </div>
     </div>
     <div class="notice_list_wrap">
@@ -33,7 +37,9 @@
             <c:forEach var="notice" items="${list}">
                 <div>
                     <div class="num">${notice.notice_id}</div>
-                    <div class="title"><a href="view.html">${notice.notice_title}</a></div>
+                    <div class="title"><a
+                            href="/admin/notice/${notice.notice_id}">${notice.notice_title}</a>
+                    </div>
                     <div class="writer">${notice.admin_id}</div>
                     <div class="date">${notice.created_at}</div>
                     <div class="count">${notice.notice_is_open}</div>
@@ -41,17 +47,26 @@
             </c:forEach>
         </div>
         <div class="notice_page">
-            <a href="#" class="bt first"><<</a>
-            <a href="#" class="bt prev"><</a>
-            <a href="#" class="num on">1</a>
-            <a href="#" class="num">2</a>
-            <a href="#" class="num">3</a>
-            <a href="#" class="num">4</a>
-            <a href="#" class="num">5</a>
-            <a href="#" class="bt next">></a>
-            <a href="#" class="bt last">>></a>
+            <a href="<c:url value='/admin/notice/list?page=1&pageSize=${nph.pageSize}'/>"
+               class="bt first"><<</a>
+            <c:if test="${nph.showPrev}">
+                <a href="<c:url value='/admin/notice/list?page=${nph.beginPage-1}&pageSize=${nph.pageSize}'/>"
+                   class="bt prev"><</a>
+            </c:if>
+            <c:forEach var="i" begin="${nph.beginPage}" end="${nph.endPage}">
+                <a href="<c:url value='/admin/notice/list?page=${i}&pageSize=${nph.pageSize}'/>"
+                   class="num">${i}</a>
+            </c:forEach>
+            <c:if test="${nph.showNext}">
+                <a href="<c:url value='/admin/notice/list?page=${nph.endPage+1}&pageSize=${nph.pageSize}'/>"
+                   class="bt prev">></a>
+            </c:if>
+            <a href="<c:url value='/admin/notice/list?page=${nph.totalPage}&pageSize=${nph.pageSize}'/>"
+               class="bt last">>></a>
+            <%--            <a href="#" class="num on">1</a>--%>
         </div>
     </div>
 </div>
+
 </body>
 </html>
