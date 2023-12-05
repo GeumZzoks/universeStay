@@ -20,4 +20,7 @@ public interface RegisterDao {
 
     /* 전체 삭제 */
     Integer deleteUserAll() throws CommonException;
+
+    /* 관리자 닉네임 존재 여부 확인 */
+    Integer checkUniqueId(String admin_nickname) throws CommonException;
 }

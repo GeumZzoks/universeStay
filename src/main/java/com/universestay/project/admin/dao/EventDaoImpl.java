@@ -28,8 +28,13 @@ public class EventDaoImpl implements EventDao {
     }
 
     @Override
-    public String getAdminNickname(String admin_id) throws Exception {
-        return session.selectOne(namespace + "getAdminNickname", admin_id);
+    public String getAdminUuid(String admin_email) throws Exception {
+        return session.selectOne(namespace + "getAdminUuid", admin_email);
+    }
+
+    @Override
+    public List<Map<String, Object>> searchSelectPage(SearchCondition sc) throws Exception {
+        return session.selectList(namespace + "searchSelectPage", sc);
     }
 
     @Override
@@ -40,19 +45,14 @@ public class EventDaoImpl implements EventDao {
     @Override
     public List<EventDto> selectPage(Map map) throws Exception {
         return session.selectList(namespace + "selectPage", map);
-    } // List<E> selectList(String statement, Object parameter)
+    }
 
     @Override
     public int searchResultCnt(SearchCondition sc) throws Exception {
         System.out.println("sc in searchResultCnt() = " + sc);
         System.out.println("session = " + session);
         return session.selectOne(namespace + "searchResultCnt", sc);
-    } // T selectOne(String statement, Object parameter)
-
-    @Override
-    public List<EventDto> searchSelectPage(SearchCondition sc) throws Exception {
-        return session.selectList(namespace + "searchSelectPage", sc);
-    } // List<E> selectList(String statement, Object parameter)
+    }
 
     @Override
     public Integer update(EventDto dto) throws Exception {

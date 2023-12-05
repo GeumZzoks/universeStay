@@ -6,43 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>유저 정보</title>
     <style>
-      .screen-admin-userInfo__container {
-        /*float: right;*/
-        /*display: flex;*/
-        /*flex-direction: column;*/
-        position: fixed;
-        overflow: auto;
-        left: 250px;
-        top: 70px;
-        width: calc(100% - 250px);
-        height: calc(100% - 70px);
-      }
+        .screen-admin-userInfo__container {
+            /*float: right;*/
+            /*display: flex;*/
+            /*flex-direction: column;*/
+            position: fixed;
+            overflow: auto;
+            left: 250px;
+            top: 70px;
+            width: calc(100% - 200px);
+            height: calc(100% - 70px);
+        }
 
-      .screen-admin-userInfo__container__1 {
-        float: right;
-        margin-right: 100px;
-        margin-bottom: 20px;
-        /*justify-content: flex-end;*/
-      }
+        .screen-admin-userInfo__container__1 {
+            float: right;
+            margin-right: 100px;
+            margin-bottom: 20px;
+        }
 
-      .screen-admin-userInfo__container__1 > a {
-        /*justify-content: flex-end;*/
-      }
+        .screen-admin-userInfo__container__1 > a {
+        }
 
-      .screen-admin-userInfo__container__2 {
-          position: absolute;
-          border: 2px solid lightgray;
-          border-radius: 20px;
-          width: 1500px;
-          height: 800px;
-          top: 30px;
-          left: 50px;
-      }
+        .screen-admin-userInfo__container__2 {
+            position: absolute;
+            border: 2px solid lightgray;
+            border-radius: 20px;
+            width: 1500px;
+            /*height: 800px;*/
+            top: 30px;
+            left: 30px;
+            font-size: 20px;
+        }
 
-      .screen-admin-userInfo__container__2 > p {
-        margin-bottom: 10px;
-        font-size: 20px;
-      }
+        .screen-admin-userInfo__container__2 > div {
+            display: inline-block;
+            margin-top: 10px;
+            margin-left: 20px;
+        }
     </style>
 </head>
 <body>
@@ -62,60 +62,113 @@
         </a>
     </section>
     <section class="screen-admin-userInfo__container__2">
-        <span>ID : </span><span>${dto.user_id}</span><br>
-        <span>추천인 ID : </span><span>${dto.user_id2}</span><br>
-        <span>상태코드 : </span><span>${dto.status_id}</span><br>
-        <span>비밀번호 : </span><span>${dto.user_pwd}</span><br>
-        <span>닉네임 : </span><span>${dto.user_nickname}</span><br>
-        <span>이름 : </span><span>${dto.user_name}</span><br>
-        <span>이메일 : </span><span>${dto.user_email}</span><br>
-        <span>마지막 로그인 : </span><span>${dto.user_last_login}</span><br>
-        <span>전화번호1 : </span><span>${dto.user_phone_num1}</span><br>
-        <span>전화번호2 : </span><span>${dto.user_phone_num2}</span><br>
-        <span>주소 : </span><span>: ${dto.user_address}</span><br>
-        <span>생년월일 : </span><span>${dto.user_birth}</span><br>
-        <span>신분증 인증 : </span><span>${dto.user_is_certificated}</span><br>
-        <span>호스트 여부 : </span><span>${dto.user_is_host}</span><br>
-        <span>호스트 전환일자 : </span><span>${dto.user_hosting_started_at}</span><br>
-        <span>자기소개 : </span><span>${dto.user_bio}</span><br>
-        <span>최초등록일자 : </span><span>${dto.created_at}</span><br>
-        <span>최초등록자 ID : </span><span>${dto.created_id}</span><br>
-        <span>최종변경일자 : </span><span>${dto.updated_at}</span><br>
-        <span>최종변경자 ID : </span><span>${dto.updated_id}</span><br>
+        <div>ID :</div>
+        <div>${dto.user_id}</div>
+        <br>
+        <div>추천인 ID :</div>
+        <div>${dto.user_id2}</div>
+        <br>
+        <div>상태코드 :</div>
+        <div id="status"></div>
+<%--        <div>${dto.status_id}</div>--%>
+        <br>
+        <div>비밀번호 :</div>
+        <div>${dto.user_pwd}</div>
+        <br>
+        <div>닉네임 :</div>
+        <div>${dto.user_nickname}</div>
+        <br>
+        <div>이름 :</div>
+        <div>${dto.user_name}</div>
+        <br>
+        <div>이메일 :</div>
+        <div>${dto.user_email}</div>
+        <br>
+        <div>마지막 로그인 :</div>
+        <div>${dto.user_last_login}</div>
+        <br>
+        <div>전화번호1 :</div>
+        <div>${dto.user_phone_num1}</div>
+        <br>
+        <div>전화번호2 :</div>
+        <div>${dto.user_phone_num2}</div>
+        <br>
+        <div>주소 :</div>
+        <div>: ${dto.user_address}</div>
+        <br>
+        <div>생년월일 :</div>
+        <div>${dto.user_birth}</div>
+        <br>
+        <div>신분증 인증 :</div>
+        <div>${dto.user_is_certificated}</div>
+        <br>
+        <div>호스트 여부 :</div>
+        <div>${dto.user_is_host}</div>
+        <br>
+        <div>호스트 전환일자 :</div>
+        <div>${dto.user_hosting_started_at}</div>
+        <br>
+        <div>자기소개 :</div>
+        <div>${dto.user_bio}</div>
+        <br>
+        <div>최초등록일자 :</div>
+        <div>${dto.created_at}</div>
+        <br>
+        <div>최초등록자 ID :</div>
+        <div>${dto.created_id}</div>
+        <br>
+        <div>최종변경일자 :</div>
+        <div>${dto.updated_at}</div>
+        <br>
+        <div>최종변경자 ID :</div>
+        <div>${dto.updated_id}</div>
+        <br>
+        <br><br>
     </section>
-    <script>
-        document.getElementById('mylink').addEventListener('click', function () {
+        <script>
+            let status1;
+            if(`${dto.status_id}` === 'U01') status1 = '활성';
+            else if(`${dto.status_id}` === 'U02') status1 = '휴면';
+            else if(`${dto.status_id}` === 'U03') status1 = '정지';
+            else if(`${dto.status_id}` === 'U04') status1 = '탈퇴';
+            else status1 = '에러'
+            document.getElementById('status').innerHTML = status1;
+            document.getElementById('mylink').addEventListener('click', function () {
 
-            var mylink = document.getElementById('mylink');
-            var mybtn = document.getElementById('mybtn');
-            var options = [{U01: '활성'}, {U02: '휴면'}, {U03: '정지'}, {U04: '탈퇴'}];
-            var statusContainer = document.querySelector('.screen-admin-userInfo__container__2 > span:nth-of-type(6)');
-            var selectElement = document.createElement('select');
-            selectElement.name = 'status_id';
-            options.forEach(function (optionValue) {
-                var optionElement = document.createElement('option');
-                // console.log(options);
-                // console.log(optionValue);
-                // console.log(Object.keys(optionValue)[0]);
-                // console.log(optionValue[Object.keys(optionValue)[0]]);
-                optionElement.value = Object.keys(optionValue)[0]; // 주의
-                optionElement.text = optionValue[Object.keys(optionValue)[0]]; // 주의
-                selectElement.appendChild(optionElement);
+                var mybtn = document.getElementById('mybtn');
+                var options = [{U01: '활성'}, {U02: '휴면'}, {U03: '정지'}, {U04: '탈퇴'}];
+                var statusContainer = document.querySelector('.screen-admin-userInfo__container__2 > div:nth-of-type(6)');
+                var selectElement = document.createElement('select');
+                selectElement.name = 'status_id';
+                options.forEach(function (optionValue) {
+                    var optionElement = document.createElement('option');
+                    // console.log(options);
+                    // console.log(optionValue);
+                    // console.log(Object.keys(optionValue)[0]);
+                    // console.log(optionValue[Object.keys(optionValue)[0]]);
+                    optionElement.value = Object.keys(optionValue)[0]; // 주의
+                    optionElement.text = optionValue[Object.keys(optionValue)[0]]; // 주의
+                    selectElement.appendChild(optionElement);
+                })
+
+                // 수정버튼 눌렀을 때 동작
+                if (mybtn.textContent === '수정') {
+                    mybtn.innerHTML = '저장';
+                    statusContainer.append(selectElement);
+
+                    // 선택된 값이 변경될 때마다 저장
+                    selectElement.addEventListener('change', function () {
+                        selectedOptionValue = selectElement.value;
+                    });
+                    // 저장버튼 눌렀을 때 동작
+                } else {
+                    mybtn.innerHTML = '수정';
+                    statusContainer.innerHTML = '${dto.status_id}';
+                    updateUser(selectedOptionValue);
+                }
             })
 
-            // 수정버튼 눌렀을 때 동작
-            if (mybtn.textContent === '수정') {
-                mybtn.innerHTML = '저장';
-                statusContainer.append(selectElement);
-
-            // 저장버튼 눌렀을 때 동작
-            } else {
-                mybtn.innerHTML = '수정';
-
-                // 선택된 옵션 값을 가져오기
-                var selectedOptionValue = selectElement.value;
-
-                statusContainer.innerHTML = '${dto.status_id}';
+            function updateUser(selectedOptionValue) {
 
                 var f = document.createElement('form');
                 f.setAttribute('method', 'get');
@@ -130,43 +183,15 @@
                 status_id.setAttribute('type', 'hidden');
                 status_id.setAttribute('name', 'status_id');
                 status_id.setAttribute('value', selectedOptionValue);
+                console.log(selectedOptionValue);
 
-                // 폼에 input 요소 추가
                 f.appendChild(user_id);
                 f.appendChild(status_id);
 
                 document.body.appendChild(f);
                 f.submit();
             }
-        })
-
-        function heyhey() {
-            <%--let f = document.createElement('form');--%>
-            <%--f.setAttribute('method', 'get');--%>
-            <%--f.setAttribute('action', '/admin/user/update');--%>
-
-            <%--var user_id = document.createElement('input');--%>
-            <%--user_id.setAttribute('type', 'hidden');--%>
-            <%--user_id.setAttribute('name', 'user_id');--%>
-            <%--// user_id.setAttribute('value', 'abcdabca');--%>
-            <%--user_id.setAttribute('value', `${dto.user_id}`);--%>
-
-            <%--var status_id = document.createElement('input');--%>
-            <%--status_id.setAttribute('type', 'hidden');--%>
-            <%--status_id.setAttribute('name', 'status_id');--%>
-            <%--status_id.setAttribute('value', optionElement.value);--%>
-
-            <%--// 폼에 input 요소 추가--%>
-            <%--f.appendChild(user_id);--%>
-            <%--f.appendChild(status_id);--%>
-
-            <%--document.body.appendChild(f);--%>
-            <%--f.submit();--%>
-        }
-
-
-    </script>
-
+        </script>
 </article>
 </body>
 </html>
