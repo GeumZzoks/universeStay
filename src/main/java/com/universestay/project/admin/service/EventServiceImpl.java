@@ -22,8 +22,9 @@ public class EventServiceImpl implements EventService {
         return eventDao.select(event_id);
     }
 
-    public String getAdminNickname(String admin_id) throws Exception {
-        return eventDao.getAdminNickname(admin_id);
+    @Override
+    public String getAdminUuid(String admin_email) throws Exception {
+        return eventDao.getAdminUuid(admin_email);
     }
 
     @Override
@@ -62,7 +63,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<EventDto> getSearchResultPage(SearchCondition sc) throws Exception {
+    public List<Map<String, Object>> getSearchResultPage(SearchCondition sc) throws Exception {
         return eventDao.searchSelectPage(sc);
     }
 

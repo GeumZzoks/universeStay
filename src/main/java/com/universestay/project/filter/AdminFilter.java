@@ -55,7 +55,6 @@ public class AdminFilter implements Filter {
             response.sendRedirect("/adminLogin/loginForm");
         } else {
             filterChain.doFilter(request, response);
-            
         }
     }
 
