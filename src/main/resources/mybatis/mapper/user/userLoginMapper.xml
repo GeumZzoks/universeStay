@@ -10,7 +10,7 @@
     </select>
     
     <update id="updateLastLogin" parameterType="String">
-        update User set user_last_login = now()
+        update User set user_last_login = now(), status_id = 'U01'
          where user_email = #{user_email}
     </update>
 

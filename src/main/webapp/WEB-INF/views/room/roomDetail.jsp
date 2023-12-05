@@ -542,5 +542,6 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${KakaoApiKey}"></script>
 <%-- 스크립트 --%>
 <script src="/resources/js/room/roomDetail.js"></script>
+
 </body>
 </html>

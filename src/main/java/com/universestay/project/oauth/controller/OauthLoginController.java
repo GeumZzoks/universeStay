@@ -100,7 +100,7 @@ public class OauthLoginController {
 
         if (userDto != null) {
             String userPwd = userDto.getUser_pwd();
-            userLoginService.signin(userEmail, userPwd, session);
+            userLoginService.signin(userEmail, userPwd, session, model);
 
             return "redirect:/main.jsp";
         } else {

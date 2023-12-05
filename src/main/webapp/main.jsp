@@ -1,4 +1,4 @@
-<%--
+<%@ page import="org.springframework.ui.Model" %><%--
   Created by IntelliJ IDEA.
   User: hannaryu
   Date: 11/28/23
@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
 <html>
 <head>
     <title>main</title>
@@ -238,5 +240,9 @@
 
 <jsp:include page="/WEB-INF/views/common/user/footer.jsp"/>
 
+<script>
+  let statusId = "${statusId}";
+  if (statusId=="U04") alert("현재 휴면 상태입니다. 해제하시겠습니까?");
+</script>
 </body>
 </html>

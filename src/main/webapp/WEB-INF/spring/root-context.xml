@@ -58,9 +58,9 @@
     </bean>
 
 
-    <!-- 현재 파일시스템에 업로드 된 파일 저장할 경로 -->
-    <bean id="uploadPath" class="java.lang.String">
-        <constructor-arg value="src/main/webapp/resources/upload-imgs"/>
+    <!-- 현재 프로필 이미지파일 저장할 경로 -->
+    <bean id="uploadProfileImgPath" class="java.lang.String">
+        <constructor-arg value="/src/main/webapp/resources/upload-imgs/profileImg/"/>
     </bean>
 
     <!-- Oauth.properties를 JS 코드에 넣기 위해 PropertiesFactoryBean 등록 -->

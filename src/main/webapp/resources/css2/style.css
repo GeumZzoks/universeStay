@@ -16,7 +16,7 @@
 @import url(components/user/header_price-slider.css);
 @import url(components/user/nav.css);
 
-/*!* Screens *!*/
+/* Screens */
 @import url(screens/admin/event.css);
 @import url(screens/admin/loginForm.css);
 @import url(screens/admin/hostingManagement.css);
