@@ -1,29 +1,99 @@
+/*구역 구분선*/
 .screens-user-userInfo__line {
   width: 100%;
   height: 0px;
-  border: 0.5px #737373 solid;
+  border: 0.5px lightgray solid;
+  margin: 15px 0px;
+}
+
+/*버튼*/
+.screens-user-userInfo__button {
+  font-family: NotoSansKR-Regular;
+  width: 70px;
+  height: 30px;
+  font-size: 13px;
+  border-radius: 10px;
+  background-color: #FA998C;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/*입력 인풋*/
+.screens-user-userInfo__input {
+  border: none;
+  border-bottom: 0.3px gray solid;
+  outline-color: #F48475;
+}
+
+
+.screens-user-userInfo__button:hover {
+  background-color: #F48475
 }
 
 .screens-user-userInfo__body {
   width: 100vw;
+  height: 900px;
   display: flex;
   justify-content: center;
 }
 
 .screens-user-userInfo__container {
   width: 35%;
+  height: 100%;
 }
 
 .screens-user-userInfo__wrapper {
+  margin-top: 30px;
   width: 100%;
-  height: 800px;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: flex-start;
 }
 
+.screens-user-userInfo-h1 {
+  font-family: NotoSansKR-Medium;
+  font-size: 1.5rem;
+}
+
+/*section1*/
 .screens-user-userInfo__section1 {
-  height: 40%;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+/*각 영역 라벨(Ex: 이메일, 이름, 신분증 인증 여부..)*/
+.screens-user-userInfo__label {
+  width: 30%;
+  font-family: NotoSansKR-Medium;
+  font-size: 15px;
+}
+
+.screens-user-userInfo__content {
+  width: 55%;
+  font-family: NotoSansKR-Regular;
+  font-size: 13px;
+  color: #737373;
+}
+
+/*이메일구역*/
+.screens-user-userInfo__email {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+
+/*비밀번호 구역*/
+.screens-user-userInfo__pwd {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
 }
 
 
@@ -34,7 +104,23 @@
 
 /*비밀번호 수정 버튼 클릭시 전에는 display:none인 div*/
 .screens-user-userInfo__pwd-container-modify.show {
+  display: contents;
+  /*display: flex;*/
+  /*flex-direction: row;*/
+  /*justify-content: flex-start;*/
+  /*height: 100%;*/
+}
+
+.screens-user-userInfo__pwd-container-modify__div {
+  display: inline-block;
+  width: 70%;
+}
+
+.screens-user-userInfo__pwd-container {
+  width: 100%;
   display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 }
 
 /*비밀번호 수정버튼 클릭 시 Display: none이 되는 기존 Pwd div*/
@@ -42,9 +128,13 @@
   display: none;
 }
 
+/*현재 비밀번호, 신규 비밀번호, 신규 비밀번호 재확인 (내부div)*/
+.screens-user-userInfo__pwd-container-modify__div__inner-div {
+  margin-bottom: 5px;
+}
 
-.screens-user-userInfo__img-insert-btn.hidden {
-  display: none;
+.screens-user-userInfo__pwd-container-modify__div__inner-div > div {
+  margin-top: 3px;
 }
 
 .screens-user-userInfo__user-info-modify-cancel-btn.hidden {
@@ -59,37 +149,202 @@
   display: none;
 }
 
-
-.screens-user-userInfo__profile-img {
-  max-width: 130px;
-  max-height: 130px;
+.screens-user-userInfo__user-info-modify-btn {
+  align-self: end;
+  margin-right: 35px;
 }
 
-.screens-user-userInfo__nickname-helper-text{
+/*이름 구역*/
+.screens-user-userInfo__name {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.screens-user-userInfo__id-verification {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+
+/*프로필 이미지*/
+
+.screens-user-userInfo__profile-img-box {
+  width: 60px;
+  height: 60px;
+  border-radius: 70%;
+  overflow: hidden;
+
+}
+
+.screens-user-userInfo__profile-img-file {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.screens-user-userInfo__img-insert-btn.hidden {
+  display: none;
+}
+
+.screens-user-userInfo__img-insert-btn {
+  margin-left: 10%;
+  align-self: center;
+}
+
+.screens-user-userInfo__img-insert-btn::file-selector-button {
+
+  width: 70px;
+  height: 30px;
+  border-radius: 10px;
+  background-color: #c0c0c0;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/*section2*/
+.screens-user-userInfo__section2 {
+  height: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+
+.screens-user-userInfo__user-info-modify-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+}
+
+/*닉네임 중복확인 관련 */
+.screens-user-userInfo__nickname-helper-text {
   color: green;
 }
 
-.screens-user-userInfo__nickname-helper-text.unavailable{
+.screens-user-userInfo__nickname-helper-text.unavailable {
   color: red;
 }
 
-.screens-user-userInfo__nickname-check-btn.hidden{
+.screens-user-userInfo__nickname-check-btn.hidden {
   display: none;
 }
 
 /*신규 비밀번호 유효성검사 */
-.screens-user-userInfo__change-pwd-helper-txt.unavailable{
+.screens-user-userInfo__change-pwd-helper-txt.unavailable {
+  font-family: NotoSansKR-Light;
+  font-size: 13px;
   color: red;
 }
 
-.screens-user-userInfo__change-pwd-helper-txt{
+.screens-user-userInfo__change-pwd-helper-txt {
+  font-family: NotoSansKR-Light;
+  font-size: 13px;
   color: green;
 }
 
 /*신규 비밀번호 재확인 유효성 검사*/
-.screens-user-userInfo__change-pwd2-helper-txt.unavailable{
+.screens-user-userInfo__change-pwd2-helper-txt.unavailable {
+  font-family: NotoSansKR-Light;
+  font-size: 13px;
   color: red;
 }
-.screens-user-userInfo__change-pwd2-helper-txt{
- color: green;
+
+.screens-user-userInfo__change-pwd2-helper-txt {
+  font-family: NotoSansKR-Light;
+  font-size: 13px;
+  color: green;
+}
+
+
+/*프로필사진 구역*/
+.screens-user-userInfo__profile-img {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+/*닉네임 구역*/
+.screens-user-userInfo__nickname {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.screens-user-userInfo__nickname__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.screens-user-userInfo__nickname-input {
+  width: 40%;
+}
+
+/*바이오 구역*/
+.screens-user-userInfo__bio {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.screens-user-userInfo__bio-input {
+  width: 55%;
+  height: 6.25em;
+  resize: none;
+  border: 0.5px gray solid;
+  border-radius: 3px;
+  outline-color: #F48475;
+}
+
+
+/*휴대전화 구역*/
+.screens-user-userInfo__phone {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+/*전화번호 구역*/
+.screens-user-userInfo__phone2 {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+/* 취소 & 수정완료 버튼묶음*/
+.screens-user-userInfo__user-info-modify-btns {
+  align-self: end;
+
+}
+
+/*section3*/
+.screens-user-userInfo__section3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+/*유저탈퇴 구역*/
+.screens-user-userInfo__withdrawal {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.screens-user-userInfo__user-withdrawal-btn {
+  align-self: end;
 }

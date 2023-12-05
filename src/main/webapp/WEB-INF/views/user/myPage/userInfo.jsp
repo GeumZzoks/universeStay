@@ -12,135 +12,169 @@
     <link rel="stylesheet" href="/resources/css2/style.css">
 
 </head>
+
 <body>
 <jsp:include page="/WEB-INF/views/common/user/header.jsp"/>
-
 <section class="screens-user-userInfo__body">
     <div class="screens-user-userInfo__container">
         <div class="screens-user-userInfo__wrapper">
-            <div>계정 정보</div>
+            <h1 class="screens-user-userInfo-h1">계정 정보</h1>
 
+            <%--구분선--%>
             <div class="screens-user-userInfo__line"></div>
+
+            <%--이메일, 이름, 신분증 인증, 비밀번호 수정 구역--%>
+
             <div class="screens-user-userInfo__section1">
-                <div>
-                    <span>이메일</span>
-                    <span>${user.user_email}</span>
+
+                <div class="screens-user-userInfo__email">
+                    <span class="screens-user-userInfo__label">이메일</span>
+                    <span class="screens-user-userInfo__content">${user.user_email}</span>
                 </div>
-                <div>
-                    <span>이름</span>
-                    <span>${user.user_name}</span>
+
+                <div class="screens-user-userInfo__name">
+                    <span class="screens-user-userInfo__label">이름</span>
+                    <span class="screens-user-userInfo__content">${user.user_name}</span>
                 </div>
-                <div>
-                    <span>신분증 인증 여부</span>
-                    <span>${user.user_is_certificated}</span>
-                    <button>인증하기</button>
+
+                <div class="screens-user-userInfo__id-verification">
+                    <span class="screens-user-userInfo__label">신분증 인증 여부</span>
+                    <span class="screens-user-userInfo__content">${user.user_is_certificated}</span>
+                    <button class="screens-user-userInfo__button">인증하기</button>
                 </div>
-                <div>
+
+                <div class="screens-user-userInfo__pwd">
+
                     <div class="screens-user-userInfo__pwd-container">
-                        <span>비밀번호</span>
-                        <span> ********* </span>
-                        <span></span>
-                        <button class="screens-user-userInfo__pwd-modify-button">변경하기</button>
+                        <span class="screens-user-userInfo__label">비밀번호</span>
+                        <span class="screens-user-userInfo__content"> ********* </span>
+                        <button class="screens-user-userInfo__button screens-user-userInfo__pwd-modify-button">
+                            변경하기
+                        </button>
                     </div>
+
                     <div class="screens-user-userInfo__pwd-container-modify">
-                        <span>비밀번호</span>
-                        <div>
-                            <div>
+                        <span class="screens-user-userInfo__label">비밀번호</span>
+                        <div class="screens-user-userInfo__content screens-user-userInfo__pwd-container-modify__div">
+                            <div class="screens-user-userInfo__pwd-container-modify__div__inner-div">
                                 <span>현재 비밀번호</span>
                                 <div>
-                                    <input class="screens-user-userInfo__current-pwd"
+                                    <input class="screens-user-userInfo__input screens-user-userInfo__current-pwd"
                                            type="password">
                                     <span class="screens-user-userInfo__current-pwd-helper-txt"></span>
                                 </div>
                             </div>
-                            <div>
+                            <div class="screens-user-userInfo__pwd-container-modify__div__inner-div">
                                 <span>신규 비밀번호</span>
                                 <div>
-                                    <input class="screens-user-userInfo__change-pwd"
+                                    <input class="screens-user-userInfo__input screens-user-userInfo__change-pwd"
                                            type="password">
                                     <span class="screens-user-userInfo__change-pwd-helper-txt"></span>
                                 </div>
                             </div>
-                            <div>
-                                <span>신규 비밀번호</span>
+                            <div class="screens-user-userInfo__pwd-container-modify__div__inner-div">
+                                <span>신규 비밀번호 재확인</span>
                                 <div>
-                                    <input class="screens-user-userInfo__change-pwd2"
+                                    <input class="screens-user-userInfo__input screens-user-userInfo__change-pwd2"
                                            type="password">
                                     <span class="screens-user-userInfo__change-pwd2-helper-txt"></span>
                                 </div>
                             </div>
-                            <button class="screens-user-userInfo__password-modify-cancel-btn">취소
-                            </button>
-                            <button class="screens-user-userInfo__password-modify-done-btn">변경 완료
-                            </button>
+                            <div>
+                                <button class="screens-user-userInfo__button screens-user-userInfo__password-modify-cancel-btn">
+                                    취소
+                                </button>
+                                <button class="screens-user-userInfo__button screens-user-userInfo__password-modify-done-btn">
+                                    변경 완료
+                                </button>
+                            </div>
                         </div>
-                        <span></span>
                     </div>
                 </div>
+
             </div>
 
+            <%--구분선--%>
             <div class="screens-user-userInfo__line"></div>
 
+            <%--프로필 사진, 닉네임, 자기소개, 휴대전화, 전화번호 수정 구역--%>
             <div class="screens-user-userInfo__section2">
                 <form class="screens-user-userInfo__user-info-modify-form">
-                    <div>
-                        <span>프로필 사진</span>
-                        <img class="screens-user-userInfo__profile-img" src="${profileImgUrl}">
-                        <input class="screens-user-userInfo__img-insert-btn hidden" type="file"
+                    <div class="screens-user-userInfo__profile-img">
+                        <span class="screens-user-userInfo__label">프로필 사진</span>
+                        <div class="screens-user-userInfo__profile-img-box">
+                            <img class="screens-user-userInfo__profile-img-file"
+                                 src="${profileImgUrl}">
+                        </div>
+                        <input class=" screens-user-userInfo__img-insert-btn hidden"
+                               type="file" accept=".jpg, .jpeg, .png, .heic, .webp"
                                onchange="readURL(this);">
                     </div>
-                    <div>
-                        <input class="screens-user-userInfo__user-id-input" type="hidden"
+                    <div class="screens-user-userInfo__nickname">
+                        <input class="screens-user-userInfo__input screens-user-userInfo__user-id-input"
+                               type="hidden"
                                value="${user.user_id}">
-                        <span>닉네임</span>
-                        <div>
-                            <input class="screens-user-userInfo__nickname-input"
-                                   value="${user.user_nickname}" readonly>
+                        <span class="screens-user-userInfo__label">닉네임</span>
+                        <div class="screens-user-userInfo__content screens-user-userInfo__nickname__content">
+                            <input class="screens-user-userInfo__content screens-user-userInfo__input screens-user-userInfo__nickname-input"
+                                   value="${user.user_nickname}" onfocus="this.blur()" readonly>
                             <span class="screens-user-userInfo__nickname-helper-text"></span>
-                            <ul> - 길이는 최대 15자 이내로 작성해주세요.</ul>
-                            <ul> - 중복 닉네임 불가합니다.</ul>
-                            <ul> - 이모티콘 및 일부 특수문자 사용 불가합니다. &<>()'/"</ul>
                         </div>
-                        <button class="screens-user-userInfo__nickname-check-btn hidden"
+                        <button class="screens-user-userInfo__button screens-user-userInfo__nickname-check-btn hidden"
                                 type="button">중복 확인
                         </button>
                     </div>
-                    <div>
-                        <span>자기소개</span>
-                        <textarea class="screens-user-userInfo__bio-input"
-                                  readonly>${user.user_bio}</textarea>
+                    <div class="screens-user-userInfo__bio">
+                        <span class="screens-user-userInfo__label">자기소개</span>
+                        <textarea
+                                class="screens-user-userInfo__content screens-user-userInfo__bio-input"
+                                onfocus="this.blur()" readonly>${user.user_bio}</textarea>
                     </div>
-                    <div>
-                        <span>휴대전화</span>
-                        <input class="screens-user-userInfo__phone-input"
-                               value="${user.user_phone_num1}" readonly>
+                    <div class="screens-user-userInfo__phone">
+                        <span class="screens-user-userInfo__label">휴대전화</span>
+                        <input class="screens-user-userInfo__content screens-user-userInfo__input screens-user-userInfo__phone-input"
+                               value="${user.user_phone_num1}" onfocus="this.blur()" readonly>
                     </div>
-                    <div>
-                        <span>전화번호</span>
-                        <input class="screens-user-userInfo__phone2-input"
-                               value="${user.user_phone_num2}" readonly>
+                    <div class="screens-user-userInfo__phone2">
+                        <span class="screens-user-userInfo__label">전화번호</span>
+                        <input class="screens-user-userInfo__content screens-user-userInfo__input screens-user-userInfo__phone2-input"
+                               value="${user.user_phone_num2}" onfocus="this.blur()" readonly>
+                    </div>
+                    <div class="screens-user-userInfo__user-info-modify-btns">
+                        <button type="button"
+                                class="screens-user-userInfo__button screens-user-userInfo__user-info-modify-cancel-btn hidden">
+                            취소
+                        </button>
+                        <button class="screens-user-userInfo__button screens-user-userInfo__user-info-modify-done-btn hidden">
+                            수정 완료
+                        </button>
                     </div>
                     <button type="button"
-                            class="screens-user-userInfo__user-info-modify-cancel-btn hidden">취소
-                    </button>
-                    <button class="screens-user-userInfo__user-info-modify-done-btn hidden">수정완료
+                            class="screens-user-userInfo__button screens-user-userInfo__user-info-modify-btn">
+                        수정하기
                     </button>
                 </form>
-                <button class="screens-user-userInfo__user-info-modify-btn">수정하기</button>
 
             </div>
 
+            <%--구분선--%>
             <div class="screens-user-userInfo__line"></div>
+
+            <%--회원 탈퇴 구역--%>
             <div class="screens-user-userInfo__section3">
-                <div>
-                    <span>회원 탈퇴</span>
-                    <button class="screens-user-userInfo__user-withdrawal">회원 탈퇴</button>
+                <div class="screens-user-userInfo__withdrawal">
+                    <span class="screens-user-userInfo__label">회원 탈퇴</span>
+                    <button class="screens-user-userInfo__button screens-user-userInfo__user-withdrawal-btn">
+                        회원 탈퇴
+                    </button>
                 </div>
             </div>
 
         </div>
     </div>
 </section>
+
+<jsp:include page="/WEB-INF/views/common/user/footer.jsp"/>
 
 <script>
 
@@ -192,6 +226,12 @@
         bioInput.removeAttribute("readonly")
         phoneInput.removeAttribute("readonly")
         phone2Input.removeAttribute("readonly")
+
+        //포커스 잃게하기
+        nicknameInput.removeAttribute("onfocus");
+        bioInput.removeAttribute("onfocus");
+        phoneInput.removeAttribute("onfocus");
+        phone2Input.removeAttribute("onfocus");
     };
 
     userInfoModifyBtn.addEventListener("click", showUserInfoModifyBtn);
@@ -206,11 +246,17 @@
         bioInput.setAttribute("readonly", true)
         phoneInput.setAttribute("readonly", true)
         phone2Input.setAttribute("readonly", true)
+
+        // 포커스 제어 속성 추가
+        bioInput.setAttribute("onfocus", "this.blur()");
+        phoneInput.setAttribute("onfocus", "this.blur()");
+        phone2Input.setAttribute("onfocus", "this.blur()");
+
         window.location.href = '/user/myPage/info';
     });
 
     // 회원탈퇴
-    const withdrawalBtn = document.querySelector(".screens-user-userInfo__user-withdrawal");
+    const withdrawalBtn = document.querySelector(".screens-user-userInfo__user-withdrawal-btn");
     withdrawalBtn.addEventListener("click", () => {
         location.href = "/user/myPage/withdrawal";
     })
@@ -229,6 +275,7 @@
                 success: function (response) {
                     if (response === "Correct") {
                         alert("비밀번호 변경이 완료되었습니다.")
+                        window.location.href = '/user/myPage/info';
                     }
                 },
                 error: function (xhr, status, error) {
@@ -248,11 +295,11 @@
             var reader = new FileReader();
             reader.onload = function (e) {
                 document.querySelector(
-                        '.screens-user-userInfo__profile-img').src = e.target.result;
+                        '.screens-user-userInfo__profile-img-file').src = e.target.result;
             };
             reader.readAsDataURL(input.files[0]);
         } else {
-            document.querySelector('.screens-user-userInfo__profile-img').src = "";
+            document.querySelector('.screens-user-userInfo__profile-img-file').src = "";
         }
     }
 
@@ -389,4 +436,5 @@
 </script>
 </body>
 </html>
+
 
