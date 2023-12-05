@@ -63,5 +63,11 @@
         <constructor-arg value="src/main/webapp/resources/upload-imgs"/>
     </bean>
 
+    <!-- Oauth.properties를 JS 코드에 넣기 위해 PropertiesFactoryBean 등록 -->
+    <bean id="OauthProperties"
+            class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="location" value="classpath:config/oauth.properties"/>
+    </bean>
+
     <context:component-scan base-package="com.universestay.project"/>
 </beans>

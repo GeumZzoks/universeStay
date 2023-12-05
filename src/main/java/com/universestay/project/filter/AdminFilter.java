@@ -1,7 +1,5 @@
 package com.universestay.project.filter;
 
-import org.springframework.util.PatternMatchUtils;
-
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -13,11 +11,13 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.springframework.util.PatternMatchUtils;
 
 @WebFilter(filterName = "AdminFilter", urlPatterns = {"/admin/*"})
 public class AdminFilter implements Filter {
 
-    private static final String[] whitelist = {"/admin/user/list", "/admin/user/info", "/admin/user/update"};
+    private static final String[] whitelist = {"/admin/user/list", "/admin/user/info",
+            "/admin/user/update"};
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -26,7 +26,7 @@ public class AdminFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
-                         FilterChain filterChain) throws IOException, ServletException {
+            FilterChain filterChain) throws IOException, ServletException {
 
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
@@ -45,8 +45,9 @@ public class AdminFilter implements Filter {
                 "Filter - request.getServletPath() = " + request.getServletPath()); // /board1.jsp
         System.out.println();
 
-        if (!isLoginCheckPath(requestURI)) filterChain.doFilter(request, response);
-        else {
+        if (!isLoginCheckPath(requestURI)) {
+            filterChain.doFilter(request, response);
+        } else {
             boolean isNotLogin = (session == null || session.getAttribute("admin_id") == null);
             if (isNotLogin) {
                 session.setAttribute("URL", request.getRequestURI());
