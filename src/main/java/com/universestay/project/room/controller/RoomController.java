@@ -12,4 +12,7 @@ public class RoomController {
     public String showRoom() {
         return "/room/roomDetail";
     }
+
+    @GetMapping("/roomDelete")
+    public String roomDelete() {return "/room/roomDelete";}
 }
