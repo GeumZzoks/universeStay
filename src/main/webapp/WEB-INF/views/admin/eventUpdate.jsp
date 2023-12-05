@@ -55,5 +55,9 @@
         </form>
     </div>
 </div>
+<script>
+    let msg = "${msg}";
+    if (msg == "UDT_ERR2") alert("게시물 수정에 실패하였습니다. 날짜를 입력해주세요.");
+</script>
 </body>
 </html>
