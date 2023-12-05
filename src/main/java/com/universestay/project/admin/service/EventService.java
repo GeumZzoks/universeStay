@@ -10,7 +10,7 @@ public interface EventService {
 
     EventDto select(Integer event_id) throws Exception;
 
-    String getAdminNickname(String admin_id) throws Exception;
+    String getAdminUuid(String admin_email) throws Exception;
 
     List<EventDto> getList() throws Exception;
 
@@ -18,7 +18,7 @@ public interface EventService {
 
     int getSearchResultCnt(SearchCondition sc) throws Exception;
 
-    List<EventDto> getSearchResultPage(SearchCondition sc) throws Exception;
+    List<Map<String, Object>> getSearchResultPage(SearchCondition sc) throws Exception;
 
     Integer write(EventDto dto) throws Exception;
 

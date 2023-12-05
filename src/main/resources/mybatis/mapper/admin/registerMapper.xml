@@ -6,9 +6,10 @@
 <mapper namespace="com.universestay.project.resources.mybatis.mapper.admin.registerMapper">
 
     <insert id="insert" parameterType="AdminDto">
-        INSERT INTO Admin
-        VALUES (#{admin_id}, #{admin_nickname}, #{admin_pwd}, #{admin_phone_num}, #{admin_email},
-                #{created_at}, #{created_id}, #{updated_at}, #{updated_id});
+        INSERT INTO Admin(admin_id, admin_nickname, admin_pwd, admin_phone_num, admin_email,
+                          created_id, updated_id)
+        VALUES (#{admin_id}, #{admin_nickname}, #{admin_pwd}, #{admin_phone_num},
+                #{admin_email}, #{created_id}, #{updated_id});
     </insert>
 
     <delete id="delete" parameterType="String">
@@ -36,6 +37,12 @@
         SELECT count(*)
         FROM Admin
         WHERE admin_id = #{admin_id};
+    </select>
+
+    <select id="checkUniqueId" parameterType="String" resultType="int">
+        SELECT count(*)
+        FROM Admin
+        WHERE admin_nickname = #{admin_nickname};
     </select>
 
     <!--    <select id="select" parameterType="String" resultType="AdminDto">-->

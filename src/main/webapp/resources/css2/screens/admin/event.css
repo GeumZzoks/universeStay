@@ -6,7 +6,7 @@
 
 .screens-admin-event__content {
     width: 80%;
-    min-width: 800px;
+    min-width: 1100px;
     height: auto;
     position: absolute;
     float: left;
@@ -59,12 +59,15 @@
 
 .screens-admin-event__content-table__no {
     width: 5%;
+    font-size: 12px;
+    color: #333333;
     border-bottom: 1px solid #444444;
     text-align: center;
 }
 
 .screens-admin-event__content-table__title {
     padding: 6px 0 4px 0;
+    width: 65%;
     color: black;
     border-bottom: 1px solid #444444;
     text-align: left;
@@ -83,24 +86,42 @@
     color: #B0B0B0;
 }
 
+.screens-admin-event__content-table__title__a:visited:hover {
+    color: #F48475;
+}
+
 .screens-admin-event__content-table__writer {
+    font-size: 12px;
     width: 10%;
     height: 20px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
     border-bottom: 1px solid #444444;
     text-align: center;
+}
 
+.screens-admin-event__content-table__status {
+    font-size: 12px;
+    width: 5%;
+    height: 20px;
+    border-bottom: 1px solid #444444;
+    text-align: center;
+}
+
+.screens-admin-event__content-table__event_date {
+    font-size: 12px;
+    width: 5%;
+    border-bottom: 1px solid #444444;
+    text-align: center;
 }
 
 .screens-admin-event__content-table__regdate {
-    width: 20%;
+    font-size: 12px;
+    width: 10%;
     border-bottom: 1px solid #444444;
     text-align: center;
 }
 
 .screens-admin-event__content-table__viewcnt {
+    font-size: 12px;
     width: 5%;
     border-bottom: 1px solid #444444;
     text-align: center;

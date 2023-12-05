@@ -7,9 +7,13 @@
 
     <insert id="insert" parameterType="EventDto">
         INSERT into Event (admin_id, status_id, event_title, event_ctt, event_is_open,
-                           event_start_date, event_expire_date, created_id, updated_id)
+        event_start_date, event_expire_date, created_id, updated_id)
         VALUES (#{admin_id}, #{status_id}, #{event_title}, #{event_ctt}, #{event_is_open},
-                #{event_start_date}, #{event_expire_date}, #{created_id}, #{updated_id})
+        #{event_start_date}, #{event_expire_date}, #{created_id}, #{updated_id})
+
+        <selectKey keyProperty="event_id" resultType="int" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
     </insert>
 
     <select id="select" parameterType="int" resultType="EventDto">
@@ -18,10 +22,10 @@
         WHERE event_id = #{event_id}
     </select>
 
-    <select id="getAdminNickname" parameterType="String" resultType="String">
-        SELECT admin_nickname
+    <select id="getAdminUuid" parameterType="String" resultType="String">
+        SELECT admin_id
         FROM Admin
-        WHERE admin_id = #{admin_id}
+        WHERE admin_email = #{admin_email}
     </select>
 
     <select id="selectAll" resultType="EventDto">
@@ -69,26 +73,29 @@
     <sql id="searchCondition">
         <choose>
             <when test='option=="T"'>
-                AND event_title LIKE concat('%', #{keyword}, '%')
+                AND e.event_title LIKE concat('%', #{keyword}, '%')
             </when>
             <otherwise>
-                AND admin_id LIKE concat('%', #{keyword}, '%')
+                AND e.admin_id LIKE concat('%', #{keyword}, '%')
             </otherwise>
         </choose>
     </sql>
 
-    <select id="searchSelectPage" parameterType="SearchCondition" resultType="EventDto">
-        SELECT event_id, admin_id, event_title, event_ctt, event_hit, created_at
-        FROM Event
-        WHERE true
+    <select id="searchSelectPage" parameterType="SearchCondition" resultType="map">
+        SELECT e.event_id, e.admin_id, e.status_id, e.event_title, e.event_ctt, e.event_is_open, e.event_start_date,
+        e.event_expire_date, e.event_hit, e.created_at, a.admin_nickname
+        FROM Event e
+        LEFT JOIN Admin a
+        on e.admin_id = a.admin_id
+        WHERE a.admin_id is not null
         <include refid="searchCondition"/>
-        ORDER BY created_at DESC, event_id DESC
+        ORDER BY e.created_at DESC, e.event_id DESC
         LIMIT #{offset}, #{pageSize}
     </select>
 
     <select id="searchResultCnt" parameterType="SearchCondition" resultType="int">
         SELECT count(*)
-        FROM Event
+        FROM Event e
         WHERE true
         <include refid="searchCondition"/>
     </select>

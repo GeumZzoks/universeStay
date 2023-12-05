@@ -56,8 +56,10 @@ public class UserManagementController {
             // Model - list, ph 셋팅해서 뷰에 넘겨준다
             model.addAttribute("list", list);
             model.addAttribute("ph", ph);
-//            throw new Exception("예외 발생");
+            System.out.println(list);
+            System.out.println(ph);
         } catch (Exception e) {
+
             e.printStackTrace();
         }
         // 예외가 발생했을 때에는 model이 없는 빈 페이지가 출력
@@ -67,18 +69,34 @@ public class UserManagementController {
 
     // 유저리스트에서 페이지에서 아이디를 클릭했을 때 해당 유저의 상세 정보를 출력
     @GetMapping("/info")
-    public String userInfo(String user_id, Model model) {
+    public String userInfo(SearchCondition sc, String user_id, Model model) {
         // 매개변수로 user_id 받아옴
         // mapper에 user_id 넘겨주고 userDto 받아오기
         try {
             UserDto dto = userManagementService.read(user_id);
             System.out.println("dto = " + dto);
             model.addAttribute("dto", dto);
+            model.addAttribute("sc", sc);
         } catch (Exception e) {
             e.printStackTrace();
         }
         // 예외가 발생했을 때에는 model이 없는 빈 페이지가 출력
         // 예외 발생 안했을 시에는 정상적인 페이지 출력
+        return "/admin/userInfo";
+    }
+
+    @GetMapping("/update")
+    public String updateUser(String user_id, String status_id, SearchCondition sc,  Model model) {
+        try {
+            UserDto dto = userManagementService.read(user_id);
+            dto.setStatus_id(status_id);
+            userManagementService.modify(dto);
+            model.addAttribute("dto", dto);
+            model.addAttribute("sc", sc);
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
         return "/admin/userInfo";
     }
 }

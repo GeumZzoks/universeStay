@@ -70,37 +70,56 @@
         <div class="screens-admin-event__content-table-div">
             <table class="screens-admin-event__content-table" style="table-layout: fixed">
                 <tr>
-                    <th class="screens-admin-event__content-table__no">번호</th>
+                    <th class="screens-admin-event__content-table__no" style="font-size: 14px;">번호</th>
                     <th class="screens-admin-event__content-table__title" style="text-align: center">이벤트</th>
-                    <th class="screens-admin-event__content-table__writer">게시자</th>
-                    <th class="screens-admin-event__content-table__regdate">등록일</th>
-                    <th class="screens-admin-event__content-table__viewcnt">조회수</th>
+                    <th class="screens-admin-event__content-table__writer" style="font-size: 14px;">작성자</th>
+                    <th class="screens-admin-event__content-table__status" style="font-size: 14px;">상태</th>
+                    <th class="screens-admin-event__content-table__status" style="font-size: 14px;">공개여부</th>
+                    <th class="screens-admin-event__content-table__regdate" style="font-size: 14px;">등록일</th>
+                    <th class="screens-admin-event__content-table__viewcnt" style="font-size: 14px;">조회수</th>
                 </tr>
                 <c:forEach var="eventDto" items="${list}">
                     <tr>
-                        <td class="screens-admin-event__content-table__no"
-                            style="font-size: 12px">${eventDto.event_id}</td>
+                        <td class="screens-admin-event__content-table__no">${eventDto.event_id}</td>
                         <td class="screens-admin-event__content-table__title"><a
                                 href="<c:url value="/admin/event/${eventDto.event_id}"/>"
                                 class="screens-admin-event__content-table__title__a">${eventDto.event_title}</a>
                         </td>
-                        <td class="screens-admin-event__content-table__writer">${eventDto.admin_id}</td>
+                        <td class="screens-admin-event__content-table__writer">${eventDto.admin_nickname}</td>
+                        <c:choose>
+                            <c:when test="${eventDto.status_id eq 'E01'}">
+                                <td class="screens-admin-event__content-table__status">준비중</td>
+                            </c:when>
+                            <c:when test="${eventDto.status_id eq 'E02'}">
+                                <td class="screens-admin-event__content-table__status" style="color: indianred">진행중</td>
+                            </c:when>
+                            <c:otherwise>
+                                <td class="screens-admin-event__content-table__status" style="color: dimgray">종료</td>
+                            </c:otherwise>
+                        </c:choose>
+                        <c:choose>
+                            <c:when test="${eventDto.event_is_open eq 'Y'}">
+                                <td class="screens-admin-event__content-table__status" style="color: indianred">공개</td>
+                            </c:when>
+                            <c:otherwise>
+                                <td class="screens-admin-event__content-table__status">비공개</td>
+                            </c:otherwise>
+                        </c:choose>
                         <c:choose>
                             <c:when test="${eventDto.created_at.time >= startOfToday}">
-                                <td class="screens-admin-event__content-table__regdate" style="font-size: 14px">
+                                <td class="screens-admin-event__content-table__regdate">
                                     <fmt:formatDate
                                             value="${eventDto.created_at}" pattern="HH:mm"
                                             type="time"/></td>
                             </c:when>
                             <c:otherwise>
-                                <td class="screens-admin-event__content-table__regdate" style="font-size: 14px">
+                                <td class="screens-admin-event__content-table__regdate">
                                     <fmt:formatDate
                                             value="${eventDto.created_at}"
                                             pattern="yyyy-MM-dd" type="date"/></td>
                             </c:otherwise>
                         </c:choose>
-                        <td class="screens-admin-event__content-table__viewcnt"
-                            style="font-size: 14px">${eventDto.event_hit}</td>
+                        <td class="screens-admin-event__content-table__viewcnt">${eventDto.event_hit}</td>
                     </tr>
                 </c:forEach>
             </table>
@@ -133,7 +152,11 @@
             </div>
         </div>
     </div>
-
 </div>
+<script>
+    let msg = "${msg}";
+    if (msg == "DEL_OK") alert("게시물이 삭제되었습니다.");
+
+</script>
 </body>
 </html>

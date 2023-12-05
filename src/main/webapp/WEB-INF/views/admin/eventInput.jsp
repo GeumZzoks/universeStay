@@ -14,7 +14,7 @@
 </head>
 <body>
 <div class="screens-admin-event__container">
-    
+
     <jsp:include page="/WEB-INF/views/common/admin/header.jsp"/>
     <jsp:include page="/WEB-INF/views/common/admin/navigation.jsp"/>
     <jsp:include page="/WEB-INF/views/common/admin/footer.jsp"/>
@@ -52,5 +52,9 @@
         </form>
     </div>
 </div>
+<script>
+    let msg = "${msg}";
+    if (msg == "WRT_ERR") alert("게시물 작성에 실패하였습니다. 날짜를 입력해주세요.");
+</script>
 </body>
 </html>

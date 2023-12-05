@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +31,7 @@ public class UserLoginController {
     @PostMapping("/login")
     public String login(String user_email, String user_pwd, String remember_id,
             HttpServletResponse response, HttpSession session,
-            RedirectAttributes redirectAttributes) throws Exception {
+            RedirectAttributes redirectAttributes, Model model) throws Exception {
 
         // 1. 쿠키 요청이 있는지 먼저 확인
         userLoginService.setCookie(user_email, remember_id, response);
@@ -45,20 +46,35 @@ public class UserLoginController {
             return "redirect:/user/loginForm";
         }
 
-        // 이제 사용자가 로그인을 시도하면 DB 조회해야지.
-        UserDto userInfo = userLoginService.signin(user_email, user_pwd, session);
+        // 사용자가 로그인을 시도하면 DB 조회
+        UserDto userInfo = userLoginService.signin(user_email, user_pwd, session, model);
+        // 유저 상태 담기
+        String statusId = userInfo.getStatus_id();
 
         try {
-            if (userInfo != null) { // 3. 로그인 성공 시 메인으로 이동
+            if (userInfo != null) { // 3. 로그인 시도 시
 
-                // 로그인 시 최근 로그인 날짜를 디비에 저장
+                // 회원탈퇴한 유저가 로그인 시도 시 메인으로 이동 후 알럿창 띄우기
+                if (statusId.equals("U02")) {
+                    userLoginService.userLastLogin(user_email);
+                }
+                if (!statusId.equals("U01")) {
+                    model.addAttribute("statusId", statusId);
+                    return "main/main";
+                }
+
+                // 정상적으로 로그인 됐을 때,
                 userLoginService.userLastLogin(user_email);
                 return "redirect:/main.jsp";
+
             }
             // 여기에 오는 경우가
             // 4. 사용자가 아이디 또는 비밀번호를 틀렸을 경우
             // 5. 사용자가 없는 회원정보로 로그인을 시도한 경우
             else { // 유저에게 에러메세지와 함께 다시 로그인폼을 보여준다.
+
+                // 서비스임플에서 uo2,u04일때 널을 보내서 여기서 처리할라니까. 겟아이디가 없으니 널포인트 익셉션이 난다.
+
                 error.put("id null or pwd invalid", "아이디가 존재하지 않거나 비밀번호가 일치하지 않습니다.");
                 redirectAttributes.addFlashAttribute("error", error);
                 return "redirect:/user/loginForm";
