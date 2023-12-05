@@ -2,17 +2,12 @@ package com.universestay.project.filter;
 
 import org.springframework.util.PatternMatchUtils;
 
-import java.io.IOException;
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 @WebFilter(filterName = "AdminFilter", urlPatterns = {"/admin/*"})
 public class AdminFilter implements Filter {
@@ -47,7 +42,7 @@ public class AdminFilter implements Filter {
 
         if (!isLoginCheckPath(requestURI)) filterChain.doFilter(request, response);
         else {
-            boolean isNotLogin = (session == null || session.getAttribute("admin_id") == null);
+            boolean isNotLogin = (session == null || session.getAttribute("admin_email") == null);
             if (isNotLogin) {
                 session.setAttribute("URL", request.getRequestURI());
                 response.sendRedirect("/adminLogin/loginForm");
