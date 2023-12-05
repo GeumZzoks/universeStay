@@ -61,7 +61,7 @@
             <!--이름,생년월일,성별,이메일-->
             <h5 class="screens-user-join_h5" style="margin-bottom: 0px;">이름*</h5>
             <span class="screens-user-join_signup_input">
-                    <input id="screens-user-join_signup_name" type="text"></input>
+                    <input id="screens-user-join_signup_name" placeholder="이름" type="text"></input>
                 </span>
             <h5 class="screens-user-join_h5" style="margin-bottom: 0px;">생년월일</h5>
             <span style="display: flex;  margin-top: 10px;">
@@ -109,11 +109,20 @@
                            value="인증번호 보내기"> <br>
                 </span>
             </div>
-
-            <div style="margin-top: 10px;">
-                <span class="screens-user-join_signup_input">
+            <div style="display: flex;">
+                <span class="screens-user-join_signup_input"
+                      style="width:100%; margin: 10px 0px 0px 0px">
                     <input id="screens-user-join_code_check_input" type="text" class="form-control"
                            placeholder="인증번호 입력"></input>
+                    <span class="certificationTime">03:00</span>
+                </span>
+                <span class="screens-user-join_helper_text_span"
+                      id="email_code_input_helper_text"></span>
+
+                <span class="screens-user-join_mail_code_Check_Btn_wrap">
+                    <input type="button" class="btn btn-primary"
+                           id="screens-user-join_mail_code_check_Btn"
+                           value="인증번호 확인"> <br>
                 </span>
             </div>
         </div>

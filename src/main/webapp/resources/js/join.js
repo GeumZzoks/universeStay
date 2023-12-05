@@ -276,3 +276,46 @@ $(function () {
     }
   })
 });
+
+var timeLeft = 180;
+var timerInterval;
+
+function startTimer() {
+  document.getElementById("screens-user-join_mail_Check_Btn").disabled = true; // 버튼 비활성화
+  countdown(); // 타이머 시작
+}
+
+function countdown() {
+  var minutes = Math.floor(timeLeft / 60);
+  var seconds = timeLeft % 60;
+
+  minutes = minutes < 10 ? "0" + minutes : minutes;
+  seconds = seconds < 10 ? "0" + seconds : seconds;
+
+  var timerElement = document.getElementsByClassName("certificationTime")[0];
+  timerElement.innerHTML = minutes + ":" + seconds;
+
+  if (timeLeft <= 0) {
+    timerElement.innerHTML = "만료";
+
+  } else {
+    timeLeft--;
+    timerInterval = setTimeout(countdown, 1000); // 1초마다 갱신
+  }
+}
+
+document.getElementById(
+    "screens-user-join_mail_code_check_Btn").addEventListener("click",
+    function () {
+      clearTimeout(timerInterval); // 타이머 중지
+      var timerElement = document.getElementsByClassName(
+          "certificationTime")[0];
+      timerElement.innerHTML = "03:00"; // 초기값으로 타이머를 설정
+      timeLeft = 180; // 타이머 시간을 초기화
+    });
+
+document.getElementById("screens-user-join_mail_Check_Btn").addEventListener(
+    "click",
+    function () {
+      startTimer(); // 타이머 시작
+    });
