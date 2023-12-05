@@ -46,23 +46,26 @@
                         <span>비밀번호</span>
                         <div>
                             <div>
-                                <span >현재 비밀번호</span>
+                                <span>현재 비밀번호</span>
                                 <div>
-                                    <input class="screens-user-userInfo__current-pwd" type="password">
+                                    <input class="screens-user-userInfo__current-pwd"
+                                           type="password">
                                     <span class="screens-user-userInfo__current-pwd-helper-txt"></span>
                                 </div>
                             </div>
                             <div>
                                 <span>신규 비밀번호</span>
                                 <div>
-                                    <input class="screens-user-userInfo__change-pwd" type="password">
+                                    <input class="screens-user-userInfo__change-pwd"
+                                           type="password">
                                     <span class="screens-user-userInfo__change-pwd-helper-txt"></span>
                                 </div>
                             </div>
                             <div>
                                 <span>신규 비밀번호</span>
                                 <div>
-                                    <input class="screens-user-userInfo__change-pwd2" type="password">
+                                    <input class="screens-user-userInfo__change-pwd2"
+                                           type="password">
                                     <span class="screens-user-userInfo__change-pwd2-helper-txt"></span>
                                 </div>
                             </div>
@@ -82,8 +85,9 @@
                 <form class="screens-user-userInfo__user-info-modify-form">
                     <div>
                         <span>프로필 사진</span>
-                        <img class="screens-user-userInfo__profile-img" src="${profileImgUrl}"  >
-                        <input class="screens-user-userInfo__img-insert-btn hidden" type="file" onchange="readURL(this);">
+                        <img class="screens-user-userInfo__profile-img" src="${profileImgUrl}">
+                        <input class="screens-user-userInfo__img-insert-btn hidden" type="file"
+                               onchange="readURL(this);">
                     </div>
                     <div>
                         <input class="screens-user-userInfo__user-id-input" type="hidden"
@@ -92,12 +96,14 @@
                         <div>
                             <input class="screens-user-userInfo__nickname-input"
                                    value="${user.user_nickname}" readonly>
-                            <span class = "screens-user-userInfo__nickname-helper-text"></span>
+                            <span class="screens-user-userInfo__nickname-helper-text"></span>
                             <ul> - 길이는 최대 15자 이내로 작성해주세요.</ul>
                             <ul> - 중복 닉네임 불가합니다.</ul>
                             <ul> - 이모티콘 및 일부 특수문자 사용 불가합니다. &<>()'/"</ul>
                         </div>
-                        <button class= "screens-user-userInfo__nickname-check-btn hidden" type="button">중복 확인</button>
+                        <button class="screens-user-userInfo__nickname-check-btn hidden"
+                                type="button">중복 확인
+                        </button>
                     </div>
                     <div>
                         <span>자기소개</span>
@@ -209,12 +215,41 @@
         location.href = "/user/myPage/withdrawal";
     })
 
-    //프로필 이미지 미리보여주기
+    //비밀번호 변경 ajax
+    $(function () {
+        $(".screens-user-userInfo__password-modify-done-btn").click(function () {
+            const check_pwd = $(".screens-user-userInfo__current-pwd").val();
+            const new_pwd = $(".screens-user-userInfo__change-pwd").val();
+            const new_pwd2 = $(".screens-user-userInfo__change-pwd2").val();
+
+            $.ajax({
+                type: 'post',
+                url: "/user/myPage/info/changePwd",
+                data: {"check_pwd": check_pwd, "new_pwd": new_pwd, "new_pwd2": new_pwd2},
+                success: function (response) {
+                    if (response === "Correct") {
+                        alert("비밀번호 변경이 완료되었습니다.")
+                    }
+                    console.log("성공")
+                },
+                error: function (xhr, status, error) {
+                    if (xhr.responseText === "Incorrect_with_DB") {
+                        alert("기존 비밀번호가 일치하는지 확인해주세요.")
+                    } else if (xhr.responseText === 'Incorrect_with_pwd_pwd2') {
+                        alert('신규 비밀번호 확인이 일치하지 않습니다.');
+                    }
+                },
+            });
+        });
+    });
+
+    //프로필 이미지 미리 보여주기
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
-            reader.onload = function(e) {
-                document.querySelector('.screens-user-userInfo__profile-img').src = e.target.result;
+            reader.onload = function (e) {
+                document.querySelector(
+                        '.screens-user-userInfo__profile-img').src = e.target.result;
             };
             reader.readAsDataURL(input.files[0]);
         } else {
@@ -232,13 +267,16 @@
 
             if (pw.length < 8 || pw.length > 20) {
                 result = "8자리 ~ 20자리 이내로 입력해주세요.";
-                $(".screens-user-userInfo__change-pwd-helper-txt").html(result).addClass("unavailable");
+                $(".screens-user-userInfo__change-pwd-helper-txt").html(result).addClass(
+                        "unavailable");
             } else if (pw.search(/\s/) != -1) {
                 result = "비밀번호는 공백 없이 입력해주세요.";
-                $(".screens-user-userInfo__change-pwd-helper-txt").html(result).addClass("unavailable");
+                $(".screens-user-userInfo__change-pwd-helper-txt").html(result).addClass(
+                        "unavailable");
             } else if (num < 0 || eng < 0 || spe < 0) {
                 result = "영문,숫자, 특수문자를 혼합하여 입력해주세요.";
-                $(".screens-user-userInfo__change-pwd-helper-txt").html(result).addClass("unavailable");
+                $(".screens-user-userInfo__change-pwd-helper-txt").html(result).addClass(
+                        "unavailable");
             } else {
                 result = "사용 가능한 비밀번호입니다.";
                 $(".screens-user-userInfo__change-pwd-helper-txt").html(result).removeClass(
@@ -257,14 +295,17 @@
                     if (user_pw === user_pw2 && user_pw2 !== null && user_pw !== null
                             && user_pw2 !== "" && user_pw !== "") {
                         result = "비밀번호가 일치합니다.";
-                        $(".screens-user-userInfo__change-pwd2-helper-txt").html(result).removeClass("unavailable");
+                        $(".screens-user-userInfo__change-pwd2-helper-txt").html(
+                                result).removeClass("unavailable");
                     } else if (user_pw !== user_pw2) { // In case of failure
                         const result = "비밀번호가 일치하지 않습니다.";
-                        $(".screens-user-userInfo__change-pwd2-helper-txt").html(result).addClass("unavailable");
+                        $(".screens-user-userInfo__change-pwd2-helper-txt").html(
+                                result).addClass("unavailable");
                     } else if (user_pw2 == null || user_pw == null || user_pw2 == ""
                             || user_pw == "") {
                         const result = "비밀번호 확인을 입력해주세요.";
-                        $(".screens-user-userInfo__change-pwd2-helper-txt").html(result).addClass("unavailable");
+                        $(".screens-user-userInfo__change-pwd2-helper-txt").html(
+                                result).addClass("unavailable");
                     }
                 });
     });
@@ -287,7 +328,7 @@
 
         formData.append('user', new Blob([JSON.stringify(user)], {type: "application/json"})); // JSON 데이터 추가
 
-        // FormData를 서버로 보냄
+        // 유저 정보 update
         $.ajax({
             url: '/user/myPage/info/update',
             type: 'POST',
@@ -296,22 +337,22 @@
             contentType: false,
             processData: false,
             success: function (response, status, xhr) {
-                if(response === "Success") {
+                if (response === "Success") {
                     alert("수정이 완료되었습니다.")
                     window.location.href = '/user/myPage/info';
                 }
             },
             error: function (xhr, status, error) {
-                if(xhr.responseText === "DuplicateKeyError" ){
+                if (xhr.responseText === "DuplicateKeyError") {
                     alert("닉네임 중복확인을 진행해주세요.")
-                }  else if (xhr.responseText === 'ServerError') {
+                } else if (xhr.responseText === 'ServerError') {
                     alert('서버 에러 발생');
                 }
             }
         });
     });
 
-
+    //닉네임 중복확인
     $(function () {
         $(".screens-user-userInfo__nickname-check-btn").click(function () {
             let user_nickname = $(".screens-user-userInfo__nickname-input").val();
@@ -325,7 +366,8 @@
                     if (response == "Y") {
                         const result = "이 닉네임을 사용할 수 있습니다.";
 
-                        $(".screens-user-userInfo__nickname-helper-text").html(result).removeClass(
+                        $(".screens-user-userInfo__nickname-helper-text").html(
+                                result).removeClass(
                                 "unavailable")
 
                     } else { // 실패한 경우
@@ -344,8 +386,6 @@
             });
         });
     });
-
-
 
 
 </script>

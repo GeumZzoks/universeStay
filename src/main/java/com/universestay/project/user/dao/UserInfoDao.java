@@ -15,4 +15,6 @@ public interface UserInfoDao {
 
     /*닉네임 중복 확인 체크*/
     public int checkNickname(String user_email, String user_nickname) throws Exception;
+
+    public int changePwd(String user_email, String user_pwd) throws Exception;
 }

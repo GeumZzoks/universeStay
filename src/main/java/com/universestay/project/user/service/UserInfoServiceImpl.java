@@ -6,6 +6,7 @@ import com.universestay.project.user.dto.UserDto;
 import java.io.File;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -70,9 +71,12 @@ public class UserInfoServiceImpl implements UserInfoService {
     public String getUploadPath() {
         String home = this.getClass().getResource("/").getPath();
         String targetFolder = "universeStay";
+        System.out.println("home = " + home);
 
         int index = home.indexOf(targetFolder);
         String desiredPath = home.substring(0, index + targetFolder.length());
+
+        System.out.println("desiredPath = " + desiredPath);
         return desiredPath;
     }
 
@@ -100,5 +104,30 @@ public class UserInfoServiceImpl implements UserInfoService {
             return "N";
         }
         return "Y";
+    }
+
+    @Override
+    public String changePwd(String check_pwd, String new_pwd, String new_pwd2,
+            HttpSession httpSession)
+            throws Exception {
+        String user_email = (String) httpSession.getAttribute("user_email");
+        System.out.println("user_email = " + user_email);
+        String original_pwd = getUserInfo(user_email).getUser_pwd();
+        System.out.println("original_pwd = " + original_pwd);
+
+        if (original_pwd.equals(check_pwd) && new_pwd.equals(new_pwd2)) {
+            // 원래 비밀번호와 DB에 저장된 비밀번호가 같고, 신규 비밀번호와 신규비밀번호 체크가 같으면 비밀번호를 변경한다.
+            userInfoDao.changePwd(user_email, new_pwd2);
+            System.out.println("Correct");
+            return "Correct";
+        } else if (!original_pwd.equals(check_pwd)) {
+            System.out.println("Incorrect_with_DB");
+            return "Incorrect_with_DB";
+        } else if (!new_pwd.equals(new_pwd2)) {
+            System.out.println("Incorrect_with_pwd_pwd2");
+            return "Incorrect_with_pwd_pwd2";
+        }
+
+        return "Server_Error";
     }
 }

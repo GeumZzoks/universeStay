@@ -52,23 +52,47 @@ public class UserInfoController {
         try {
             userInfoService.updateUserInfo(img != null ? img : null, user);
             return ResponseEntity.ok("Success");
-        } catch(DuplicateKeyException e){
+        } catch (DuplicateKeyException e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("DuplicateKeyError");
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("ServerError");
         }
     }
 
     @PostMapping("/info/checkNickname")
-    public ResponseEntity<String> checkNickname(@RequestParam("user_nickname") String user_nickname, HttpSession httpSession)
+    public ResponseEntity<String> checkNickname(@RequestParam("user_nickname") String user_nickname,
+            HttpSession httpSession)
             throws Exception {
-        String user_email = (String)httpSession.getAttribute("user_email");
+        String user_email = (String) httpSession.getAttribute("user_email");
 
-        if( userInfoService.checkNickname(user_email, user_nickname) == "N"){
+        if (userInfoService.checkNickname(user_email, user_nickname) == "N") {
             return ResponseEntity.ok("Y");
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("N");
+    }
+
+    @PostMapping("/info/changePwd")
+    public ResponseEntity<String> changePwd(@RequestParam("check_pwd") String check_pwd,
+            @RequestParam("new_pwd") String new_pwd, @RequestParam("new_pwd2") String new_pwd2,
+            HttpSession httpSession)
+            throws Exception {
+
+        System.out.println("check_pwd = " + check_pwd);
+        System.out.println("new_pwd = " + new_pwd);
+        System.out.println("new_pwd2 = " + new_pwd2);
+
+        String check = userInfoService.changePwd(check_pwd, new_pwd, new_pwd2, httpSession);
+
+        if (check.equals("Correct")) {
+            return ResponseEntity.ok("Correct");
+        } else if (check.equals("Incorrect_with_DB")) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Incorrect_with_DB");
+        } else if (check.equals("Incorrect_with_pwd_pwd2")) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Incorrect_with_pwd_pwd2");
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Server_error");
+        }
     }
 }

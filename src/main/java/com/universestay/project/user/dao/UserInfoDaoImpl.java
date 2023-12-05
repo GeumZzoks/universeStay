@@ -31,6 +31,12 @@ public class UserInfoDaoImpl implements UserInfoDao {
     @Override
     public int checkNickname(String user_email, String user_nickname) throws Exception {
         Map<String, String> map = Map.of("user_email", user_email, "user_nickname", user_nickname);
-        return session.selectOne(namespace+"checkNickname", map);
+        return session.selectOne(namespace + "checkNickname", map);
+    }
+
+    @Override
+    public int changePwd(String user_email, String user_pwd) throws Exception {
+        Map<String, String> map = Map.of("user_email", user_email, "user_pwd", user_pwd);
+        return session.update(namespace + "changePwd", map);
     }
 }

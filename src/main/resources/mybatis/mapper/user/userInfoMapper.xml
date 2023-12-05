@@ -23,8 +23,14 @@
         select count(*)
         from User
         where user_nickname = #{user_nickname}
-        AND user_email != #{user_email}
+          AND user_email != #{user_email}
     </select>
+
+    <update id="changePwd" parameterType="map">
+        UPDATE User
+        SET user_pwd = #{user_pwd}
+        WHERE user_email = #{user_email}
+    </update>
 
     <!--    테스트 코드를 위해 만들어놓은 Delete 매퍼-->
     <delete id="deleteUser" parameterType="UserDto">
