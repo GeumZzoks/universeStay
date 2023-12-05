@@ -60,3 +60,36 @@
 }
 
 
+.screens-user-userInfo__profile-img {
+  max-width: 130px;
+  max-height: 130px;
+}
+
+.screens-user-userInfo__nickname-helper-text{
+  color: green;
+}
+
+.screens-user-userInfo__nickname-helper-text.unavailable{
+  color: red;
+}
+
+.screens-user-userInfo__nickname-check-btn.hidden{
+  display: none;
+}
+
+/*신규 비밀번호 유효성검사 */
+.screens-user-userInfo__change-pwd-helper-txt.unavailable{
+  color: red;
+}
+
+.screens-user-userInfo__change-pwd-helper-txt{
+  color: green;
+}
+
+/*신규 비밀번호 재확인 유효성 검사*/
+.screens-user-userInfo__change-pwd2-helper-txt.unavailable{
+  color: red;
+}
+.screens-user-userInfo__change-pwd2-helper-txt{
+ color: green;
+}

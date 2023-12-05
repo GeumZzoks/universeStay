@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.universestay.project.mybatis.mapper.admin.hostingManagementMapper">
+
+    <select id="selectAll" resultType="RoomDto">
+        SELECT *
+        FROM Room
+        ORDER BY created_at
+    </select>
+
+    <update id="updateAll" parameterType="map">
+        UPDATE Room
+        SET status_id = #{status_id}
+        WHERE room_id IN
+        <foreach item="room_id" collection="roomIdsList" open="(" separator="," close=")">
+            #{room_id}
+        </foreach>
+    </update>
+
+    <select id="searchList" parameterType="map" resultType="RoomDto">
+        SELECT *
+        FROM Room
+        <choose>
+            <when test='status_id == "all"'>
+                WHERE room_name LIKE concat('%', #{room_name}, '%')
+            </when>
+            <otherwise>
+                WHERE room_name LIKE concat('%', #{room_name}, '%')
+                AND status_id = #{status_id}
+            </otherwise>
+        </choose>
+        ORDER BY created_at
+    </select>
+
+</mapper>

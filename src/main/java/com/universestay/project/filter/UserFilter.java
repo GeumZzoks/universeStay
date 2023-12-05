@@ -32,15 +32,15 @@ public class UserFilter implements Filter {
 
         // 세션이 없거나 조회 되지 않는다면
         // TODO: 삭제 예정
-        System.out.println("Filter - request.getHeader(\"referer\") = " + request.getHeader(
-                "referer")); // http://localhost:8080/
-        System.out.println("Filter - request.getRequestURL() = "
-                + request.getRequestURL()); // http://localhost:8080/board/list
-        System.out.println("Filter - request.getRequestURI() = "
-                + request.getRequestURI()); // /board/board1.jsp(컨텍스트 패스추가)
-        System.out.println(
-                "Filter - request.getServletPath() = " + request.getServletPath()); // /board1.jsp
-        System.out.println();
+//        System.out.println("Filter - request.getHeader(\"referer\") = " + request.getHeader(
+//                "referer")); // http://localhost:8080/
+//        System.out.println("Filter - request.getRequestURL() = "
+//                + request.getRequestURL()); // http://localhost:8080/board/list
+//        System.out.println("Filter - request.getRequestURI() = "
+//                + request.getRequestURI()); // /board/board1.jsp(컨텍스트 패스추가)
+//        System.out.println(
+//                "Filter - request.getServletPath() = " + request.getServletPath()); // /board1.jsp
+//        System.out.println();
 
         boolean isNotLogin = (session == null || session.getAttribute("user_email") == null);
         if (isNotLogin) {
