@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 
 @Service
@@ -45,7 +46,7 @@ public class UserLoginServiceImpl implements UserLoginService {
         }
     }
 
-    public UserDto signin(String user_email, String user_pwd, HttpSession session)
+    public UserDto signin(String user_email, String user_pwd, HttpSession session, Model model)
             throws Exception {
 
         // 로그인을 시도한 경우 중  3,4,5 상황이 있을 수 있음
@@ -53,11 +54,15 @@ public class UserLoginServiceImpl implements UserLoginService {
         // 4. 사용자 아이디/비빌번호가 틀렸을 경우
         // 5. 사용자가 없는 회원정보로 로그인을 시도한 경우
 
+        // 추가
+        // 로그인을 시도한 회원의 활동 상태가 u02~04인 경우
+
         // 추후 회원가입처럼 hashcode를 사용해서 ? 로그인 시키는 방법으로 보수할 예정
 
         try {
             // 다오 호출 : 조회 시 유저 정보가 있을수도 있고, 없을 수도 있어, 조회해서 UserDto타입에 일단 담아 놓고
             UserDto userInfo = userLoginDao.selectUser(user_email);
+            String statusId = userInfo.getStatus_id();
 
             // 만약 유저 정보가 널이 아니면 == 조회가 됐단 뜻
             if (userInfo != null) {
@@ -66,6 +71,17 @@ public class UserLoginServiceImpl implements UserLoginService {
 
                 // 그리고 일치하는 정보가 db에 있다면 => 3. 로그인이 문제없이 성공한 경우
                 if (userEmail != null && user_pwd.equals(userPwd)) {
+
+                    // 여기서 유저상태에 따른 다른 리턴값 처리?
+                    // u02는 휴면 해제하면 세션에 저장하고 로그인되게 해야하니까.. 얘는 여기 아래에 안끼는 거지!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    if (statusId.equals("U03") || statusId.equals("U04")) {
+//                        model.addAttribute("statusId", statusId); => 담지마 컨트롤러에서 담아보자.
+
+                        // 널주니까 컨트롤러에서 에러가나 얘도 걍 디티오 객체를 주긴해야하네
+                        // 세션에 저장하지 않고 디티오 반환
+                        return userInfo;
+                    }
+
                     session.setAttribute("user_email", user_email);
                     session.setMaxInactiveInterval(30 * 60);
                     return userInfo; // 세션에 저장 후 UserDto타입을 리턴
@@ -92,6 +108,8 @@ public class UserLoginServiceImpl implements UserLoginService {
     public int userLastLogin(String user_email) throws Exception {
         return userLoginDao.updateLastLogin(user_email);
     }
+
+    // 유저 활동 상태(U01~4)에 따라 보여줄 메서드가 필요.
 
 
 }

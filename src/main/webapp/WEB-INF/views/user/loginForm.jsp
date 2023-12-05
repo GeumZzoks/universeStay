@@ -30,7 +30,6 @@
 %>
 
 <body class="screens-user-login">
-
 <div class="screens-user-login__container">
 
         <div class="screens-user-login__login-wrapper">
@@ -61,7 +60,7 @@
                     <p class="field-error">${error['id null or pwd invalid']}</p>
                 </c:if>
 
-                <button type="submit" class="screens-user-login__btn screens-user-login__main-login__btn">로그인</button>
+                <button onclick="document.getElementById('UO2').style.display='block'"   type="submit" class="screens-user-login__btn screens-user-login__main-login__btn" name="login_button">로그인</button>
 
                 <%-- 쿠키 시작점 - checked: 쿠키 생성 요청, "": noCookie --%>
                 <label class="screens-user-login__label"><input type="checkbox" class="screens-user-login__login-wrapper__checkbox" name="remember_id"
@@ -73,7 +72,7 @@
                         <a href="#">비밀번호 재설정</a>
                     </div>
                     <div class="screens-user-login__linkContainer__inner">
-                        <a href="#">회원가입</a>
+                        <a href="/user/join">회원가입</a>
                     </div>
                 </div>
 
@@ -96,8 +95,7 @@
 
             </form>
 
-    </div>  
-
+    </div>
 </div>
 
 <script>
