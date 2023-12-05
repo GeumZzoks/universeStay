@@ -26,7 +26,10 @@
         <h5 style="font-size: 20px; font-weight: 800; margin: 20px 0 0 20px;">${noticeDto.notice_title}</h5>
         <h5 style="white-space:pre; margin: 20px 0 0 20px">${noticeDto.notice_ctt}</h5>
         <button class="screens-admin-event__content-top__btn"
-                onclick="location.href='/admin/notice/update/${noticeDto.notice_id}'">수정
+                onclick="location.href='/admin/notice/list'" style="margin-right: 72px">목록
+        </button>
+        <button class="screens-admin-event__content-top__btn"
+                onclick="location.href='/admin/notice/modify/${noticeDto.notice_id}'">수정
         </button>
         <form action="/admin/notice/${notce.event_id}" method="post">
             <button type="submit" class="screens-admin-event__content-top__btn" style="right: 20px">
