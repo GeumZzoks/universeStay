@@ -123,6 +123,11 @@ public class NoticeController {
         }
     }
 
+    @GetMapping("modify/{notice_id}")
+    public String modify(@PathVariable("notice_id") Integer notice_id, Model m) {
+        return "admin/noticeUpdate";
+    }
+
     // 공지사항 수정
     @PostMapping("/modify")
     public String modify(NoticeDto noticeDto, RedirectAttributes rttr, Model model) {
