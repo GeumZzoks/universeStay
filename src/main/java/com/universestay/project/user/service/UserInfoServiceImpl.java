@@ -38,7 +38,6 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Override
     public int updateUserInfo(MultipartFile img, UserDto user) throws Exception {
-        System.out.println("img = " + img);
         //img를 첨부했다면 아래 과정 진행
         if (img == null) {
             userInfoDao.updateUserInfo(user);
@@ -71,12 +70,10 @@ public class UserInfoServiceImpl implements UserInfoService {
     public String getUploadPath() {
         String home = this.getClass().getResource("/").getPath();
         String targetFolder = "universeStay";
-        System.out.println("home = " + home);
 
         int index = home.indexOf(targetFolder);
         String desiredPath = home.substring(0, index + targetFolder.length());
 
-        System.out.println("desiredPath = " + desiredPath);
         return desiredPath;
     }
 
@@ -111,20 +108,15 @@ public class UserInfoServiceImpl implements UserInfoService {
             HttpSession httpSession)
             throws Exception {
         String user_email = (String) httpSession.getAttribute("user_email");
-        System.out.println("user_email = " + user_email);
         String original_pwd = getUserInfo(user_email).getUser_pwd();
-        System.out.println("original_pwd = " + original_pwd);
 
         if (original_pwd.equals(check_pwd) && new_pwd.equals(new_pwd2)) {
             // 원래 비밀번호와 DB에 저장된 비밀번호가 같고, 신규 비밀번호와 신규비밀번호 체크가 같으면 비밀번호를 변경한다.
             userInfoDao.changePwd(user_email, new_pwd2);
-            System.out.println("Correct");
             return "Correct";
         } else if (!original_pwd.equals(check_pwd)) {
-            System.out.println("Incorrect_with_DB");
             return "Incorrect_with_DB";
         } else if (!new_pwd.equals(new_pwd2)) {
-            System.out.println("Incorrect_with_pwd_pwd2");
             return "Incorrect_with_pwd_pwd2";
         }
 

@@ -79,10 +79,6 @@ public class UserInfoController {
             HttpSession httpSession)
             throws Exception {
 
-        System.out.println("check_pwd = " + check_pwd);
-        System.out.println("new_pwd = " + new_pwd);
-        System.out.println("new_pwd2 = " + new_pwd2);
-
         String check = userInfoService.changePwd(check_pwd, new_pwd, new_pwd2, httpSession);
 
         if (check.equals("Correct")) {

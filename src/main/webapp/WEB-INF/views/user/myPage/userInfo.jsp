@@ -230,7 +230,6 @@
                     if (response === "Correct") {
                         alert("비밀번호 변경이 완료되었습니다.")
                     }
-                    console.log("성공")
                 },
                 error: function (xhr, status, error) {
                     if (xhr.responseText === "Incorrect_with_DB") {
@@ -356,7 +355,6 @@
     $(function () {
         $(".screens-user-userInfo__nickname-check-btn").click(function () {
             let user_nickname = $(".screens-user-userInfo__nickname-input").val();
-            console.log(user_nickname);
 
             $.ajax({
                 type: 'post',
