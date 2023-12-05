@@ -26,4 +26,6 @@ public interface NoticeService {
     // 공지사항 수정
     int modify(NoticeDto noticeDto) throws Exception;
 
+    String getAdminId(String admin_email) throws Exception;
+
 }

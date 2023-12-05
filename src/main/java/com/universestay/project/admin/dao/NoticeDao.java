@@ -23,7 +23,11 @@ public interface NoticeDao {
     // 공지사항 등록
     int insert(NoticeDto noticeDto) throws Exception;
 
+    int insertSelectKey(NoticeDto noticeDto) throws Exception;
+
     // 공지사항 수정
     int update(NoticeDto noticeDto) throws Exception;
+
+    String selectAdminId(String admin_id) throws Exception;
 
 }
