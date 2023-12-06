@@ -19,6 +19,6 @@ public class UserLogoutController {
     @RequestMapping("/userLogout")
     public String logout(HttpSession session, HttpServletResponse response) throws Exception {
         session.invalidate();
-        return "redirect:/main.jsp";
+        return "main/main";
     }
 }
