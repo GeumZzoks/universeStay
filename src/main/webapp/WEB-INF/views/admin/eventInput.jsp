@@ -27,7 +27,6 @@
             <h5 class="screens-admin-event__content-input__type">이벤트 제목</h5>
             <input name="event_title" type="text" style="width: 50%;">
             <h5 class="screens-admin-event__content-input__type">이벤트 내용</h5>
-
             <textarea name="event_ctt" class="screens-admin-event__content-input__text"></textarea>
             <div class="screens-admin-event__content-img-div">
                 <h5 class="screens-admin-event__content-input__type" style="margin-top: 12px; text-align: center">
