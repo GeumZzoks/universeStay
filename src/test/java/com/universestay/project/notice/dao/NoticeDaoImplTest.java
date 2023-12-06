@@ -30,13 +30,13 @@ public class NoticeDaoImplTest {
     @Test
     public void select() throws Exception {
         // 공지사항 조회 출력
-        System.out.println(noticeDao.select(23));
+        System.out.println(noticeDao.select(320));
     }
 
     @Test
     public void delete() throws Exception {
         // 공지사항 삭제(1개 삭제되면 1로 반환 삭제되지 않으면 0)
-        System.out.println("DELETE COUNT = " + noticeDao.delete(14));
+        System.out.println("DELETE COUNT = " + noticeDao.delete(301));
     }
 
     @Test
