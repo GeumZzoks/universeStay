@@ -65,7 +65,7 @@ public class UserLoginController {
 
                 // 정상적으로 로그인 됐을 때,
                 userLoginService.userLastLogin(user_email);
-                return "redirect:/main.jsp";
+                return "main/main";
 
             }
             // 여기에 오는 경우가
