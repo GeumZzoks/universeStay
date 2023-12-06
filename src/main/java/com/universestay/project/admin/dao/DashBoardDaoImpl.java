@@ -1,11 +1,8 @@
 package com.universestay.project.admin.dao;
 
-import com.universestay.project.admin.dto.CouponDto;
-import com.universestay.project.admin.dto.EventDto;
-import com.universestay.project.admin.dto.InquiryDto;
-import com.universestay.project.admin.dto.NoticeDto;
 import com.universestay.project.common.exception.CommonException;
-import com.universestay.project.user.dto.UserDto;
+import java.util.List;
+import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -23,27 +20,38 @@ public class DashBoardDaoImpl implements DashBoardDao {
 
 
     @Override
-    public UserDto selectUserManagement() throws CommonException {
-        return null;
+    public String countTotalUser() throws CommonException {
+        return session.selectOne(namespace + "countTotalUser");
     }
 
     @Override
-    public NoticeDto selectNotice() throws CommonException {
-        return null;
+    public String countTotalHost() throws CommonException {
+        return session.selectOne(namespace + "countTotalHost");
     }
 
     @Override
-    public EventDto selectEvent() throws CommonException {
-        return null;
+    public String countTotalInquiries() throws CommonException {
+        return session.selectOne(namespace + "countTotalInquiries");
     }
 
     @Override
-    public InquiryDto selectInquiry() throws CommonException {
-        return null;
+    public List<Map<String, Object>> selectListRoom() throws CommonException {
+        return session.selectList(namespace + "selectListRoom");
     }
 
     @Override
-    public CouponDto selectCoupon() throws CommonException {
-        return null;
+    public List<Map<String, Object>> selectListInquiry() throws CommonException {
+        return session.selectList(namespace + "selectListInquiry");
     }
+
+    @Override
+    public Integer updateConfirmIndividualRoom(String roomId) throws CommonException {
+        return session.update(namespace + "updateConfirmIndividualRoom", roomId);
+    }
+
+    @Override
+    public Integer updateRejectIndividualRoom(String roomId) throws CommonException {
+        return session.update(namespace + "updateRejectIndividualRoom", roomId);
+    }
+
 }

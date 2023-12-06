@@ -1,11 +1,10 @@
-package com.universestay.project.admin.dao;
+package com.universestay.project.admin.service;
 
 import com.universestay.project.common.exception.CommonException;
 import java.util.List;
 import java.util.Map;
 
-public interface DashBoardDao {
-
+public interface DashBoardService {
 
     String countTotalUser() throws CommonException;
 
@@ -20,6 +19,5 @@ public interface DashBoardDao {
     Integer updateConfirmIndividualRoom(String roomId) throws CommonException;
 
     Integer updateRejectIndividualRoom(String roomId) throws CommonException;
-
 
 }
