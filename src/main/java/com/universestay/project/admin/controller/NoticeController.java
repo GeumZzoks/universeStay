@@ -49,14 +49,14 @@ public class NoticeController {
             System.out.println("showPrev : " + nph.isShowPrev());
             System.out.println("showNext : " + nph.isShowNext());
 
-            List<NoticeDto> list = noticeService.getPage(map);
+            List<Map<String, Object>> list = noticeService.getPage(map);
             m.addAttribute("list", list);
             m.addAttribute("nph", nph);
         } catch (Exception e) {
             e.printStackTrace();
             m.addAttribute("msg", "LIST_ERR");
         }
-        return "admin/noticeList2";
+        return "admin/noticeList";
     }
 
     // 공지사항 조회
