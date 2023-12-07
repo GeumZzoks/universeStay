@@ -80,8 +80,8 @@
   border-radius: 15px;
   /*border: 1px solid;*/
   /*사진을 정사각형으로 만들고 싶은데 무슨 방법을 써야할지 모르겠습니다만...*/
-  width: 480px;
-  height: 435px;
+  width: 440px;
+  height: 415px;
 }
 
 .screens-room-roomDelete__card .screens-room-roomDelete__card__date {
