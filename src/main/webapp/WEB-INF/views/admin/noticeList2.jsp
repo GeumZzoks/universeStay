@@ -17,6 +17,11 @@
 <jsp:include page="/WEB-INF/views/common/admin/header.jsp"/>
 <jsp:include page="/WEB-INF/views/common/admin/navigation.jsp"/>
 <jsp:include page="/WEB-INF/views/common/admin/footer.jsp"/>
+<script>
+  let msg = "${msg}";
+  if (msg == "DEL_OK") alert("게시물이 삭제되었습니다.");
+  if (msg == "DEL_ERR") alert("삭제되었거나 없는 게시물입니다.");
+</script>
 
 <div class="notice_wrap">
     <div class="notice_title">

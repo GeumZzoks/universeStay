@@ -14,7 +14,7 @@
     <!--    </filter-mapping>-->
 
     <welcome-file-list>
-        <welcome-file>main.jsp</welcome-file>
+        <welcome-file>/WEB-INF/views/main/main.jsp</welcome-file>
         <welcome-file>index.html</welcome-file>
         <welcome-file>index.htm</welcome-file>
         <welcome-file>default.html</welcome-file>

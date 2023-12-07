@@ -22,8 +22,8 @@
 @import url(screens/admin/hostingManagement.css);
 @import url(screens/admin/dashboard.css);
 @import url(screens/admin/register.css);
-@import url(screens/admin/notice_style.css);
-@import url(screens/admin/notice_media.css);
+/*@import url(screens/admin/notice_style.css);*/
+/*@import url(screens/admin/notice_media.css);*/
 
 @import url(screens/user/join.css);
 @import url(screens/user/login.css);
@@ -32,3 +32,4 @@
 @import url(screens/user/userInfo.css);
 
 @import url(screens/room/roomDetail.css);
+@import url(screens/room/roomDelete.css);

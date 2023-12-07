@@ -1,11 +1,9 @@
 package com.universestay.project.user.service;
 
+import com.universestay.project.common.S3.AwsS3ImgUploaderService;
 import com.universestay.project.user.dao.ProfileImgDao;
 import com.universestay.project.user.dao.UserInfoDao;
 import com.universestay.project.user.dto.UserDto;
-import java.io.File;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +20,9 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Autowired
     ProfileImgDao profileImgDao;
+
+    @Autowired
+    AwsS3ImgUploaderService awsS3ImgUploaderService;
 
     @Override
     public UserDto getUserInfo(String user_email) throws Exception {
@@ -44,50 +45,17 @@ public class UserInfoServiceImpl implements UserInfoService {
         }
 
         if (img != null && !img.isEmpty()) {
-            //확장자를 포함한 파일 이름 전체 추출
-            String originalName = img.getOriginalFilename();
-            //이미지가 저장될 로컬 저장소의 경로 정의
-            String savePath = getUploadPath() + uploadProfileImgPath;
-            //저장될 이미지 이름을 정의
-            String saveFileName = generateFileName(originalName);
-
-            //savePath에 saveFileName으로 파일을 저장한다.
-            img.transferTo(new File(savePath,
-                    saveFileName));
-            //profileImg에 DB를 저장한다. 이때 프로필 저장되는 이미지 경로는 /src/main/webapp/resources/upload-imgs/profileImg/ + 파일명임. 불러올때는 앞에
+            System.out.println("img = " + img);
+            String imgUrl = awsS3ImgUploaderService.uploadImageToS3(
+                    img, "profile-img"); // aws로 이미지 업로드후 s3 url 받아오기
             profileImgDao.insertProfileImg(user.getUser_id(),
-                    "/resources/upload-imgs/profileImg/" + saveFileName);
+                    imgUrl);
         } else {
             System.out.println("이미지는 없음");
         }
 
         userInfoDao.updateUserInfo(user);
         return 0;
-    }
-
-
-    //로컬 저장소에 upload할 절대적인 경로 얻어오기
-    public String getUploadPath() {
-        String home = this.getClass().getResource("/").getPath();
-        String targetFolder = "universeStay";
-
-        int index = home.indexOf(targetFolder);
-        String desiredPath = home.substring(0, index + targetFolder.length());
-
-        return desiredPath;
-    }
-
-    public static String generateFileName(String originalName) {
-        Timestamp currentTime = new Timestamp(System.currentTimeMillis());
-
-        // 현재 시간을 형식화하여 공백과 콜론 제거
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
-        String currentTimeString = sdf.format(currentTime);
-
-        // 특수 문자와 공백을 제거하고 유효한 파일명으로 변환
-        String savedName = currentTimeString + "_" + originalName.replaceAll("[^a-zA-Z0-9.-]", "_");
-
-        return savedName;
     }
 
     @Override
