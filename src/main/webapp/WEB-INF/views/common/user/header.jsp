@@ -258,6 +258,5 @@
         src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script src="/resources/js/common/header.js"></script>
 
-<script></script>
 </body>
 </html>
