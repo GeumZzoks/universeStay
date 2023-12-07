@@ -538,8 +538,9 @@
 </div>
 <jsp:include page="/WEB-INF/views/common/user/footer.jsp"/>
 
-<%-- 카카오 지도 API --%>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${KakaoApiKey}"></script>
+<!-- 카카오 지도 API : services 라이브러리 불러오기 -->
+<script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${KakaoApiKey}&libraries=services"></script>
 <%-- 스크립트 --%>
 <script src="/resources/js/room/roomDetail.js"></script>
 

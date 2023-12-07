@@ -26,14 +26,14 @@ public class RoomDto {
     @ApiModelProperty(notes = "유저 ID", example = "0ca24692-89ea-11ee-b9d1-0242ac120002", required = true)
     private String user_id;
 
-    @ApiModelProperty(notes = "주소 ID", example = "0", required = true)
-    private int address_id;
-
     @ApiModelProperty(notes = "숙소 승인 상태", example = "R01", required = true)
     private String status_id;
 
     @ApiModelProperty(notes = "숙소 이름", example = "남산레지던스", required = true)
     private String room_name;
+
+    @ApiModelProperty(notes = "숙소 주소", example = "0", required = true)
+    private String room_address;
 
     @ApiModelProperty(notes = "숙소 장점 설명", example = "야경이 훌륭합니다. 남산이 가깝습니다.", required = false)
     private String room_total_desc;

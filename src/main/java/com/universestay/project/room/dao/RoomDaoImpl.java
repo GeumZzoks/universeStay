@@ -1,6 +1,7 @@
 package com.universestay.project.room.dao;
 
 import com.universestay.project.room.dto.RoomDto;
+import com.universestay.project.room.dto.RoomImgDto;
 import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +26,10 @@ public class RoomDaoImpl implements RoomDao {
     @Override
     public RoomDto select(String room_id) throws Exception {
         return session.selectOne(namespace + "select", room_id);
+    }
+
+    @Override
+    public List<RoomImgDto> select5RoomImg(String room_id) throws Exception {
+        return session.selectList(namespace + "select5RoomImg", room_id);
     }
 }

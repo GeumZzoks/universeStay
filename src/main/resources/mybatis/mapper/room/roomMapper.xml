@@ -16,4 +16,10 @@
         WHERE room_id = #{room_id}
     </select>
 
+    <select id="select5RoomImg" resultType="RoomImgDto">
+        SELECT *
+        FROM RoomImg
+        WHERE room_id = #{room_id} LIMIT 0, 5
+    </select>
+
 </mapper>
