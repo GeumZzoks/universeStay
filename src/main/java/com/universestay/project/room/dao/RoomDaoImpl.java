@@ -32,4 +32,9 @@ public class RoomDaoImpl implements RoomDao {
     public List<RoomImgDto> select5RoomImg(String room_id) throws Exception {
         return session.selectList(namespace + "select5RoomImg", room_id);
     }
+
+    @Override
+    public List<RoomDto> selectAllByCategory(String room_category_id) throws Exception {
+        return session.selectList(namespace + "selectAllByCategory", room_category_id);
+    }
 }

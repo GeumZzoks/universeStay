@@ -14,57 +14,83 @@
 <body>
 <nav class="components-user-nav__nav">
     <div class="components-user-nav__nav__wrapper">
-        <div class="components-user-nav__icon__wrapper" value="RC01"><img
-                src="/resources/img/nav-search-img/category/apartment.png"
-                class="components-user-nav__icon__img"><span class="components-user-nav__icon_name">아파트</span>
+        <div class="components-user-nav__icon__wrapper components-user-nav__category" value="RC01">
+            <img
+                    src="/resources/img/nav-search-img/category/apartment.png"
+                    class="components-user-nav__icon__img"><span
+                class="components-user-nav__icon_name">아파트</span>
         </div>
-        <div class="components-user-nav__icon__wrapper" value="RC02"><img
-                src="/resources/img/nav-search-img/category/family-house.png"
-                class="components-user-nav__icon__img"><span class="components-user-nav__icon_name">주택</span>
+        <div class="components-user-nav__icon__wrapper components-user-nav__category" value="RC02">
+            <img
+                    src="/resources/img/nav-search-img/category/family-house.png"
+                    class="components-user-nav__icon__img"><span
+                class="components-user-nav__icon_name">주택</span>
         </div>
-        <div class="components-user-nav__icon__wrapper" value="RC03"><img
-                src="/resources/img/nav-search-img/category/outbuilding.png"
-                class="components-user-nav__icon__img"><span class="components-user-nav__icon_name">별채</span>
+        <div class="components-user-nav__icon__wrapper components-user-nav__category" value="RC03">
+            <img
+                    src="/resources/img/nav-search-img/category/outbuilding.png"
+                    class="components-user-nav__icon__img"><span
+                class="components-user-nav__icon_name">별채</span>
         </div>
-        <div class="components-user-nav__icon__wrapper" value="RC04"><img
-                src="/resources/img/nav-search-img/category/hotel.png"
-                class="components-user-nav__icon__img"><span class="components-user-nav__icon_name">호텔</span>
+        <div class="components-user-nav__icon__wrapper components-user-nav__category" value="RC04">
+            <img
+                    src="/resources/img/nav-search-img/category/hotel.png"
+                    class="components-user-nav__icon__img"><span
+                class="components-user-nav__icon_name">호텔</span>
         </div>
-        <div class="components-user-nav__icon__wrapper" value="RC05"><img
-                src="/resources/img/nav-search-img/category/motel.png"
-                class="components-user-nav__icon__img"><span class="components-user-nav__icon_name">모텔</span>
+        <div class="components-user-nav__icon__wrapper components-user-nav__category" value="RC05">
+            <img
+                    src="/resources/img/nav-search-img/category/motel.png"
+                    class="components-user-nav__icon__img"><span
+                class="components-user-nav__icon_name">모텔</span>
         </div>
-        <div class="components-user-nav__icon__wrapper" value="RC06"><img
-                src="/resources/img/nav-search-img/category/pension.png"
-                class="components-user-nav__icon__img"><span class="components-user-nav__icon_name">펜션</span>
+        <div class="components-user-nav__icon__wrapper components-user-nav__category" value="RC06">
+            <img
+                    src="/resources/img/nav-search-img/category/pension.png"
+                    class="components-user-nav__icon__img"><span
+                class="components-user-nav__icon_name">펜션</span>
         </div>
-        <div class="components-user-nav__icon__wrapper" value="RC07"><img
-                src="/resources/img/nav-search-img/category/condominium.png"
-                class="components-user-nav__icon__img"><span class="components-user-nav__icon_name">콘도</span>
+        <div class="components-user-nav__icon__wrapper components-user-nav__category" value="RC07">
+            <img
+                    src="/resources/img/nav-search-img/category/condominium.png"
+                    class="components-user-nav__icon__img"><span
+                class="components-user-nav__icon_name">콘도</span>
         </div>
-        <div class="components-user-nav__icon__wrapper" value="RC08"><img
-                src="/resources/img/nav-search-img/category/residence.png"
-                class="components-user-nav__icon__img"><span class="components-user-nav__icon_name">레지던스</span>
+        <div class="components-user-nav__icon__wrapper components-user-nav__category" value="RC08">
+            <img
+                    src="/resources/img/nav-search-img/category/residence.png"
+                    class="components-user-nav__icon__img"><span
+                class="components-user-nav__icon_name">레지던스</span>
         </div>
-        <div class="components-user-nav__icon__wrapper" value="RC09"><img
-                src="/resources/img/nav-search-img/category/officetels.png"
-                class="components-user-nav__icon__img"><span class="components-user-nav__icon_name">오피스텔</span>
+        <div class="components-user-nav__icon__wrapper components-user-nav__category" value="RC09">
+            <img
+                    src="/resources/img/nav-search-img/category/officetels.png"
+                    class="components-user-nav__icon__img"><span
+                class="components-user-nav__icon_name">오피스텔</span>
         </div>
-        <div class="components-user-nav__icon__wrapper" value="RC10"><img
-                src="/resources/img/nav-search-img/category/hanok.png"
-                class="components-user-nav__icon__img"><span class="components-user-nav__icon_name">한옥</span>
+        <div class="components-user-nav__icon__wrapper components-user-nav__category" value="RC10">
+            <img
+                    src="/resources/img/nav-search-img/category/hanok.png"
+                    class="components-user-nav__icon__img"><span
+                class="components-user-nav__icon_name">한옥</span>
         </div>
-        <div class="components-user-nav__icon__wrapper" value="RC11"><img
-                src="/resources/img/nav-search-img/category/camping.png"
-                class="components-user-nav__icon__img"><span class="components-user-nav__icon_name">캠핑장/아웃도어</span>
+        <div class="components-user-nav__icon__wrapper components-user-nav__category" value="RC11">
+            <img
+                    src="/resources/img/nav-search-img/category/camping.png"
+                    class="components-user-nav__icon__img"><span
+                class="components-user-nav__icon_name">캠핑장/아웃도어</span>
         </div>
-        <div class="components-user-nav__icon__wrapper" value="RC12"><img
-                src="/resources/img/nav-search-img/category/hostel.png"
-                class="components-user-nav__icon__img"><span class="components-user-nav__icon_name">호스텔</span>
+        <div class="components-user-nav__icon__wrapper components-user-nav__category" value="RC12">
+            <img
+                    src="/resources/img/nav-search-img/category/hostel.png"
+                    class="components-user-nav__icon__img"><span
+                class="components-user-nav__icon_name">호스텔</span>
         </div>
-        <div class="components-user-nav__icon__wrapper" value="RC13"><img
-                src="/resources/img/nav-search-img/category/resort.png"
-                class="components-user-nav__icon__img"><span class="components-user-nav__icon_name">리조트</span>
+        <div class="components-user-nav__icon__wrapper components-user-nav__category" value="RC13">
+            <img
+                    src="/resources/img/nav-search-img/category/resort.png"
+                    class="components-user-nav__icon__img"><span
+                class="components-user-nav__icon_name">리조트</span>
         </div>
         <div class="components-user-nav__icon__wrapper" value="RV01"><img
                 src="/resources/img/nav-search-img/view/valley.png"
@@ -124,6 +150,6 @@
                 class="components-user-nav__icon_name">강</span></div>
     </div>
 </nav>
-
+<script src="/resources/js/user/common/nav.js"></script>
 </body>
 </html>

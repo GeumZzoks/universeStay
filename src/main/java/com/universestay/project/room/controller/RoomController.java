@@ -6,7 +6,9 @@ import com.universestay.project.room.service.RoomService;
 import com.universestay.project.user.dao.UserWithdrawalDao;
 import com.universestay.project.user.dto.UserDto;
 import com.universestay.project.user.service.ProfileImgServiceImpl;
+import com.universestay.project.user.service.UserInfoService;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +26,9 @@ public class RoomController {
     UserWithdrawalDao userWithdrawalDao;
     @Autowired
     ProfileImgServiceImpl profileImgService;
+
+    @Autowired
+    UserInfoService userInfoService;
 
     @GetMapping("")
     public String showRoom() {
@@ -59,5 +64,28 @@ public class RoomController {
     @GetMapping("/roomDelete")
     public String roomDelete() {
         return "/room/roomDelete";
+    }
+
+    @GetMapping("/search/{room_category_id}")
+    public String lookUpAllRoomByCategory(@PathVariable String room_category_id, Model model,
+            HttpSession session)
+            throws Exception {
+        String userEmail = (String) (session.getAttribute("user_email"));
+
+        List<RoomDto> roomList = roomService.lookUpAllRoomByCategory(room_category_id);
+        model.addAttribute("roomList", roomList);
+
+        if (userEmail == null) {
+            return "main/main";
+        }
+
+        UserDto user = userInfoService.getUserInfo(userEmail);
+        String profileImgUrl = profileImgService.getProfileImgUrl(user.getUser_id());
+        String isHost = user.getUser_is_host();
+
+        model.addAttribute("user", user);
+        model.addAttribute("profileImgUrl", profileImgUrl);
+        model.addAttribute("isHost", isHost);
+        return "main/main";
     }
 }

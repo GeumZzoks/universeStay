@@ -27,4 +27,9 @@ public class RoomServiceImpl implements RoomService {
     public List<RoomImgDto> lookUp5RoomImg(String room_id) throws Exception {
         return roomDao.select5RoomImg(room_id);
     }
+
+    @Override
+    public List<RoomDto> lookUpAllRoomByCategory(String room_category_id) throws Exception {
+        return roomDao.selectAllByCategory(room_category_id);
+    }
 }

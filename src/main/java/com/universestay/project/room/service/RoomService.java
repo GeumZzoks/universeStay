@@ -11,4 +11,7 @@ public interface RoomService {
     RoomDto lookUpRoom(String room_id) throws Exception;
 
     List<RoomImgDto> lookUp5RoomImg(String room_id) throws Exception;
+
+    List<RoomDto> lookUpAllRoomByCategory(String room_category_id) throws Exception;
+
 }

@@ -12,4 +12,5 @@ public interface RoomDao {
 
     List<RoomImgDto> select5RoomImg(String roomd_id) throws Exception;
 
+    List<RoomDto> selectAllByCategory(String room_category_id) throws Exception;
 }
