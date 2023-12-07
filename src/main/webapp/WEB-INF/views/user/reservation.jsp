@@ -187,7 +187,7 @@
 
                             <%-- 이미지 --%>
                             <div class="screens-user-reservation__right-side__box-size">
-                                <img src="/resources/img/room/room.png">
+                                <img src="/resources/img/room/room1.png">
                             </div>
 
                             <div class="screens-user-reservation__container__right-side__box-size__space-box">
