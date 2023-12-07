@@ -6,11 +6,6 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/resources/css2/style.css">
-
-    <%--    <link rel="stylesheet" href="/resources/css/common/global.css">--%>
-    <%--    <link rel="stylesheet" href="/resources/css/common/header.css">--%>
-    <%--    <link rel="stylesheet" href="/resources/css/common/header_price-slider.css">--%>
-
     <link rel="stylesheet" type="text/css"
           href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
     <title>header</title>
@@ -227,6 +222,5 @@
         src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script src="/resources/js/common/header.js"></script>
 
-<script></script>
 </body>
 </html>
