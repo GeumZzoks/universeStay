@@ -1,4 +1,4 @@
-package com.universestay.project.dto;
+package com.universestay.project.room.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 import java.sql.Timestamp;
