@@ -6,14 +6,16 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>공지사항 - UNIVERSESTAY</title>
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 </head>
 <body>
 <script>
-  <%--let msg = "${msg}";--%>
-  <%--if (msg == "WRT_OK") alert("공지사항 등록이 완료되었습니다.");--%>
+  let msg = "${msg}";
+  if (msg == "MOD_ERR") alert("공지사항 수정에 실패하였습니다. 다시 시도해 주세요.");
 </script>
 <div class="screens-admin-event__container">
 
@@ -31,12 +33,26 @@
         <button class="screens-admin-event__content-top__btn"
                 onclick="location.href='/admin/notice/modify/${noticeDto.notice_id}'">수정
         </button>
-        <form action="/admin/notice/${notce.event_id}" method="post">
-            <button type="submit" class="screens-admin-event__content-top__btn" style="right: 20px">
+        <form id="removeForm" action="/admin/notice/remove" method="post">
+            <input type="hidden" name="notice_id" value="${noticeDto.notice_id}">
+            <button type="button" id="removeBtn" class="screens-admin-event__content-top__btn"
+                    style="right: 20px">
                 삭제
             </button>
         </form>
     </div>
 </div>
+<script>
+  let removeBtn = document.getElementById("removeBtn");
+  let removeForm = document.getElementById("removeForm");
+  removeBtn.addEventListener("click", click);
+
+  function click() {
+    if (confirm("정말로 삭제하시겠습니까?") == false) {
+      return;
+    }
+    removeForm.submit();
+  }
+</script>
 </body>
 </html>

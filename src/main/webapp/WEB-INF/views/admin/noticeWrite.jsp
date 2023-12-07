@@ -25,7 +25,7 @@
         <strong>공지사항</strong>
     </div>
     <div class="notice_write_wrap">
-        <form method="post" action="/admin/notice/write">
+        <form name="frm" method="post">
             <div class="notice_write">
                 <div class="title">
                     <dl>
@@ -40,7 +40,7 @@
                         <dt>공개여부</dt>
                         <dd>
                             <input name="notice_is_open" type="radio" value="N"
-                                   <c:if test="${noticeDto.notice_is_open eq 'N'}">checked</c:if>>비공개
+                                   checked>비공개
                             <input name="notice_is_open" type="radio" value="Y"
                                    <c:if test="${noticeDto.notice_is_open eq 'Y'}">checked</c:if>>공개
                         </dd>
@@ -53,7 +53,7 @@
             </div>
             <div class="bt_wrap">
                 <input type="submit" class="on" value="등록">
-                <a href="list.html">취소</a>
+                <a href="/admin/notice/list">취소</a>
             </div>
         </form>
     </div>

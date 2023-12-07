@@ -49,14 +49,14 @@ public class NoticeController {
             System.out.println("showPrev : " + nph.isShowPrev());
             System.out.println("showNext : " + nph.isShowNext());
 
-            List<NoticeDto> list = noticeService.getPage(map);
+            List<Map<String, Object>> list = noticeService.getPage(map);
             m.addAttribute("list", list);
             m.addAttribute("nph", nph);
         } catch (Exception e) {
             e.printStackTrace();
             m.addAttribute("msg", "LIST_ERR");
         }
-        return "admin/noticeList2";
+        return "admin/noticeList";
     }
 
     // 공지사항 조회
@@ -76,9 +76,8 @@ public class NoticeController {
 
     // 공지사항 삭제
     @PostMapping("/remove")
-    public String remove(Integer notice_id, RedirectAttributes rttr) throws Exception {
+    public String remove(Integer notice_id, RedirectAttributes rttr) {
         String msg = "DEL_OK";
-
         try {
             // 식제가 되지 않으면 삭제 에러 메시지 뷰에 전달
             if (noticeService.remove(notice_id) != 1) {
@@ -88,10 +87,9 @@ public class NoticeController {
             e.printStackTrace();
             msg = "DEL_ERR";
         }
-
         // 삭제 되었으면 삭제 성공 메세지 뷰에 전달
         rttr.addFlashAttribute("msg", msg);
-        return "redirect:/admin/noticeList2";
+        return "redirect:/admin/notice/list";
     }
 
     // 공지사항 등록(get 요청)
@@ -104,8 +102,8 @@ public class NoticeController {
     @PostMapping("/write")
     public String postWrite(NoticeDto noticeDto, RedirectAttributes rttr, Model m,
             HttpSession session) {
-        String writer = (String) session.getAttribute("admin_email");
         try {
+            String writer = (String) session.getAttribute("admin_email");
             noticeDto.setAdmin_id(noticeService.getAdminId(writer));
             noticeDto.setCreated_id(noticeService.getAdminId(writer));
             noticeDto.setUpdated_id(noticeService.getAdminId(writer));
@@ -124,25 +122,38 @@ public class NoticeController {
     }
 
     @GetMapping("modify/{notice_id}")
-    public String modify(@PathVariable("notice_id") Integer notice_id, Model m) {
-        return "admin/noticeUpdate";
+    public String modify(@PathVariable("notice_id") Integer notice_id, Model m,
+            RedirectAttributes rttr) {
+        try {
+            // 정상적인 수정 get 요청 시
+            NoticeDto noticeDto = noticeService.read(notice_id);
+            m.addAttribute(noticeDto);
+            return "admin/noticeUpdate";
+        } catch (Exception e) {
+            rttr.addFlashAttribute("msg", "MOD_NOT");
+            return "redirect:/admin/notice/list";
+        }
     }
 
     // 공지사항 수정
     @PostMapping("/modify")
-    public String modify(NoticeDto noticeDto, RedirectAttributes rttr, Model model) {
+    public String modify(NoticeDto noticeDto, RedirectAttributes rttr, Model model,
+            HttpSession session) {
         try {
+            String writer = (String) session.getAttribute("admin_email");
+            noticeDto.setAdmin_id(noticeService.getAdminId(writer));
+            noticeDto.setCreated_id(noticeService.getAdminId(writer));
+            noticeDto.setUpdated_id(noticeService.getAdminId(writer));
             // 수정 실패 시
             if (noticeService.modify(noticeDto) != 1) {
                 throw new Exception("Modify Failed.");
             }
             // 수정 성공 시
             rttr.addFlashAttribute("msg", "MOD_OK");
-            return "redirect:/notice/noticeList";
+            return "redirect:/admin/notice/" + noticeDto.getNotice_id();
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("msg", "MOD_ERR");
-            // @@@@@@@@@@ 아직 미완 @@@@@@@@@@@@@@@@
             return "admin/notice";
         }
     }
