@@ -12,7 +12,7 @@ public interface NoticeDao {
     // 공지사항 목록
     List<NoticeDto> selectAll() throws Exception;
 
-    List<NoticeDto> selectPage(Map map) throws Exception;
+    List<Map<String, Object>> selectPage(Map map) throws Exception;
 
     // 공자사항 조회
     NoticeDto select(Integer notice_id) throws Exception;

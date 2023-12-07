@@ -12,7 +12,7 @@ public interface NoticeService {
     // 공지사항 목록
     List<NoticeDto> getList() throws Exception;
 
-    List<NoticeDto> getPage(Map map) throws Exception;
+    List<Map<String, Object>> getPage(Map map) throws Exception;
 
     // 공지사항 조회
     NoticeDto read(Integer notice_id) throws Exception;

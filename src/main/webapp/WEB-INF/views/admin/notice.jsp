@@ -14,8 +14,8 @@
 </head>
 <body>
 <script>
-  <%--let msg = "${msg}";--%>
-  <%--if (msg == "WRT_OK") alert("공지사항 등록이 완료되었습니다.");--%>
+  let msg = "${msg}";
+  if (msg == "MOD_ERR") alert("공지사항 수정에 실패하였습니다. 다시 시도해 주세요.");
 </script>
 <div class="screens-admin-event__container">
 
