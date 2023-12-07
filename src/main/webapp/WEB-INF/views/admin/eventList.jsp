@@ -53,14 +53,14 @@
     <jsp:include page="/WEB-INF/views/common/admin/footer.jsp"/>
 
     <div class="screens-admin-event__content">
-        <h3 style="color: indianred; margin-top: 20px">이벤트</h3>
+        <h3 style="color: indianred; margin-top: 20px; font-weight: 600;">이벤트</h3>
         <form action="<c:url value='/admin/event/list'/>" class="screens-admin-event__content-search" method="get"
               style="width:150px; height: 24px;">
             <select class="screens-admin-event__content-search-option" name="option">
                 <option value="T" ${ph.sc.option=='T' ? "selected" : ""}>제목</option>
                 <option value="W" ${ph.sc.option=='W' ? "selected" : ""}>작성자</option>
             </select>
-            <input type="text" name="keyword" class="screens-admin-event__content-search-input" type="text"
+            <input type="text" name="keyword" class="screens-admin-event__content-search-input"
                    value="${ph.sc.keyword}"
                    placeholder="검색어를 입력해주세요">
             <input type="submit" class="screens-admin-event__content-search__btn" value="검색">
