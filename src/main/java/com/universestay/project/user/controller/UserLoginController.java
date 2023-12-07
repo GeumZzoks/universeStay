@@ -65,6 +65,7 @@ public class UserLoginController {
 
                 // 정상적으로 로그인 됐을 때,
                 userLoginService.userLastLogin(user_email);
+
                 return "/main/main";// 얘로 하면 url 주소가 http://localhost/user/login 이렇게 남아..서 main controller 만들었음
 //                return "redirect:/main/main";
 

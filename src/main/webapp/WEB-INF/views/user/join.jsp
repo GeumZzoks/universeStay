@@ -17,7 +17,7 @@
     <!--웹페이지 상단-->
     <header class="screens-user-join_header">
         <!--UniverseStay LOGO-->
-        <a href="/main.jsp" class="screens-user-join_a" title="유니버스테이 홈페이지">
+        <a href="/" class="screens-user-join_a" title="유니버스테이 홈페이지">
             <img src="/resources/img/logo/logo.png" class="screens-user-join_logo_image"></a>
     </header>
 
@@ -185,44 +185,44 @@
 <script src="/resources/js/join.js"></script>
 
 <script>
-  // 이메일 인증
-  $('#screens-user-join_mail_Check_Btn').click(function () {
-    const email = $('#screens-user-join_signup_email').val(); // 이메일 주소값 얻어오기!
-    const checkInput = $('.screens-user-join_code_check_input') // 인증번호 입력하는곳
+    // 이메일 인증
+    $('#screens-user-join_mail_Check_Btn').click(function () {
+        const email = $('#screens-user-join_signup_email').val(); // 이메일 주소값 얻어오기!
+        const checkInput = $('.screens-user-join_code_check_input') // 인증번호 입력하는곳
 
-    $.ajax({
-      type: 'get',
-      url: '<c:url value ="/user/mailCheck?email="/>' + email,
-      success: function (data) {
-        checkInput.attr('disabled', false);
-        console.log(data)
-        if ("Y" == data) {
-          alert('인증번호가 전송되었습니다.')
-        }
-      },
-      error: function (xhr, status, error) {
-        alert('이미 가입된 이메일입니다. 다시 입력해주세요');
-        $("#screens-user-join_signup_email").focus();
-        console.error("Ajax 요청 실패:", status, error);
-        console.log(xhr.responseText);
-      }
+        $.ajax({
+            type: 'get',
+            url: '<c:url value ="/user/mailCheck?email="/>' + email,
+            success: function (data) {
+                checkInput.attr('disabled', false);
+                console.log(data)
+                if ("Y" == data) {
+                    alert('인증번호가 전송되었습니다.')
+                }
+            },
+            error: function (xhr, status, error) {
+                alert('이미 가입된 이메일입니다. 다시 입력해주세요');
+                $("#screens-user-join_signup_email").focus();
+                console.error("Ajax 요청 실패:", status, error);
+                console.log(xhr.responseText);
+            }
+        });
     });
-  });
 
-  // 만약 Oauth로 회원가입을 들어오면 email, pwd 입력란 value 채우고 hidden으로 바꾼다.
-  if ("${userEmail}" != null && "${userEmail}" != "") {
-    $('#signup_pw')
-    .attr('value', '${userPwd}');
-    $('#signup_pww')
-    .attr('value', '${userPwd}');
-    $('#signup_email')
-    .attr('value', '${userEmail}');
+    // 만약 Oauth로 회원가입을 들어오면 email, pwd 입력란 value 채우고 hidden으로 바꾼다.
+    if ("${userEmail}" != null && "${userEmail}" != "") {
+        $('#signup_pw')
+        .attr('value', '${userPwd}');
+        $('#signup_pww')
+        .attr('value', '${userPwd}');
+        $('#signup_email')
+        .attr('value', '${userEmail}');
 
-    $('.signup_pwd_wrapper')
-    .hide();
-    $('.signup_email_wrapper')
-    .hide();
-  }
+        $('.signup_pwd_wrapper')
+        .hide();
+        $('.signup_email_wrapper')
+        .hide();
+    }
 
 
 </script>
