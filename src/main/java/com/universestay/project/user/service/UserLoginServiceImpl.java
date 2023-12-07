@@ -109,7 +109,5 @@ public class UserLoginServiceImpl implements UserLoginService {
         return userLoginDao.updateLastLogin(user_email);
     }
 
-    // 유저 활동 상태(U01~4)에 따라 보여줄 메서드가 필요.
-
 
 }
