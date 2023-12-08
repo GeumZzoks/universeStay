@@ -67,11 +67,12 @@
     <div class="screens-room-roomEnroll__input__address">
         <input type="text" name="room_address" class="screens-room-roomEnroll__address-main"
                placeholder="주소" readonly>
-        <input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
+        <input type="button" class="screens-room-roomEnroll__btn-address-main"
+               onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
         <input type="text" name="room_address_detail"
                class="screens-room-roomEnroll__address-detail" placeholder="상세 주소 입력"><br>
         <div class="screens-room-roomEnroll__map"
-             style="width:300px;height:300px;margin-top:10px;display:none"></div>
+             style="width:100%;height:300px;margin-top:10px;display:none"></div>
     </div>
 
     <%--  숙소 기본정보를 알려주세요  --%>
@@ -810,21 +811,23 @@
 
     <%--  숙소 가격을 책정해주세요  --%>
     <div class="screens-room-roomEnroll__title">숙소 가격을 책정해주세요</div>
-    <div class="screens-room-roomEnroll__sub-title">
-        주중 1박 요금
+    <div class="screens-room-roomEnroll__price">
+        <div class="screens-room-roomEnroll__title-1">
+            주중 1박 요금
+        </div>
+        <input name="room_weekday-price" class="screens-room-roomEnroll__room-weekday-price"
+               type="text">
+        <div class="screens-room-roomEnroll__title-2">
+            주말 1박 요금
+        </div>
+        <input name="room_weekend-price" class="screens-room-roomEnroll__room-weekend-price"
+               type="text">
+        <div class="screens-room-roomEnroll__title-3">
+            인원 추가 요금
+        </div>
+        <input name="room_extra_person_fee" class="screens-room-roomEnroll__room-extra-person-fee"
+               type="text">
     </div>
-    <input name="room_weekday-price" class="screens-room-roomEnroll__room-weekday-price"
-           type="text">
-    <div class="screens-room-roomEnroll__sub-title">
-        주말 1박 요금
-    </div>
-    <input name="room_weekend-price" class="screens-room-roomEnroll__room-weekend-price"
-           type="text">
-    <div class="screens-room-roomEnroll__sub-title">
-        인원 추가 요금
-    </div>
-    <input name="room_extra_person_fee" class="screens-room-roomEnroll__room-extra-person-fee"
-           type="text">
 
 </div>
 

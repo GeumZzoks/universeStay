@@ -17,10 +17,27 @@
 
 .screens-room-roomEnroll__btn-square:hover {
   background: #F7F7F7;
+  outline: 2px solid black;
 }
 
 .screens-room-roomEnroll__btn-active {
   outline: 2px solid black;
+}
+
+.screens-room-roomEnroll__title {
+  font-family: NotoSansKR-Medium;
+  font-size: 20px;
+  margin: 80px 0 12px;
+}
+
+.screens-room-roomEnroll__title:first-child {
+  margin-top: 0;
+}
+
+.screens-room-roomEnroll__sub-title {
+  font-family: NotoSansKR-Light;
+  font-size: 14px;
+  margin-bottom: 30px;
 }
 
 /* not-component */
@@ -117,6 +134,49 @@
 .screens-room-roomEnroll__map {
   position: relative;
   z-index: -1;
+}
+
+.screens-room-roomEnroll__input__address {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.screens-room-roomEnroll__address-main {
+  width: 70%;
+  background: #fff;
+  border: 1px solid #B0B0B0;
+  outline: none;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  padding: 12px 20px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.screens-room-roomEnroll__btn-address-main {
+  width: 25%;
+  background: #fff;
+  border: 1px solid #B0B0B0;
+  outline: none;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  padding: 12px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-left: 4.2%;
+}
+
+.screens-room-roomEnroll__btn-address-main:hover {
+  outline: 1px solid black;
+}
+
+.screens-room-roomEnroll__address-detail {
+  width: 70%;
+  background: #fff;
+  border: 1px solid #B0B0B0;
+  outline: none;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  padding: 12px 20px;
+  border-radius: 10px;
+  margin-bottom: 15px;
 }
 
 /* 숙소 기본정보를 알려주세요 */
