@@ -182,7 +182,7 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
-<script src="/resources/js/join.js"></script>
+<script src="/resources/js/user/join.js"></script>
 
 <script>
   // 이메일 인증
