@@ -4,15 +4,17 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <typeAlias alias="UserDto" type="com.universestay.project.user.dto.UserDto"/>
         <typeAlias alias="SearchCondition"
                 type="com.universestay.project.common.SearchCondition"/>
+        <typeAlias alias="UserDto" type="com.universestay.project.user.dto.UserDto"/>
         <typeAlias alias="ProfileImg" type="com.universestay.project.user.dto.ProfileImgDto"/>
         <typeAlias alias="AdminDto" type="com.universestay.project.admin.dto.AdminDto"/>
         <typeAlias alias="EventDto" type="com.universestay.project.admin.dto.EventDto"/>
         <typeAlias alias="CouponDto" type="com.universestay.project.admin.dto.CouponDto"/>
         <typeAlias alias="InquiryDto" type="com.universestay.project.admin.dto.InquiryDto"/>
+        <typeAlias alias="ReplyDto" type="com.universestay.project.admin.dto.ReplyDto"/>
         <typeAlias alias="NoticeDto" type="com.universestay.project.admin.dto.NoticeDto"/>
-        <typeAlias alias="RoomDto" type="com.universestay.project.dto.RoomDto"/>
+        <typeAlias alias="RoomDto" type="com.universestay.project.room.dto.RoomDto"/>
+        <typeAlias alias="RoomImgDto" type="com.universestay.project.room.dto.RoomImgDto"/>
     </typeAliases>
 </configuration>

@@ -42,6 +42,11 @@ public class UserManagementDaoImpl implements UserManagementDao {
     }
 
     @Override
+    public List<Map<String, Object>> getabc(Map map) throws Exception {
+        return session.selectList(namespace + "getabc", map);
+    }
+
+    @Override
     public List<UserDto> selectPage(Map map) throws Exception {
         return session.selectList(namespace + "selectPage", map);
     }

@@ -1,0 +1,140 @@
+.screens-room-roomDelete__container {
+  /*background-color: #fee426;*/
+  display: flex;
+  justify-content: center;
+}
+
+.screens-room-roomDelete__content {
+  /*background-color: #62baea;*/
+
+  margin: 10px 50px 10px 50px;
+  width: 90%;
+  height: 100%; /*자식이 height을 쓰니까 부모에도 height을 써야 됨.=>width,height은 부모기준이니까.*/
+}
+
+.screens-room-roomDelete__top {
+  background-color: #ffffff;
+  /*background-color: #62baea;*/
+  /*border: 1px solid;*/
+  /*border-radius: 20px; !* 잠시 영역 구분할라고*!*/
+  width: 100%;
+  height: 20%;
+  margin: 30px 0px 30px 0px;
+
+  /*자식 적용*/
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.screens-room-roomDelete__top__title {
+
+}
+
+.screens-room-roomDelete__top__title h2 { /*airbnb꺼 다 긁어옴*/
+  display: block;
+  font-size: 1.5em;
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+
+.screens-room-roomDelete__top__icn {
+  display: flex;
+  gap: 15px;
+}
+
+.screens-room-roomDelete__top__button-icn {
+  width: 40px;
+}
+
+.screens-room-roomDelete__cards {
+  /*background-color: #ffaaaa;*/
+  /*border: 3px solid red;*/
+  height: 70%;
+
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.screens-room-roomDelete__card {
+  padding-bottom: 50px;
+
+  position: relative;
+}
+
+.screens-room-roomDelete__card p {
+  font-size: 10px;
+}
+
+.screens-room-roomDelete__card .screens-room-roomDelete__card__img { /*div*/
+  /*border-radius: 15px;*/
+  /*border: 1px solid;*/
+}
+
+.screens-room-roomDelete__card .screens-room-roomDelete__card__img img { /*img 태그*/
+
+  border-radius: 15px;
+  /*border: 1px solid;*/
+  /*사진을 정사각형으로 만들고 싶은데 무슨 방법을 써야할지 모르겠습니다만...*/
+  width: 440px;
+  height: 415px;
+}
+
+.screens-room-roomDelete__card .screens-room-roomDelete__card__date {
+  margin: 0px;
+  width: 100%;
+  height: 5%;
+
+}
+
+.screens-room-roomDelete__card .screens-room-roomDelete__card__date p {
+  font-size: 15px;
+  font-weight: bold;
+  margin: 10px 0px 0px 0px;
+
+}
+
+.screens-room-roomDelete__card .screens-room-roomDelete__card__location {
+  width: 100%;
+  height: 10%;
+
+}
+
+.screens-room-roomDelete__card .screens-room-roomDelete__card__location p {
+  font-size: 13px;
+  color: #999999;
+  margin: 0px 0px 0px 0px;
+}
+
+.screens-room-roomDelete__card_status {
+  background-color: #ffffff;
+  border-radius: 35px;
+
+  display: flex;
+  align-items: center;
+  justify-content: left;
+
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 0px 10px 0px 10px;
+}
+
+.screens-room-roomDelete__card_status img {
+  width: 10px;
+  height: 10px;
+}
+
+.screens-room-roomDelete__card_status__img {
+  /*  얘한테 앱솔루트 줘서 옮겨보려했으나, 이미 부모가 앱솔루트여서 못쓰는 상황*/
+}
+
+.screens-room-roomDelete__card_status span {
+  font-size: 13px;
+  font-weight: bold;
+  padding: 13px 5px;
+}

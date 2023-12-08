@@ -2,7 +2,7 @@ package com.universestay.project.admin.controller;
 
 import com.universestay.project.admin.dto.HostingManagementDto;
 import com.universestay.project.admin.service.HostingManagementService;
-import com.universestay.project.dto.RoomDto;
+import com.universestay.project.room.dto.RoomDto;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
