@@ -1,0 +1,251 @@
+/* 컴포넌트 */
+.screens-user-reservationShare__container__div-common {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 24px;
+}
+
+.screens-user-reservationShare__container__div-common span {
+  font-family: NotoSansKR-Medium;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.screens-user-reservationShare__border-bound-top {
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: rgb(221, 221, 221);
+  margin-top: 8px;
+}
+
+.screens-user-reservationShare__text-size-reservation-room-info-h2 {
+  font-size: var(--text-size-reservation-room-info-h2);
+}
+
+.screens-user-reservationShare__container__left-side--info-common {
+  padding-right: 24px;
+}
+
+.screens-user-reservationShare__container__left-side--info-common h3 {
+  font-family: NotoSansKR-Medium;
+}
+
+.screens-user-reservationShare__container__left-side--info-common div {
+  font-family: NotoSansKR-Light;
+  margin-top: 8px;
+}
+
+.screens-user-reservationShare__container__left-side--space-topdown {
+  padding: 24px 0 0 0;
+}
+
+.screens-user-reservationShare__container__left-side--space-topdown__header {
+  margin-bottom: 12px;
+}
+
+.screens-user-reservationShare__container__left-side--space-topdown__header > div {
+  margin-bottom: 4px;
+}
+
+.screens-user-reservationShare__container__left-side--space-topdown__header__payment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.screens-user-reservationShare__container__left-side--space-topdown__header__select {
+  position: relative;
+  z-index: 3;
+  box-sizing: border-box;
+  margin-top: 24px;
+}
+
+.screens-user-reservationShare__container__left-side--space-topdown__header__select button {
+  display: block;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  margin: 0px;
+  padding: 0px;
+  text-align: left;
+  outline: none;
+  transition: border 150ms ease-out 0s;
+  border: 1px solid rgb(176, 176, 176);
+  border-radius: 8px;
+
+}
+
+.screens-user-reservationShare__container__left-side--space-topdown__header__select__box {
+  padding: 16px 40px 16px 16px;
+}
+
+.screens-user-reservationShare__container__right-side__box-size {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 300px;
+  padding: 10px 0;
+  box-sizing: border-box;
+  margin-bottom: 12px;
+}
+
+
+/* class 적용 */
+
+.screens-user-reservationShare__title {
+  margin-bottom: 24px;
+  font-size: 2rem;
+  font-family: NotoSansKR-Medium;
+}
+
+.screens-user-reservationShare__container__flex {
+  display: flex;
+  justify-content: space-evenly;
+
+  margin-top: 60px;
+}
+
+.screens-user-reservationShare__container {
+  font-size: 1rem;
+  line-height: 1.25em;
+  padding: 0 80px;
+  margin: 0 200px;
+}
+
+
+.screens-user-reservationShare__container__left-side {
+  width: 50%;
+  margin-bottom: 60px;
+}
+
+.screens-user-reservationShare__write-email-box {
+  width: 250px;
+}
+
+.screens-user-reservationShare__write-email-box input {
+  display: block;
+  width: 100%;
+  padding: 10px 0 10px 10px;
+  margin-bottom: 12px;
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.screens-user-reservationShare__write-email-box input:focus {
+  outline: 1.5px solid black;
+}
+
+.screens-user-reservationShare__submit {
+  padding: 24px 0px
+}
+
+.screens-user-reservationShare__submit--button {
+  padding: 10px 20px;
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.screens-user-reservationShare__submit button:first-child {
+  background: linear-gradient(to right, #000000 0%, #0c0b0c 50%, #171313 100%);
+  color: #FFFFFF;
+}
+
+.screens-user-reservationShare__submit button:nth-child(2) {
+  background: linear-gradient(to right, #ffffff 0%, #ffffff 50%, #ffffff 100%);
+  color: #222222;
+}
+
+.screens-user-reservationShare__sub-h3 {
+  font-family: NotoSansKR-Medium;
+  margin-top: 12px;
+}
+
+.screens-user-reservationShare__sub-info {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.screens-user-reservationShare__sub-info > div > div:nth-of-type(1) {
+  font-family: NotoSansKR-Regular;
+}
+
+.screens-user-reservationShare__sub-info div {
+  padding: 10px 0;
+  font-family: NotoSansKR-Light;
+}
+
+/* 오른쪽 */
+.screens-user-reservationShare__container__right-side {
+  position: relative;
+  width: 40%;
+  margin-left: 8.3333%;
+}
+
+.screens-user-reservationShare__container__right-side__inner-container {
+  position: sticky;
+  top: 150px;
+  margin-bottom: 80px;
+  padding: 24px 24px 0px 24px;
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 12px;
+
+  /* 수정 부분 */
+  width: 100%;
+  z-index: 1;
+}
+
+.screens-user-reservationShare__right-side__box-size {
+  width: 600px;
+  height: 300px;
+  overflow: hidden;
+}
+
+.screens-user-reservationShare__right-side__box-size img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.screens-user-reservationShare__container__right-side__box-size__space-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 70px;
+  padding: 12px 0;
+  overflow: au
+}
+
+.screens-user-reservationShare__container__right-side__box-size__space-box h3 {
+  font-family: NotoSansKR-Medium;
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+  margin-bottom: 16px;
+
+}
+
+.screens-user-reservationShare__container__right-side__flex-box-column__total-payment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 24px 0;
+}
+
+.screens-user-reservationShare__container__left-side--space-topdown__header__img {
+  width: 100px;
+  width: 50px;
+  overflow: hidden;
+  margin-right: 6px;
+}
+
+
+.screens-user-reservationShare__container__left-side--space-topdown__header__img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
