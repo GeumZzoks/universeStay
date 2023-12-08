@@ -4,6 +4,7 @@ import com.universestay.project.room.dao.RoomDao;
 import com.universestay.project.room.dto.RoomDto;
 import com.universestay.project.room.dto.RoomImgDto;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,5 +32,10 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public List<RoomDto> lookUpAllRoomByCategory(String room_category_id) throws Exception {
         return roomDao.selectAllByCategory(room_category_id);
+    }
+
+    @Override
+    public List<Map<String, Object>> lookUpAllRoomByView(String view_status_id) throws Exception {
+        return roomDao.selectAllByView(view_status_id);
     }
 }

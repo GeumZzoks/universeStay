@@ -1,11 +1,20 @@
-//-- category 버튼을 누르면 그에 해당하는 상태 코드를 가진 숙소들을 뿌려주는 코드 --//
-const categoryIcons = document.querySelectorAll(
-        ".components-user-nav__category");
+/**
+ * @param selector
+ * @param path
+ * @feat : nav바 이미지 버튼을 누르면 누른 버튼 (category, view)에 따라 다른 경로의 컨트롤러를 호출하는 메소드
+ */
+function handleRoomNavigation(selector, path) {
+    const icons = document.querySelectorAll(selector);
 
-for (const categoryIcon of categoryIcons) {
-    const categoryStatusId = categoryIcon.getAttribute("value");
-    categoryIcon.addEventListener("click", () => {
-        location.href = "/room/search/" + categoryStatusId;
-    })
+    for (const icon of icons) {
+        const statusId = icon.getAttribute("value");
+        icon.addEventListener("click", () => {
+            location.href = path + statusId;
+        });
+    }
 }
 
+// 카테고리 버튼 이벤트 처리
+handleRoomNavigation(".components-user-nav__category", "/room/category/");
+// 뷰 버튼 이벤트 처리
+handleRoomNavigation(".components-user-nav__view", "/room/view/");

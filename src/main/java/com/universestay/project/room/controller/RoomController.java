@@ -66,26 +66,35 @@ public class RoomController {
         return "/room/roomDelete";
     }
 
-    @GetMapping("/search/{room_category_id}")
-    public String lookUpAllRoomByCategory(@PathVariable String room_category_id, Model model,
-            HttpSession session)
-            throws Exception {
-        String userEmail = (String) (session.getAttribute("user_email"));
+    @GetMapping({"/category/{categoryOrView}", "/view/{categoryOrView}"})
+    public String lookUpRoomByCategoryOrView(@PathVariable String categoryOrView, Model model,
+            HttpSession session) throws Exception {
+        String userEmail = (String) session.getAttribute("user_email");
 
-        List<RoomDto> roomList = roomService.lookUpAllRoomByCategory(room_category_id);
-        model.addAttribute("roomList", roomList);
+        UserDto user = userInfoService.getUserInfo(userEmail);
+        if (userEmail != null) {
+            String profileImgUrl = profileImgService.getProfileImgUrl(user.getUser_id());
+            String isHost = user.getUser_is_host();
 
-        if (userEmail == null) {
+            model.addAttribute("user", user);
+            model.addAttribute("profileImgUrl", profileImgUrl);
+            model.addAttribute("isHost", isHost);
+        }
+
+        List<?> roomList;
+
+        //들어온 PathVariable이 RC를 포함하면 Category를 통해 검색하는 메소드를 호출 (ex. RC01, RC02..)
+        //들어온 PathVariable이 RV를 포함하면 View를 통해 검색하는 메소드 호출 (ex. RV01, RV02..)
+        if (categoryOrView != null && categoryOrView.contains("RC")) {
+            roomList = roomService.lookUpAllRoomByCategory(categoryOrView);
+        } else if (categoryOrView != null && categoryOrView.contains("RV")) {
+            roomList = roomService.lookUpAllRoomByView(categoryOrView);
+        } else {
             return "main/main";
         }
 
-        UserDto user = userInfoService.getUserInfo(userEmail);
-        String profileImgUrl = profileImgService.getProfileImgUrl(user.getUser_id());
-        String isHost = user.getUser_is_host();
-
-        model.addAttribute("user", user);
-        model.addAttribute("profileImgUrl", profileImgUrl);
-        model.addAttribute("isHost", isHost);
+        model.addAttribute("roomList", roomList);
         return "main/main";
     }
+
 }

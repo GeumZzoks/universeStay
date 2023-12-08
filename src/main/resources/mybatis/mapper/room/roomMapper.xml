@@ -28,5 +28,13 @@
         WHERE room_category_id = #{room_category_id}
     </select>
 
+    <select id="selectAllByView" resultType="map">
+        Select A.*, B.*
+        from Room A,
+             RoomView B
+        Where A.room_id = B.room_id
+          And B.view_status_id = #{view_status_id};
+    </select>
+
 
 </mapper>
