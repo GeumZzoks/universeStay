@@ -14,6 +14,7 @@
         <typeAlias alias="InquiryDto" type="com.universestay.project.admin.dto.InquiryDto"/>
         <typeAlias alias="ReplyDto" type="com.universestay.project.admin.dto.ReplyDto"/>
         <typeAlias alias="NoticeDto" type="com.universestay.project.admin.dto.NoticeDto"/>
-        <typeAlias alias="RoomDto" type="com.universestay.project.dto.RoomDto"/>
+        <typeAlias alias="RoomDto" type="com.universestay.project.room.dto.RoomDto"/>
+        <typeAlias alias="RoomImgDto" type="com.universestay.project.room.dto.RoomImgDto"/>
     </typeAliases>
 </configuration>

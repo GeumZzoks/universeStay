@@ -16,12 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/test")
 public class SwaggerTestController {
-
-    @GetMapping("main")
-    public String test() {
-        return "/WEB-INF/main.jsp";
-    }
-
+    
 
     // GET 요청에 대한 예시
     @ApiOperation(value = "사용자 정보 조회", notes = "사용자의 ID를 이용해 정보를 조회합니다.")

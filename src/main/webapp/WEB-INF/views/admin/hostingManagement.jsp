@@ -111,7 +111,6 @@
     </div>
 </div>
 
-<script src="../../../resources/js/admin/hostingManagement.js"></script>
-
+<script src="/resources/js/admin/hostingManagement.js"></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 package com.universestay.project.admin.service;
 
 import com.universestay.project.admin.dao.HostingManagementDao;
-import com.universestay.project.dto.RoomDto;
+import com.universestay.project.room.dto.RoomDto;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;

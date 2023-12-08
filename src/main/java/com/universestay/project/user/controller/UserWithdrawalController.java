@@ -30,6 +30,6 @@ public class UserWithdrawalController {
             e.printStackTrace();
         }
 
-        return "redirect:/main.jsp";
+        return "main/main";
     }
 }

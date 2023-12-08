@@ -47,7 +47,7 @@
                 src="/resources/img/admin/navigation/inquiry.png">문의사항</a>
         </li>
         <li class="components-admin-navigation__ul-li"><a
-                class="components-admin-navigation__ul-li__a" href=""><img
+                class="components-admin-navigation__ul-li__a" href="/admin/coupon"><img
                 class="components-admin-navigation__ul-li__img"
                 src="/resources/img/admin/navigation/coupon.png">쿠폰</a>
         </li>

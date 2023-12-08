@@ -88,10 +88,10 @@ public class OauthLoginController {
         String userEmail = "";
 
         if (session.getAttribute("googleUserInfo") != null) {
-            ResponseEntity<GoogleInfResponseDto> userInfo = (ResponseEntity<GoogleInfResponseDto>) session.getAttribute("googleUserInfo");
+            ResponseEntity<GoogleInfResponseDto> userInfo = (ResponseEntity<GoogleInfResponseDto>) session.getAttribute(
+                    "googleUserInfo");
             userEmail = userInfo.getBody().getEmail();
-        }
-        else if (session.getAttribute("kakaoUserInfo") != null) {
+        } else if (session.getAttribute("kakaoUserInfo") != null) {
             KakaoDTO userInfo = (KakaoDTO) session.getAttribute("kakaoUserInfo");
             userEmail = userInfo.getEmail();
         }
@@ -100,9 +100,9 @@ public class OauthLoginController {
 
         if (userDto != null) {
             String userPwd = userDto.getUser_pwd();
-            userLoginService.signin(userEmail, userPwd, session);
+            userLoginService.signin(userEmail, userPwd, session, model);
 
-            return "redirect:/main.jsp";
+            return "main/main";
         } else {
             model.addAttribute("userEmail", userEmail);
             String allowedCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_-+=<>?";

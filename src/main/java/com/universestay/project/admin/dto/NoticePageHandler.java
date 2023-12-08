@@ -1,4 +1,4 @@
-package com.universestay.project.notice.dto;
+package com.universestay.project.admin.dto;
 
 public class NoticePageHandler {
 

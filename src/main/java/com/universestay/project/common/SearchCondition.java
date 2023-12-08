@@ -6,21 +6,28 @@ public class SearchCondition {
     private Integer page = 1;
     private Integer pageSize = DEFAULT_PAGE_SIZE;
     private String option = "";
+    private String type = "";
     private String keyword = "";
 
     public static final int MIN_PAGE_SIZE = 5;
     public static final int DEFAULT_PAGE_SIZE = 10;
     public static final int MAX_PAGE_SIZE = 20;
 
-    public SearchCondition() {}
+    public SearchCondition() {
+    }
 
     public SearchCondition(Integer page, Integer pageSize) {
-        this(page, pageSize, "", "");
+        this(page, pageSize, "", "", "");
     }
 
     public SearchCondition(Integer page, Integer pageSize, String option, String keyword) {
+        this(page, pageSize, "", option, keyword);
+    }
+
+    public SearchCondition(Integer page, Integer pageSize, String type, String option, String keyword) {
         this.page = page;
         this.pageSize = pageSize;
+        this.type = type;
         this.option = option;
         this.keyword = keyword;
     }
@@ -33,6 +40,7 @@ public class SearchCondition {
         return UriComponentsBuilder.newInstance()
                 .queryParam("page", page)
                 .queryParam("pageSize", pageSize)
+                .queryParam("type", type)
                 .queryParam("option", option)
                 .queryParam("keyword", keyword)
                 .build().toString();
@@ -52,6 +60,14 @@ public class SearchCondition {
 
     public void setPageSize(Integer pageSize) {
         this.pageSize = pageSize;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getOption() {
@@ -79,7 +95,7 @@ public class SearchCondition {
         return "SearchCondition{" +
                 "page=" + page +
                 ", pageSize=" + pageSize +
-                ", option='" + option + '\'' +
+                ", type='" + type + '\'' + ", option='" + option + '\'' +
                 ", keyword='" + keyword + '\'' +
                 '}';
     }
