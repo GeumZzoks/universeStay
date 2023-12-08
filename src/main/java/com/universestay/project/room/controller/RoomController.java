@@ -60,4 +60,17 @@ public class RoomController {
     public String roomDelete() {
         return "/room/roomDelete";
     }
+
+    @GetMapping("/enroll")
+    public String enrollRoom() {
+        return "/room/roomEnroll";
+    }
+
+//    @PostMapping("/enroll")
+//    public String enrollRoom(@ModelAttribute RoomDto roomDto,
+//            RedirectAttributes redirectAttributes) {
+//        Item savedItem = itemRepository.save(item);
+//        redirectAttributes.addAttribute("room_id", savedItem.getId());
+//        return "redirect:/room/{room_id}";
+//    }
 }

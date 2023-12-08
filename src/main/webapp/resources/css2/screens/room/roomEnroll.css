@@ -1,0 +1,137 @@
+/* component */
+.screens-room-roomEnroll__btn {
+  background: inherit;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  overflow: visible;
+  cursor: pointer;
+}
+
+.screens-room-roomEnroll__btn-square {
+  border: 1px black solid;
+  border-radius: 7px;
+  padding: 10px;
+}
+
+.screens-room-roomEnroll__btn-square:hover {
+  background: #F7F7F7;
+}
+
+.screens-room-roomEnroll__btn-active {
+  outline: 2px solid black;
+}
+
+/* not-component */
+.screens-room-roomEnroll__wrapper {
+  font-family: 'NotoSansKR-Regular';
+  line-height: 25px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  border-radius: 10px;
+  padding: 30px 40px;
+  margin-top: 30px;
+}
+
+/* 숙소 유형을 선택하세요 */
+.screens-room-roomEnroll__dropdown {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  margin: 20px 0 30px;
+}
+
+.screens-room-roomEnroll__dropdown::before {
+  content: '';
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  z-index: 1000;
+  width: 8px;
+  height: 8px;
+  border: 2px solid #333;
+  border-top: 2px solid #fff;
+  border-right: 2px solid #fff;
+  transform: rotate(-45deg);
+  transition: 0.5s;
+  pointer-events: none;
+}
+
+.screens-room-roomEnroll__dropdown.active::before {
+  top: 22px;
+  transform: rotate(-225deg);
+}
+
+.screens-room-roomEnroll__dropdown__textBox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #B0B0B0;
+  outline: none;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  padding: 12px 20px;
+  border-radius: 10px;
+}
+
+.screens-room-roomEnroll__dropdown__option {
+  position: absolute;
+  top: 60px;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 30px 30px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  overflow: hidden;
+  display: none;
+}
+
+.screens-room-roomEnroll__dropdown__option div {
+  font-family: NotoSansKR-Regular;
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+  z-index: 100;
+}
+
+.screens-room-roomEnroll__dropdown.active .screens-room-roomEnroll__dropdown__option {
+  display: block;
+}
+
+.screens-room-roomEnroll__dropdown .screens-room-roomEnroll__dropdown__option div {
+  padding: 6px 20px;
+  cursor: pointer;
+}
+
+.screens-room-roomEnroll__dropdown .screens-room-roomEnroll__dropdown__option div:hover {
+  background: #62baea;
+  color: #fff;
+}
+
+/* 숙소의 위치는 어디인가요? */
+.screens-room-roomEnroll__map {
+  position: relative;
+  z-index: -1;
+}
+
+/* 숙소 기본정보를 알려주세요 */
+
+
+/* 숙소 편의시설 정보를 추가하세요 */
+.screens-room-roomEnroll__select {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: minmax(100px, auto);
+  gap: 15px;
+  padding: 10px;
+}
+
+.screens-room-roomEnroll__select-btn {
+  width: 100%;
+  height: 100%;
+}
