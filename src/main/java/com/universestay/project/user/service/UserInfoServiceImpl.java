@@ -4,13 +4,21 @@ import com.universestay.project.common.S3.AwsS3ImgUploaderService;
 import com.universestay.project.user.dao.ProfileImgDao;
 import com.universestay.project.user.dao.UserInfoDao;
 import com.universestay.project.user.dto.UserDto;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
+import java.util.Base64;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
-public class UserInfoServiceImpl implements UserInfoService {
+public class UserInfoServiceImpl implements UserInfoService, PasswordEncryption {
 
     @Autowired
     private String uploadProfileImgPath;
@@ -78,11 +86,18 @@ public class UserInfoServiceImpl implements UserInfoService {
         String user_email = (String) httpSession.getAttribute("user_email");
         String original_pwd = getUserInfo(user_email).getUser_pwd();
 
-        if (original_pwd.equals(check_pwd) && new_pwd.equals(new_pwd2)) {
+        // 사용자가 현재 비밀번호를 입력한 것을 암호화 : db에 암호화된 비밀번호와 비교하기 위해
+        String encrypt_input_pwd = encrypt(user_email, check_pwd);
+
+        if (original_pwd.equals(encrypt_input_pwd) && new_pwd.equals(new_pwd2)) {
             // 원래 비밀번호와 DB에 저장된 비밀번호가 같고, 신규 비밀번호와 신규비밀번호 체크가 같으면 비밀번호를 변경한다.
-            userInfoDao.changePwd(user_email, new_pwd2);
+
+            // 사용자가 입력한 신규 비밀번호를 암호화
+            String encrypt_new_pwd = encrypt(user_email, new_pwd);
+
+            userInfoDao.changePwd(user_email, encrypt_new_pwd);
             return "Correct";
-        } else if (!original_pwd.equals(check_pwd)) {
+        } else if (!original_pwd.equals(encrypt_input_pwd)) {
             return "Incorrect_with_DB";
         } else if (!new_pwd.equals(new_pwd2)) {
             return "Incorrect_with_pwd_pwd2";
@@ -90,4 +105,30 @@ public class UserInfoServiceImpl implements UserInfoService {
 
         return "Server_Error";
     }
+
+    @Override
+    public String encrypt(String email, String password) {
+        try {
+            KeySpec spec = new PBEKeySpec(password.toCharArray(), getSalt(email), 85319, 128);
+            SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+
+            byte[] hash = factory.generateSecret(spec).getEncoded();
+            return Base64.getEncoder().encodeToString(hash);
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException |
+                 InvalidKeySpecException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public byte[] getSalt(String email)
+            throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        MessageDigest digest = MessageDigest.getInstance("SHA-512");
+        byte[] keyBytes = email.getBytes("UTF-8");
+
+        return digest.digest(keyBytes);
+    }
+
 }
+
+

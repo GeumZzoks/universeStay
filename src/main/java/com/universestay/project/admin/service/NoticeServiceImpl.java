@@ -24,7 +24,7 @@ public class NoticeServiceImpl implements NoticeService {
     }
 
     @Override
-    public List<NoticeDto> getPage(Map map) throws Exception {
+    public List<Map<String, Object>> getPage(Map map) throws Exception {
         return noticeDao.selectPage(map);
     }
 
