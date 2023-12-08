@@ -11,7 +11,12 @@ public class ReservationRoomController {
 
     @GetMapping
     public String reservationRoom() {
-        return "user/reservation";
+        return "room/reservation";
+    }
+
+    @GetMapping("/reservationShare")
+    public String reservationShare() {
+        return "room/reservationShare";
     }
 
 }
