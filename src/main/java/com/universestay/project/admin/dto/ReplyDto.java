@@ -1,4 +1,4 @@
-package com.universestay.project.dto;
+package com.universestay.project.admin.dto;
 
 
 import io.swagger.annotations.ApiModelProperty;
@@ -28,7 +28,7 @@ public class ReplyDto {
     @ApiModelProperty(notes = "작성자", example = "nick", required = true)
     private String reply_writer_id;
 
-    @ApiModelProperty(notes = "댓글 내용", example = "호스트의 숙소를 예약하고 싶은데 결제는 어떻게 해야하나요?", required = false)
+    @ApiModelProperty(notes = "댓글 내용", example = "호스트의 숙소를 예약하고 싶은데 결제는 어떻게 해야하나요?", required = true)
     private String reply_ctt;
 
     @ApiModelProperty(notes = "생성 날짜", example = "YYYY-MM-DD hh:mm:ss.000000", required = true)
