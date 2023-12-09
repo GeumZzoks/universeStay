@@ -201,16 +201,7 @@
 
                     <% //세션에 'user_email'이라는 값이 저장되어 있으면? (즉, 로그인 상태면) 아래 드롭다운을 보여준다.
                         if
-                        (
-                                session
-                                        .
-                                        getAttribute
-                                                (
-                                                        "user_email"
-                                                )
-                                        !=
-                                        null
-                        ) {
+                        (session.getAttribute("user_email") != null) {
                     %>
                     <div class="components-user-header__dropdown__option dropdown__option-msg">
                         <span>메시지</span>
@@ -221,6 +212,12 @@
                         <span>위시리스트</span></div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-reviews">
                         <span>나의 리뷰</span></div>
+                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-coupon">
+                        <span>나의 쿠폰</span></div>
+                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-notice">
+                        <span>공지사항</span></div>
+                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-event">
+                        <span>이벤트</span></div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-account"
                          onclick="location.href ='/user/myPage/info'">
                         <span>계정</span></div>

@@ -1,8 +1,16 @@
 /*전역 설정*/
+.components-user-header__header {
+  position: relative;
+  z-index: 99;
+}
 
 .components-user-header__a {
   text-decoration: none;
   color: black;
+}
+
+.components-user-header__a div {
+  font-size: 14px;
 }
 
 .components-user-header__logo {
@@ -340,8 +348,7 @@
 
 .components-user-header__header__profile__option div {
   width: 100%;
-  /*flex: 1;*/
-  height: 40px;
+  height: 35px;
   display: flex;
   justify-content: flex-start;
   align-items: center;

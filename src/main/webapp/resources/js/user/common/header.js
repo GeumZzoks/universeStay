@@ -21,6 +21,19 @@ $(function () {
             });
 });
 
+$(function () {
+    // 위에 작성한 캘린더 초기화 코드와 동일한 부분
+
+    const checkinBtn = $(
+            '.components-user-header__header__searchbar__checkin-btn'
+    );
+
+    checkinBtn.on('click', function () {
+        // 'input[name="datefilter"]'인 요소를 클릭하는 것과 같은 효과를 내도록 합니다.
+        $('input[name="datefilter"]').trigger('click');
+    });
+});
+
 //버튼들을 누르면 드롭다운이 내려오면서 클래스 이름에 'show'가 토글됨, 그런데 드롭다운 하위 요소들에게도 이벤트가 전파되어서 드롭다운 요소를 누르면 드롭다운이 자꾸 꺼짐.
 //그것을 막기 위한 이벤트 전파 중단 코드
 const dropdowns = document.querySelectorAll(

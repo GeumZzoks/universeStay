@@ -1,4 +1,5 @@
 .screens-user-main__main {
+  z-index: 99;
   width: 100%;
   display: flex;
   justify-content: center;
