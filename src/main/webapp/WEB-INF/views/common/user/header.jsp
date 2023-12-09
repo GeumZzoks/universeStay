@@ -114,9 +114,9 @@
                 <button class="components-user-header__dropdown components-user-header__header__searchbar__money-btn components-user-header__button">
                     <span class="components-user-header__header__searchbar__main_txt">1박당 예산</span>
                     <div class="components-user-header__header__searchbar__sub_txt"><span
-                            class="components-user-header__header__searchbar__sub_txt__min">5</span>만원
+                            class="components-user-header__header__searchbar__sub_txt__min">5.0</span>만원
                         부터 <span
-                                class="components-user-header__header__searchbar__sub_txt__max">20</span>만원
+                                class="components-user-header__header__searchbar__sub_txt__max">20.0</span>만원
                         까지
                     </div>
 
@@ -127,7 +127,7 @@
                                 <div class="components-user-header__input-wrap">
                                     <input type="text" name="min_input"
                                            class="components-user-header__input-field components-user-header__min-input"
-                                           placeholder="~원 부터"
+                                           placeholder="~원 부터" value="50000"
                                     >
                                     <span>최소 금액</span>
                                 </div>
@@ -136,7 +136,7 @@
                                 <div class="components-user-header__input-wrap">
                                     <input type="text" name="max_input"
                                            class="components-user-header__input-field components-user-header__max-input"
-                                           placeholder="~원 까지"
+                                           placeholder="~원 까지" value="200000"
                                     >
                                     <span>최대 금액</span>
                                 </div>
