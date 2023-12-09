@@ -139,6 +139,13 @@
   width: 100%;
 }
 
+
+/*캘린더 css*/
+
+element.style {
+  top: 100px;
+}
+
 .daterangepicker {
   border-radius: 10px;
 }
@@ -156,6 +163,15 @@
   border-radius: 10px;
   background-color: #F48475;
   color: white;
+  font-weight: normal;
+}
+
+.daterangepicker td.active, .daterangepicker td.active:hover {
+  background-color: #F48475
+}
+
+.daterangepicker td.available:hover, .daterangepicker th.available:hover {
+  background-color: rgba(236, 222, 222, 0.79)
 }
 
 input[name="datefilter"] {

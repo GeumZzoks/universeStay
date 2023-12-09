@@ -77,6 +77,7 @@
                     <span class="components-user-header__header__searchbar__main_txt">체크인 · 체크아웃</span><br>
                     <%--달력--%>
                     <input class="components-user-header__calender" type="text" name="datefilter"
+                           data-date-format='yyyy/mm/dd'
                            value=""/>
                 </button>
 

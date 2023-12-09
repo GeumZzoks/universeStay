@@ -11,9 +11,9 @@ $(function () {
 
     $('input[name="datefilter"]').on('apply.daterangepicker',
             function (ev, picker) {
-                $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - '
+                $(this).val(picker.startDate.format('YYYY/MM/DD') + ' - '
                         + picker.endDate.format(
-                                'MM/DD/YYYY'));
+                                'YYYY/MM/DD'));
             });
 
     $('input[name="datefilter"]').on('cancel.daterangepicker',
@@ -21,17 +21,19 @@ $(function () {
                 $(this).val('');
             });
 });
+document.addEventListener('DOMContentLoaded', function () {
+    const checkinBtn = document.querySelector(
+            '.components-user-header__header__searchbar__checkin-btn');
 
-$(function () {
-    // 위에 작성한 캘린더 초기화 코드와 동일한 부분
+    checkinBtn.addEventListener('click', function () {
+        document.querySelectorAll(
+                '.components-user-header__dropdown-div').forEach(
+                function (dropdown) {
+                    dropdown.classList.remove('show');
+                });
 
-    const checkinBtn = $(
-            '.components-user-header__header__searchbar__checkin-btn'
-    );
-
-    checkinBtn.on('click', function () {
-        // 'input[name="datefilter"]'인 요소를 클릭하는 것과 같은 효과를 내도록 합니다.
-        $('input[name="datefilter"]').trigger('click');
+        // input[name="datefilter"] 요소를 클릭하는 것과 같은 효과
+        document.querySelector('input[name="datefilter"]').click();
     });
 });
 
@@ -53,7 +55,9 @@ document.addEventListener("click", function (e) {
             e.target.classList.contains(
                     "components-user-header__header__profile__hamburger") ||
             e.target.classList.contains(
-                    "components-user-header__header__profile__img")
+                    "components-user-header__header__profile__img") ||
+            e.target.classList.contains(
+                    "components-user-header__header__searchbar__checkin-btn")
     ) {
         return;
     }
