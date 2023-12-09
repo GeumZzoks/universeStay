@@ -3,6 +3,7 @@ $(function () {
     $('input[name="datefilter"]').daterangepicker({
         autoUpdateInput: true,
         locale: {
+            format: 'YYYY/MM/DD',
             cancelLabel: '취소',
             applyLabel: '확인'
         }
