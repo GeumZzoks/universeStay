@@ -20,7 +20,7 @@ public class RoomDaoImpl implements RoomDao {
     }
 
     @Override
-    public List<RoomDto> selectAll() throws Exception {
+    public List<Map<String, Object>> selectAll() throws Exception {
         return session.selectList(namespace + "selectAll");
     }
 
@@ -35,7 +35,7 @@ public class RoomDaoImpl implements RoomDao {
     }
 
     @Override
-    public List<RoomDto> selectAllByCategory(String room_category_id) throws Exception {
+    public List<Map<String, Object>> selectAllByCategory(String room_category_id) throws Exception {
         return session.selectList(namespace + "selectAllByCategory", room_category_id);
     }
 
