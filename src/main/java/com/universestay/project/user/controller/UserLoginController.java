@@ -1,6 +1,5 @@
 package com.universestay.project.user.controller;
 
-import com.universestay.project.room.dto.RoomDto;
 import com.universestay.project.room.service.RoomService;
 import com.universestay.project.user.dto.UserDto;
 import com.universestay.project.user.service.ProfileImgService;
@@ -80,7 +79,7 @@ public class UserLoginController {
                 model.addAttribute("profileImgUrl", profileImgUrl);
                 model.addAttribute("user", userInfo);
 
-                List<RoomDto> roomList = roomService.lookUpAllRoom();
+                List<Map<String, Object>> roomList = roomService.lookUpAllRoom();
                 model.addAttribute("roomList", roomList);
 
                 return "/main/main";// 얘로 하면 url 주소가 http://localhost/user/login 이렇게 남아..서 main controller 만들었음
