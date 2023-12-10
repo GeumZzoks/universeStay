@@ -3,20 +3,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.universestay.project.resources.mybatis.mapper.room.roomMapper">
-
-
-  <select id="selectAll" resultType="RoomDto">
-    SELECT *
-    FROM Room
-    ORDER BY created_at
-  </select>
-
   <select id="selectAll" resultType="map">
-      SELECT R.*, GROUP_CONCAT(RI.room_img_url SEPARATOR ', ') AS room_img_url_list
-      FROM Room R
-               LEFT JOIN RoomImg RI ON R.room_id = RI.room_id
-      WHERE RI.room_img_url IS NOT NULL
-      GROUP BY R.room_id;
+    SELECT R.*, GROUP_CONCAT(RI.room_img_url SEPARATOR ', ') AS room_img_url_list
+    FROM Room R
+           LEFT JOIN RoomImg RI ON R.room_id = RI.room_id
+    WHERE RI.room_img_url IS NOT NULL
+    GROUP BY R.room_id;
   </select>
 
   <select id="select" resultType="RoomDto">
@@ -74,26 +66,26 @@
     WHERE room_id = #{room_id}
   </update>
 
-    <select id="selectAllByCategory" resultType="map">
-        SELECT R.*, GROUP_CONCAT(RI.room_img_url SEPARATOR ', ') AS room_img_url_list
-        FROM Room R
-                 LEFT JOIN RoomImg RI ON R.room_id = RI.room_id
-        WHERE RI.room_img_url IS NOT NULL
-          AND room_category_id = #{room_category_id}
-        GROUP BY R.room_id;
-    </select>
+  <select id="selectAllByCategory" resultType="map">
+    SELECT R.*, GROUP_CONCAT(RI.room_img_url SEPARATOR ', ') AS room_img_url_list
+    FROM Room R
+           LEFT JOIN RoomImg RI ON R.room_id = RI.room_id
+    WHERE RI.room_img_url IS NOT NULL
+      AND room_category_id = #{room_category_id}
+    GROUP BY R.room_id;
+  </select>
 
-    <select id="selectAllByView" resultType="map">
-        SELECT R.*,
-               GROUP_CONCAT(RI.room_img_url SEPARATOR ', ') AS room_img_url_list
-        FROM Room R
-                 LEFT JOIN RoomImg RI ON R.room_id = RI.room_id
-        WHERE RI.room_img_url IS NOT NULL
-          AND R.room_id IN (Select A.room_id
-                            from Room A,
-                                 RoomView B
-                            Where A.room_id = B.room_id
-                              And B.view_status_id = #{view_status_id})
-        GROUP BY R.room_id;
-    </select>
+  <select id="selectAllByView" resultType="map">
+    SELECT R.*,
+           GROUP_CONCAT(RI.room_img_url SEPARATOR ', ') AS room_img_url_list
+    FROM Room R
+           LEFT JOIN RoomImg RI ON R.room_id = RI.room_id
+    WHERE RI.room_img_url IS NOT NULL
+      AND R.room_id IN (Select A.room_id
+                        from Room A,
+                             RoomView B
+                        Where A.room_id = B.room_id
+                          And B.view_status_id = #{view_status_id})
+    GROUP BY R.room_id;
+  </select>
 </mapper>
