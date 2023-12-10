@@ -25,10 +25,8 @@ public class UserLoginController {
 
     @Autowired
     UserLoginService userLoginService; // 명확한 이름 지어주기 // 고민해보기
-
     @Autowired
     ProfileImgService profileImgService;
-
     @Autowired
     RoomService roomService;
 
@@ -57,11 +55,12 @@ public class UserLoginController {
 
         // 사용자가 로그인을 시도하면 DB 조회
         UserDto userInfo = userLoginService.signin(user_email, user_pwd, session, model);
+        System.out.println("컨트롤러 userInfo = " + userInfo);
         // 유저 상태 담기
-        String statusId = userInfo.getStatus_id();
 
         try {
             if (userInfo != null) { // 3. 로그인 시도 시
+                String statusId = userInfo.getStatus_id();
 
                 // 회원탈퇴한 유저가 로그인 시도 시 메인으로 이동 후 알럿창 띄우기
                 if (statusId.equals("U02")) {

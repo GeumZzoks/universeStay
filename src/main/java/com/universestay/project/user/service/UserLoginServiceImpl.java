@@ -70,15 +70,19 @@ public class UserLoginServiceImpl implements UserLoginService, PasswordEncryptio
         try {
             // 다오 호출 : 조회 시 유저 정보가 있을수도 있고, 없을 수도 있어, 조회해서 UserDto타입에 일단 담아 놓고
             UserDto userInfo = userLoginDao.selectUser(user_email);
+            System.out.println("서비스 userInfo = " + userInfo);
+
             String statusId = userInfo.getStatus_id();
 
             // 만약 유저 정보가 널이 아니면 == 조회가 됐단 뜻
             if (userInfo != null) {
                 String userEmail = userInfo.getUser_email();
                 String userPwd = userInfo.getUser_pwd();
+                System.out.println("서비스 userPwd = " + userPwd);
 
                 // 암호화된 비밀번호로 바꿔주기
                 String encrypt_pwd = encrypt(user_email, user_pwd);
+                System.out.println("encrypt_pwd = " + encrypt_pwd);
 
                 // 그리고 일치하는 정보가 db에 있다면 => 3. 로그인이 문제없이 성공한 경우
                 if (userEmail != null && encrypt_pwd.equals(userPwd)) {
@@ -105,8 +109,7 @@ public class UserLoginServiceImpl implements UserLoginService, PasswordEncryptio
 
         } catch (Exception e) {
             e.printStackTrace();
-            // return null;
-            throw new Exception();
+            return null;
         }
     }
 
