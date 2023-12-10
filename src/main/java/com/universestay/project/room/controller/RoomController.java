@@ -103,6 +103,19 @@ public class RoomController {
         }
     }
 
+    @GetMapping("/enroll")
+    public String enrollRoom() {
+        return "/room/roomEnroll";
+    }
+
+//    @PostMapping("/enroll")
+//    public String enrollRoom(@ModelAttribute RoomDto roomDto,
+//            RedirectAttributes redirectAttributes) {
+//        Item savedItem = itemRepository.save(item);
+//        redirectAttributes.addAttribute("room_id", savedItem.getId());
+//        return "redirect:/room/{room_id}";
+//    }
+
     /**
      * @param room_id
      * @param room_status_id
@@ -161,5 +174,4 @@ public class RoomController {
         model.addAttribute("roomList", roomList);
         return "main/main";
     }
-
 }
