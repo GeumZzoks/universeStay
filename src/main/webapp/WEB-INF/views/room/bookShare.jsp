@@ -23,16 +23,16 @@
 <section>
 
     <%-- 중앙 컨텐츠 --%>
-    <div class="screens-user-reservationShare__container">
+    <div class="screens-room-bookShare__container">
         <%-- left side --%>
-        <div class="screens-user-reservationShare__container__flex">
-            <div class="screens-user-reservationShare__container__left-side">
-                <div class="screens-user-reservationShare__title">
+        <div class="screens-room-bookShare__container__flex">
+            <div class="screens-room-bookShare__container__left-side">
+                <div class="screens-room-bookShare__title">
                     <h1>예약이 아직 확정되지 않았습니다.</h1>
                 </div>
 
-                <div class="screens-user-reservationShare__container__div-common">
-                    <div class="screens-user-reservationShare__container__left-side--info-common">
+                <div class="screens-room-bookShare__container__div-common">
+                    <div class="screens-room-bookShare__container__left-side--info-common">
                         <%-- TODO: HOST-NICKNAME, USER - EMAIL 넣기 --%>
                         <div>예약이 아직 확정된 것이 아닙니다. 24시간 이내에 호스트 OO님의 응답을 이메일(alskadmlcraz1@gmail.com)로
                             받으실 수 있습니다.
@@ -40,30 +40,30 @@
                     </div>
                 </div>
 
-                <div class="screens-user-reservationShare__container__div-common">
-                    <div class="screens-user-reservationShare__container__left-side--info-common">
+                <div class="screens-room-bookShare__container__div-common">
+                    <div class="screens-room-bookShare__container__left-side--info-common">
                         <div>예약이 확정되기 전에는 요금이 청구되지 않으니 걱정 마세요.</div>
                     </div>
                 </div>
 
                 <%-- 마지막 단계: 여행 계획 공유하기 --%>
-                <div class="screens-user-reservationShare__container__left-side--space-topdown">
+                <div class="screens-room-bookShare__container__left-side--space-topdown">
                     <section>
                         <div>
-                            <div class="screens-user-reservationShare__container__left-side--space-topdown__header">
-                                <div class="screens-user-reservationShare__container__left-side--space-topdown__header__payment">
-                                    <h2 class="screens-user-reservationShare__text-size-reservation-room-info-h2">
+                            <div class="screens-room-bookShare__container__left-side--space-topdown__header">
+                                <div class="screens-room-bookShare__container__left-side--space-topdown__header__payment">
+                                    <h2 class="screens-room-bookShare__text-size-reservation-room-info-h2">
                                         마지막 단계: 여행 계획 공유하기</h2>
                                 </div>
 
-                                <div class="screens-user-reservationShare__container__div-common">
-                                    <div class="screens-user-reservationShare__container__left-side--info-common">
+                                <div class="screens-room-bookShare__container__div-common">
+                                    <div class="screens-room-bookShare__container__left-side--info-common">
                                         <div>여행 일정표를 다른 사람과 공유해 보세요.</div>
                                     </div>
                                 </div>
 
                                 <%-- 이메일 주소 입력 창 --%>
-                                <div class="screens-user-reservationShare__write-email-box">
+                                <div class="screens-room-bookShare__write-email-box">
                                     <input placeholder="이메일 주소 입력">
                                     <input placeholder="이메일 주소 입력">
 
@@ -76,18 +76,18 @@
 
 
                 <%-- 예약 요청 --%>
-                <div class="screens-user-reservationShare__submit">
-                    <button class="screens-user-reservationShare__submit--button">
+                <div class="screens-room-bookShare__submit">
+                    <button class="screens-room-bookShare__submit--button">
                         제출하기
                     </button>
 
-                    <button class="screens-user-reservationShare__submit--button">
+                    <button class="screens-room-bookShare__submit--button">
                         건너뛰기
                     </button>
                 </div>
 
-                <h3 class="screens-user-reservationShare__sub-h3">알아두어야 할 사항</h3>
-                <div class="screens-user-reservationShare__sub-info">
+                <h3 class="screens-room-bookShare__sub-h3">알아두어야 할 사항</h3>
+                <div class="screens-room-bookShare__sub-info">
                     <%-- TODO: 데이터에 맞게 바꾸기 --%>
                     <div>
                         <div>숙소 이용규칙</div>
@@ -109,19 +109,19 @@
 
 
             <%-- right side --%>
-            <div class="screens-user-reservationShare__container__right-side">
-                <div class="screens-user-reservationShare__container__right-side__inner-container">
+            <div class="screens-room-bookShare__container__right-side">
+                <div class="screens-room-bookShare__container__right-side__inner-container">
                     <div>
 
                         <%-- 1번째 박스 --%>
-                        <div class="screens-user-reservationShare__container__right-side__box-size">
+                        <div class="screens-room-bookShare__container__right-side__box-size">
                             <%-- 이미지 --%>
-                            <div class="screens-user-reservationShare__right-side__box-size">
+                            <div class="screens-room-bookShare__right-side__box-size">
                                 <img src="/resources/img/room/room1.png">
                             </div>
 
                         </div>
-                        <div class="screens-user-reservationShare__container__right-side__box-size__space-box">
+                        <div class="screens-room-bookShare__container__right-side__box-size__space-box">
                             <h3>
                                 [무릉한옥스테이_목련실] 여유와 낭만이 가득한 독채
                             </h3>
@@ -135,15 +135,15 @@
 
 
                         <%-- 2번째 박스 --%>
-                        <div class="screens-user-reservationShare__border-bound-top"></div>
-                        <div class="screens-user-reservationShare__container__right-side__flex-box-column__total-payment">
+                        <div class="screens-room-bookShare__border-bound-top"></div>
+                        <div class="screens-room-bookShare__container__right-side__flex-box-column__total-payment">
                             <div>총 합계(KRW)</div>
                             <div>₩583,423</div>
                         </div>
 
                         <%-- 3번째 박스 --%>
-                        <div class="screens-user-reservationShare__border-bound-top"></div>
-                        <div class="screens-user-reservationShare__container__right-side__flex-box-column__total-payment">
+                        <div class="screens-room-bookShare__border-bound-top"></div>
+                        <div class="screens-room-bookShare__container__right-side__flex-box-column__total-payment">
                             <div>예약 코드</div>
                             <div>HMERQXJJ84</div>
                         </div>

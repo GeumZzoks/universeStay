@@ -33,6 +33,6 @@
 @import url(screens/user/userInfo.css);
 
 @import url(screens/room/roomDetail.css);
-@import url(screens/room/roomReservation.css);
+@import url(screens/room/book.css);
 @import url(screens/room/roomDelete.css);
-@import url(screens/room/reservationShare.css);
+@import url(screens/room/bookShare.css);
