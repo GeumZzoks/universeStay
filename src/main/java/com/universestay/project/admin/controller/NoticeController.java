@@ -49,14 +49,14 @@ public class NoticeController {
             System.out.println("showPrev : " + nph.isShowPrev());
             System.out.println("showNext : " + nph.isShowNext());
 
-            List<NoticeDto> list = noticeService.getPage(map);
+            List<Map<String, Object>> list = noticeService.getPage(map);
             m.addAttribute("list", list);
             m.addAttribute("nph", nph);
         } catch (Exception e) {
             e.printStackTrace();
             m.addAttribute("msg", "LIST_ERR");
         }
-        return "admin/noticeList2";
+        return "admin/noticeList";
     }
 
     // 공지사항 조회
@@ -122,15 +122,16 @@ public class NoticeController {
     }
 
     @GetMapping("modify/{notice_id}")
-    public String modify(@PathVariable("notice_id") Integer notice_id, Model m) {
+    public String modify(@PathVariable("notice_id") Integer notice_id, Model m,
+            RedirectAttributes rttr) {
         try {
             // 정상적인 수정 get 요청 시
             NoticeDto noticeDto = noticeService.read(notice_id);
             m.addAttribute(noticeDto);
             return "admin/noticeUpdate";
         } catch (Exception e) {
-            m.addAttribute("msg", "MOD_ERR");
-            return "admin/notice/" + notice_id;
+            rttr.addFlashAttribute("msg", "MOD_NOT");
+            return "redirect:/admin/notice/list";
         }
     }
 
@@ -153,7 +154,6 @@ public class NoticeController {
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("msg", "MOD_ERR");
-            // @@@@@@@@@@ 아직 미완 @@@@@@@@@@@@@@@@
             return "admin/notice";
         }
     }

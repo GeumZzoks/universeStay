@@ -85,19 +85,38 @@ public class UserManagementDaoImplTest {
 
     @Test
     public void selectPage() throws Exception {
-        List<UserDto> list = null;
+        List<Map<String, Object>> list = null;
         Map map = new HashMap();
         System.out.println("before list = " + list);
         System.out.println("before map = " + map);
         map.put("offset", 10);
         map.put("pageSize", 10);
-        list = userManagementDao.selectPage(map);
+        System.out.println("after map = " + map);
+        list = userManagementDao.getabc(map);
         System.out.println("after list = ");
-        for(UserDto dto : list){
+        for(Map<String, Object> dto : list){
             System.out.println("dto = " + dto);
         }
-        System.out.println("after map = " + map);
+        System.out.println(list);
         assertTrue(list != null);
+
+
+//        List<UserDto> list = null;
+//        Map map = new HashMap();
+//        System.out.println("before list = " + list);
+//        System.out.println("before map = " + map);
+//        map.put("offset", 10);
+//        map.put("pageSize", 10);
+//        System.out.println("after map = " + map);
+//        list = userManagementDao.selectPage(map);
+//        System.out.println("after list = ");
+//        for(UserDto dto : list){
+//            System.out.println("dto = " + dto);
+//        }
+//        System.out.println(list);
+//        assertTrue(list != null);
+
+
     }
 
     @Test

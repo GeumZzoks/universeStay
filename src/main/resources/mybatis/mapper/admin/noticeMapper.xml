@@ -25,10 +25,18 @@
         FROM Notice
     </sql>
 
-    <select id="selectPage" parameterType="map" resultType="NoticeDto">
-        <include refid="selectFromNotice"/>
+    <select id="selectPage" parameterType="map" resultType="map">
+        SELECT n.notice_id,
+               n.notice_title,
+               n.admin_id,
+               n.created_at,
+               n.notice_is_open,
+               a.admin_nickname
+        FROM Notice n,
+             Admin a
+        where n.admin_id = a.admin_id
         ORDER BY notice_id DESC
-        LIMIT #{offset}, #{pageSize}
+            LIMIT #{offset}, #{pageSize}
     </select>
 
     <delete id="delete" parameterType="int">

@@ -1,8 +1,11 @@
 package com.universestay.project.user.controller;
 
+import com.universestay.project.room.service.RoomService;
 import com.universestay.project.user.dto.UserDto;
+import com.universestay.project.user.service.ProfileImgService;
 import com.universestay.project.user.service.UserLoginService;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,6 +25,12 @@ public class UserLoginController {
 
     @Autowired
     UserLoginService userLoginService; // 명확한 이름 지어주기 // 고민해보기
+
+    @Autowired
+    ProfileImgService profileImgService;
+
+    @Autowired
+    RoomService roomService;
 
     @GetMapping("/loginForm")
     public String loginForm() {
@@ -65,7 +74,16 @@ public class UserLoginController {
 
                 // 정상적으로 로그인 됐을 때,
                 userLoginService.userLastLogin(user_email);
-                return "main/main";
+                String profileImgUrl = profileImgService.getProfileImgUrl(userInfo.getUser_id());
+
+                model.addAttribute("profileImgUrl", profileImgUrl);
+                model.addAttribute("user", userInfo);
+
+                List<Map<String, Object>> roomList = roomService.lookUpAllRoom();
+                model.addAttribute("roomList", roomList);
+
+                return "/main/main";// 얘로 하면 url 주소가 http://localhost/user/login 이렇게 남아..서 main controller 만들었음
+//                return "redirect:/";
 
             }
             // 여기에 오는 경우가

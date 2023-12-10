@@ -2,7 +2,15 @@ package com.universestay.project.user.service;
 
 import com.universestay.project.user.dao.UserLoginDao;
 import com.universestay.project.user.dto.UserDto;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
+import java.util.Base64;
 import java.util.Map;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -12,7 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 
 @Service
-public class UserLoginServiceImpl implements UserLoginService {
+public class UserLoginServiceImpl implements UserLoginService, PasswordEncryption {
 
     @Autowired
     UserLoginDao userLoginDao;
@@ -69,8 +77,11 @@ public class UserLoginServiceImpl implements UserLoginService {
                 String userEmail = userInfo.getUser_email();
                 String userPwd = userInfo.getUser_pwd();
 
+                // 암호화된 비밀번호로 바꿔주기
+                String encrypt_pwd = encrypt(user_email, user_pwd);
+
                 // 그리고 일치하는 정보가 db에 있다면 => 3. 로그인이 문제없이 성공한 경우
-                if (userEmail != null && user_pwd.equals(userPwd)) {
+                if (userEmail != null && encrypt_pwd.equals(userPwd)) {
 
                     // 여기서 유저상태에 따른 다른 리턴값 처리?
                     // u02는 휴면 해제하면 세션에 저장하고 로그인되게 해야하니까.. 얘는 여기 아래에 안끼는 거지!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -109,7 +120,27 @@ public class UserLoginServiceImpl implements UserLoginService {
         return userLoginDao.updateLastLogin(user_email);
     }
 
-    // 유저 활동 상태(U01~4)에 따라 보여줄 메서드가 필요.
 
+    @Override
+    public String encrypt(String email, String password) {
+        try {
+            KeySpec spec = new PBEKeySpec(password.toCharArray(), getSalt(email), 85319, 128);
+            SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
 
+            byte[] hash = factory.generateSecret(spec).getEncoded();
+            return Base64.getEncoder().encodeToString(hash);
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException |
+                 InvalidKeySpecException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public byte[] getSalt(String email)
+            throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        MessageDigest digest = MessageDigest.getInstance("SHA-512");
+        byte[] keyBytes = email.getBytes("UTF-8");
+
+        return digest.digest(keyBytes);
+    }
 }

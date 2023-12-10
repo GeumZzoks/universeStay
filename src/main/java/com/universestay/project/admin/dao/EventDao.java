@@ -21,9 +21,7 @@ public interface EventDao {
     List<EventDto> selectPage(Map map) throws Exception;
 
     int searchResultCnt(SearchCondition sc) throws Exception;
-
-//    List<EventDto> searchSelectPage(SearchCondition sc) throws Exception;
-
+    
     Integer update(EventDto dto) throws Exception;
 
     Integer update_hit(Integer event_id) throws Exception;

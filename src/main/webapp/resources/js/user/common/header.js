@@ -1,25 +1,9 @@
-// document.addEventListener('click', function (event) {
-//     const dropdown = document.querySelector(
-//             '.components-user-header__dropdown-div');
-//     console.log(dropdown);
-//     const targetElement = event.target;
-//     console.log(targetElement);
-//
-//     // 클릭된 요소가 드롭다운 내부에 속하지 않는 경우 'show' 클래스 제거
-//     console.log(
-//             !dropdown.contains(targetElement) && dropdown.classList.contains(
-//                     'show'))
-//     if (dropdown.classList.contains('show') && !dropdown.contains(
-//             targetElement)) {
-//         dropdown.classList.remove('show');
-//     }
-// });
-
 //---------------------- 캘린더 라이브러리 --------------------------------------------
 $(function () {
   $('input[name="datefilter"]').daterangepicker({
     autoUpdateInput: true,
     locale: {
+      format: 'YYYY/MM/DD',
       cancelLabel: '취소',
       applyLabel: '확인'
     }
@@ -27,15 +11,30 @@ $(function () {
 
   $('input[name="datefilter"]').on('apply.daterangepicker',
       function (ev, picker) {
-        $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - '
+        $(this).val(picker.startDate.format('YYYY/MM/DD') + ' - '
             + picker.endDate.format(
-                'MM/DD/YYYY'));
+                'YYYY/MM/DD'));
       });
 
   $('input[name="datefilter"]').on('cancel.daterangepicker',
       function (ev, picker) {
         $(this).val('');
       });
+});
+document.addEventListener('DOMContentLoaded', function () {
+  const checkinBtn = document.querySelector(
+      '.components-user-header__header__searchbar__checkin-btn');
+
+  checkinBtn.addEventListener('click', function () {
+    document.querySelectorAll(
+        '.components-user-header__dropdown-div').forEach(
+        function (dropdown) {
+          dropdown.classList.remove('show');
+        });
+
+    // input[name="datefilter"] 요소를 클릭하는 것과 같은 효과
+    document.querySelector('input[name="datefilter"]').click();
+  });
 });
 
 //버튼들을 누르면 드롭다운이 내려오면서 클래스 이름에 'show'가 토글됨, 그런데 드롭다운 하위 요소들에게도 이벤트가 전파되어서 드롭다운 요소를 누르면 드롭다운이 자꾸 꺼짐.
@@ -51,11 +50,14 @@ document.addEventListener("click", function (e) {
       e.target.classList.contains(
           "components-user-header__header__profile__my-profile") ||
       e.target.classList.contains(
-          "components-user-header__header__profile__my-profile__btn") ||
+          "components-user-header__header__profile__my-profile__btn")
+      ||
       e.target.classList.contains(
           "components-user-header__header__profile__hamburger") ||
       e.target.classList.contains(
-          "components-user-header__header__profile__img")
+          "components-user-header__header__profile__img") ||
+      e.target.classList.contains(
+          "components-user-header__header__searchbar__checkin-btn")
   ) {
     return;
   }

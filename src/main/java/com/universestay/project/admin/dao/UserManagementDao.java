@@ -17,6 +17,7 @@ public interface UserManagementDao {
 
     int deleteUser(String user_id) throws Exception;
 
+    List<Map<String, Object>> getabc(Map map) throws Exception;
     List<UserDto> selectPage(Map map) throws Exception;
 
     List<UserDto> selectAll() throws Exception;
