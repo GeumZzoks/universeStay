@@ -1,7 +1,7 @@
 /*전역 설정*/
-* {
-  font-size: 14px;
-  font-family: NotoSansKR-Regular;
+.components-user-header__header {
+  position: relative;
+  z-index: 99;
 }
 
 .components-user-header__a {
@@ -9,9 +9,14 @@
   color: black;
 }
 
+.components-user-header__a div {
+  font-size: 14px;
+}
+
 .components-user-header__logo {
   width: 200px;
   margin-top: 20px;
+  cursor: pointer;
 }
 
 .components-user-header__button {
@@ -34,6 +39,7 @@
 .components-user-header__header__logo {
   width: 300px;
   height: 100%;
+  cursor: pointer;
 }
 
 /*검색 서치바*/
@@ -122,10 +128,55 @@
   cursor: pointer;
 }
 
+.components-user-header__header__searchbar__checkin-btn {
+  width: 110%;
+}
+
 .components-user-header__calender {
   border: #b7b7b7 0.5px solid;
   border-width: 0px 0px 0.5px 0px;
   color: #737373;
+  width: 100%;
+}
+
+
+/*캘린더 css*/
+
+element.style {
+  top: 100px;
+}
+
+.daterangepicker {
+  border-radius: 10px;
+}
+
+.daterangepicker td.in-range {
+  background-color: rgba(255, 221, 216, 0.47);
+}
+
+.daterangepicker td.active, daterangepicker td.end-date {
+  background-color: #F48475;
+}
+
+.daterangepicker .drp-buttons .btn {
+  border: none;
+  border-radius: 10px;
+  background-color: #F48475;
+  color: white;
+  font-weight: normal;
+}
+
+.daterangepicker td.active, .daterangepicker td.active:hover {
+  background-color: #F48475
+}
+
+.daterangepicker td.available:hover, .daterangepicker th.available:hover {
+  background-color: rgba(236, 222, 222, 0.79)
+}
+
+input[name="datefilter"] {
+  width: 100%;
+  text-align: center;
 }
 
 /* '여행자' 버튼 눌렀을때 나오는 드롭다운 */
@@ -246,8 +297,8 @@
 .components-user-header__header__searchbar__search-btn {
   background-color: rgba(244, 132, 117, 1);
   border-radius: 50%;
-  width: 32px;
-  height: 32px;
+  width: 35px;
+  height: 35px;
   position: relative;
 }
 
@@ -282,7 +333,7 @@
   justify-content: center;
   align-items: center;
   height: 50px;
-  width: 160px;
+  width: 180px;
   border-radius: 30px;
   margin-right: 15px;
 }
@@ -318,6 +369,10 @@
 .components-user-header__header__profile__img {
   width: 25px;
   height: 25px;
+  border-radius: 70%;
+  -moz-border-radius: 70%;
+  -khtml-border-radius: 70%;
+  -webkit-border-radius: 70%;
 }
 
 /*드롭다운 이후에 보여지는 화면 속성*/
@@ -338,8 +393,7 @@
 
 .components-user-header__header__profile__option div {
   width: 100%;
-  /*flex: 1;*/
-  height: 40px;
+  height: 35px;
   display: flex;
   justify-content: flex-start;
   align-items: center;

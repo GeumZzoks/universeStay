@@ -19,7 +19,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 
 @Service
-public class JoinServiceImpl implements JoinService {
+public class JoinServiceImpl implements JoinService, PasswordEncryption {
 
     @Autowired
     UserJoinDao userJoinDao;
@@ -77,7 +77,8 @@ public class JoinServiceImpl implements JoinService {
     }
 
     // 비밀번호 암호화
-    private String encrypt(String email, String password) {
+    @Override
+    public String encrypt(String email, String password) {
         try {
             KeySpec spec = new PBEKeySpec(password.toCharArray(), getSalt(email), 85319, 128);
             SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
@@ -90,7 +91,8 @@ public class JoinServiceImpl implements JoinService {
         }
     }
 
-    private byte[] getSalt(String email)
+    @Override
+    public byte[] getSalt(String email)
             throws NoSuchAlgorithmException, UnsupportedEncodingException {
 
         MessageDigest digest = MessageDigest.getInstance("SHA-512");

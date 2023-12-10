@@ -15,14 +15,22 @@
 
 .components-user-nav__icon__wrapper {
   display: flex;
+  width: 45px;
   flex-direction: column;
   align-items: center;
   cursor: pointer;
+  overflow: hidden;
   transition: transform 0.2s ease;
 }
 
 .components-user-nav__icon__wrapper:hover {
   transform: scale(1.1);
+}
+
+
+.components-user-nav__icon__wrapper span {
+  font-size: 13px;
+  color: #737373;
 }
 
 .components-user-nav__icon__img {
@@ -31,7 +39,8 @@
   margin-bottom: 5px;
 }
 
-.components-user-nav__icon__wrapper span {
-  font-size: 13px;
-  color: #737373;
+.components-user-nav__img-wrapper {
+  width: 37px;
+  display: flex;
+  justify-content: center;
 }

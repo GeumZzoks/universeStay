@@ -1,25 +1,9 @@
-// document.addEventListener('click', function (event) {
-//     const dropdown = document.querySelector(
-//             '.components-user-header__dropdown-div');
-//     console.log(dropdown);
-//     const targetElement = event.target;
-//     console.log(targetElement);
-//
-//     // 클릭된 요소가 드롭다운 내부에 속하지 않는 경우 'show' 클래스 제거
-//     console.log(
-//             !dropdown.contains(targetElement) && dropdown.classList.contains(
-//                     'show'))
-//     if (dropdown.classList.contains('show') && !dropdown.contains(
-//             targetElement)) {
-//         dropdown.classList.remove('show');
-//     }
-// });
-
 //---------------------- 캘린더 라이브러리 --------------------------------------------
 $(function () {
     $('input[name="datefilter"]').daterangepicker({
         autoUpdateInput: true,
         locale: {
+            format: 'YYYY/MM/DD',
             cancelLabel: '취소',
             applyLabel: '확인'
         }
@@ -27,15 +11,30 @@ $(function () {
 
     $('input[name="datefilter"]').on('apply.daterangepicker',
             function (ev, picker) {
-                $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - '
+                $(this).val(picker.startDate.format('YYYY/MM/DD') + ' - '
                         + picker.endDate.format(
-                                'MM/DD/YYYY'));
+                                'YYYY/MM/DD'));
             });
 
     $('input[name="datefilter"]').on('cancel.daterangepicker',
             function (ev, picker) {
                 $(this).val('');
             });
+});
+document.addEventListener('DOMContentLoaded', function () {
+    const checkinBtn = document.querySelector(
+            '.components-user-header__header__searchbar__checkin-btn');
+
+    checkinBtn.addEventListener('click', function () {
+        document.querySelectorAll(
+                '.components-user-header__dropdown-div').forEach(
+                function (dropdown) {
+                    dropdown.classList.remove('show');
+                });
+
+        // input[name="datefilter"] 요소를 클릭하는 것과 같은 효과
+        document.querySelector('input[name="datefilter"]').click();
+    });
 });
 
 //버튼들을 누르면 드롭다운이 내려오면서 클래스 이름에 'show'가 토글됨, 그런데 드롭다운 하위 요소들에게도 이벤트가 전파되어서 드롭다운 요소를 누르면 드롭다운이 자꾸 꺼짐.
@@ -44,28 +43,36 @@ const dropdowns = document.querySelectorAll(
         '.components-user-header__dropdown-div');
 
 document.addEventListener("click", function (e) {
-  console.dir(e.target);
-  if (e.target.classList.contains("components-user-header__header__searchbar__main_txt") ||
-      e.target.classList.contains("components-user-header__header__searchbar__sub_txt") ||
-      e.target.classList.contains("components-user-header__header__profile__my-profile") ||
-      e.target.classList.contains("components-user-header__header__profile__my-profile__btn") ||
-      e.target.classList.contains("components-user-header__header__profile__hamburger") ||
-      e.target.classList.contains("components-user-header__header__profile__img")
-  ) {
-    return;
-  }
-
-  dropdowns.forEach(dropdown => {
-    if (dropdown.classList.contains("show")) {
-      dropdown.classList.remove("show");
+    if (e.target.classList.contains(
+                    "components-user-header__header__searchbar__main_txt") ||
+            e.target.classList.contains(
+                    "components-user-header__header__searchbar__sub_txt") ||
+            e.target.classList.contains(
+                    "components-user-header__header__profile__my-profile") ||
+            e.target.classList.contains(
+                    "components-user-header__header__profile__my-profile__btn")
+            ||
+            e.target.classList.contains(
+                    "components-user-header__header__profile__hamburger") ||
+            e.target.classList.contains(
+                    "components-user-header__header__profile__img") ||
+            e.target.classList.contains(
+                    "components-user-header__header__searchbar__checkin-btn")
+    ) {
+        return;
     }
-  });
+
+    dropdowns.forEach(dropdown => {
+        if (dropdown.classList.contains("show")) {
+            dropdown.classList.remove("show");
+        }
+    });
 });
 
 dropdowns.forEach(dropdown => {
-  dropdown.addEventListener('click', function (event) {
-    event.stopPropagation(); // 드롭다운 요소가 클릭되었을 때 이벤트 전파 중단
-  });
+    dropdown.addEventListener('click', function (event) {
+        event.stopPropagation(); // 드롭다운 요소가 클릭되었을 때 이벤트 전파 중단
+    });
 });
 
 //-----------------------------------------------------------------
@@ -77,55 +84,55 @@ const dropdownDiv = document.getElementsByClassName(
 // '어디로'를 눌렀을때 발현하는 함수
 const toggleDropdown1 = function () {
 
-  if (dropdownDiv[0].classList.contains("show")) {
-    dropdownDiv[0].classList.remove("show");
-    return;
-  }
-
-  dropdowns.forEach(dropdown => {
-    if (dropdown.classList.contains("show")) {
-      dropdown.classList.remove("show");
+    if (dropdownDiv[0].classList.contains("show")) {
+        dropdownDiv[0].classList.remove("show");
+        return;
     }
-  });
-  console.log(dropdownDiv[0].classList);
-  dropdownDiv[0].classList.toggle('show')
-  console.log(dropdownDiv[0].classList);
+
+    dropdowns.forEach(dropdown => {
+        if (dropdown.classList.contains("show")) {
+            dropdown.classList.remove("show");
+        }
+    });
+    console.log(dropdownDiv[0].classList);
+    dropdownDiv[0].classList.toggle('show')
+    console.log(dropdownDiv[0].classList);
 }
 // '여행자'를 눌렀을때 발현하는 함수
 const toggleDropdown2 = function () {
 
-  if (dropdownDiv[1].classList.contains("show")) {
-    dropdownDiv[1].classList.remove("show");
-    return;
-  }
-
-  dropdowns.forEach(dropdown => {
-    if (dropdown.classList.contains("show")) {
-      dropdown.classList.remove("show");
+    if (dropdownDiv[1].classList.contains("show")) {
+        dropdownDiv[1].classList.remove("show");
+        return;
     }
-  });
-  console.log(dropdownDiv[1].classList);
-  dropdownDiv[1].classList.toggle('show')
-  console.log(dropdownDiv[1].classList);
+
+    dropdowns.forEach(dropdown => {
+        if (dropdown.classList.contains("show")) {
+            dropdown.classList.remove("show");
+        }
+    });
+    console.log(dropdownDiv[1].classList);
+    dropdownDiv[1].classList.toggle('show')
+    console.log(dropdownDiv[1].classList);
 }
 //  '1박당 예산을 눌렀을 때 발현하는 함수
 const toggleDropdown3 = function () {
 
-  if (dropdownDiv[2].classList.contains("show")) {
-    dropdownDiv[2].classList.remove("show");
-    return;
-  }
-
-  dropdowns.forEach(dropdown => {
-    if (dropdown.classList.contains("show")) {
-      dropdown.classList.remove("show");
+    if (dropdownDiv[2].classList.contains("show")) {
+        dropdownDiv[2].classList.remove("show");
+        return;
     }
-  });
-  dropdownDiv[2].classList.toggle('show');
+
+    dropdowns.forEach(dropdown => {
+        if (dropdown.classList.contains("show")) {
+            dropdown.classList.remove("show");
+        }
+    });
+    dropdownDiv[2].classList.toggle('show');
 }
 // 마이프로필 버튼을 눌렀을때 발현하는 함수
 const toggleDropdown4 = function () {
-  dropdownDiv[3].classList.toggle('show')
+    dropdownDiv[3].classList.toggle('show')
 }
 
 //'어디로' 버튼 이벤트 추가
@@ -156,7 +163,7 @@ headerMyProfileBtn.addEventListener("click", toggleDropdown4);
 const inputField = document.querySelector(
         '.components-user-header__header__searchbar__where input');
 inputField.addEventListener('click', function (event) {
-  event.stopPropagation(); // 이벤트 전파 중단
+    event.stopPropagation(); // 이벤트 전파 중단
 });
 
 //---------------------- '어디로' 버튼 관련 코드 --------------------------------------------
@@ -171,9 +178,9 @@ inputField.addEventListener('input', function (event) {
 
 // 직접 검색하는 인풋창에 스페이스바 입력 시 드롭다운이 자꾸 꺼져서, 기본 동작을 방지하는 코드 작성
 inputField.addEventListener('keydown', function (event) {
-  if (event.key === ' ') {
-    event.preventDefault();
-  }
+    if (event.key === ' ') {
+        event.preventDefault();
+    }
 });
 
 const dropdownOptions = document.querySelectorAll(
@@ -204,23 +211,23 @@ let count = 2; // 초기값 설정 (기본 2명)
 
 //마이너스 버튼 클릭시
 minusCount.addEventListener('click', function (event) {
-  event.stopPropagation(); // 이벤트 전파 중단
-  if (count > 1) {
-    count--;
-    updatePeopleCount();
-  }
+    event.stopPropagation(); // 이벤트 전파 중단
+    if (count > 1) {
+        count--;
+        updatePeopleCount();
+    }
 });
 // 플러스 버튼 클릭 시
 plusCount.addEventListener('click', function (event) {
-  event.stopPropagation(); // 이벤트 전파 중단
-  count++;
-  updatePeopleCount();
+    event.stopPropagation(); // 이벤트 전파 중단
+    count++;
+    updatePeopleCount();
 });
 
 // peopleCount 업데이트 함수
 function updatePeopleCount() {
-  peopleCount.textContent = count;
-  peopleSubTextElement.textContent = count; // 텍스트로 반영
+    peopleCount.textContent = count;
+    peopleSubTextElement.textContent = count; // 텍스트로 반영
 }
 
 //---------------- 1박당 예산 관련 코드 -------------
@@ -262,10 +269,10 @@ const logOutBtn = document.querySelector(
 
 //회원가입 컨트롤러 이동
 signUpBtn.addEventListener("click", () => {
-  location.href = "/user/join";
+    location.href = "/user/join";
 })
 signInBtn.addEventListener("click", () => {
-  location.href = "/user/loginForm";
+    location.href = "/user/loginForm";
 })
 logOutBtn.addEventListener("click", () => {
     location.href = "/user/withdrawal";

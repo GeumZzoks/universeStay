@@ -16,8 +16,8 @@ import org.springframework.util.PatternMatchUtils;
 @WebFilter(filterName = "AdminFilter", urlPatterns = {"/admin/*"})
 public class AdminFilter implements Filter {
 
-    private static final String[] whitelist = {"/admin/user/list", "/admin/user/info",
-            "/admin/user/update"};
+    private static final String[] whitelist = {"/admin/user/*", "/admin/inquiry/*"};
+//    private static final String[] whitelist = {"/admin/user/list", "/admin/user/info", "/admin/user/update"};
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -45,16 +45,15 @@ public class AdminFilter implements Filter {
 //                "Filter - request.getServletPath() = " + request.getServletPath()); // /board1.jsp
 //        System.out.println();
 
-        if (!isLoginCheckPath(requestURI)) {
-            filterChain.doFilter(request, response);
-        }
-
-        boolean isNotLogin = (session == null || session.getAttribute("admin_email") == null);
-        if (isNotLogin) {
-            session.setAttribute("URL", request.getRequestURI());
-            response.sendRedirect("/adminLogin/loginForm");
-        } else {
-            filterChain.doFilter(request, response);
+        if (!isLoginCheckPath(requestURI)) filterChain.doFilter(request, response);
+        else {
+            boolean isNotLogin = (session == null || session.getAttribute("admin_email") == null);
+            if (isNotLogin) {
+                session.setAttribute("URL", request.getRequestURI());
+                response.sendRedirect("/adminLogin/loginForm");
+            } else {
+                filterChain.doFilter(request, response);
+            }
         }
     }
 

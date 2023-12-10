@@ -40,6 +40,13 @@
         ORDER BY created_at DESC, user_id desc LIMIT #{offset}, #{pageSize}
     </select>
 
+    <select id="getabc" parameterType="hashmap" resultType="map">
+        select b.user_nickname, c.*
+        from User b,
+             Event c
+        where b.user_id = c.admin_id;
+    </select>
+
     <select id="selectAll" resultType="UserDto">
         select *
         from User
@@ -68,7 +75,8 @@
 
     <select id="searchSelectPage" parameterType="SearchCondition" resultType="UserDto">
         select *
-        from User where true
+        from User
+        where true
         <choose>
             <when test='option=="user_nickname"'>
                 AND user_nickname LIKE concat('%', #{keyword}, '%')
@@ -84,7 +92,7 @@
                 OR user_birth LIKE concat('%', #{keyword}, '%'))
             </otherwise>
         </choose>
-        order by created_at desc, user_id desc LIMIT #{offset}, #{pageSize}
+        order by created_at desc, user_id desc
+        LIMIT #{offset}, #{pageSize}
     </select>
-
 </mapper>

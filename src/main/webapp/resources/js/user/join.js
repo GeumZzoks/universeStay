@@ -158,100 +158,100 @@ $(function () {
       },
     });
   });
-
-  $(function () {
-    $("#screens-user-join_signup_pw, #screens-user-join_signup_pww").on('input',
-        function () {
-          let user_pw = $("#screens-user-join_signup_pw").val();
-          let user_pww = $("#screens-user-join_signup_pww").val();
-
-          if (user_pw === user_pww && user_pww !== null && user_pw !== null
-              && user_pww !== "" && user_pw !== "") {
-            result = "비밀번호가 일치합니다.";
-            $("#pwd_input_helper_text").html(result).removeClass("unavailable");
-          } else if (user_pw !== user_pww) { // In case of failure
-            const result = "비밀번호가 일치하지 않습니다.";
-            $("#pwd_input_helper_text").html(result).addClass("unavailable");
-          } else if (user_pww == null || user_pw == null || user_pww == ""
-              || user_pw == "") {
-            const result = "비밀번호 확인을 입력해주세요.";
-            $("#pwd_input_helper_text").html(result).addClass("unavailable");
-          }
-        });
-
-    $(function fnSubmit() {
-
-      var email_rule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-      var tel_rule = /^\d{2,3}-\d{3,4}-\d{4}$/;
-
-      if ($("#screens-user-join_signup_id").val() == null || $(
-          "#screens-user-join_signup_id").val() == "") {
-        alert("아이디를 입력해주세요.");
-        $("#screens-user-join_signup_id").focus();
-
-        return false;
-      }
-
-      if ($("#screens-user-join_signup_pw").val() == null || $(
-          "screens-user-join_signup_pw").val() == "") {
-        alert("비밀번호를 입력해주세요.");
-        $("#screens-user-join_signup_pw").focus();
-
-        return false;
-      }
-
-      if ($("#screens-user-join_signup_pww").val() == null || $(
-          "#screens-user-join_signup_pww").val() == "") {
-        alert("비밀번호 확인을 입력해주세요.");
-        $("#screens-user-join_signup_pww").focus();
-
-        return false;
-      }
-
-      if ($("#screens-user-join_signup_name").val() == null || $(
-          "#screens-user-join_signup_name").val() == "") {
-        alert("이름을 입력해주세요.");
-        $("#screens-user-join_signup_name").focus();
-
-        return false;
-      }
-
-      if ($("#screens-user-join_signup_email").val() == null || $(
-          "#screens-user-join_signup_email").val() == "") {
-        alert("이메일을 입력해주세요.");
-        $("#screens-user-join_signup_email").focus();
-
-        return false;
-      }
-
-      if (!email_rule.test($("#screens-user-join_signup_email").val())) {
-        alert("이메일을 형식에 맞게 입력해주세요. ex) 1234@naver.com");
-        $("#screens-user-join_signup_email").focus();
-        return false;
-      }
-
-      if ($("#screens-user-join_code_check_input").val() == null || $(
-              "#screens-user-join_code_check_input").val()
-          == "") {
-        alert("인증번호를 입력해주세요.");
-        $("#screens-user-join_code_check_input").focus();
-
-        return false;
-      }
-
-      if (!tel_rule.test($("#screens-user-join_signup_phone_1").val())) {
-        alert("전화번호 형식에 맞게 입력해주세요. ex) 010-0000-0000");
-        $("#screens-user-join_signup_phone_1").focus();
-        return false;
-      }
-
-      if (confirm("회원가입하시겠습니까?")) {
-        $("#screens-user-join_signup_btn").submit();
-        return true;
-      }
-    });
-  });
 });
+
+$(function () {
+  $("#screens-user-join_signup_pw, #screens-user-join_signup_pww").on('input',
+      function () {
+        let user_pw = $("#screens-user-join_signup_pw").val();
+        let user_pww = $("#screens-user-join_signup_pww").val();
+
+        if (user_pw === user_pww && user_pww !== null && user_pw !== null
+            && user_pww !== "" && user_pw !== "") {
+          result = "비밀번호가 일치합니다.";
+          $("#pwd_input_helper_text").html(result).removeClass("unavailable");
+        } else if (user_pw !== user_pww) { // In case of failure
+          const result = "비밀번호가 일치하지 않습니다.";
+          $("#pwd_input_helper_text").html(result).addClass("unavailable");
+        } else if (user_pww == null || user_pw == null || user_pww == ""
+            || user_pw == "") {
+          const result = "비밀번호 확인을 입력해주세요.";
+          $("#pwd_input_helper_text").html(result).addClass("unavailable");
+        }
+      });
+});
+
+function fnSubmit() {
+
+  var email_rule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+  var tel_rule = /^\d{2,3}-\d{3,4}-\d{4}$/;
+
+  if ($("#screens-user-join_signup_id").val() == null || $(
+      "#screens-user-join_signup_id").val() === "") {
+    console.log(123);
+    alert("아이디를 입력해주세요.");
+    $("#screens-user-join_signup_id").focus();
+
+    return false;
+  }
+
+  if ($("#screens-user-join_signup_pw").val() == null || $(
+      "#screens-user-join_signup_pw").val() === "") {
+    alert("비밀번호를 입력해주세요.");
+    $("#screens-user-join_signup_pw").focus();
+
+    return false;
+  }
+
+  if ($("#screens-user-join_signup_pww").val() == null || $(
+      "#screens-user-join_signup_pww").val() === "") {
+    alert("비밀번호 확인을 입력해주세요.");
+    $("#screens-user-join_signup_pww").focus();
+
+    return false;
+  }
+
+  if ($("#screens-user-join_signup_name").val() == null || $(
+      "#screens-user-join_signup_name").val() === "") {
+    alert("이름을 입력해주세요.");
+    $("#screens-user-join_signup_name").focus();
+
+    return false;
+  }
+
+  if ($("#screens-user-join_signup_email").val() == null || $(
+      "#screens-user-join_signup_email").val() === "") {
+    alert("이메일을 입력해주세요.");
+    $("#screens-user-join_signup_email").focus();
+
+    return false;
+  }
+
+  if (!email_rule.test($("#screens-user-join_signup_email").val())) {
+    alert("이메일을 형식에 맞게 입력해주세요. ex) 1234@naver.com");
+    $("#screens-user-join_signup_email").focus();
+    return false;
+  }
+
+  if ($("#screens-user-join_code_check_input").val() == null || $(
+      "#screens-user-join_code_check_input").val() === "") {
+    alert("인증번호를 입력해주세요.");
+    $("#screens-user-join_code_check_input").focus();
+
+    return false;
+  }
+
+  if (!tel_rule.test($("#screens-user-join_signup_phone_1").val())) {
+    alert("전화번호 형식에 맞게 입력해주세요. ex) 010-0000-0000");
+    $("#screens-user-join_signup_phone_1").focus();
+    return false;
+  }
+
+  if (confirm("회원가입하시겠습니까?")) {
+    $("#screens-user-join_signup_btn").trigger('submit');
+    return true;
+  }
+}
 
 $(function () {
   $("#screens-user-join_signup_pw").on('input', function () {
