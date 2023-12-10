@@ -29,16 +29,11 @@
                 <div class="screens-user-main__room__img__wrapper">
                     <div class="swiper mySwiper">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <img src="https://a0.muscache.com/im/pictures/83cd682a-4ffe-4ed0-a4b2-3f3b0c14d1b2.jpg?im_w=720">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="https://a0.muscache.com/im/pictures/aeb5cb7f-b9f6-4972-b5c7-d504cdb75499.jpg?im_w=720">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="https://a0.muscache.com/im/pictures/miso/Hosting-7926759/original/96ff9b67-9d05-43db-8167-0977549564d9.jpeg?im_w=720">
-                            </div>
-
+                            <c:forEach var="img" items="${room.room_img_url_list}">
+                                <div class="swiper-slide">
+                                    <img src="${img}">
+                                </div>
+                            </c:forEach>
                         </div>
                         <div class="swiper-pagination"></div>
                         <div class="swiper-button-prev swiper-button"></div>
