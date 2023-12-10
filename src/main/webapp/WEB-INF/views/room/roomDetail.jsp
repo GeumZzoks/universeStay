@@ -17,7 +17,8 @@
         <div class="screens-room-roomDetail__section-1__info-1">
             <div class="screens-room-roomDetail__section-1__region">${room.room_address}</div>
             <div class="screens-room-roomDetail__section-1__btns">
-                <button class="screens-room-roomDetail__btn screens-room-roomDetail__section-1__btn screens-room-roomDetail__section-1__btn-share screens-room-roomDetail__btn-shrink">
+                <button onclick="kakaoShare()"
+                        class="screens-room-roomDetail__btn screens-room-roomDetail__section-1__btn screens-room-roomDetail__section-1__btn-share screens-room-roomDetail__btn-shrink">
                     <span class="screens-room-roomDetail__btn-share__icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
                              aria-hidden="true" role="presentation" focusable="false" style="display: block;
@@ -317,7 +318,7 @@
 </div>
 <jsp:include page="/WEB-INF/views/common/user/footer.jsp"/>
 
-<!-- 카카오 지도 API : services 라이브러리 불러오기 -->
+<%--<!-- 카카오 지도 API : services 라이브러리 불러오기 -->--%>
 <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${KakaoApiKey}&libraries=services"></script>
 <%-- 스크립트 --%>
@@ -325,6 +326,42 @@
   const roomAddress = '${room.room_address}';
 </script>
 <script src="/resources/js/room/roomDetail.js"></script>
+
+
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
+<script>
+  // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
+  Kakao.init('1ee3021488d6f45fafec4f83401a0f7c');
+
+  // SDK 초기화 여부를 판단합니다.
+  console.log(Kakao.isInitialized());
+
+  function kakaoShare() {
+    Kakao.Link.sendDefault({
+      objectType: 'feed',
+      content: {
+        title: '${room.room_name}',
+        description: '${room.room_total_desc}',
+        imageUrl: '${roomImg.room_img_url}',
+        link: {
+          webUrl: 'localhost:8080/room/roomDetail?room_id=${room.room_id}',
+        },
+      },
+      buttons: [
+        {
+          title: '웹으로 보기',
+          link: {
+            webUrl: 'localhost:8080/room/roomDetail?room_id=${room.room_id}',
+          },
+        },
+      ],
+// 카카오톡 미설치 시 카카오톡 설치 경로이동
+      installTalk: true,
+    })
+  }
+</script>
+
 
 </body>
 </html>
