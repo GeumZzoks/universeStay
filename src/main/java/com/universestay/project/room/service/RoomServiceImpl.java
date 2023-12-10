@@ -29,6 +29,19 @@ public class RoomServiceImpl implements RoomService {
         return roomDao.select5RoomImg(room_id);
     }
 
+    public List<RoomDto> listHostRoom(String user_id) throws Exception {
+        return roomDao.listHostRoom(user_id);
+    }
+    // 숙소테이블에 대표사진 컬럼을 추가 하기 전 코드
+//    public List<Map<String, Object>> listHostRoom(String user_id) throws Exception {
+//        return roomDao.listHostRoom(user_id);
+//    }
+
+    @Override
+    public Integer statusHostroom(String room_id, String room_status_id) throws Exception {
+        return roomDao.statusHostroom(room_id, room_status_id);
+    }
+
     @Override
     public List<Map<String, Object>> lookUpAllRoomByCategory(String room_category_id)
             throws Exception {
