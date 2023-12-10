@@ -1,25 +1,67 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.universestay.project.resources.mybatis.mapper.room.roomMapper">
 
-    <select id="selectAll" resultType="RoomDto">
-        SELECT *
-        FROM Room
-        ORDER BY created_at
-    </select>
+  <select id="selectAll" resultType="RoomDto">
+    SELECT *
+    FROM Room
+    ORDER BY created_at
+  </select>
 
-    <select id="select" resultType="RoomDto">
-        SELECT *
-        FROM Room
-        WHERE room_id = #{room_id}
-    </select>
+  <select id="select" resultType="RoomDto">
+    SELECT *
+    FROM Room
+    WHERE room_id = #{room_id}
+  </select>
 
-    <select id="select5RoomImg" resultType="RoomImgDto">
-        SELECT *
-        FROM RoomImg
-        WHERE room_id = #{room_id} LIMIT 0, 5
-    </select>
+  <select id="select5RoomImg" resultType="RoomImgDto">
+    SELECT *
+    FROM RoomImg
+    WHERE room_id = #{room_id} LIMIT 0, 5
+  </select>
 
+  <select id="listHostRoom" resultType="RoomDto">
+    SELECT *
+    FROM Room
+    WHERE user_id = #{user_id}
+      AND room_status_id NOT IN ('R03')
+    ORDER BY created_at
+  </select>
+
+  <!--  <select id="listHostRoom" resultType="map">-->
+  <!--    select ri.room_img_url, r.room_name, r.created_at-->
+  <!--    from Room r,-->
+  <!--         RoomImg ri-->
+  <!--    where r.room_id = ri.room_id-->
+  <!--      and r.user_id = #{user_id};-->
+  <!--  </select>-->
+
+  <!--  <select id="shutdownHostroom">-->
+  <!--    UPDATE Room-->
+  <!--    SET room_status_id = 'R03'-->
+  <!--    WHERE room_id = #{room_id}-->
+
+  <!--  </select>-->
+
+  <sql id="statusCondition">
+    <choose>
+      <when test='room_status_id=="R01"'>
+        SET room_status_id = 'R01'
+      </when>
+      <when test='room_status_id=="R02"'>
+        SET room_status_id = 'R02'
+      </when>
+      <otherwise>
+        SET room_status_id = 'R03'
+      </otherwise>
+    </choose>
+  </sql>
+
+  <update id="statusHostroom" parameterType="map">
+    UPDATE Room
+    <include refid="statusCondition"></include>
+    WHERE room_id = #{room_id}
+  </update>
 </mapper>
