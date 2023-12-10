@@ -15,7 +15,7 @@ public class RoomServiceImpl implements RoomService {
     RoomDao roomDao;
 
     @Override
-    public List<RoomDto> lookUpAllRoom() throws Exception {
+    public List<Map<String, Object>> lookUpAllRoom() throws Exception {
         return roomDao.selectAll();
     }
 
@@ -30,7 +30,8 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public List<RoomDto> lookUpAllRoomByCategory(String room_category_id) throws Exception {
+    public List<Map<String, Object>> lookUpAllRoomByCategory(String room_category_id)
+            throws Exception {
         return roomDao.selectAllByCategory(room_category_id);
     }
 
