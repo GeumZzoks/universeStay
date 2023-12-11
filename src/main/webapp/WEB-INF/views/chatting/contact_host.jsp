@@ -34,6 +34,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        padding-bottom: 32px;
       }
 
       .screens-chat-send_host__section-1__info-1__desc2 {
@@ -65,6 +66,43 @@
         border: 1px solid rgb(221, 221, 221);
         position: sticky;
         top: 32px;
+      }
+
+      .first_info {
+        padding-bottom: 32px;
+      }
+
+      .first_info_title {
+        padding-bottom: 16px;
+        
+      }
+
+      .first_info_content {
+        margin-left: 20px;
+      }
+
+      .second_info {
+        padding-bottom: 32px;
+      }
+
+      .second_info_title {
+        padding-bottom: 16px;
+      }
+
+      .second_info_content {
+        margin-left: 20px;
+      }
+
+      .third_info {
+        padding-bottom: 32px;
+      }
+
+      .third_info_title {
+        padding-bottom: 16px;
+      }
+
+      .third_info_content {
+        margin-left: 20px;
       }
 
       /*--------------------------------------*/
@@ -158,50 +196,43 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="send_message">
-                        <div>
+                        <div class="first_info">
                             <h3 tabindex="-1"
-                                class="hpipapi atm_7l_1kw7nm4 atm_c8_1x4eueo atm_cs_1kw7nm4 atm_g3_1kw7nm4 atm_gi_idpfg4 atm_l8_idpfg4 atm_kd_idpfg4_pfnrn2 dir dir-ltr"
+                                class="first_info_title"
                                 elementtiming="LCP-target">
-                                <div style="font-weight: var(--jx-zk-pv);">찾아가기</div>
+                                <div>찾아가기</div>
                             </h3>
-                            <ul class="ldezowx atm_gq_idpfg4 dir dir-ltr">
-                                <li>이 숙소의 체크인 시간은 오후 3:00부터입니다이며, 체크아웃은 오전 11:00입니다.</li>
+                            <ul class="first_info_content">
+                                <li>• 이 숙소의 체크인 시간은 오후 3:00부터입니다이며, 체크아웃은 오전 11:00입니다.</li>
                             </ul>
                         </div>
 
-                        <div>
+                        <div class="second_info">
                             <h3 tabindex="-1"
-                                class="hpipapi atm_7l_1kw7nm4 atm_c8_1x4eueo atm_cs_1kw7nm4 atm_g3_1kw7nm4 atm_gi_idpfg4 atm_l8_idpfg4 atm_kd_idpfg4_pfnrn2 dir dir-ltr"
+                                class="second_info_title"
                                 elementtiming="LCP-target">
-                                <div style="font-weight: var(--jx-zk-pv);">숙소 세부 정보 및 이용 규칙</div>
+                                <div>숙소 세부 정보 및 이용 규칙</div>
                             </h3>
-                            <ul class="ldezowx atm_gq_idpfg4 dir dir-ltr">
-                                <li>흡연 금지. 파티나 이벤트 금지. 반려동물 동반 불가.</li>
+                            <ul class="second_info_content">
+                                <li>• 흡연 금지. 파티나 이벤트 금지. 반려동물 동반 불가.</li>
                             </ul>
                         </div>
 
-                        <div data-plugin-in-point-id="FAQ_PRICING_AND_AVAILABILITY"
-                             data-section-id="FAQ_PRICING_AND_AVAILABILITY"
-                             style="padding-bottom: 32px;">
-                            <div>
-                                <h3 tabindex="-1"
-                                    class="hpipapi atm_7l_1kw7nm4 atm_c8_1x4eueo atm_cs_1kw7nm4 atm_g3_1kw7nm4 atm_gi_idpfg4 atm_l8_idpfg4 atm_kd_idpfg4_pfnrn2 dir dir-ltr"
-                                    elementtiming="LCP-target">
-                                    <div style="font-weight: var(--jx-zk-pv);">요금 설정 및 예약 가능 여부
-                                    </div>
-                                </h3>
-                                <ul class="ldezowx atm_gq_idpfg4 dir dir-ltr">
-                                    <li>일주일 이상 숙박하시면 10% 할인이, 한 달 이상 숙박하시면 15% 할인이 적용됩니다.</li>
-                                    <li>체크인 24시간 전까지 예약을 취소하면 전액이 환불됩니다. 그 이후로는 체크인 전에 취소할 경우, 첫 1박
-                                        요금과
-                                        서비스 수수료를 제외한
-                                        전액이
-                                        환불됩니다.
-                                    </li>
-                                </ul>
-                            </div>
+                        <div class="third_info">
+                            <h3 tabindex="-1"
+                                class="third_info_title">
+                                <div>요금 설정 및 예약 가능 여부</div>
+                            </h3>
+                            <ul class="third_info_content">
+                                <li>• 일주일 이상 숙박하시면 10% 할인이, 한 달 이상 숙박하시면 15% 할인이 적용됩니다.</li>
+                                <li>• 체크인 24시간 전까지 예약을 취소하면 전액이 환불됩니다. 그 이후로는 체크인 전에 취소할 경우, 첫 1박
+                                    요금과 서비스 수수료를 제외한 전액이 환불됩니다.
+                                </li>
+                            </ul>
                         </div>
+
                     </div>
 
                     <div data-plugin-in-point-id="MESSAGE_HOST_TITLE"
@@ -210,8 +241,7 @@
                         <section>
                             <div class="tu9uqg8 atm_cs_qo5vgd sgst31r atm_c8_8nb4eg atm_g3_1dpnnv7 atm_fr_11dsdeo atm_c8_8nb4eg__oggzyc atm_g3_1dpnnv7__oggzyc atm_fr_11dsdeo__oggzyc dir dir-ltr">
                                 <h2 tabindex="-1"
-                                    class="hpipapi atm_7l_1kw7nm4 atm_c8_1x4eueo atm_cs_1kw7nm4 atm_g3_1kw7nm4 atm_gi_idpfg4 atm_l8_idpfg4 atm_kd_idpfg4_pfnrn2 dir dir-ltr"
-                                    elementtiming="LCP-target">질문이 더 있으신가요? 호스트에게 메시지를 보내
+                                    class="">질문이 더 있으신가요? 호스트에게 메시지를 보내
                                     문의하세요.</h2></div>
                         </section>
                     </div>
