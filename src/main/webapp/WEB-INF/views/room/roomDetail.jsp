@@ -334,9 +334,6 @@
   // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
   Kakao.init('1ee3021488d6f45fafec4f83401a0f7c');
 
-  // SDK 초기화 여부를 판단합니다.
-  console.log(Kakao.isInitialized());
-
   function kakaoShare() {
     Kakao.Link.sendDefault({
       objectType: 'feed',
@@ -356,8 +353,6 @@
           },
         },
       ],
-// 카카오톡 미설치 시 카카오톡 설치 경로이동
-      installTalk: true,
     })
   }
 </script>
