@@ -44,15 +44,17 @@
                     <button class="screens-user-wishlist-btn__wished"
                             value="${wishListDto.room_id}"></button>
                 </form>
-                <span class="screens-user-wishlist__room-location">${wishListDto.room_address}</span>
-                <span class="screens-user-wishlist__room-title">${wishListDto.room_name}</span>
+                <div class="screens-user-wishlist__room-info__wrapper">
 
-                <div class="screens-user-wishlist__room-price__wrapper">
-                <span
-                        class="screens-user-wishlist__room-price">₩${wishListDto.room_weekend_price}</span><span> /박</span>
-                    <span class="screens-user-wishlist__room-stars">✭${wishListDto.room_stars_avg}</span>
+                    <div class="screens-user-wishlist__room-detail__wrapper">
+                        <span class="screens-user-wishlist__room-location">${wishListDto.room_address}</span>
+                        <span class="screens-user-wishlist__room-title">${wishListDto.room_name}</span>
+                    </div>
+                    <div class="screens-user-wishlist__room-price__wrapper">
+                        <span class="screens-user-wishlist__room-stars">✭${wishListDto.room_stars_avg}</span><br>
+                        <span class="screens-user-wishlist__room-price">₩${wishListDto.room_weekend_price} /박</span>
+                    </div>
                 </div>
-
             </div>
 
         </c:forEach>
