@@ -2,12 +2,13 @@ package com.universestay.project.room.service;
 
 import com.universestay.project.room.dto.RoomDto;
 import com.universestay.project.room.dto.RoomImgDto;
+
 import java.util.List;
 import java.util.Map;
 
 public interface RoomService {
 
-    List<Map<String, Object>> lookUpAllRoom() throws Exception;
+    List<Map<String, Object>> lookUpAllRoom(String user_id) throws Exception;
 
     RoomDto lookUpRoom(String room_id) throws Exception;
 

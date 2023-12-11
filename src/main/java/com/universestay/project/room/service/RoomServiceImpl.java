@@ -3,10 +3,12 @@ package com.universestay.project.room.service;
 import com.universestay.project.room.dao.RoomDao;
 import com.universestay.project.room.dto.RoomDto;
 import com.universestay.project.room.dto.RoomImgDto;
-import java.util.List;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
+
 
 @Service
 public class RoomServiceImpl implements RoomService {
@@ -15,8 +17,8 @@ public class RoomServiceImpl implements RoomService {
     RoomDao roomDao;
 
     @Override
-    public List<Map<String, Object>> lookUpAllRoom() throws Exception {
-        return roomDao.selectAll();
+    public List<Map<String, Object>> lookUpAllRoom(String user_id) throws Exception {
+        return roomDao.selectAll(user_id);
     }
 
     @Override

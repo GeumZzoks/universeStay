@@ -1,51 +1,102 @@
 .screens-user-main__main {
-  z-index: 99;
-  width: 100%;
-  display: flex;
-  justify-content: center;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .screens-user-main__main__wrapper {
-  width: 90%;
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
+    width: 90%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 
 .screens-user-main__room__wrapper {
-  width: 320px;
-  margin-bottom: 20px;
-  height: 380px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  cursor: pointer;
+    width: 320px;
+    margin-bottom: 20px;
+    height: 370px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    cursor: pointer;
 }
 
 .screens-user-main__room__img__wrapper {
-  width: 320px;
-  height: 320px;
+    width: 320px;
+    height: 300px;
 }
 
 .swiper-slide img {
-  border-radius: 8%;
+    border-radius: 8%;
 }
 
 .screens-user-main__room-location {
-  margin-top: 8px;
-  font-size: 15px;
-  font-family: NotoSansKR-Regular;
+    margin-top: 8px;
+    font-size: 15px;
+    font-family: NotoSansKR-Regular;
 }
 
 .screens-user-main__room-title {
-  font-family: NotoSansKR-Regular;
-  font-size: 14px;
+    font-family: NotoSansKR-Regular;
+    font-size: 14px;
 }
 
 .screens-user-main__room-price {
-  font-weight: bold;
-  font-size: 14px;
-  font-family: NotoSansKR-Regular;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: NotoSansKR-Regular;
+}
+
+.screens-user-main__wishlist {
+    position: absolute;
+    margin-left: 280px;
+    z-index: 2;
+}
+
+.screens-user-main__wishlist__wished {
+    position: absolute;
+    top: 10px;
+    background: url("/resources/img/room/wished.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: 0;
+    width: 30px;
+    height: 30px;
+}
+
+.screens-user-main__wishlist__wished:hover {
+    cursor: pointer;
+    transform: scale(1.2, 1.2);
+    transition-duration: 400ms;
+}
+
+.screens-user-main__wishlist__wished:active {
+    transform: scale(1.4, 1.4);
+    transition-duration: 100ms;
+}
+
+.screens-user-main__wishlist__not_wished {
+    position: absolute;
+    top: 10px;
+    background: url("/resources/img/room/unwished.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: 0;
+    width: 30px;
+    height: 30px;
+}
+
+
+.screens-user-main__wishlist__not_wished:hover {
+    cursor: pointer;
+    transform: scale(1.2, 1.2);
+    transition-duration: 400ms;
+}
+
+.screens-user-main__wishlist__not_wished:active {
+    transform: scale(1.4, 1.4);
+    transition-duration: 100ms;
 }
 
 
@@ -53,31 +104,31 @@
 
 
 .swiper {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 .swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .swiper-button-next:after, .swiper-button-prev:after {
-  font-size: 25px;
-  color: #FFFFFF;
+    font-size: 25px;
+    color: #FFFFFF;
 }
 
 .swiper-pagination-bullet-active {
-  background-color: #FFFFFF;
+    background-color: #FFFFFF;
 }

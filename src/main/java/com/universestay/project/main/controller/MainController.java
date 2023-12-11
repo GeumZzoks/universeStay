@@ -4,13 +4,16 @@ import com.universestay.project.room.service.RoomService;
 import com.universestay.project.user.dto.UserDto;
 import com.universestay.project.user.service.ProfileImgService;
 import com.universestay.project.user.service.UserInfoService;
-import java.util.List;
-import java.util.Map;
-import javax.servlet.http.HttpSession;
+import com.universestay.project.user.service.WishListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import javax.servlet.http.HttpSession;
+import java.util.List;
+import java.util.Map;
+
 
 @Controller
 public class MainController {
@@ -24,10 +27,15 @@ public class MainController {
     @Autowired
     RoomService roomService;
 
+    @Autowired
+    WishListService wishListService;
+
     @GetMapping("/")
     public String main(HttpSession session, Model model) throws Exception {
         String userEmail = (String) (session.getAttribute("user_email"));
-        List<Map<String, Object>> roomList = roomService.lookUpAllRoom();
+        String user_id = wishListService.getUserUuid(userEmail);
+
+        List<Map<String, Object>> roomList = roomService.lookUpAllRoom(user_id);
 
         for (int i = 0; i < roomList.size(); i++) {
             String roomImgUrl = (String) roomList.get(i).get("room_img_url_list");
@@ -35,9 +43,9 @@ public class MainController {
 
             roomList.get(i).put("room_img_url_list", roomImg);
         }
+        System.out.println("roomList = " + roomList);
 
         model.addAttribute("roomList", roomList);
-
         if (userEmail == null) {
             return "main/main";
         }
