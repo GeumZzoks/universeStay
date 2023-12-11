@@ -2,12 +2,13 @@ package com.universestay.project.room.dao;
 
 import com.universestay.project.room.dto.RoomDto;
 import com.universestay.project.room.dto.RoomImgDto;
+
 import java.util.List;
 import java.util.Map;
 
 public interface RoomDao {
 
-    List<Map<String, Object>> selectAll() throws Exception;
+    List<Map<String, Object>> selectAll(String user_id) throws Exception;
 
     RoomDto select(String room_id) throws Exception;
 

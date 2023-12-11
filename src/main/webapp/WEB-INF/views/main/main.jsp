@@ -23,7 +23,6 @@
 
 <section class="screens-user-main__main">
     <div class="screens-user-main__main__wrapper">
-
         <c:forEach var="room" items="${roomList}">
             <div class="screens-user-main__room__wrapper" value="${room.room_id}" data-key="test">
                 <div class="screens-user-main__room__img__wrapper">
@@ -39,9 +38,20 @@
                         <div class="swiper-button-prev swiper-button"></div>
                         <div class="swiper-button-next swiper-button">
                         </div>
-
                     </div>
                 </div>
+                <form class="screens-user-main__wishlist">
+                    <c:choose>
+                        <c:when test="${room.has_wished ne 1}">
+                            <button class="screens-user-main__wishlist__not_wished"
+                                    value="${room.room_id}"></button>
+                        </c:when>
+                        <c:otherwise>
+                            <button class="screens-user-main__wishlist__wished"
+                                    value="${room.room_id}"></button>
+                        </c:otherwise>
+                    </c:choose>
+                </form>
                 <span class="screens-user-main__room-location">${room.room_address}</span>
                 <span class="screens-user-main__room-title">${room.room_name}</span>
                 <div class="screens-user-main__room-price__wrapper">
@@ -51,7 +61,6 @@
                 <span class="screens-user-main__room-stars">✭${room.room_stars_avg}</span>
             </div>
         </c:forEach>
-
     </div>
 
 </section>
@@ -65,17 +74,17 @@
 
     //슬라이더 생성하는 JS 코드
     const mySwiper = new Swiper('.mySwiper',
-            {
-                pagination: {
-                    el: ".swiper-pagination",
-                },
-                loop: true,
-                direction: 'horizontal',
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                }
-            });
+        {
+            pagination: {
+                el: ".swiper-pagination",
+            },
+            loop: true,
+            direction: 'horizontal',
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            }
+        });
 
     const swiperButtons = document.querySelectorAll(".swiper-button");
     for (const swiperButton of swiperButtons) {
@@ -94,6 +103,38 @@
     if (statusId == "U04") {
         alert("회원탈퇴한 아이디입니다. 관리자에게 문의 하세요");
     }
+
+    $(document).ready(function () {
+        $('.screens-user-main__wishlist button').on('click', function (e) {
+            // form 전송 시 새로고침 안하기(기본 이벤트 x)
+            e.preventDefault();
+            // 새로고침 안할 시 다른 요소의 이밴트 받지 않기
+            e.stopPropagation();
+            // 변수 선언
+            // roomID는 list의 각 value값을 가져옴
+            var roomID = $(this).val();
+            var button = $(this);
+
+            // ajax
+            $.ajax({
+                url: "/user/wishLists/active",
+                type: "POST",
+                dataType: "text",
+                data: {room_id: roomID},
+                success: function (response) {
+                    if (response === 'DEL_OK' || response === 'IST_OK') {
+                        button.toggleClass('screens-user-main__wishlist__not_wished screens-user-main__wishlist__wished');
+                        return false;
+                    } else {
+                        alert("알 수 없는 문제가 발생했습니다. 다시 시도해주세요.");
+                    }
+                },
+                error: function () {
+                    location.href = "/user/loginForm";
+                }
+            });
+        });
+    });
 </script>
 </body>
 </html>
