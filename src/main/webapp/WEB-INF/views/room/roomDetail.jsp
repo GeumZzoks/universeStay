@@ -332,7 +332,7 @@
 
 <script>
   // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
-  Kakao.init('1ee3021488d6f45fafec4f83401a0f7c');
+  Kakao.init('${KakaoApiKey}');
 
   function kakaoShare() {
     Kakao.Link.sendDefault({
