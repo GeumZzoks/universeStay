@@ -22,8 +22,8 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public RoomDto lookUpRoom(String room_id) throws Exception {
-        return roomDao.select(room_id);
+    public Map<String, Object> lookUpRoom(String room_id, String user_id) throws Exception {
+        return roomDao.select(room_id, user_id);
     }
 
     @Override

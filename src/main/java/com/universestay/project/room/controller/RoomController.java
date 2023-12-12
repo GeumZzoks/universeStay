@@ -8,9 +8,7 @@ import com.universestay.project.user.dto.UserDto;
 import com.universestay.project.user.service.ProfileImgServiceImpl;
 import com.universestay.project.user.service.UserInfoService;
 import com.universestay.project.user.service.UserLoginService;
-import java.util.List;
-import java.util.Map;
-import javax.servlet.http.HttpSession;
+import com.universestay.project.user.service.WishListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +16,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpSession;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/room")
@@ -34,6 +36,8 @@ public class RoomController {
 
     @Autowired
     UserInfoService userInfoService;
+    @Autowired
+    WishListService wishListService;
 
     @GetMapping("")
     public String showRoom() {
@@ -41,12 +45,15 @@ public class RoomController {
     }
 
     @GetMapping("/{room_id}")
-    public String lookUpRoom(@PathVariable String room_id, Model model) {
+    public String lookUpRoom(@PathVariable String room_id, Model model, HttpSession session) {
         try {
-            RoomDto room = roomService.lookUpRoom(room_id);
+            String user_email = (String) session.getAttribute("user_email");
+            String user_id = wishListService.getUserUuid(user_email);
+
+            Map<String, Object> room = roomService.lookUpRoom(room_id, user_id);
             List<RoomImgDto> roomImgs = roomService.lookUp5RoomImg(room_id);
-            UserDto host = userWithdrawalDao.selectUserByUuid(room.getUser_id());
-            String profileImgUrl = profileImgService.getProfileImgUrl(room.getUser_id());
+            UserDto host = userWithdrawalDao.selectUserByUuid(user_id);
+            String profileImgUrl = profileImgService.getProfileImgUrl(user_id);
 
             if (room == null) {
                 // TODO: 에러메세지 보여주고 메인으로 이동
@@ -125,7 +132,7 @@ public class RoomController {
      */
     @GetMapping("/statusHostroom")
     public String statusHostroom(@RequestParam String room_id,
-            @RequestParam(defaultValue = "") String room_status_id) throws Exception {
+                                 @RequestParam(defaultValue = "") String room_status_id) throws Exception {
         try {
             System.out.println("room_id = " + room_id);
             System.out.println("스테이터스호스트룸 컨트롤러 ");
@@ -139,7 +146,7 @@ public class RoomController {
 
     @GetMapping({"/category/{categoryOrView}", "/view/{categoryOrView}"})
     public String lookUpRoomByCategoryOrView(@PathVariable String categoryOrView, Model model,
-            HttpSession session) throws Exception {
+                                             HttpSession session) throws Exception {
         String userEmail = (String) session.getAttribute("user_email");
 
         UserDto user = userInfoService.getUserInfo(userEmail);

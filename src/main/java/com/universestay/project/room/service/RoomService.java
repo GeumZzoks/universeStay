@@ -10,7 +10,7 @@ public interface RoomService {
 
     List<Map<String, Object>> lookUpAllRoom(String user_id) throws Exception;
 
-    RoomDto lookUpRoom(String room_id) throws Exception;
+    Map<String, Object> lookUpRoom(String room_id, String user_id) throws Exception;
 
     List<RoomImgDto> lookUp5RoomImg(String room_id) throws Exception;
 

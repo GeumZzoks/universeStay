@@ -16,10 +16,11 @@
         GROUP BY R.room_id;
     </select>
 
-    <select id="select" resultType="RoomDto">
-        SELECT *
-        FROM Room
-        WHERE room_id = #{room_id}
+    <select id="select" resultType="map">
+        SELECT R.*, CASE WHEN W.user_id IS NOT NULL THEN 1 ELSE 0 END AS has_wished
+        FROM Room R
+                 LEFT JOIN WishList W ON R.room_id = W.room_id AND W.user_id = #{user_id}
+        WHERE R.room_id = #{room_id}
     </select>
 
     <select id="select5RoomImg" resultType="RoomImgDto">

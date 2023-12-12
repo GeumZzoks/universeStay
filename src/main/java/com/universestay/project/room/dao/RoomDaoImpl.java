@@ -27,8 +27,11 @@ public class RoomDaoImpl implements RoomDao {
     }
 
     @Override
-    public RoomDto select(String room_id) throws Exception {
-        return session.selectOne(namespace + "select", room_id);
+    public Map<String, Object> select(String room_id, String user_id) throws Exception {
+        Map map = new HashMap();
+        map.put("user_id", user_id);
+        map.put("room_id", room_id);
+        return session.selectOne(namespace + "select", map);
     }
 
     @Override

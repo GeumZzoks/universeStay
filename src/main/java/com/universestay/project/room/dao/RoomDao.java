@@ -10,7 +10,7 @@ public interface RoomDao {
 
     List<Map<String, Object>> selectAll(String user_id) throws Exception;
 
-    RoomDto select(String room_id) throws Exception;
+    Map<String, Object> select(String room_id, String user_id) throws Exception;
 
     List<RoomImgDto> select5RoomImg(String room_id) throws Exception;
 
