@@ -1,0 +1,116 @@
+#screens-user-wishlist__container {
+    width: 100%;
+    min-width: 1200px;
+    height: 60%;
+    min-height: 400px;
+}
+
+#screens-user-wishlist__container h2 {
+    margin: 50px 0 30px 8%;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.screens-user-wishlist__main__wrapper {
+    width: 90%;
+    margin-left: 5%;
+    float: left;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.screens-user-wishlist__room__wrapper {
+    width: 20%;
+    margin-left: 4%;
+    height: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    cursor: pointer;
+}
+
+.screens-user-wishlist__room__wrapper:hover {
+    transform: scale(1.02, 1.02);
+    transition-duration: 200ms;
+    cursor: pointer;
+}
+
+.screens-user-wishlist__room__img__wrapper {
+    width: 260px;
+    height: 260px;
+    margin-bottom: 10px;
+}
+
+.screens-user-wishlist__room__wrapper img {
+    width: 260px;
+    height: 260px;
+}
+
+.screens-user-wishlist__room-location {
+    width: 50%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.screens-user-wishlist__room-title {
+    width: 50%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.screens-user-wishlist__room-price__wrapper {
+    margin-top: 4px;
+}
+
+.screens-user-wishlist__room-price {
+    float: left;
+}
+
+.screens-user-wishlist__room-stars {
+    float: right;
+}
+
+.screens-user-wishlist-btn {
+    position: relative;
+    margin-left: 210px;
+    top: -260px;
+}
+
+.screens-user-wishlist-btn__wished {
+    position: absolute;
+    top: 10px;
+    background: url("/resources/img/room/wished.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: 0;
+    width: 30px;
+    height: 30px;
+    z-index: 4;
+}
+
+.screens-user-wishlist-btn__wished:hover {
+    background-color: transparent;
+    background: url("/resources/img/room/unwished.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: 0;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transform: scale(1.2, 1.2);
+    transition-duration: 400ms;
+}
+
+.screens-user-wishlist-btn__wished:active {
+    background-color: transparent;
+    background: url("/resources/img/room/unwished.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: 0;
+    width: 30px;
+    height: 30px;
+    transform: scale(1.4, 1.4);
+    transition-duration: 100ms;
+}

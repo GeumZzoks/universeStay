@@ -17,6 +17,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
+
 @Service
 public class RoomServiceImpl implements RoomService {
 
@@ -30,8 +34,8 @@ public class RoomServiceImpl implements RoomService {
     RoomViewDao roomViewDao;
 
     @Override
-    public List<Map<String, Object>> lookUpAllRoom() throws Exception {
-        return roomDao.selectAll();
+    public List<Map<String, Object>> lookUpAllRoom(String user_id) throws Exception {
+        return roomDao.selectAll(user_id);
     }
 
     @Override

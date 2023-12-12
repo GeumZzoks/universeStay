@@ -2,12 +2,13 @@ package com.universestay.project.room.dao;
 
 import com.universestay.project.room.dto.RoomDto;
 import com.universestay.project.room.dto.RoomImgDto;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Repository
 public class RoomDaoImpl implements RoomDao {
@@ -21,8 +22,8 @@ public class RoomDaoImpl implements RoomDao {
     }
 
     @Override
-    public List<Map<String, Object>> selectAll() throws Exception {
-        return session.selectList(namespace + "selectAll");
+    public List<Map<String, Object>> selectAll(String user_id) throws Exception {
+        return session.selectList(namespace + "selectAll", user_id);
     }
 
     @Override

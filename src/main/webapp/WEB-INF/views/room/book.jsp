@@ -26,31 +26,31 @@
 <jsp:include page="/WEB-INF/views/common/user/header.jsp"/>
 <section>
 
-    <div class="screens-user-reservation__title">
+    <div class="screens-room-book__title">
         <h1>예약 요청</h1>
     </div>
 
     <%-- 중앙 컨텐츠 --%>
-    <div class="screens-user-reservation__container">
+    <div class="screens-room-book__container">
         <%-- left side --%>
-        <div class="screens-user-reservation__container__flex">
-            <div class="screens-user-reservation__container__left-side">
+        <div class="screens-room-book__container__flex">
+            <div class="screens-room-book__container__left-side">
 
-                <div class="screens-user-reservation__container__div-common">
-                    <h2 class="screens-user-reservation__text-size-reservation-room-info-h2">예약
+                <div class="screens-room-book__container__div-common">
+                    <h2 class="screens-room-book__text-size-reservation-room-info-h2">예약
                         정보</h2>
                 </div>
 
-                <div class="screens-user-reservation__container__div-common">
-                    <div class="screens-user-reservation__container__left-side--info-common">
+                <div class="screens-room-book__container__div-common">
+                    <div class="screens-room-book__container__left-side--info-common">
                         <h3>날짜</h3>
                         <div>12월 30일 ~ 1월 4일</div>
                     </div>
                     <span>수정</span>
                 </div>
 
-                <div class="screens-user-reservation__container__div-common">
-                    <div class="screens-user-reservation__container__left-side--info-common">
+                <div class="screens-room-book__container__div-common">
+                    <div class="screens-room-book__container__left-side--info-common">
                         <h3>게스트</h3>
                         <div>게스트 1명</div>
                     </div>
@@ -58,30 +58,30 @@
                 </div>
 
                 <%-- 결제 수단 --%>
-                <div class="screens-user-reservation__border-bound-top"></div>
-                <div class="screens-user-reservation__container__left-side--space-topdown">
+                <div class="screens-room-book__border-bound-top"></div>
+                <div class="screens-room-book__container__left-side--space-topdown">
                     <section>
                         <div>
-                            <div class="screens-user-reservation__container__left-side--space-topdown__header">
-                                <div class="screens-user-reservation__container__left-side--space-topdown__header__payment">
-                                    <h2 class="screens-user-reservation__text-size-reservation-room-info-h2">
+                            <div class="screens-room-book__container__left-side--space-topdown__header">
+                                <div class="screens-room-book__container__left-side--space-topdown__header__payment">
+                                    <h2 class="screens-room-book__text-size-reservation-room-info-h2">
                                         결제 수단</h2>
                                     <div style="display: flex">
-                                        <div class="screens-user-reservation__container__left-side--space-topdown__header__img">
+                                        <div class="screens-room-book__container__left-side--space-topdown__header__img">
                                             <img src="https://a0.muscache.com/airbnb/static/packages/assets/frontend/legacy-shared/svgs/payments/logo_visa.0adea522bb26bd90821a8fade4911913.svg">
                                         </div>
-                                        <div class="screens-user-reservation__container__left-side--space-topdown__header__img">
+                                        <div class="screens-room-book__container__left-side--space-topdown__header__img">
                                             <img src="https://a0.muscache.com/airbnb/static/packages/assets/frontend/legacy-shared/svgs/payments/logo_mastercard.f18379cf1f27d22abd9e9cf44085d149.svg">
                                         </div>
-                                        <div class="screens-user-reservation__container__left-side--space-topdown__header__img">
+                                        <div class="screens-room-book__container__left-side--space-topdown__header__img">
                                             <img src="https://a0.muscache.com/airbnb/static/packages/assets/frontend/legacy-shared/svgs/payments/logo_naver_pay.4e1254eb1a8052c11c88d1ebc4a44382.svg">
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="screens-user-reservation__container__left-side--space-topdown__header__select">
+                                <div class="screens-room-book__container__left-side--space-topdown__header__select">
                                     <button>
-                                        <div class="screens-user-reservation__container__left-side--space-topdown__header__select__box">
+                                        <div class="screens-room-book__container__left-side--space-topdown__header__select__box">
                                             <div style="display: flex; align-items: center">
                                                 <div style="margin-right: 16px">
                                                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -131,10 +131,10 @@
                 </div>
 
                 <%-- 필수입력정보 --%>
-                <div class="screens-user-reservation__border-bound-top"></div>
-                <div class="screens-user-reservation__container__left-side--space-topdown">
+                <div class="screens-room-book__border-bound-top"></div>
+                <div class="screens-room-book__container__left-side--space-topdown">
                     <div>
-                        <h2 class="screens-user-reservation__text-size-reservation-room-info-h2"
+                        <h2 class="screens-room-book__text-size-reservation-room-info-h2"
                             style="margin-bottom: 16px">
                             필수 입력
                             정보</h2>
@@ -178,26 +178,26 @@
 
 
             <%-- right side --%>
-            <div class="screens-user-reservation__container__right-side">
-                <div class="screens-user-reservation__container__right-side__inner-container">
+            <div class="screens-room-book__container__right-side">
+                <div class="screens-room-book__container__right-side__inner-container">
                     <div>
 
                         <%-- 1번째 박스 --%>
-                        <div class="screens-user-reservation__container__right-side__box-size">
+                        <div class="screens-room-book__container__right-side__box-size">
 
                             <%-- 이미지 --%>
-                            <div class="screens-user-reservation__right-side__box-size">
+                            <div class="screens-room-book__right-side__box-size">
                                 <img src="/resources/img/room/room1.png">
                             </div>
 
-                            <div class="screens-user-reservation__container__right-side__box-size__space-box">
+                            <div class="screens-room-book__container__right-side__box-size__space-box">
                                 <%-- 텍스트 박스 --%>
                                 <div>
                                     <div>
-                                        <div class="screens-user-reservation__container__right-side__review">
+                                        <div class="screens-room-book__container__right-side__review">
                                             집 전체
                                         </div>
-                                        <div class="screens-user-reservation__container__right-side__review--bigger">
+                                        <div class="screens-room-book__container__right-side__review--bigger">
                                             HaHa Haus (하하 하우스) - cozy flat in Itaewon
                                         </div>
                                     </div>
@@ -211,7 +211,7 @@
                                          style="display: block; height: 10px; width: 10px; fill: currentcolor;">
                                         <path fill-rule="evenodd"
                                               d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"></path>
-                                        <div class="screens-user-reservation__container__right-side__review">
+                                        <div class="screens-room-book__container__right-side__review">
                                             <span>4.97</span> (후기 36개)
                                         </div>
 
@@ -224,7 +224,7 @@
                                             focusable="false"
                                             style="display: block; height: 12px; width: 12px; fill: currentcolor;"><path
                                             d="m8.5 7.6 3.1-1.75 1.47-.82a.83.83 0 0 0 .43-.73V1.33a.83.83 0 0 0-.83-.83H3.33a.83.83 0 0 0-.83.83V4.3c0 .3.16.59.43.73l3 1.68 1.57.88c.35.2.65.2 1 0zm-.5.9a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z"></path></svg></span>
-                                    <div class="screens-user-reservation__container__right-side__review">
+                                    <div class="screens-room-book__container__right-side__review">
                                         슈퍼호스트
                                     </div>
                                 </div>
@@ -235,23 +235,23 @@
                         </div>
 
                         <%-- 2번째 박스 --%>
-                        <div class="screens-user-reservation__border-bound-top"></div>
-                        <div class="screens-user-reservation__container__right-side__flex-box-column">
+                        <div class="screens-room-book__border-bound-top"></div>
+                        <div class="screens-room-book__container__right-side__flex-box-column">
                             <div style="padding: 24px 0">
-                                <h2 class="screens-user-reservation__text-size-reservation-room-info-h2">
+                                <h2 class="screens-room-book__text-size-reservation-room-info-h2">
                                     요금 세부정보</h2>
                             </div>
 
                             <div>
-                                <div class="screens-user-reservation__container__right-side__second-box__sub-box">
+                                <div class="screens-room-book__container__right-side__second-box__sub-box">
                                     <div>₩95,000 x 5박</div>
                                     <div>₩475,000</div>
                                 </div>
-                                <div class="screens-user-reservation__container__right-side__second-box__sub-box">
+                                <div class="screens-room-book__container__right-side__second-box__sub-box">
                                     <div>청소비</div>
                                     <div>₩30,000</div>
                                 </div>
-                                <div class="screens-user-reservation__container__right-side__second-box__sub-box">
+                                <div class="screens-room-book__container__right-side__second-box__sub-box">
                                     <div>에어비앤비 서비스 수수료</div>
                                     <div>₩78,423</div>
                                 </div>
@@ -259,8 +259,8 @@
                         </div>
 
                         <%-- 3번째 박스 --%>
-                        <div class="screens-user-reservation__border-bound-top"></div>
-                        <div class="screens-user-reservation__container__right-side__flex-box-column__total-payment">
+                        <div class="screens-room-book__border-bound-top"></div>
+                        <div class="screens-room-book__container__right-side__flex-box-column__total-payment">
                             <div>총 합계(KRW)</div>
                             <div>₩583,423</div>
                         </div>
