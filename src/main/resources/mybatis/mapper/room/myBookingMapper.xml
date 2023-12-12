@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.universestay.project.resources.mybatis.mapper.room.myBookingsMapper">
+
+    <select id="selectMyBookings" parameterType="map" resultType="map">
+        select u.user_email, u.user_nickname,
+        r.user_id,
+        r.room_id,
+        r.room_address,
+        r.room_address_detail,
+        r.status_id room_status_id,
+        r.room_main_photo,
+        b.booking_id ,
+        b.status_id booking_status_id,
+        b.booking_checkin_date,
+        b.booking_checkout_date,
+        b.booking_checkin_time,
+        b.booking_checkout_time
+        from Room r, Booking b, User u
+        <choose>
+            <when test="status_id=='이용완료'">
+                where r.room_id = b.room_id and u.user_id = b.user_id and u.user_email = #{user_email} and b.status_id = 'B05';
+            </when>
+            <otherwise>
+                where r.room_id = b.room_id and u.user_id = b.user_id and u.user_email = #{user_email} and b.status_id != 'B05';
+            </otherwise>
+        </choose>
+    </select>
+
+    <insert id="insertReview" parameterType="RoomReviewDto">
+        insert into RoomReview (review_id, user_id, room_id, review_writer, review_start, review_ctt, created_id)
+        VALUES (#{review_id}, #{user_id}, #{room_id}, #{review_writer}, #{review_start}, #{review_ctt}, #{created_id});
+    </insert>
+
+</mapper>

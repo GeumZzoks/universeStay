@@ -4,9 +4,14 @@
 
 <mapper namespace="com.universestay.project.resources.mybatis.mapper.room.roomMapper">
     <select id="selectAll" resultType="map">
-        SELECT R.*, GROUP_CONCAT(RI.room_img_url SEPARATOR ', ') AS room_img_url_list
+        SELECT R.*
+             , GROUP_CONCAT(RI.room_img_url SEPARATOR ', ')      AS room_img_url_list
+             , CASE WHEN W.user_id IS NOT NULL THEN 1 ELSE 0 END AS has_wished
         FROM Room R
-                 LEFT JOIN RoomImg RI ON R.room_id = RI.room_id
+                 LEFT JOIN RoomImg RI
+                           ON R.room_id = RI.room_id
+                 LEFT JOIN WishList W
+                           ON R.room_id = W.room_id AND W.user_id = #{user_id}
         WHERE RI.room_img_url IS NOT NULL
         GROUP BY R.room_id;
     </select>
