@@ -88,14 +88,14 @@
                 <%--  TODO : 숙소 편의시설 등록 완료하고 구현하기 - 10개 끊어서 보여주기  --%>
 
                 <ul class="screens-room-roomDetail__section-3__info-2__desc2">
-                    <c:forEach var="roomImg" items="${roomImgList}">
+                    <c:forEach var="roomAmenity" items="${roomAmenities}" begin="1" end="10">
                         <li class="screens-room-roomDetail__section-3__li">
-                            <div class="screens-room-roomDetail__section-3__li__text">마리나 전망</div>
+                            <div class="screens-room-roomDetail__section-3__li__text">${roomAmenity[0]}</div>
                             <div class="screens-room-roomDetail__section-3__li__icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
                                      aria-hidden="true" role="presentation" focusable="false"
                                      style="display: block; height: 24px; width: 24px; fill: currentcolor;">
-                                    <path d="M2.61 1h13.34c.28-.02.58.08.8.33l.08.12 12 18a1 1 0 0 1-.72 1.54L28 21H17v2h12v1c0 1.84-.62 3.53-1.66 4.88l.13.1c.36.3.83.48 1.34.51l.19.01v2c-.95 0-1.87-.29-2.61-.83l-.2-.15c-.4-.33-.94-.52-1.52-.52-.52 0-1.01.15-1.4.41l-.13.1c-.77.65-1.77.99-2.8.99-.96 0-1.88-.29-2.62-.83l-.2-.15c-.4-.33-.94-.52-1.52-.52-.52 0-1 .15-1.39.41l-.14.1c-.76.65-1.77.99-2.8.99-.95 0-1.87-.29-2.61-.83l-.2-.15c-.4-.33-.95-.52-1.53-.52-.51 0-1 .15-1.38.41l-.14.1c-.7.6-1.6.93-2.55.98L3 31.5v-2c.52 0 1-.15 1.39-.41l.27-.21a7.99 7.99 0 0 1-1.64-4.3L3 24.26 2.98 23H15V9H2.61l1.34-4zm24.3 24H5.09l.02.09c.2 1.13.73 2.16 1.48 2.97a4.48 4.48 0 0 1 3.56.92c.4.33.95.52 1.53.52a2.4 2.4 0 0 0 1.52-.52A4.38 4.38 0 0 1 16 28c.95 0 1.87.29 2.61.83l.2.15c.4.33.94.52 1.52.52.52 0 1.01-.15 1.4-.41l.13-.1a4.38 4.38 0 0 1 3.3-.96l.25.03.08-.08a5.97 5.97 0 0 0 1.35-2.6l.06-.28zM17 5.3V19h9.13zM5.39 3l.66 2-.66 2H15V3z"></path>
+                                    <path d="${roomAmenity[1]}"></path>
                                 </svg>
                             </div>
                         </li>
