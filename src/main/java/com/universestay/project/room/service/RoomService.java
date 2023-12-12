@@ -1,9 +1,11 @@
 package com.universestay.project.room.service;
 
+import com.universestay.project.room.dto.RoomAmenityDto;
 import com.universestay.project.room.dto.RoomDto;
 import com.universestay.project.room.dto.RoomImgDto;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.HttpSession;
 
 public interface RoomService {
 
@@ -21,4 +23,7 @@ public interface RoomService {
     List<Map<String, Object>> lookUpAllRoomByCategory(String room_category_id) throws Exception;
 
     List<Map<String, Object>> lookUpAllRoomByView(String view_status_id) throws Exception;
+
+    Integer enroll(RoomDto roomDto, RoomAmenityDto roomAmenityDto, Integer room_view,
+            HttpSession session);
 }

@@ -23,4 +23,6 @@ public interface RoomDao {
     List<Map<String, Object>> selectAllByCategory(String room_category_id) throws Exception;
 
     List<Map<String, Object>> selectAllByView(String view_status_id) throws Exception;
+
+    Integer saveRoomDto(RoomDto roomDto) throws Exception;
 }
