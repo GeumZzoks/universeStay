@@ -2,10 +2,13 @@ package com.universestay.project.room.dao;
 
 import com.universestay.project.room.dto.RoomDto;
 import com.universestay.project.room.dto.RoomImgDto;
-import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Repository
 public class RoomDaoImpl implements RoomDao {
@@ -19,17 +22,46 @@ public class RoomDaoImpl implements RoomDao {
     }
 
     @Override
-    public List<RoomDto> selectAll() throws Exception {
-        return session.selectList(namespace + "selectAll");
+    public List<Map<String, Object>> selectAll(String user_id) throws Exception {
+        return session.selectList(namespace + "selectAll", user_id);
     }
 
     @Override
-    public RoomDto select(String room_id) throws Exception {
-        return session.selectOne(namespace + "select", room_id);
+    public Map<String, Object> select(String room_id, String user_id) throws Exception {
+        Map map = new HashMap();
+        map.put("user_id", user_id);
+        map.put("room_id", room_id);
+        return session.selectOne(namespace + "select", map);
     }
 
     @Override
     public List<RoomImgDto> select5RoomImg(String room_id) throws Exception {
         return session.selectList(namespace + "select5RoomImg", room_id);
+    }
+
+    public List<RoomDto> listHostRoom(String user_id) {
+        return session.selectList(namespace + "listHostRoom", user_id);
+    }
+    // 숙소테이블에 대표사진 컬럼을 추가 하기 전 코드
+//    public List<Map<String, Object>> listHostRoom(String user_id) {
+//        return session.selectList(namespace + "listHostRoom", user_id);
+//    }
+
+    @Override // 만약 DB에서 삭제 되지 않는 이슈를 고려하여 반환타입을 Integer 사용
+    public Integer statusHostroom(String room_id, String room_status_id) throws Exception {
+        Map<String, String> map = new HashMap<>();
+        map.put("room_id", room_id);
+        map.put("room_status_id", room_status_id);
+        return session.update(namespace + "statusHostroom", map);
+    }
+
+    @Override
+    public List<Map<String, Object>> selectAllByCategory(String room_category_id) throws Exception {
+        return session.selectList(namespace + "selectAllByCategory", room_category_id);
+    }
+
+    @Override
+    public List<Map<String, Object>> selectAllByView(String view_status_id) throws Exception {
+        return session.selectList(namespace + "selectAllByView", view_status_id);
     }
 }

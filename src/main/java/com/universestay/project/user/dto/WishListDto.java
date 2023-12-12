@@ -1,13 +1,9 @@
-package com.universestay.project.dto;
+package com.universestay.project.user.dto;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.*;
+
 import java.sql.Timestamp;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
@@ -15,10 +11,10 @@ import lombok.ToString;
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class LikeDto {
+public class WishListDto {
 
     @ApiModelProperty(notes = "좋아요 ID", example = "asdf1234-ee36-zxcd-6897-godfaker1234", required = true)
-    private String like_id;
+    private String wishlist_id;
 
     @ApiModelProperty(notes = "유저 ID", example = "0ca24692-89ea-11ee-b9d1-0242ac120002", required = true)
     private String user_id;
