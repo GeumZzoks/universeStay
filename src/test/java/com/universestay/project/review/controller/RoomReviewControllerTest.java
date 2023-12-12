@@ -39,4 +39,14 @@ public class RoomReviewControllerTest {
                         .getModelMap());
     }
 
+    @Test
+    public void 유저_리뷰목록_불러오기() throws Exception {
+        System.out.println(
+                mockMvc.perform(MockMvcRequestBuilders.get(
+                                "/user/reviews"))
+                        .andReturn()
+                        .getModelAndView()
+                        .getModelMap());
+    }
+
 }
