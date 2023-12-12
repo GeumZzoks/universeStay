@@ -56,6 +56,16 @@
                     </div>
                 </div>
             </div>
+            <div id="${wishListDto.room_id}" class="modal-div"
+                 style="position: fixed; bottom: 5%; left: 5%; width: 250px; height: 60px; display: none; z-index: 5;
+                         box-shadow: 1px 1px 4px 0 darkgray; border-radius: 10px; background-color: white;
+                        font-size: 12px; padding: 10px 10px 0 10px;">
+                <img class="modal-img" src="${wishListDto.room_main_photo}"
+                     style="float: left; width: 50px; height: 50px; margin-right: 10px; border-radius: 5px;">
+                <h4 style="float: left; color: #717171; margin-top: 6px;"><br><br>
+                    <h3 style="float: left; font-size: 14px; font-weight: 500; margin-top: 10px;">${wishListDto.room_name}</h3>
+                </h4>
+            </div>
 
         </c:forEach>
     </div>
@@ -99,9 +109,11 @@
                 dataType: "text",
                 data: {room_id: roomID},
                 success: function (response) {
+                    $('.modal-div').finish();
                     if (response === 'DEL_OK' || response === 'IST_OK') {
-                        button.parents('.screens-user-wishlist__room__wrapper').fadeOut();
-                        return false;
+                        button.parents('.screens-user-wishlist__room__wrapper').fadeOut('slow');
+                        $('.modal-div h4').text('위시리스트에서 삭제되었습니다.')
+                        $("#" + roomID).fadeIn('slow').delay(1000).fadeOut('slow');
                     } else {
                         alert("알 수 없는 문제가 발생했습니다. 다시 시도해주세요.");
                     }

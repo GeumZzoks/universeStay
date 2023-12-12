@@ -1,8 +1,8 @@
 #screens-user-wishlist__container {
     width: 100%;
-    min-width: 1200px;
     height: 60%;
     min-height: 400px;
+    display: block;
 }
 
 #screens-user-wishlist__container h2 {
@@ -13,19 +13,20 @@
 
 .screens-user-wishlist__main__wrapper {
     width: 90%;
-    margin-left: 5%;
-    float: left;
-    display: flex;
     flex-wrap: wrap;
+    display: flex;
+    float: left;
+    margin-left: 5%;
 }
 
 .screens-user-wishlist__room__wrapper {
     width: 300px;
-    margin-left: calc((100% - 1200px) / 5);
     height: 380px;
     display: flex;
     flex-direction: column;
+    clear: left;
     align-items: flex-start;
+    margin-left: calc((100% - 1200px) / 5);
     cursor: pointer;
 }
 
@@ -38,7 +39,9 @@
 .screens-user-wishlist__room__img__wrapper {
     width: 300px;
     height: 300px;
+    border-radius: 8%;
     margin-bottom: 10px;
+    overflow: hidden;
 }
 
 .screens-user-wishlist__room__wrapper img {
