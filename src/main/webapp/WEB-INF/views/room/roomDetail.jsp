@@ -333,9 +333,18 @@
             </div>
             <div class="screens-room-roomDetail__host-contact__contact-method">전화 또는 문자</div>
         </div>
-
-
     </div>
+    <div id="${room.room_id}" class="modal-div"
+         style="position: fixed; bottom: 5%; left: 3%; width: 250px; height: 60px; display: none; z-index: 5;
+                         box-shadow: 1px 1px 4px 0 darkgray; border-radius: 10px; background-color: white;
+                        font-size: 12px; padding: 10px 10px 0 10px;">
+        <img class="modal-img" src="${room.room_main_photo}"
+             style="float: left; width: 50px; height: 50px; margin-right: 10px; border-radius: 5px;">
+        <h4 style="float: left; color: #717171; margin-top: 6px; width: 170px;">
+            <h3 style="float: left; font-size: 14px; font-weight: 500; margin-top: 10px;">${room.room_name}</h3>
+        </h4>
+    </div>
+
     <jsp:include page="/WEB-INF/views/common/user/footer.jsp"/>
 
     <%--<!-- 카카오 지도 API : services 라이브러리 불러오기 -->--%>
@@ -385,8 +394,8 @@
                 // 변수 선언
                 // roomID는 list의 각 value값을 가져옴
                 var roomID = $(this).val();
-                var wished = "/resources/img/room/wished.png";
-                var unwished = "/resources/img/room/unwished.png";
+                let wished = "/resources/img/room/wished.png";
+                let unwished = "/resources/img/room/unwished.png";
 
                 // ajax
                 $.ajax({
@@ -395,6 +404,7 @@
                     dataType: "text",
                     data: {room_id: roomID},
                     success: function (response) {
+                        $('.modal-div').finish();
                         if (response === 'DEL_OK') {
                             wished = "/resources/img/room/unwished.png";
                             $('#wished').attr('src', wished);
@@ -402,7 +412,8 @@
                             unwished = "/resources/img/room/unwished.png";
                             $('#unwished').attr('src', unwished);
                             $('#unwished_text').html('저장하기')
-
+                            $('.modal-div h4').text('위시리스트에서 삭제되었습니다.')
+                            $("#" + roomID).fadeIn('slow').delay(3000).fadeOut('slow');
                         } else if (response === 'IST_OK') {
                             wished = "/resources/img/room/wished.png";
                             $('#wished').attr('src', wished);
@@ -410,7 +421,8 @@
                             unwished = "/resources/img/room/wished.png";
                             $('#unwished').attr('src', unwished);
                             $('#unwished_text').html('저장됨')
-
+                            $('.modal-div h4').text('위시리스트에 추가되었습니다.')
+                            $("#" + roomID).fadeIn('slow').delay(3000).fadeOut('slow');
                         } else {
                             alert("알 수 없는 문제가 발생했습니다. 다시 시도해주세요.");
                         }
