@@ -1,10 +1,4 @@
-<%@ page import="org.springframework.ui.Model" %><%--
-  Created by IntelliJ IDEA.
-  User: hannaryu
-  Date: 11/28/23
-  Time: 12:32 AM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="org.springframework.ui.Model" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
@@ -22,8 +16,6 @@
 <jsp:include page="/WEB-INF/views/common/user/nav.jsp"/>
 <section class="screens-user-main__main">
     <div class="screens-user-main__main__wrapper">
-
-    </div>
 
 
     <%--<<<<<<< HEAD--%>
@@ -66,7 +58,7 @@
     <%--            </div>--%>
     <%--        </c:forEach>--%>
     <%--=======--%>
-    <%--    </div>--%>
+    </div>
 </section>
 <jsp:include page="/WEB-INF/views/common/user/footer.jsp"/>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>

@@ -205,7 +205,8 @@
                     <div class="components-user-header__dropdown__option dropdown__option-msg">
                         <span>메시지</span>
                     </div>
-                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-reservation">
+                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-reservation"
+                    onclick="location.href = '/user/myPage/mybookings/'">
                         <span>여행</span></div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-wishlist"
                          onclick="location.href ='/user/wishLists'">
@@ -216,7 +217,8 @@
                         <span>나의 쿠폰</span></div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-notice">
                         <span>공지사항</span></div>
-                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-event">
+                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-event"
+                         onclick="location.href ='/event'">
                         <span>이벤트</span></div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-account"
                          onclick="location.href ='/user/myPage/info'">
@@ -232,6 +234,11 @@
                         <span>회원가입</span></div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-sign-in">
                         <span>로그인</span></div>
+                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-notice">
+                        <span>공지사항</span></div>
+                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-event"
+                         onclick="location.href ='/event'">
+                        <span>이벤트</span></div>
                     <%}%>
 
                 </div>

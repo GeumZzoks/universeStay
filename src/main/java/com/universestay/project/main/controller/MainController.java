@@ -3,6 +3,8 @@ package com.universestay.project.main.controller;
 import com.universestay.project.common.MainSearchCondition;
 import com.universestay.project.common.PageHandler;
 import com.universestay.project.common.SearchCondition;
+import com.universestay.project.admin.dto.EventDto;
+import com.universestay.project.admin.service.EventService;
 import com.universestay.project.room.service.RoomService;
 import com.universestay.project.user.dto.UserDto;
 import com.universestay.project.user.service.ProfileImgService;
@@ -35,6 +37,23 @@ public class MainController {
 
     @Autowired
     WishListService wishListService;
+
+    @Autowired
+    EventService eventService;
+
+    @GetMapping("/event")
+    public String main(Model model) {
+        try {
+            List<EventDto> eventMainDto = eventService.selectMain();
+            System.out.println("eventMainDto = " + eventMainDto);
+            model.addAttribute("eventMainDto", eventMainDto);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "main/eventPage";
+    }
 
     @GetMapping("/")
     public String main(HttpSession session, Model model)

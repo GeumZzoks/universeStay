@@ -60,4 +60,9 @@ public class RoomDaoImpl implements RoomDao {
         map.put("room_status_id", room_status_id);
         return session.update(namespace + "statusHostroom", map);
     }
+
+    @Override
+    public Integer saveRoomDto(RoomDto roomDto) throws Exception {
+        return session.insert(namespace + "saveRoomDto", roomDto);
+    }
 }

@@ -156,4 +156,19 @@
         <include refid="statusCondition"></include>
         WHERE room_id = #{room_id}
     </update>
+
+    <insert id="saveRoomDto" parameterType="RoomDto">
+        INSERT INTO Room
+        VALUES (#{room_id}, #{room_category_id}, #{user_id}, #{status_id}, #{room_status_id},
+                #{room_name}, #{room_address}, #{room_address_detail},
+                'https://a0.muscache.com/im/pictures/miso/Hosting-54283684/original/5283e5f3-f75e-4b52-8b20-ab1dc01f7cf6.png?im_w=720',
+                #{room_total_desc},
+                #{room_space_desc}, #{room_etc_desc}, '카카오톡, 전화',
+                '10:00', '12:00', #{room_weekday_price}, #{room_weekend_price},
+                #{room_standard_capa}, #{room_max_capa},
+                #{room_extra_person_fee}, #{room_is_auto_aprv}, #{room_stars_avg},
+                #{room_bedroom_cnt}, #{room_bed_cnt},
+                #{room_bathroom_cnt}, now(), #{created_id}, now(), #{updated_id})
+    </insert>
+  
 </mapper>
