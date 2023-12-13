@@ -20,5 +20,5 @@
         FROM RoomAmenity
         WHERE room_id = #{room_id}
     </select>
-    
+
 </mapper>

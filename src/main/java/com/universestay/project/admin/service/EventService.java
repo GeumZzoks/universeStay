@@ -10,6 +10,8 @@ public interface EventService {
 
     EventDto select(Integer event_id) throws Exception;
 
+    List<EventDto> selectMain() throws Exception;
+
     String getAdminUuid(String admin_email) throws Exception;
 
     List<EventDto> getList() throws Exception;

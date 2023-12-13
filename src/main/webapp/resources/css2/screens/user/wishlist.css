@@ -1,31 +1,32 @@
 #screens-user-wishlist__container {
     width: 100%;
-    min-width: 1200px;
     height: 60%;
     min-height: 400px;
+    display: block;
 }
 
 #screens-user-wishlist__container h2 {
-    margin: 50px 0 30px 8%;
+    margin: 30px 0 10px 6%;
     font-size: 24px;
     font-weight: 500;
 }
 
 .screens-user-wishlist__main__wrapper {
     width: 90%;
-    margin-left: 5%;
-    float: left;
-    display: flex;
     flex-wrap: wrap;
+    display: flex;
+    float: left;
+    margin-left: 5%;
 }
 
 .screens-user-wishlist__room__wrapper {
-    width: 20%;
-    margin-left: 4%;
+    width: 300px;
     height: 380px;
     display: flex;
     flex-direction: column;
+    clear: left;
     align-items: flex-start;
+    margin-left: calc((100% - 1200px) / 5);
     cursor: pointer;
 }
 
@@ -36,36 +37,55 @@
 }
 
 .screens-user-wishlist__room__img__wrapper {
-    width: 260px;
-    height: 260px;
+    width: 300px;
+    height: 300px;
+    border-radius: 8%;
     margin-bottom: 10px;
+    overflow: hidden;
 }
 
 .screens-user-wishlist__room__wrapper img {
-    width: 260px;
-    height: 260px;
+    width: 300px;
+    height: 300px;
 }
 
 .screens-user-wishlist__room-location {
-    width: 50%;
+    width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
 .screens-user-wishlist__room-title {
-    width: 50%;
+    width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-}
-
-.screens-user-wishlist__room-price__wrapper {
+    float: left;
     margin-top: 4px;
 }
 
-.screens-user-wishlist__room-price {
+.screens-user-wishlist__room-info__wrapper {
+    position: relative;
+    width: 100%;
     float: left;
+}
+
+.screens-user-wishlist__room-detail__wrapper {
+    width: 140px;
+}
+
+
+.screens-user-wishlist__room-price__wrapper {
+    width: 140px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.screens-user-wishlist__room-price {
+    float: right;
+    margin-top: 4px;
 }
 
 .screens-user-wishlist__room-stars {
@@ -74,8 +94,8 @@
 
 .screens-user-wishlist-btn {
     position: relative;
-    margin-left: 210px;
-    top: -260px;
+    margin-left: 260px;
+    top: -305px;
 }
 
 .screens-user-wishlist-btn__wished {
@@ -85,8 +105,8 @@
     background-repeat: no-repeat;
     background-size: contain;
     border: 0;
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     z-index: 4;
 }
 
@@ -96,8 +116,8 @@
     background-repeat: no-repeat;
     background-size: contain;
     border: 0;
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     cursor: pointer;
     transform: scale(1.2, 1.2);
     transition-duration: 400ms;
@@ -109,8 +129,8 @@
     background-repeat: no-repeat;
     background-size: contain;
     border: 0;
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     transform: scale(1.4, 1.4);
     transition-duration: 100ms;
 }

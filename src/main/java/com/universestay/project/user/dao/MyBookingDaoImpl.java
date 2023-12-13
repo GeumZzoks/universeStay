@@ -1,4 +1,4 @@
-package com.universestay.project.room.dao;
+package com.universestay.project.user.dao;
 
 import com.universestay.project.user.dto.RoomReviewDto;
 import org.apache.ibatis.session.SqlSession;
@@ -13,7 +13,7 @@ public class MyBookingDaoImpl implements MyBookingDao {
 
     @Autowired
     private SqlSession session;
-    private static String namespace = "com.universestay.project.resources.mybatis.mapper.room.myBookingsMapper.";
+    private static String namespace = "com.universestay.project.resources.mybatis.mapper.user.myBookingsMapper.";
 
     @Override
     public List<Map<String, Object>> selectMyBookings(Map map) throws Exception {

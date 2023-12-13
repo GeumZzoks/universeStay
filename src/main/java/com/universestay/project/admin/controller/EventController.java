@@ -164,10 +164,19 @@ public class EventController {
             String id = eventService.select(event_id).getAdmin_id();
             // 수정페이지로 이동하려는 사람이 작성자와 일치하는지 확인
             // 일치하지 않으면 아예 수정페이지로 접근할 수 없다
+            String start = eventService.select(event_id).getEvent_start_date();
+            String expire = eventService.select(event_id).getEvent_expire_date();
+            String event_start_val = start.substring(0, 10);
+            String event_expire_val = expire.substring(0, 10);
+
             if (adminUuid.equals(id)) {
                 // 권한이 있을경우 수정하고자 하는 게시글의 DB정보를 모델로 저장
                 EventDto eventDto = eventService.select(event_id);
-                m.addAttribute(eventDto);
+                m.addAttribute("eventDto", eventDto);
+                m.addAttribute("start", event_start_val);
+                m.addAttribute("expire", event_expire_val);
+
+                System.out.println(event_start_val);
             } else {
                 // 권한이 없을경우 예외로 던짐
                 throw new Exception("Update Denied.");
