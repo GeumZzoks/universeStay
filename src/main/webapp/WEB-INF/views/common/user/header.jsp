@@ -33,8 +33,7 @@
             <button class="components-user-header__dropdown components-user-header__header__searchbar__where-btn components-user-header__button">
                 <span class="components-user-header__header__searchbar__main_txt">어디로</span>
                 <div class="components-user-header__header__searchbar__sub_txt components-user-header__where__default">
-                    국내
-                    전체
+                    국내 전체
                 </div>
                 <%--'어디로'버튼 드롭다운--%>
                 <div class="components-user-header__dropdown-div components-user-header__header__searchbar__where">
@@ -112,9 +111,9 @@
             <%--예산 버튼 (수정 필요)--%>
             <div>
                 <button class="components-user-header__dropdown components-user-header__header__searchbar__money-btn components-user-header__button">
-                    <span class="components-user-header__header__searchbar__main_txt">1박당 예산</span>
+                    <span class="components-user-header__header__searchbar__main_txt">총 예산</span>
                     <div class="components-user-header__header__searchbar__sub_txt"><span
-                            class="components-user-header__header__searchbar__sub_txt__min">5.0</span>만원
+                            class="components-user-header__header__searchbar__sub_txt__min">0.0</span>만원
                         부터 <span
                                 class="components-user-header__header__searchbar__sub_txt__max">20.0</span>만원
                         까지
@@ -127,7 +126,7 @@
                                 <div class="components-user-header__input-wrap">
                                     <input type="text" name="min_input"
                                            class="components-user-header__input-field components-user-header__min-input"
-                                           placeholder="~원 부터" value="50000"
+                                           placeholder="~원 부터" value="0"
                                     >
                                     <span>최소 금액</span>
                                 </div>
@@ -189,8 +188,7 @@
                     <img class="components-user-header__header__profile__img"
                          src="${profileImgUrl}"/>
                     <%
-                    } else  //세션에 'user_email'이라는 값이 저장되어 있지 않으면(즉, 로그아웃 상태면) 아래 드롭다운을 보여준다.
-                    {
+                    } else {
                     %>
                     <img class="components-user-header__header__profile__img"
                          src="/resources/img/user/default_profile_icon.png"/>
