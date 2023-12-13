@@ -1,5 +1,6 @@
 package com.universestay.project.main.controller;
 
+import com.universestay.project.common.MainSearchCondition;
 import com.universestay.project.common.PageHandler;
 import com.universestay.project.common.SearchCondition;
 import com.universestay.project.room.service.RoomService;
@@ -127,6 +128,9 @@ public class MainController {
                 // 총 페이지 숫자를 리스트에 추가해서 넣기
                 roomList.get(i).put("totalPageCount", totalPageCount);
             }
+            System.out.println("roomList = " + roomList);
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
