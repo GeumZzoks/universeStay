@@ -15,7 +15,7 @@
 </head>
 
 <%
-    // 쿠키를 가지고 있는지 확인하는 과정
+    // 쿠키 확인 과정
     String userEmail = "";
     boolean hasCookie = false;
     Cookie[] cookies = request.getCookies();
@@ -27,13 +27,6 @@
             }
         }
     }
-    // 유저 이메일을 담을 변수 선언
-    // 쿠키가 있는지 확인하는 변수 선언
-    // 모든 쿠키를 가지고 와
-    // 꺼낸 후
-    // 유저의 이메일과 같은 쿠키를 찾고
-    // 찾은 값을 각 변수에 저장한다.
-
 %>
 
 <body class="screens-user-login">
