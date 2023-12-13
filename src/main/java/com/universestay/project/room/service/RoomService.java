@@ -22,6 +22,10 @@ public interface RoomService {
 
     Integer statusHostroom(String room_id, String room_status_id) throws Exception;
 
+    List<Map<String, Object>> lookUpAllRoomByCategory(String room_category_id) throws Exception;
+
+    List<Map<String, Object>> lookUpAllRoomByView(String view_status_id) throws Exception;
+
     Integer enroll(RoomDto roomDto, RoomAmenityDto roomAmenityDto, Integer room_view,
             HttpSession session);
 }

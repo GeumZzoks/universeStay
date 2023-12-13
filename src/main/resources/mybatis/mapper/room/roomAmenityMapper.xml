@@ -15,4 +15,10 @@
                 #{updated_id})
     </insert>
 
+    <select id="lookUpRoomAmenity" resultType="RoomAmenityDto">
+        SELECT *
+        FROM RoomAmenity
+        WHERE room_id = #{room_id}
+    </select>
+
 </mapper>

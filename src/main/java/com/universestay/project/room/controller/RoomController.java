@@ -3,6 +3,7 @@ package com.universestay.project.room.controller;
 import com.universestay.project.room.dto.RoomAmenityDto;
 import com.universestay.project.room.dto.RoomDto;
 import com.universestay.project.room.dto.RoomImgDto;
+import com.universestay.project.room.service.RoomAmenityService;
 import com.universestay.project.room.service.RoomService;
 import com.universestay.project.user.dao.UserWithdrawalDao;
 import com.universestay.project.user.dto.UserDto;
@@ -34,6 +35,8 @@ public class RoomController {
     UserWithdrawalDao userWithdrawalDao;
     @Autowired
     ProfileImgServiceImpl profileImgService;
+    @Autowired
+    RoomAmenityService roomAmenityService;
 
     @Autowired
     UserInfoService userInfoService;
@@ -53,6 +56,7 @@ public class RoomController {
 
             Map<String, Object> room = roomService.lookUpRoom(room_id, user_id);
             List<RoomImgDto> roomImgs = roomService.lookUp5RoomImg(room_id);
+            List<String[]> roomAmenities = roomAmenityService.lookUpRoomAmenity(room_id);
             UserDto host = userWithdrawalDao.selectUserByUuid(user_id);
             String profileImgUrl = profileImgService.getProfileImgUrl(user_id);
 
@@ -65,6 +69,11 @@ public class RoomController {
             model.addAttribute("roomImgList", roomImgs);
             model.addAttribute("host", host);
             model.addAttribute("profileImgUrl", profileImgUrl);
+            model.addAttribute("roomAmenities", roomAmenities);
+            for (String[] roomAmenity : roomAmenities) {
+                System.out.println("roomAmenity[0] = " + roomAmenity[0]);
+                System.out.println("roomAmenity[1] = " + roomAmenity[1]);
+            }
 
             return "room/roomDetail";
         } catch (Exception e) {

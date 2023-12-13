@@ -20,4 +20,9 @@ public class RoomAmenityDaoImpl implements RoomAmenityDao {
     public Integer saveRoomAmenityDto(RoomAmenityDto roomAmenityDto) throws Exception {
         return session.insert(namespace + "saveRoomAmenityDto", roomAmenityDto);
     }
+
+    @Override
+    public RoomAmenityDto lookUpRoomAmenity(String room_id) throws Exception {
+        return session.selectOne(namespace + "lookUpRoomAmenity", room_id);
+    }
 }
