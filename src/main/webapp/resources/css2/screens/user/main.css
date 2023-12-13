@@ -1,8 +1,13 @@
+.screens-user-main__body {
+}
+
 .screens-user-main__main {
   z-index: 99;
   width: 100%;
+  height: 70%;
   display: flex;
   justify-content: center;
+  margin-bottom: 500px;
 }
 
 .screens-user-main__main__wrapper {
@@ -49,6 +54,64 @@
 }
 
 
+.screens-user-main__room-price {
+  font-weight: bold;
+  font-size: 14px;
+  font-family: NotoSansKR-Regular;
+}
+
+.screens-user-main__wishlist {
+  position: absolute;
+  margin-left: 280px;
+  z-index: 2;
+}
+
+.screens-user-main__wishlist__wished {
+  position: absolute;
+  top: 15px;
+  background: url("/resources/img/room/wished.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 0;
+  width: 25px;
+  height: 25px;
+}
+
+.screens-user-main__wishlist__wished:hover {
+  cursor: pointer;
+  transform: scale(1.2, 1.2);
+  transition-duration: 400ms;
+}
+
+.screens-user-main__wishlist__wished:active {
+  transform: scale(1.4, 1.4);
+  transition-duration: 100ms;
+}
+
+.screens-user-main__wishlist__not_wished {
+  position: absolute;
+  top: 15px;
+  background: url("/resources/img/room/unwished.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 0;
+  width: 25px;
+  height: 25px;
+}
+
+
+.screens-user-main__wishlist__not_wished:hover {
+  cursor: pointer;
+  transform: scale(1.2, 1.2);
+  transition-duration: 400ms;
+}
+
+.screens-user-main__wishlist__not_wished:active {
+  transform: scale(1.4, 1.4);
+  transition-duration: 100ms;
+}
+
+
 /*슬라이더 css*/
 
 
@@ -74,6 +137,7 @@
 }
 
 .swiper-button-next:after, .swiper-button-prev:after {
+  z-index: 99;
   font-size: 25px;
   color: #FFFFFF;
 }

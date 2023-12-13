@@ -31,10 +31,10 @@
 @import url(screens/user/main.css);
 @import url(screens/user/withdrawal.css);
 @import url(screens/user/userInfo.css);
+@import url(screens/user/wishlist.css);
 
 @import url(screens/room/roomDetail.css);
 @import url(screens/room/book.css);
-@import url(screens/room/roomDelete.css);
 @import url(screens/room/bookShare.css);
 @import url(screens/room/roomManagement.css);
 @import url(screens/room/roomEnroll.css);

@@ -86,30 +86,30 @@
 <jsp:include page="/WEB-INF/views/common/user/footer.jsp"/>
 
 <script>
-    function show(anything) {
-        document.querySelector('.screens-user-withdrawal__dropdown__textBox').value = anything;
-    }
+  function show(anything) {
+    document.querySelector('.screens-user-withdrawal__dropdown__textBox').value = anything;
+  }
 
-    let dropdown = document.querySelector('.screens-user-withdrawal__dropdown');
+  let dropdown = document.querySelector('.screens-user-withdrawal__dropdown');
 
-    dropdown.onclick = function () {
-        dropdown.classList.toggle('active');
-    }
+  dropdown.onclick = function () {
+    dropdown.classList.toggle('active');
+  }
 
-    function withdrawalUser() {
-        if (!confirm("정말 삭제하시겠습니까?")) return;
+  function withdrawalUser() {
+    if (!confirm("정말 삭제하시겠습니까?")) return;
 
-        let f = document.createElement('form');
-        f.setAttribute('method', 'post');
-        f.setAttribute('action', '/user/myPage/withdrawal?user_email=<%= loginEmail %>');
-        document.body.appendChild(f);
-        f.submit();
-    }
+    let f = document.createElement('form');
+    f.setAttribute('method', 'post');
+    f.setAttribute('action', '/user/myPage/withdrawal?user_email=<%= loginEmail %>');
+    document.body.appendChild(f);
+    f.submit();
+  }
 
-    const toBackBtn = document.querySelector(".screens-user-withdrawal__box-back-delete__btn-back");
-    toBackBtn.addEventListener("click", () => {
-        location.href = "/user/myPage/info"
-    })
+  const toBackBtn = document.querySelector(".screens-user-withdrawal__box-back-delete__btn-back");
+  toBackBtn.addEventListener("click", () => {
+    location.href = "/user/myPage/info"
+  });
 </script>
 </body>
 </html>

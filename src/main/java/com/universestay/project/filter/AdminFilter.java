@@ -16,8 +16,8 @@ import org.springframework.util.PatternMatchUtils;
 @WebFilter(filterName = "AdminFilter", urlPatterns = {"/admin/*"})
 public class AdminFilter implements Filter {
 
-    private static final String[] whitelist = {"/admin/user/*", "/admin/inquiry/*"};
-//    private static final String[] whitelist = {"/admin/user/list", "/admin/user/info", "/admin/user/update"};
+    private static final String[] whitelist = {};
+//    private static final String[] whitelist = {"/admin/user/*", "/admin/inquiry/*"};
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

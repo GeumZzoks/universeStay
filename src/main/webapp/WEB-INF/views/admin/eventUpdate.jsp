@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
 
 <html>
 <head>
@@ -38,20 +40,45 @@
             <div class="screens-admin-event__content-input-div">
                 <h5 class="screens-admin-event__content-input__type">이벤트 상태</h5>
                 <select name="status_id">
-                    <option value="E01">준비중</option>
-                    <option value="E02">진행중</option>
-                    <option value="E03">종료</option>
+                    <c:choose>
+                        <c:when test="${eventDto.status_id eq 'E01'}">
+                            <option value="E01" selected>준비중</option>
+                            <option value="E02">진행중</option>
+                            <option value="E03">종료</option>
+                        </c:when>
+                        <c:when test="${eventDto.status_id eq 'E02'}">
+                            <option value="E01">준비중</option>
+                            <option value="E02" selected>진행중</option>
+                            <option value="E03">종료</option>
+                        </c:when>
+                        <c:otherwise>
+                            <option value="E01">준비중</option>
+                            <option value="E02">진행중</option>
+                            <option value="E03" selected>종료</option>
+                        </c:otherwise>
+                    </c:choose>
                 </select>
                 <h5 class="screens-admin-event__content-input__type">공개여부</h5>
-                <input name="event_is_open" type="radio" class="screens-admin-event__content-input-div__radio" value="N"
-                       checked>비공개
-                <input name="event_is_open" type="radio" class="screens-admin-event__content-input-div__radio"
-                       value="Y">공개
+                <c:choose>
+                    <c:when test="${eventDto.event_is_open eq 'Y'}">
+                        <input name="event_is_open" type="radio" class="screens-admin-event__content-input-div__radio"
+                               value="N">비공개
+                        <input name="event_is_open" type="radio" class="screens-admin-event__content-input-div__radio"
+                               value="Y" checked>공개
+                    </c:when>
+                    <c:otherwise>
+                        <input name="event_is_open" type="radio" class="screens-admin-event__content-input-div__radio"
+                               value="N" checked>비공개
+                        <input name="event_is_open" type="radio"
+                               class="screens-admin-event__content-input-div__radio" value="Y">공개
+                    </c:otherwise>
+                </c:choose>
                 <h5 class="screens-admin-event__content-input__type">이벤트 시작일</h5>
                 <input name="event_start_date" type="date" class="screens-admin-event__content-input__date"
-                       min="${startOfToday}">
+                       value="${start}">
                 <h5 class="screens-admin-event__content-input__type">이벤트 종료일</h5>
-                <input name="event_expire_date" type="date" class="screens-admin-event__content-input__date">
+                <input name="event_expire_date" type="date" class="screens-admin-event__content-input__date"
+                       value="${expire}">
                 <h5 class="screens-admin-event__content-input__type">첨부파일(이미지)</h5>
                 <div class="screens-admin-event__content-input__filebox">
                     <input class="upload-name" placeholder="첨부파일">
