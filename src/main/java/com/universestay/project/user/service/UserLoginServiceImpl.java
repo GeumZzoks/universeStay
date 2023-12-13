@@ -73,6 +73,7 @@ public class UserLoginServiceImpl implements UserLoginService, PasswordEncryptio
             if (userInfo != null) {
                 String userEmail = userInfo.getUser_email();
                 String userPwd = userInfo.getUser_pwd();
+                String userId = userInfo.getUser_id();
 
                 // 암호화된 비밀번호로 바꿔주기
                 String encrypt_pwd = encrypt(user_email, user_pwd);
@@ -88,6 +89,7 @@ public class UserLoginServiceImpl implements UserLoginService, PasswordEncryptio
                     }
                     // 세션에 저장
                     session.setAttribute("user_email", user_email);
+                    session.setAttribute("user_id", userId);
                     session.setMaxInactiveInterval(30 * 60);
                     return userInfo;
 

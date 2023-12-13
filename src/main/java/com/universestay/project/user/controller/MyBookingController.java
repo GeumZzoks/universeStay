@@ -1,6 +1,6 @@
-package com.universestay.project.room.controller;
+package com.universestay.project.user.controller;
 
-import com.universestay.project.room.service.MyBookingService;
+import com.universestay.project.user.service.MyBookingService;
 import com.universestay.project.user.dto.RoomReviewDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/user/mybookings")
+@RequestMapping("/user/myPage/mybookings")
 public class MyBookingController {
 
     @Autowired
@@ -32,7 +32,7 @@ public class MyBookingController {
     @GetMapping("/")
     public String myBooking(HttpSession session, Model model) throws Exception {
         // TODO: 2023-12-09 나중에 지우기 세션 코드 넣기
-        session.setAttribute("user_email", "ming7606@naver.com");
+//        session.setAttribute("user_email", "ming7606@naver.com");
         // TODO: 2023-12-09 여기까지----------------
 
         System.out.println("URL ---- /user/mybookings/");
@@ -73,23 +73,41 @@ public class MyBookingController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "room/myBookings";
+        return "user/myBookings";
     }
 
-    @PostMapping
-    public String writeReview(RoomReviewDto dto, Model model, HttpSession session){
+    @PostMapping("/writereview")
+    public String writeReview(String room_id, String review_stars, String review_ctt, HttpSession session) {
+        String str = review_stars;
+        Double double1 = null;
+        if (!str.equals("null")) {
+            double1 = Double.parseDouble(str);
+        }
+        System.out.println("double1 = " + double1);
+
         String uuid_review_id = UUID.randomUUID().toString();
-        dto.setReview_id(uuid_review_id);
+        RoomReviewDto dto2 = new RoomReviewDto();
+        dto2.setReview_id(uuid_review_id);
+        dto2.setUser_id((String) session.getAttribute("user_id"));
+        dto2.setRoom_id(room_id);
+        dto2.setReview_writer((String) session.getAttribute("user_id"));
+        if (double1 != null) {
+            if (double1 >= 0.0 && double1 <= 5.0) {
+                dto2.setReview_stars(double1);
+            }
+        }
 
+        dto2.setReview_ctt(review_ctt);
+        dto2.setCreated_id((String) session.getAttribute("user_id"));
+        System.out.println("agasgsagsagsag");
         try {
-            int result = myBookingService.writeRoomReview(dto);
-
-
-
-        } catch (Exception e){
+            System.out.println("111111111111111");
+            int result = myBookingService.writeRoomReview(dto2);
+            System.out.println("222222222222");
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return "room/myBookings";
+        return "redirect: /user/myPage/mybookings/";
     }
 }
