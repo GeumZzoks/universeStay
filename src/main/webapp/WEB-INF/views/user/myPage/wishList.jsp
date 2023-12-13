@@ -57,12 +57,16 @@
                 </div>
             </div>
             <div id="${wishListDto.room_id}" class="modal-div"
-                 style="position: fixed; bottom: 5%; left: 5%; width: 250px; height: 60px; display: none; z-index: 5;
+
+                 style="position: fixed; bottom: 5%; left: 3%; width: 250px; height: 60px; display: none; z-index: 5;
+
                          box-shadow: 1px 1px 4px 0 darkgray; border-radius: 10px; background-color: white;
                         font-size: 12px; padding: 10px 10px 0 10px;">
                 <img class="modal-img" src="${wishListDto.room_main_photo}"
                      style="float: left; width: 50px; height: 50px; margin-right: 10px; border-radius: 5px;">
-                <h4 style="float: left; color: #717171; margin-top: 6px;"><br><br>
+
+                <h4 style="float: left; color: #717171; margin-top: 6px; width: 170px;"><br><br>
+
                     <h3 style="float: left; font-size: 14px; font-weight: 500; margin-top: 10px;">${wishListDto.room_name}</h3>
                 </h4>
             </div>
