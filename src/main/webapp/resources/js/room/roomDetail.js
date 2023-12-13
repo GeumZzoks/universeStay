@@ -37,3 +37,43 @@ geocoder.addressSearch(roomAddress, function (result, status) {
     map.setCenter(coords);
   }
 });
+
+// 편의시설 모달
+const btnModalAmenity = document.querySelector(
+    ".screens-room-roomDetail__section-3__room-info__info-2__modal-btn");
+const btnModalCloseAmenity = document.querySelector(
+    ".screens-room-roomDetail__section-3__room-info__info-2__modal-btn-close");
+const wrapper = document.querySelector(
+    ".screens-room-roomDetail__wrapper");
+const modalBack = document.querySelector(
+    ".screens-room-roomDetail__modal-back");
+let currentScrollY;
+
+btnModalAmenity.addEventListener("click", openModal);
+btnModalCloseAmenity.addEventListener("click", closeModal);
+
+function openModal() {
+  wrapper.classList.add('modal-open');
+  modalBack.setAttribute("style", "display: block;");
+  currentScrollY = window.scrollY;
+  document.body.style.position = 'fixed';
+  document.body.style.width = '100%';
+  document.body.style.top = `-${currentScrollY}px`; // 현재 스크롤 위치
+  document.body.style.overflowY = 'scroll';
+
+  setTimeout(() => window.addEventListener("click", (e) => {
+    e.target === modalBack ? closeModal() : false;
+  }), 0);
+}
+
+function closeModal() {
+  wrapper.classList.remove('modal-open');
+  modalBack.setAttribute("style", "display: none;");
+  document.body.style.position = '';
+  document.body.style.width = '';
+  document.body.style.top = '';
+  document.body.style.overflowY = '';
+  window.scrollTo(0, currentScrollY);
+
+  window.removeEventListener("click", closeModal);
+}

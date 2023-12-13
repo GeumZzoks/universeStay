@@ -101,9 +101,45 @@
                         </li>
                     </c:forEach>
                 </ul>
-                <button class="screens-room-roomDetail__btn screens-room-roomDetail__btn-square screens-room-roomDetail__btn-shrink">
+                <button class="screens-room-roomDetail__btn screens-room-roomDetail__btn-square screens-room-roomDetail__btn-shrink screens-room-roomDetail__section-3__room-info__info-2__modal-btn">
                     편의시설 40개 모두 보기
                 </button>
+                <div class="screens-room-roomDetail__section-3__room-info__info-2__modal-outer">
+                    <div class="screens-room-roomDetail__section-3__room-info__info-2__modal-inner">
+                        <div class="screens-room-roomDetail__section-3__room-info__info-2__modal-btn-close-container">
+                            <button class="screens-room-roomDetail__btn screens-room-roomDetail__section-3__room-info__info-2__modal-btn-close">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
+                                     aria-hidden="true" role="presentation" focusable="false"
+                                     style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 3; overflow: visible;">
+                                    <path d="m6 6 20 20M26 6 6 26"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="screens-room-roomDetail__section-3__room-info__info-2__modal-inner-container">
+                            <div class="screens-room-roomDetail__modal__room-amenity-title">숙소 편의시설
+                            </div>
+                            <c:set var="amenity_type" value=""></c:set>
+                            <c:forEach var="roomAmenity" items="${roomAmenities}">
+                                <c:if test="${amenity_type ne roomAmenity[2]}">
+                                    <div class="screens-room-roomDetail__modal__room-amenity-type">${roomAmenity[2]}</div>
+                                    <c:set var="amenity_type" value="${roomAmenity[2]}"></c:set>
+                                </c:if>
+                                <div class="screens-room-roomDetail__modal__room-amenity">
+                                    <div class="screens-room-roomDetail__modal__room-amenity-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
+                                             aria-hidden="true" role="presentation"
+                                             focusable="false"
+                                             style="display: block; height: 24px; width: 24px; fill: currentcolor;">
+                                            <path d="${roomAmenity[1]}"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="screens-room-roomDetail__modal__room-amenity-name">${roomAmenity[0]}</div>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                </div>
+                <div class="screens-room-roomDetail__modal-back"></div>
             </div>
             <div class="screens-room-roomDetail__padding-content screens-room-roomDetail__section-3__room-info__info-3">
                 <div class="screens-room-roomDetail__section-3__info-3__container">
