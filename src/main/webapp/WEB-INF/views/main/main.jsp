@@ -17,98 +17,64 @@
     <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 
 </head>
-<body>
+<body class="screens-user-main__body">
 <jsp:include page="/WEB-INF/views/common/user/header.jsp"/>
 <jsp:include page="/WEB-INF/views/common/user/nav.jsp"/>
-
 <section class="screens-user-main__main">
     <div class="screens-user-main__main__wrapper">
-        <c:forEach var="room" items="${roomList}">
-            <div class="screens-user-main__room__wrapper" value="${room.room_id}" data-key="test">
-                <div class="screens-user-main__room__img__wrapper">
-                    <div class="swiper mySwiper">
-                        <div class="swiper-wrapper">
-                            <c:forEach var="img" items="${room.room_img_url_list}">
-                                <div class="swiper-slide">
-                                    <img src="${img}">
-                                </div>
-                            </c:forEach>
-                        </div>
-                        <div class="swiper-pagination"></div>
-                        <div class="swiper-button-prev swiper-button"></div>
-                        <div class="swiper-button-next swiper-button">
-                        </div>
-                    </div>
-                </div>
-                <form class="screens-user-main__wishlist">
-                    <c:choose>
-                        <c:when test="${room.has_wished ne 1}">
-                            <button class="screens-user-main__wishlist__not_wished"
-                                    value="${room.room_id}"></button>
-                        </c:when>
-                        <c:otherwise>
-                            <button class="screens-user-main__wishlist__wished"
-                                    value="${room.room_id}"></button>
-                        </c:otherwise>
-                    </c:choose>
-                </form>
-                <span class="screens-user-main__room-location">${room.room_address}</span>
-                <span class="screens-user-main__room-title">${room.room_name}</span>
-                <div class="screens-user-main__room-price__wrapper">
-                    <span>₩</span> <span
-                        class="screens-user-main__room-price">${room.room_weekend_price}</span><span> /박</span>
-                </div>
-                <span class="screens-user-main__room-stars">✭${room.room_stars_avg}</span>
-            </div>
-            <div id="${room.room_id}" class="modal-div"
 
-                 style="position: fixed; bottom: 5%; left: 3%; width: 250px; height: 60px; display: none; z-index: 5;
-
-
-                         box-shadow: 1px 1px 4px 0 darkgray; border-radius: 10px; background-color: white;
-                        font-size: 12px; padding: 10px 10px 0 10px;">
-                <img class="modal-img" src="${room.room_main_photo}"
-                     style="float: left; width: 50px; height: 50px; margin-right: 10px; border-radius: 5px;">
-
-                <h4 style="float: left; color: #717171; margin-top: 6px; width: 170px;">
-
-
-
-                    <h3 style="float: left; font-size: 14px; font-weight: 500; margin-top: 10px;">${room.room_name}</h3>
-                </h4>
-            </div>
-        </c:forEach>
     </div>
 
 
+    <%--<<<<<<< HEAD--%>
+    <%--        <c:forEach var="room" items="${roomList}">--%>
+    <%--            <div class="screens-user-main__room__wrapper" value="${room.room_id}" data-key="test">--%>
+    <%--                <div class="screens-user-main__room__img__wrapper">--%>
+    <%--                    <div class="swiper mySwiper">--%>
+    <%--                        <div class="swiper-wrapper">--%>
+    <%--                            <c:forEach var="img" items="${room.room_img_url_list}">--%>
+    <%--                                <div class="swiper-slide">--%>
+    <%--                                    <img src="${img}">--%>
+    <%--                                </div>--%>
+    <%--                            </c:forEach>--%>
+    <%--                        </div>--%>
+    <%--                        <div class="swiper-pagination"></div>--%>
+    <%--                        <div class="swiper-button-prev swiper-button"></div>--%>
+    <%--                        <div class="swiper-button-next swiper-button">--%>
+    <%--                        </div>--%>
+    <%--                    </div>--%>
+    <%--                </div>--%>
+    <%--                <form class="screens-user-main__wishlist">--%>
+    <%--                    <c:choose>--%>
+    <%--                        <c:when test="${room.has_wished ne 1}">--%>
+    <%--                            <button class="screens-user-main__wishlist__not_wished"--%>
+    <%--                                    value="${room.room_id}"></button>--%>
+    <%--                        </c:when>--%>
+    <%--                        <c:otherwise>--%>
+    <%--                            <button class="screens-user-main__wishlist__wished"--%>
+    <%--                                    value="${room.room_id}"></button>--%>
+    <%--                        </c:otherwise>--%>
+    <%--                    </c:choose>--%>
+    <%--                </form>--%>
+    <%--                <span class="screens-user-main__room-location">${room.room_address}</span>--%>
+    <%--                <span class="screens-user-main__room-title">${room.room_name}</span>--%>
+    <%--                <div class="screens-user-main__room-price__wrapper">--%>
+    <%--                    <span>₩</span> <span--%>
+    <%--                        class="screens-user-main__room-price">${room.room_weekend_price}</span><span> /박</span>--%>
+    <%--                </div>--%>
+    <%--                <span class="screens-user-main__room-stars">✭${room.room_stars_avg}</span>--%>
+    <%--            </div>--%>
+    <%--        </c:forEach>--%>
+    <%--=======--%>
+    <%--    </div>--%>
 </section>
 <jsp:include page="/WEB-INF/views/common/user/footer.jsp"/>
-</body>
-
-
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="/resources/js/main/main.js"></script>
 <script>
 
-    //슬라이더 생성하는 JS 코드
-    const mySwiper = new Swiper('.mySwiper',
-        {
-            pagination: {
-                el: ".swiper-pagination",
-            },
-            loop: true,
-            direction: 'horizontal',
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            }
-        });
-
-    const swiperButtons = document.querySelectorAll(".swiper-button");
-    for (const swiperButton of swiperButtons) {
-        swiperButton.addEventListener('click', function (event) {
-            event.stopPropagation(); // 이벤트 전파 중단
-        });
+    function handleButtonClick(event) {
+        event.stopPropagation();
     }
 
     const statusId = "${statusId}";
@@ -140,25 +106,179 @@
                 dataType: "text",
                 data: {room_id: roomID},
                 success: function (response) {
-                    $('.modal-div').finish();
+                    <
+                    <
+                    <
+                    <
+                    <
+                    << HEAD
+                            $('.modal-div'
+                ).
+                    finish();
                     if (response === 'DEL_OK') {
-                        button.toggleClass('screens-user-main__wishlist__not_wished screens-user-main__wishlist__wished');
+                        button.toggleClass(
+                                'screens-user-main__wishlist__not_wished screens-user-main__wishlist__wished');
                         $('.modal-div h4').text('위시리스트에서 삭제되었습니다.')
                         $("#" + roomID).fadeIn('slow').delay(3000).fadeOut('slow');
                     } else if (response === 'IST_OK') {
-                        button.toggleClass('screens-user-main__wishlist__not_wished screens-user-main__wishlist__wished');
+                        button.toggleClass(
+                                'screens-user-main__wishlist__not_wished screens-user-main__wishlist__wished');
                         $('.modal-div h4').text('위시리스트에 추가되었습니다.')
                         $("#" + roomID).fadeIn('slow').delay(3000).fadeOut('slow');
-                    } else {
-                        alert("알 수 없는 문제가 발생했습니다. 다시 시도해주세요.");
+                    ======
+                        =
+                        if (response === 'DEL_OK' || response === 'IST_OK') {
+                            button.toggleClass(
+                                    'screens-user-main__wishlist__not_wished screens-user-main__wishlist__wished');
+                            return false;
+                        >>>>>>>
+                            ed11efa(conflict
+                        :
+                            컨플릭트
+                            해결
+                        )
+                        } else {
+                            alert("알 수 없는 문제가 발생했습니다. 다시 시도해주세요.");
+                        }
                     }
-                },
-                error: function () {
-                    location.href = "/user/loginForm";
+                ,
+                    error: function () {
+                        location.href = "/user/loginForm";
+                    }
+                });
+        })
+            ;
+        });
+
+        //페이지가 처음 로딩될 때 1page를 보여주기 때문에 초기값을 1로 지정한다.
+        let currentPage = 1;
+        let totalPageCount = 1; // 초기값 설정
+
+        const getList = function (currentPage) {
+            const queryString = window.location.search;
+            const queryStringWithoutQuestionMark = queryString.substring(1); // substring(1)으로 첫 번째 문자인 '?'를 제외한 문자열을 가져옴
+
+            // 무한 스크롤
+            $.ajax({
+                url: "/scroll" + "?currentPage=" + currentPage + "&"
+                        + queryStringWithoutQuestionMark,
+                method: "GET",
+                success: function (data) {
+                    console.log(data);
+                    totalPageCount = data[0].totalPageCount;
+                    console.log(totalPageCount)
+                    console.log(currentPage)
+
+                    if (!data || data.length === 0) {
+                        $(".screens-user-main__main__wrapper").append(
+                                '<div>더이상 등록된 숙소가 없습니다.</div>');
+                    } else {
+
+                        data.forEach(function (room) {
+                            const mySwiper = new Swiper('.mySwiper',
+                                    {
+                                        pagination: {
+                                            el: ".swiper-pagination",
+                                        },
+                                        loop: true,
+                                        direction: 'horizontal',
+                                        navigation: {
+                                            nextEl: '.swiper-button-next',
+                                            prevEl: '.swiper-button-prev',
+                                        }
+                                    });
+
+                            $(".screens-user-main__main__wrapper").append(
+                                    '<div class="screens-user-main__room__wrapper" value="'
+                                    + room.room_id
+                                    + '" onclick="location.href=\'/room/' + room.room_id + '\'">' +
+                                    '<div class="screens-user-main__room__img__wrapper">' +
+                                    '<div class="swiper mySwiper">' +
+                                    '<div class="swiper-wrapper">' +
+                                    room.room_img_url_list.map(function (img) {
+                                        return '<div class="swiper-slide">' +
+                                                '<img src="' + img + '">' +
+                                                '</div>';
+                                    }).join('') +
+                                    '</div>' +
+                                    '<div class="swiper-pagination"></div>' +
+                                    '<div class="swiper-button-prev swiper-button" onclick="handleButtonClick(event)"></div>'
+                                    +
+                                    '<div class="swiper-button-next swiper-button" onclick="handleButtonClick(event)"></div>'
+                                    +
+                                    '</div>' +
+                                    '</div>' +
+                                    '<span class="screens-user-main__room-location">'
+                                    + room.room_address
+                                    + '</span>' +
+                                    '<span class="screens-user-main__room-title">' + room.room_name
+                                    + '</span>' +
+                                    '<div class="screens-user-main__room-price__wrapper">' +
+                                    '<span>₩</span> <span class="screens-user-main__room-price">'
+                                    + room.room_weekend_price + '</span><span> /박</span>' +
+                                    '</div>' +
+                                    '<span class="screens-user-main__room-stars">✭'
+                                    + room.room_stars_avg
+                                    + '</span>' +
+                                    <%--'<form class="screens-user-main__wishlist">' +--%>
+                                    <%--'<c:choose>' +--%>
+                                    <%--'<c:when test="${room.has_wished ne 1}">' +--%>
+                                    <%--'<button class="screens-user-main__wishlist__not_wished" value="'--%>
+                                    <%--+ room.room_id + '"></button>' +--%>
+                                    <%--'</c:when>' +--%>
+                                    <%--'<c:otherwise>' +--%>
+                                    <%--'<button class="screens-user-main__wishlist__wished" value="'--%>
+                                    <%--+ room.room_id + '"></button>' +--%>
+                                    <%--'</c:otherwise>' +--%>
+                                    <%--'</c:choose>' +--%>
+                                    <%--'</form>' +--%>
+                                    // '</div>' +
+                                    // '<div id="' + room.room_id
+                                    // + '" class="modal-div" style="position: fixed; bottom: 5%; left: 3%; width: 250px; height: 60px; display: none; z-index: 5; box-shadow: 1px 1px 4px 0 darkgray; border-radius: 10px; background-color: white; font-size: 12px; padding: 10px 10px 0 10px;">'
+                                    // +
+                                    // '<img class="modal-img" src="' + room.room_main_photo
+                                    // + '" style="float: left; width: 50px; height: 50px; margin-right: 10px; border-radius: 5px;">'
+                                    // +
+                                    // '<h4 style="float: left; color: #717171; margin-top: 6px; width: 170px;">'
+                                    // +
+                                    // '<h3 style="float: left; font-size: 14px; font-weight: 500; margin-top: 10px;">'
+                                    // + room.room_name + '</h3>' +
+                                    // '</h4>' +
+                                    // '</div>'
+                            );
+                        });
+                    }
                 }
             });
+        }
+        // let isScrolling = false;
+        $(window).on("scroll", function () {
+            let scrollTop = $(window).scrollTop();
+            let windowHeight = $(window).height();
+            let documentHeight = $(document).height();
+            let isBottom = scrollTop + windowHeight + 100 >= documentHeight;
+
+            if (isBottom) {
+                console.log(totalPageCount)
+                if (currentPage === totalPageCount) {
+                    return;
+                }
+
+                currentPage++;
+
+                window.scrollTo({
+                    top: scrollTop - 150,
+                    behavior: "auto"
+                });
+                isBottom = false;
+
+                getList(currentPage);
+            }
         });
-    });
+
+        $(document).ready(function () {
+            getList(1)
+        })
 </script>
 </body>
 </html>

@@ -1,14 +1,16 @@
 package com.universestay.project.room.service;
 
+import com.universestay.project.common.SearchCondition;
 import com.universestay.project.room.dto.RoomDto;
 import com.universestay.project.room.dto.RoomImgDto;
-
 import java.util.List;
 import java.util.Map;
 
 public interface RoomService {
 
-    List<Map<String, Object>> lookUpAllRoom(String user_id) throws Exception;
+    int countAllRoom(SearchCondition sc) throws Exception;
+
+    List<Map<String, Object>> lookUpAllRoom(SearchCondition sc) throws Exception;
 
     Map<String, Object> lookUpRoom(String room_id, String user_id) throws Exception;
 
@@ -19,7 +21,4 @@ public interface RoomService {
 
     Integer statusHostroom(String room_id, String room_status_id) throws Exception;
 
-    List<Map<String, Object>> lookUpAllRoomByCategory(String room_category_id) throws Exception;
-
-    List<Map<String, Object>> lookUpAllRoomByView(String view_status_id) throws Exception;
 }

@@ -5,7 +5,6 @@ import com.universestay.project.user.dto.UserDto;
 import com.universestay.project.user.service.ProfileImgService;
 import com.universestay.project.user.service.UserLoginService;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -74,8 +73,8 @@ public class UserLoginController {
                 model.addAttribute("profileImgUrl", profileImgUrl);
                 model.addAttribute("user", userInfo);
 
-                List<Map<String, Object>> roomList = roomService.lookUpAllRoom();
-                model.addAttribute("roomList", roomList);
+//                List<Map<String, Object>> roomList = roomService.lookUpAllRoom();
+//                model.addAttribute("roomList", roomList);
 
                 return "/main/main";
 //                throw new Exception("예기치 못한 에러 발생"); => error2 발생 시키기

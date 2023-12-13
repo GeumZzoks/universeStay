@@ -1,13 +1,13 @@
 package com.universestay.project.room.service;
 
+import com.universestay.project.common.SearchCondition;
 import com.universestay.project.room.dao.RoomDao;
 import com.universestay.project.room.dto.RoomDto;
 import com.universestay.project.room.dto.RoomImgDto;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 
 @Service
@@ -17,8 +17,14 @@ public class RoomServiceImpl implements RoomService {
     RoomDao roomDao;
 
     @Override
-    public List<Map<String, Object>> lookUpAllRoom(String user_id) throws Exception {
-        return roomDao.selectAll(user_id);
+
+    public int countAllRoom(SearchCondition sc) throws Exception {
+        return roomDao.countAll(sc);
+    }
+
+    @Override
+    public List<Map<String, Object>> lookUpAllRoom(SearchCondition sc) throws Exception {
+        return roomDao.selectAll(sc);
     }
 
     @Override
@@ -44,14 +50,4 @@ public class RoomServiceImpl implements RoomService {
         return roomDao.statusHostroom(room_id, room_status_id);
     }
 
-    @Override
-    public List<Map<String, Object>> lookUpAllRoomByCategory(String room_category_id)
-            throws Exception {
-        return roomDao.selectAllByCategory(room_category_id);
-    }
-
-    @Override
-    public List<Map<String, Object>> lookUpAllRoomByView(String view_status_id) throws Exception {
-        return roomDao.selectAllByView(view_status_id);
-    }
 }
