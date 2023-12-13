@@ -66,8 +66,4 @@ public class RoomDaoImpl implements RoomDao {
         return session.insert(namespace + "saveRoomDto", roomDto);
     }
 
-    @Override
-    public Integer saveRoomDto(RoomDto roomDto) throws Exception {
-        return session.insert(namespace + "saveRoomDto", roomDto);
-    }
 }
