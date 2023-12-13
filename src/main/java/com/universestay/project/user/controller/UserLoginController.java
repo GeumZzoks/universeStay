@@ -74,7 +74,8 @@ public class UserLoginController {
                 model.addAttribute("profileImgUrl", profileImgUrl);
                 model.addAttribute("user", userInfo);
 
-                List<Map<String, Object>> roomList = roomService.lookUpAllRoom();
+                List<Map<String, Object>> roomList = roomService.lookUpAllRoom(
+                        userInfo.getUser_id());
                 model.addAttribute("roomList", roomList);
 
                 return "/main/main";
