@@ -200,7 +200,7 @@
                                 '</div>' +
                                 '<span class="screens-user-main__room-stars">✭'
                                 + room.room_stars_avg
-                                + '</span>' +
+                                + '</span>'
                                 <%--'<form class="screens-user-main__wishlist">' +--%>
                                 <%--'<c:choose>' +--%>
                                 <%--'<c:when test="${room.has_wished ne 1}">' +--%>
