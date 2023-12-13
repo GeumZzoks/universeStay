@@ -60,8 +60,19 @@
                 </div>
                 <span class="screens-user-main__room-stars">✭${room.room_stars_avg}</span>
             </div>
+            <div id="${room.room_id}" class="modal-div"
+                 style="position: fixed; bottom: 5%; left: 5%; width: 250px; height: 60px; display: none; z-index: 5;
+                         box-shadow: 1px 1px 4px 0 darkgray; border-radius: 10px; background-color: white;
+                        font-size: 12px; padding: 10px 10px 0 10px;">
+                <img class="modal-img" src="${room.room_main_photo}"
+                     style="float: left; width: 50px; height: 50px; margin-right: 10px; border-radius: 5px;">
+                <h4 style="float: left; color: #717171; margin-top: 6px;"><br><br>
+                    <h3 style="float: left; font-size: 14px; font-weight: 500; margin-top: 10px;">${room.room_name}</h3>
+                </h4>
+            </div>
         </c:forEach>
     </div>
+
 
 </section>
 <jsp:include page="/WEB-INF/views/common/user/footer.jsp"/>
@@ -108,12 +119,12 @@
         $('.screens-user-main__wishlist button').on('click', function (e) {
             // form 전송 시 새로고침 안하기(기본 이벤트 x)
             e.preventDefault();
-            // 새로고침 안할 시 다른 요소의 이밴트 받지 않기
+            // 새로고침 안할 시 다른 요소의 이벤트 받지 않기
             e.stopPropagation();
             // 변수 선언
             // roomID는 list의 각 value값을 가져옴
             var roomID = $(this).val();
-            var button = $(this);
+            button = $(this);
 
             // ajax
             $.ajax({
@@ -122,9 +133,15 @@
                 dataType: "text",
                 data: {room_id: roomID},
                 success: function (response) {
-                    if (response === 'DEL_OK' || response === 'IST_OK') {
+                    $('.modal-div').finish();
+                    if (response === 'DEL_OK') {
                         button.toggleClass('screens-user-main__wishlist__not_wished screens-user-main__wishlist__wished');
-                        return false;
+                        $('.modal-div h4').text('위시리스트에서 삭제되었습니다.')
+                        $("#" + roomID).fadeIn('slow').delay(3000).fadeOut('slow');
+                    } else if (response === 'IST_OK') {
+                        button.toggleClass('screens-user-main__wishlist__not_wished screens-user-main__wishlist__wished');
+                        $('.modal-div h4').text('위시리스트에 추가되었습니다.')
+                        $("#" + roomID).fadeIn('slow').delay(3000).fadeOut('slow');
                     } else {
                         alert("알 수 없는 문제가 발생했습니다. 다시 시도해주세요.");
                     }
