@@ -64,4 +64,9 @@ public class RoomDaoImpl implements RoomDao {
     public List<Map<String, Object>> selectAllByView(String view_status_id) throws Exception {
         return session.selectList(namespace + "selectAllByView", view_status_id);
     }
+
+    @Override
+    public Integer saveRoomDto(RoomDto roomDto) throws Exception {
+        return session.insert(namespace + "saveRoomDto", roomDto);
+    }
 }
