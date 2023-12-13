@@ -22,6 +22,12 @@
         WHERE event_id = #{event_id}
     </select>
 
+    <select id="selectMain" resultType="EventDto">
+        SELECT event_title, event_ctt, event_start_date, event_expire_date
+        FROM Event
+        WHERE event_is_open = "Y";
+    </select>
+
     <select id="getAdminUuid" parameterType="String" resultType="String">
         SELECT admin_id
         FROM Admin

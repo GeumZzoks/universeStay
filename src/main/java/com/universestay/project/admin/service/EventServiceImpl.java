@@ -23,6 +23,11 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    public List<EventDto> selectMain() throws Exception {
+        return eventDao.selectMain();
+    }
+
+    @Override
     public String getAdminUuid(String admin_email) throws Exception {
         return eventDao.getAdminUuid(admin_email);
     }
