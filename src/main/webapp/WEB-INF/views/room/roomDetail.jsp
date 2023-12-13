@@ -333,7 +333,10 @@
             </div>
             <div class="screens-room-roomDetail__host-contact__contact-method">전화 또는 문자</div>
         </div>
+
+
     </div>
+
     <div id="${room.room_id}" class="modal-div"
          style="position: fixed; bottom: 5%; left: 3%; width: 250px; height: 60px; display: none; z-index: 5;
                          box-shadow: 1px 1px 4px 0 darkgray; border-radius: 10px; background-color: white;
@@ -347,6 +350,8 @@
 
     <jsp:include page="/WEB-INF/views/common/user/footer.jsp"/>
 
+    <jsp:include page="/WEB-INF/views/common/user/footer.jsp"/>
+
     <%--<!-- 카카오 지도 API : services 라이브러리 불러오기 -->--%>
     <script type="text/javascript"
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${KakaoApiKey}&libraries=services"></script>
@@ -357,11 +362,13 @@
     <script src="/resources/js/room/roomDetail.js"></script>
 
 
+
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
     <script>
         // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
         Kakao.init('${KakaoApiKey}');
+
 
         function kakaoShare() {
             Kakao.Link.sendDefault({
@@ -384,6 +391,7 @@
                 ],
             })
         }
+
 
         $(document).ready(function () {
             $('#wishlist').on('click', function (e) {
