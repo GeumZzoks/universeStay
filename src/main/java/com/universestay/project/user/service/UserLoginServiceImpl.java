@@ -94,6 +94,7 @@ public class UserLoginServiceImpl implements UserLoginService, PasswordEncryptio
                     }
 
                     session.setAttribute("user_email", user_email);
+                    session.setAttribute("user_id", userInfo.getUser_id());
                     session.setMaxInactiveInterval(30 * 60);
                     return userInfo; // 세션에 저장 후 UserDto타입을 리턴
                 } else { // 4. 아이디 또는 비밀번호가 일치하지 않는다면 null을 반환 (ctr에서 맞는 뷰 보여줌)
