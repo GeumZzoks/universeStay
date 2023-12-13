@@ -81,9 +81,6 @@ public class UserLoginController {
 //                List<Map<String, Object>> roomList = roomService.lookUpAllRoom();
 //                model.addAttribute("roomList", roomList);
 
-//                List<Map<String, Object>> roomList = roomService.lookUpAllRoom();
-//                model.addAttribute("roomList", roomList);
-
                 return "/main/main";// 얘로 하면 url 주소가 http://localhost/user/login 이렇게 남아..서 main controller 만들었음
 //                return "redirect:/";
 

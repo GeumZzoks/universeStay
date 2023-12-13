@@ -104,7 +104,6 @@ public class RoomController {
             // 숙소목록을 조회한 후 모델에 담는다.
             // 룸상태가 R03(숙소폐점)인 숙소는 제외 한다.
             List<RoomDto> roomDtoList = roomService.listHostRoom(userId);
-            System.out.println("userId = " + userId);
 
             model.addAttribute("roomDtoList", roomDtoList);
 

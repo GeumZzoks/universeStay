@@ -141,21 +141,8 @@
   padding: 13px 5px;
 }
 
+
 /* 모달 css 코드*/
-
-/*버튼을 감싸는 영역*/
-.screens-room-management__btnWrap {
-  width: 500px;
-  margin: 100px auto;
-}
-
-/*버튼 디자인*/
-.screens-room-management__popupBtn {
-  width: 150px;
-  height: 50px;
-  padding: 10px 5px;
-}
-
 /*모달팝업을 감싸고 있는 최상위 부모*/
 .screens-room-management__modalWrap {
   position: fixed; /* Stay in place */
@@ -172,19 +159,133 @@
 
 /*모달 팝업창*/
 .screens-room-management__modalBody {
-  width: 500px;
-  height: 300px;
-  padding: 30px 30px;
+  width: 300px;
+  height: 500px;
+  padding: 20px 30px;
   margin: 0 auto;
   border: 1px solid #777;
   background-color: #fff;
+  border-radius: 15px;
+
+  display: flex;
+  /*justify-content: center;*/
+  flex-direction: column;
+
 }
 
 /*닫기 버튼*/
-.screens-room-management__closeBtn {
+.screens-room-management__closeBtn-box {
+  height: 5%;
+  margin-bottom: 10px;
+
+}
+
+.screens-room-management__closeBtn-box span:hover {
+  transform: scale(1.1);
+}
+
+.screens-room-management__closeBtn-box span {
   float: right;
   font-weight: bold;
   color: #777;
-  font-size: 25px;
+  font-size: 30px;
   cursor: pointer;
+  margin: -10px;
+
+  transition: 0.1ms all ease-in; /*애니메이션 효과*/
 }
+
+.screens-room-management__img-box {
+  display: flex;
+  justify-content: center;
+  height: 40%;
+  margin-bottom: 10px;
+
+}
+
+.screens-room-management__img-box img {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  box-shadow: 3px 3px 3px #DDDDDD;
+}
+
+.screens-room-management__modalText-box {
+  height: 10%;
+  margin-bottom: 10px;
+
+}
+
+.screens-room-management__modalText-box span {
+  font-size: 21px;
+  font-weight: 999;
+  padding: 5px;
+  line-height: 30px;
+  text-align: center;
+  display: block;
+}
+
+.screens-room-management__modalText-box__text {
+  /*color: #;*/
+}
+
+.screens-room-management__btnStatus-box {
+  /*background-color: #DDDDDD;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  height: 30%;
+  margin-bottom: 10px;
+
+}
+
+/* 숙소 상태 수정 버튼 : 활성화/비활성화, 폐점 */
+.screens-room-management__btnStatus-box button {
+  border: none;
+  outline: none;
+  background-color: black;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 999;
+  border-radius: 10px;
+  width: 45%;
+  height: 35%;
+  margin: 4px;
+}
+
+/*.screens-admin-dashboard__btn:hover {*/
+/*  color: #F48475;*/
+/*  background: white;*/
+/*  padding: 3px 8px;*/
+/*  border: 2px solid #F48475;*/
+/*}*/
+
+.screens-room-management__btnStatus-box button:hover {
+  background-color: #F7F7F7;
+  color: #717171;
+}
+
+/* 숙소 수정하기 링크 */
+.screens-room-management__modifyHostRoom-box {
+  display: flex;
+  justify-content: flex-end;
+
+  height: 10%;
+  margin-bottom: 10px;
+}
+
+.screens-room-management__modifyHostRoom-box a {
+  /*text-decoration: none;*/
+  /*display: inline-block;*/
+  color: #bdbdbd;
+  font-size: 16px;
+  margin: 20px 15px;
+  /*text-underline-position: under;*/ /*글자와 밑줄간격 띄기*/
+}
+
+
+/* 버튼의 기본 속성 제거 */
+/*border: none;*/
+/*outline: none;*/
