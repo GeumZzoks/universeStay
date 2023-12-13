@@ -1,5 +1,6 @@
 package com.universestay.project.room.controller;
 
+import com.universestay.project.room.dto.RoomAmenityDto;
 import com.universestay.project.room.dto.RoomDto;
 import com.universestay.project.room.dto.RoomImgDto;
 import com.universestay.project.room.service.RoomService;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -115,13 +117,17 @@ public class RoomController {
         return "/room/roomEnroll";
     }
 
-//    @PostMapping("/enroll")
-//    public String enrollRoom(@ModelAttribute RoomDto roomDto,
-//            RedirectAttributes redirectAttributes) {
-//        Item savedItem = itemRepository.save(item);
-//        redirectAttributes.addAttribute("room_id", savedItem.getId());
-//        return "redirect:/room/{room_id}";
-//    }
+    @PostMapping("/enroll")
+    public String enrollRoom(RoomDto roomDto, RoomAmenityDto roomAmenityDto, Integer room_view,
+            HttpSession session) {
+
+        System.out.println("roomDto = " + roomDto);
+        System.out.println("roomAmenityDto = " + roomAmenityDto);
+        System.out.println("room_view = " + room_view);
+
+        roomService.enroll(roomDto, roomAmenityDto, room_view, session);
+        return "redirect:/room/management";
+    }
 
     /**
      * @param room_id

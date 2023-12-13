@@ -333,7 +333,10 @@
             </div>
             <div class="screens-room-roomDetail__host-contact__contact-method">전화 또는 문자</div>
         </div>
+
+
     </div>
+
     <div id="${room.room_id}" class="modal-div"
          style="position: fixed; bottom: 5%; left: 3%; width: 250px; height: 60px; display: none; z-index: 5;
                          box-shadow: 1px 1px 4px 0 darkgray; border-radius: 10px; background-color: white;
@@ -355,8 +358,6 @@
         const roomAddress = '${room.room_address}';
     </script>
     <script src="/resources/js/room/roomDetail.js"></script>
-
-
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
     <script>

@@ -207,7 +207,8 @@
                     <div class="components-user-header__dropdown__option dropdown__option-msg">
                         <span>메시지</span>
                     </div>
-                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-reservation">
+                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-reservation"
+                    onclick="location.href = '/user/myPage/mybookings/'">
                         <span>여행</span></div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-wishlist"
                          onclick="location.href ='/user/wishLists'">
