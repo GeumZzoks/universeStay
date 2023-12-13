@@ -1,4 +1,4 @@
-package com.universestay.project.room.service;
+package com.universestay.project.user.service;
 
 import com.universestay.project.user.dto.RoomReviewDto;
 

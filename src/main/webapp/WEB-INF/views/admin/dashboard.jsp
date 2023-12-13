@@ -54,14 +54,15 @@
     <div class="screens-admin-dashboard__header">
         <div class="screens-admin-dashboard__nav">
             <div class="screens-admin-dashboard__search">
-                <input type="text" placeholder="Search..">
-                <button type="submit"><img src="/resources/img/test/search.png" alt=""></button>
+                <input type="text" placeholder="Search">
+                <button type="submit"><img src="/resources/img/admin/header/search.png" alt="검색아이콘">
+                </button>
             </div>
             <div class="screens-admin-dashboard__user">
                 <a href="#" class="screens-admin-dashboard__btn">Add New</a>
-                <img src="/resources/img/test/notifications.png" alt="">
+                <img src="/resources/img/admin/header/notifications.png" alt="알림아이콘">
                 <div class="screens-admin-dashboard__img-case">
-                    <img src="/resources/img/test/user.png" alt="">
+                    <img src="/resources/img/admin/header/user.png" alt="유저아이콘">
                 </div>
             </div>
         </div>
@@ -115,8 +116,9 @@
             <div class="screens-admin-dashboard__list-host-management">
                 <div class="screens-admin-dashboard__title">
                     <h2>호스팅 관리</h2>
-                    <a href="/admin/hostingManagement" class="screens-admin-dashboard__btn">전체
-                        보기</a>
+                    <a href="/admin/hostingManagement" class="screens-admin-dashboard__btn">
+                        <span>전체 보기</span>
+                    </a>
                 </div>
                 <table class="screens-admin-dashboard__table">
                     <tr>
@@ -149,7 +151,9 @@
             <div class="screens-admin-dashboard__list-inquiry">
                 <div class="screens-admin-dashboard__title">
                     <h2>문의사항</h2>
-                    <a href="#" class="screens-admin-dashboard__btn">전체 보기</a>
+                    <a href="#" class="screens-admin-dashboard__btn">
+                        <span>전체 보기</span>
+                    </a>
                 </div>
                 <table>
                     <tr>

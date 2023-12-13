@@ -11,10 +11,11 @@
 <head>
     <title>Booking</title>
     <link rel="stylesheet" href="/resources/css2/style.css">
+    <script src="/resources/js/common/aboutTimestamp.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
     <style>
         .screens-room-booking__body {
-            width: 1920px;
+            /*width: 1920px;*/
 
         }
 
@@ -85,6 +86,16 @@
         }
 
         .screens-room-booking > div:nth-of-type(3) > div > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) {
+        }
+
+        .screens-room-booking > div:nth-of-type(3) > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) {
+            font-size: 20px;
+        }
+
+        .screens-room-booking > div:nth-of-type(3) > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) {
+            font-family: 'NotoSansKR-Medium';
+            margin-top: 7px;
+            font-size: 15px;
         }
 
 
@@ -202,24 +213,80 @@
             justify-content: center;
             z-index: 1;
         }
+
+        .screens-room-booking__modalContent__form {
+            border-radius: 20px;
+            padding: 20px 20px 20px 20px;
+            background-color: lightyellow;
+        }
+
+        /*.screens-room-booking__modalContent__form > div:nth-of-type(2) > img {*/
+        /*    width: 100px;*/
+        /*    height: 100px;*/
+        /*}*/
+
+        .screens-room-booking__modalContent__starBox {
+            margin-top: 20px;
+            height: 70px;
+            /*justify-content: center;*/
+        }
+
+        .screens-room-booking__modalContent__star {
+            float: left;
+            width: 25px;
+            height: 50px;
+            background-repeat: no-repeat;
+            background-image: url('/resources/img/user/star-white.svg')
+
+        }
+
+        .screens-room-booking__modalContent__leftStar {
+            background-position: left;
+
+        }
+
+        .screens-room-booking__modalContent__rightStar {
+            background-position: right;
+
+        }
     </style>
 </head>
 <body class="screens-room-booking__body">
 <div class="screens-room-booking__modalContainer">
     <div class="screens-room-booking__modalContent">
-        <form action="" method="post" class="screens-room-booking__modalContent__form">
+        <form action="<c:url value='/user/myPage/mybookings/writereview'/>" method="post"
+              class="screens-room-booking__modalContent__form">
             <div>별점을 선택해주세요</div>
-            <input type="text" name="review_stars" value="4">
-            <div>내용</div>
-            <input type="hidden" name="user_id" value="">
-            <input type="hidden" name="room_id" value="">
-            <input type="hidden" name="review_writer" value="${sessionScope.user_email}">
+            <div class="screens-room-booking__modalContent__starBox">
+                <ul style="margin-left: 50px; margin-right: 50px;">
+                    <li class="screens-room-booking__modalContent__star screens-room-booking__modalContent__leftStar"
+                        data-index="1"></li>
+                    <li class="screens-room-booking__modalContent__star screens-room-booking__modalContent__rightStar"
+                        data-index="2"></li>
+                    <li class="screens-room-booking__modalContent__star screens-room-booking__modalContent__leftStar"
+                        data-index="3"></li>
+                    <li class="screens-room-booking__modalContent__star screens-room-booking__modalContent__rightStar"
+                        data-index="4"></li>
+                    <li class="screens-room-booking__modalContent__star screens-room-booking__modalContent__leftStar"
+                        data-index="5"></li>
+                    <li class="screens-room-booking__modalContent__star screens-room-booking__modalContent__rightStar"
+                        data-index="6"></li>
+                    <li class="screens-room-booking__modalContent__star screens-room-booking__modalContent__leftStar"
+                        data-index="7"></li>
+                    <li class="screens-room-booking__modalContent__star screens-room-booking__modalContent__rightStar"
+                        data-index="8"></li>
+                    <li class="screens-room-booking__modalContent__star screens-room-booking__modalContent__leftStar"
+                        data-index="9"></li>
+                    <li class="screens-room-booking__modalContent__star screens-room-booking__modalContent__rightStar"
+                        data-index="10"></li>
+                </ul>
+            </div>
             <input type="hidden" name="review_stars">
+            <input type="hidden" name="room_id">
             <input type="text" name="review_ctt" placeholder="내용을 작성해주세요...">
-            <input type="hidden" name="created_id" value="${sessionScope.user_email}"><br>
-            <input type="submit" value="등록">
+            <button type="submit">등록</button>
+            <button type="button" onclick="cancelInsertReview()">취소</button>
         </form>
-        <button onclick="cancelInsertReview()">취소</button>
     </div>
 </div>
 <jsp:include page="/WEB-INF/views/common/user/header.jsp"/>
@@ -227,7 +294,7 @@
     <div>여행</div>
     <div>예정된예약</div>
     <div>
-        <c:forEach var="dto" items="${list1}">
+        <c:forEach var="dto" items="${list1}" varStatus="status">
             <div>
                 <div>
                     <div>
@@ -238,10 +305,13 @@
                         <div>
                             <div>${dto.booking_checkin_date} ~</div>
                             <div>${dto.booking_checkout_date}</div>
+<%--                            <div class="screens-room-booking-ing-checkin screens-room-booking-ing-checkin-${status.count}" value="${status.count}">${dto.booking_checkin_date} ~</div>--%>
+<%--                            <div class="screens-room-booking-ing-checkout screens-room-booking-ing-checkout-${status.count}" value="${status.count}">${dto.booking_checkout_date}</div>--%>
+<%--                            <div class="screens-room-booking-ing-year screens-room-booking-year-${status.count}">연도</div>--%>
                         </div>
                         <div>
                             <div>${dto.room_address}</div>
-                            <div>${dto.room_address}</div>
+                            <div>한국</div>
                         </div>
                     </div>
                 </div>
@@ -264,12 +334,9 @@
                 <div>
                     <div>
                         <img class="screens-room-booking__img-2" src="${dto.room_main_photo}" alt="사진없음">
-                        <a href="#;"
-                           class="screens-room-booking__reviewWriteBtn screens-room-booking__reviewWriteBtn-${dto.booking_id}" value="${dto.room_id}">
-                            <button>
-                                리뷰쓰기
-                            </button>
-                        </a>
+                        <button class="screens-room-booking__reviewWriteBtn screens-room-booking__reviewWriteBtn-${dto.booking_id}"
+                                value="${dto.room_id}"> 리뷰쓰기
+                        </button>
                     </div>
                     <div>
                         <div>${dto.room_address}</div>
@@ -286,49 +353,116 @@
 </section>
 <jsp:include page="/WEB-INF/views/common/user/footer.jsp"/>
 <script>
-    const reviewWriteBtns = document.querySelectorAll(".screens-room-booking__reviewWriteBtn");
-    const modalContainer = document.querySelector(".screens-room-booking__modalContainer");
+    let room_id2 = null;
+    let review_stars2 = 0;
+    let rating = 'null';
 
-    reviewWriteBtns.forEach(function (btn) {
+    const reviewWriteBtn = document.querySelectorAll(".screens-room-booking__reviewWriteBtn");
+    const modalContainer = document.querySelector(".screens-room-booking__modalContainer");
+    const starBox = document.querySelector(".screens-room-booking__modalContent__starBox");
+    const stars = document.querySelectorAll(".screens-room-booking__modalContent__star");
+
+    const ing_checkin = document.querySelectorAll('.screens-room-booking-ing-checkin');
+    const ing_checkout = document.querySelectorAll('.screens-room-booking-ing-checkout');
+    const ing_year = document.querySelectorAll('.screens-room-booking-ing-year');
+
+    <%--document.onload = function(){--%>
+    <%--    ing_checkin.forEach(function(element){--%>
+    <%--        element.innerHTML = formatKoreanDateTime(${list1[status.index].created_at}, 'mm-dd');--%>
+    <%--    })--%>
+    <%--}--%>
+
+    <%--document.addEventListener("DOMContentLoaded", function () {--%>
+    <%--    // Iterate through ing_checkin elements and update their content--%>
+    <%--    <c:forEach var="dto" items="${list1}" varStatus="status">--%>
+    <%--    const ingCheckin = document.querySelector('.screens-room-booking-ing-checkin-${status.count}');--%>
+    <%--    const ingYear = document.querySelector('.screens-room-booking-year-${status.count}');--%>
+
+    <%--    if (ingCheckin && ingYear) {--%>
+    <%--        const timestamp = ${dto.created_at}; // Assuming that created_at is a timestamp--%>
+    <%--        ingCheckin.innerHTML = formatKoreanDateTime(timestamp, 'mm-dd');--%>
+    <%--        ingYear.innerHTML = formatKoreanDateTime(timestamp, 'yyyy');--%>
+    <%--    }--%>
+    <%--    </c:forEach>--%>
+    <%--});--%>
+
+    <%--document.addEventListener("DOMContentLoaded", function () {--%>
+    <%--    <c:forEach var="dto" items="${list1}" varStatus="status">--%>
+    <%--    const ingCheckin = document.querySelector('.screens-room-booking-ing-checkin-${status.count}');--%>
+    <%--    const ingYear = document.querySelector('.screens-room-booking-year-${status.count}');--%>
+
+    <%--    if (ingCheckin && ingYear) {--%>
+    <%--        const timestamp = ${dto.created_at}; // created_at가 타임스탬프라 가정합니다.--%>
+    <%--        ingCheckin.innerHTML = formatKoreanDateTime(timestamp, 'mm-dd');--%>
+    <%--        ingYear.innerHTML = formatKoreanDateTime(timestamp, 'yyyy');--%>
+    <%--    }--%>
+    <%--    </c:forEach>--%>
+    <%--});--%>
+    stars.forEach(function (star) {
+        star.addEventListener("click", function (e) {
+            rating = e.target.getAttribute('data-index') / 2;
+            console.log(rating);
+        })
+
+    })
+    stars.forEach(function (star) {
+        $(star).on('mouseover', function (e) {
+            stars.forEach(function (star2) {
+                star2.style.backgroundImage = "url('/resources/img/user/star-white.svg')";
+            });
+            for (let i = 0; i < star.getAttribute('data-index'); i++) {
+                stars[i].style.backgroundImage = "url('/resources/img/user/star-yellow.svg')";
+            }
+        });
+    });
+    starBox.addEventListener("mouseleave", function () {
+        // document.querySelectorAll(".screens-room-booking__modalContent__star").forEach(function (star) {
+        stars.forEach(function (star) {
+            star.style.backgroundImage = "url('/resources/img/user/star-white.svg')";
+        });
+        for (let i = 0; i < rating * 2; i++) {
+            stars[i].style.backgroundImage = "url('/resources/img/user/star-yellow.svg')";
+        }
+    });
+
+    reviewWriteBtn.forEach(function (btn) {
         btn.addEventListener('click', function () {
-            // room_id2 = $(this).val();
+            room_id2 = $(this).val();
             modalContainer.style.display = 'flex';
         });
     });
 
-    // function save1(user_id, room_id){
-    //     user_id2 = user_id;
-    //     room_id2 = room_id;
-    // }
-
     document.addEventListener('keydown', function (event) {
         if (event.key === 'Escape') {
-            // window.location.reload();
             modalContainer.style.display = 'none';
+            room_id2 = null;
+            review_stars2 = null;
+            rating = 'null';
+            $(`input[name="review_ctt"]`).val(null);
+
         }
     });
 
     function cancelInsertReview() {
+        modalContainer.style.display = 'none';
+        room_id2 = null;
+        review_stars2 = null;
+        rating = 'null';
+        $(`input[name="review_ctt"]`).val(null);
         // modalContainer.style.display = 'none';
-        window.location.reload();
+        // window.location.reload();
     }
 
     $(".screens-room-booking__modalContent__form").submit(function (event) {
         // 이벤트 기본 동작 중단
         event.preventDefault();
+        // $(`input[name="review_stars"]`).val(review_stars2);
+        $(`input[name="review_stars"]`).val(rating);
 
-        // user_id와 room_id 값을 얻어옴
-        let user_id_value = $("input[name='user_id']").val();
-        let room_id_value = $("input[name='room_id']").val();
-
-        // 값이 제대로 얻어와지는지 콘솔에 출력
-        console.log("user_id: " + user_id_value);
-        console.log("room_id: " + room_id_value);
-
-        // 여기서부터 원하는 동작 수행
-        // ...
+        $(`input[name="room_id"]`).val(room_id2);
 
         // 폼의 submit 동작을 계속 진행하도록 함
+        console.log(rating);
         this.submit();
     });
 

@@ -1,7 +1,9 @@
 package com.universestay.project.room.controller;
 
+import com.universestay.project.room.dto.RoomAmenityDto;
 import com.universestay.project.room.dto.RoomDto;
 import com.universestay.project.room.dto.RoomImgDto;
+import com.universestay.project.room.service.RoomAmenityService;
 import com.universestay.project.room.service.RoomService;
 import com.universestay.project.user.dao.UserWithdrawalDao;
 import com.universestay.project.user.dto.UserDto;
@@ -17,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -32,6 +35,8 @@ public class RoomController {
     UserWithdrawalDao userWithdrawalDao;
     @Autowired
     ProfileImgServiceImpl profileImgService;
+    @Autowired
+    RoomAmenityService roomAmenityService;
 
     @Autowired
     UserInfoService userInfoService;
@@ -51,6 +56,7 @@ public class RoomController {
 
             Map<String, Object> room = roomService.lookUpRoom(room_id, user_id);
             List<RoomImgDto> roomImgs = roomService.lookUp5RoomImg(room_id);
+            List<String[]> roomAmenities = roomAmenityService.lookUpRoomAmenity(room_id);
             UserDto host = userWithdrawalDao.selectUserByUuid(user_id);
             String profileImgUrl = profileImgService.getProfileImgUrl(user_id);
 
@@ -63,6 +69,11 @@ public class RoomController {
             model.addAttribute("roomImgList", roomImgs);
             model.addAttribute("host", host);
             model.addAttribute("profileImgUrl", profileImgUrl);
+            model.addAttribute("roomAmenities", roomAmenities);
+            for (String[] roomAmenity : roomAmenities) {
+                System.out.println("roomAmenity[0] = " + roomAmenity[0]);
+                System.out.println("roomAmenity[1] = " + roomAmenity[1]);
+            }
 
             return "room/roomDetail";
         } catch (Exception e) {
@@ -113,13 +124,17 @@ public class RoomController {
         return "/room/roomEnroll";
     }
 
-//    @PostMapping("/enroll")
-//    public String enrollRoom(@ModelAttribute RoomDto roomDto,
-//            RedirectAttributes redirectAttributes) {
-//        Item savedItem = itemRepository.save(item);
-//        redirectAttributes.addAttribute("room_id", savedItem.getId());
-//        return "redirect:/room/{room_id}";
-//    }
+    @PostMapping("/enroll")
+    public String enrollRoom(RoomDto roomDto, RoomAmenityDto roomAmenityDto, Integer room_view,
+            HttpSession session) {
+
+        System.out.println("roomDto = " + roomDto);
+        System.out.println("roomAmenityDto = " + roomAmenityDto);
+        System.out.println("room_view = " + room_view);
+
+        roomService.enroll(roomDto, roomAmenityDto, room_view, session);
+        return "redirect:/room/management";
+    }
 
     /**
      * @param room_id
@@ -140,43 +155,5 @@ public class RoomController {
             e.printStackTrace();
             return "redirect:/room/management";
         }
-    }
-
-    @GetMapping({"/category/{categoryOrView}", "/view/{categoryOrView}"})
-    public String lookUpRoomByCategoryOrView(@PathVariable String categoryOrView, Model model,
-            HttpSession session) throws Exception {
-        String userEmail = (String) session.getAttribute("user_email");
-
-        UserDto user = userInfoService.getUserInfo(userEmail);
-        if (userEmail != null) {
-            String profileImgUrl = profileImgService.getProfileImgUrl(user.getUser_id());
-            String isHost = user.getUser_is_host();
-
-            model.addAttribute("user", user);
-            model.addAttribute("profileImgUrl", profileImgUrl);
-            model.addAttribute("isHost", isHost);
-        }
-
-        List<Map<String, Object>> roomList = null;
-
-        //들어온 PathVariable이 RC를 포함하면 Category를 통해 검색하는 메소드를 호출 (ex. RC01, RC02..)
-        //들어온 PathVariable이 RV를 포함하면 View를 통해 검색하는 메소드 호출 (ex. RV01, RV02..)
-        if (categoryOrView != null && categoryOrView.contains("RC")) {
-            roomList = roomService.lookUpAllRoomByCategory(categoryOrView);
-        } else if (categoryOrView != null && categoryOrView.contains("RV")) {
-            roomList = roomService.lookUpAllRoomByView(categoryOrView);
-        } else {
-            return "main/main";
-        }
-
-        for (int i = 0; i < roomList.size(); i++) {
-            String roomImgUrl = (String) roomList.get(i).get("room_img_url_list");
-            String[] roomImg = roomImgUrl.split(", ");
-
-            roomList.get(i).put("room_img_url_list", roomImg);
-        }
-
-        model.addAttribute("roomList", roomList);
-        return "main/main";
     }
 }
