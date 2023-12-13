@@ -7,6 +7,8 @@
 <head>
     <title>roomDetail</title>
     <link rel="stylesheet" href="/resources/css2/style.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/user/header.jsp"/>
@@ -104,10 +106,10 @@
                 <button class="screens-room-roomDetail__btn screens-room-roomDetail__btn-square screens-room-roomDetail__btn-shrink screens-room-roomDetail__section-3__room-info__info-2__modal-btn">
                     편의시설 40개 모두 보기
                 </button>
-                <div class="screens-room-roomDetail__section-3__room-info__info-2__modal-outer">
+                <div class="screens-room-roomDetail__section-3__room-info__info-2__modal-outer screens-room-roomDetail__modal-amenity">
                     <div class="screens-room-roomDetail__section-3__room-info__info-2__modal-inner">
                         <div class="screens-room-roomDetail__section-3__room-info__info-2__modal-btn-close-container">
-                            <button class="screens-room-roomDetail__btn screens-room-roomDetail__section-3__room-info__info-2__modal-btn-close">
+                            <button class="screens-room-roomDetail__btn screens-room-roomDetail__section-3__room-info__info-2__modal-btn-close screens-room-roomDetail__modal-btn-close-amenity">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
                                      aria-hidden="true" role="presentation" focusable="false"
                                      style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 3; overflow: visible;">
@@ -149,6 +151,9 @@
                     <p class="screens-room-roomDetail__section-3__info-3__desc2">
                         ${room.room_total_desc}
                     </p>
+                    <p class="screens-room-roomDetail__section-3__info-3__desc2-2">
+                        ${room.room_total_desc}
+                    </p>
                     <button class="screens-room-roomDetail__btn screens-room-roomDetail__section-3__info-3__btn screens-room-roomDetail__btn-more">
                         더 보기 &gt;
                     </button>
@@ -159,6 +164,9 @@
                     </div>
                     <p class="screens-room-roomDetail__section-3__info-3__desc2">
                         ${room.room_space_desc}
+                    </p>
+                    <p class="screens-room-roomDetail__section-3__info-3__desc2-2">
+                        ${room.room_total_desc}
                     </p>
                     <button class="screens-room-roomDetail__btn screens-room-roomDetail__section-3__info-3__btn screens-room-roomDetail__btn-more">
                         더 보기 &gt;
@@ -171,6 +179,9 @@
                     <p class="screens-room-roomDetail__section-3__info-3__desc2">
                         ${room.room_etc_desc}
                     </p>
+                    <p class="screens-room-roomDetail__section-3__info-3__desc2-2">
+                        ${room.room_total_desc}
+                    </p>
                     <button class="screens-room-roomDetail__btn screens-room-roomDetail__section-3__info-3__btn screens-room-roomDetail__btn-more">
                         더 보기 &gt;
                     </button>
@@ -182,6 +193,24 @@
                     <p class="screens-room-roomDetail__section-3__info-3__desc2">
                         전화나 WhatsApp으로 사용할 수 있습니다. 농장 하우스는 돔 광경에서 약 400m 떨어져 있습니다.
                     </p>
+                </div>
+            </div>
+            <div class="screens-room-roomDetail__section-3__room-info__info-2__modal-outer screens-room-roomDetail__modal-desc-more">
+                <div class="screens-room-roomDetail__section-3__room-info__info-2__modal-inner">
+                    <div class="screens-room-roomDetail__section-3__room-info__info-2__modal-btn-close-container">
+                        <button class="screens-room-roomDetail__btn screens-room-roomDetail__section-3__room-info__info-2__modal-btn-close screens-room-roomDetail__modal-btn-close-room-desc">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
+                                 aria-hidden="true" role="presentation" focusable="false"
+                                 style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 3; overflow: visible;">
+                                <path d="m6 6 20 20M26 6 6 26"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="screens-room-roomDetail__modal-desc-more-container">
+                        <div class="screens-room-roomDetail__modal-desc-more__title">숙소 설명</div>
+                        <div class="screens-room-roomDetail__modal-desc-more__content">숙소 설명 세부 내용
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -200,7 +229,7 @@
                             <div class="screens-room-roomDetail__check-in-out__desc screens-room-roomDetail__check-in-out__desc1">
                                 체크인
                             </div>
-                            <div class="screens-room-roomDetail__check-in-out__desc screens-room-roomDetail__check-in-out__desc2">
+                            <div class="screens-room-roomDetail__check-in-out__desc screens-room-roomDetail__check-in-out__desc2 screens-room-roomDetail__input-check-in">
                                 2024.1.7.
                             </div>
                         </div>
@@ -208,7 +237,7 @@
                             <div class="screens-room-roomDetail__check-in-out__desc screens-room-roomDetail__check-in-out__desc1">
                                 체크아웃
                             </div>
-                            <div class="screens-room-roomDetail__check-in-out__desc screens-room-roomDetail__check-in-out__desc2">
+                            <div class="screens-room-roomDetail__check-in-out__desc screens-room-roomDetail__check-in-out__desc2 screens-room-roomDetail__input-check-out">
                                 2024.1.12.
                             </div>
                         </div>
@@ -361,8 +390,12 @@
 <script>
   const roomAddress = '${room.room_address}';
 </script>
+<%-- 제이쿼리 --%>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<%-- 캘린더 스크립트 --%>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script src="/resources/js/room/roomDetail.js"></script>
-
 
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 

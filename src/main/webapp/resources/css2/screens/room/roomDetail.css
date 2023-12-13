@@ -256,7 +256,11 @@
   padding-top: 0;
 }
 
-.screens-room-roomDetail__wrapper.modal-open .screens-room-roomDetail__section-3__room-info__info-2__modal-outer {
+.screens-room-roomDetail__wrapper.modal-open-amenity .screens-room-roomDetail__modal-amenity {
+  top: 0;
+}
+
+.screens-room-roomDetail__wrapper.modal-desc-more .screens-room-roomDetail__modal-desc-more {
   top: 0;
 }
 
@@ -317,7 +321,7 @@
   left: 0;
   bottom: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.6);
   z-index: 500;
 }
 
@@ -334,11 +338,31 @@
   font-family: NotoSansKR-Regular;
   font-size: 14px;
   line-height: 160%;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.screens-room-roomDetail__section-3__info-3__desc2-2 {
+  display: none;
 }
 
 .screens-room-roomDetail__section-3__info-3__btn {
+  margin-bottom: 60px;
+}
+
+.screens-room-roomDetail__modal-desc-more-container {
+  padding: 28px;
+}
+
+.screens-room-roomDetail__modal-desc-more__title {
+  font-family: NotoSansKR-Medium;
+  font-size: 22px;
   margin-bottom: 30px;
+}
+
+.screens-room-roomDetail__modal-desc-more__content {
+  font-family: NotoSansKR-Regular;
+  font-size: 16px;
+  line-height: 180%;
 }
 
 .screens-room-roomDetail__section-3__reservation {
