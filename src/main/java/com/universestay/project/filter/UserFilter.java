@@ -35,8 +35,8 @@ public class UserFilter implements Filter {
         if (isNotLogin) {
             session.setAttribute("URL", request.getRequestURI());
 
-            respone.sendRedirect("/user/loginForm");
-          
+            response.sendRedirect("/user/loginForm");
+
         } else {
             filterChain.doFilter(request, response);
         }
