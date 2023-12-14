@@ -250,23 +250,33 @@
                             <div class="screens-room-roomDetail__check-in-out__desc screens-room-roomDetail__check-in-out__desc1">
                                 체크인
                             </div>
-                            <div class="screens-room-roomDetail__check-in-out__desc screens-room-roomDetail__check-in-out__desc2 screens-room-roomDetail__input-check-in">
-                                2024.1.7.
+
+                            <div class="screens-room-roomDetail__check-in-out__desc screens-room-roomDetail__check-in-out__desc2"
+                                 id="check-in-button">
+                                2024-01-07
+
                             </div>
                         </div>
                         <div class="screens-room-roomDetail__check-in-out">
                             <div class="screens-room-roomDetail__check-in-out__desc screens-room-roomDetail__check-in-out__desc1">
                                 체크아웃
                             </div>
-                            <div class="screens-room-roomDetail__check-in-out__desc screens-room-roomDetail__check-in-out__desc2 screens-room-roomDetail__input-check-out">
-                                2024.1.12.
+
+                            <div class="screens-room-roomDetail__check-in-out__desc screens-room-roomDetail__check-in-out__desc2"
+                                 id="check-out-button">
+                                2024-01-12
+
                             </div>
                         </div>
                     </button>
                     <button class="screens-room-roomDetail__btn screens-room-roomDetail__reservation__number-people">
                         <div class="screens-room-roomDetail__number-people__desc">
                             <div class="screens-room-roomDetail__number-people__desc1">인원</div>
-                            <div class="screens-room-roomDetail__number-people__desc2">게스트 1명</div>
+                            <span>게스트</span>
+                            <span class="screens-room-roomDetail__number-people__desc2"
+                                  id="totalGuest-button">1
+                            </span>
+                            <span>명</span>
                         </div>
                         <div class="screens-room-roomDetail__number-people__arrow">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
@@ -278,7 +288,9 @@
                     </button>
                 </div>
                 <div>
-                    <button class="screens-room-roomDetail__btn screens-room-roomDetail__reservation__btn screens-room-roomDetail__btn-shrink">
+                    <button class="screens-room-roomDetail__btn screens-room-roomDetail__reservation__btn screens-room-roomDetail__btn-shrink"
+                            id="submit-button"
+                            value="${room.room_id}">
                         예약하기
                     </button>
                 </div>
@@ -416,7 +428,6 @@
     </div>
 
     <jsp:include page="/WEB-INF/views/common/user/footer.jsp"/>
-
     <%--<!-- 카카오 지도 API : services 라이브러리 불러오기 -->--%>
     <script type="text/javascript"
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${KakaoApiKey}&libraries=services"></script>
@@ -509,6 +520,7 @@
 
     </script>
 
+  <script src="/resources/js/room/roomDetail.js"></script>
 
 </body>
 </html>
