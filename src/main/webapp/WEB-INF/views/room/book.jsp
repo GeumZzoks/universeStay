@@ -1,6 +1,7 @@
 <%@ page import="java.text.DecimalFormat" %>
 <%@ page import="java.sql.ClientInfoStatus" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: sungwoo
@@ -18,6 +19,8 @@
 <head>
     <title>확인 및 결제</title>
     <link rel="stylesheet" href="/resources/css2/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
 
@@ -44,17 +47,31 @@
                 <div class="screens-room-book__container__div-common">
                     <div class="screens-room-book__container__left-side--info-common">
                         <h3>날짜</h3>
-                        <div>12월 30일 ~ 1월 4일</div>
+                        <%--                        <div>12월 30일 ~ 1월 4일</div>--%>
+                        <%-- TODO: timestamp로 바꾸기 --%>
+                        <div>${bookingDto.booking_checkin_date}
+                            ~ ${bookingDto.booking_checkout_date}</div>
+                        <div style="display: none"
+                             id="screens-room-book__check-in-data">${bookingDto.booking_checkin_date}</div>
+                        <div style="display: none"
+                             id="screens-room-book__check-out-data">${bookingDto.booking_checkout_date}</div>
+
                     </div>
-                    <span>수정</span>
+                    <span class="screens-room-book__container__div-common__span">수정</span>
                 </div>
 
                 <div class="screens-room-book__container__div-common">
                     <div class="screens-room-book__container__left-side--info-common">
                         <h3>게스트</h3>
-                        <div>게스트 1명</div>
+                        <div>
+                            <span>게스트</span>
+                            <span>${bookingDto.booking_num_of_guest}</span>
+                            <span>명</span>
+                        </div>
+                        <div style="display: none"
+                             id="screens-room-book__total-guest">${bookingDto.booking_num_of_guest}</div>
                     </div>
-                    <span>수정</span>
+                    <span class="screens-room-book__container__div-common__span">수정</span>
                 </div>
 
                 <%-- 결제 수단 --%>
@@ -151,11 +168,14 @@
                         <div style="display: flex; padding: 32px 0;">
                             <div style="width: 50px;">
                                 <img style="border-radius: 50%; width: 100%;"
-                                     src="https://a0.muscache.com/im/pictures/user/User-16605357/original/a56cb999-e7c8-4493-bbd7-937b3def7a0f.jpeg?aki_policy=profile_x_medium"/>
+                                     src="${bookInfo.profile_img_url}"/>
                             </div>
                             <div style="padding-left: 16px">
-                                <div style="font-family: NotoSansKR-Medium">Jesse</div>
-                                <div style="font-family: NotoSansKR-Light">에어비앤비 가입: 2022년</div>
+                                <div style="font-family: NotoSansKR-Medium">${bookInfo.user_nickname}</div>
+                                <div style="font-family: NotoSansKR-Light">UniverseStay
+                                    가입: <fmt:formatDate value="${bookInfo.created_at}"
+                                                        pattern="yyyy"/>년
+                                </div>
                             </div>
                         </div>
 
@@ -167,8 +187,9 @@
 
                 <%-- 예약 요청 --%>
                 <div style="padding: 24px 0px">
-                    <%--            <button style="padding: 16px 32px" >--%>
-                    <button style="padding: 16px 32px; background: linear-gradient(to right,#E61E4D 0%,#E31C5F 50%,#D70466 100%); cursor: pointer; border: none; border-radius: 8px; color: #FFFFFF; font-size: 1.125rem">
+                    <button style="padding: 16px 32px; background: linear-gradient(to right,#E61E4D 0%,#E31C5F 50%,#D70466 100%); cursor: pointer; border: none; border-radius: 8px; color: #FFFFFF; font-size: 1.125rem"
+                            value="${bookingDto.room_id}"
+                            id="submit-button">
                         예약 요청
                     </button>
                 </div>
@@ -187,7 +208,7 @@
 
                             <%-- 이미지 --%>
                             <div class="screens-room-book__right-side__box-size">
-                                <img src="/resources/img/room/room1.png">
+                                <img src="${bookInfo.room_main_photo}">
                             </div>
 
                             <div class="screens-room-book__container__right-side__box-size__space-box">
@@ -198,7 +219,8 @@
                                             집 전체
                                         </div>
                                         <div class="screens-room-book__container__right-side__review--bigger">
-                                            HaHa Haus (하하 하우스) - cozy flat in Itaewon
+                                            <%--                                            HaHa Haus (하하 하우스) - cozy flat in Itaewon--%>
+                                            ${bookInfo.room_name}
                                         </div>
                                     </div>
                                 </div>
@@ -212,7 +234,7 @@
                                         <path fill-rule="evenodd"
                                               d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"></path>
                                         <div class="screens-room-book__container__right-side__review">
-                                            <span>4.97</span> (후기 36개)
+                                            <span>${bookInfo.room_stars_avg}</span> (후기 36개)
                                         </div>
 
                                     </svg>
@@ -244,16 +266,16 @@
 
                             <div>
                                 <div class="screens-room-book__container__right-side__second-box__sub-box">
-                                    <div>₩95,000 x 5박</div>
-                                    <div>₩475,000</div>
+                                    <div>₩${bookInfo.room_weekend_price} x 5박</div>
+                                    <div>₩${bookInfo.room_weekend_price * 5}</div>
                                 </div>
                                 <div class="screens-room-book__container__right-side__second-box__sub-box">
                                     <div>청소비</div>
                                     <div>₩30,000</div>
                                 </div>
                                 <div class="screens-room-book__container__right-side__second-box__sub-box">
-                                    <div>에어비앤비 서비스 수수료</div>
-                                    <div>₩78,423</div>
+                                    <div>유니버스 서비스 수수료</div>
+                                    <div>₩${bookInfo.room_weekend_price * 5 * 0.1}</div>
                                 </div>
                             </div>
                         </div>
@@ -280,5 +302,7 @@
         src="https://kit.fontawesome.com/d1e61c2fb7.js"
         crossorigin="anonymous"
 ></script>
+
+<script src="/resources/js/room/book.js"></script>
 </body>
 </html>

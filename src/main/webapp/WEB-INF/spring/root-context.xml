@@ -10,7 +10,7 @@
 
     <!-- Root Context: defines shared resources visible to all other web components -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+        <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
 
         <property name="url" value="${DB_HOST}"></property>
         <property name="username" value="${DB_USERNAME}"></property>

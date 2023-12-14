@@ -41,8 +41,7 @@ public class NoticeControllerTest {
 
     @Test
     public void testRead() throws Exception {
-        System.out.println(mockMvc.perform(MockMvcRequestBuilders.get("/admin/notice/read")
-                        .param("notice_id", "2"))
+        System.out.println(mockMvc.perform(MockMvcRequestBuilders.get("/admin/notice/3"))
                 .andReturn()
                 .getModelAndView().getModelMap());
     }
