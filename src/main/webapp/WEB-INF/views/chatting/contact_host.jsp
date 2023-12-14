@@ -3,6 +3,10 @@
 <head>
     <title>contact_host</title>
     <link rel="stylesheet" href="/resources/css2/style.css">
+    <script
+            src="${pageContext.request.contextPath }/resources/dist/sockjs.min.js"></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 
     <style>
 
@@ -74,7 +78,7 @@
 
       .first_info_title {
         padding-bottom: 16px;
-        
+
       }
 
       .first_info_content {
@@ -181,17 +185,7 @@
                                 <div data-plugin-in-point-id="CONTACT_HOST_OVERVIEW"
                                      data-section-id="CONTACT_HOST_OVERVIEW"
                                      style="padding-top: 16px; padding-bottom: 32px;">
-                                    <section>
-                                        <div class="c1kd35z4 atm_9s_1txwivl atm_h_1h6ojuz atm_fc_1yb4nlp dir dir-ltr">
-                                            <div>
-                                                <div class="t1d2nv5w atm_7l_18pqv07 atm_bx_1ltc5j7 atm_cs_qo5vgd atm_c8_8nb4eg atm_g3_1dpnnv7 atm_fr_11dsdeo dir dir-ltr">
-                                                    <h2 tabindex="-1"
-                                                        class="hpipapi atm_7l_1kw7nm4 atm_c8_1x4eueo atm_cs_1kw7nm4 atm_g3_1kw7nm4 atm_gi_idpfg4 atm_l8_idpfg4 atm_kd_idpfg4_pfnrn2 dir dir-ltr"
-                                                        elementtiming="LCP-target">Geenie님에게
-                                                        연락하기</h2></div>
-                                            </div>
-                                        </div>
-                                    </section>
+
                                 </div>
                             </div>
                         </div>
@@ -245,30 +239,28 @@
                                     문의하세요.</h2></div>
                         </section>
                     </div>
-                    <div data-pageslot="true"
-                         class="c1yo0219 atm_9s_1txwivl_vmtskl atm_92_1yyfdc7_vmtskl atm_9s_1txwivl_9in345 atm_92_1yyfdc7_9in345 dir dir-ltr"
-                         style="">
-                        <div style="--gp-section-max-width: 1120px;">
-                            <div class="_1a6d9c4">
-                                <div class="plmw1e5 atm_e2_1osqo2v atm_gz_1wugsn5 atm_h0_1wugsn5 atm_vy_1osqo2v mq5rv0q atm_j3_1v7vjkn dir dir-ltr"
-                                     style="--maxWidth: 1120px;">
-                                    <div data-plugin-in-point-id="TEXT_AREA"
-                                         data-section-id="TEXT_AREA"
-                                         style="padding-bottom: 16px;">
-                                        <div id="textarea-error"><span
-                                                class="send_text_box_essential">필수</span>
-                                        </div>
-                                        <div>
+                    <div>
+                        <%--                    <form action=""--%>
+                        <div data-pageslot="true"
+                             class="c1yo0219 atm_9s_1txwivl_vmtskl atm_92_1yyfdc7_vmtskl atm_9s_1txwivl_9in345 atm_92_1yyfdc7_9in345 dir dir-ltr"
+                             style="">
+                            <div style="--gp-section-max-width: 1120px;">
+                                <div class="_1a6d9c4">
+                                    <div class="plmw1e5 atm_e2_1osqo2v atm_gz_1wugsn5 atm_h0_1wugsn5 atm_vy_1osqo2v mq5rv0q atm_j3_1v7vjkn dir dir-ltr"
+                                         style="--maxWidth: 1120px;">
+                                        <div data-plugin-in-point-id="TEXT_AREA"
+                                             data-section-id="TEXT_AREA"
+                                             style="padding-bottom: 16px;">
+                                            <div id="textarea-error"><span
+                                                    class="send_text_box_essential"></span>
+                                            </div>
                                             <div class="_pf06jz">
                                                 <div dir="ltr"><textarea
                                                         aria-describedby="textarea-error"
-                                                        aria-label="호스트에게 메시지 보내기"
                                                         aria-required="true"
-                                                        name="contactHostMessage"
-                                                        autocomplete="off"
-                                                        class="send_message"
-                                                        id="contactHostMessage"
-                                                        placeholder=""
+                                                        name="msg"
+                                                        class="send_message form-control col-sm-8"
+                                                        id="msgi"
                                                         style="height: 116px;"></textarea>
                                                 </div>
                                             </div>
@@ -277,16 +269,16 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div data-plugin-in-point-id="SEND_MESSAGE_BUTTON"
-                         data-section-id="SEND_MESSAGE_BUTTON"
-                         style="padding-bottom: 32px;">
-                        <div class=" dir dir-ltr">
-                            <button data-testid="send-message-button" type="submit"
-                                    class="send_message_button send_message_button_btn send_message_button-shrink">
-                                메시지 전송하기
-                            </button>
+                        <div data-section-id="SEND_MESSAGE_BUTTON"
+                             style="padding-bottom: 32px;">
+                            <div class=" dir dir-ltr">
+                                <button onclick="insertChat();" data-testid="send-message-button"
+                                        type="button"
+                                        class="send col-sm-4 btn btn-secondary send_message_button send_message_button_btn send_message_button-shrink">
+                                    메시지 전송하기
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -347,7 +339,7 @@
                         예약 확정 전에는 요금이 청구되지 않습니다.
                     </div>
                     <div class="screens-room-roomDetail__reservation__part-3">
-                        <span class="screens-room-roomDetail__reservation__part-3__mul">₩${room_weekday_price} X 7박</span>
+                        <span class="screens-room-roomDetail__reservation__part-3__mul">₩${room.room_weekday_price} X 7박</span>
                         <span>₩1,167,740</span>
                     </div>
                 </div>
@@ -358,4 +350,47 @@
 <jsp:include page="/WEB-INF/views/common/user/footer.jsp"/>
 
 </body>
+
+<script>
+  var client;
+  var user_id = "<%= request.getAttribute("user_id") %>";
+  var chat_room_id = "<%= request.getAttribute("chat_room_id") %>";
+
+  //채팅 저장
+  function insertChat() {
+
+    var user_id = "${user_id}";
+    var chat_room_id = "${chat_room_id}";
+    var chat_ctt = $("#msgi").val();
+
+    // 서버로 전송할 데이터를 객체화
+    var insertChatDto = {
+      user_id: user_id,
+      chatting_room_id: chat_room_id,
+      chat_ctt: chat_ctt
+    };
+
+    $.ajax({
+      url: "/chat/insertChat.do",
+      type: "post",
+      data: JSON.stringify(insertChatDto),
+      contentType: "application/json",
+      success: function (result) {
+
+        if (result == 1) {
+          alert("메시지가 전송되었습니다. 메시지함을 확인하세요");
+        }
+      },
+      error: function (xhr, status, err) {
+        console.log("처리실패!");
+        console.log(xhr);
+        console.log(status);
+        console.log(err);
+      }
+    });
+  }
+
+</script>
+
+
 </html>

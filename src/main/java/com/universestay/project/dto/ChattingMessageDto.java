@@ -8,7 +8,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.w3c.dom.Text;
 
 @Getter
 @Setter
@@ -34,7 +33,7 @@ public class ChattingMessageDto {
     private Timestamp chat_time;
 
     @ApiModelProperty(notes = "채팅 내용", example = "예약 가능한가요?", required = true)
-    private Text chat_ctt;
+    private String chat_ctt;
 
     @ApiModelProperty(notes = "채팅 확인 여부", example = "Y", required = true)
     private String chat_is_read;
