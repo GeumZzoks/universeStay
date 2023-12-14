@@ -15,7 +15,14 @@
     WHERE user_id = #{user_id}
       AND user_id2 = #{user_id2}
       AND room_id = #{room_id}
+  </select>
 
+  <select id="selectChatRoomId" parameterType="ChattingRoomDto" resultType="String">
+    SELECT chatting_room_id
+    FROM ChattingRoom
+    WHERE user_id = #{user_id}
+      AND user_id2 = #{user_id2}
+      AND room_id = #{room_id}
   </select>
 
 </mapper>

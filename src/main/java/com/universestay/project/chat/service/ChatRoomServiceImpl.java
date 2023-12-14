@@ -26,4 +26,9 @@ public class ChatRoomServiceImpl implements ChatRoomService {
     public ChattingRoomDto selectChatRoom(ChattingRoomDto chattingRoomDto) throws Exception {
         return chatRoomDao.selectChatRoom(chattingRoomDto);
     }
+
+    @Override
+    public String selectChatRoomId(ChattingRoomDto chattingRoomDto) throws Exception {
+        return chatRoomDao.selectChatRoomId(chattingRoomDto);
+    }
 }

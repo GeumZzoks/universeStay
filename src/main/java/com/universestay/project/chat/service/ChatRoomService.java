@@ -7,4 +7,6 @@ public interface ChatRoomService {
     int createRoom(ChattingRoomDto chattingRoomDto);
 
     ChattingRoomDto selectChatRoom(ChattingRoomDto chattingRoomDto) throws Exception;
+
+    String selectChatRoomId(ChattingRoomDto chattingRoomDto) throws Exception;
 }

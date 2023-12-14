@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -34,12 +35,14 @@ public class ChattingRoomController {
     UserInfoService userInfoService;
 
     @Autowired
-    ChatRoomService chatService;
+    ChatRoomService chatRoomService;
 
 
     // 호스트 처음 연락 화면
     @RequestMapping("/chatting/contact_host/{room_id}")
-    public String contact_host(@PathVariable String room_id, Model model) {
+    public String contact_host(@PathVariable String room_id, @RequestParam String chat_room_id,
+            @ModelAttribute ChattingRoomDto chattingRoomDto,
+            Model model) {
         try {
             RoomDto room = roomService.lookUpRoom(room_id);
             UserDto host = userWithdrawalDao.selectUserByUuid(room.getUser_id());
@@ -47,6 +50,7 @@ public class ChattingRoomController {
 
             model.addAttribute("room", room);
             model.addAttribute("host", host);
+            model.addAttribute("chat_room_id", chat_room_id);
             model.addAttribute("profileImgUrl", profileImgUrl);
             return "/chatting/contact_host";
 
@@ -76,14 +80,18 @@ public class ChattingRoomController {
             chattingRoomDto.setRoom_id(room_id);
 
             // 기존 채팅방이 존재하는지 조회
-            ChattingRoomDto chatRoom = chatService.selectChatRoom(chattingRoomDto);
+            ChattingRoomDto chatRoom = chatRoomService.selectChatRoom(chattingRoomDto);
 
             // 기존 채팅방이 존재할 경우
             if (chatRoom != null && chatRoom.getRoom_id().equals(room_id) && chatRoom.getUser_id()
                     .equals(user_id) && chatRoom.getUser_id2().equals(user_id2)) {
                 System.out.println("기존 채팅방이 존재합니다.");
-                model.addAttribute("chat_room_id", chatRoom.getChatting_room_id());
-                System.out.println(chatRoom.getChatting_room_id());
+
+                // 채팅방 아이디 조회
+                String chat_room_id = chatRoomService.selectChatRoomId(chattingRoomDto);
+                System.out.println(chat_room_id);
+                rattr.addAttribute("chat_room_id", chat_room_id); // chat_room_id를 요청 파라미터로 추가
+
                 // 채팅방으로 이동
                 return "redirect:/chatting/contact_host/" + room_id;
             }
@@ -103,7 +111,7 @@ public class ChattingRoomController {
                 chattingRoomDto.setUpdated_id(user_id);
 
                 // 채팅방 생성
-                int result = chatService.createRoom(chattingRoomDto);
+                int result = chatRoomService.createRoom(chattingRoomDto);
                 // 채팅방 생성 성공 시
                 String msg = "OK";
 
@@ -111,6 +119,7 @@ public class ChattingRoomController {
                 model.addAttribute("room_id", room_id);
                 model.addAttribute("user_id", user_id);
                 model.addAttribute("user_id2", user_id2);
+                rattr.addAttribute("chat_room_id", chat_room_id); // chat_room_id를 요청 파라미터로 추가
                 rattr.addFlashAttribute("msg", msg);
                 // 채팅방으로 이동
                 return "redirect:/chatting/contact_host/" + room_id;
@@ -127,15 +136,15 @@ public class ChattingRoomController {
     }
 
     // 전체 채팅 목록 화면
-    @RequestMapping("/chatting/chattingRooms")
+    @RequestMapping("/chatting/chattingRoomList")
     public String rooms() {
-        return "/chatting/chattingRooms";
+        return "/chatting/chattingRoomList";
     }
 
     // 채팅 테스트 화면 - 삭제 예정
-    @RequestMapping("/chatting/chatTest")
+    @RequestMapping("/chatting/chatting")
     public String chatTest() {
-        return "/chatting/chatTest";
+        return "/chatting/chatting";
     }
 
 

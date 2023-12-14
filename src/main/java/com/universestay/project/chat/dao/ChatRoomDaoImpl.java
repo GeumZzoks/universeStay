@@ -25,5 +25,10 @@ public class ChatRoomDaoImpl implements ChatRoomDao {
         return sqlSession.selectOne(namespace + "selectChatRoom", chattingRoomDto);
     }
 
+    @Override
+    public String selectChatRoomId(ChattingRoomDto chattingRoomDto) throws Exception {
+        return sqlSession.selectOne(namespace + "selectChatRoomId", chattingRoomDto);
+    }
+
 
 }
