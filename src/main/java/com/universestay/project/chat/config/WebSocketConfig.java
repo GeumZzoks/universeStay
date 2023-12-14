@@ -1,4 +1,4 @@
-package com.universestay.project.chatting.config;
+package com.universestay.project.chat.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
