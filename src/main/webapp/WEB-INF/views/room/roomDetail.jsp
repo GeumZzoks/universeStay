@@ -79,6 +79,10 @@
     </div>
     <%--  section-2  --%>
     <div class="screens-room-roomDetail__section-2">
+        <button class="screens-room-roomDetail__btn screens-room-roomDetail__room-photo">
+            <img class="screens-room-roomDetail__room-photo__img"
+                 src="${room.room_main_photo}" alt="">
+        </button>
         <c:forEach var="roomImg" items="${roomImgList}">
             <button class="screens-room-roomDetail__btn screens-room-roomDetail__room-photo">
                 <img class="screens-room-roomDetail__room-photo__img"
@@ -127,7 +131,7 @@
                     </c:forEach>
                 </ul>
                 <button class="screens-room-roomDetail__btn screens-room-roomDetail__btn-square screens-room-roomDetail__btn-shrink screens-room-roomDetail__section-3__room-info__info-2__modal-btn">
-                    편의시설 40개 모두 보기
+                    편의시설 ${roomAmenities.size()}개 모두 보기
                 </button>
                 <div class="screens-room-roomDetail__section-3__room-info__info-2__modal-outer screens-room-roomDetail__modal-amenity">
                     <div class="screens-room-roomDetail__section-3__room-info__info-2__modal-inner">
@@ -524,7 +528,7 @@
 
     </script>
 
-  <script src="/resources/js/room/roomDetail.js"></script>
+    <script src="/resources/js/room/roomDetail.js"></script>
 
 </body>
 </html>

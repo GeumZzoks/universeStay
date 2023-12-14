@@ -12,6 +12,7 @@ import com.universestay.project.user.service.ProfileImgServiceImpl;
 import com.universestay.project.user.service.UserInfoService;
 import com.universestay.project.user.service.UserLoginService;
 import com.universestay.project.user.service.WishListService;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
@@ -67,17 +68,16 @@ public class RoomController {
                 return "redirect:/";
             }
 
-            System.out.println("room i want = " + room);
-            System.out.println("room.get(room_id) = " + room.get("room_id"));
-            System.out.println("room.get(room_category_id) = " + room.get("room_category_id"));
-            System.out.println("roomImgs = " + roomImgs);
+            List<RoomImgDto> roomImgList = new ArrayList<>();
             for (RoomImgDto roomImg : roomImgs) {
-                System.out.println("roomImg = " + roomImg);
-                System.out.println("roomImg.imgUrl = " + roomImg.getRoom_img_url());
+                if (roomImg.getRoom_img_url().equals(room.get("room_main_photo"))) {
+                    continue;
+                }
+                roomImgList.add(roomImg);
             }
 
             model.addAttribute("room", room);
-            model.addAttribute("roomImgList", roomImgs);
+            model.addAttribute("roomImgList", roomImgList);
             model.addAttribute("host", host);
             model.addAttribute("profileImgUrl", profileImgUrl);
             model.addAttribute("roomAmenities", roomAmenities);
