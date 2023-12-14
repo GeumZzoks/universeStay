@@ -1,5 +1,6 @@
 package com.universestay.project.room.service;
 
+import com.universestay.project.common.S3.AwsS3ImgUploaderService;
 import com.universestay.project.common.SearchCondition;
 import com.universestay.project.room.dao.RoomAmenityDao;
 import com.universestay.project.room.dao.RoomDao;
@@ -7,6 +8,7 @@ import com.universestay.project.room.dao.RoomViewDao;
 import com.universestay.project.room.dto.RoomAmenityDto;
 import com.universestay.project.room.dto.RoomDto;
 import com.universestay.project.room.dto.RoomImgDto;
+import com.universestay.project.room.dto.RoomPhotoDto;
 import com.universestay.project.room.dto.RoomViewDto;
 import com.universestay.project.user.dto.UserDto;
 import com.universestay.project.user.service.UserLoginService;
@@ -29,6 +31,8 @@ public class RoomServiceImpl implements RoomService {
     RoomAmenityDao roomAmenityDao;
     @Autowired
     RoomViewDao roomViewDao;
+    @Autowired
+    AwsS3ImgUploaderService awsS3ImgUploaderService;
 
     @Override
 
@@ -65,7 +69,7 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public Integer enroll(RoomDto roomDto, RoomAmenityDto roomAmenityDto, Integer room_view,
+    public String enroll(RoomDto roomDto, RoomAmenityDto roomAmenityDto, Integer room_view,
             HttpSession session) {
         try {
             String uuid = UUID.randomUUID().toString();
@@ -111,11 +115,38 @@ public class RoomServiceImpl implements RoomService {
                 powNum++;
             }
 
-            return 1;
+            return uuid;
         } catch (Exception e) {
             e.printStackTrace();
-            return 0;
+            return "";
         }
+    }
+
+    @Override
+    public Integer enrollPhoto(RoomPhotoDto roomPhotoDto, String room_id, String host_id)
+            throws Exception {
+        String imgUrlMain = awsS3ImgUploaderService.uploadImageToS3(
+                roomPhotoDto.getRoom_photo_main(), "room-img"); // aws로 이미지 업로드후 s3 url 받아오기
+        String imgUrlSub1 = awsS3ImgUploaderService.uploadImageToS3(
+                roomPhotoDto.getRoom_photo_sub1(), "room-img"); // aws로 이미지 업로드후 s3 url 받아오기
+        String imgUrlSub2 = awsS3ImgUploaderService.uploadImageToS3(
+                roomPhotoDto.getRoom_photo_sub2(), "room-img"); // aws로 이미지 업로드후 s3 url 받아오기
+        String imgUrlSub3 = awsS3ImgUploaderService.uploadImageToS3(
+                roomPhotoDto.getRoom_photo_sub3(), "room-img"); // aws로 이미지 업로드후 s3 url 받아오기
+        String imgUrlSub4 = awsS3ImgUploaderService.uploadImageToS3(
+                roomPhotoDto.getRoom_photo_sub4(), "room-img"); // aws로 이미지 업로드후 s3 url 받아오기
+
+        // 숙소 사진 테이블
+        roomDao.saveRoomPhoto(imgUrlMain, room_id, host_id);
+        roomDao.saveRoomPhoto(imgUrlSub1, room_id, host_id);
+        roomDao.saveRoomPhoto(imgUrlSub2, room_id, host_id);
+        roomDao.saveRoomPhoto(imgUrlSub3, room_id, host_id);
+        roomDao.saveRoomPhoto(imgUrlSub4, room_id, host_id);
+
+        // 대표사진 url 저장
+        roomDao.saveRoomMainPhoto(room_id, imgUrlMain);
+
+        return null;
     }
 
 }

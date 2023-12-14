@@ -385,6 +385,7 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 200px 200px;
   gap: 20px;
+  margin-bottom: 30px;
 }
 
 .screens-room-roomEnroll__photo-sub {
@@ -457,7 +458,7 @@
 /* 제출 버튼 */
 .screens-room-roomEnroll__btn-submit {
   float: right;
-  width: 100px;
+  min-width: 100px;
   height: 50px;
   cursor: pointer;
   color: #fff;

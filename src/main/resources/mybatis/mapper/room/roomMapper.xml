@@ -158,10 +158,16 @@
     </update>
 
     <insert id="saveRoomDto" parameterType="RoomDto">
-        INSERT INTO Room
+        INSERT INTO Room (room_id, room_category_id, user_id, status_id, room_status_id, room_name,
+                          room_address, room_address_detail,
+                          room_total_desc, room_space_desc, room_etc_desc, room_contact_method,
+                          room_checkin_time, room_checkout_time,
+                          room_weekday_price, room_weekend_price, room_standard_capa, room_max_capa,
+                          room_extra_person_fee,
+                          room_is_auto_aprv, room_stars_avg, room_bedroom_cnt, room_bed_cnt,
+                          room_bathroom_cnt, created_at, created_id, updated_at, updated_id)
         VALUES (#{room_id}, #{room_category_id}, #{user_id}, #{status_id}, #{room_status_id},
                 #{room_name}, #{room_address}, #{room_address_detail},
-                'https://a0.muscache.com/im/pictures/miso/Hosting-54283684/original/5283e5f3-f75e-4b52-8b20-ab1dc01f7cf6.png?im_w=720',
                 #{room_total_desc},
                 #{room_space_desc}, #{room_etc_desc}, '카카오톡, 전화',
                 '10:00', '12:00', #{room_weekday_price}, #{room_weekend_price},
@@ -170,5 +176,21 @@
                 #{room_bedroom_cnt}, #{room_bed_cnt},
                 #{room_bathroom_cnt}, now(), #{created_id}, now(), #{updated_id})
     </insert>
+
+    <insert id="insertRoomImg" parameterType="map">
+        insert into RoomImg (room_photo_id, room_id, room_img_url, room_img_is_remove,
+                             created_at,
+                             created_id,
+                             updated_at, updated_id)
+        values (#{room_photo_id}, #{room_id}, #{imgUrl}, "N", now(),
+                #{host_id}, now(),
+                #{host_id});
+    </insert>
+
+    <update id="saveRoomMainPhoto" parameterType="map">
+        UPDATE Room
+        SET room_main_photo = #{imgUrl}
+        WHERE room_id = #{room_id}
+    </update>
 
 </mapper>

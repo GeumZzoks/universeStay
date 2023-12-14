@@ -3,6 +3,7 @@ package com.universestay.project.room.controller;
 import com.universestay.project.room.dto.RoomAmenityDto;
 import com.universestay.project.room.dto.RoomDto;
 import com.universestay.project.room.dto.RoomImgDto;
+import com.universestay.project.room.dto.RoomPhotoDto;
 import com.universestay.project.room.service.RoomAmenityService;
 import com.universestay.project.room.service.RoomService;
 import com.universestay.project.user.dao.UserWithdrawalDao;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/room")
@@ -70,10 +72,6 @@ public class RoomController {
             model.addAttribute("host", host);
             model.addAttribute("profileImgUrl", profileImgUrl);
             model.addAttribute("roomAmenities", roomAmenities);
-            for (String[] roomAmenity : roomAmenities) {
-                System.out.println("roomAmenity[0] = " + roomAmenity[0]);
-                System.out.println("roomAmenity[1] = " + roomAmenity[1]);
-            }
 
             return "room/roomDetail";
         } catch (Exception e) {
@@ -126,13 +124,35 @@ public class RoomController {
 
     @PostMapping("/enroll")
     public String enrollRoom(RoomDto roomDto, RoomAmenityDto roomAmenityDto, Integer room_view,
-            HttpSession session) {
+            HttpSession session, RedirectAttributes redirectAttributes) {
+        try {
+            String room_id = roomService.enroll(roomDto, roomAmenityDto, room_view, session);
+            redirectAttributes.addAttribute("room_id", room_id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            // TODO : 에러처리
+        }
+        return "redirect:/room/photoEnroll";
+    }
 
-        System.out.println("roomDto = " + roomDto);
-        System.out.println("roomAmenityDto = " + roomAmenityDto);
-        System.out.println("room_view = " + room_view);
+    @GetMapping("/photoEnroll")
+    public String enrollRoomPhoto(String room_id, Model model) {
+        model.addAttribute("room_id", room_id);
+        return "/room/roomPhotoEnroll";
+    }
 
-        roomService.enroll(roomDto, roomAmenityDto, room_view, session);
+    @PostMapping("/photoEnroll")
+    public String enrollRoomPhoto(RoomPhotoDto roomPhotoDto, String room_id, HttpSession session) {
+        try {
+            String host_id = (String) session.getAttribute("user_id");
+            System.out.println("host_id = " + host_id);
+            System.out.println("roomPhotoDto = " + roomPhotoDto);
+            System.out.println("room_id = " + room_id);
+            roomService.enrollPhoto(roomPhotoDto, room_id, host_id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            // TODO : 에러처리
+        }
         return "redirect:/room/management";
     }
 
@@ -147,8 +167,6 @@ public class RoomController {
     public String statusHostroom(@RequestParam String room_id,
             @RequestParam(defaultValue = "") String room_status_id) throws Exception {
         try {
-            System.out.println("room_id = " + room_id);
-            System.out.println("스테이터스호스트룸 컨트롤러 ");
             roomService.statusHostroom(room_id, room_status_id);
             return "redirect:/room/management";
         } catch (Exception e) {

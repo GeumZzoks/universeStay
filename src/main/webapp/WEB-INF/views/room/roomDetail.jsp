@@ -417,7 +417,7 @@
         </h4>
     </div>
 
-    <jsp:include page="/WEB-INF/views/common/user/footer.jsp"/>
+    <%--    <jsp:include page="/WEB-INF/views/common/user/footer.jsp"/>--%>
 
     <%--<!-- 카카오 지도 API : services 라이브러리 불러오기 -->--%>
     <script type="text/javascript"
