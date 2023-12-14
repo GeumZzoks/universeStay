@@ -126,7 +126,7 @@
             <artifactId>aws-java-sdk-s3</artifactId>
             <version>1.12.595</version>
         </dependency>
-        
+
         <!-- Test -->
         <dependency>
             <groupId>junit</groupId>
@@ -226,8 +226,8 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.12.0</version> <!-- Replace with the latest version -->
         </dependency>
-      
-       <!-- https://mvnrepository.com/artifact/org.quartz-scheduler/quartz -->
+
+        <!-- https://mvnrepository.com/artifact/org.quartz-scheduler/quartz -->
         <dependency>
             <groupId>org.quartz-scheduler</groupId>
             <artifactId>quartz</artifactId>
@@ -241,6 +241,12 @@
             <version>2.3.2</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.bgee.log4jdbc-log4j2/log4jdbc-log4j2-jdbc4 -->
+        <dependency>
+            <groupId>org.bgee.log4jdbc-log4j2</groupId>
+            <artifactId>log4jdbc-log4j2-jdbc4</artifactId>
+            <version>1.16</version>
+        </dependency>
     </dependencies>
 
     <profiles>
