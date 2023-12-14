@@ -54,10 +54,10 @@ public class WishListController {
             }
 
             try {
-                if (wishListService.delete(user_id, room_id) != 1) {
-                    throw new Exception();
-                } else {
+                if (wishListService.delete(user_id, room_id) == 1) {
                     return ResponseEntity.ok("DEL_OK");
+                } else {
+                    throw new Exception();
                 }
             } catch (Exception DelErr) {
                 try {
