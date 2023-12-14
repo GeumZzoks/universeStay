@@ -2,7 +2,6 @@ package com.universestay.project.room.controller;
 
 import com.universestay.project.common.exception.CommonException;
 import com.universestay.project.dto.BookingDto;
-import com.universestay.project.room.dto.RoomDto;
 import com.universestay.project.room.dto.SendEmailBookInfoDto;
 import com.universestay.project.room.service.BookService;
 import com.universestay.project.room.service.BookShareMailSendService;
@@ -60,7 +59,7 @@ public class BookingRoomController {
 
         System.out.println("here");
         // 숙소에 대한 정보 가져오기
-        RoomDto roomDto = roomService.lookUpRoom(bookingDto.getRoom_id());
+//        RoomDto roomDto = roomService.lookUpRoom(bookingDto.getRoom_id());
 
         System.out.println("bookingDto = " + bookingDto);
         System.out.println("bookService.selectCheckBookingRoom(bookingDto) = "
@@ -72,7 +71,7 @@ public class BookingRoomController {
         }
 
         // DB에 저장 Booking(예약 확정 상태는 아님)
-        bookService.bookRoom(bookingDto, roomDto, httpSession);
+//        bookService.bookRoom(bookingDto, roomDto, httpSession);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }

@@ -149,4 +149,10 @@ public class RoomServiceImpl implements RoomService {
         return null;
     }
 
+    @Override
+    public RoomDto readroom(String room_id) throws Exception {
+        System.out.println("room_id 서비스 = " + room_id);
+        return roomDao.selectHostRoom(room_id);
+    }
+
 }

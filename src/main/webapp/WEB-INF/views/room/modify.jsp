@@ -16,9 +16,10 @@
     <div class="screens-room-roomEnroll__title">숙소 유형을 선택하세요</div>
     <div class="screens-room-roomEnroll__dropdown">
         <input name="" type="text" class="screens-room-roomEnroll__dropdown__textBox"
-               placeholder="숙소 유형을 선택하세요" readonly>
+               placeholder="숙소 유형을 선택하세요" value="${roomCategoryName}">
         <input name="room_category_id" type="hidden"
-               class="screens-room-roomEnroll__dropdown__valueBox">
+               class="screens-room-roomEnroll__dropdown__valueBox"
+               value="${roomDto.room_category_id}">
         <div class="screens-room-roomEnroll__dropdown__option">
             <div onclick="show('아파트')">
                 아파트
@@ -66,11 +67,12 @@
     <div class="screens-room-roomEnroll__title">숙소의 위치는 어디인가요?</div>
     <div class="screens-room-roomEnroll__input__address">
         <input type="text" name="room_address" class="screens-room-roomEnroll__address-main"
-               placeholder="주소" readonly>
+               placeholder="주소" readonly value="${roomDto.room_address}">
         <input type="button" class="screens-room-roomEnroll__btn-address-main"
                onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
         <input type="text" name="room_address_detail"
-               class="screens-room-roomEnroll__address-detail" placeholder="상세 주소 입력"><br>
+               class="screens-room-roomEnroll__address-detail" placeholder="상세 주소 입력"
+               value="${roomDto.room_address_detail}"><br>
         <div class="screens-room-roomEnroll__map"
              style="width:100%;height:300px;margin-top:10px;display:none"></div>
     </div>
@@ -90,7 +92,7 @@
                     </svg>
                 </button>
                 <input type="text" class="screens-room-roomEnroll__info-basic__num"
-                       name="room_standard_capa" value='4' readonly/>
+                       name="room_standard_capa" value='${roomDto.room_standard_capa}' readonly/>
                 <button type="button" class="screens-room-roomEnroll__info-basic__btn-plus">
                     <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
                          role="presentation" focusable="false"
@@ -111,7 +113,7 @@
                     </svg>
                 </button>
                 <input type="text" class="screens-room-roomEnroll__info-basic__num"
-                       name="room_max_capa" value='4' readonly/>
+                       name="room_max_capa" value='${roomDto.room_max_capa}' readonly/>
                 <button type="button" class="screens-room-roomEnroll__info-basic__btn-plus">
                     <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
                          role="presentation" focusable="false"
@@ -132,7 +134,7 @@
                     </svg>
                 </button>
                 <input type="text" class="screens-room-roomEnroll__info-basic__num"
-                       name="room_bedroom_cnt" value='2' readonly/>
+                       name="room_bedroom_cnt" value='${roomDto.room_bedroom_cnt}' readonly/>
                 <button type="button" class="screens-room-roomEnroll__info-basic__btn-plus">
                     <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
                          role="presentation" focusable="false"
@@ -153,7 +155,7 @@
                     </svg>
                 </button>
                 <input type="text" class="screens-room-roomEnroll__info-basic__num"
-                       name="room_bed_cnt" value='2' readonly/>
+                       name="room_bed_cnt" value='${roomDto.room_bed_cnt}' readonly/>
                 <button type="button" class="screens-room-roomEnroll__info-basic__btn-plus">
                     <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
                          role="presentation" focusable="false"
@@ -174,7 +176,7 @@
                     </svg>
                 </button>
                 <input type="text" class="screens-room-roomEnroll__info-basic__num"
-                       name="room_bathroom_cnt" value='2' readonly/>
+                       name="room_bathroom_cnt" value='${roomDto.room_bathroom_cnt}' readonly/>
                 <button type="button" class="screens-room-roomEnroll__info-basic__btn-plus">
                     <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
                          role="presentation" focusable="false"
@@ -960,9 +962,6 @@
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${KakaoApiKey}&libraries=services"></script>
 <%-- Script --%>
 <script src="/resources/js/room/roomEnroll.js"></script>
-<script>
-  console.log("${KakaoApiKey}")
-</script>
 
 </body>
 </html>

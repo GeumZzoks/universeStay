@@ -1,19 +1,18 @@
 package com.universestay.project.user.controller;
 
+import com.universestay.project.review.dto.RoomReviewDto;
 import com.universestay.project.user.service.MyBookingService;
-import com.universestay.project.user.dto.RoomReviewDto;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 @Controller
 @RequestMapping("/user/myPage/mybookings")
@@ -57,7 +56,6 @@ public class MyBookingController {
             List<Map<String, Object>> list1 = myBookingService.getMyBookingList(map1);
             List<Map<String, Object>> list2 = myBookingService.getMyBookingList(map2);
 
-
             // TODO: 2023-12-09 test용 나중에 지울 것.
             for (Map<String, Object> dto : list1) {
                 System.out.println("dto = " + dto);
@@ -77,7 +75,8 @@ public class MyBookingController {
     }
 
     @PostMapping("/writereview")
-    public String writeReview(String room_id, String review_stars, String review_ctt, HttpSession session) {
+    public String writeReview(String room_id, String review_stars, String review_ctt,
+            HttpSession session) {
         String str = review_stars;
         Double double1 = null;
         if (!str.equals("null")) {

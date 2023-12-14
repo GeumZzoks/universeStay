@@ -12,6 +12,7 @@ import com.universestay.project.user.service.ProfileImgServiceImpl;
 import com.universestay.project.user.service.UserInfoService;
 import com.universestay.project.user.service.UserLoginService;
 import com.universestay.project.user.service.WishListService;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
@@ -39,7 +40,6 @@ public class RoomController {
     ProfileImgServiceImpl profileImgService;
     @Autowired
     RoomAmenityService roomAmenityService;
-
     @Autowired
     UserInfoService userInfoService;
     @Autowired
@@ -74,9 +74,10 @@ public class RoomController {
             model.addAttribute("roomAmenities", roomAmenities);
 
             return "room/roomDetail";
+
         } catch (Exception e) {
             e.printStackTrace();
-//            System.out.println("여길 타고있어2");
+
             // TODO: 에러메세지 보여주고 메인으로 이동
             return "redirect:/";
         }
@@ -157,8 +158,51 @@ public class RoomController {
         return "redirect:/room/management";
     }
 
+    /**
+     * @param room_id
+     * @param model
+     * @return
+     * @throws Exception
+     * @feat 모달창 숙소 수정하기 링크
+     */
+    @GetMapping("/modify")
+    public String modifyRoom(@RequestParam String room_id, Model model) throws Exception {
+        System.out.println("room_id 컨트롤러 = " + room_id);
+        // 등록한 숙소를 조회해온다.
+        RoomDto roomDto = roomService.readroom(room_id);
+        // 뷰에 넘겨주기 위해 모델에 담는다.
+        model.addAttribute("roomDto", roomDto);
+
+        String roomCategoryId = roomDto.getRoom_category_id();
+        System.out.println("roomCategoryId = " + roomCategoryId);
+
+        // 숙소 카테고리를 전부 맵에 담고, 맵에서 파라미터로 받아온 값을 찾는다.
+        Map<String, String> map = new HashMap<>();
+        map.put("RC01", "아파트");
+        map.put("RC02", "주택");
+        map.put("RC03", "별채");
+        map.put("RC04", "호텔");
+        map.put("RC05", "모텔");
+        map.put("RC06", "펜션");
+        map.put("RC07", "콘도");
+        map.put("RC08", "레지던스");
+        map.put("RC09", "오피스텔");
+        map.put("RC10", "한옥");
+        map.put("RC11", "캠핑장/아웃도어");
+        map.put("RC12", "호스텔");
+        map.put("RC13", "리조트");
+
+//        System.out.println("나와라 맵" + map.get(roomCategoryId));
+        String roomCategoryName = map.get(roomCategoryId);
+        model.addAttribute("roomCategoryName", roomCategoryName);
+
+        return "/room/modify";
+    }
+
+    // 수정 완료 눌렀을 경우
     @PostMapping("/modify")
-    public String update() {
+    public String modify() {
+
         return null;
     }
 

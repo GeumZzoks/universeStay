@@ -90,7 +90,11 @@
                 <button class="screens-room-management__shutdownHostroom">숙소 폐점</button>
             </div>
             <div class="screens-room-management__modifyHostRoom-box">
-                <a href="/room/modify">숙소 수정하기</a>
+                <%--                <a class="screens-room-management__modifyHostRoom-box__alink"--%>
+                <%--                   href="/room/modify?room_id=" +${roomDto.room_id}>숙소 수정하기--%>
+                <%--                </a>--%>
+                <a class="screens-room-management__modifyHostRoom-box__alink">숙소 수정하기
+                </a>
             </div>
         </div>
     </div>

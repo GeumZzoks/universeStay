@@ -28,4 +28,6 @@ public interface RoomService {
             HttpSession session) throws Exception;
 
     Integer enrollPhoto(RoomPhotoDto roomPhotoDto, String room_id, String host_id) throws Exception;
+
+    RoomDto readroom(String room_id) throws Exception;
 }

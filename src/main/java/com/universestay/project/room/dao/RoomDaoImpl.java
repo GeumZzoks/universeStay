@@ -81,4 +81,10 @@ public class RoomDaoImpl implements RoomDao {
         return session.update(namespace + "saveRoomMainPhoto", map);
     }
 
+    @Override
+    public RoomDto selectHostRoom(String room_id) throws Exception {
+        return session.selectOne(namespace + "selectOneHostRoom", room_id);
+    }
+
+
 }

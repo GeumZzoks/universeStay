@@ -27,4 +27,6 @@ public interface RoomDao {
 
     Integer saveRoomMainPhoto(String room_id, String imgUrl) throws Exception;
 
+    RoomDto selectHostRoom(String room_id) throws Exception;
+
 }
