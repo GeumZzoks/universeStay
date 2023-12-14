@@ -1,10 +1,10 @@
 package com.universestay.project.main.controller;
 
+import com.universestay.project.admin.dto.EventDto;
+import com.universestay.project.admin.service.EventService;
 import com.universestay.project.common.MainSearchCondition;
 import com.universestay.project.common.PageHandler;
 import com.universestay.project.common.SearchCondition;
-import com.universestay.project.admin.dto.EventDto;
-import com.universestay.project.admin.service.EventService;
 import com.universestay.project.room.service.RoomService;
 import com.universestay.project.user.dto.UserDto;
 import com.universestay.project.user.service.ProfileImgService;
@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -34,10 +35,8 @@ public class MainController {
     ProfileImgService profileImgService;
     @Autowired
     RoomService roomService;
-
     @Autowired
     WishListService wishListService;
-
     @Autowired
     EventService eventService;
 
@@ -56,7 +55,8 @@ public class MainController {
     }
 
     @GetMapping("/")
-    public String main(HttpSession session, Model model)
+    public String main(HttpSession session, Model model,
+            @ModelAttribute("statusId") String statusId)
             throws Exception {
         String userEmail = (String) (session.getAttribute("user_email"));
 
@@ -68,9 +68,10 @@ public class MainController {
         String profileImgUrl = profileImgService.getProfileImgUrl(user.getUser_id());
         String isHost = user.getUser_is_host();
 
-        model.addAttribute("user", user);
+        model.addAttribute("userInfo", user);
         model.addAttribute("profileImgUrl", profileImgUrl);
         model.addAttribute("isHost", isHost);
+        model.addAttribute("statusId", statusId);
         return "main/main";
     }
 

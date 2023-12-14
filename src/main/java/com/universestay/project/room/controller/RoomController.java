@@ -62,7 +62,7 @@ public class RoomController {
 
             if (room == null) {
                 // TODO: 에러메세지 보여주고 메인으로 이동
-                return "main/main";
+                return "redirect:/";
             }
 
             model.addAttribute("room", room);
@@ -78,8 +78,9 @@ public class RoomController {
             return "room/roomDetail";
         } catch (Exception e) {
             e.printStackTrace();
+//            System.out.println("여길 타고있어2");
             // TODO: 에러메세지 보여주고 메인으로 이동
-            return "main/main";
+            return "redirect:/";
         }
     }
 
@@ -134,6 +135,11 @@ public class RoomController {
 
         roomService.enroll(roomDto, roomAmenityDto, room_view, session);
         return "redirect:/room/management";
+    }
+
+    @PostMapping("/modify")
+    public String update() {
+        return null;
     }
 
     /**

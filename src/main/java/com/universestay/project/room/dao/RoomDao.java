@@ -8,7 +8,6 @@ import java.util.Map;
 
 public interface RoomDao {
 
-
     int countAll(SearchCondition sc) throws Exception;
 
     List<Map<String, Object>> selectAll(SearchCondition sc) throws Exception;
