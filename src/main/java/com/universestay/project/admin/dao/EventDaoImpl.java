@@ -28,6 +28,11 @@ public class EventDaoImpl implements EventDao {
     }
 
     @Override
+    public List<EventDto> selectMain() throws Exception {
+        return session.selectList(namespace + "selectMain");
+    }
+
+    @Override
     public String getAdminUuid(String admin_email) throws Exception {
         return session.selectOne(namespace + "getAdminUuid", admin_email);
     }
