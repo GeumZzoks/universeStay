@@ -59,12 +59,21 @@ public class RoomController {
             Map<String, Object> room = roomService.lookUpRoom(room_id, user_id);
             List<RoomImgDto> roomImgs = roomService.lookUp5RoomImg(room_id);
             List<String[]> roomAmenities = roomAmenityService.lookUpRoomAmenity(room_id);
-            UserDto host = userWithdrawalDao.selectUserByUuid(user_id);
-            String profileImgUrl = profileImgService.getProfileImgUrl(user_id);
+            UserDto host = userWithdrawalDao.selectUserByUuid((String) room.get("user_id"));
+            String profileImgUrl = profileImgService.getProfileImgUrl((String) room.get("user_id"));
 
             if (room == null) {
                 // TODO: 에러메세지 보여주고 메인으로 이동
                 return "redirect:/";
+            }
+
+            System.out.println("room i want = " + room);
+            System.out.println("room.get(room_id) = " + room.get("room_id"));
+            System.out.println("room.get(room_category_id) = " + room.get("room_category_id"));
+            System.out.println("roomImgs = " + roomImgs);
+            for (RoomImgDto roomImg : roomImgs) {
+                System.out.println("roomImg = " + roomImg);
+                System.out.println("roomImg.imgUrl = " + roomImg.getRoom_img_url());
             }
 
             model.addAttribute("room", room);
