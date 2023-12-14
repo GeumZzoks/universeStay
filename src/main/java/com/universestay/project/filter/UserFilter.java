@@ -27,16 +27,18 @@ public class UserFilter implements Filter {
             FilterChain filterChain) throws IOException, ServletException {
 
         HttpServletRequest request = (HttpServletRequest) servletRequest;
-        HttpServletResponse respone = (HttpServletResponse) servletResponse;
+        HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpSession session = request.getSession();
 
         // 세션이 없거나 조회 되지 않는다면
         boolean isNotLogin = (session == null || session.getAttribute("user_email") == null);
         if (isNotLogin) {
             session.setAttribute("URL", request.getRequestURI());
+
             respone.sendRedirect("/user/loginForm");
+          
         } else {
-            filterChain.doFilter(request, respone);
+            filterChain.doFilter(request, response);
         }
 
     }

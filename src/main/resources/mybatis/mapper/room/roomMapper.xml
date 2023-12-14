@@ -1,91 +1,174 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.universestay.project.resources.mybatis.mapper.room.roomMapper">
-  <select id="selectAll" resultType="map">
-    SELECT R.*, GROUP_CONCAT(RI.room_img_url SEPARATOR ', ') AS room_img_url_list
-    FROM Room R
-           LEFT JOIN RoomImg RI ON R.room_id = RI.room_id
-    WHERE RI.room_img_url IS NOT NULL
-    GROUP BY R.room_id;
-  </select>
 
-  <select id="select" resultType="RoomDto">
-    SELECT *
-    FROM Room
-    WHERE room_id = #{room_id}
-  </select>
 
-  <select id="select5RoomImg" resultType="RoomImgDto">
-    SELECT *
-    FROM RoomImg
-    WHERE room_id = #{room_id} LIMIT 0, 5
-  </select>
+    <select id="totalCount" parameterType="MainSearchCondition" resultType="int">
+        SELECT COUNT(DISTINCT R.room_id) AS total_count
+        FROM Room R
+        LEFT JOIN RoomImg RI ON R.room_id = RI.room_id
+        WHERE RI.room_img_url IS NOT NULL
+        <if test="category != null and category != ''">
+            AND R.room_category_id = #{category}
+        </if>
+        <if test="view != null and view != ''">
+            AND R.room_id IN (
+            SELECT A.room_id
+            FROM RoomView A
+            WHERE A.view_status_id = #{view}
+            )
+        </if>
+        <if test="address != null and address != ''">
+            <![CDATA[
+            AND (
+            R.room_address LIKE CONCAT('%', #{address}, '%')
+            )
+            AND R.room_max_capa >= CAST(#{search_capa} AS SIGNED)
+            AND (
+            R.room_weekday_price * (DATEDIFF(STR_TO_DATE(#{search_end_date}, '%Y-%m-%d'), STR_TO_DATE(#{search_start_date}, '%Y-%m-%d'))) >= CAST(#{search_min_price} AS SIGNED)
+            AND R.room_weekday_price * (DATEDIFF(STR_TO_DATE(#{search_end_date}, '%Y-%m-%d'), STR_TO_DATE(#{search_start_date}, '%Y-%m-%d'))) <= CAST(#{search_max_price} AS SIGNED)
+            )
+            AND NOT EXISTS(
+            SELECT 1
+            FROM Booking B
+            WHERE B.room_id = R.room_id
+            AND (
+            B.booking_checkin_date = STR_TO_DATE(#{search_start_date}, '%Y-%m-%d')
+            OR (B.booking_checkin_date < STR_TO_DATE(#{search_start_date}, '%Y-%m-%d') AND B.booking_checkout_date > STR_TO_DATE(#{search_start_date}, '%Y-%m-%d'))
+            OR (STR_TO_DATE(#{search_start_date}, '%Y-%m-%d') < B.booking_checkin_date AND B.booking_checkin_date < STR_TO_DATE(#{search_end_date}, '%Y-%m-%d'))
+            )
+            AND (B.status_id = 'B01' OR B.status_id = 'B02')
+            )
+         ]]>
+        </if>
+    </select>
 
-  <select id="listHostRoom" resultType="RoomDto">
-    SELECT *
-    FROM Room
-    WHERE user_id = #{user_id}
-      AND room_status_id NOT IN ('R03')
-    ORDER BY created_at
-  </select>
+    <select id="selectAll" parameterType="MainSearchCondition" resultType="map">
+        SELECT R.*, GROUP_CONCAT(RI.room_img_url SEPARATOR ', ') AS room_img_url_list
+        , CASE WHEN W.user_id IS NOT NULL THEN 1 ELSE 0 END AS has_wished
+        FROM Room R
+        LEFT JOIN RoomImg RI ON R.room_id = RI.room_id
+        LEFT JOIN WishList W
+        ON R.room_id = W.room_id AND W.user_id = #{user_id}
+        WHERE RI.room_img_url IS NOT NULL
+        -- 카테고리 버튼 클릭시 발현하는 쿼리
+        <if test="category != null and category != ''">
+            AND room_category_id = #{category}
+        </if>
+        -- 뷰 버튼 클릭시 발현하는 쿼리
+        <if test="view != null and view != ''">
+            AND R.room_id IN (
+            SELECT A.room_id
+            FROM Room A, RoomView B
+            WHERE A.room_id = B.room_id
+            AND B.view_status_id = #{view}
+            )
+        </if>
+        -- 메인 검색시 발현하는 쿼리
+        <if test="address != null and address != ''">
+            <![CDATA[
+                AND (
+                    R.room_address LIKE CONCAT('%', #{address}, '%')
+                    OR R.room_address LIKE CONCAT('%', #{address}, '%')
+                )
+                AND R.room_max_capa >= CAST(#{search_capa} AS SIGNED)
+                AND (
+                    R.room_weekday_price * (DATEDIFF(STR_TO_DATE(#{search_end_date}, '%Y-%m-%d'),
+                                                    STR_TO_DATE(#{search_start_date}, '%Y-%m-%d'))) >=
+                        CAST(#{search_min_price} AS SIGNED)
+                    AND R.room_weekday_price * (DATEDIFF(STR_TO_DATE(#{search_end_date}, '%Y-%m-%d'),
+                                                                 STR_TO_DATE(#{search_start_date}, '%Y-%m-%d'))) <=
+                        CAST(#{search_max_price} AS SIGNED)
+                )
+                AND NOT EXISTS(
+                    SELECT *
+                    FROM Booking B
+                    WHERE B.room_id = R.room_id
+                      AND (
+                            B.booking_checkin_date = STR_TO_DATE(#{search_start_date}, '%Y-%m-%d')
+                            OR (B.booking_checkin_date < STR_TO_DATE(#{search_start_date}, '%Y-%m-%d') AND
+                                B.booking_checkout_date > STR_TO_DATE(#{search_start_date}, '%Y-%m-%d'))
+                            OR (STR_TO_DATE(#{search_start_date}, '%Y-%m-%d') < B.booking_checkin_date AND
+                                B.booking_checkin_date < STR_TO_DATE(#{search_end_date}, '%Y-%m-%d'))
+                          )
+                      AND (B.status_id = 'B01' OR B.status_id = 'B02')
+                    )
+                ]]>
+        </if>
+        GROUP BY R.room_id
+        LIMIT #{offset}, #{pageSize};
+    </select>
 
-  <!--  <select id="listHostRoom" resultType="map">-->
-  <!--    select ri.room_img_url, r.room_name, r.created_at-->
-  <!--    from Room r,-->
-  <!--         RoomImg ri-->
-  <!--    where r.room_id = ri.room_id-->
-  <!--      and r.user_id = #{user_id};-->
-  <!--  </select>-->
+    <select id="select" resultType="map">
+        SELECT R.*, CASE WHEN W.user_id IS NOT NULL THEN 1 ELSE 0 END AS has_wished
+        FROM Room R
+                 LEFT JOIN WishList W ON R.room_id = W.room_id AND W.user_id = #{user_id}
+        WHERE R.room_id = #{room_id}
+    </select>
 
-  <!--  <select id="shutdownHostroom">-->
-  <!--    UPDATE Room-->
-  <!--    SET room_status_id = 'R03'-->
-  <!--    WHERE room_id = #{room_id}-->
+    <select id="select5RoomImg" resultType="RoomImgDto">
+        SELECT *
+        FROM RoomImg
+        WHERE room_id = #{room_id} LIMIT 0, 5
+    </select>
 
-  <!--  </select>-->
+    <select id="listHostRoom" resultType="RoomDto">
+        SELECT *
+        FROM Room
+        WHERE user_id = #{user_id}
+          AND room_status_id NOT IN ('R03')
+        ORDER BY created_at
+    </select>
 
-  <sql id="statusCondition">
-    <choose>
-      <when test='room_status_id=="R01"'>
-        SET room_status_id = 'R01'
-      </when>
-      <when test='room_status_id=="R02"'>
-        SET room_status_id = 'R02'
-      </when>
-      <otherwise>
-        SET room_status_id = 'R03'
-      </otherwise>
-    </choose>
-  </sql>
+    <!--  <select id="listHostRoom" resultType="map">-->
+    <!--    select ri.room_img_url, r.room_name, r.created_at-->
+    <!--    from Room r,-->
+    <!--         RoomImg ri-->
+    <!--    where r.room_id = ri.room_id-->
+    <!--      and r.user_id = #{user_id};-->
+    <!--  </select>-->
 
-  <update id="statusHostroom" parameterType="map">
-    UPDATE Room
-    <include refid="statusCondition"></include>
-    WHERE room_id = #{room_id}
-  </update>
+    <!--  <select id="shutdownHostroom">-->
+    <!--    UPDATE Room-->
+    <!--    SET room_status_id = 'R03'-->
+    <!--    WHERE room_id = #{room_id}-->
 
-  <select id="selectAllByCategory" resultType="map">
-    SELECT R.*, GROUP_CONCAT(RI.room_img_url SEPARATOR ', ') AS room_img_url_list
-    FROM Room R
-           LEFT JOIN RoomImg RI ON R.room_id = RI.room_id
-    WHERE RI.room_img_url IS NOT NULL
-      AND room_category_id = #{room_category_id}
-    GROUP BY R.room_id;
-  </select>
+    <!--  </select>-->
 
-  <select id="selectAllByView" resultType="map">
-    SELECT R.*,
-           GROUP_CONCAT(RI.room_img_url SEPARATOR ', ') AS room_img_url_list
-    FROM Room R
-           LEFT JOIN RoomImg RI ON R.room_id = RI.room_id
-    WHERE RI.room_img_url IS NOT NULL
-      AND R.room_id IN (Select A.room_id
-                        from Room A,
-                             RoomView B
-                        Where A.room_id = B.room_id
-                          And B.view_status_id = #{view_status_id})
-    GROUP BY R.room_id;
-  </select>
+    <sql id="statusCondition">
+        <choose>
+            <when test='room_status_id=="R01"'>
+                SET room_status_id = 'R01'
+            </when>
+            <when test='room_status_id=="R02"'>
+                SET room_status_id = 'R02'
+            </when>
+            <otherwise>
+                SET room_status_id = 'R03'
+            </otherwise>
+        </choose>
+    </sql>
+
+    <update id="statusHostroom" parameterType="map">
+        UPDATE Room
+        <include refid="statusCondition"></include>
+        WHERE room_id = #{room_id}
+    </update>
+
+    <insert id="saveRoomDto" parameterType="RoomDto">
+        INSERT INTO Room
+        VALUES (#{room_id}, #{room_category_id}, #{user_id}, #{status_id}, #{room_status_id},
+                #{room_name}, #{room_address}, #{room_address_detail},
+                'https://a0.muscache.com/im/pictures/miso/Hosting-54283684/original/5283e5f3-f75e-4b52-8b20-ab1dc01f7cf6.png?im_w=720',
+                #{room_total_desc},
+                #{room_space_desc}, #{room_etc_desc}, '카카오톡, 전화',
+                '10:00', '12:00', #{room_weekday_price}, #{room_weekend_price},
+                #{room_standard_capa}, #{room_max_capa},
+                #{room_extra_person_fee}, #{room_is_auto_aprv}, #{room_stars_avg},
+                #{room_bedroom_cnt}, #{room_bed_cnt},
+                #{room_bathroom_cnt}, now(), #{created_id}, now(), #{updated_id})
+    </insert>
+
 </mapper>

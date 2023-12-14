@@ -327,6 +327,12 @@
 }
 
 /* 숙소 가격을 책정해주세요 */
+.screens-room-roomEnroll__price-title {
+  text-decoration: underline;
+  font-family: NotoSansKR-Regular;
+  font-size: 16px;
+}
+
 .screens-room-roomEnroll__price-input-container {
   width: 100%;
   text-align: center;
@@ -346,4 +352,25 @@
   appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
+}
+
+/* 제출 버튼 */
+.screens-room-roomEnroll__btn-submit {
+  float: right;
+  width: 100px;
+  height: 50px;
+  cursor: pointer;
+  color: #fff;
+  background: #222222;
+  border: 1px solid #B0B0B0;
+  outline: none;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  padding: 12px 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  transition: all 0.1s ease-in;
+}
+
+.screens-room-roomEnroll__btn-submit:active {
+  transform: scale(0.95);
 }
