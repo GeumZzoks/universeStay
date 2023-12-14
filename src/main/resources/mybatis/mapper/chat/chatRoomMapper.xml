@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.universestay.project.chat.dao.ChatRoomDao">
+
+  <insert id="createRoom" parameterType="ChattingRoomDto">
+    INSERT INTO ChattingRoom (chatting_room_id, user_id, user_id2, room_id, created_id, updated_id)
+    VALUES (#{chatting_room_id}, #{user_id}, #{user_id2}, #{room_id}, #{created_id}, #{updated_id})
+  </insert>
+
+  <select id="selectChatRoom" parameterType="ChattingRoomDto" resultType="ChattingRoomDto">
+    SELECT *
+    FROM ChattingRoom
+    WHERE user_id = #{user_id}
+      AND user_id2 = #{user_id2}
+      AND room_id = #{room_id}
+
+  </select>
+
+</mapper>
+
+
