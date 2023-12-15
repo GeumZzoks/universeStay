@@ -1,6 +1,7 @@
-/*전역 설정*/
+
 .components-user-header__header {
   position: relative;
+  width: 100%;
   z-index: 99;
 }
 

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.universestay.project.resources.mybatis.mapper.room.bookRoomMapper">
+    <!-- 왼쪽
+        유저 이미지, 유저 네임
+        
+    -->
+    <select id="selectRoomBookInfo" parameterType="String" resultType="map">
+        SELECT *
+        FROM Room R
+                 INNER JOIN User U ON R.user_id = U.user_id
+                 INNER JOIN ProfileImg P ON U.user_id = P.user_id
+        WHERE R.room_id = #{room_id}
+    </select>
+
+    <insert id="bookRoom" parameterType="BookingDto">
+        INSERT INTO Booking ( booking_id, user_id, room_id, booking_checkin_date
+                            , booking_checkout_date, booking_num_of_guest, booking_date
+                            , booking_checkin_time, booking_checkout_time
+                            , created_id, updated_id)
+        VALUES (#{booking_id},
+                #{user_id},
+                #{room_id},
+                #{booking_checkin_date},
+                #{booking_checkout_date},
+                #{booking_num_of_guest},
+                #{booking_date},
+                #{booking_checkin_time},
+                #{booking_checkout_time},
+                #{created_id},
+                #{updated_id})
+    </insert>
+
+    <select id="selectCheckBookingRoom" parameterType="BookingDto" resultType="Integer">
+        select count(*)
+        from Booking
+        where room_id = #{room_id}
+          and (
+                (booking_checkin_date between #{booking_checkin_date} and #{booking_checkout_date})
+                or
+                (booking_checkout_date between #{booking_checkin_date} and #{booking_checkout_date})
+                or (#{booking_checkin_date} BETWEEN booking_checkin_date AND booking_checkout_date)
+                or (#{booking_checkout_date} BETWEEN booking_checkin_date AND booking_checkout_date)
+            )
+    </select>
+
+    <select id="findByRoom" resultType="BookingDto">
+        select *
+        FROM Booking
+        WHERE room_id = #{room_id} and
+    </select>
+</mapper>

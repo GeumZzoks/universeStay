@@ -8,7 +8,6 @@ import java.util.Map;
 
 public interface RoomDao {
 
-
     int countAll(SearchCondition sc) throws Exception;
 
     List<Map<String, Object>> selectAll(SearchCondition sc) throws Exception;
@@ -23,4 +22,9 @@ public interface RoomDao {
     Integer statusHostroom(String room_id, String room_status_id) throws Exception;
 
     Integer saveRoomDto(RoomDto roomDto) throws Exception;
+
+    Integer saveRoomPhoto(String imgUrl, String room_id, String host_id) throws Exception;
+
+    Integer saveRoomMainPhoto(String room_id, String imgUrl) throws Exception;
+
 }

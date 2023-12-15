@@ -6,6 +6,7 @@ import com.universestay.project.room.dto.RoomImgDto;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -64,6 +65,20 @@ public class RoomDaoImpl implements RoomDao {
     @Override
     public Integer saveRoomDto(RoomDto roomDto) throws Exception {
         return session.insert(namespace + "saveRoomDto", roomDto);
+    }
+
+    @Override
+    public Integer saveRoomPhoto(String imgUrl, String room_id, String host_id) throws Exception {
+        String room_photo_id = UUID.randomUUID().toString();
+        Map<String, String> map = Map.of("room_photo_id", room_photo_id, "room_id", room_id,
+                "imgUrl", imgUrl, "host_id", host_id);
+        return session.insert(namespace + "insertRoomImg", map);
+    }
+
+    @Override
+    public Integer saveRoomMainPhoto(String room_id, String imgUrl) throws Exception {
+        Map<String, String> map = Map.of("room_id", room_id, "imgUrl", imgUrl);
+        return session.update(namespace + "saveRoomMainPhoto", map);
     }
 
 }

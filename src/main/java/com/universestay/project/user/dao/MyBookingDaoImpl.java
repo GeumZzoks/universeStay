@@ -1,12 +1,11 @@
 package com.universestay.project.user.dao;
 
-import com.universestay.project.user.dto.RoomReviewDto;
+import com.universestay.project.review.dto.RoomReviewDto;
+import java.util.List;
+import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
-import java.util.Map;
 
 @Repository
 public class MyBookingDaoImpl implements MyBookingDao {

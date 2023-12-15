@@ -23,11 +23,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class UserLoginController {
 
     @Autowired
-    UserLoginService userLoginService; // 명확한 이름 지어주기 // 고민해보기
-
+    UserLoginService userLoginService;
     @Autowired
     ProfileImgService profileImgService;
-
     @Autowired
     RoomService roomService;
 
@@ -67,22 +65,14 @@ public class UserLoginController {
                     userLoginService.userLastLogin(user_email);
                 }
                 if (!statusId.equals("U01")) {
-                    model.addAttribute("statusId", statusId);
-                    return "main/main";
+                    redirectAttributes.addFlashAttribute("statusId", statusId);
+                    return "redirect:/";
                 }
 
                 // 정상적으로 로그인 됐을 때,
                 userLoginService.userLastLogin(user_email);
-                String profileImgUrl = profileImgService.getProfileImgUrl(userInfo.getUser_id());
 
-                model.addAttribute("profileImgUrl", profileImgUrl);
-                model.addAttribute("user", userInfo);
-//
-//                List<Map<String, Object>> roomList = roomService.lookUpAllRoom();
-//                model.addAttribute("roomList", roomList);
-
-                return "/main/main";// 얘로 하면 url 주소가 http://localhost/user/login 이렇게 남아..서 main controller 만들었음
-//                return "redirect:/";
+                return "redirect:/";
 
             }
             // 여기에 오는 경우가
