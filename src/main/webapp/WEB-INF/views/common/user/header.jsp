@@ -212,7 +212,8 @@
                                         null
                         ) {
                     %>
-                    <div class="components-user-header__dropdown__option dropdown__option-msg">
+                    <div onclick="location.href='/chatting/chattingRoomList'"
+                         class="components-user-header__dropdown__option dropdown__option-msg">
                         <span>메시지</span>
                     </div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-reservation">

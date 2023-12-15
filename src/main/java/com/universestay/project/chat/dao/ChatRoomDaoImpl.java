@@ -1,6 +1,8 @@
 package com.universestay.project.chat.dao;
 
 import com.universestay.project.dto.ChattingRoomDto;
+import java.util.List;
+import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -28,6 +30,11 @@ public class ChatRoomDaoImpl implements ChatRoomDao {
     @Override
     public String selectChatRoomId(ChattingRoomDto chattingRoomDto) throws Exception {
         return sqlSession.selectOne(namespace + "selectChatRoomId", chattingRoomDto);
+    }
+
+    @Override
+    public List<Map<String, Object>> selectChatRoomList(String userId) throws Exception {
+        return sqlSession.selectList(namespace + "selectChatRoomList", userId);
     }
 
 

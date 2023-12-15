@@ -8,6 +8,8 @@ import com.universestay.project.user.dao.UserWithdrawalDao;
 import com.universestay.project.user.dto.UserDto;
 import com.universestay.project.user.service.ProfileImgServiceImpl;
 import com.universestay.project.user.service.UserInfoService;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -137,13 +139,34 @@ public class ChattingRoomController {
 
     // 전체 채팅 목록 화면
     @RequestMapping("/chatting/chattingRoomList")
-    public String rooms() {
-        return "/chatting/chattingRoomList";
+    public String rooms(HttpSession session, RedirectAttributes rattr, Model model) {
+        String user_id = session.getAttribute("user_id").toString();
+        System.out.println(user_id);
+        String msg = "OK";
+
+        try {
+            // 현재 로그인한 id 의 채팅방 목록 조회
+            List<Map<String, Object>> chatRoomList = chatRoomService.selectChatRoomList(user_id);
+            // 채팅방 목록을 하나씩 화면에 전달
+            model.addAttribute("chatRoomList", chatRoomList);
+
+            rattr.addFlashAttribute("msg", msg);
+            // 채팅방 목록 화면으로 이동
+            return "/chatting/chattingRoomList";
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            msg = "FAIL";
+            rattr.addFlashAttribute("msg", msg);
+            // 메인 화면으로 이동
+            return "redirect:/";
+        }
     }
 
     // 채팅 테스트 화면 - 삭제 예정
     @RequestMapping("/chatting/chatting")
     public String chatTest() {
+
         return "/chatting/chatting";
     }
 
