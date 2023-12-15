@@ -413,7 +413,7 @@
     font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     font-size: 14px;
     line-height: 1.43;
-    color: #222;
+    color: #EBEBEB;
     background-color: #fff;
     margin: 0;
     -webkit-font-smoothing: antialiased;
@@ -438,6 +438,10 @@
   .chat_list:hover {
     background-color: #DDDDDD;
     /* 다른 스타일을 추가하거나 변경할 수 있습니다. */
+  }
+
+  .chat_list {
+    color: #0c0b0c;
   }
 
 </style>
@@ -467,21 +471,37 @@
 
         <div class="chatRoomList">
             <div class="chatRoom">
+
                 <c:forEach var="chatRoom" items="${chatRoomList}">
-                    <%-- Access the properties of each chat room --%>
-                    <c:set var="user_name" value="${chatRoom.user_name}"/>
-                    <c:set var="chat_ctt" value="${chatRoom.chat_ctt}"/>
-                    <c:set var="chat_date" value="${chatRoom.chat_date}"/>
+                <form action="/enter/chattingRoom/" +${chatRoom.chat_room_id}>
+                    <input type="hidden" name="chat_room_id" value="${chatRoom.chat_room_id}">
+
+                        <c:set var="user_name" value="${chatRoom.user_name}"/>
+                        <c:set var="chat_ctt" value="${chatRoom.chat_ctt}"/>
+                        <c:set var="chat_date" value="${chatRoom.chat_date}"/>
+                        <c:set var="profile_img" value="${chatRoom.profile_img_url}"/>
 
                     <div class="chat_list"
                          style="text-align: center; margin-top: 20px; margin-left: 10px; border-radius: 10px;">
-                        <p>${user_name}</p>
-                        <p>${chat_ctt}</p>
-                        <p>${chat_date}</p>
+                        <div style="margin-top: 5px;">
+                            <p>${user_name}</p>
+                        </div>
+                        <div style="margin-top: 5px;">
+                            <p>${chat_ctt}</p>
+                        </div>
+                        <div style="margin-top: 5px;">
+                            <p>${chat_date}</p>
+                        </div>
+                        <div style="margin-top: 5px;">
+                            <img src="${profile_img}"
+                                 style="width: 50px; height: 50px; border-radius: 50%;">
+                        </div>
                     </div>
-                </c:forEach>
+                    </c:forEach>
             </div>
         </div>
+        </form>
+
 
     </section>
 
@@ -559,7 +579,6 @@
         <%--                    </div>--%>
         <%--                </div>--%>
         <%--            </div>--%>
-
 
         <div>
             <div class="c1os9z2c atm_mk_stnw88 atm_fq_idpfg4 atm_n3_idpfg4 atm_9s_1txwivl atm_ar_vrvcex atm_fc_1h6ojuz atm_wq_cs5v99 atm_gi_xjk4d9 atm_j3_1fja5my atm_tk_f13iio atm_tk_f13iio__kgj4qw atm_tk_wwb3ei__oggzyc atm_tk_wwb3ei__1v156lz atm_tk_144fm4e__qky54b atm_tk_144fm4e__jx8car dir dir-ltr"></div>
