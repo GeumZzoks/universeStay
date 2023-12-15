@@ -1,6 +1,7 @@
 package com.universestay.project.admin.controller;
 
 import com.universestay.project.admin.dto.EventDto;
+import com.universestay.project.admin.dto.EventImgDto;
 import com.universestay.project.admin.service.EventService;
 import com.universestay.project.common.PageHandler;
 import com.universestay.project.common.SearchCondition;
@@ -63,9 +64,10 @@ public class EventController {
     public String read(@PathVariable Integer event_id, Model m) {
         try {
             // 이벤트 DB에 저장된 값 모델로 불러오기
-            EventDto eventDto = eventService.read(event_id);
-            m.addAttribute(eventDto);
+            Map<String, Object> eventDto = eventService.read(event_id);
+            m.addAttribute("eventDto", eventDto);
         } catch (Exception e) {
+            e.printStackTrace();
             // 조회 실패시 목록으로 이동
             return "redirect:/admin/event/list";
         }
@@ -80,7 +82,7 @@ public class EventController {
 
     @PostMapping("/write")
     // 이벤트 게시글 작성 코드
-    public String write(EventDto eventDto, Model m, HttpSession session, RedirectAttributes rattr) throws Exception {
+    public String write(EventDto eventDto, EventImgDto eventImgDto, Model m, HttpSession session, RedirectAttributes rattr) throws Exception {
         // 로그인시 세션에 전송된 이메일 가져오기
         String adminEmail = (String) session.getAttribute("admin_email");
         // 가져온 세션 이메일로 현재 로그인된 Admin 테이블의 UUID 가져오기
@@ -93,8 +95,10 @@ public class EventController {
             eventDto.setAdmin_id(writer);
             eventDto.setCreated_id(writer);
             eventDto.setUpdated_id(writer);
+            eventImgDto.setCreated_id(writer);
+            eventImgDto.setUpdated_id(writer);
             // 입력처리
-            eventService.write(eventDto);
+            eventService.write(eventDto, eventImgDto);
 
             //예외처리
         } catch (Exception e) {
@@ -171,7 +175,7 @@ public class EventController {
 
             if (adminUuid.equals(id)) {
                 // 권한이 있을경우 수정하고자 하는 게시글의 DB정보를 모델로 저장
-                EventDto eventDto = eventService.select(event_id);
+                Map<String, Object> eventDto = eventService.selectWithImg(event_id);
                 m.addAttribute("eventDto", eventDto);
                 m.addAttribute("start", event_start_val);
                 m.addAttribute("expire", event_expire_val);
