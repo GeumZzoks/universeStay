@@ -53,7 +53,7 @@
                 <div class="screens-admin-event__content-input__filebox">
                     <input class="upload-name" placeholder="첨부파일">
                     <label for="file">탐색</label>
-                    <input type="file" id="file" accept="image/*" onchange="readURL(this)">
+                    <input type="file" name="event_img_url" id="file" accept="image/*" onchange="readURL(this)">
                 </div>
             </div>
             <button class='screens-admin-event__content-bottom__btn__submit' type='submit'>등록</button>

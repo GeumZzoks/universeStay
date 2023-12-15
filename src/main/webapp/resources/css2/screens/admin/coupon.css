@@ -49,6 +49,7 @@
     font-size: 12px;
     width: 250px;
     height: 60px;
+    resize: none;
 }
 
 .screens-admin-coupon__content-input-div input[type="number"] {
