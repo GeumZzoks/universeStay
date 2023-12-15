@@ -1,5 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <html>
 <head>
     <title>Title</title>
@@ -478,11 +480,14 @@
 
                         <c:set var="user_name" value="${chatRoom.user_name}"/>
                         <c:set var="chat_ctt" value="${chatRoom.chat_ctt}"/>
-                        <c:set var="chat_date" value="${chatRoom.chat_date}"/>
+                        <fmt:formatDate value="${chatRoom.chat_date}" pattern="yyyy.MM.dd HH:mm"
+                                var="chat_date"/>
                         <c:set var="profile_img" value="${chatRoom.profile_img_url}"/>
 
                     <div class="chat_list"
                          style="text-align: center; margin-top: 20px; margin-left: 10px; border-radius: 10px;">
+
+
                         <div style="margin-top: 5px;">
                             <p>${user_name}</p>
                         </div>
