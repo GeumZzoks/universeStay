@@ -1,5 +1,3 @@
-.screens-user-main__body {
-}
 
 .screens-user-main__main {
   z-index: 99;
@@ -11,58 +9,79 @@
 }
 
 .screens-user-main__main__wrapper {
+  padding-left: 15px;
   width: 90%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-start;
+  gap: 15px;
   flex-wrap: wrap;
 }
 
 .screens-user-main__room__wrapper {
-  width: 320px;
+  width: 270px;
   margin-bottom: 20px;
-  height: 380px;
+  /*height: 320px;*/
+  gap: 4px 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   cursor: pointer;
 }
 
+.screens-user-main__room__wrapper:hover {
+  transform: scale(1.02, 1.02);
+  transition-duration: 200ms;
+  cursor: pointer;
+}
+
 .screens-user-main__room__img__wrapper {
-  width: 320px;
-  height: 320px;
+  width: 270px;
+  height: 270px;
+  overflow: hidden;
 }
 
 .swiper-slide img {
-  border-radius: 8%;
+  width: 100%;
+  height: 100%;
+  border-radius: 5%;
 }
 
 .screens-user-main__room-location {
-  margin-top: 8px;
-  font-size: 15px;
+  margin-top: 5px;
+  font-size: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-family: NotoSansKR-Regular;
+  width: 100%;
 }
 
 .screens-user-main__room-title {
   font-family: NotoSansKR-Regular;
-  font-size: 14px;
+  font-size: 15px;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.screens-user-main__room-price {
-  font-weight: bold;
+
+.screens-user-main__room-price__wrapper span {
   font-size: 14px;
-  font-family: NotoSansKR-Regular;
+  color: #4c4c4c;
+  font-family: NotoSansKR-Medium;
+
 }
 
-
-.screens-user-main__room-price {
-  font-weight: bold;
-  font-size: 14px;
+.screens-user-main__room-stars {
+  font-size: 13px;
   font-family: NotoSansKR-Regular;
+  color: #4c4c4c;
 }
 
 .screens-user-main__wishlist {
   position: absolute;
-  margin-left: 280px;
+  margin-left: 240px;
   z-index: 2;
 }
 
@@ -142,6 +161,130 @@
   color: #FFFFFF;
 }
 
+.swiper-button-next:hover, .swiper-button-prev:hover {
+  cursor: pointer;
+  transform: scale(1.2, 1.2);
+  transition-duration: 200ms;
+}
+
 .swiper-pagination-bullet-active {
   background-color: #FFFFFF;
 }
+
+@media screen and (max-width: 1680px) {
+  .screens-user-main__main__wrapper {
+    padding-left: 15px;
+    width: 90%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  .screens-user-main__room__wrapper {
+    width: 290px;
+    margin-bottom: 20px;
+    /*height: 330px;*/
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    cursor: pointer;
+    gap: 3px 0;
+
+  }
+
+  .screens-user-main__room__img__wrapper {
+
+    width: 290px;
+    height: 290px;
+    overflow: hidden;
+  }
+
+  .screens-user-main__wishlist {
+    position: absolute;
+    margin-left: 220px;
+    z-index: 2;
+  }
+
+  .screens-user-main__wishlist {
+    position: absolute;
+    margin-left: 240px;
+    z-index: 2;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .screens-user-main__main__wrapper {
+    padding-left: 30px;
+    width: 90%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+
+  .screens-user-main__room__wrapper {
+    width: 290px;
+    margin-bottom: 20px;
+    /*height: 330px;*/
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    cursor: pointer;
+    gap: 3px 0;
+  }
+
+  .screens-user-main__room__img__wrapper {
+    width: 290px;
+    height: 290px;
+    overflow: hidden;
+  }
+
+  .screens-user-main__wishlist {
+    position: absolute;
+    margin-left: 240px;
+    z-index: 2;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .screens-user-main__main__wrapper {
+    padding-left: 30px;
+    width: 90%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+
+  .screens-user-main__room__wrapper {
+    width: 260px;
+    margin-bottom: 20px;
+    /*height: 300px;*/
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    cursor: pointer;
+    gap: 3px 0;
+
+  }
+
+  .screens-user-main__room__img__wrapper {
+    width: 260px;
+    height: 260px;
+    overflow: hidden;
+  }
+
+  .screens-user-main__wishlist {
+    position: absolute;
+    margin-left: 220px;
+    z-index: 2;
+  }
+}
+
+.screens-user-main__room__img__wrapper img {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+

@@ -1,30 +1,3 @@
-//---------------------- 캘린더 라이브러리 --------------------------------------------
-$(function () {
-
-    let today = new Date();
-    // 내일 날짜 구하기 (오늘 날짜에 1을 더함)
-    let tomorrow = new Date(today);
-    tomorrow.setDate(tomorrow.getDate() + 1);
-
-    $('input[name="datefilter"]').daterangepicker({
-        autoUpdateInput: true,
-        locale: {
-            format: 'YYYY/MM/DD',
-            cancelLabel: '취소',
-            applyLabel: '확인'
-        },
-        startDate: $('input[name="startDate"]').val(),
-        endDate: tomorrow, // 내일 날짜를 endDate로 설정
-    });
-
-    $('input[name="datefilter"]').on('apply.daterangepicker',
-            function (ev, picker) {
-                $(this).val(picker.startDate.format('YYYY/MM/DD') + ' - '
-                        + picker.endDate.format(
-                                'YYYY/MM/DD'));
-            });
-});
-
 // ------------------------ 메인 검색 ajax 코드  ----------------------------------------//
 
 $(".components-user-header__header__searchbar__search-btn").click(function () {
@@ -43,8 +16,6 @@ $(".components-user-header__header__searchbar__search-btn").click(function () {
         search_min_price: $('.components-user-header__min-input').val(),
         search_max_price: $('.components-user-header__max-input').val(),
     };
-
-    console.log(searchInfo);
 
     $.ajax({
         type: "POST",
@@ -77,8 +48,6 @@ document.querySelector(
                 search_min_price: $('.components-user-header__min-input').val(),
                 search_max_price: $('.components-user-header__max-input').val(),
             };
-
-            console.log(searchInfo);
 
             // URL 생성
             const url = "/?" +
@@ -167,9 +136,7 @@ const toggleDropdown1 = function () {
             dropdown.classList.remove("show");
         }
     });
-    console.log(dropdownDiv[0].classList);
     dropdownDiv[0].classList.toggle('show')
-    console.log(dropdownDiv[0].classList);
 }
 // '여행자'를 눌렀을때 발현하는 함수
 const toggleDropdown2 = function () {
@@ -184,9 +151,7 @@ const toggleDropdown2 = function () {
             dropdown.classList.remove("show");
         }
     });
-    console.log(dropdownDiv[1].classList);
     dropdownDiv[1].classList.toggle('show')
-    console.log(dropdownDiv[1].classList);
 }
 //  '1박당 예산을 눌렀을 때 발현하는 함수
 const toggleDropdown3 = function () {
@@ -324,13 +289,18 @@ function syncValues() {
     const maxTxtElement = document.querySelector(
             '.components-user-header__header__searchbar__sub_txt__max');
 
-    minTxtElement.textContent = `${convertToTenThousand(minInput.value)}`; // minInput 값 변환하여 적용
-    maxTxtElement.textContent = `${convertToTenThousand(maxInput.value)}`; // maxInput 값 변환하여 적용
+    minTxtElement.textContent = priceToString(minInput.value); // minInput 값 변환하여 적용
+    maxTxtElement.textContent = priceToString(maxInput.value); // maxInput 값 변환하여 적용
 }
 
 // 입력 필드에서 값이 변경될 때마다 syncValues 함수 호출
 minInput.addEventListener('input', syncValues);
 maxInput.addEventListener('input', syncValues);
+
+//화면이 로드될때마다 실행
+document.addEventListener('DOMContentLoaded', function () {
+    syncValues(); // 페이지가 로드되면 syncValues 함수를 실행합니다.
+});
 
 //---------------------- 각 메뉴 & 컨트롤러 맵핑 --------------------------------------------
 const signUpBtn = document.querySelector(
