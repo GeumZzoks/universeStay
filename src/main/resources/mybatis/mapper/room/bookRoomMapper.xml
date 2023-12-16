@@ -13,6 +13,7 @@
                  INNER JOIN User U ON R.user_id = U.user_id
                  INNER JOIN ProfileImg P ON U.user_id = P.user_id
         WHERE R.room_id = #{room_id}
+          and P.profile_img_is_remove = 'N';
     </select>
 
     <insert id="bookRoom" parameterType="BookingDto">
@@ -50,5 +51,11 @@
         select *
         FROM Booking
         WHERE room_id = #{room_id} and
+    </select>
+
+    <select id="selectUserInfo" parameterType="String" resultType="UserDto">
+        select *
+        from User
+        where user_email = #{user_email}
     </select>
 </mapper>

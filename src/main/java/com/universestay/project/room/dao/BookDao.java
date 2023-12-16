@@ -2,6 +2,7 @@ package com.universestay.project.room.dao;
 
 import com.universestay.project.common.exception.CommonException;
 import com.universestay.project.dto.BookingDto;
+import com.universestay.project.user.dto.UserDto;
 import java.util.Map;
 
 public interface BookDao {
@@ -12,4 +13,6 @@ public interface BookDao {
 
     Integer selectCheckBookingRoom(BookingDto bookingDto)
             throws CommonException;
+
+    UserDto getUserInfo(String userEmail) throws CommonException;
 }

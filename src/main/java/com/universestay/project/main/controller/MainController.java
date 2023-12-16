@@ -116,12 +116,14 @@ public class MainController {
                     address, search_start_date, search_end_date, search_capa, search_min_price,
                     search_max_price, user_id);
             int totalCount = roomService.countAllRoom(sc);
+
             if (totalCount == 0) {
                 return roomList;
             }
 
             PageHandler pageHandler = new PageHandler(totalCount, sc);
             Integer totalPageCount = pageHandler.getTotalPage();
+
             //룸 리스트 반환
             roomList = roomService.lookUpAllRoom(sc);
 
@@ -134,6 +136,7 @@ public class MainController {
                 // 총 페이지 숫자를 리스트에 추가해서 넣기
                 roomList.get(i).put("totalPageCount", totalPageCount);
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
