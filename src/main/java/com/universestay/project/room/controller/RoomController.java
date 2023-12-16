@@ -70,10 +70,10 @@ public class RoomController {
             model.addAttribute("host", host);
             model.addAttribute("profileImgUrl", profileImgUrl);
             model.addAttribute("roomAmenities", roomAmenities);
-            for (String[] roomAmenity : roomAmenities) {
-                System.out.println("roomAmenity[0] = " + roomAmenity[0]);
-                System.out.println("roomAmenity[1] = " + roomAmenity[1]);
-            }
+//            for (String[] roomAmenity : roomAmenities) {
+//                System.out.println("roomAmenity[0] = " + roomAmenity[0]);
+//                System.out.println("roomAmenity[1] = " + roomAmenity[1]);
+//            }
 
             return "room/roomDetail";
         } catch (Exception e) {

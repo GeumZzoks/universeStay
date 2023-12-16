@@ -1,10 +1,10 @@
 package com.universestay.project.main.controller;
 
+import com.universestay.project.admin.dto.EventDto;
+import com.universestay.project.admin.service.EventService;
 import com.universestay.project.common.MainSearchCondition;
 import com.universestay.project.common.PageHandler;
 import com.universestay.project.common.SearchCondition;
-import com.universestay.project.admin.dto.EventDto;
-import com.universestay.project.admin.service.EventService;
 import com.universestay.project.room.service.RoomService;
 import com.universestay.project.user.dto.UserDto;
 import com.universestay.project.user.service.ProfileImgService;
@@ -91,14 +91,6 @@ public class MainController {
         List<Map<String, Object>> roomList = new ArrayList<>();
 
         try {
-            System.out.println("category = " + category);
-            System.out.println("view = " + view);
-            System.out.println("address = " + address);
-            System.out.println("search_capa = " + search_capa);
-            System.out.println("search_start_date = " + search_start_date);
-            System.out.println("search_end_date = " + search_end_date);
-            System.out.println("search_min_price = " + search_min_price);
-            System.out.println("search_max_price = " + search_max_price);
 
             String userEmail = (String) (session.getAttribute("user_email"));
             String user_id;
@@ -124,7 +116,6 @@ public class MainController {
                     address, search_start_date, search_end_date, search_capa, search_min_price,
                     search_max_price, user_id);
             int totalCount = roomService.countAllRoom(sc);
-            System.out.println("totalCount = " + totalCount);
 
             if (totalCount == 0) {
                 return roomList;
@@ -132,8 +123,6 @@ public class MainController {
 
             PageHandler pageHandler = new PageHandler(totalCount, sc);
             Integer totalPageCount = pageHandler.getTotalPage();
-            System.out.println("totalPageCount = " + totalPageCount);
-            System.out.println("sc = " + sc);
 
             //룸 리스트 반환
             roomList = roomService.lookUpAllRoom(sc);
@@ -147,8 +136,6 @@ public class MainController {
                 // 총 페이지 숫자를 리스트에 추가해서 넣기
                 roomList.get(i).put("totalPageCount", totalPageCount);
             }
-            System.out.println("roomList = " + roomList);
-
 
         } catch (Exception e) {
             e.printStackTrace();
