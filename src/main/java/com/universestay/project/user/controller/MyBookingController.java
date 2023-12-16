@@ -28,7 +28,7 @@ public class MyBookingController {
     }
 
     // 서비스페이지 상단에서 내 예약 내역 눌렀을 때
-    @GetMapping("/")
+    @GetMapping
     public String myBooking(HttpSession session, Model model) throws Exception {
         // TODO: 2023-12-09 나중에 지우기 세션 코드 넣기
 //        session.setAttribute("user_email", "ming7606@naver.com");
