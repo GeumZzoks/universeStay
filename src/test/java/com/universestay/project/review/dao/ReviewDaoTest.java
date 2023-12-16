@@ -16,7 +16,7 @@ public class ReviewDaoTest {
     @Test
     public void 숙소_리뷰목록_불러오기() throws Exception {
         System.out.println(
-                roomReviewDao.roomReviewSelectAll("a65b5ec4-39bb-4df9-a28a-6d6c7df28756"));
+                roomReviewDao.roomReviewSelectAll("165b5ec4-39bb-4df9-a28a-6d6c7df28756"));
     }
 
 //    @Test

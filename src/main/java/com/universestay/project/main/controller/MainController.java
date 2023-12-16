@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -34,10 +35,8 @@ public class MainController {
     ProfileImgService profileImgService;
     @Autowired
     RoomService roomService;
-
     @Autowired
     WishListService wishListService;
-
     @Autowired
     EventService eventService;
 
@@ -56,7 +55,8 @@ public class MainController {
     }
 
     @GetMapping("/")
-    public String main(HttpSession session, Model model)
+    public String main(HttpSession session, Model model,
+            @ModelAttribute("statusId") String statusId)
             throws Exception {
         String userEmail = (String) (session.getAttribute("user_email"));
 
@@ -68,9 +68,10 @@ public class MainController {
         String profileImgUrl = profileImgService.getProfileImgUrl(user.getUser_id());
         String isHost = user.getUser_is_host();
 
-        model.addAttribute("user", user);
+        model.addAttribute("userInfo", user);
         model.addAttribute("profileImgUrl", profileImgUrl);
         model.addAttribute("isHost", isHost);
+        model.addAttribute("statusId", statusId);
         return "main/main";
     }
 
@@ -91,7 +92,6 @@ public class MainController {
         List<Map<String, Object>> roomList = new ArrayList<>();
 
         try {
-
             String userEmail = (String) (session.getAttribute("user_email"));
             String user_id;
 
@@ -103,10 +103,10 @@ public class MainController {
             }
 
             //한번에 불러올 숙소 개수
-            final int PAGE_ROW_COUNT = 8;
+            final int PAGE_ROW_COUNT = 20;
 
             //만약 '국내 전체'로 값이 들어오면 빈 문자열로 바꿔서 전체 검색
-            if (address.equals("국내 전체")) {
+            if (address.equals("국내 전체") || address.equals("국내전체")) {
                 address = "";
             }
 
