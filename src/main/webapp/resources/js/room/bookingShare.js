@@ -34,16 +34,7 @@ submitButton.onclick = function () {
 /* 건너뛰기 버튼을 클릭 시 */
 const skipButton = document.getElementById("skip-button");
 skipButton.onclick = function () {
-    $.ajax({
-        type: "GET",
-        url: "/room/book/sendEmailForRoomInfo",
-        success: function (res) {
-            console.log(res);
-            location.href = "/room/book/myBooking"
-        },
-        error: function (res) {
-            console.log(res);
-        }
-    });
+    
+    location.href = "/user/myPage/mybookings";
 };
 

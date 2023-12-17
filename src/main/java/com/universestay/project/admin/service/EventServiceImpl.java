@@ -2,6 +2,7 @@ package com.universestay.project.admin.service;
 
 import com.universestay.project.admin.dao.EventDao;
 import com.universestay.project.admin.dto.EventDto;
+import com.universestay.project.admin.dto.EventImgDto;
 import com.universestay.project.common.SearchCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,11 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    public Map<String, Object> selectWithImg(Integer event_id) throws Exception {
+        return eventDao.selectWithImg(event_id);
+    }
+
+    @Override
     public List<EventDto> selectMain() throws Exception {
         return eventDao.selectMain();
     }
@@ -33,16 +39,18 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Integer write(EventDto dto) throws Exception {
-        return eventDao.insert(dto);
+    @Transactional
+    public Integer write(EventDto dto, EventImgDto eventImgDto) throws Exception {
+        eventDao.insert(dto);
+        Integer event_id = dto.getEvent_id();
+        eventImgDto.setEvent_id(event_id);
+        return eventDao.insertImg(eventImgDto);
     }
 
     @Override
     @Transactional
-    public EventDto read(Integer event_id) throws Exception {
-        EventDto eventDto = eventDao.select(event_id);
-        eventDao.update_hit(event_id);
-
+    public Map<String, Object> read(Integer event_id) throws Exception {
+        Map<String, Object> eventDto = eventDao.selectWithImg(event_id);
         return eventDto;
     }
 

@@ -2,7 +2,6 @@ package com.universestay.project.room.controller;
 
 import com.universestay.project.common.exception.CommonException;
 import com.universestay.project.dto.BookingDto;
-import com.universestay.project.room.dto.RoomDto;
 import com.universestay.project.room.dto.SendEmailBookInfoDto;
 import com.universestay.project.room.service.BookService;
 import com.universestay.project.room.service.BookShareMailSendService;
@@ -40,15 +39,10 @@ public class BookingRoomController {
 
     @GetMapping("/{room_id}")
     public String bookRoom(BookingDto bookingDto, Model model) throws CommonException {
-        System.out.println(
-                "--------------------------BookingRoomController.bookRoom--------------------------");
 
         Map<String, Object> bookInfo = bookService.selectRoomBookInfo(bookingDto.getRoom_id());
         model.addAttribute("bookInfo", bookInfo);
         model.addAttribute("bookingDto", bookingDto); // 체크인, 체크아웃, 게스트 인원
-
-        System.out.println("bookInfo = " + bookInfo);
-        System.out.println("bookingDto = " + bookingDto);
 
         return "room/book";
     }
@@ -58,13 +52,9 @@ public class BookingRoomController {
     public ResponseEntity bookShare(@RequestBody BookingDto bookingDto, HttpSession httpSession)
             throws Exception {
 
-        System.out.println("here");
         // 숙소에 대한 정보 가져오기
-        RoomDto roomDto = roomService.lookUpRoom(bookingDto.getRoom_id());
-
-        System.out.println("bookingDto = " + bookingDto);
-        System.out.println("bookService.selectCheckBookingRoom(bookingDto) = "
-                + bookService.selectCheckBookingRoom(bookingDto));
+        Map<String, Object> roomDto = roomService.lookUpRoom(bookingDto.getRoom_id(),
+                (String) httpSession.getAttribute("user_email"));
 
         // 이미 다른 게스트가 예약했다면 승인거절 처리
         if (bookService.selectCheckBookingRoom(bookingDto) > 0) {
@@ -80,14 +70,8 @@ public class BookingRoomController {
     @GetMapping("/share/{room_id}")
     public String bookShare(@PathVariable String room_id, BookingDto bookingDto,
             HttpSession httpSession, Model model) {
+
         Map<String, Object> bookInfo = bookService.selectRoomBookInfo(room_id);
-
-
-        /* DB에 저장 Booking(예약 확정 상태는 아님) */
-        /*   - 사용자 ID도 넣어준다. */
-        System.out.println("-----------------------BookingRoomController.bookShare");
-        System.out.println("bookInfo = " + bookInfo);
-        System.out.println("bookingDto = " + bookingDto);
 
         model.addAttribute("user_email", httpSession.getAttribute("user_email"));
         model.addAttribute("bookInfo", bookInfo);
@@ -97,9 +81,6 @@ public class BookingRoomController {
     }
 
     @PostMapping("/sendEmailForRoomInfo")
-//    public ResponseEntity<String> sendEmailForRoomInfo(HttpServletRequest request,
-//            @RequestBody String string) {
-
     public ResponseEntity<String> sendEmailForRoomInfo(
             @RequestBody SendEmailBookInfoDto sendEmailBookInfoDto) {
         /* 사용자가 입력한 이메일을 받는다. */
