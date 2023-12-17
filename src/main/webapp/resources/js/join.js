@@ -319,3 +319,26 @@ document.getElementById("screens-user-join_mail_Check_Btn").addEventListener(
     function () {
       startTimer(); // 타이머 시작
     });
+
+$('#screens-user-join_mail_code_check_Btn').click(function () {
+  const inputCode = $('#screens-user-join_code_check_input').val();
+  console.log(inputCode);
+
+  $.ajax({
+    type: 'post',
+    url: '/user/checkMailCode',
+    data: {"inputCode": inputCode},
+    success: function (data) {
+      if ("Y" === data) {
+        alert('인증번호가 확인되었습니다.');
+      } else {
+        alert('인증번호가 일치하지 않습니다.');
+      }
+    },
+    error: function (xhr, status, error) {
+      alert('인증번호가 일치하지 않습니다. 다시 전송해주세요.');
+      console.error("Ajax request failed:", status, error);
+      console.log(xhr.responseText);
+    }
+  });
+});

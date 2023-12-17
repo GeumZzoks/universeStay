@@ -22,6 +22,8 @@ public class JoinController {
     @Autowired
     private JoinService joinService;
 
+    private int code;
+
     // 회원가입 페이지
     @GetMapping("/join")
     public String join() {
@@ -62,7 +64,23 @@ public class JoinController {
             System.out.println(joinService.checkEmail(email));
             if (joinService.checkEmail(email) != 1) {
                 System.out.println("이메일 인증");
-                mailSendService.joinEmail(email);
+                code = Integer.parseInt(mailSendService.joinEmail(email));
+                return ResponseEntity.ok("Y");
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("N");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("N");
+        }
+    }
+
+    // 이메일 인증번호 확인
+    @PostMapping("/checkMailCode")
+    public ResponseEntity<String> checkMailCode(String inputCode) {
+        try {
+
+            if (code == Integer.parseInt(inputCode)) {
                 return ResponseEntity.ok("Y");
             } else {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("N");

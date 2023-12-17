@@ -114,7 +114,7 @@
                       style="width:100%; margin: 10px 0px 0px 0px">
                     <input id="screens-user-join_code_check_input" type="text" class="form-control"
                            placeholder="인증번호 입력"></input>
-                    <span class="certificationTime">03:00</span>
+                    <span class="certificationTime" style="color: #222222">03:00</span>
                 </span>
                 <span class="screens-user-join_helper_text_span"
                       id="email_code_input_helper_text"></span>
