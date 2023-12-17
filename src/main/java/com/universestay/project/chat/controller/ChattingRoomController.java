@@ -147,6 +147,7 @@ public class ChattingRoomController {
         try {
             // 현재 로그인한 id 의 채팅방 목록 조회
             List<Map<String, Object>> chatRoomList = chatRoomService.selectChatRoomList(user_id);
+            System.out.println(chatRoomList.toString());
             // 채팅방 목록을 하나씩 화면에 전달
             model.addAttribute("chatRoomList", chatRoomList);
 

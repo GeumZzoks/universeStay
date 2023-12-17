@@ -1,6 +1,8 @@
 package com.universestay.project.chat.dao;
 
 import com.universestay.project.dto.ChattingMessageDto;
+import java.util.List;
+import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,4 +19,15 @@ public class ChatMessageDaoImpl implements ChatMessageDao {
     public int insertChat(ChattingMessageDto chattingMessageDto) {
         return sqlSession.insert(namespace + "insertChat", chattingMessageDto);
     }
+
+    @Override
+    public List<ChattingMessageDto> selectChatList(Map<String, Object> map) {
+        return sqlSession.selectList(namespace + "selectChatList");
+    }
+
+    @Override
+    public List<ChattingMessageDto> selectFirstChatList(String chat_room_id) {
+        return null;
+    }
+
 }

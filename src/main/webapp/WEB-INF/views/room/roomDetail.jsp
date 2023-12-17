@@ -328,7 +328,7 @@
 <script src="/resources/js/room/roomDetail.js"></script>
 <script>
   function createChatRoom() {
-    var room_id = '${room.room_id}'; // Replace with the actual room ID or fetch dynamically
+    var room_id = '${room.room_id}';
     location.href = '/chatting/createRoom/' + room_id;
   }
 </script>
