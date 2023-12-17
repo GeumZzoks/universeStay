@@ -448,7 +448,8 @@
     <%-- 캘린더 스크립트 --%>
     <script type="text/javascript"
             src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <script src="/resources/js/room/roomDetail.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <%--    <script src="/resources/js/room/roomDetail.js"></script>--%>
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
     <script>
