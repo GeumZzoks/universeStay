@@ -3,6 +3,10 @@ package com.universestay.project.chat.controller;
 import com.universestay.project.chat.service.ChatMessageService;
 import com.universestay.project.chat.service.ChatRoomService;
 import com.universestay.project.dto.ChattingMessageDto;
+import com.universestay.project.room.dto.RoomDto;
+import com.universestay.project.room.service.RoomService;
+import com.universestay.project.user.dao.UserWithdrawalDao;
+import com.universestay.project.user.dto.UserDto;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
@@ -28,6 +32,12 @@ public class ChattingController {
     @Autowired
     ChatRoomService chatRoomService;
 
+    @Autowired
+    UserWithdrawalDao userWithdrawalDao;
+
+    @Autowired
+    RoomService roomService;
+
 
     //채팅 저장
     @RequestMapping("/chat/insertChat.do")
@@ -41,6 +51,7 @@ public class ChattingController {
     @RequestMapping("/enter/chattingRoomList/{chatting_room_id}")
     public String enterChatRoom(Model model,
             @PathVariable String chatting_room_id,
+            @RequestParam(name = "room_id", required = false) String room_id,
             HttpSession session) {
         try {
             System.out.println("======chatting_room_id = " + chatting_room_id);
@@ -48,15 +59,20 @@ public class ChattingController {
             List<Map<String, Object>> firstList = chatMessageService.selectChatList(
                     chatting_room_id);
 
+            RoomDto room = roomService.lookUpRoom(room_id);
+            System.out.println(room_id);
+            UserDto host = userWithdrawalDao.selectUserByUuid(room.getUser_id());
+            System.out.println(host.toString());
+
             // 현재 로그인한 id 의 채팅방 목록 조회
             List<Map<String, Object>> chatRoomList = chatRoomService.selectChatRoomList(user_id);
             // 채팅방 목록을 하나씩 화면에 전달
             model.addAttribute("chatRoomList", chatRoomList);
-
+            model.addAttribute("host", host);
             model.addAttribute("chat_room_id", chatting_room_id);
             model.addAttribute("user_id", user_id);
             model.addAttribute("firstList", firstList);
-            System.out.println(firstList.toString());
+            System.out.println("@@@@@@" + firstList.toString());
             return "/chatting/chattingMessageList";
         } catch (Exception e) {
             e.printStackTrace();

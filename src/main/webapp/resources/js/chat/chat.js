@@ -193,17 +193,9 @@ $(document).ready(function () {
 $(document).ready(function () {
   $('.chat_list').click(function () {
     var chatting_room_id = $(this).data('chat-room-id');
+    var room_id = $(this).data('room-id');
     console.log(chatting_room_id);
-    location.href = '/enter/chattingRoomList/' + chatting_room_id;
-    // $.ajax({
-    //   url: '/enter/chattingRoomList/' + chatting_room_id,
-    //   type: 'GET',
-    //   success: function (response) {
-    //     console.log(response);
-    //   },
-    //   error: function (xhr, status, error) {
-    //     console.error(error);
-    //   }
-    // });
+    location.href = '/enter/chattingRoomList/' + chatting_room_id + '?room_id='
+        + room_id;
   });
 });

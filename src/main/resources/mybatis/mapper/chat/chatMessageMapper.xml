@@ -16,10 +16,13 @@
            cm.user_id,
            u.user_name,
            cm.chat_date,
-           cm.chat_ctt
+           cm.chat_ctt,
+           pi.profile_img_url
     FROM ChattingMessage cm
            JOIN
          User u ON cm.user_id = u.user_id
+           LEFT JOIN ProfileImg pi ON cm.user_id = pi.user_id AND pi.profile_img_is_remove = 'N'
+
     WHERE cm.chatting_room_id = #{chatting_room_id}
     ORDER BY cm.chat_date;
   </select>

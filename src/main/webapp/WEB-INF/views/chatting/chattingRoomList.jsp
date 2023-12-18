@@ -486,8 +486,6 @@
                 <c:forEach var="chatRoom" items="${chatRoomList}">
                     <input style="display: none" name="chat_room_id"
                            value="${chatRoom.chatting_room_id}">
-                    <script>console.log(${chatRoom.chatting_room_id})
-                    console.log(${chatRoom.username})</script>
 
                     <c:set var="user_name" value="${chatRoom.user_name}"/>
                     <c:set var="chat_ctt" value="${chatRoom.chat_ctt}"/>
@@ -495,10 +493,12 @@
                                     var="chat_date"/>
                     <c:set var="profile_img" value="${chatRoom.profile_img_url}"/>
                     <c:set var="chat_room_id" value="${chatRoom.chatting_room_id}"/>
+                    <c:set var="room_id" value="${chatRoom.room_id}"/>
                     <form id="chatForm" action="/enter/chattingRoomList/${chat_room_id}"
                           method="get">
                         <div class="chat_list" id="chatListItem"
                              data-chat-room-id="${chatRoom.chatting_room_id}"
+                             data-room-id="${chatRoom.room_id}"
                              style="text-align: center; margin-top: 20px; margin-left: 10px; border-radius: 10px;">
                             <div style="margin-top: 5px;">
                                 <p>${user_name}</p>

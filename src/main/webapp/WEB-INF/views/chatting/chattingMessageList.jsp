@@ -503,6 +503,8 @@
                           method="get">
                         <div class="chat_list" id="chatListItem"
                              data-chat-room-id="${chatRoom.chatting_room_id}"
+                             data-room-id="${chatRoom.room_id}"
+
                              style="text-align: center; margin-top: 20px; margin-left: 10px; border-radius: 10px;">
                             <div style="margin-top: 5px;">
                                 <p>${user_name}</p>
@@ -534,19 +536,18 @@
             <div class="p1wta9s2 atm_mk_h2mmj6 atm_9s_1txwivl atm_ar_1bp4okc atm_e2_1osqo2v atm_vy_auwlz6 atm_j3_1osqo2v atm_vy_1wugsn5__oggzyc dir dir-ltr">
                 <div class="puhj6i2 atm_9s_1txwivl atm_ar_vrvcex atm_h_1h6ojuz atm_ll_k75hcd atm_lk_k75hcd atm_mk_h2mmj6 atm_e2_t9kd1m atm_40_163hlei dir dir-ltr"
                      data-testid="messaging_c3pi_thread_panel_toolbar">
-                    <%--                    <div class="t11fbti1 atm_ax_kb7nvz atm_h0_1fwxnve dir dir-ltr">--%>
-                    <%--                        <div class="p1mecifk atm_7l_18pqv07 atm_ax_kb7nvz pagazba atm_c8_exq1xd atm_fr_7aerd4 atm_cs_u3ocpi atm_g3_1pezo5y atm_ks_15vqwwr atm_sq_1l2sidv atm_9s_cj1kg8 atm_6w_1e54zos atm_fy_kb7nvz atm_ks_zryt35__1rgatj2 dir dir-ltr">--%>
-                    <%--                            <section><h2 id="thread_header" tabindex="-1"--%>
-                    <%--                                         class="hpipapi atm_7l_1kw7nm4 atm_c8_1x4eueo atm_cs_1kw7nm4 atm_g3_1kw7nm4 atm_gi_idpfg4 atm_l8_idpfg4 atm_kd_idpfg4_pfnrn2 dir dir-ltr"--%>
-                    <%--                                         elementtiming="LCP-target"><span--%>
-                    <%--                                    aria-hidden="true">Geenie</span><span--%>
-                    <%--                                    class="a8jt5op atm_3f_idpfg4 atm_7h_hxbz6r atm_7i_ysn8ba atm_e2_t94yts atm_ks_zryt35 atm_l8_idpfg4 atm_mk_stnw88 atm_vv_1q9ccgz atm_vy_t94yts dir dir-ltr">Geenie 님과의 대화</span>--%>
-                    <%--                            </h2></section>--%>
-                    <%--                        </div>--%>
-                    <%--                        <div class="o1pcneur atm_ks_15vqwwr atm_sq_1l2sidv atm_9s_cj1kg8 atm_6w_1e54zos atm_fy_kb7nvz atm_ks_zryt35__1rgatj2 s1tjb23t atm_c8_1l6y6xl atm_g3_i7n6xh atm_fr_4z8b6j atm_7l_18pqv07 dir dir-ltr">--%>
-                    <%--                            응답 시간: 1시간--%>
-                    <%--                        </div>--%>
-                    <%--                    </div>--%>
+                    <div class="t11fbti1 atm_ax_kb7nvz atm_h0_1fwxnve dir dir-ltr">
+                        <div class="p1mecifk atm_7l_18pqv07 atm_ax_kb7nvz pagazba atm_c8_exq1xd atm_fr_7aerd4 atm_cs_u3ocpi atm_g3_1pezo5y atm_ks_15vqwwr atm_sq_1l2sidv atm_9s_cj1kg8 atm_6w_1e54zos atm_fy_kb7nvz atm_ks_zryt35__1rgatj2 dir dir-ltr">
+                            <section><h2 id="thread_header" tabindex="-1"
+                                         class="hpipapi atm_7l_1kw7nm4 atm_c8_1x4eueo atm_cs_1kw7nm4 atm_g3_1kw7nm4 atm_gi_idpfg4 atm_l8_idpfg4 atm_kd_idpfg4_pfnrn2 dir dir-ltr"
+                                         elementtiming="LCP-target"><span
+                                    class="a8jt5op atm_3f_idpfg4 atm_7h_hxbz6r atm_7i_ysn8ba atm_e2_t94yts atm_ks_zryt35 atm_l8_idpfg4 atm_mk_stnw88 atm_vv_1q9ccgz atm_vy_t94yts dir dir-ltr">${host.user_name} 님과의 대화</span>
+                            </h2></section>
+                        </div>
+                        <div class="o1pcneur atm_ks_15vqwwr atm_sq_1l2sidv atm_9s_cj1kg8 atm_6w_1e54zos atm_fy_kb7nvz atm_ks_zryt35__1rgatj2 s1tjb23t atm_c8_1l6y6xl atm_g3_i7n6xh atm_fr_4z8b6j atm_7l_18pqv07 dir dir-ltr">
+                            응답 시간: 1시간
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -562,28 +563,32 @@
                         <c:forEach items="${firstList}" var="chatMessage">
                             <!-- 내 채팅일 경우 -->
                             <div style="margin-top: 10px; margin-left: 30px;">
-                                <c:if test="${chatRoom.user_id eq chatMessage.user_id}">
-                                    <strong class="">${chatMessage.user_name}</strong>
-                                    <div class="me ">
-                                        <strong style="display : inline;"
-                                                class="align-self-end"><fmt:formatDate
-                                                value="${chatMessage.chat_date}"
-                                                pattern="yy/MM/dd HH:mm"/></strong>
-                                        <p class="myChat text-left p-2">${chatMessage.chat_ctt}</p>
-                                    </div>
-                                </c:if>
+                                    <%--                                <c:if test="${chatRoom.user_id eq chatMessage.user_id}">--%>
+                                <div>
+                                    <img src="${chatMessage.profile_img_url}"
+                                         style="width: 50px; height: 50px; border-radius: 50%;">
+                                </div>
+                                <strong class="">${chatMessage.user_name}</strong>
+                                <div class="me ">
+                                    <strong style="display : inline;"
+                                            class="align-self-end"><fmt:formatDate
+                                            value="${chatMessage.chat_date}"
+                                            pattern="yy/MM/dd HH:mm"/></strong>
+                                    <p class="myChat text-left p-2">${chatMessage.chat_ctt}</p>
+                                </div>
+                                    <%--                                </c:if>--%>
                             </div>
                             <!-- 다른사람의 채팅일 경우 -->
-                            <c:if test="${chatRoom.user_id ne chatMessage.user_id}">
+                            <%--                            <c:if test="${chatRoom.user_id ne chatMessage.user_id}">--%>
 
-                                <strong>${chatMessage.user_name}</strong>
-                                <div class="row ml-0">
-                                    <p class="otherChat bg-light p-2">${chatMessage.chat_ctt}</p>
-                                    <strong class="align-self-center"><fmt:formatDate
-                                            value="${chatMessage.chat_date}"
-                                            pattern="yy/MM/dd HH:mm"/>
-                                </div>
-                            </c:if>
+                            <%--                                <strong>${chatMessage.user_name}</strong>--%>
+                            <%--                                <div class="row ml-0">--%>
+                            <%--                                    <p class="otherChat bg-light p-2">${chatMessage.chat_ctt}</p>--%>
+                            <%--                                    <strong class="align-self-center"><fmt:formatDate--%>
+                            <%--                                            value="${chatMessage.chat_date}"--%>
+                            <%--                                            pattern="yy/MM/dd HH:mm"/>--%>
+                            <%--                                </div>--%>
+                            <%--                            </c:if>--%>
                         </c:forEach>
                     </div>
 
