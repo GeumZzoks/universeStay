@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.universestay.project.resources.mybatis.mapper.payment.paymentMapper">
+    <select id="findPaymentUser" parameterType="String" resultType="map">
+        SELECT *
+        FROM Booking B
+                 INNER JOIN User U ON B.user_id = U.user_id
+                 INNER JOIN Room R ON B.room_id = R.room_id
+        WHERE B.booking_id = #{booking_id}
+    </select>
+
+</mapper>
