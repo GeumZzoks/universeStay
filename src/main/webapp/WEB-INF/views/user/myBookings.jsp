@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="/resources/css2/style.css">
     <script src="/resources/js/common/aboutTimestamp.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+
     <style>
       .screens-room-booking__body {
         /*width: 1920px;*/
@@ -290,8 +292,8 @@
             <div>
                 <div>
                     <div>
-                        <div class="screens-room-booking__hiddenValue-${status.index}" hidden
-                             value-booking_id="${dto.booking_id}"></div>
+                        <div class="screens-room-booking__hiddenValue" hidden
+                             data-value="${dto.booking_id}"></div>
                         <div>${dto.room_address}</div>
                         <div>${dto.user_nickname}님이 호스팅하는 집 전체</div>
                     </div>
@@ -317,6 +319,8 @@
                             ${dto.booking_status_id == "B01" ? "예약신청" : dto.booking_status_id == "B02" ? "예약완료" :
                                     dto.booking_status_id == "B03" ? "예약취소" : dto.booking_status_id == "B04" ? "예약반려" : "오류"}
                     </div>
+                    <button class="screens-room-booking__payment-button-card">카드결제</button>
+                    <button class="screens-room-booking__payment-button-kakao">카카오페이</button>
                 </div>
             </div>
         </c:forEach>
@@ -462,5 +466,6 @@
     });
 
 </script>
+<script src="/resources/js/payment/payment.js"></script>
 </body>
 </html>
