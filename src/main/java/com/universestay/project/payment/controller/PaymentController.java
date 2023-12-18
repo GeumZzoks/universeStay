@@ -33,8 +33,7 @@ public class PaymentController {
         return null;
     }
 
-    @GetMapping
-    @ResponseBody
-    public ResponseEntity
-
+//    @GetMapping
+//    @ResponseBody
+//    public ResponseEntity
 }
