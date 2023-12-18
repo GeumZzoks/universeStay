@@ -8,7 +8,7 @@ public interface ChatMessageDao {
 
     int insertChat(ChattingMessageDto chattingMessageDto);
 
-    List<ChattingMessageDto> selectChatList(Map<String, Object> map);
+    List<Map<String, Object>> selectChatList(String chat_room_id);
 
     List<ChattingMessageDto> selectFirstChatList(String chat_room_id);
 

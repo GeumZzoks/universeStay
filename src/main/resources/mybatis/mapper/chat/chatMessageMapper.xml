@@ -10,7 +10,7 @@
            , #{created_id}, #{updated_id})
   </insert>
 
-  <select id="selectChatList" parameterType="ChattingMessageDto" resultType="ChattingMessageDto">
+  <select id="selectChatList" parameterType="String" resultType="map">
     SELECT cm.chat_id,
            cm.chatting_room_id,
            cm.user_id,

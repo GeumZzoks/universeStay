@@ -500,9 +500,6 @@
                         <div class="chat_list" id="chatListItem"
                              data-chat-room-id="${chatRoom.chatting_room_id}"
                              style="text-align: center; margin-top: 20px; margin-left: 10px; border-radius: 10px;">
-                            <div>
-                                <p>${chat_room_id}</p>
-                            </div>
                             <div style="margin-top: 5px;">
                                 <p>${user_name}</p>
                             </div>

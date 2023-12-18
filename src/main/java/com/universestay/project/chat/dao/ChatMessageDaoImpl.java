@@ -21,8 +21,8 @@ public class ChatMessageDaoImpl implements ChatMessageDao {
     }
 
     @Override
-    public List<ChattingMessageDto> selectChatList(Map<String, Object> map) {
-        return sqlSession.selectList(namespace + "selectChatList");
+    public List<Map<String, Object>> selectChatList(String chat_room_id) {
+        return sqlSession.selectList(namespace + "selectChatList", chat_room_id);
     }
 
     @Override

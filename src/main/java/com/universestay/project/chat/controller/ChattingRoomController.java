@@ -75,7 +75,6 @@ public class ChattingRoomController {
             RoomDto room = roomService.lookUpRoom(room_id);
             String user_id2 = String.valueOf(
                     userWithdrawalDao.selectUserByUuid(room.getUser_id()).getUser_id());
-            System.out.println(room_id);
 
             chattingRoomDto.setUser_id(user_id);
             chattingRoomDto.setUser_id2(user_id2);
@@ -87,11 +86,9 @@ public class ChattingRoomController {
             // 기존 채팅방이 존재할 경우
             if (chatRoom != null && chatRoom.getRoom_id().equals(room_id) && chatRoom.getUser_id()
                     .equals(user_id) && chatRoom.getUser_id2().equals(user_id2)) {
-                System.out.println("기존 채팅방이 존재합니다.");
 
                 // 채팅방 아이디 조회
                 String chat_room_id = chatRoomService.selectChatRoomId(chattingRoomDto);
-                System.out.println(chat_room_id);
                 rattr.addAttribute("chat_room_id", chat_room_id); // chat_room_id를 요청 파라미터로 추가
 
                 // 채팅방으로 이동
@@ -99,10 +96,8 @@ public class ChattingRoomController {
             }
             // 기존 채팅방이 존재하지 않을 경우
             else {
-                System.out.println("기존 채팅방이 존재하지 않습니다.");
                 // 채팅방 아이디 생성
                 String chat_room_id = UUID.randomUUID().toString();
-                System.out.printf("chat_room_id = %s\n", chat_room_id);
 
                 // dto에 채팅방 아이디, 유저 아이디, 호스트 아이디 저장
                 chattingRoomDto.setChatting_room_id(chat_room_id);
@@ -141,13 +136,11 @@ public class ChattingRoomController {
     @RequestMapping("/chatting/chattingRoomList")
     public String rooms(HttpSession session, RedirectAttributes rattr, Model model) {
         String user_id = session.getAttribute("user_id").toString();
-        System.out.println(user_id);
         String msg = "OK";
 
         try {
             // 현재 로그인한 id 의 채팅방 목록 조회
             List<Map<String, Object>> chatRoomList = chatRoomService.selectChatRoomList(user_id);
-            System.out.println(chatRoomList.toString());
             // 채팅방 목록을 하나씩 화면에 전달
             model.addAttribute("chatRoomList", chatRoomList);
 

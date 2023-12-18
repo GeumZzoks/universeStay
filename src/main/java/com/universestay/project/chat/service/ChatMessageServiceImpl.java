@@ -23,8 +23,8 @@ public class ChatMessageServiceImpl implements ChatMessageService {
     }
 
     @Override
-    public List<ChattingMessageDto> selectChatList(Map<String, Object> map) {
-        List<ChattingMessageDto> list = chatDao.selectChatList(map);
+    public List<Map<String, Object>> selectChatList(String chat_room_id) {
+        List<Map<String, Object>> list = chatDao.selectChatList(chat_room_id);
         return list;
     }
 

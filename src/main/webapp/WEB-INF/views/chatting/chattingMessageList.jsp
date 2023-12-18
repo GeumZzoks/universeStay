@@ -456,14 +456,19 @@
     overflow-y: scroll;
   }
 
+  .chatWrap {
+    color: #222222;
+  }
+
 </style>
 <body>
 <jsp:include page="/WEB-INF/views/common/user/header.jsp"/>
 
 
 <div aria-label="메시지 페이지 주요 콘텐츠" class="_61mw08">
-    <section>
-        <%--             style="--orbital-panel-transition-duration: 500ms; --orbital-panel-width-md: 375px; --orbital-panel-width-lg: 375px; --orbital-panel-width-xl: 375px;">--%>
+    <section id="inbox_panel" aria-label="대화 목록 패널" role="navigation" tabindex="-1"
+             data-testid="orbital-panel-inbox" aria-hidden="false" class="_26jl6ja"
+             style="--orbital-panel-transition-duration: 500ms; --orbital-panel-width-md: 375px; --orbital-panel-width-lg: 375px; --orbital-panel-width-xl: 375px;">
         <div class="_ijm3lbp">
             <div class="p1wta9s2 atm_mk_h2mmj6 atm_9s_1txwivl atm_ar_1bp4okc atm_e2_1osqo2v atm_vy_auwlz6 atm_j3_1osqo2v atm_vy_1wugsn5__oggzyc i1n04ygg atm_9s_glywfm__1p26x0r dir dir-ltr">
                 <div class="p1ewphkt atm_9s_1txwivl atm_ar_vrvcex atm_h_1h6ojuz atm_lk_k75hcd atm_mk_h2mmj6 atm_ll_gktfv p16o8n7n atm_e2_t9kd1m atm_40_163hlei dir dir-ltr">
@@ -499,9 +504,6 @@
                         <div class="chat_list" id="chatListItem"
                              data-chat-room-id="${chatRoom.chatting_room_id}"
                              style="text-align: center; margin-top: 20px; margin-left: 10px; border-radius: 10px;">
-                            <div>
-                                <p>${chat_room_id}</p>
-                            </div>
                             <div style="margin-top: 5px;">
                                 <p>${user_name}</p>
                             </div>
@@ -520,6 +522,8 @@
                 </c:forEach>
             </div>
         </div>
+
+
     </section>
 
 
@@ -550,55 +554,35 @@
         <div id="chat-containerK" class="border border-secondary">
 
             <div class="chatWrap">
-                <%-- 		<div class="main_tit">
-                            <h1>방 이름 [ ${roomNo}번 ] 아이디[${loginMember.memberId}]</h1>
-                        </div> --%>
+
                 <div class="content chatcontent " data-room-no="${chat_room_id}"
-                     data-member="${user_id}">
-                    <div>
-                        안녕하세요
-                    </div>
-                    <div>
-                        안녕하세요
-                    </div>
-
-                    <div>
-                        안녕하세요
-                    </div>
-
-                    <div>
-                        안녕하세요
-                    </div>
-
-                    <div>
-                        안녕하세요
-                    </div>
+                     data-member="${user_name}">
 
                     <div id="list-guestbook" class="">
-                        <c:forEach items="${firstList}" var="chatMessageDto">
+                        <c:forEach items="${firstList}" var="chatMessage">
                             <!-- 내 채팅일 경우 -->
-                            <c:if test="${chatRoom.user_id eq chatMessageDto.user_id}">
-                                <strong class="">${chatMessageDto.user_id}</strong>
-                                <div class="me ">
-                                    <strong style="display : inline;"
-                                            class="align-self-end"><fmt:formatDate
-                                            value="${chatMessageDto.sendDate}"
-                                            pattern="yy/MM/dd HH:mm"/></strong>
-                                    <p class="myChat text-left p-2">${chatMessageDto.chat_ctt}</p>
-                                </div>
-                            </c:if>
-                            <!-- 다른사람의 채팅일 경우 -->
-                            <c:if test="${chatRoom.user_id ne chatMessageDto.user_id}">
-
-                                <li data-no="${chatMessageDto.no}" class="pl-2">
-                                    <strong>${chatMessageDto.user_id}</strong>
-                                    <div class="row ml-0">
-                                        <p class="otherChat bg-light p-2">${chatMessageDto.chat_ctt}</p>
-                                        <strong class="align-self-center"><fmt:formatDate
-                                                value="${chatMessageDto.sendDate }"
-                                                pattern="yy/MM/dd HH:mm"/>
+                            <div style="margin-top: 10px; margin-left: 30px;">
+                                <c:if test="${chatRoom.user_id eq chatMessage.user_id}">
+                                    <strong class="">${chatMessage.user_name}</strong>
+                                    <div class="me ">
+                                        <strong style="display : inline;"
+                                                class="align-self-end"><fmt:formatDate
+                                                value="${chatMessage.chat_date}"
+                                                pattern="yy/MM/dd HH:mm"/></strong>
+                                        <p class="myChat text-left p-2">${chatMessage.chat_ctt}</p>
                                     </div>
-                                </li>
+                                </c:if>
+                            </div>
+                            <!-- 다른사람의 채팅일 경우 -->
+                            <c:if test="${chatRoom.user_id ne chatMessage.user_id}">
+
+                                <strong>${chatMessage.user_name}</strong>
+                                <div class="row ml-0">
+                                    <p class="otherChat bg-light p-2">${chatMessage.chat_ctt}</p>
+                                    <strong class="align-self-center"><fmt:formatDate
+                                            value="${chatMessage.chat_date}"
+                                            pattern="yy/MM/dd HH:mm"/>
+                                </div>
                             </c:if>
                         </c:forEach>
                     </div>
@@ -609,8 +593,8 @@
                         <strong></strong>
                     </div>
                     <div class="fix_btn row">
-                        <textarea name="msg" id="msgi" rows="2"
-                                  class="form-control col-sm-8"></textarea>
+                <textarea name="msg" id="msgi" rows="2"
+                          class="form-control col-sm-8"></textarea>
                         <!-- <input type="text" id="msgi" name="msg" placeholder="메세지를 입력하세요" /> -->
                         <button type="button" class="send col-sm-4 btn btn-secondary">보내기</button>
                     </div>
@@ -621,13 +605,14 @@
 
 
         <div>
-
             <div class="message_pannel c1os9z2c atm_mk_stnw88 atm_fq_idpfg4 atm_n3_idpfg4 atm_9s_1txwivl atm_ar_vrvcex atm_fc_1h6ojuz atm_wq_cs5v99 atm_gi_xjk4d9 atm_j3_1fja5my atm_tk_f13iio atm_tk_f13iio__kgj4qw atm_tk_wwb3ei__oggzyc atm_tk_wwb3ei__1v156lz atm_tk_144fm4e__qky54b atm_tk_144fm4e__jx8car dir dir-ltr"></div>
         </div>
         <div>
             <div class="cdq5pgk atm_mk_stnw88 atm_fq_idpfg4 atm_n3_idpfg4 atm_tk_1fwpi09 atm_9s_1txwivl atm_ar_vrvcex atm_fc_1h6ojuz atm_wq_cs5v99 atm_gi_xjk4d9 atm_j3_1fja5my dir dir-ltr"></div>
         </div>
+    </section>
 </div>
+
 
 </section>
 

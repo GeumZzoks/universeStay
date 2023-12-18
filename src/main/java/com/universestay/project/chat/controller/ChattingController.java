@@ -3,7 +3,6 @@ package com.universestay.project.chat.controller;
 import com.universestay.project.chat.service.ChatMessageService;
 import com.universestay.project.chat.service.ChatRoomService;
 import com.universestay.project.dto.ChattingMessageDto;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
@@ -34,11 +33,6 @@ public class ChattingController {
     @RequestMapping("/chat/insertChat.do")
     @ResponseBody
     public int insertChat(@RequestBody ChattingMessageDto insertChatDto) {
-        System.out.println("room_id = " + insertChatDto.getChatting_room_id());
-//        chat.setChatting_room_id(chatting_room_id);
-        System.out.println("user_id = " + insertChatDto.getUser_id());
-        System.out.println("chat_ctt = " + insertChatDto.getChat_ctt());
-
         int result = chatMessageService.insertChat(insertChatDto);
         return result;
     }
@@ -51,7 +45,7 @@ public class ChattingController {
         try {
             System.out.println("======chatting_room_id = " + chatting_room_id);
             String user_id = (String) session.getAttribute("user_id");
-            List<ChattingMessageDto> firstList = chatMessageService.selectFirstChatList(
+            List<Map<String, Object>> firstList = chatMessageService.selectChatList(
                     chatting_room_id);
 
             // 현재 로그인한 id 의 채팅방 목록 조회
@@ -74,12 +68,9 @@ public class ChattingController {
     //채팅 내역 가져오기
     @RequestMapping("/chat/chatList.do")
     @ResponseBody
-    public List<ChattingMessageDto> selectChatList(@RequestParam String chatting_room_id
-    ) {
+    public List<Map<String, Object>> selectChatList(@RequestParam String chatting_room_id) {
 
-        Map<String, Object> map = new HashMap<>();
-        map.put("chat_room_id", chatting_room_id);
-        List<ChattingMessageDto> list = chatMessageService.selectChatList(map);
+        List<Map<String, Object>> list = chatMessageService.selectChatList(chatting_room_id);
         log.info("list= {}", list);
         return list;
     }
