@@ -220,15 +220,9 @@
             background-color: lightyellow;
         }
 
-        /*.screens-room-booking__modalContent__form > div:nth-of-type(2) > img {*/
-        /*    width: 100px;*/
-        /*    height: 100px;*/
-        /*}*/
-
         .screens-room-booking__modalContent__starBox {
             margin-top: 20px;
             height: 70px;
-            /*justify-content: center;*/
         }
 
         .screens-room-booking__modalContent__star {
@@ -242,12 +236,10 @@
 
         .screens-room-booking__modalContent__leftStar {
             background-position: left;
-
         }
 
         .screens-room-booking__modalContent__rightStar {
             background-position: right;
-
         }
     </style>
 </head>

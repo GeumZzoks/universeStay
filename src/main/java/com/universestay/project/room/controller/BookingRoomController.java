@@ -1,14 +1,16 @@
 package com.universestay.project.room.controller;
 
 import com.universestay.project.common.exception.CommonException;
-import com.universestay.project.dto.BookingDto;
 import com.universestay.project.room.dto.SendEmailBookInfoDto;
 import com.universestay.project.room.service.BookService;
 import com.universestay.project.room.service.BookShareMailSendService;
 import com.universestay.project.room.service.RoomService;
+
 import java.util.Arrays;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
+
+import com.universestay.project.user.dto.BookingDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +33,7 @@ public class BookingRoomController {
 
     @Autowired
     public BookingRoomController(BookShareMailSendService bookShareMailSendService,
-            RoomService roomService, BookService bookService) {
+                                 RoomService roomService, BookService bookService) {
         this.bookShareMailSendService = bookShareMailSendService;
         this.roomService = roomService;
         this.bookService = bookService;
@@ -69,7 +71,7 @@ public class BookingRoomController {
 
     @GetMapping("/share/{room_id}")
     public String bookShare(@PathVariable String room_id, BookingDto bookingDto,
-            HttpSession httpSession, Model model) {
+                            HttpSession httpSession, Model model) {
 
         Map<String, Object> bookInfo = bookService.selectRoomBookInfo(room_id);
 
