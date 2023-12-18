@@ -34,7 +34,8 @@
                 <div class="screens-room-bookShare__container__div-common">
                     <div class="screens-room-bookShare__container__left-side--info-common">
                         <%-- TODO: HOST-NICKNAME, USER - EMAIL 넣기 --%>
-                        <div>예약이 아직 확정된 것이 아닙니다. 24시간 이내에 호스트 OO님의 응답을 이메일(alskadmlcraz1@gmail.com)로
+                        <div>예약이 아직 확정된 것이 아닙니다. 24시간 이내에 호스트 ${bookInfo.user_nickname}님의 응답을
+                            이메일(${user_email})로
                             받으실 수 있습니다.
                         </div>
                     </div>
@@ -64,8 +65,18 @@
 
                                 <%-- 이메일 주소 입력 창 --%>
                                 <div class="screens-room-bookShare__write-email-box">
-                                    <input placeholder="이메일 주소 입력">
-                                    <input placeholder="이메일 주소 입력">
+                                    <input class="screens-room-bookShare__write-email-box--email"
+                                           placeholder="이메일 주소 입력">
+                                    <input class="screens-room-bookShare__write-email-box--email"
+                                           placeholder="이메일 주소 입력">
+                                    <input class="screens-room-bookShare__write-email-box--email"
+                                           placeholder="이메일 주소 입력">
+                                    <input class="screens-room-bookShare__write-email-box--email"
+                                           placeholder="이메일 주소 입력">
+                                    <input class="screens-room-bookShare__write-email-box--email"
+                                           placeholder="이메일 주소 입력">
+                                    <input class="screens-room-bookShare__write-email-box--email"
+                                           placeholder="이메일 주소 입력">
 
                                 </div>
 
@@ -77,11 +88,13 @@
 
                 <%-- 예약 요청 --%>
                 <div class="screens-room-bookShare__submit">
-                    <button class="screens-room-bookShare__submit--button">
+                    <button class="screens-room-bookShare__submit--button"
+                            id="submit-button">
                         제출하기
                     </button>
 
-                    <button class="screens-room-bookShare__submit--button">
+                    <button class="screens-room-bookShare__submit--button"
+                            id="skip-button">
                         건너뛰기
                     </button>
                 </div>
@@ -91,9 +104,9 @@
                     <%-- TODO: 데이터에 맞게 바꾸기 --%>
                     <div>
                         <div>숙소 이용규칙</div>
-                        <div>체크인 가능 시간: 오후 3:00 이후</div>
-                        <div>체크아웃 시간: 오전 11:00전까지</div>
-                        <div>게스트 정원 2명</div>
+                        <div>체크인 가능 시간: 오전 ${bookInfo.room_checkin_time}</div>
+                        <div>체크아웃 시간: 오후 ${bookInfo.room_checkout_time}</div>
+                        <div>게스트 정원 ${bookInfo.room_standard_capa}명</div>
                     </div>
 
                     <div>
@@ -117,19 +130,22 @@
                         <div class="screens-room-bookShare__container__right-side__box-size">
                             <%-- 이미지 --%>
                             <div class="screens-room-bookShare__right-side__box-size">
-                                <img src="/resources/img/room/room1.png">
+                                <img src="${bookInfo.room_main_photo}"
+                                     id="screens-room-bookShare__img_url">
                             </div>
 
                         </div>
                         <div class="screens-room-bookShare__container__right-side__box-size__space-box">
-                            <h3>
-                                [무릉한옥스테이_목련실] 여유와 낭만이 가득한 독채
+                            <h3 id="screens-room-bookShare__title">
+                                ${bookInfo.room_name}
                             </h3>
 
                             <div>
-                                <span>2024년 1월 25일~26일</span>
+                                <span>${bookingDto.booking_checkin_date} ~ ${bookingDto.booking_checkout_date}</span>
                                 <span>/</span>
-                                <span>게스트 1명</span>
+                                <span>게스트</span>
+                                <span>${bookingDto.booking_num_of_guest}</span>
+                                <span>명</span>
                             </div>
                         </div>
 
@@ -159,9 +175,16 @@
 
 <jsp:include page="/WEB-INF/views/common/user/footer.jsp"/>
 
+
 <script
         src="https://kit.fontawesome.com/d1e61c2fb7.js"
         crossorigin="anonymous"
 ></script>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="/resources/js/room/bookingShare.js"></script>
+
+
 </body>
 </html>

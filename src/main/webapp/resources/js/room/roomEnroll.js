@@ -316,12 +316,8 @@ function handleSelectSpace(e) {
     if (clickedBtn.classList.contains("screens-room-roomEnroll__btn-active")) {
       categoryData.value = Number(categoryData.value) + Number(
           clickedBtnData.value);
-      console.log(categoryData.value);
-      console.dir(categoryData.name);
     } else {
       categoryData.value -= clickedBtnData.value;
-      console.log(categoryData.value);
-      console.dir(categoryData.name);
     }
   }
 }

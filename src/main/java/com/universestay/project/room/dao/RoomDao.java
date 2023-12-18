@@ -1,14 +1,16 @@
 package com.universestay.project.room.dao;
 
+import com.universestay.project.common.SearchCondition;
 import com.universestay.project.room.dto.RoomDto;
 import com.universestay.project.room.dto.RoomImgDto;
-
 import java.util.List;
 import java.util.Map;
 
 public interface RoomDao {
 
-    List<Map<String, Object>> selectAll(String user_id) throws Exception;
+    int countAll(SearchCondition sc) throws Exception;
+
+    List<Map<String, Object>> selectAll(SearchCondition sc) throws Exception;
 
     Map<String, Object> select(String room_id, String user_id) throws Exception;
 
@@ -17,13 +19,12 @@ public interface RoomDao {
     List<RoomDto> listHostRoom(String user_id) throws Exception;
 //    List<Map<String, Object>> listHostRoom(String user_id) throws Exception;
 
-
     Integer statusHostroom(String room_id, String room_status_id) throws Exception;
 
-
-    List<Map<String, Object>> selectAllByCategory(String room_category_id) throws Exception;
-
-    List<Map<String, Object>> selectAllByView(String view_status_id) throws Exception;
-
     Integer saveRoomDto(RoomDto roomDto) throws Exception;
+
+    Integer saveRoomPhoto(String imgUrl, String room_id, String host_id) throws Exception;
+
+    Integer saveRoomMainPhoto(String room_id, String imgUrl) throws Exception;
+
 }

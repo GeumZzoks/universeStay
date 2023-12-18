@@ -15,6 +15,8 @@ function handleRoomNavigation(selector, path) {
 }
 
 // 카테고리 버튼 이벤트 처리
-handleRoomNavigation(".components-user-nav__category", "/room/category/");
+handleRoomNavigation(".components-user-nav__category",
+        "/?category=");
 // 뷰 버튼 이벤트 처리
-handleRoomNavigation(".components-user-nav__view", "/room/view/");
+handleRoomNavigation(".components-user-nav__view",
+        "/?view=");

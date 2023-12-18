@@ -1,8 +1,7 @@
+<%@ page import="javax.servlet.http.Cookie" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%
-    String isHost = (String) request.getAttribute("isHost");
-%>
+<%String isHost = (String) request.getAttribute("isHost");%>
 
 
 <!DOCTYPE html>
@@ -33,8 +32,7 @@
             <button class="components-user-header__dropdown components-user-header__header__searchbar__where-btn components-user-header__button">
                 <span class="components-user-header__header__searchbar__main_txt">어디로</span>
                 <div class="components-user-header__header__searchbar__sub_txt components-user-header__where__default">
-                    국내
-                    전체
+                    ${param.address != null ?param.address:'국내 전체'}
                 </div>
                 <%--'어디로'버튼 드롭다운--%>
                 <div class="components-user-header__dropdown-div components-user-header__header__searchbar__where">
@@ -90,7 +88,8 @@
                 <button class="components-user-header__dropdown components-user-header__header__searchbar__people-btn components-user-header__button">
                     <span class="components-user-header__header__searchbar__main_txt">여행자</span>
                     <div class="components-user-header__header__searchbar__sub_txt components-user-header__people_default">
-                        2
+                        ${param.search_capa != null ? param.search_capa : 2}
+
                     </div>
                     <div class="components-user-header__dropdown-div components-user-header__header__searchbar__people">
 
@@ -112,13 +111,16 @@
             <%--예산 버튼 (수정 필요)--%>
             <div>
                 <button class="components-user-header__dropdown components-user-header__header__searchbar__money-btn components-user-header__button">
-                    <span class="components-user-header__header__searchbar__main_txt">1박당 예산</span>
-                    <div class="components-user-header__header__searchbar__sub_txt"><span
-                            class="components-user-header__header__searchbar__sub_txt__min">5.0</span>만원
-                        부터 <span
-                                class="components-user-header__header__searchbar__sub_txt__max">20.0</span>만원
-                        까지
+                    <span class="components-user-header__header__searchbar__main_txt">총 예산</span>
+                    <div class="components-user-header__header__searchbar__sub_txt">
+                     <span class="components-user-header__header__searchbar__sub_txt__min">
+                         <%--                         ${param.search_min_price != null ? param.search_min_price : '0'}--%>
+                     </span>원 부터
+                        <span class="components-user-header__header__searchbar__sub_txt__max">
+                            <%--                            ${param.search_max_price != null ? param.search_max_price : '200,000'}--%>
+                        </span>원 까지
                     </div>
+
 
                     <%--예산 버튼 눌렀을때 드롭다운 (수정 필요)--%>
                     <div class="components-user-header__dropdown-div components-user-header__header__searchbar__money">
@@ -127,7 +129,8 @@
                                 <div class="components-user-header__input-wrap">
                                     <input type="text" name="min_input"
                                            class="components-user-header__input-field components-user-header__min-input"
-                                           placeholder="~원 부터" value="50000"
+                                           placeholder="~원 부터"
+                                           value="${param.search_min_price != null ? param.search_min_price : '0'}"
                                     >
                                     <span>최소 금액</span>
                                 </div>
@@ -136,20 +139,19 @@
                                 <div class="components-user-header__input-wrap">
                                     <input type="text" name="max_input"
                                            class="components-user-header__input-field components-user-header__max-input"
-                                           placeholder="~원 까지" value="200000"
-                                    >
+                                           placeholder="~원 까지"
+                                           value="${param.search_max_price != null ? param.search_max_price : '200000'}">
                                     <span>최대 금액</span>
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
                 </button>
             </div>
 
             <%--검색(돋보기)버튼--%>
-            <button class="components-user-header__header__searchbar__search-btn components-user-header__button">
+            <button class=" components-user-header__header__searchbar__search-btn
+                                           components-user-header__button">
                 <img src="/resources/img/user/search-icon-white.png">
             </button>
 
@@ -160,9 +162,29 @@
     <div class="components-user-header__header__profile">
         <div class="components-user-header__header__profile__to-host">
             <a class="components-user-header__a" href="#">
-                <% if ("Y".equals(isHost)) { %>
+                <% if
+                (
+                        "Y"
+                                .
+                                equals
+                                        (
+                                                isHost
+                                        )
+                ) { %>
                 <div>호스트 모드로 전환</div>
-                <% } else if ("N".equals(isHost) || isHost == null) { %>
+                <% } else if
+                (
+                        "N"
+                                .
+                                equals
+                                        (
+                                                isHost
+                                        )
+                                ||
+                                isHost
+                                        ==
+                                        null
+                ) { %>
                 <div>당신의 공간을 공유하세요.</div>
                 <% } %>
             </a>
@@ -189,8 +211,7 @@
                     <img class="components-user-header__header__profile__img"
                          src="${profileImgUrl}"/>
                     <%
-                    } else  //세션에 'user_email'이라는 값이 저장되어 있지 않으면(즉, 로그아웃 상태면) 아래 드롭다운을 보여준다.
-                    {
+                    } else {
                     %>
                     <img class="components-user-header__header__profile__img"
                          src="/resources/img/user/default_profile_icon.png"/>
@@ -199,16 +220,24 @@
 
                 <%-- 마이프로필 버튼 눌렀을때 나오는 드롭다운--%>
                 <div class="components-user-header__header__profile__option components-user-header__dropdown-div">
-
                     <% //세션에 'user_email'이라는 값이 저장되어 있으면? (즉, 로그인 상태면) 아래 드롭다운을 보여준다.
                         if
-                        (session.getAttribute("user_email") != null) {
+                        (
+                                session
+                                        .
+                                        getAttribute
+                                                (
+                                                        "user_email"
+                                                )
+                                        !=
+                                        null
+                        ) {
                     %>
                     <div class="components-user-header__dropdown__option dropdown__option-msg">
                         <span>메시지</span>
                     </div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-reservation"
-                    onclick="location.href = '/user/myPage/mybookings/'">
+                         onclick="location.href = '/user/myPage/mybookings/'">
                         <span>여행</span></div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-wishlist"
                          onclick="location.href ='/user/wishLists'">
@@ -219,7 +248,8 @@
                         <span>나의 쿠폰</span></div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-notice">
                         <span>공지사항</span></div>
-                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-event">
+                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-event"
+                         onclick="location.href ='/event'">
                         <span>이벤트</span></div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-account"
                          onclick="location.href ='/user/myPage/info'">
@@ -235,6 +265,11 @@
                         <span>회원가입</span></div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-sign-in">
                         <span>로그인</span></div>
+                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-notice">
+                        <span>공지사항</span></div>
+                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-event"
+                         onclick="location.href ='/event'">
+                        <span>이벤트</span></div>
                     <%}%>
 
                 </div>
@@ -257,6 +292,37 @@
 <script type="text/javascript"
         src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script src="/resources/js/user/common/header.js"></script>
+<script>
+    //---------------------- 캘린더 라이브러리 --------------------------------------------
+    $(function () {
+        let today = new Date();
+        // 내일 날짜 구하기 (오늘 날짜에 1을 더함)
+        let tomorrow = new Date(today);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+
+        const search_start_date = '${param.search_start_date}';
+        const search_end_date = '${param.search_end_date}';
+
+        $('input[name="datefilter"]').daterangepicker({
+            // autoUpdateInput: true,
+            locale: {
+                format: 'YYYY/MM/DD',
+                cancelLabel: '취소',
+                applyLabel: '확인'
+            },
+            startDate: search_start_date !== "" ? search_start_date : today,
+            endDate: search_end_date !== "" ? search_end_date : tomorrow,
+        });
+
+        $('input[name="datefilter"]').on('apply.daterangepicker',
+                function (ev, picker) {
+                    $(this).val(picker.startDate.format('YYYY/MM/DD') + ' - '
+                            + picker.endDate.format(
+                                    'YYYY/MM/DD'));
+                });
+    });
+</script>
+
 
 </body>
 </html>

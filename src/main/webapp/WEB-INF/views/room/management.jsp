@@ -12,41 +12,9 @@
 <head>
     <link href="/resources/css2/style.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-    <title>Title</title>
+    <title>숙소 - universeStay</title>
 </head>
 <body>
-<%-- 1차 코드 --%>
-<%--<div class="screens-room-management__container">--%>
-<%--    <div class="screens-room-management__content">--%>
-<%--        <div class="screens-room-management__top">--%>
-<%--            <div class="screens-room-management__top__title"><h2>숙소</h2></div>--%>
-<%--            <div class="screens-room-management__top__icn">--%>
-<%--                <img class="screens-room-management__top__button-icn"--%>
-<%--                     src="/resources/img/room/top-icn1.png">--%>
-<%--                &lt;%&ndash;                <img src="/resources/img/room/top-icn2.png">&ndash;%&gt;--%>
-<%--                <img class="screens-room-management__top__button-icn"--%>
-<%--                     src="/resources/img/room/top-icn3.png">--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--        <div class="screens-room-management__cards">--%>
-<%--            <div class="screens-room-management__card">--%>
-<%--                <div class="screens-room-management__card__img"><img--%>
-<%--                        src="/resources/img/room/room1.png"></div>--%>
-<%--                <div class="screens-room-management__card__date">--%>
-<%--                    <p>아파트 숙소 등록일: ${roomDto.room_address}</p>--%>
-<%--                </div>--%>
-<%--                <div class="screens-room-management__card__location"><p>${roomDto.room_name}</p>--%>
-<%--                </div>--%>
-<%--                <div class="screens-room-management__card_status">--%>
-<%--                    <img class="screens-room-management__card_status__img"--%>
-<%--                         src="/resources/img/room/icons8-circle-16-red.png">--%>
-<%--                    <span>일시 중지됨</span>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-
-<%-- 2차 코드 --%>
-
-<%--screens-room-management__--%>
 <div class="screens-room-management__container">
     <div class="screens-room-management__content">
         <div class="screens-room-management__top">
@@ -60,29 +28,41 @@
             </div>
         </div>
 
+
         <div class="screens-room-management__cards">
 
-            <c:forEach var="RoomDto" items="${roomDtoList}">
+            <c:forEach var="roomDto" items="${roomDtoList}">
                 <div class="screens-room-management__card">
-                    <input type="hidden" value="${RoomDto.room_id}"
+                    <input type="hidden" value="${roomDto.room_id}"
                            class="screens-room-management__card-room-id">
+                    <input type="hidden" value="${roomDto.room_main_photo}"
+                           class="screens-room-management__card-room-main-photo">
+                    <input type="hidden" value="${roomDto.room_status_id}"
+                           class="screens-room-management__card-room-status-id">
+                    <input type="hidden" value="${roomDto.room_name}"
+                           class="screens-room-management__card-room-name">
+                    <input type="hidden" value="${roomDto.created_at}"
+                           class="screens-room-management__card-room-createdAt">
+                    <input type="hidden" value="${roomDto.room_address}"
+                           class="screens-room-management__card-room-address">
+
                     <div class="screens-room-management__card__img">
-                        <img src="${RoomDto.room_main_photo}">
+                        <img src="${roomDto.room_main_photo}">
                     </div>
                     <div class="screens-room-management__card__date">
-                        <p>아파트 숙소 등록일: ${RoomDto.created_at}</p>
+                        <p>아파트 숙소 등록일: ${roomDto.created_at}</p>
                     </div>
                     <div class="screens-room-management__card__info">
-                        <p>${RoomDto.room_name}</p>
+                        <p>${roomDto.room_name}</p>
                     </div>
                     <div class="screens-room-management__card__info">
-                        <p>${RoomDto.room_address}</p>
+                        <p>${roomDto.room_address}</p>
                     </div>
                     <div class="screens-room-management__card_status">
                         <img class="screens-room-management__card_status__img"
-                             src="/resources/img/room/icons8-circle-16-red.png">
+                             src="${(roomDto.room_status_id) == 'R01' ? '/resources/img/room/icons8-circle-16-green.png' : '/resources/img/room/icons8-circle-16-red.png'}">
                         <span>
-                                ${(RoomDto.room_status_id) == 'R01' ? '활성화' : '비활성화'}
+                                ${(roomDto.room_status_id) == 'R01' ? '운영 중' : '미 운영'}
                         </span>
                     </div>
                 </div>
@@ -92,17 +72,25 @@
 
     <%--모달창--%>
     <div class="screens-room-management__modalWrap">
-        <div class="screens-room-management__modalContent">
-            <div class="screens-room-management__modalBody">
-                추후 모달창 꾸미기<br>
-                활성화/비활성화 하나로 만들기 <br>
-                <input type="hidden" value=""
-                       class="screens-room-management__modal-room-id"/>
-                <span class="screens-room-management__closeBtn">&times;</span>
-                <button class="screens-room-management__modifyHostroom">숙소 수정</button>
+        <div class="screens-room-management__modalBody">
+            <div class="screens-room-management__closeBtn-box">
+                <span class="screens-room-management__closeBtn">x</span>
+            </div>
+            <div class="screens-room-management__img-box">
+                <img class="screens-room-management__modal-photo" src="">
+            </div>
+            <div class="screens-room-management__modalText-box">
+                <span class="screens-room-management__modalText-box__text"></span>
+                <span class="screens-room-management__createdAt"></span>
+                <span class="screens-room-management__address"></span>
+            </div>
+            <div class="screens-room-management__btnStatus-box">
                 <button class="screens-room-management__activateHostroom">숙소 활성화</button>
-                <button class="screens-room-management__deActivateHostroom">숙소 비활성화</button>
+                <button class="screens-room-management__deactivateHostroom">숙소 비활성화</button>
                 <button class="screens-room-management__shutdownHostroom">숙소 폐점</button>
+            </div>
+            <div class="screens-room-management__modifyHostRoom-box">
+                <a href="/room/modify">숙소 수정하기</a>
             </div>
         </div>
     </div>
