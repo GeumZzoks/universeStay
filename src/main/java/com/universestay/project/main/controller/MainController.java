@@ -1,7 +1,5 @@
 package com.universestay.project.main.controller;
 
-import com.universestay.project.admin.dto.EventDto;
-import com.universestay.project.admin.service.EventService;
 import com.universestay.project.common.MainSearchCondition;
 import com.universestay.project.common.PageHandler;
 import com.universestay.project.common.SearchCondition;
@@ -10,20 +8,17 @@ import com.universestay.project.user.dto.UserDto;
 import com.universestay.project.user.service.ProfileImgService;
 import com.universestay.project.user.service.UserInfoService;
 import com.universestay.project.user.service.WishListService;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Controller
@@ -37,26 +32,11 @@ public class MainController {
     RoomService roomService;
     @Autowired
     WishListService wishListService;
-    @Autowired
-    EventService eventService;
 
-    @GetMapping("/event")
-    public String main(Model model) {
-        try {
-            List<EventDto> eventMainDto = eventService.selectMain();
-            System.out.println("eventMainDto = " + eventMainDto);
-            model.addAttribute("eventMainDto", eventMainDto);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return "main/eventPage";
-    }
 
     @GetMapping("/")
     public String main(HttpSession session, Model model,
-            @ModelAttribute("statusId") String statusId)
+                       @ModelAttribute("statusId") String statusId)
             throws Exception {
         String userEmail = (String) (session.getAttribute("user_email"));
 
@@ -78,16 +58,16 @@ public class MainController {
     @ResponseBody
     @RequestMapping("/scroll")
     public List<Map<String, Object>> main2(HttpSession session, Model model,
-            @RequestParam String currentPage,
-            @RequestParam(value = "category", defaultValue = "") String category,
-            @RequestParam(value = "view", defaultValue = "") String view,
-            @RequestParam(value = "address", defaultValue = "") String address,
-            @RequestParam(value = "search_capa", defaultValue = "") String search_capa,
-            @RequestParam(value = "search_start_date", defaultValue = "") String search_start_date,
-            @RequestParam(value = "search_end_date", defaultValue = "") String search_end_date,
-            @RequestParam(value = "search_min_price", defaultValue = "") String search_min_price,
-            @RequestParam(value = "search_max_price", defaultValue = "") String search_max_price,
-            HttpServletResponse response
+                                           @RequestParam String currentPage,
+                                           @RequestParam(value = "category", defaultValue = "") String category,
+                                           @RequestParam(value = "view", defaultValue = "") String view,
+                                           @RequestParam(value = "address", defaultValue = "") String address,
+                                           @RequestParam(value = "search_capa", defaultValue = "") String search_capa,
+                                           @RequestParam(value = "search_start_date", defaultValue = "") String search_start_date,
+                                           @RequestParam(value = "search_end_date", defaultValue = "") String search_end_date,
+                                           @RequestParam(value = "search_min_price", defaultValue = "") String search_min_price,
+                                           @RequestParam(value = "search_max_price", defaultValue = "") String search_max_price,
+                                           HttpServletResponse response
     ) throws Exception {
         List<Map<String, Object>> roomList = new ArrayList<>();
 
