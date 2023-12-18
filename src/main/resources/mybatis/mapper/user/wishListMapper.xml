@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.universestay.project.mybatis.mapper.user.wishListMapper">
+
+    <insert id="insert" parameterType="com.universestay.project.user.dto.WishListDto">
+        INSERT INTO WishList (wishlist_id, user_id, room_id, created_at, created_id, updated_at, updated_id)
+        VALUES (#{wishlist_id}, #{user_id}, #{room_id}, NOW(), #{created_id}, NOW(), #{updated_id})
+    </insert>
+
+    <select id="select" parameterType="String" resultType="Integer">
+        SELECT count(*)
+        FROM WishList
+        WHERE user_id = #{user_id}
+          AND room_id = #{room_id}
+    </select>
+
+    <select id="selectAll" parameterType="String" resultType="map">
+        SELECT sub.*
+        FROM (SELECT R.*
+                   , GROUP_CONCAT(RI.room_img_url SEPARATOR ', ')      AS room_img_url_list
+                   , CASE WHEN W.user_id IS NOT NULL THEN 1 ELSE 0 END AS has_wished
+              FROM Room R
+                       LEFT JOIN RoomImg RI
+                                 ON R.room_id = RI.room_id
+                       LEFT JOIN WishList W
+                                 ON R.room_id = W.room_id AND W.user_id = #{user_id}
+              WHERE RI.room_img_url IS NOT NULL
+              GROUP BY R.room_id) sub
+        HAVING sub.has_wished = 1
+
+    </select>
+
+    <delete id="delete" parameterType="String">
+        DELETE
+        FROM WishList
+        WHERE user_id = #{user_id}
+          AND room_id = #{room_id}
+    </delete>
+
+    <select id="getUserUuid" parameterType="String" resultType="String">
+        SELECT user_id
+        FROM User
+        WHERE user_email = #{user_email}
+    </select>
+
+</mapper>

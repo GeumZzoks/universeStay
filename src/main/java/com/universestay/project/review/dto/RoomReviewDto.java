@@ -1,4 +1,4 @@
-package com.universestay.project.user.dto;
+package com.universestay.project.review.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 import java.sql.Timestamp;
@@ -30,7 +30,7 @@ public class RoomReviewDto {
     private String review_writer;
 
     @ApiModelProperty(notes = "별점", example = "4.78", required = true)
-    private double review_stars;
+    private Double review_stars = null;
 
     @ApiModelProperty(notes = "리뷰 내용", example = "잘 쉬다 갑니다.", required = true)
     private String review_ctt;

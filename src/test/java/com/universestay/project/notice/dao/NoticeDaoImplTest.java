@@ -47,6 +47,7 @@ public class NoticeDaoImplTest {
         noticeDto.setNotice_title("@@@@@ 2023/11/25 토요일 - 서버 점검이 있습니다.");
         noticeDto.setNotice_ctt(
                 "universeStay를 이용하시는 고객 여러분 감사드립니다! 조금 더 안정적인 서비스 제공을 위하여 2023/11/23 목요일 23:50 ~ 24:00 까지 점검이 있을 예정입니다.");
+        noticeDto.setNotice_is_open("N");
         noticeDto.setCreated_id("0ca24692-89ea-11ee-b9d1-0242ac120002");
         noticeDto.setUpdated_id("0ca24692-89ea-11ee-b9d1-0242ac120002");
         System.out.println("INSERT COUNT = " + noticeDao.insert(noticeDto));

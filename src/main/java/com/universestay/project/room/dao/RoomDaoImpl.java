@@ -1,10 +1,12 @@
 package com.universestay.project.room.dao;
 
+import com.universestay.project.common.SearchCondition;
 import com.universestay.project.room.dto.RoomDto;
 import com.universestay.project.room.dto.RoomImgDto;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,19 +17,28 @@ public class RoomDaoImpl implements RoomDao {
     private final SqlSession session;
     private final String namespace = "com.universestay.project.resources.mybatis.mapper.room.roomMapper.";
 
+
+    @Override
+    public int countAll(SearchCondition sc) throws Exception {
+        return session.selectOne(namespace + "totalCount", sc);
+    }
+
     @Autowired
     public RoomDaoImpl(SqlSession session) {
         this.session = session;
     }
 
-    @Override
-    public List<Map<String, Object>> selectAll() throws Exception {
-        return session.selectList(namespace + "selectAll");
+
+    public List<Map<String, Object>> selectAll(SearchCondition sc) throws Exception {
+        return session.selectList(namespace + "selectAll", sc);
     }
 
     @Override
-    public RoomDto select(String room_id) throws Exception {
-        return session.selectOne(namespace + "select", room_id);
+    public Map<String, Object> select(String room_id, String user_id) throws Exception {
+        Map map = new HashMap();
+        map.put("user_id", user_id);
+        map.put("room_id", room_id);
+        return session.selectOne(namespace + "select", map);
     }
 
     @Override
@@ -52,12 +63,22 @@ public class RoomDaoImpl implements RoomDao {
     }
 
     @Override
-    public List<Map<String, Object>> selectAllByCategory(String room_category_id) throws Exception {
-        return session.selectList(namespace + "selectAllByCategory", room_category_id);
+    public Integer saveRoomDto(RoomDto roomDto) throws Exception {
+        return session.insert(namespace + "saveRoomDto", roomDto);
     }
 
     @Override
-    public List<Map<String, Object>> selectAllByView(String view_status_id) throws Exception {
-        return session.selectList(namespace + "selectAllByView", view_status_id);
+    public Integer saveRoomPhoto(String imgUrl, String room_id, String host_id) throws Exception {
+        String room_photo_id = UUID.randomUUID().toString();
+        Map<String, String> map = Map.of("room_photo_id", room_photo_id, "room_id", room_id,
+                "imgUrl", imgUrl, "host_id", host_id);
+        return session.insert(namespace + "insertRoomImg", map);
     }
+
+    @Override
+    public Integer saveRoomMainPhoto(String room_id, String imgUrl) throws Exception {
+        Map<String, String> map = Map.of("room_id", room_id, "imgUrl", imgUrl);
+        return session.update(namespace + "saveRoomMainPhoto", map);
+    }
+
 }

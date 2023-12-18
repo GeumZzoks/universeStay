@@ -15,7 +15,7 @@
 </head>
 
 <%
-    // 쿠키를 가지고 있는지 확인하는 과정
+    // 쿠키 확인 과정
     String userEmail = "";
     boolean hasCookie = false;
     Cookie[] cookies = request.getCookies();

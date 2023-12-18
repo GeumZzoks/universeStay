@@ -21,51 +21,55 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-<div class="screens-admin-dashboard__side-menu">
-    <div class="screens-admin-dashboard__brand-logo">
-        <img class="screens-admin-dashboard__logo-universe"
-             src="/resources/img/admin/navigation/unLogo.png">
-    </div>
-    <ul>
-        <li><img class="screens-admin-dashboard__img"
-                 src="/resources/img/admin/navigation/user.png"
-                 alt=""><a href="/admin/user/list">유저 관리</a></li>
-        <li><img class="screens-admin-dashboard__img" src="/resources/img/admin/navigation/host.png"
-                 alt=""><a href="/admin/hostingManagement">호스팅 관리</a>
-        </li>
-        <li><img class="screens-admin-dashboard__img"
-                 src="/resources/img/admin/navigation/notice.png" alt=""><a
-                href="/admin/notice/list">공지사항</a>
-        </li>
-        <li><img class="screens-admin-dashboard__img"
-                 src="/resources/img/admin/navigation/event.png" alt=""><a href="#">이벤트</a></li>
-        <li><img class="screens-admin-dashboard__img"
-                 src="/resources/img/admin/navigation/inquiry.png" alt=""><a href="#">문의사항</a>
-        </li>
-        <li><img class="screens-admin-dashboard__img"
-                 src="/resources/img/admin/navigation/coupon.png" alt=""><a href="#">쿠폰</a></li>
-        <li><img class="screens-admin-dashboard__img"
-                 src="/resources/img/admin/navigation/admin2.png" alt=""><a href="#">관리자 계정</a>
-        </li>
-    </ul>
-</div>
+<jsp:include page="/WEB-INF/views/common/admin/header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/admin/navigation.jsp"/>
+<jsp:include page="/WEB-INF/views/common/admin/footer.jsp"/>
+<%--<div class="screens-admin-dashboard__side-menu">--%>
+<%--    <div class="screens-admin-dashboard__brand-logo">--%>
+<%--        <img class="screens-admin-dashboard__logo-universe"--%>
+<%--             src="/resources/img/admin/navigation/unLogo.png">--%>
+<%--    </div>--%>
+<%--    <ul>--%>
+<%--        <li><img class="screens-admin-dashboard__img"--%>
+<%--                 src="/resources/img/admin/navigation/user.png"--%>
+<%--                 alt=""><a href="/admin/user/list">유저 관리</a></li>--%>
+<%--        <li><img class="screens-admin-dashboard__img" src="/resources/img/admin/navigation/host.png"--%>
+<%--                 alt=""><a href="/admin/hostingManagement">호스팅 관리</a>--%>
+<%--        </li>--%>
+<%--        <li><img class="screens-admin-dashboard__img"--%>
+<%--                 src="/resources/img/admin/navigation/notice.png" alt=""><a--%>
+<%--                href="/admin/notice/list">공지사항</a>--%>
+<%--        </li>--%>
+<%--        <li><img class="screens-admin-dashboard__img"--%>
+<%--                 src="/resources/img/admin/navigation/event.png" alt=""><a href="#">이벤트</a></li>--%>
+<%--        <li><img class="screens-admin-dashboard__img"--%>
+<%--                 src="/resources/img/admin/navigation/inquiry.png" alt=""><a href="#">문의사항</a>--%>
+<%--        </li>--%>
+<%--        <li><img class="screens-admin-dashboard__img"--%>
+<%--                 src="/resources/img/admin/navigation/coupon.png" alt=""><a href="#">쿠폰</a></li>--%>
+<%--        <li><img class="screens-admin-dashboard__img"--%>
+<%--                 src="/resources/img/admin/navigation/admin2.png" alt=""><a href="#">관리자 계정</a>--%>
+<%--        </li>--%>
+<%--    </ul>--%>
+<%--</div>--%>
 
 <div class="screens-admin-dashboard__container">
-    <div class="screens-admin-dashboard__header">
-        <div class="screens-admin-dashboard__nav">
-            <div class="screens-admin-dashboard__search">
-                <input type="text" placeholder="Search..">
-                <button type="submit"><img src="/resources/img/test/search.png" alt=""></button>
-            </div>
-            <div class="screens-admin-dashboard__user">
-                <a href="#" class="screens-admin-dashboard__btn">Add New</a>
-                <img src="/resources/img/test/notifications.png" alt="">
-                <div class="screens-admin-dashboard__img-case">
-                    <img src="/resources/img/test/user.png" alt="">
-                </div>
-            </div>
-        </div>
-    </div>
+    <%--    <div class="screens-admin-dashboard__header">--%>
+    <%--        <div class="screens-admin-dashboard__nav">--%>
+    <%--            <div class="screens-admin-dashboard__search">--%>
+    <%--                <input type="text" placeholder="Search">--%>
+    <%--                <button type="submit"><img src="/resources/img/admin/header/search.png" alt="검색아이콘">--%>
+    <%--                </button>--%>
+    <%--            </div>--%>
+    <%--            <div class="screens-admin-dashboard__user">--%>
+    <%--                <a href="#" class="screens-admin-dashboard__btn">Add New</a>--%>
+    <%--                <img src="/resources/img/admin/header/notifications.png" alt="알림아이콘">--%>
+    <%--                <div class="screens-admin-dashboard__img-case">--%>
+    <%--                    <img src="/resources/img/admin/header/user.png" alt="유저아이콘">--%>
+    <%--                </div>--%>
+    <%--            </div>--%>
+    <%--        </div>--%>
+    <%--    </div>--%>
 
     <div class="screens-admin-dashboard__content">
         <div class="screens-admin-dashboard__cards">
@@ -115,8 +119,9 @@
             <div class="screens-admin-dashboard__list-host-management">
                 <div class="screens-admin-dashboard__title">
                     <h2>호스팅 관리</h2>
-                    <a href="/admin/hostingManagement" class="screens-admin-dashboard__btn">전체
-                        보기</a>
+                    <a href="/admin/hostingManagement" class="screens-admin-dashboard__btn">
+                        <span>전체 보기</span>
+                    </a>
                 </div>
                 <table class="screens-admin-dashboard__table">
                     <tr>
@@ -129,11 +134,14 @@
 
                     <c:forEach var="item" items="${listRoom}">
                         <tr>
-                            <td class="screens-admin-dashboard__table__common">${item.user_nickname}</td>
-                            <td class="screens-admin-dashboard__table__common">${item.room_name}</td>
+                            <td class="screens-admin-dashboard__table__common"
+                                style="width: 15%;">${item.user_nickname}</td>
+                            <td class="screens-admin-dashboard__table__common"
+                                style="width: 30%;">${item.room_name}</td>
                             <td class="screens-admin-dashboard__table__common__price">${item.room_weekday_price}</td>
                             <td class="screens-admin-dashboard__table__common__price">${item.room_weekend_price}</td>
-                            <td class="screens-admin-dashboard__table__common__price">
+                            <td class="screens-admin-dashboard__table__common__price"
+                                style="width: 20%">
                                 <span
                                         class="screens-admin-dashboard__btn screens-admin-dashboard__btn-span-confirm"
                                         data-value="${item.room_id}">승인</span>
@@ -149,7 +157,9 @@
             <div class="screens-admin-dashboard__list-inquiry">
                 <div class="screens-admin-dashboard__title">
                     <h2>문의사항</h2>
-                    <a href="#" class="screens-admin-dashboard__btn">전체 보기</a>
+                    <a href="#" class="screens-admin-dashboard__btn" style="right: 2%;">
+                        <span>전체 보기</span>
+                    </a>
                 </div>
                 <table>
                     <tr>

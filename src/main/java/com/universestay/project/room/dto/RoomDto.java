@@ -53,12 +53,6 @@ public class RoomDto {
     @ApiModelProperty(notes = "기타 상세 설명", example = "화장실 수리중", required = false)
     private String room_etc_desc;
 
-    @ApiModelProperty(notes = "위도", example = "37.579617", required = true)
-    private Double room_latitude;
-
-    @ApiModelProperty(notes = "경도", example = "126.977041", required = true)
-    private Double room_longtitude;
-
     @ApiModelProperty(notes = "연락 방법", example = "phone : 010-7777-7777", required = true)
     private String room_contact_method;
 

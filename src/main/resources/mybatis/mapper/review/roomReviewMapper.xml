@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.universestay.project.review.dao.RoomReviewDao">
+    <select id="roomReviewSelectAll" parameterType="String" resultType="RoomReviewDto">
+        select *
+        from RoomReview
+        where room_id = #{room_id}
+          and user_id = review_writer
+    </select>
+
+    <insert id="insert" parameterType="RoomReviewDto">
+        Insert into RoomReview (review_id, user_id, room_id, review_writer, review_stars,
+                                review_ctt, created_at, created_id, updated_at, updated_id)
+        values (#{review_id}, #{user_id}, #{room_id}, #{review_writer}, #{review_stars},
+                #{review_ctt}, now(), #{created_id}, now(), #{updated_id})
+    </insert>
+
+    <select id="userReviewSelectAll" parameterType="String" resultType="map">
+        select u.user_nickname, rev.review_ctt, rev.created_at
+        from RoomReview rev,
+             Room r,
+             User u
+        where rev.room_id = r.room_id
+          and r.user_id = u.user_id
+          and rev.review_writer = #{user_id}
+        order by created_at desc
+    </select>
+</mapper>
