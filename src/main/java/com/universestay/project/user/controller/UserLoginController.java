@@ -5,7 +5,6 @@ import com.universestay.project.user.dto.UserDto;
 import com.universestay.project.user.service.ProfileImgService;
 import com.universestay.project.user.service.UserLoginService;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -24,7 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class UserLoginController {
 
     @Autowired
-    UserLoginService userLoginService; // 명확한 이름 지어주기 // 고민해보기
+    UserLoginService userLoginService;
     @Autowired
     ProfileImgService profileImgService;
     @Autowired
@@ -32,7 +31,7 @@ public class UserLoginController {
 
     @GetMapping("/loginForm")
     public String loginForm() {
-        return "user/loginForm";
+        return "user/loginForm"; // 뷰 보여줌
     }
 
     @PostMapping("/login")
@@ -43,50 +42,46 @@ public class UserLoginController {
         // 1. 쿠키 요청이 있는지 먼저 확인
         userLoginService.setCookie(user_email, remember_id, response);
 
-        // 2. 유저가 인풋에 값을 제대로 입력 했는지 확인 => 제대로 입력하지 않았다면, 서비스에서 에러메세지를 담아올 맵 전달
+        // 2. 유저가 인풋에 값을 제대로 입력했는지 확인 // 제대로 입력하지 않았다면, 서비스에서 에러메세지를 받아올 맵을 만들어 전달
         Map<String, String> error = new HashMap<>();
         userLoginService.isCredentialsPresent(error, user_email, user_pwd);
 
-        // 에러가 있으면(아이디/비번 입력이 안된 경우) 리다이렉트객체에 에러 메세지 추가 후 뷰에 전달
+        // 에러가 있으면(아이디/비번 입력이 안된 경우) 리다이렉트객체에 추가 후 뷰에 전달
         if (!error.isEmpty()) {
             redirectAttributes.addFlashAttribute("error", error);
             return "redirect:/user/loginForm";
         }
 
-        // 사용자가 입력한 로그인 정보로 DB 조회
+        // 사용자가 로그인을 시도하면 DB 조회
         UserDto userInfo = userLoginService.signin(user_email, user_pwd, session, model);
+        // 유저 상태 담기
+        String statusId = userInfo.getStatus_id();
 
         try {
             if (userInfo != null) { // 3. 로그인 시도 시
-                String statusId = userInfo.getStatus_id();
 
-                // 회원 상태가 정지, 탈퇴라면 유저 상태값을 뷰에 전달하여 관리자에게 문의 알럿창 띄우기
+                // 회원탈퇴한 유저가 로그인 시도 시 메인으로 이동 후 알럿창 띄우기
+                if (statusId.equals("U02")) {
+                    userLoginService.userLastLogin(user_email);
+                }
                 if (!statusId.equals("U01")) {
-                    model.addAttribute("statusId", statusId);
-                    return "main/main";
+                    redirectAttributes.addFlashAttribute("statusId", statusId);
+                    return "redirect:/";
                 }
 
-                // 회원 상태가 휴면이거나, 활성상태로 로그인 됐을 때, 최근 로그인일자 업데이트
-                // 휴면 상태인 경우 뷰에서 휴면 해제에 대한 알럿창을 띄워준다.
+                // 정상적으로 로그인 됐을 때,
                 userLoginService.userLastLogin(user_email);
-                String profileImgUrl = profileImgService.getProfileImgUrl(userInfo.getUser_id());
 
-                model.addAttribute("profileImgUrl", profileImgUrl);
-                model.addAttribute("user", userInfo);
-
-                List<Map<String, Object>> roomList = roomService.lookUpAllRoom();
-                model.addAttribute("roomList", roomList);
-
-                return "/main/main";
-//                throw new Exception("예기치 못한 에러 발생"); => error2 발생 시키기
-//                return "redirect:/~"; => 사용하고자 한다면 redirectAttributes 필요
+                return "redirect:/";
 
             }
-            // 로그인 시도 시
-            // 4. 아이디 또는 비밀번호를 틀렸을 경우
-            // 5. 없는 회원정보로 로그인을 시도한 경우
-            // 유저에게 에러메세지와 함께 다시 로그인폼을 보여준다.
-            else {
+            // 여기에 오는 경우가
+            // 4. 사용자가 아이디 또는 비밀번호를 틀렸을 경우
+            // 5. 사용자가 없는 회원정보로 로그인을 시도한 경우
+            else { // 유저에게 에러메세지와 함께 다시 로그인폼을 보여준다.
+
+                // 서비스임플에서 uo2,u04일때 널을 보내서 여기서 처리할라니까. 겟아이디가 없으니 널포인트 익셉션이 난다.
+
                 error.put("id null or pwd invalid", "아이디가 존재하지 않거나 비밀번호가 일치하지 않습니다.");
                 redirectAttributes.addFlashAttribute("error", error);
                 return "redirect:/user/loginForm";
@@ -94,10 +89,12 @@ public class UserLoginController {
             // 뷰처리
         } catch (Exception e) {
             e.printStackTrace();
-            // 예상치 못한 에러가 발생했을 때, 사용자에게 알려주기
-            redirectAttributes.addFlashAttribute("error2", "죄송합니다. 서버에 장애가 발생했습니다. 다시 시도 해주세요.");
+
+            // 원장님 피드백 있는 부분 : 리턴을 통일 있게 하거나, 아니면 어떤 이유가 있어서 뉴익셉션 발생시키는건지. 내가 어떤걸하고 싶은지를 잘 알고 있어야 할듯.
             return "redirect:/user/loginForm";
-        }
+//            throw new Exception();
+//            return null; // => 리턴 사용 예) 우리가 정의한 에러페이지가 있다면 보여주면 되는데, 없으니까 안 사용
+        } // 화면
 
     }
 }

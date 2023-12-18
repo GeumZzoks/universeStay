@@ -46,15 +46,14 @@
                 <input name="event_is_open" type="radio" class="screens-admin-event__content-input-div__radio"
                        value="Y">공개
                 <h5 class="screens-admin-event__content-input__type">이벤트 시작일</h5>
-                <input name="event_start_date" type="date" class="screens-admin-event__content-input__date"
-                       min="${startOfToday}">
+                <input name="event_start_date" type="date" class="screens-admin-event__content-input__date">
                 <h5 class="screens-admin-event__content-input__type">이벤트 종료일</h5>
                 <input name="event_expire_date" type="date" class="screens-admin-event__content-input__date">
                 <h5 class="screens-admin-event__content-input__type">첨부파일(이미지)</h5>
                 <div class="screens-admin-event__content-input__filebox">
                     <input class="upload-name" placeholder="첨부파일">
                     <label for="file">탐색</label>
-                    <input type="file" id="file" accept="image/*" onchange="readURL(this)">
+                    <input type="file" name="event_img_url" id="file" accept="image/*" onchange="readURL(this)">
                 </div>
             </div>
             <button class='screens-admin-event__content-bottom__btn__submit' type='submit'>등록</button>

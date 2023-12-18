@@ -17,13 +17,20 @@
         .screens-admin-event__content-div__status {
             width: 100px;
             height: 300px;
-            position: absolute;
-            top: 60px;
-            right: 22px;
+            position: fixed;
+            top: 150px;
+            right: 50px;
             font-size: 14px;
             border: 2px solid indianred;
             border-radius: 10px;
             padding: 60px 0 0 20px;
+        }
+
+        .screens-admin-event__content__img {
+            width: 700px;
+            height: auto;
+            margin: 40px 0 20px 20px;
+            background-color: gainsboro;
         }
 
     </style>
@@ -33,12 +40,13 @@
 
     <jsp:include page="/WEB-INF/views/common/admin/header.jsp"/>
     <jsp:include page="/WEB-INF/views/common/admin/navigation.jsp"/>
-    <jsp:include page="/WEB-INF/views/common/admin/footer.jsp"/>
+
 
     <div class="screens-admin-event__content">
         <h3 style="font-size: 20px; color: indianred; margin-top: 20px; font-weight: 600;">이벤트</h3>
         <h5 style="font-size: 20px; font-weight: 800; margin: 20px 0 0 20px;">${eventDto.event_title}</h5>
-        <h5 style="white-space:pre; margin: 20px 0 0 20px">${eventDto.event_ctt}</h5>
+        <img class="screens-admin-event__content__img" src="/resources/img/admin/${eventDto.img}.png">
+        <h5 style="white-space:pre; margin: 20px 0 100px 20px">${eventDto.event_ctt}</h5>
         <div class="screens-admin-event__content-div__status">
             <h3 style="color: indianred; margin-top: 20px; font-weight: 600;">이벤트 상태</h3>
             <c:choose>
@@ -80,9 +88,10 @@
                 onclick="location.href='/admin/event/update/${eventDto.event_id}'">수정
         </button>
         <form action="/admin/event/${eventDto.event_id}" method="post">
-            <button type="submit" class="screens-admin-event__content-top__btn" style="right: 20px">삭제</button>
+            <button type="submit" class="screens-admin-event__content-top__btn" style="right: 50px">삭제</button>
         </form>
     </div>
+    <jsp:include page="/WEB-INF/views/common/admin/footer.jsp"/>
 </div>
 <script>
     let msg = "${msg}";

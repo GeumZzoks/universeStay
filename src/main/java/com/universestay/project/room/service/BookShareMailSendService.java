@@ -1,5 +1,6 @@
 package com.universestay.project.room.service;
 
+import com.universestay.project.room.dto.SendEmailBookInfoDto;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,6 @@ public class BookShareMailSendService {
 
     /**
      * 여행 예약 내역 공유 - 메일 전송
-     * <p>
-     * 몇개의 메일을 받을지 모른다. 사진(링크), 제목(링크), 부제목(링크), 프로필 이미지(링크), 체크인, 체크아웃, 요청 취소(링크) API
      *
      * @param admin_nickname
      * @return ResponseEntity
@@ -25,10 +24,10 @@ public class BookShareMailSendService {
      */
 
     //이메일 보낼 양식
-    public String sendEmailForRoomInfo(String email) {
+    public String sendEmailForRoomInfo(String[] emails, SendEmailBookInfoDto sendEmailBookInfoDto) {
         String setFrom = "universestay23@gmail.com"; // email-config에 설정한 자신의 이메일 주소를 입력
-        String toMail = email;
-        String title = "object" + " 예약 요청 전송 완료"; // 이메일 제목
+        String[] toMails = emails;
+//        String title = sendEmailBookInfoDto.getRoom_name() + " 예약 요청 전송 완료"; // 이메일 제목
 
         String content = ""
                 + "<html>\n"
@@ -361,24 +360,26 @@ public class BookShareMailSendService {
                 + "</body>\n"
                 + "</html>\n";
 
-        mailSend(setFrom, toMail, title, content);
+//        mailSend(setFrom, toMails, title, content);
         return Integer.toString(1);
     }
 
     //이메일 전송 메소드
-    public void mailSend(String setFrom, String toMail, String title, String content) {
-        MimeMessage message = mailSender.createMimeMessage();
-        // true 매개값을 전달하면 multipart 형식의 메세지 전달이 가능.문자 인코딩 설정도 가능하다.
-        try {
-            MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
-            helper.setFrom(setFrom);
-            helper.setTo(toMail);
-            helper.setSubject(title);
-            // true 전달 > html 형식으로 전송 , 작성하지 않으면 단순 텍스트로 전달.
-            helper.setText(content, true);
-            mailSender.send(message);
-        } catch (MessagingException e) {
-            e.printStackTrace();
+    public void mailSend(String setFrom, String[] toMails, String title, String content) {
+        for (int i = 0; i < toMails.length; i++) {
+            MimeMessage message = mailSender.createMimeMessage();
+            // true 매개값을 전달하면 multipart 형식의 메세지 전달이 가능.문자 인코딩 설정도 가능하다.
+            try {
+                MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+                helper.setFrom(setFrom);
+                helper.setTo(toMails[i]);
+                helper.setSubject(title);
+                // true 전달 > html 형식으로 전송 , 작성하지 않으면 단순 텍스트로 전달.
+                helper.setText(content, true);
+                mailSender.send(message);
+            } catch (MessagingException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
