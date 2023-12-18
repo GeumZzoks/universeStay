@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.universestay.project.resources.mybatis.mapper.room.roomMapper">
+  <select id="selectAll" resultType="map">
+    SELECT R.*, GROUP_CONCAT(RI.room_img_url SEPARATOR ', ') AS room_img_url_list
+    FROM Room R
+           LEFT JOIN RoomImg RI ON R.room_id = RI.room_id
+    WHERE RI.room_img_url IS NOT NULL
+    GROUP BY R.room_id;
+  </select>
+
+  <select id="select" resultType="RoomDto">
+    SELECT *
+    FROM Room
+    WHERE room_id = #{room_id}
+  </select>
+
+  <select id="select5RoomImg" resultType="RoomImgDto">
+    SELECT *
+    FROM RoomImg
+    WHERE room_id = #{room_id} LIMIT 0, 5
+  </select>
+
+  <select id="listHostRoom" resultType="RoomDto">
+    SELECT *
+    FROM Room
+    WHERE user_id = #{user_id}
+      AND room_status_id NOT IN ('R03')
+    ORDER BY created_at
+  </select>
+
+  <!--  <select id="listHostRoom" resultType="map">-->
+  <!--    select ri.room_img_url, r.room_name, r.created_at-->
+  <!--    from Room r,-->
+  <!--         RoomImg ri-->
+  <!--    where r.room_id = ri.room_id-->
+  <!--      and r.user_id = #{user_id};-->
+  <!--  </select>-->
+
+  <!--  <select id="shutdownHostroom">-->
+  <!--    UPDATE Room-->
+  <!--    SET room_status_id = 'R03'-->
+  <!--    WHERE room_id = #{room_id}-->
+
+  <!--  </select>-->
+
+  <sql id="statusCondition">
+    <choose>
+      <when test='room_status_id=="R01"'>
+        SET room_status_id = 'R01'
+      </when>
+      <when test='room_status_id=="R02"'>
+        SET room_status_id = 'R02'
+      </when>
+      <otherwise>
+        SET room_status_id = 'R03'
+      </otherwise>
+    </choose>
+  </sql>
+
+  <update id="statusHostroom" parameterType="map">
+    UPDATE Room
+    <include refid="statusCondition"></include>
+    WHERE room_id = #{room_id}
+  </update>
+
+  <select id="selectAllByCategory" resultType="map">
+    SELECT R.*, GROUP_CONCAT(RI.room_img_url SEPARATOR ', ') AS room_img_url_list
+    FROM Room R
+           LEFT JOIN RoomImg RI ON R.room_id = RI.room_id
+    WHERE RI.room_img_url IS NOT NULL
+      AND room_category_id = #{room_category_id}
+    GROUP BY R.room_id;
+  </select>
+
+  <select id="selectAllByView" resultType="map">
+    SELECT R.*,
+           GROUP_CONCAT(RI.room_img_url SEPARATOR ', ') AS room_img_url_list
+    FROM Room R
+           LEFT JOIN RoomImg RI ON R.room_id = RI.room_id
+    WHERE RI.room_img_url IS NOT NULL
+      AND R.room_id IN (Select A.room_id
+                        from Room A,
+                             RoomView B
+                        Where A.room_id = B.room_id
+                          And B.view_status_id = #{view_status_id})
+    GROUP BY R.room_id;
+  </select>
+</mapper>

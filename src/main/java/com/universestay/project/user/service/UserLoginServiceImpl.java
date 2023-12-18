@@ -2,16 +2,25 @@ package com.universestay.project.user.service;
 
 import com.universestay.project.user.dao.UserLoginDao;
 import com.universestay.project.user.dto.UserDto;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
+import java.util.Base64;
 import java.util.Map;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 
 @Service
-public class UserLoginServiceImpl implements UserLoginService {
+public class UserLoginServiceImpl implements UserLoginService, PasswordEncryption {
 
     @Autowired
     UserLoginDao userLoginDao;
@@ -36,50 +45,66 @@ public class UserLoginServiceImpl implements UserLoginService {
     public void isCredentialsPresent(Map<String, String> error, String user_email, String user_pwd)
             throws Exception {
 
-        if (!StringUtils.hasText(
-                user_email)) { // => (user_email == null && user_email == "") 과 같은 코드
-            error.put("user_email", "이메일 입력은 필수입니다."); // 이메일 인풋이 비었다면 맵에 저장
+        if (!StringUtils.hasText(user_email)) { //(user_email == null && user_email == "")
+            error.put("user_email", "이메일 입력은 필수입니다."); //인풋이 비었다면 맵에 에러메세지 담기
         }
-        if (!StringUtils.hasText(user_pwd)) { // 패스워드도 마찬가지
+        if (!StringUtils.hasText(user_pwd)) {
             error.put("user_pwd", "비밀번호 입력은 필수입니다.");
         }
     }
 
-    public UserDto signin(String user_email, String user_pwd, HttpSession session)
+    public UserDto signin(String user_email, String user_pwd, HttpSession session, Model model)
             throws Exception {
 
-        // 로그인을 시도한 경우 중  3,4,5 상황이 있을 수 있음
-        // 3. 사용자가 로그인 성공한 경우
-        // 4. 사용자 아이디/비빌번호가 틀렸을 경우
-        // 5. 사용자가 없는 회원정보로 로그인을 시도한 경우
-
-        // 추후 회원가입처럼 hashcode를 사용해서 ? 로그인 시키는 방법으로 보수할 예정
+        // 로그인을 시도한 경우 3,4,5 상황이 있을 수 있음
+        // 3. 로그인 성공한 경우
+        // 4. 아이디/비빌번호가 틀렸을 경우
+        // 5. 없는 회원정보로 로그인을 시도한 경우
+        // 추가
+        // 로그인을 시도한 회원의 활동 상태가 u02~04인 경우
 
         try {
-            // 다오 호출 : 조회 시 유저 정보가 있을수도 있고, 없을 수도 있어, 조회해서 UserDto타입에 일단 담아 놓고
+            // 유저가 입력한 이메일 정보로 디비 조회
             UserDto userInfo = userLoginDao.selectUser(user_email);
+            // 유저 활동 상태 확인
+            String statusId = userInfo.getStatus_id();
 
-            // 만약 유저 정보가 널이 아니면 == 조회가 됐단 뜻
+            // 유저 정보가 조회 됐으면
             if (userInfo != null) {
                 String userEmail = userInfo.getUser_email();
                 String userPwd = userInfo.getUser_pwd();
 
-                // 그리고 일치하는 정보가 db에 있다면 => 3. 로그인이 문제없이 성공한 경우
-                if (userEmail != null && user_pwd.equals(userPwd)) {
+                // 암호화된 비밀번호로 바꿔주기
+                String encrypt_pwd = encrypt(user_email, user_pwd);
+
+                // 3. 로그인이 문제없이 성공한 경우
+                if (userEmail != null && encrypt_pwd.equals(userPwd)) {
+
+                    // 회원 정지 상태 또는 탈퇴 상태가 아니라면
+                    if (statusId.equals("U03") || statusId.equals("U04")) {
+
+                        // 세션에 저장하지 않고 반환
+                        return userInfo;
+                    }
+                    // 세션에 저장
                     session.setAttribute("user_email", user_email);
                     session.setMaxInactiveInterval(30 * 60);
-                    return userInfo; // 세션에 저장 후 UserDto타입을 리턴
-                } else { // 4. 아이디 또는 비밀번호가 일치하지 않는다면 null을 반환 (ctr에서 맞는 뷰 보여줌)
+                    return userInfo;
+
+                    // 4. 아이디 또는 비밀번호가 일치하지 않는다면 null을 반환하여 컨트롤러에서 뷰 처리
+                } else {
                     return null;
                 }
-            } else { // null이면 => 6.없는 회원정보(로그인/비밀번호)로 로그인을 시도한 경우
-                return null; // null 반환(ctr에서 맞는 뷰 보여줌)
+
+                // 6.없는 회원정보(로그인/비밀번호)로 로그인을 시도한 경우
+            } else {
+                return null; // null을 반환하여 컨트롤러에서 뷰 처리
             }
 
+            // 위 상황에서 null 발생시에도 null을 반환하여 컨트롤러에서 뷰 처리
         } catch (Exception e) {
             e.printStackTrace();
-            // return null;
-            throw new Exception();
+            return null;
         }
     }
 
@@ -94,4 +119,26 @@ public class UserLoginServiceImpl implements UserLoginService {
     }
 
 
+    @Override
+    public String encrypt(String email, String password) {
+        try {
+            KeySpec spec = new PBEKeySpec(password.toCharArray(), getSalt(email), 85319, 128);
+            SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+
+            byte[] hash = factory.generateSecret(spec).getEncoded();
+            return Base64.getEncoder().encodeToString(hash);
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException |
+                 InvalidKeySpecException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public byte[] getSalt(String email)
+            throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        MessageDigest digest = MessageDigest.getInstance("SHA-512");
+        byte[] keyBytes = email.getBytes("UTF-8");
+
+        return digest.digest(keyBytes);
+    }
 }

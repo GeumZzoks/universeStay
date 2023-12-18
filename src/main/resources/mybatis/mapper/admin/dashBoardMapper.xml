@@ -3,14 +3,70 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.universestay.project.resources.mybatis.mapper.admin.dashBoardMapper">
 
+    <!-- 총 가입자 수 -->
+    <select id="countTotalUser" resultType="String">
+        SELECT COUNT(*)
+        FROM User
+        WHERE status_id = 'U01';
+    </select>
+
+    <!-- 총 호스트 수 -->
+    <select id="countTotalHost" resultType="String">
+        SELECT COUNT(*)
+        FROM User
+        WHERE user_is_host = 'Y';
+    </select>
+
+    <!-- 문의사항 수 -->
+    <select id="countTotalInquiries" resultType="String">
+        SELECT COUNT(*)
+        FROM Inquiry
+        WHERE inquiry_is_answered = 'N';
+    </select>
+
+    <!-- 숙소 신청한 호스팅 관리 -->
+    <select id="selectListRoom" resultType="map">
+        SELECT U.user_nickname, R.room_id, R.room_name, R.room_weekday_price, R.room_weekend_price
+        FROM Room R
+                 left join User U on R.user_id = U.user_id
+        WHERE U.user_nickname IS NOT NULL
+          AND R.status_id = 'RA01'
+        ORDER BY R.created_at DESC LIMIT 20;
+    </select>
+
+    <!-- 문의사항 관리 -->
+    <select id="selectListInquiry" resultType="map">
+        SELECT I.inquiry_title, I.inquiry_id, U.user_nickname
+        FROM Inquiry I
+                 left join User U on I.user_id = U.user_id
+        WHERE I.inquiry_is_answered = 'N'
+        ORDER BY I.created_at DESC LIMIT 20;
+    </select>
+
+    <!-- 숙소 신청한 호스팅 개별 승인 처리 -->
+    <update id="updateConfirmIndividualRoom" parameterType="String">
+        UPDATE Room
+        SET status_id = 'RA02'
+        WHERE room_id = #{room_id};
+    </update>
+
+    <!-- 숙소 신청한 호스팅 개별 반려 처리 -->
+    <update id="updateRejectIndividualRoom" parameterType="String">
+        UPDATE Room
+        SET status_id = 'RA03'
+        WHERE room_id = #{room_id};
+    </update>
+
+    <!-- 문의사항  -->
+
     <!-- 유저 관리 -->
     <!-- 최근 생성한 활성 유저 20명 출력 -->
-    <select id="selectUserManagement" resultType="UserDto">
-        SELECT *
-        FROM User
-        WHERE status_id = U01
-        ORDER BY created_at DESC LIMIT 20;
-    </select>
+    <!--    <select id="selectUserManagement" resultType="UserDto">-->
+    <!--        SELECT *-->
+    <!--        FROM User-->
+    <!--        WHERE status_id = U01-->
+    <!--        ORDER BY created_at DESC LIMIT 20;-->
+    <!--    </select>-->
 
     <!-- 호스팅 관리 -->
     <select id="selectHostManagement" resultType="int">

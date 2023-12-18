@@ -2,6 +2,7 @@ package com.universestay.project.admin.dao;
 
 import com.universestay.project.admin.dto.NoticeDto;
 import java.util.List;
+import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,8 +16,18 @@ public class NoticeDaoImpl implements NoticeDao {
     private static String namespace = "com.universestay.project.admin.dao.NoticeDao.";
 
     @Override
+    public int count() throws Exception {
+        return session.selectOne(namespace + "count");
+    }
+
+    @Override
     public List<NoticeDto> selectAll() throws Exception {
         return session.selectList(namespace + "selectAll");
+    }
+
+    @Override
+    public List<Map<String, Object>> selectPage(Map map) throws Exception {
+        return session.selectList(namespace + "selectPage", map);
     }
 
     @Override
@@ -35,8 +46,18 @@ public class NoticeDaoImpl implements NoticeDao {
     }
 
     @Override
+    public int insertSelectKey(NoticeDto noticeDto) throws Exception {
+        return session.insert(namespace + "insertSelectKey", noticeDto);
+    }
+
+    @Override
     public int update(NoticeDto noticeDto) throws Exception {
         return session.update(namespace + "update", noticeDto);
+    }
+
+    @Override
+    public String selectAdminId(String admin_email) throws Exception {
+        return session.selectOne(namespace + "selectAdminId", admin_email);
     }
 
 

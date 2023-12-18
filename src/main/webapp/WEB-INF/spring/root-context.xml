@@ -75,5 +75,26 @@
   <!--  <bean id="stringRedisSerializer"-->
   <!--    class="org.springframework.data.redis.serializer.StringRedisSerializer"/>-->
 
+  <!--    이미지 업로드를 위한 multipartResolver 를 bean으로 등록-->
+  <bean id="multipartResolver"
+    class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    <!--        10메가바이트로 설정-->
+    <property name="maxUploadSize" value="10485760"/>
+    <property name="maxUploadSizePerFile" value="10485760"/>
+    <property name="maxInMemorySize" value="10485760"/>
+  </bean>
+
+
+  <!-- 현재 프로필 이미지파일 저장할 경로 -->
+  <bean id="uploadProfileImgPath" class="java.lang.String">
+    <constructor-arg value="/src/main/webapp/resources/upload-imgs/profileImg/"/>
+  </bean>
+
+  <!-- Oauth.properties를 JS 코드에 넣기 위해 PropertiesFactoryBean 등록 -->
+  <bean id="OauthProperties"
+    class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+    <property name="location" value="classpath:config/oauth.properties"/>
+  </bean>
+
   <context:component-scan base-package="com.universestay.project"/>
 </beans>

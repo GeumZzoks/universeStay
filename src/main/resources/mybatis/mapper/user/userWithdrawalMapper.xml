@@ -8,4 +8,10 @@
         SET status_id = 'U04'
         WHERE user_email = #{user_email}
     </update>
+
+    <select id="selectUserByUuid" resultType="UserDto">
+        SELECT *
+        FROM User
+        WHERE user_id = #{user_id}
+    </select>
 </mapper>

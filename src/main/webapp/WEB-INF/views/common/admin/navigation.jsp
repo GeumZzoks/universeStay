@@ -15,36 +15,44 @@
 <body>
 <aside class="components-admin-navigation">
     <ul class="components-admin-navigation__ul">
-        <li class="components-admin-navigation__ul-li"><a class="components-admin-navigation__ul-li__a" href=""><img
+        <li class="components-admin-navigation__ul-li"><a
+                class="components-admin-navigation__ul-li__a" href=""><img
                 class="components-admin-navigation__ul-li__img"
                 src="/resources/img/admin/navigation/dashboard.png">대시보드</a>
         </li>
-        <li class="components-admin-navigation__ul-li"><a class="components-admin-navigation__ul-li__a" href=""><img
+        <li class="components-admin-navigation__ul-li"><a
+                class="components-admin-navigation__ul-li__a" href=""><img
                 class="components-admin-navigation__ul-li__img"
                 src="/resources/img/admin/navigation/user.png">유저관리</a>
         </li>
-        <li class="components-admin-navigation__ul-li"><a class="components-admin-navigation__ul-li__a" href=""><img
+        <li class="components-admin-navigation__ul-li"><a
+                class="components-admin-navigation__ul-li__a" href="/admin/hostingManagement"><img
                 class="components-admin-navigation__ul-li__img"
                 src="/resources/img/admin/navigation/host.png">호스팅관리</a>
         </li>
-        <li class="components-admin-navigation__ul-li"><a class="components-admin-navigation__ul-li__a" href=""><img
+        <li class="components-admin-navigation__ul-li"><a
+                class="components-admin-navigation__ul-li__a" href=""><img
                 class="components-admin-navigation__ul-li__img"
                 src="/resources/img/admin/navigation/notice.png">공지사항</a>
         </li>
-        <li class="components-admin-navigation__ul-li"><a class="components-admin-navigation__ul-li__a"
-                                                          href="/admin/event/list"><img
+        <li class="components-admin-navigation__ul-li"><a
+                class="components-admin-navigation__ul-li__a"
+                href="/admin/event/list"><img
                 class="components-admin-navigation__ul-li__img"
                 src="/resources/img/admin/navigation/event.png">이벤트</a>
         </li>
-        <li class="components-admin-navigation__ul-li"><a class="components-admin-navigation__ul-li__a" href=""><img
+        <li class="components-admin-navigation__ul-li"><a
+                class="components-admin-navigation__ul-li__a" href=""><img
                 class="components-admin-navigation__ul-li__img"
                 src="/resources/img/admin/navigation/inquiry.png">문의사항</a>
         </li>
-        <li class="components-admin-navigation__ul-li"><a class="components-admin-navigation__ul-li__a" href=""><img
+        <li class="components-admin-navigation__ul-li"><a
+                class="components-admin-navigation__ul-li__a" href="/admin/coupon"><img
                 class="components-admin-navigation__ul-li__img"
                 src="/resources/img/admin/navigation/coupon.png">쿠폰</a>
         </li>
-        <li class="components-admin-navigation__ul-li"><a class="components-admin-navigation__ul-li__a" href=""><img
+        <li class="components-admin-navigation__ul-li"><a
+                class="components-admin-navigation__ul-li__a" href=""><img
                 class="components-admin-navigation__ul-li__img"
                 src="/resources/img/admin/navigation/admin2.png">관리자계정</a>
         </li>

@@ -33,7 +33,7 @@ public class NoticeControllerTest {
     @Test
     public void testList() throws Exception {
         System.out.println(
-                mockMvc.perform(MockMvcRequestBuilders.get("/notice/list"))
+                mockMvc.perform(MockMvcRequestBuilders.get("/admin/notice/list"))
                         .andReturn()
                         .getModelAndView()
                         .getModelMap());
@@ -41,7 +41,7 @@ public class NoticeControllerTest {
 
     @Test
     public void testRead() throws Exception {
-        System.out.println(mockMvc.perform(MockMvcRequestBuilders.get("/notice/read")
+        System.out.println(mockMvc.perform(MockMvcRequestBuilders.get("/admin/notice/read")
                         .param("notice_id", "2"))
                 .andReturn()
                 .getModelAndView().getModelMap());
@@ -50,7 +50,7 @@ public class NoticeControllerTest {
     @Test
     public void testRemove() throws Exception {
         // 삭제 전 데이터베이스에 공지사항 번호 확인할 것!
-        String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/notice/remove")
+        String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/admin/notice/remove")
                 .param("notice_id", "4")
         ).andReturn().getModelAndView().getViewName();
         System.out.println(resultPage);
@@ -58,7 +58,7 @@ public class NoticeControllerTest {
 
     @Test
     public void testWrite() throws Exception {
-        String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/notice/write")
+        String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/admin/notice/write")
                 .param("admin_id", "8028bee4-6025-4c58-8c7f-839d7dc0d45t")
                 .param("notice_title", "2023/11/27 월요일 공지사항")
                 .param("notice_ctt",
@@ -73,7 +73,7 @@ public class NoticeControllerTest {
     @Test
     public void testModify() throws Exception {
         String resultPage = mockMvc
-                .perform(MockMvcRequestBuilders.post("/notice/modify")
+                .perform(MockMvcRequestBuilders.post("/admin/notice/modify")
                         .param("notice_id", "23")
                         .param("notice_title", "변경된 2023/11/27 공지사항")
                         .param("notice_ctt",

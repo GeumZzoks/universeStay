@@ -37,7 +37,7 @@ public class LoginController {
             return "redirect:/adminLogin/loginForm";
         }
 
-        return "/admin/dashboard";
+        return "redirect:/admin/main/dashboard";
     }
 
 

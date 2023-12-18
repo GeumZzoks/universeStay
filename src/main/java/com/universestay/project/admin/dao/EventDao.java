@@ -12,16 +12,16 @@ public interface EventDao {
 
     EventDto select(Integer event_id) throws Exception;
 
-    String getAdminNickname(String admin_id) throws Exception;
+    String getAdminUuid(String admin_email) throws Exception;
+
+    List<Map<String, Object>> searchSelectPage(SearchCondition sc) throws Exception;
 
     List<EventDto> selectAll() throws Exception;
 
     List<EventDto> selectPage(Map map) throws Exception;
 
     int searchResultCnt(SearchCondition sc) throws Exception;
-
-    List<EventDto> searchSelectPage(SearchCondition sc) throws Exception;
-
+    
     Integer update(EventDto dto) throws Exception;
 
     Integer update_hit(Integer event_id) throws Exception;

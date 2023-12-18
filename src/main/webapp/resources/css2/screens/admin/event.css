@@ -6,8 +6,9 @@
 
 .screens-admin-event__content {
     width: 80%;
-    min-width: 800px;
-    height: auto;
+    min-width: 1150px;
+    min-height: 550px;
+    overflow: hidden;
     position: absolute;
     float: left;
     margin: 0 100px 0 230px;
@@ -59,12 +60,15 @@
 
 .screens-admin-event__content-table__no {
     width: 5%;
+    font-size: 12px;
+    color: #333333;
     border-bottom: 1px solid #444444;
     text-align: center;
 }
 
 .screens-admin-event__content-table__title {
     padding: 6px 0 4px 0;
+    width: auto;
     color: black;
     border-bottom: 1px solid #444444;
     text-align: left;
@@ -83,24 +87,50 @@
     color: #B0B0B0;
 }
 
+.screens-admin-event__content-table__title__a:visited:hover {
+    color: #F48475;
+}
+
 .screens-admin-event__content-table__writer {
+    font-size: 12px;
     width: 10%;
     height: 20px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
     border-bottom: 1px solid #444444;
     text-align: center;
+}
 
+.screens-admin-event__content-table__status {
+    font-size: 12px;
+    width: 5%;
+    height: 20px;
+    border-bottom: 1px solid #444444;
+    text-align: center;
+}
+
+.screens-admin-event__content-table__is_open {
+    font-size: 12px;
+    width: 8%;
+    height: 20px;
+    border-bottom: 1px solid #444444;
+    text-align: center;
+}
+
+.screens-admin-event__content-table__event_date {
+    font-size: 12px;
+    width: 8%;
+    border-bottom: 1px solid #444444;
+    text-align: center;
 }
 
 .screens-admin-event__content-table__regdate {
-    width: 20%;
+    font-size: 12px;
+    width: 8%;
     border-bottom: 1px solid #444444;
     text-align: center;
 }
 
 .screens-admin-event__content-table__viewcnt {
+    font-size: 12px;
     width: 5%;
     border-bottom: 1px solid #444444;
     text-align: center;
@@ -170,11 +200,23 @@
     cursor: pointer;
 }
 
-.screens-admin-event__content-input-div {
-    width: 200px;
+.screens-admin-event__content-img-div {
+    width: 29%;
     position: absolute;
-    margin: -430px 0 0 870px;
-    padding: 30px 0 80px 40px;
+    height: 80%;
+    top: 40px;
+    right: 225px;
+    border: 2px solid indianred;
+    border-radius: 10px;
+}
+
+.screens-admin-event__content-input-div {
+    width: 150px;
+    height: calc(80% - 40px);
+    position: absolute;
+    top: 40px;
+    right: 20px;
+    padding: 40px 10px 0 20px;
     border: 2px solid indianred;
     border-radius: 10px;
 }
@@ -187,4 +229,91 @@
     margin: 20px 0 10px 0;
 }
 
+.screens-admin-event__content-input__img {
+    position: absolute;
+    top: 35px;
+    right: 22px;
+    width: 300px;
+    height: auto;
+}
+
+.screens-admin-event__content-input__text {
+    white-space: pre;
+    width: 50%;
+    height: 60%;
+    overflow: hidden;
+    top: 160px;
+    left: 20px;
+}
+
+.screens-admin-event__content-input__filebox .upload-name {
+    display: inline-block;
+    height: 22px;
+    font-size: 14px;
+    padding: 0 10px;
+    vertical-align: middle;
+    border: 1px solid black;
+    border-radius: 4px;
+    width: 100px;
+    color: dimgrey;
+}
+
+.screens-admin-event__content-input__filebox label {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    padding: 4px 0 0 0;
+    background-color: transparent;
+    border: 1px solid black;
+    border-radius: 4px;
+    cursor: pointer;
+    height: 16px;
+    width: 40px;
+    font-size: 14px;
+}
+
+.screens-admin-event__content-input__filebox label:hover {
+    transform: scale(1.04, 1.04);
+    transition-duration: 200ms;
+    color: indianred;
+}
+
+.screens-admin-event__content-input__filebox input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
+
+.screens-admin-event__paging {
+    color: black;
+    width: 100%;
+    align-items: center;
+}
+
+.screens-admin-event__page {
+    color: black;
+    padding: 6px;
+    margin-right: 10px;
+}
+
+.screens-admin-event__page:active {
+    background-color: indianred;
+}
+
+.screens-admin-event__paging:active {
+    color: indianred;
+}
+
+.screens-admin-event__paging-container {
+    height: 10px;
+    display: flex;
+    position: absolute;
+    left: 50%;
+    bottom: 30px;
+    transform: translate(-50%, 0);
+    z-index: 5;
+}
 

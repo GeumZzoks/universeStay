@@ -17,6 +17,9 @@ import lombok.ToString;
 @ToString
 public class ProfileImgDto {
 
+    @ApiModelProperty(notes = "프로필 이미지 Id", example = "1569ae7b-b7c6-45be-c6d7-7f325d98be13", required = true)
+    private String profile_img_id;
+
     @ApiModelProperty(notes = "유저 ID", example = "0ca24692-89ea-11ee-b9d1-0242ac120002", required = true)
     private String user_id;
 

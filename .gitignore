@@ -278,3 +278,6 @@ mvnw.cmd
 src/main/resources/config/*
 /.idea/codeStyles/codeStyleConfig.xml
 log
+/src/main/webapp/WEB-INF/classes/
+/src/main/webapp/WEB-INF/lib/
+/src/main/webapp/META-INF/
