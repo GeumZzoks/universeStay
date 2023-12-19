@@ -48,7 +48,7 @@
 .screens-admin-coupon__content-input-div textarea {
     font-size: 12px;
     width: 250px;
-    height: 60px;
+    height: 40px;
     resize: none;
 }
 
@@ -78,6 +78,7 @@
     transform: scale(1.04, 1.04);
     transition-duration: 200ms;
     color: black;
+    cursor: pointer;
 }
 
 .screens-admin-coupon__content-search {

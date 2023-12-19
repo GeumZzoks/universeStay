@@ -39,7 +39,7 @@ public class EventDaoImpl implements EventDao {
     }
 
     @Override
-    public List<EventDto> selectMain() throws Exception {
+    public List<Map<String, Object>> selectMain() throws Exception {
         return session.selectList(namespace + "selectMain");
     }
 
@@ -73,6 +73,11 @@ public class EventDaoImpl implements EventDao {
     @Override
     public Integer update(EventDto dto) throws Exception {
         return session.update(namespace + "update", dto);
+    }
+
+    @Override
+    public Integer updateImg(EventImgDto eventImgDto) throws Exception {
+        return session.update(namespace + "updateImg", eventImgDto);
     }
 
     @Override
