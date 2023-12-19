@@ -1,9 +1,11 @@
 package com.universestay.project.payment.controller;
 
+import com.universestay.project.payment.dto.PaymentDto;
 import com.universestay.project.payment.service.PaymentService;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -52,4 +55,24 @@ public class PaymentController {
     public ResponseEntity getPaymentInfo(@RequestParam("bookingId") String bookingId) {
         return new ResponseEntity<>(paymentService.findPaymentUser(bookingId), HttpStatus.OK);
     }
+
+    @PostMapping("/saveResponse")
+    public ResponseEntity getPaymentResponse(@RequestBody PaymentDto paymentDto) {
+        try {
+            String uuid = UUID.randomUUID().toString();
+            //payment_id에 랜덤 Uuid 부여
+            paymentDto.setPayment_id(uuid);
+            int isInserted = paymentService.insertPaymentInfo(paymentDto);
+            System.out.println("isInserted = " + isInserted);
+            return new ResponseEntity<>("Success", HttpStatus.OK);
+        } catch (Exception e) {
+            // 예외가 발생했을 때 실행할 코드
+            e.printStackTrace(); // 에러 메시지를 콘솔에 출력하거나 원하는 작업을 수행할 수 있어요.
+            return new ResponseEntity<>("Error occurred", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+//    @GetMapping
+//    @ResponseBody
+//    public ResponseEntity
 }
