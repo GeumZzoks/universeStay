@@ -244,7 +244,8 @@
                         <span>위시리스트</span></div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-reviews">
                         <span>나의 리뷰</span></div>
-                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-coupon">
+                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-coupon"
+                         onclick="location.href='/user/myPage/coupon'">
                         <span>나의 쿠폰</span></div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-notice">
                         <span>공지사항</span></div>
@@ -315,11 +316,11 @@
         });
 
         $('input[name="datefilter"]').on('apply.daterangepicker',
-                function (ev, picker) {
-                    $(this).val(picker.startDate.format('YYYY/MM/DD') + ' - '
-                            + picker.endDate.format(
-                                    'YYYY/MM/DD'));
-                });
+            function (ev, picker) {
+                $(this).val(picker.startDate.format('YYYY/MM/DD') + ' - '
+                    + picker.endDate.format(
+                        'YYYY/MM/DD'));
+            });
     });
 </script>
 

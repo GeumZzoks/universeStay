@@ -62,7 +62,7 @@
                         font-size: 12px; padding: 10px 10px 0 10px;">
                 <img class="modal-img" src="${wishListDto.room_main_photo}"
                      style="float: left; width: 50px; height: 50px; margin-right: 10px; border-radius: 5px;">
-                <h4 style="float: left; color: #717171; margin-top: 6px; width: 170px;"><br><br>
+                <h4 style="float: left; color: #717171; margin-top: 6px; width: 190px;"><br><br>
                     <h3 style="float: left; font-size: 14px; font-weight: 500; margin-top: 10px;">${wishListDto.room_name}</h3>
                 </h4>
             </div>

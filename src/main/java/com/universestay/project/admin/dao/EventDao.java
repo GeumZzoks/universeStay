@@ -17,7 +17,7 @@ public interface EventDao {
 
     Map<String, Object> selectWithImg(Integer event_id) throws Exception;
 
-    List<EventDto> selectMain() throws Exception;
+    List<Map<String, Object>> selectMain() throws Exception;
 
     String getAdminUuid(String admin_email) throws Exception;
 
@@ -30,6 +30,8 @@ public interface EventDao {
     int searchResultCnt(SearchCondition sc) throws Exception;
 
     Integer update(EventDto dto) throws Exception;
+
+    Integer updateImg(EventImgDto eventImgDto) throws Exception;
 
     Integer update_hit(Integer event_id) throws Exception;
 

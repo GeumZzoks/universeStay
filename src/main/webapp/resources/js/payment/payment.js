@@ -95,6 +95,11 @@ for (let i = 0; i < kakaoPaymentButtons.length; i++) {
                             payment_pg_type: rsp.pg_type,
                             payment_receipt_url: rsp.receipt_url,
                             payment_status: rsp.status,
+                            payment_currency: rsp.currency,
+                            payment_card_name: rsp.card_name,
+                            payment_bank_name: rsp.bank_name,
+                            payment_card_quota: rsp.card_quota,
+                            payment_card_number: rsp.card_number
                         }
 
                         console.log(paymentDto);

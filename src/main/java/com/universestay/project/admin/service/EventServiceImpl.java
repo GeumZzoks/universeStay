@@ -25,11 +25,12 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public Map<String, Object> selectWithImg(Integer event_id) throws Exception {
+        eventDao.update_hit(event_id);
         return eventDao.selectWithImg(event_id);
     }
 
     @Override
-    public List<EventDto> selectMain() throws Exception {
+    public List<Map<String, Object>> selectMain() throws Exception {
         return eventDao.selectMain();
     }
 
@@ -81,7 +82,9 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Integer update(EventDto eventDto) throws Exception {
+    @Transactional
+    public Integer update(EventDto eventDto, EventImgDto eventImgDto) throws Exception {
+        eventDao.updateImg(eventImgDto);
         return eventDao.update(eventDto);
     }
 
