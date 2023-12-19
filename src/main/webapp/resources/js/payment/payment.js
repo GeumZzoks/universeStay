@@ -62,6 +62,7 @@ for (let i = 0; i < kakaoPaymentButtons.length; i++) {
             dataType: "json",
             data: {bookingId: bookingId},
             success: function (res) {
+
                 IMP.request_pay({
                     pg: "kakaopay",
                     pay_method: "kakaopay",
@@ -75,6 +76,7 @@ for (let i = 0; i < kakaoPaymentButtons.length; i++) {
                         booking_id: bookingId
                     }
                 }, function (rsp) {
+
                     // 결제 성공 시
                     if (rsp.success) {
                         const paymentDto = {
@@ -104,6 +106,7 @@ for (let i = 0; i < kakaoPaymentButtons.length; i++) {
                             payment_card_number: rsp.card_number
                         }
 
+
                         let payment_id = "";
                         $.ajax({
                             url: "/payment/saveResponse",
@@ -112,6 +115,7 @@ for (let i = 0; i < kakaoPaymentButtons.length; i++) {
                             data: JSON.stringify(paymentDto),
                             success: function (res) {
                                 payment_id = res;
+
 
                                 const imp_uid = rsp.imp_uid;
                                 const merchant_uid = rsp.merchant_uid;

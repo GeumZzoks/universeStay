@@ -117,9 +117,6 @@ public class PaymentController {
             @RequestParam("payment_id") String payment_id
     ) throws IOException {
 
-        System.out.println("-------------------------------------");
-        System.out.println("payment_id = " + payment_id);
-
         // 요청 URL 설정
         // imp_uid 전달
         URL url = new URL("https://api.iamport.kr/payments/" + imp_uid);
@@ -170,6 +167,7 @@ public class PaymentController {
 
         // DB에서 결제되어야 하는 금액 조회(결제 되어야 하는 금액)
         Map<String, Object> orderInfo = paymentService.findOrderById(booking_id);
+
         Integer amountToBePaid = (Integer) orderInfo.get("room_weekend_price");
 
         if (amountToBePaid == null) {
@@ -177,6 +175,7 @@ public class PaymentController {
         }
 
         // 결제 검증하기, 결제 된 금액 === 결제 되어야 하는 금액
+
         if (amount.equals(amountToBePaid)) {
             switch (status) {
                 // 결제 디비 반영 & 결제 완료 처리
@@ -187,6 +186,7 @@ public class PaymentController {
         }
 
         return new ResponseEntity("결제 오류 발생", HttpStatus.INTERNAL_SERVER_ERROR);
+
     }
 
     @PostMapping("/getPaymentInfo")

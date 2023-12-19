@@ -28,4 +28,10 @@ public interface NoticeService {
 
     String getAdminId(String admin_email) throws Exception;
 
+    List<Map<String, Object>> getMainPage(Map map) throws Exception;
+
+    int getOpenCount() throws Exception;
+
+    NoticeDto mainRead(Integer notice_id) throws Exception;
+
 }

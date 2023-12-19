@@ -32,9 +32,9 @@ public class PaymentServiceImpl implements PaymentService {
         return paymentDao.insertPaymentInfo(paymentDto);
     }
 
+
     @Override
     public int updateOrderById(String paymentId) throws CommonException {
         return paymentDao.updateOrderById(paymentId);
     }
-
 }

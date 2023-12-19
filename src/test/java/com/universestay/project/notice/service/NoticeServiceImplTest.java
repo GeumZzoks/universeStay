@@ -2,6 +2,8 @@ package com.universestay.project.notice.service;
 
 import com.universestay.project.admin.dto.NoticeDto;
 import com.universestay.project.admin.service.NoticeService;
+import java.util.HashMap;
+import java.util.Map;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +69,24 @@ public class NoticeServiceImplTest {
     @Test
     public void getAdminId() throws Exception {
         System.out.println(noticeService.getAdminId("alskadmlcraz1@gmail.com"));
+    }
+
+    @Test
+    public void 메인_공지사항_목록() throws Exception {
+        Map map = new HashMap();
+        map.put("offset", 1);
+        map.put("pageSize", 10);
+        System.out.println(noticeService.getMainPage(map));
+    }
+
+    @Test
+    public void 공개_공지사항_카운트() throws Exception {
+        System.out.println(noticeService.getOpenCount());
+    }
+
+    @Test
+    public void 메인_공지사항_상세() throws Exception {
+        System.out.println(noticeService.mainRead(530));
     }
 
 }

@@ -446,3 +446,22 @@ btnMinus.addEventListener("click", function (e) {
     btnPlus.classList.remove("disable");
   }
 });
+
+const openBtn = document.querySelector(
+    ".screens-room-roomDetail__btn-review-modal");
+const reviewModal = document.querySelector(".reviewModal");
+const overlay = reviewModal.querySelector(".reviewModal__overlay");
+const closeBtn = reviewModal.querySelector(
+    ".reviewModal__content__header__button");
+const openreviewModal = () => {
+  reviewModal.classList.remove("hidden");
+  document.body.style.overflow = 'hidden';
+}
+const closereviewModal = () => {
+  reviewModal.classList.add("hidden");
+  document.body.style.overflow = 'auto';
+}
+overlay.addEventListener("click", closereviewModal);
+closeBtn.addEventListener("click", closereviewModal);
+openBtn.addEventListener("click", openreviewModal);
+

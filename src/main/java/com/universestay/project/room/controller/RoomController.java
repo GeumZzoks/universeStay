@@ -85,7 +85,6 @@ public class RoomController {
             model.addAttribute("roomAmenities", roomAmenities);
             model.addAttribute("bookingDtos", bookingDtos);
 
-
             return "room/roomDetail";
         } catch (Exception e) {
             e.printStackTrace();
