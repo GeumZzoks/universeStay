@@ -5,9 +5,9 @@
 <configuration>
     <typeAliases>
         <typeAlias alias="SearchCondition"
-                   type="com.universestay.project.common.SearchCondition"/>
+                type="com.universestay.project.common.SearchCondition"/>
         <typeAlias alias="MainSearchCondition"
-                   type="com.universestay.project.common.MainSearchCondition"/>
+                type="com.universestay.project.common.MainSearchCondition"/>
         <typeAlias alias="UserDto" type="com.universestay.project.user.dto.UserDto"/>
         <typeAlias alias="ProfileImg" type="com.universestay.project.user.dto.ProfileImgDto"/>
         <typeAlias alias="AdminDto" type="com.universestay.project.admin.dto.AdminDto"/>
@@ -22,6 +22,7 @@
         <typeAlias alias="RoomViewDto" type="com.universestay.project.room.dto.RoomViewDto"/>
         <typeAlias alias="BookingDto" type="com.universestay.project.user.dto.BookingDto"/>
         <typeAlias alias="RoomReviewDto" type="com.universestay.project.review.dto.RoomReviewDto"/>
+        <typeAlias alias="PaymentDto" type="com.universestay.project.payment.dto.PaymentDto"/>
     </typeAliases>
 
 </configuration>

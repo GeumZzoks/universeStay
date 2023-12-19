@@ -1,6 +1,7 @@
 package com.universestay.project.payment.dao;
 
 import com.universestay.project.common.exception.CommonException;
+import com.universestay.project.payment.dto.PaymentDto;
 import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +22,10 @@ public class PaymentDaoImpl implements PaymentDao {
     @Override
     public Map<String, Object> findPaymentUser(String booking_id) throws CommonException {
         return session.selectOne(namespace + "findPaymentUser", booking_id);
+    }
+
+    @Override
+    public int insertPaymentInfo(PaymentDto paymentDto) throws CommonException {
+        return session.insert(namespace + "insertPaymentInfo", paymentDto);
     }
 }
