@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.universestay.project.resources.mybatis.mapper.payment.paymentMapper">
+    <select id="findPaymentUser" parameterType="String" resultType="map">
+        SELECT *
+        FROM Booking B
+                 INNER JOIN User U ON B.user_id = U.user_id
+                 INNER JOIN Room R ON B.room_id = R.room_id
+        WHERE B.booking_id = #{booking_id}
+    </select>
+
+    <insert id="insertPaymentInfo" parameterType="PaymentDto">
+        INSERT INTO Payment (payment_id,
+                             booking_id,
+                             payment_is_success,
+                             payment_error_code,
+                             payment_error_msg,
+                             payment_imp_uid,
+                             payment_merchant_uid,
+                             payment_pay_method,
+                             payment_paid_amount,
+                             payment_status,
+                             payment_pg_provider,
+                             payment_emb_pg_provider,
+                             payment_pg_tid,
+                             payment_buyer_name,
+                             payment_buyer_email,
+                             payment_buyer_tel,
+                             payment_buyer_addr,
+                             payment_buyer_postcode,
+                             payment_paid_at,
+                             payment_receipt_url,
+                             payment_apply_num,
+                             payment_is_refund,
+                             payment_is_used,
+                             payment_is_cancel,
+                             payment_cancel_auth_num,
+                             payment_cancel_date,
+                             payment_currency,
+                             payment_card_name,
+                             payment_bank_name,
+                             payment_card_quota,
+                             payment_card_number,
+                             payment_is_approved,
+                             created_id,
+                             updated_id)
+        VALUES (#{payment_id},
+                #{booking_id},
+                #{payment_is_success},
+                #{payment_error_code},
+                #{payment_error_msg},
+                #{payment_imp_uid},
+                #{payment_merchant_uid},
+                #{payment_pay_method},
+                #{payment_paid_amount},
+                #{payment_status},
+                #{payment_pg_provider},
+                #{payment_emb_pg_provider},
+                #{payment_pg_tid},
+                #{payment_buyer_name},
+                #{payment_buyer_email},
+                #{payment_buyer_tel},
+                #{payment_buyer_addr},
+                #{payment_buyer_postcode},
+                #{payment_paid_at},
+                #{payment_receipt_url},
+                #{payment_apply_num},
+                #{payment_is_refund},
+                #{payment_is_used},
+                #{payment_is_cancel},
+                #{payment_cancel_auth_num},
+                #{payment_cancel_date},
+                #{payment_currency},
+                #{payment_card_name},
+                #{payment_bank_name},
+                #{payment_card_quota},
+                #{payment_card_number},
+                #{payment_is_approved},
+                #{created_id},
+                #{updated_id})
+    </insert>
+
+
+</mapper>

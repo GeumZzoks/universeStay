@@ -10,16 +10,19 @@
 
     <link rel="stylesheet" type="text/css"
           href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
+    <%--  dateRangePicker  --%>
+    <link rel="stylesheet"
+          href="http://longbill.github.io/jquery-date-range-picker/dist/daterangepicker.min.css">
 
 
     <style>
-      .screens-room-roomDetail__section-1__btns {
-        vertical-align: bottom;
-      }
+        .screens-room-roomDetail__section-1__btns {
+            vertical-align: bottom;
+        }
 
-      .screens-room-roomDetail__btn-share__text {
-        margin: 2px 0 0 2px;
-      }
+        .screens-room-roomDetail__btn-share__text {
+            margin: 2px 0 0 2px;
+        }
 
     </style>
 </head>
@@ -79,6 +82,10 @@
     </div>
     <%--  section-2  --%>
     <div class="screens-room-roomDetail__section-2">
+        <button class="screens-room-roomDetail__btn screens-room-roomDetail__room-photo">
+            <img class="screens-room-roomDetail__room-photo__img"
+                 src="${room.room_main_photo}" alt="">
+        </button>
         <c:forEach var="roomImg" items="${roomImgList}">
             <button class="screens-room-roomDetail__btn screens-room-roomDetail__room-photo">
                 <img class="screens-room-roomDetail__room-photo__img"
@@ -127,7 +134,7 @@
                     </c:forEach>
                 </ul>
                 <button class="screens-room-roomDetail__btn screens-room-roomDetail__btn-square screens-room-roomDetail__btn-shrink screens-room-roomDetail__section-3__room-info__info-2__modal-btn">
-                    편의시설 40개 모두 보기
+                    편의시설 ${roomAmenities.size()}개 모두 보기
                 </button>
                 <div class="screens-room-roomDetail__section-3__room-info__info-2__modal-outer screens-room-roomDetail__modal-amenity">
                     <div class="screens-room-roomDetail__section-3__room-info__info-2__modal-inner">
@@ -244,7 +251,7 @@
             <div class="screens-room-roomDetail__reservation__part-1">
                 <div class="screens-room-roomDetail__reservation__price">
                     <span class="screens-room-roomDetail__price__part-1">₩ ${room.room_weekday_price}</span>
-                    <span class="screens-room-roomDetail__price__part-2">/박</span>
+                    <span class="screens-room-roomDetail__price__part-2">/박 (주중)</span>
                 </div>
                 <div class="screens-room-roomDetail__reservation__info">
                     <button class="screens-room-roomDetail__btn screens-room-roomDetail__reservation__check-in-out">
@@ -255,9 +262,9 @@
 
                             <div class="screens-room-roomDetail__check-in-out__desc screens-room-roomDetail__check-in-out__desc2"
                                  id="check-in-button">
-                                2024-01-07
-
+                                YYYY-MM-DD
                             </div>
+                            <input type="hidden" name="booking_checkin_date">
                         </div>
                         <div class="screens-room-roomDetail__check-in-out">
                             <div class="screens-room-roomDetail__check-in-out__desc screens-room-roomDetail__check-in-out__desc1">
@@ -266,9 +273,9 @@
 
                             <div class="screens-room-roomDetail__check-in-out__desc screens-room-roomDetail__check-in-out__desc2"
                                  id="check-out-button">
-                                2024-01-12
-
+                                YYYY-MM-DD
                             </div>
+                            <input type="hidden" name="booking_checkout_date">
                         </div>
                     </button>
                     <button class="screens-room-roomDetail__btn screens-room-roomDetail__reservation__number-people">
@@ -279,6 +286,10 @@
                                   id="totalGuest-button">1
                             </span>
                             <span>명</span>
+                            <input type="hidden" name="booking_num_of_guest">
+                            <input type="hidden" name="room_max_capa" value="${room.room_max_capa}">
+                            <input type="hidden" name="room_standard_capa"
+                                   value="${room.room_standard_capa}">
                         </div>
                         <div class="screens-room-roomDetail__number-people__arrow">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
@@ -288,6 +299,31 @@
                             </svg>
                         </div>
                     </button>
+                    <div class="screens-room-roomDetail__number-people-toggle">
+                        <span class="screens-room-roomDetail__toggle-part-1">성인</span>
+                        <div class="screens-room-roomDetail__toggle-part-2">
+                            <button type="button"
+                                    class="screens-room-roomDetail__toggle-btn-minus disable">
+                                <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"
+                                     aria-hidden="true"
+                                     role="presentation" focusable="false"
+                                     style="display: block; height: 12px; width: 12px; fill: #717171;">
+                                    <path d="m.75 6.75h10.5v-1.5h-10.5z"></path>
+                                </svg>
+                            </button>
+                            <input type="text" class="screens-room-roomDetail__toggle-num"
+                                   name="toggle-people-num" value='1' readonly/>
+                            <button type="button"
+                                    class="screens-room-roomDetail__toggle-btn-plus">
+                                <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"
+                                     aria-hidden="true"
+                                     role="presentation" focusable="false"
+                                     style="display: block; height: 12px; width: 12px; fill: #717171;">
+                                    <path d="m6.75.75v4.5h4.5v1.5h-4.5v4.5h-1.5v-4.5h-4.5v-1.5h4.5v-4.5z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <div>
                     <button class="screens-room-roomDetail__btn screens-room-roomDetail__reservation__btn screens-room-roomDetail__btn-shrink"
@@ -301,9 +337,33 @@
                 예약 확정 전에는 요금이 청구되지 않습니다.
             </div>
             <div class="screens-room-roomDetail__reservation__part-3">
-                <span class="screens-room-roomDetail__reservation__part-3__mul">₩${room_weekday_price} X 7박</span>
-                <span>₩1,167,740</span>
+                <span class="screens-room-roomDetail__reservation__part-3__mul">₩ <span>${room.room_weekday_price}</span> X <span>0</span>박 (주중)</span>
+                <span>₩ 0</span>
+                <input type="hidden" value="${room.room_weekday_price}">
             </div>
+            <div class="screens-room-roomDetail__reservation__part-4">
+                <span class="screens-room-roomDetail__reservation__part-4__mul">₩ <span>${room.room_weekend_price}</span> X <span>0</span>박 (주말)</span>
+                <span>₩ 0</span>
+                <input type="hidden" value="${room.room_weekend_price}">
+            </div>
+            <div class="screens-room-roomDetail__reservation__part-5">
+                <span class="screens-room-roomDetail__reservation__part-5__mul">₩ <span>${room.room_extra_person_fee}</span> X <span>0</span>명 (추가인원) X <span>0</span>박 </span>
+                <span>₩ 0</span>
+                <input type="hidden" value="${room.room_extra_person_fee}">
+            </div>
+            <div class="screens-room-roomDetail__reservation__part-6">
+                <span class="screens-room-roomDetail__reservation__part-6__mul">합계</span>
+                <span>₩ 0 </span>
+                <input type="hidden" name="booking_price_sum">
+            </div>
+        </div>
+        <div class="screens-room-roomDetail__bookingDates">
+            <c:forEach var="bookingDto" items="${bookingDtos}">
+                <div class="screens-room-roomDetail__bookingDate">
+                    <input type="hidden" value="${bookingDto.booking_checkin_date}">
+                    <input type="hidden" value="${bookingDto.booking_checkout_date}">
+                </div>
+            </c:forEach>
         </div>
     </div>
     <%--  section-4  --%>
@@ -488,7 +548,7 @@
                         font-size: 12px; padding: 10px 10px 0 10px;">
         <img class="modal-img" src="${room.room_main_photo}"
              style="float: left; width: 50px; height: 50px; margin-right: 10px; border-radius: 5px;">
-        <h4 style="float: left; color: #717171; margin-top: 6px; width: 170px;">
+        <h4 style="float: left; color: #717171; margin-top: 6px; width: 190px;">
             <h3 style="float: left; font-size: 14px; font-weight: 500; margin-top: 10px;">${room.room_name}</h3>
         </h4>
     </div>
@@ -500,7 +560,7 @@
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${KakaoApiKey}&libraries=services"></script>
     <%-- 스크립트 --%>
     <script>
-      const roomAddress = '${room.room_address}';
+        const roomAddress = '${room.room_address}';
     </script>
     <%-- 제이쿼리 --%>
     <script type="text/javascript"
@@ -508,85 +568,92 @@
     <%-- 캘린더 스크립트 --%>
     <script type="text/javascript"
             src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <script src="/resources/js/room/roomDetail.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <%--  dateRangePicker  --%>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery-date-range-picker/0.14.2/jquery.daterangepicker.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.16.0/moment.min.js"></script>
+    <%--    <script src="/resources/js/room/roomDetail.js"></script>--%>
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
     <script>
-      // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
-      Kakao.init('${KakaoApiKey}');
+        // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
+        Kakao.init('${KakaoApiKey}');
 
-      function kakaoShare() {
-        Kakao.Link.sendDefault({
-          objectType: 'feed',
-          content: {
-            title: '${room.room_name}',
-            description: '${room.room_total_desc}',
-            imageUrl: '${roomImg.room_img_url}',
-            link: {
-              webUrl: 'localhost:8080/room/roomDetail?room_id=${room.room_id}',
-            },
-          },
-          buttons: [
-            {
-              title: '웹으로 보기',
-              link: {
-                webUrl: 'localhost:8080/room/roomDetail?room_id=${room.room_id}',
-              },
-            },
-          ],
-        })
-      }
+        function kakaoShare() {
+            Kakao.Link.sendDefault({
+                objectType: 'feed',
+                content: {
+                    title: '${room.room_name}',
+                    description: '${room.room_total_desc}',
+                    imageUrl: '${roomImg.room_img_url}',
+                    link: {
+                        webUrl: 'localhost:8080/room/roomDetail?room_id=${room.room_id}',
+                    },
+                },
+                buttons: [
+                    {
+                        title: '웹으로 보기',
+                        link: {
+                            webUrl: 'localhost:8080/room/roomDetail?room_id=${room.room_id}',
+                        },
+                    },
+                ],
+            })
+        }
 
-      $(document).ready(function () {
-        $('#wishlist').on('click', function (e) {
-          // form 전송 시 새로고침 안하기(기본 이벤트 x)
-          e.preventDefault();
-          // 새로고침 안할 시 다른 요소의 이밴트 받지 않기
-          e.stopPropagation();
-          // 변수 선언
-          // roomID는 list의 각 value값을 가져옴
-          var roomID = $(this).val();
-          let wished = "/resources/img/room/wished.png";
-          let unwished = "/resources/img/room/unwished.png";
+        $(document).ready(function () {
+            $('#wishlist').on('click', function (e) {
+                // form 전송 시 새로고침 안하기(기본 이벤트 x)
+                e.preventDefault();
+                // 새로고침 안할 시 다른 요소의 이밴트 받지 않기
+                e.stopPropagation();
+                // 변수 선언
+                // roomID는 list의 각 value값을 가져옴
+                var roomID = $(this).val();
+                let wished = "/resources/img/room/wished.png";
+                let unwished = "/resources/img/room/unwished.png";
 
-          // ajax
-          $.ajax({
-            url: "/user/wishLists/active",
-            type: "POST",
-            dataType: "text",
-            data: {room_id: roomID},
-            success: function (response) {
-              $('.modal-div').finish();
-              if (response === 'DEL_OK') {
-                wished = "/resources/img/room/unwished.png";
-                $('#wished').attr('src', wished);
-                $('#wished_text').html('저장하기');
-                unwished = "/resources/img/room/unwished.png";
-                $('#unwished').attr('src', unwished);
-                $('#unwished_text').html('저장하기')
-                $('.modal-div h4').text('위시리스트에서 삭제되었습니다.')
-                $("#" + roomID).fadeIn('slow').delay(3000).fadeOut('slow');
-              } else if (response === 'IST_OK') {
-                wished = "/resources/img/room/wished.png";
-                $('#wished').attr('src', wished);
-                $('#wished_text').html('저장됨');
-                unwished = "/resources/img/room/wished.png";
-                $('#unwished').attr('src', unwished);
-                $('#unwished_text').html('저장됨')
-                $('.modal-div h4').text('위시리스트에 추가되었습니다.')
-                $("#" + roomID).fadeIn('slow').delay(3000).fadeOut('slow');
-              } else {
-                alert("알 수 없는 문제가 발생했습니다. 다시 시도해주세요.");
-              }
-            },
-            error: function () {
-              location.href = "/user/loginForm";
-            }
-          });
+                // ajax
+                $.ajax({
+                    url: "/user/wishLists/active",
+                    type: "POST",
+                    dataType: "text",
+                    data: {room_id: roomID},
+                    success: function (response) {
+                        $('.modal-div').finish();
+                        if (response === 'DEL_OK') {
+                            wished = "/resources/img/room/unwished.png";
+                            $('#wished').attr('src', wished);
+                            $('#wished_text').html('저장하기');
+                            unwished = "/resources/img/room/unwished.png";
+                            $('#unwished').attr('src', unwished);
+                            $('#unwished_text').html('저장하기')
+                            $('.modal-div h4').text('위시리스트에서 삭제되었습니다.')
+                            $("#" + roomID).fadeIn('slow').delay(3000).fadeOut('slow');
+                        } else if (response === 'IST_OK') {
+                            wished = "/resources/img/room/wished.png";
+                            $('#wished').attr('src', wished);
+                            $('#wished_text').html('저장됨');
+                            unwished = "/resources/img/room/wished.png";
+                            $('#unwished').attr('src', unwished);
+                            $('#unwished_text').html('저장됨')
+                            $('.modal-div h4').text('위시리스트에 추가되었습니다.')
+                            $("#" + roomID).fadeIn('slow').delay(3000).fadeOut('slow');
+                        } else {
+                            alert("알 수 없는 문제가 발생했습니다. 다시 시도해주세요.");
+                        }
+                    },
+                    error: function () {
+                        location.href = "/user/loginForm";
+                    }
+                });
+            });
         });
-      });
 
     </script>
+
 
     <script>
       $(document).ready(function () {
@@ -642,6 +709,7 @@
         });
       });
     </script>
+
 
     <script src="/resources/js/room/roomDetail.js"></script>
 
