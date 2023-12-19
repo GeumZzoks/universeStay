@@ -13,27 +13,6 @@
     <title>이벤트</title>
     <link rel="stylesheet" href="/resources/css2/style.css">
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-    <style>
-        .screens-admin-event__content-div__status {
-            width: 100px;
-            height: 300px;
-            position: fixed;
-            top: 150px;
-            right: 50px;
-            font-size: 14px;
-            border: 2px solid indianred;
-            border-radius: 10px;
-            padding: 60px 0 0 20px;
-        }
-
-        .screens-admin-event__content__img {
-            width: 700px;
-            height: auto;
-            margin: 40px 0 20px 20px;
-            background-color: gainsboro;
-        }
-
-    </style>
 </head>
 <body>
 <div class="screens-admin-event__container">
@@ -45,7 +24,7 @@
     <div class="screens-admin-event__content">
         <h3 style="font-size: 20px; color: indianred; margin-top: 20px; font-weight: 600;">이벤트</h3>
         <h5 style="font-size: 20px; font-weight: 800; margin: 20px 0 0 20px;">${eventDto.event_title}</h5>
-        <img class="screens-admin-event__content__img" src="/resources/img/admin/${eventDto.img}.png">
+        <img class="screens-admin-event__content__img" src="${eventDto.img}">
         <h5 style="white-space:pre; margin: 20px 0 100px 20px">${eventDto.event_ctt}</h5>
         <div class="screens-admin-event__content-div__status">
             <h3 style="color: indianred; margin-top: 20px; font-weight: 600;">이벤트 상태</h3>

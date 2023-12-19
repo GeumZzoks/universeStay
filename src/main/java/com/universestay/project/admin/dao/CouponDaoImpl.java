@@ -29,6 +29,17 @@ public class CouponDaoImpl implements CouponDao {
     }
 
     @Override
+    public CouponDto selectOnEvent(Integer event_id) throws Exception {
+        return session.selectOne(namespace + "selectOnEvent", event_id);
+    }
+
+
+    @Override
+    public Integer selectByEvent(Integer event_id) throws Exception {
+        return session.selectOne(namespace + "selectByEvent", event_id);
+    }
+
+    @Override
     public List<CouponDto> selectAll() throws Exception {
         return session.selectList(namespace + "selectAll");
     }

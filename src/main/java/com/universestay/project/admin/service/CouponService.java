@@ -13,6 +13,10 @@ public interface CouponService {
 
     EventDto select(Integer coupon_id) throws Exception;
 
+    CouponDto selectOnEvent(Integer event_id) throws Exception;
+
+    Integer selectByEvent(Integer event_id) throws Exception;
+
     List<CouponDto> selectAll() throws Exception;
 
     Integer update(CouponDto dto) throws Exception;

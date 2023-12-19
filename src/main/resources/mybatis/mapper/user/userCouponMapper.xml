@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.universestay.project.mybatis.mapper.user.userCouponMapper">
+
+    <select id="totalCount" parameterType="String" resultType="Integer">
+        SELECT count(*)
+        FROM UserCoupon
+        WHERE user_id = #{user_id}
+    </select>
+
+    <select id="isIssued" parameterType="map" resultType="Integer">
+        SELECT count(*)
+        FROM UserCoupon
+        WHERE user_id = #{user_id}
+          AND coupon_id = #{coupon_id}
+    </select>
+
+    <select id="select" parameterType="map" resultType="com.universestay.project.user.dto.UserCouponDto">
+        SELECT *
+        FROM UserCoupon
+        WHERE user_id = #{user_id}
+          AND coupon_id = #{coupon_id}
+    </select>
+
+    <select id="selectAll" parameterType="String" resultType="map">
+        SELECT UC.*, C.*
+        FROM UserCoupon UC
+                 LEFT JOIN Coupon C on UC.coupon_id = C.coupon_id
+        WHERE user_id = #{user_id}
+    </select>
+
+    <insert id="insert" parameterType="com.universestay.project.user.dto.UserCouponDto">
+        INSERT into UserCoupon (user_id, coupon_id, user_coupon_issue_date, user_coupon_expire_date,
+                                created_id, updated_id)
+        VALUES (#{user_id}, #{coupon_id}, now(), #{user_coupon_expire_date}, #{created_id}, #{updated_id})
+    </insert>
+
+    <select id="getUserUuid" parameterType="String" resultType="String">
+        SELECT user_id
+        FROM User
+        WHERE user_email = #{user_email}
+    </select>
+
+</mapper>

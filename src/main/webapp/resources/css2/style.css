@@ -32,6 +32,9 @@
 @import url(screens/user/withdrawal.css);
 @import url(screens/user/userInfo.css);
 @import url(screens/user/wishlist.css);
+@import url(screens/user/eventDetail.css);
+@import url(screens/user/eventPage.css);
+@import url(screens/user/myCoupon.css);
 
 @import url(screens/room/roomDetail.css);
 @import url(screens/room/book.css);

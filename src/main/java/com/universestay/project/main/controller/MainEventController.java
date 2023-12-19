@@ -1,6 +1,7 @@
 package com.universestay.project.main.controller;
 
-import com.universestay.project.admin.dto.EventDto;
+import com.universestay.project.admin.dto.CouponDto;
+import com.universestay.project.admin.service.CouponService;
 import com.universestay.project.admin.service.EventService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +20,14 @@ public class MainEventController {
     @Autowired
     EventService eventService;
 
+    @Autowired
+    CouponService couponService;
+
     @GetMapping("/event")
     public String eventList(Model model) {
         try {
-            List<EventDto> eventMainDto = eventService.selectMain();
+            List<Map<String, Object>> eventMainDto = eventService.selectMain();
             model.addAttribute("eventMainDto", eventMainDto);
-            System.out.println("eventMainDto = " + eventMainDto);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -37,7 +39,11 @@ public class MainEventController {
     public String eventDetail(@PathVariable Integer event_id, Model model) {
         try {
             Map<String, Object> eventDto = eventService.selectWithImg(event_id);
+            CouponDto couponDto = couponService.selectOnEvent(event_id);
             model.addAttribute("eventDto", eventDto);
+            model.addAttribute("couponDto", couponDto);
+            System.out.println("eventDto = " + eventDto);
+            System.out.println("couponDto = " + couponDto);
         } catch (Exception e) {
             e.printStackTrace();
         }
