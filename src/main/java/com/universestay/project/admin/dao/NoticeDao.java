@@ -30,4 +30,10 @@ public interface NoticeDao {
 
     String selectAdminId(String admin_id) throws Exception;
 
+    List<Map<String, Object>> selectMainPage(Map map) throws Exception;
+
+    int openCount() throws Exception;
+
+    NoticeDto mainSelect(Integer notice_id) throws Exception;
+
 }
