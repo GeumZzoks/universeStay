@@ -80,7 +80,6 @@ public class PaymentController {
 
         // 응답 코드 확인
         int responseCode = urlConnection.getResponseCode();
-        System.out.println("getAccessToken HTTP 응답 코드: " + responseCode);
 
         // 응답 데이터 읽기
         BufferedReader bufferedReader = new BufferedReader(
@@ -94,7 +93,6 @@ public class PaymentController {
         bufferedReader.close();
 
         String response = stringBuffer.toString();
-        System.out.println("response = " + response);
 
         // 연결 닫기
         urlConnection.disconnect();
@@ -115,7 +113,9 @@ public class PaymentController {
     public ResponseEntity lookUpImpUid(
             @RequestParam("imp_uid") String imp_uid,
             @RequestParam("Authorization") String Authorization,
-            @RequestParam("booking_id") String booking_id) throws IOException {
+            @RequestParam("booking_id") String booking_id,
+            @RequestParam("payment_id") String payment_id
+    ) throws IOException {
 
         // 요청 URL 설정
         // imp_uid 전달
@@ -152,20 +152,22 @@ public class PaymentController {
         // 연결 닫기
         Connection.disconnect();
 
+        /*
+         * 1. bookingID를 조회해서 실제 숙소 결제금액과 포트원 API의 결제 금액을 비교하기
+         * 2. 검증이 성공하면 결제 정보를 데이터베이스에 저장(UPDATE)
+         * 3. 결제 상태(status)에 따라 알맞은 응답을 반환하고, 실패 시 에러 메세지를 출력
+         * */
+
         // Jackson - JSON을 java 객체로 파싱
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(response);
-        System.out.println("jsonNode.get(\"response\") = " + jsonNode.get("response"));
 
-        String status = String.valueOf(jsonNode.get("response").get("status"));
+        String status = jsonNode.get("response").get("status").asText();
         Integer amount = Integer.valueOf(String.valueOf(jsonNode.get("response").get("amount")));
 
-        System.out.println("status = " + status);
-        System.out.println("amount = " + amount);
-
-        // DB에서 결제되어야 하는 금액 조회
+        // DB에서 결제되어야 하는 금액 조회(결제 되어야 하는 금액)
         Map<String, Object> orderInfo = paymentService.findOrderById(booking_id);
-        // 결제 되어야 하는 금액
+
         Integer amountToBePaid = (Integer) orderInfo.get("room_weekend_price");
 
         if (amountToBePaid == null) {
@@ -174,19 +176,16 @@ public class PaymentController {
 
         // 결제 검증하기, 결제 된 금액 === 결제 되어야 하는 금액
 
-        if (amount == amountToBePaid) {
-            
+        if (amount.equals(amountToBePaid)) {
+            switch (status) {
+                // 결제 디비 반영 & 결제 완료 처리
+                case "paid":
+                    paymentService.updateOrderById(payment_id);
+                    return new ResponseEntity(HttpStatus.OK);
+            }
         }
 
-
-        /*
-         * 1. bookingID를 조회해서 실제 숙소 결제금액과 포트원 API의 결제 금액을 비교하기
-         * 2. 검증이 성공하면 결제 정보를 데이터베이스에 저장(UPDATE)
-         * 3. 결제 상태(status)에 따라 알맞은 응답을 반환하고, 실패 시 에러 메세지를 출력
-         * */
-        //        return new ResponseEntity(response, HttpStatus.OK);
-
-        return null;
+        return new ResponseEntity("결제 오류 발생", HttpStatus.INTERNAL_SERVER_ERROR);
 
     }
 
@@ -197,14 +196,16 @@ public class PaymentController {
     }
 
     @PostMapping("/saveResponse")
+    @ResponseBody
     public ResponseEntity getPaymentResponse(@RequestBody PaymentDto paymentDto) {
+        System.out.println("---------------------------------");
+        System.out.println("paymentDto = " + paymentDto);
         try {
             String uuid = UUID.randomUUID().toString();
             //payment_id에 랜덤 Uuid 부여
             paymentDto.setPayment_id(uuid);
-            int isInserted = paymentService.insertPaymentInfo(paymentDto);
-            System.out.println("isInserted = " + isInserted);
-            return new ResponseEntity<>("Success", HttpStatus.OK);
+            paymentService.insertPaymentInfo(paymentDto);
+            return new ResponseEntity<>(uuid, HttpStatus.OK);
         } catch (Exception e) {
             // 예외가 발생했을 때 실행할 코드
             e.printStackTrace(); // 에러 메시지를 콘솔에 출력하거나 원하는 작업을 수행할 수 있어요.
@@ -212,7 +213,4 @@ public class PaymentController {
         }
     }
 
-//    @GetMapping
-//    @ResponseBody
-//    public ResponseEntity
 }

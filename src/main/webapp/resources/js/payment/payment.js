@@ -1,5 +1,6 @@
 IMP.init("imp55505214");
 
+// 카드 결제
 const cardPaymentButtons = document.querySelectorAll(
         ".screens-room-booking__payment-button-card");
 
@@ -46,6 +47,7 @@ for (let i = 0; i < cardPaymentButtons.length; i++) {
     });
 }
 
+// 카카오페이 결제
 const kakaoPaymentButtons = document.querySelectorAll(
         ".screens-room-booking__payment-button-kakao");
 
@@ -53,13 +55,14 @@ for (let i = 0; i < kakaoPaymentButtons.length; i++) {
     kakaoPaymentButtons[i].addEventListener("click", function (ev) {
         const bookingId = bookingIdArray[i].dataset.value;
 
+        // 초기 필요한 데이터 가져오기
         $.ajax({
             url: "/payment/getPaymentInfo",
             method: "post",
             dataType: "json",
             data: {bookingId: bookingId},
             success: function (res) {
-                console.log(res);
+
                 IMP.request_pay({
                     pg: "kakaopay",
                     pay_method: "kakaopay",
@@ -73,7 +76,7 @@ for (let i = 0; i < kakaoPaymentButtons.length; i++) {
                         booking_id: bookingId
                     }
                 }, function (rsp) {
-                    console.log(rsp);
+
                     // 결제 성공 시
                     if (rsp.success) {
                         const paymentDto = {
@@ -103,7 +106,7 @@ for (let i = 0; i < kakaoPaymentButtons.length; i++) {
                             payment_card_number: rsp.card_number
                         }
 
-                        console.log(paymentDto);
+
                         let payment_id = "";
                         $.ajax({
                             url: "/payment/saveResponse",
@@ -113,41 +116,40 @@ for (let i = 0; i < kakaoPaymentButtons.length; i++) {
                             success: function (res) {
                                 payment_id = res;
 
+
+                                const imp_uid = rsp.imp_uid;
+                                const merchant_uid = rsp.merchant_uid;
+                                // 엑세스 토큰(access token) 발급 받기
+                                $.ajax({
+                                    url: "/payment/getAccessToken",
+                                    method: "post",
+                                    dataType: "json",
+                                    success: function (res) {
+                                        const access_token = res.response.access_token;
+
+                                        // 결제 검증, imp_uid로 포트원 서버에서 결제 정보 조회
+                                        $.ajax({
+                                            url: "/payment/lookUpImpUid",
+                                            method: "post",
+                                            data: {
+                                                imp_uid: imp_uid,
+                                                Authorization: access_token,
+                                                booking_id: rsp.custom_data.booking_id,
+                                                payment_id: payment_id
+                                            },
+                                            success: function (res) {
+                                                alert("결제가 정상 처리되었습니다.");
+                                            },
+                                            error: function (res) {
+                                                alert(res);
+                                            },
+                                        });
+                                    },
+                                })
+
                             }, error: function (res) {
                                 console.log(res);
                             }
-                        })
-
-                        const imp_uid = rsp.imp_uid;
-                        const merchant_uid = rsp.merchant_uid;
-                        // 엑세스 토큰(access token) 발급 받기
-                        $.ajax({
-                            url: "/payment/getAccessToken",
-                            method: "post",
-                            dataType: "json",
-                            success: function (res) {
-                                const access_token = res.response.access_token;
-                                console.log(rsp.custom_data.booking_id);
-
-                                // imp_uid로 포트원 서버에서 결제 정보 조회
-                                // 결제 검증
-                                $.ajax({
-                                    url: "/payment/lookUpImpUid",
-                                    method: "post",
-                                    data: {
-                                        imp_uid: imp_uid,
-                                        Authorization: access_token,
-                                        booking_id: rsp.custom_data.booking_id,
-                                        payment_id: payment_id
-                                    },
-                                    success: function (res) {
-                                        console.log(res);
-                                    },
-                                    error: function (res) {
-                                        console.log(res);
-                                    },
-                                });
-                            },
                         })
 
                     } else {
@@ -158,6 +160,7 @@ for (let i = 0; i < kakaoPaymentButtons.length; i++) {
             },
             error: function (res) {
                 console.log(res);
+                alert("상품 데이터를 불러오는데 실패하였습니다.");
             },
         });
 

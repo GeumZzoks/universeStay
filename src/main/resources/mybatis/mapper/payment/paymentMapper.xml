@@ -93,7 +93,7 @@
     <update id="updateOrderById" parameterType="String">
         UPDATE Payment
         SET payment_is_approved = 'Y'
-        WHERE payment_id = #{payment_id}
+        WHERE payment_id = #{paymentId}
     </update>
 
 </mapper>
