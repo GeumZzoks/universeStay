@@ -536,11 +536,24 @@
                      data-testid="messaging_c3pi_thread_panel_toolbar">
                     <div class="t11fbti1 atm_ax_kb7nvz atm_h0_1fwxnve dir dir-ltr">
                         <div class="p1mecifk atm_7l_18pqv07 atm_ax_kb7nvz pagazba atm_c8_exq1xd atm_fr_7aerd4 atm_cs_u3ocpi atm_g3_1pezo5y atm_ks_15vqwwr atm_sq_1l2sidv atm_9s_cj1kg8 atm_6w_1e54zos atm_fy_kb7nvz atm_ks_zryt35__1rgatj2 dir dir-ltr">
-                            <section><h2 id="thread_header" tabindex="-1"
-                                         class="hpipapi atm_7l_1kw7nm4 atm_c8_1x4eueo atm_cs_1kw7nm4 atm_g3_1kw7nm4 atm_gi_idpfg4 atm_l8_idpfg4 atm_kd_idpfg4_pfnrn2 dir dir-ltr"
-                                         elementtiming="LCP-target"><span style="color: #222222"
-                                                                          class="a8jt5op atm_3f_idpfg4 atm_7h_hxbz6r atm_7i_ysn8ba atm_e2_t94yts atm_ks_zryt35 atm_l8_idpfg4 atm_mk_stnw88 atm_vv_1q9ccgz atm_vy_t94yts dir dir-ltr">${host.user_name} 님과의 대화</span>
-                            </h2></section>
+                            <section>
+                                <h2 id="thread_header" tabindex="-1"
+                                    class="hpipapi atm_7l_1kw7nm4 atm_c8_1x4eueo atm_cs_1kw7nm4 atm_g3_1kw7nm4 atm_gi_idpfg4 atm_l8_idpfg4 atm_kd_idpfg4_pfnrn2 dir dir-ltr"
+                                    elementtiming="LCP-target"><span style="color: #222222"
+                                                                     class="a8jt5op atm_3f_idpfg4 atm_7h_hxbz6r atm_7i_ysn8ba atm_e2_t94yts atm_ks_zryt35 atm_l8_idpfg4 atm_mk_stnw88 atm_vv_1q9ccgz atm_vy_t94yts dir dir-ltr"><c:choose>
+                                    <c:when test="${session.getAttribute('user_id') eq user_id}">
+                                        <section>
+                                        <span>${user_name}님과의 대화</span>
+                                        </section>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <section>
+                                            <span>${host.user_name}님과의 대화</span>
+                                        </section>
+                                    </c:otherwise>
+                                </c:choose></span>
+                                </h2>
+                            </section>
                         </div>
                         <div style="color: #222222"
                              class="o1pcneur atm_ks_15vqwwr atm_sq_1l2sidv atm_9s_cj1kg8 atm_6w_1e54zos atm_fy_kb7nvz atm_ks_zryt35__1rgatj2 s1tjb23t atm_c8_1l6y6xl atm_g3_i7n6xh atm_fr_4z8b6j atm_7l_18pqv07 dir dir-ltr">

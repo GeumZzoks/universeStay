@@ -56,12 +56,17 @@ public class ChattingController {
             HttpSession session) {
         try {
             String user_id = (String) session.getAttribute("user_id");
+            // 채팅방에 입장하면서 채팅 내역을 가져온다.
             List<Map<String, Object>> firstList = chatMessageService.selectChatList(
                     chatting_room_id);
 
             String chat_room_id = chatting_room_id;
             RoomDto room = roomService.lookUpRoom(room_id);
             UserDto host = userWithdrawalDao.selectUserByUuid(room.getUser_id());
+
+            // 채팅방 id 를 통해 채팅방의 참여자 목록을 가져온다.
+            List<Map<String, Object>> twoUsername = chatMessageService.selectTwoUsername(
+                    chat_room_id);
 
             // 현재 로그인한 id 의 채팅방 목록 조회
             List<Map<String, Object>> chatRoomList = chatRoomService.selectChatRoomList(user_id);
@@ -71,10 +76,11 @@ public class ChattingController {
             model.addAttribute("chat_room_id", chat_room_id);
             model.addAttribute("user_id", user_id);
             model.addAttribute("firstList", firstList);
-            return "/chatting/chattingMessageList";
+            model.addAttribute("twoUsername", twoUsername);
+            return "/chatting/chattingMessageList2";
         } catch (Exception e) {
             e.printStackTrace();
-            return "/chatting/chattingMessageList";
+            return "/chatting/chattingMessageList2";
         }
 
     }

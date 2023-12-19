@@ -539,13 +539,8 @@
         <div>
             <div class="cdq5pgk atm_mk_stnw88 atm_fq_idpfg4 atm_n3_idpfg4 atm_tk_1fwpi09 atm_9s_1txwivl atm_ar_vrvcex atm_fc_1h6ojuz atm_wq_cs5v99 atm_gi_xjk4d9 atm_j3_1fja5my dir dir-ltr"></div>
         </div>
+    </section>
 </div>
-
-</section>
-
-
-</div>
-
 </body>
 <script src="/resources/js/chat/chat.js"></script>
 
