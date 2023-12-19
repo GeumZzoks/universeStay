@@ -35,4 +35,9 @@ public class ChatMessageServiceImpl implements ChatMessageService {
         return chatDao.recentlyChatMessage(chat_room_id);
     }
 
+    @Override
+    public List<Map<String, Object>> selectTwoUsername(String chat_room_id) {
+        return chatDao.selectTwoUsername(chat_room_id);
+    }
+
 }

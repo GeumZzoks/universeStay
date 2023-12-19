@@ -30,4 +30,9 @@ public class ChatMessageDaoImpl implements ChatMessageDao {
         return sqlSession.selectList(namespace + "recentlyChatMessage", chat_room_id);
     }
 
+    @Override
+    public List<Map<String, Object>> selectTwoUsername(String chat_room_id) {
+        return sqlSession.selectList(namespace + "selectTwoUsername", chat_room_id);
+    }
+
 }

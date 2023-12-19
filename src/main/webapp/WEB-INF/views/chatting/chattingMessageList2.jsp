@@ -335,9 +335,17 @@
         <div class="screens-chat-chattingRoomPage__container__div2">
             <div class="screens-chat-chattingRoomPage__container__divx-1">
                 <div>
-                    <div>${host.user_name} 님과의 대화</div>
-                    <div>
-                    </div>
+                    <c:set var="loggedInUserId" value="${requestScope.user_id}"/>
+                    <c:forEach var="whoChat" items="${twoUsername}">
+                        <c:choose>
+                            <c:when test="${loggedInUserId eq whoChat.user_id_1}">
+                                <span>${whoChat.user_name_2}님과의 대화</span>
+                            </c:when>
+                            <c:otherwise>
+                                <span>${whoChat.user_name_1}님과의 대화</span>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
                 </div>
             </div>
             <div class="screens-chat-chattingRoomPage__container__divx-2">
