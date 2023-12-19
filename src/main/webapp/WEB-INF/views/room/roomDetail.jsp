@@ -10,6 +10,9 @@
 
     <link rel="stylesheet" type="text/css"
           href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
+    <%--  dateRangePicker  --%>
+    <link rel="stylesheet"
+          href="http://longbill.github.io/jquery-date-range-picker/dist/daterangepicker.min.css">
 
 
     <style>
@@ -79,6 +82,10 @@
     </div>
     <%--  section-2  --%>
     <div class="screens-room-roomDetail__section-2">
+        <button class="screens-room-roomDetail__btn screens-room-roomDetail__room-photo">
+            <img class="screens-room-roomDetail__room-photo__img"
+                 src="${room.room_main_photo}" alt="">
+        </button>
         <c:forEach var="roomImg" items="${roomImgList}">
             <button class="screens-room-roomDetail__btn screens-room-roomDetail__room-photo">
                 <img class="screens-room-roomDetail__room-photo__img"
@@ -127,7 +134,7 @@
                     </c:forEach>
                 </ul>
                 <button class="screens-room-roomDetail__btn screens-room-roomDetail__btn-square screens-room-roomDetail__btn-shrink screens-room-roomDetail__section-3__room-info__info-2__modal-btn">
-                    편의시설 40개 모두 보기
+                    편의시설 ${roomAmenities.size()}개 모두 보기
                 </button>
                 <div class="screens-room-roomDetail__section-3__room-info__info-2__modal-outer screens-room-roomDetail__modal-amenity">
                     <div class="screens-room-roomDetail__section-3__room-info__info-2__modal-inner">
@@ -244,7 +251,7 @@
             <div class="screens-room-roomDetail__reservation__part-1">
                 <div class="screens-room-roomDetail__reservation__price">
                     <span class="screens-room-roomDetail__price__part-1">₩ ${room.room_weekday_price}</span>
-                    <span class="screens-room-roomDetail__price__part-2">/박</span>
+                    <span class="screens-room-roomDetail__price__part-2">/박 (주중)</span>
                 </div>
                 <div class="screens-room-roomDetail__reservation__info">
                     <button class="screens-room-roomDetail__btn screens-room-roomDetail__reservation__check-in-out">
@@ -255,9 +262,9 @@
 
                             <div class="screens-room-roomDetail__check-in-out__desc screens-room-roomDetail__check-in-out__desc2"
                                  id="check-in-button">
-                                2024-01-07
-
+                                YYYY-MM-DD
                             </div>
+                            <input type="hidden" name="booking_checkin_date">
                         </div>
                         <div class="screens-room-roomDetail__check-in-out">
                             <div class="screens-room-roomDetail__check-in-out__desc screens-room-roomDetail__check-in-out__desc1">
@@ -266,9 +273,9 @@
 
                             <div class="screens-room-roomDetail__check-in-out__desc screens-room-roomDetail__check-in-out__desc2"
                                  id="check-out-button">
-                                2024-01-12
-
+                                YYYY-MM-DD
                             </div>
+                            <input type="hidden" name="booking_checkout_date">
                         </div>
                     </button>
                     <button class="screens-room-roomDetail__btn screens-room-roomDetail__reservation__number-people">
@@ -279,6 +286,10 @@
                                   id="totalGuest-button">1
                             </span>
                             <span>명</span>
+                            <input type="hidden" name="booking_num_of_guest">
+                            <input type="hidden" name="room_max_capa" value="${room.room_max_capa}">
+                            <input type="hidden" name="room_standard_capa"
+                                   value="${room.room_standard_capa}">
                         </div>
                         <div class="screens-room-roomDetail__number-people__arrow">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
@@ -288,6 +299,31 @@
                             </svg>
                         </div>
                     </button>
+                    <div class="screens-room-roomDetail__number-people-toggle">
+                        <span class="screens-room-roomDetail__toggle-part-1">성인</span>
+                        <div class="screens-room-roomDetail__toggle-part-2">
+                            <button type="button"
+                                    class="screens-room-roomDetail__toggle-btn-minus disable">
+                                <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"
+                                     aria-hidden="true"
+                                     role="presentation" focusable="false"
+                                     style="display: block; height: 12px; width: 12px; fill: #717171;">
+                                    <path d="m.75 6.75h10.5v-1.5h-10.5z"></path>
+                                </svg>
+                            </button>
+                            <input type="text" class="screens-room-roomDetail__toggle-num"
+                                   name="toggle-people-num" value='1' readonly/>
+                            <button type="button"
+                                    class="screens-room-roomDetail__toggle-btn-plus">
+                                <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"
+                                     aria-hidden="true"
+                                     role="presentation" focusable="false"
+                                     style="display: block; height: 12px; width: 12px; fill: #717171;">
+                                    <path d="m6.75.75v4.5h4.5v1.5h-4.5v4.5h-1.5v-4.5h-4.5v-1.5h4.5v-4.5z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <div>
                     <button class="screens-room-roomDetail__btn screens-room-roomDetail__reservation__btn screens-room-roomDetail__btn-shrink"
@@ -301,9 +337,33 @@
                 예약 확정 전에는 요금이 청구되지 않습니다.
             </div>
             <div class="screens-room-roomDetail__reservation__part-3">
-                <span class="screens-room-roomDetail__reservation__part-3__mul">₩${room_weekday_price} X 7박</span>
-                <span>₩1,167,740</span>
+                <span class="screens-room-roomDetail__reservation__part-3__mul">₩ <span>${room.room_weekday_price}</span> X <span>0</span>박 (주중)</span>
+                <span>₩ 0</span>
+                <input type="hidden" value="${room.room_weekday_price}">
             </div>
+            <div class="screens-room-roomDetail__reservation__part-4">
+                <span class="screens-room-roomDetail__reservation__part-4__mul">₩ <span>${room.room_weekend_price}</span> X <span>0</span>박 (주말)</span>
+                <span>₩ 0</span>
+                <input type="hidden" value="${room.room_weekend_price}">
+            </div>
+            <div class="screens-room-roomDetail__reservation__part-5">
+                <span class="screens-room-roomDetail__reservation__part-5__mul">₩ <span>${room.room_extra_person_fee}</span> X <span>0</span>명 (추가인원) X <span>0</span>박 </span>
+                <span>₩ 0</span>
+                <input type="hidden" value="${room.room_extra_person_fee}">
+            </div>
+            <div class="screens-room-roomDetail__reservation__part-6">
+                <span class="screens-room-roomDetail__reservation__part-6__mul">합계</span>
+                <span>₩ 0 </span>
+                <input type="hidden" name="booking_price_sum">
+            </div>
+        </div>
+        <div class="screens-room-roomDetail__bookingDates">
+            <c:forEach var="bookingDto" items="${bookingDtos}">
+                <div class="screens-room-roomDetail__bookingDate">
+                    <input type="hidden" value="${bookingDto.booking_checkin_date}">
+                    <input type="hidden" value="${bookingDto.booking_checkout_date}">
+                </div>
+            </c:forEach>
         </div>
     </div>
     <%--  section-4  --%>
@@ -444,7 +504,13 @@
     <%-- 캘린더 스크립트 --%>
     <script type="text/javascript"
             src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <script src="/resources/js/room/roomDetail.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <%--  dateRangePicker  --%>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery-date-range-picker/0.14.2/jquery.daterangepicker.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.16.0/moment.min.js"></script>
+    <%--    <script src="/resources/js/room/roomDetail.js"></script>--%>
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
     <script>
@@ -524,7 +590,7 @@
 
     </script>
 
-  <script src="/resources/js/room/roomDetail.js"></script>
+    <script src="/resources/js/room/roomDetail.js"></script>
 
 </body>
 </html>

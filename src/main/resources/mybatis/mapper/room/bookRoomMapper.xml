@@ -53,6 +53,13 @@
         WHERE room_id = #{room_id} and
     </select>
 
+    <select id="selectUnavailableDates" resultType="BookingDto">
+        SELECT *
+        FROM Booking
+        WHERE room_id = #{room_id}
+          AND (status_id = 'B01' OR status_id = 'B02')
+    </select>
+
     <select id="selectUserInfo" parameterType="String" resultType="UserDto">
         select *
         from User
