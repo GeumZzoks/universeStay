@@ -530,73 +530,9 @@
             <div class="p1wta9s2 atm_mk_h2mmj6 atm_9s_1txwivl atm_ar_1bp4okc atm_e2_1osqo2v atm_vy_auwlz6 atm_j3_1osqo2v atm_vy_1wugsn5__oggzyc dir dir-ltr">
                 <div class="puhj6i2 atm_9s_1txwivl atm_ar_vrvcex atm_h_1h6ojuz atm_ll_k75hcd atm_lk_k75hcd atm_mk_h2mmj6 atm_e2_t9kd1m atm_40_163hlei dir dir-ltr"
                      data-testid="messaging_c3pi_thread_panel_toolbar">
-                    <%--                    <div class="t11fbti1 atm_ax_kb7nvz atm_h0_1fwxnve dir dir-ltr">--%>
-                    <%--                        <div class="p1mecifk atm_7l_18pqv07 atm_ax_kb7nvz pagazba atm_c8_exq1xd atm_fr_7aerd4 atm_cs_u3ocpi atm_g3_1pezo5y atm_ks_15vqwwr atm_sq_1l2sidv atm_9s_cj1kg8 atm_6w_1e54zos atm_fy_kb7nvz atm_ks_zryt35__1rgatj2 dir dir-ltr">--%>
-                    <%--                            <section><h2 id="thread_header" tabindex="-1"--%>
-                    <%--                                         class="hpipapi atm_7l_1kw7nm4 atm_c8_1x4eueo atm_cs_1kw7nm4 atm_g3_1kw7nm4 atm_gi_idpfg4 atm_l8_idpfg4 atm_kd_idpfg4_pfnrn2 dir dir-ltr"--%>
-                    <%--                                         elementtiming="LCP-target"><span--%>
-                    <%--                                    aria-hidden="true">Geenie</span><span--%>
-                    <%--                                    class="a8jt5op atm_3f_idpfg4 atm_7h_hxbz6r atm_7i_ysn8ba atm_e2_t94yts atm_ks_zryt35 atm_l8_idpfg4 atm_mk_stnw88 atm_vv_1q9ccgz atm_vy_t94yts dir dir-ltr">Geenie 님과의 대화</span>--%>
-                    <%--                            </h2></section>--%>
-                    <%--                        </div>--%>
-                    <%--                        <div class="o1pcneur atm_ks_15vqwwr atm_sq_1l2sidv atm_9s_cj1kg8 atm_6w_1e54zos atm_fy_kb7nvz atm_ks_zryt35__1rgatj2 s1tjb23t atm_c8_1l6y6xl atm_g3_i7n6xh atm_fr_4z8b6j atm_7l_18pqv07 dir dir-ltr">--%>
-                    <%--                            응답 시간: 1시간--%>
-                    <%--                        </div>--%>
-                    <%--                    </div>--%>
                 </div>
             </div>
         </div>
-
-        <%--        <jsp:include page="/WEB-INF/views/chatting/chatting.jsp"></jsp:include>--%>
-        <%--        <div class="i1o7vrwv atm_am_12336oc dir dir-ltr">--%>
-        <%--            <div class="o1f1deyb atm_j3_odhztx atm_gi_xjk4d9 dir dir-ltr">--%>
-
-        <%--                <div class="cp68eyg atm_mk_h2mmj6 atm_9s_1txwivl atm_ar_vrvcex atm_h_1h6ojuz atm_ax_kb7nvz atm_gi_15r5ub7 dir dir-ltr">--%>
-        <%--                    <div class="bgqe3wg atm_h0_ftgil2 atm_gq_1fwxnve atm_j_esu3gu atm_9s_1txwivl atm_ar_vrvcex atm_uc_1wh3ncv atm_vy_tsf3kc dir dir-ltr"--%>
-        <%--                         style="--button-panel-width: 0px;"></div>--%>
-        <%--                    <div class="wn9vk1f atm_vy_1osqo2v dir dir-ltr"><label--%>
-        <%--                            class="l18o97g4 atm_3f_idpfg4 atm_7h_hxbz6r atm_7i_ysn8ba atm_e2_t94yts atm_ks_zryt35 atm_l8_idpfg4 atm_mk_stnw88 atm_vv_1q9ccgz atm_vy_t94yts dir dir-ltr"--%>
-        <%--                            for="message_input"></label>--%>
-        <%--                        <div class="c1w12wz0 atm_73_usvi9m atm_7l_18pqv07 atm_70_opmxbf atm_vy_1osqo2v atm_l8_yh40bf atm_gi_n6u9z8 atm_9s_1txwivl atm_ar_1bp4okc atm_5j_3v3vx7 dir dir-ltr">--%>
-        <%--                            <div class="tww5u9d atm_h0_14noui3 dir dir-ltr">--%>
-        <%--                                                <textarea--%>
-        <%--                                                        class="t1sc6kfc atm_7l_1kw7nm4 atm_9s_1ulexfb atm_j3_1osqo2v atm_kd_glywfm atm_73_usvi9m atm_1u_glywfm atm_bx_1ltc5j7 atm_c8_1m0ul80 atm_cs_atq67q atm_jb_1wugsn5 atm_l8_1kd1k9p atm_gi_h0w6rh atm_3f_idpfg4 atm_2d_1hbpp16 atm_my_glywfm atm_vy_1osqo2v atm_j6_h3c78l atm_ax_kb7nvz atm_5j_3v3vx7 atm_g3_qslrf5 atm_9j_13gfvf7_1o5j5ji atm_7l_12u4tyr_17x46du atm_k4_kb7nvz_17x46du atm_vv_1q9ccgz_17x46du atm_ks_15vqwwr_17x46du atm_7l_12u4tyr_y5ttn9 atm_k4_kb7nvz_y5ttn9 atm_vv_1q9ccgz_y5ttn9 atm_ks_15vqwwr_y5ttn9 atm_7l_12u4tyr_1k1obal atm_k4_kb7nvz_1k1obal atm_vv_1q9ccgz_1k1obal atm_ks_15vqwwr_1k1obal atm_7l_12u4tyr_m14rgb atm_k4_kb7nvz_m14rgb atm_vv_1q9ccgz_m14rgb atm_ks_15vqwwr_m14rgb atm_7l_12u4tyr_3ykvna atm_k4_kb7nvz_3ykvna atm_vv_1q9ccgz_3ykvna atm_ks_15vqwwr_3ykvna t1dv44lz atm_iy_wwb3ei dir dir-ltr"--%>
-        <%--                                                        id="message_input"--%>
-        <%--                                                        data-testid="messaging-composebar"--%>
-        <%--                                                        label="메시지를 입력하세요."--%>
-        <%--                                                        placeholder="메시지를 입력하세요."--%>
-        <%--                                                        style="height: 40px;"></textarea></div>--%>
-        <%--                            <div class="ojs2cbu atm_9s_1txwivl atm_ar_vrvcex atm_fc_esu3gu atm_h_esu3gu atm_mk_h2mmj6 atm_e2_idpfg4 dir dir-ltr">--%>
-        <%--                                <div class="ssri3q4 atm_gi_i2wt44 atm_gq_logulu atm_e2_f13iio atm_ui_b47a47 sd0gavf atm_k4_idpfg4 atm_9j_73adwj dir dir-ltr">--%>
-        <%--                                    <button data-testid="messaging_compose_bar_send_button"--%>
-        <%--                                            aria-label="보내기" disabled=""--%>
-        <%--                                            type="button"--%>
-        <%--                                            class="l1ovpqvx atm_1y33qqm_1ggndnn_10saat9 atm_17zvjtw_zk357r_10saat9 atm_w3cb4q_il40rs_10saat9 cwi99vc atm_1s_glywfm atm_5j_1ssbidh atm_9j_tlke0l atm_tl_1gw4zv3 atm_9s_1o8liyq atm_mk_h2mmj6 atm_l8_idpfg4 atm_gi_idpfg4 atm_3f_glywfm atm_26_1j28jx2 atm_7l_18pqv07 atm_uc_1dtz4sb atm_kd_glywfm atm_kd_glywfm_1w3cfyq atm_3f_glywfm_e4a3ld atm_l8_idpfg4_e4a3ld atm_gi_idpfg4_e4a3ld atm_3f_glywfm_1r4qscq atm_kd_glywfm_6y7yyg atm_kd_glywfm_18zk5v0 atm_3f_glywfm_6mgo84 atm_l8_idpfg4_6mgo84 atm_gi_idpfg4_6mgo84 atm_3f_glywfm_16p4kaz atm_kd_glywfm_17yx6rv atm_k4_1piyxwk_1o5j5ji atm_9j_13gfvf7_1o5j5ji atm_uc_glywfm__p88qr9 atm_7l_1otlplk_1nos8r_uv4tnr atm_26_1nh1gcj_1rqz0hn_uv4tnr atm_7l_161hw1_4fughm_uv4tnr atm_26_1j28jx2_1r92pmq_uv4tnr atm_7l_1otlplk_csw3t1 atm_tr_ffmgpj_csw3t1 atm_26_1nh1gcj_1ul2smo atm_3f_glywfm_jo46a5 atm_l8_idpfg4_jo46a5 atm_gi_idpfg4_jo46a5 atm_3f_glywfm_1icshfk atm_kd_glywfm_19774hq atm_uc_x37zl0_1w3cfyq atm_70_glywfm_1w3cfyq atm_uc_glywfm_1w3cfyq_p88qr9 atm_70_216vci_9xuho3 atm_26_1nh1gcj_9xuho3 atm_uc_x37zl0_18zk5v0 atm_70_glywfm_18zk5v0 atm_uc_glywfm_18zk5v0_p88qr9 atm_70_216vci_fiqcvf atm_26_1nh1gcj_fiqcvf atm_7l_161hw1_1o5j5ji atm_26_1j28jx2_154oz7f atm_92_1yyfdc7_vmtskl atm_9s_1ulexfb_vmtskl atm_mk_stnw88_vmtskl atm_tk_1ssbidh_vmtskl atm_fq_1ssbidh_vmtskl atm_tr_pryxvc_vmtskl atm_5j_1ssbidh_vmtskl atm_vy_1ou6n1d_vmtskl atm_e2_1ou6n1d_vmtskl dir dir-ltr">--%>
-        <%--                                                        <span class="i1jg9xt2 atm_mk_h2mmj6 dir dir-ltr"><svg--%>
-        <%--                                                                role="presentation"--%>
-        <%--                                                                aria-hidden="true" focusable="false"--%>
-        <%--                                                                width="24" height="24"--%>
-        <%--                                                                viewBox="0 0 24 24" fill="none"--%>
-        <%--                                                                xmlns="http://www.w3.org/2000/svg"--%>
-        <%--                                                                style="height: 24px; width: 24px; display: block; fill: currentcolor;"><circle--%>
-        <%--                                                                cx="12" cy="12" r="12"></circle><g--%>
-        <%--                                                                clip-path="url(#clipeSendIcon17)"><path--%>
-        <%--                                                                transform="scale(1)"--%>
-        <%--                                                                fill-rule="evenodd"--%>
-        <%--                                                                clip-rule="evenodd"--%>
-        <%--                                                                d="M11.2929 6.29289C11.6834 5.90237 12.3166 5.90237 12.7071 6.29289L16.7071 10.2929C17.0976 10.6834 17.0976 11.3166 16.7071 11.7071C16.3166 12.0976 15.6834 12.0976 15.2929 11.7071L13 9.41421V17C13 17.5523 12.5523 18 12 18C11.4477 18 11 17.5523 11 17V9.41421L8.70711 11.7071C8.31658 12.0976 7.68342 12.0976 7.29289 11.7071C6.90237 11.3166 6.90237 10.6834 7.29289 10.2929L11.2929 6.29289Z"--%>
-        <%--                                                                fill="white"></path></g><defs><clipPath--%>
-        <%--                                                                id="clipeSendIcon17"><rect--%>
-        <%--                                                                width="12" height="12" fill="white"--%>
-        <%--                                                                transform="translate(6 6)"></rect></clipPath></defs></svg></span>--%>
-        <%--                                    </button>--%>
-        <%--                                </div>--%>
-        <%--                            </div>--%>
-        <%--                        </div>--%>
-        <%--                    </div>--%>
-        <%--                </div>--%>
-        <%--            </div>--%>
-
         <div>
             <div class="message_pannel c1os9z2c atm_mk_stnw88 atm_fq_idpfg4 atm_n3_idpfg4 atm_9s_1txwivl atm_ar_vrvcex atm_fc_1h6ojuz atm_wq_cs5v99 atm_gi_xjk4d9 atm_j3_1fja5my atm_tk_f13iio atm_tk_f13iio__kgj4qw atm_tk_wwb3ei__oggzyc atm_tk_wwb3ei__1v156lz atm_tk_144fm4e__qky54b atm_tk_144fm4e__jx8car dir dir-ltr"></div>
         </div>

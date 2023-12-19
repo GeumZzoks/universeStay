@@ -12,6 +12,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
@@ -54,25 +55,22 @@ public class ChattingController {
             @RequestParam(name = "room_id", required = false) String room_id,
             HttpSession session) {
         try {
-            System.out.println("======chatting_room_id = " + chatting_room_id);
             String user_id = (String) session.getAttribute("user_id");
             List<Map<String, Object>> firstList = chatMessageService.selectChatList(
                     chatting_room_id);
 
+            String chat_room_id = chatting_room_id;
             RoomDto room = roomService.lookUpRoom(room_id);
-            System.out.println(room_id);
             UserDto host = userWithdrawalDao.selectUserByUuid(room.getUser_id());
-            System.out.println(host.toString());
 
             // 현재 로그인한 id 의 채팅방 목록 조회
             List<Map<String, Object>> chatRoomList = chatRoomService.selectChatRoomList(user_id);
             // 채팅방 목록을 하나씩 화면에 전달
             model.addAttribute("chatRoomList", chatRoomList);
             model.addAttribute("host", host);
-            model.addAttribute("chat_room_id", chatting_room_id);
+            model.addAttribute("chat_room_id", chat_room_id);
             model.addAttribute("user_id", user_id);
             model.addAttribute("firstList", firstList);
-            System.out.println("@@@@@@" + firstList.toString());
             return "/chatting/chattingMessageList";
         } catch (Exception e) {
             e.printStackTrace();
@@ -82,7 +80,7 @@ public class ChattingController {
     }
 
     //채팅 내역 가져오기
-    @RequestMapping("/chat/chatList.do")
+    @RequestMapping("/chat/chatList.do/{chat_room_id}")
     @ResponseBody
     public List<Map<String, Object>> selectChatList(@RequestParam String chatting_room_id) {
 
@@ -95,11 +93,11 @@ public class ChattingController {
     // 채팅 메세지 전달
     @MessageMapping("/hello/{chat_room_id}")
     @SendTo("/subscribe/chat/{chat_room_id}")
-    public ChattingMessageDto broadcasting(ChattingMessageDto chat) {
+    public ChattingMessageDto broadcasting(@DestinationVariable String chat_room_id) {
+        List<ChattingMessageDto> chattingMessageDto = chatMessageService.recentlyChatMessage(
+                chat_room_id);
 
-        log.debug("받아온 data={}", chat);
-
-        return chat;
+        return chattingMessageDto.get(0);
     }
 
 

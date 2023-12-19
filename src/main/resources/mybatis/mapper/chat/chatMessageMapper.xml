@@ -27,4 +27,13 @@
     ORDER BY cm.chat_date;
   </select>
 
+  <select id="recentlyChatMessage" parameterType="String" resultType="ChattingMessageDto">
+    SELECT *
+    FROM ChattingMessage
+    WHERE chatting_room_id = #{chatting_room_id}
+      AND chat_id = (SELECT MAX(chat_id)
+                     FROM ChattingMessage
+                     WHERE chatting_room_id = #{chatting_room_id});
+  </select>
+
 </mapper>

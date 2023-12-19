@@ -206,144 +206,144 @@
     --orbital-panel-width-xl: 375px;
   }
 
-  :root {
-    --h-l-f-om-o: 4px;
-    --go-h-jh-l: 8px;
-    --i-g-gvoq: 12px;
-    --g-ki-r-rq: 16px;
-    --j-mdfu-h: 20px;
-    --jx-b-v-zt: 0 8px 28px rgba(0, 0, 0, 0.28);
-    --g-r-n-ycy: 1px solid rgba(0, 0, 0, 0.04);
-    --ih-jiz-p: 0 6px 20px rgba(0, 0, 0, 0.2);
-    --cglwe-y: 1px solid rgba(0, 0, 0, 0.04);
-    --cizosd: 0 6px 16px rgba(0, 0, 0, 0.12);
-    --cb-k-zk-c: 1px solid rgba(0, 0, 0, 0.04);
-    --e-swdx-p: 0 2px 4px rgba(0, 0, 0, 0.18);
-    --g-fi-y-r-e: 1px solid rgba(0, 0, 0, 0.08);
-    --itr-yy-z: cubic-bezier(0.2, 0, 0, 1);
-    --c-wky-h-p: 1px;
-    --hzee-ha: 175px;
-    --gracgr: 26px;
-    --e-usyia: cubic-bezier(0.1, 0.9, 0.2, 1);
-    --hb-n-kc-m: 1px;
-    --ikro-f: 300px;
-    --h-m-d-zo-y: 35px;
-    --f-w-xhiy: cubic-bezier(0.4, 0, 1, 1);
-    ---sof-io: 1px;
-    --cll-sox: 300px;
-    --kf-r-nu-y: 35px;
-    --inwig-v: 1px;
-    --ien-u-go: 250px;
-    --d-kmbxx: 22px;
-    --j-cm-lxz: cubic-bezier(0, 0, 1, 1);
-    --f-ya-ggj: cubic-bezier(1, 0, 0.86, 1);
-    --bd-d-m-c-q: cubic-bezier(0, 0, 0.1, 1);
-    ---bz-mmq: cubic-bezier(0.35, 0, 0.65, 1);
-    --bgxgx: #000000;
-    --f-k-smk-x: #222222;
-    --fo-jk-r-s: #717171;
-    --iw-ihca: #B0B0B0;
-    --j-qkgmf: #DDDDDD;
-    --d-nc-lt-s: #EBEBEB;
-    ---pc-g-v-g: #F7F7F7;
-    --f-mkcy-f: #FFFFFF;
-    --k-va-tnc: #C13515;
-    --cnr-vp-o: #B32505;
-    --f-p-k-v-lb: #FFF8F6;
-    --e-dseob: #F7F6F2;
-    ---y-x-nql: #F5F1EA;
-    --ldbkp-d: #428BFF;
-    --fhi-qn-u: #E07912;
-    --k-ff-my-a: #008A05;
-    --ihf-tp-q: #FF385C;
-    --cl-yygv: #E00B41;
-    --kd-lqtg: #92174D;
-    --d-u-w-o-m-k: #460479;
-    --dc-gy-f-v: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
-    --bb-gov-t: linear-gradient(to left, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
-    --d-e-vybb: radial-gradient(circle at center, #FF385C 0%, #E61E4D 27.5%, #E31C5F 40%, #D70466 57.5%, #BD1E59 75%, #BD1E59 100%);
-    --gj-z-dpd: linear-gradient(to right, #BD1E59 0%, #92174D 50%, #861453 100%);
-    --fb-hdaf: linear-gradient(to left, #BD1E59 0%, #92174D 50%, #861453 100%);
-    --i-n-t-h-mj: radial-gradient(circle at center, #D70466 0%, #BD1E59 30%, #92174D 55%, #861453 72.5%, #6C0D63 90%, #6C0D63 100%);
-    --iqds-nv: linear-gradient(to right, #59086E 0%, #460479 50%, #440589 100%);
-    --dy-k-qzx: linear-gradient(to left, #59086E 0%, #460479 50%, #440589 100%);
-    --j-m-v-dtd: radial-gradient(circle at center, #6C0D63 0%, #59086E 30%, #460479 55%, #440589 72.5%, #3B07BB 90%, #3B07BB 100%);
-    --jhzm-v-t: 16px;
-    --ikx-k-pe: 24px;
-    --kksqe-v: 32px;
-    --f-fw-z-a-i: 40px;
-    --cw-a-a-u-a: 48px;
-    --fvsvry: 64px;
-    --cy-o-aco: 80px;
-    --d-b-mrdy: 2px;
-    --h-x-sf-jw: 4px;
-    --fgg-f-l-a: 8px;
-    --b-y-unon: 12px;
-    --jaa-ni-h: 16px;
-    --ic-zlb-s: 24px;
-    --kc-t-qr-j: 32px;
-    --e-ls-qkw: 'Circular', -apple-system, 'BlinkMacSystemFont', 'Roboto', 'Helvetica Neue', sans-serif;
-    --b-p-ic-ww: 2.5rem;
-    --cz-oe-p-d: 2.75rem;
-    --h-nm-al-j: normal;
-    --deo-b-b-n: 600;
-    --bwbg-n-z: 3rem;
-    --dhte-p-k: 3.375rem;
-    --hqo-p-og: normal;
-    --e-bsrrw: 600;
-    --be-f-xyk: 3.75rem;
-    --k-k-sm-j-h: 4.25rem;
-    --g-m-p-bqd: normal;
-    --e-o-hp-ux: 600;
-    --dr-w-t-ge: 4.5rem;
-    --j-lmku-j: 4.625rem;
-    --bc-b-kw-l: normal;
-    --d-b-bxqb: 600;
-    --fy-rs-ca: 1.125rem;
-    --d-ar-t-o-n: 1.375rem;
-    --dj-jtzv: normal;
-    --lhy-d-yl: 1.375rem;
-    --fme-bf-w: 1.625rem;
-    --itmxj-m: normal;
-    --g-zgv-nj: 1.625rem;
-    --b-x-z-q-l-e: 1.875rem;
-    --sa-glq: normal;
-    --cv-p-u-ui: 2rem;
-    --hu-t-o-g-n: 2.25rem;
-    --j-r-aoaj: normal;
-    --hr-k-udr: 0.625rem;
-    --dpgw-ac: 0.75rem;
-    --c-d-p-bdy: normal;
-    --f-cv-j-j-p: 0.75rem;
-    --f-l-h-bac: 1rem;
-    --b-fr-dxa: normal;
-    --c-zdwk-p: 0.875rem;
-    --j-p-z-kco: 1.125rem;
-    --cgzf-uq: normal;
-    --i-nh-zme: 0.875rem;
-    --gvarj-f: 1.25rem;
-    --b-x-w-tp-x: normal;
-    --iw-ehf-f: 1rem;
-    ---s-l-myu: 1.25rem;
-    --fnsvt-u: normal;
-    --y-g-ar-y: 1rem;
-    --cb-pewj: 1.5rem;
-    --c-f-rm-ah: normal;
-    --ll-l-ys-f: 1.125rem;
-    --f-xgviq: 1.5rem;
-    --jq-tp-h-q: normal;
-    --kmwb-ss: 1.125rem;
-    --j-n-c-d-l-h: 1.75rem;
-    --bzs-fwt: normal;
-    --jlvl-j-l: 0.75rem;
-    --j-l-x-t-kw: 1rem;
-    --j-x-lzju: normal;
-    --e-y-j-d-v-j: 400;
-    --jx-zk-pv: 600;
-    --h-oqhch: 800;
-    --g-lm-u-p: normal;
-    --mq-yk-l: 0.04em;
-  }
+  /*:root {*/
+  /*  --h-l-f-om-o: 4px;*/
+  /*  --go-h-jh-l: 8px;*/
+  /*  --i-g-gvoq: 12px;*/
+  /*  --g-ki-r-rq: 16px;*/
+  /*  --j-mdfu-h: 20px;*/
+  /*  --jx-b-v-zt: 0 8px 28px rgba(0, 0, 0, 0.28);*/
+  /*  --g-r-n-ycy: 1px solid rgba(0, 0, 0, 0.04);*/
+  /*  --ih-jiz-p: 0 6px 20px rgba(0, 0, 0, 0.2);*/
+  /*  --cglwe-y: 1px solid rgba(0, 0, 0, 0.04);*/
+  /*  --cizosd: 0 6px 16px rgba(0, 0, 0, 0.12);*/
+  /*  --cb-k-zk-c: 1px solid rgba(0, 0, 0, 0.04);*/
+  /*  --e-swdx-p: 0 2px 4px rgba(0, 0, 0, 0.18);*/
+  /*  --g-fi-y-r-e: 1px solid rgba(0, 0, 0, 0.08);*/
+  /*  --itr-yy-z: cubic-bezier(0.2, 0, 0, 1);*/
+  /*  --c-wky-h-p: 1px;*/
+  /*  --hzee-ha: 175px;*/
+  /*  --gracgr: 26px;*/
+  /*  --e-usyia: cubic-bezier(0.1, 0.9, 0.2, 1);*/
+  /*  --hb-n-kc-m: 1px;*/
+  /*  --ikro-f: 300px;*/
+  /*  --h-m-d-zo-y: 35px;*/
+  /*  --f-w-xhiy: cubic-bezier(0.4, 0, 1, 1);*/
+  /*  ---sof-io: 1px;*/
+  /*  --cll-sox: 300px;*/
+  /*  --kf-r-nu-y: 35px;*/
+  /*  --inwig-v: 1px;*/
+  /*  --ien-u-go: 250px;*/
+  /*  --d-kmbxx: 22px;*/
+  /*  --j-cm-lxz: cubic-bezier(0, 0, 1, 1);*/
+  /*  --f-ya-ggj: cubic-bezier(1, 0, 0.86, 1);*/
+  /*  --bd-d-m-c-q: cubic-bezier(0, 0, 0.1, 1);*/
+  /*  ---bz-mmq: cubic-bezier(0.35, 0, 0.65, 1);*/
+  /*  --bgxgx: #000000;*/
+  /*  --f-k-smk-x: #222222;*/
+  /*  --fo-jk-r-s: #717171;*/
+  /*  --iw-ihca: #B0B0B0;*/
+  /*  --j-qkgmf: #DDDDDD;*/
+  /*  --d-nc-lt-s: #EBEBEB;*/
+  /*  ---pc-g-v-g: #F7F7F7;*/
+  /*  --f-mkcy-f: #FFFFFF;*/
+  /*  --k-va-tnc: #C13515;*/
+  /*  --cnr-vp-o: #B32505;*/
+  /*  --f-p-k-v-lb: #FFF8F6;*/
+  /*  --e-dseob: #F7F6F2;*/
+  /*  ---y-x-nql: #F5F1EA;*/
+  /*  --ldbkp-d: #428BFF;*/
+  /*  --fhi-qn-u: #E07912;*/
+  /*  --k-ff-my-a: #008A05;*/
+  /*  --ihf-tp-q: #FF385C;*/
+  /*  --cl-yygv: #E00B41;*/
+  /*  --kd-lqtg: #92174D;*/
+  /*  --d-u-w-o-m-k: #460479;*/
+  /*  --dc-gy-f-v: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);*/
+  /*  --bb-gov-t: linear-gradient(to left, #E61E4D 0%, #E31C5F 50%, #D70466 100%);*/
+  /*  --d-e-vybb: radial-gradient(circle at center, #FF385C 0%, #E61E4D 27.5%, #E31C5F 40%, #D70466 57.5%, #BD1E59 75%, #BD1E59 100%);*/
+  /*  --gj-z-dpd: linear-gradient(to right, #BD1E59 0%, #92174D 50%, #861453 100%);*/
+  /*  --fb-hdaf: linear-gradient(to left, #BD1E59 0%, #92174D 50%, #861453 100%);*/
+  /*  --i-n-t-h-mj: radial-gradient(circle at center, #D70466 0%, #BD1E59 30%, #92174D 55%, #861453 72.5%, #6C0D63 90%, #6C0D63 100%);*/
+  /*  --iqds-nv: linear-gradient(to right, #59086E 0%, #460479 50%, #440589 100%);*/
+  /*  --dy-k-qzx: linear-gradient(to left, #59086E 0%, #460479 50%, #440589 100%);*/
+  /*  --j-m-v-dtd: radial-gradient(circle at center, #6C0D63 0%, #59086E 30%, #460479 55%, #440589 72.5%, #3B07BB 90%, #3B07BB 100%);*/
+  /*  --jhzm-v-t: 16px;*/
+  /*  --ikx-k-pe: 24px;*/
+  /*  --kksqe-v: 32px;*/
+  /*  --f-fw-z-a-i: 40px;*/
+  /*  --cw-a-a-u-a: 48px;*/
+  /*  --fvsvry: 64px;*/
+  /*  --cy-o-aco: 80px;*/
+  /*  --d-b-mrdy: 2px;*/
+  /*  --h-x-sf-jw: 4px;*/
+  /*  --fgg-f-l-a: 8px;*/
+  /*  --b-y-unon: 12px;*/
+  /*  --jaa-ni-h: 16px;*/
+  /*  --ic-zlb-s: 24px;*/
+  /*  --kc-t-qr-j: 32px;*/
+  /*  --e-ls-qkw: 'Circular', -apple-system, 'BlinkMacSystemFont', 'Roboto', 'Helvetica Neue', sans-serif;*/
+  /*  --b-p-ic-ww: 2.5rem;*/
+  /*  --cz-oe-p-d: 2.75rem;*/
+  /*  --h-nm-al-j: normal;*/
+  /*  --deo-b-b-n: 600;*/
+  /*  --bwbg-n-z: 3rem;*/
+  /*  --dhte-p-k: 3.375rem;*/
+  /*  --hqo-p-og: normal;*/
+  /*  --e-bsrrw: 600;*/
+  /*  --be-f-xyk: 3.75rem;*/
+  /*  --k-k-sm-j-h: 4.25rem;*/
+  /*  --g-m-p-bqd: normal;*/
+  /*  --e-o-hp-ux: 600;*/
+  /*  --dr-w-t-ge: 4.5rem;*/
+  /*  --j-lmku-j: 4.625rem;*/
+  /*  --bc-b-kw-l: normal;*/
+  /*  --d-b-bxqb: 600;*/
+  /*  --fy-rs-ca: 1.125rem;*/
+  /*  --d-ar-t-o-n: 1.375rem;*/
+  /*  --dj-jtzv: normal;*/
+  /*  --lhy-d-yl: 1.375rem;*/
+  /*  --fme-bf-w: 1.625rem;*/
+  /*  --itmxj-m: normal;*/
+  /*  --g-zgv-nj: 1.625rem;*/
+  /*  --b-x-z-q-l-e: 1.875rem;*/
+  /*  --sa-glq: normal;*/
+  /*  --cv-p-u-ui: 2rem;*/
+  /*  --hu-t-o-g-n: 2.25rem;*/
+  /*  --j-r-aoaj: normal;*/
+  /*  --hr-k-udr: 0.625rem;*/
+  /*  --dpgw-ac: 0.75rem;*/
+  /*  --c-d-p-bdy: normal;*/
+  /*  --f-cv-j-j-p: 0.75rem;*/
+  /*  --f-l-h-bac: 1rem;*/
+  /*  --b-fr-dxa: normal;*/
+  /*  --c-zdwk-p: 0.875rem;*/
+  /*  --j-p-z-kco: 1.125rem;*/
+  /*  --cgzf-uq: normal;*/
+  /*  --i-nh-zme: 0.875rem;*/
+  /*  --gvarj-f: 1.25rem;*/
+  /*  --b-x-w-tp-x: normal;*/
+  /*  --iw-ehf-f: 1rem;*/
+  /*  ---s-l-myu: 1.25rem;*/
+  /*  --fnsvt-u: normal;*/
+  /*  --y-g-ar-y: 1rem;*/
+  /*  --cb-pewj: 1.5rem;*/
+  /*  --c-f-rm-ah: normal;*/
+  /*  --ll-l-ys-f: 1.125rem;*/
+  /*  --f-xgviq: 1.5rem;*/
+  /*  --jq-tp-h-q: normal;*/
+  /*  --kmwb-ss: 1.125rem;*/
+  /*  --j-n-c-d-l-h: 1.75rem;*/
+  /*  --bzs-fwt: normal;*/
+  /*  --jlvl-j-l: 0.75rem;*/
+  /*  --j-l-x-t-kw: 1rem;*/
+  /*  --j-x-lzju: normal;*/
+  /*  --e-y-j-d-v-j: 400;*/
+  /*  --jx-zk-pv: 600;*/
+  /*  --h-oqhch: 800;*/
+  /*  --g-lm-u-p: normal;*/
+  /*  --mq-yk-l: 0.04em;*/
+  /*}*/
 
   .atm_ar_1bp4okc[class] {
     flex-direction: column;
@@ -461,8 +461,8 @@
   }
 
 </style>
-<body>
-<jsp:include page="/WEB-INF/views/common/user/header.jsp"/>
+<p>
+    <jsp:include page="/WEB-INF/views/common/user/header.jsp"/>
 
 
 <div aria-label="메시지 페이지 주요 콘텐츠" class="_61mw08">
@@ -475,7 +475,7 @@
                     <div class="p2gdan0 atm_7l_18pqv07 atm_ax_kb7nvz pseealp atm_ks_15vqwwr atm_sq_1l2sidv atm_9s_cj1kg8 atm_6w_1e54zos atm_fy_kb7nvz atm_c8_exq1xd atm_g3_1pezo5y atm_fr_7aerd4 atm_cs_u3ocpi atm_ks_zryt35__1rgatj2 dir dir-ltr"
                          data-testid="inbox-panel-toolbar-heading">
                         <section><h1 data-shared-element-id="page-marquee" id="inbox_header"
-                                     tabindex="-1"
+                                     tabindex="-1" style="color: #222222"
                                      class="hpipapi atm_7l_1kw7nm4 atm_c8_1x4eueo atm_cs_1kw7nm4 atm_g3_1kw7nm4 atm_gi_idpfg4 atm_l8_idpfg4 atm_kd_idpfg4_pfnrn2 s12s7yzj atm_8w_1t7jgwy dir dir-ltr"
                                      elementtiming="LCP-target">메시지</h1></section>
                     </div>
@@ -490,8 +490,6 @@
                 <c:forEach var="chatRoom" items="${chatRoomList}">
                     <input style="display: none" name="chat_room_id"
                            value="${chatRoom.chatting_room_id}">
-                    <script>console.log(${chatRoom.chatting_room_id})
-                    console.log(${chatRoom.username})</script>
 
                     <c:set var="user_name" value="${chatRoom.user_name}"/>
                     <c:set var="chat_ctt" value="${chatRoom.chat_ctt}"/>
@@ -540,11 +538,12 @@
                         <div class="p1mecifk atm_7l_18pqv07 atm_ax_kb7nvz pagazba atm_c8_exq1xd atm_fr_7aerd4 atm_cs_u3ocpi atm_g3_1pezo5y atm_ks_15vqwwr atm_sq_1l2sidv atm_9s_cj1kg8 atm_6w_1e54zos atm_fy_kb7nvz atm_ks_zryt35__1rgatj2 dir dir-ltr">
                             <section><h2 id="thread_header" tabindex="-1"
                                          class="hpipapi atm_7l_1kw7nm4 atm_c8_1x4eueo atm_cs_1kw7nm4 atm_g3_1kw7nm4 atm_gi_idpfg4 atm_l8_idpfg4 atm_kd_idpfg4_pfnrn2 dir dir-ltr"
-                                         elementtiming="LCP-target"><span
-                                    class="a8jt5op atm_3f_idpfg4 atm_7h_hxbz6r atm_7i_ysn8ba atm_e2_t94yts atm_ks_zryt35 atm_l8_idpfg4 atm_mk_stnw88 atm_vv_1q9ccgz atm_vy_t94yts dir dir-ltr">${host.user_name} 님과의 대화</span>
+                                         elementtiming="LCP-target"><span style="color: #222222"
+                                                                          class="a8jt5op atm_3f_idpfg4 atm_7h_hxbz6r atm_7i_ysn8ba atm_e2_t94yts atm_ks_zryt35 atm_l8_idpfg4 atm_mk_stnw88 atm_vv_1q9ccgz atm_vy_t94yts dir dir-ltr">${host.user_name} 님과의 대화</span>
                             </h2></section>
                         </div>
-                        <div class="o1pcneur atm_ks_15vqwwr atm_sq_1l2sidv atm_9s_cj1kg8 atm_6w_1e54zos atm_fy_kb7nvz atm_ks_zryt35__1rgatj2 s1tjb23t atm_c8_1l6y6xl atm_g3_i7n6xh atm_fr_4z8b6j atm_7l_18pqv07 dir dir-ltr">
+                        <div style="color: #222222"
+                             class="o1pcneur atm_ks_15vqwwr atm_sq_1l2sidv atm_9s_cj1kg8 atm_6w_1e54zos atm_fy_kb7nvz atm_ks_zryt35__1rgatj2 s1tjb23t atm_c8_1l6y6xl atm_g3_i7n6xh atm_fr_4z8b6j atm_7l_18pqv07 dir dir-ltr">
                             응답 시간: 1시간
                         </div>
                     </div>
@@ -561,9 +560,7 @@
 
                     <div id="list-guestbook" class="">
                         <c:forEach items="${firstList}" var="chatMessage">
-                            <!-- 내 채팅일 경우 -->
                             <div style="margin-top: 10px; margin-left: 30px;">
-                                    <%--                                <c:if test="${chatRoom.user_id eq chatMessage.user_id}">--%>
                                 <div>
                                     <img src="${chatMessage.profile_img_url}"
                                          style="width: 50px; height: 50px; border-radius: 50%;">
@@ -576,19 +573,7 @@
                                             pattern="yy/MM/dd HH:mm"/></strong>
                                     <p class="myChat text-left p-2">${chatMessage.chat_ctt}</p>
                                 </div>
-                                    <%--                                </c:if>--%>
                             </div>
-                            <!-- 다른사람의 채팅일 경우 -->
-                            <%--                            <c:if test="${chatRoom.user_id ne chatMessage.user_id}">--%>
-
-                            <%--                                <strong>${chatMessage.user_name}</strong>--%>
-                            <%--                                <div class="row ml-0">--%>
-                            <%--                                    <p class="otherChat bg-light p-2">${chatMessage.chat_ctt}</p>--%>
-                            <%--                                    <strong class="align-self-center"><fmt:formatDate--%>
-                            <%--                                            value="${chatMessage.chat_date}"--%>
-                            <%--                                            pattern="yy/MM/dd HH:mm"/>--%>
-                            <%--                                </div>--%>
-                            <%--                            </c:if>--%>
                         </c:forEach>
                     </div>
 
@@ -598,10 +583,12 @@
                         <strong></strong>
                     </div>
                     <div class="fix_btn row">
-                <textarea name="msg" id="msgi" rows="2"
+                <textarea type="text" name="msg" id="msgi" rows="2" placeholder="메세지를 입력하세요"
                           class="form-control col-sm-8"></textarea>
-                        <!-- <input type="text" id="msgi" name="msg" placeholder="메세지를 입력하세요" /> -->
-                        <button type="button" class="send col-sm-4 btn btn-secondary">보내기</button>
+                        <%--                        <input type="text" id="msgi" name="msg" placeholder="메세지를 입력하세요"/>--%>
+                        <button type="button" id="send" class="send col-sm-4 btn btn-secondary">
+                            보내기
+                        </button>
                     </div>
                 </div>
 
@@ -617,14 +604,174 @@
         </div>
     </section>
 </div>
-
-
 </section>
-
-
 </div>
 
 </body>
 <script src="/resources/js/chat/chat.js"></script>
+<script src="${pageContext.request.contextPath}/resources/dist/sockjs.js"></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<!-- moment()함수 -->
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
+<script>
+  var client;
+  var user_id2 = "<%= request.getAttribute("user_id") %>";
+  var chat_room_id2 = "<%= request.getAttribute("chat_room_id") %>";
+
+  //채팅 저장
+  function insertChat() {
+
+    var user_id = "${user_id}";
+    var chat_room_id = chat_room_id2;
+    var chat_ctt = $("#msgi").val();
+
+    // 서버로 전송할 데이터를 객체화
+    var insertChatDto = {
+      user_id: user_id,
+      chatting_room_id: chat_room_id2,
+      chat_ctt: chat_ctt
+    };
+
+    $.ajax({
+      url: "/chat/insertChat.do",
+      type: "post",
+      data: JSON.stringify(insertChatDto),
+      contentType: "application/json",
+      success: function (result) {
+
+        if (result == 1) {
+          console.log("채팅 전송 성공");
+          var messageInput = $('textarea[name="msg"]');
+          client.send('/app/hello/' + chat_room_id,
+              function (error) {
+                console.error("error message = " + error);
+              }
+          );
+          messageInput.val('');
+        }
+      },
+      error: function (xhr, status, err) {
+        console.log("처리실패!");
+        console.log(xhr);
+        console.log(status);
+        console.log(err);
+      }
+    });
+  }
+
+  function moveDown() {
+    $(".chat_ctt").scrollTop($(".chat_ctt")[0].scrollHeight);
+    $('#alertK').css('display', 'none');
+
+  }
+
+  var renderList = function (contentDto) {
+    // 리스트 html을 정의
+    var date = moment(contentDto.chat_date).format('YY/MM/DD HH:mm');
+    var html = "";
+
+    content = "<p class='otherChat bg-light p-2'>" + contentDto.chat_ctt
+        + "</p>";
+
+    html = "<li class='pl-2'>"
+        + "<strong>" + contentDto.user_id + "</strong>"
+        + "<div class='row ml-0'>"
+        + content
+        + "<strong class='align-self-center'>" + date
+        + "</strong>"
+        + "</div>"
+        + "</li>";
+
+    return html;
+
+  }
+  //무한 스크롤
+  $(".chat_ctt").scroll(function () {
+    var $window = $(this);
+    var scrollTop = $window.scrollTop();
+
+    // scrollbar의 thumb가 위의1px까지 도달 하면 리스트를 가져옴
+    if (scrollTop < 1 && isScrolled == false) {
+      isScrolled = true;
+    }
+  });
+
+  ////////////////////socket
+  //새로운 메시지 알림
+  // function newAlerts(content, endNo) {
+  //   $('#alertK').css('display', 'block');
+  //   $('#alertK').html(
+  //       "<strong>" + content.user_id + "</strong>님이 메시지를 보냈습니다.");
+  // }
+
+  $(function () {
+    //  var chatBox = $('.box');
+    var messageInput = $('textarea[name="msg"]');
+    // var chat_room_id = chat_room_id2;
+    // var user_id = user_id2;
+    // var chat_ctt = $('.chat_ctt');
+    var sock = new SockJS(
+        "/endpoint");
+    client = Stomp.over(sock);
+
+    function sendmsg() {
+      var message = messageInput.val();
+      //alert("메시지"+message);
+      if (message == "") {
+        return false;
+      }
+      insertChat();
+    }
+
+    client.connect({}, function () {
+      var chat_room_id = chat_room_id2;
+
+      // 여기는 입장시
+      //	           일반메세지 들어오는곳
+      client.subscribe('/subscribe/chat/' + chat_room_id,
+          function (chatMessage) {
+            //받은 데이터
+            var contentDto = JSON.parse(chatMessage.body);
+
+            var html = renderList(contentDto);
+            $("#list-guestbook").append(html);
+            newAlerts(contentDto);
+          });
+    });
+
+    //	         대화시
+    $('.send').click(function () {
+      sendmsg();
+    });
+
+    //채팅창 떠날시에
+    function disconnect() {
+      if (client != null) {
+        client.disconnect();
+      }
+    }
+
+    window.onbeforeunload = function (e) {
+      disconnect();
+    }
+
+    // function closeConnection() {
+    //   sock.close();
+    // }
+
+  });
+
+  $(document).ready(function () {
+    $('.chat_list').click(function () {
+      var chatting_room_id = $(this).data('chat-room-id');
+      var room_id = $(this).data('room-id');
+      location.href = '/enter/chattingRoomList/' + chatting_room_id + '?room_id='
+          + room_id;
+    });
+  });
+
+</script>
 </html>

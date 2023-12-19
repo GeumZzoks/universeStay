@@ -26,8 +26,8 @@ public class ChatMessageDaoImpl implements ChatMessageDao {
     }
 
     @Override
-    public List<ChattingMessageDto> selectFirstChatList(String chat_room_id) {
-        return null;
+    public List<ChattingMessageDto> recentlyChatMessage(String chat_room_id) {
+        return sqlSession.selectList(namespace + "recentlyChatMessage", chat_room_id);
     }
 
 }

@@ -15,6 +15,8 @@ public class ChatMessageServiceImpl implements ChatMessageService {
 
     @Override
     public int insertChat(ChattingMessageDto chatDto) {
+        chatDto.setChatting_room_id(chatDto.getChatting_room_id());
+        chatDto.setUser_id(chatDto.getUser_id());
         chatDto.setChat_ctt(chatDto.getChat_ctt());
         chatDto.setCreated_id(chatDto.getUser_id());
         chatDto.setUpdated_id(chatDto.getUser_id());
@@ -29,8 +31,8 @@ public class ChatMessageServiceImpl implements ChatMessageService {
     }
 
     @Override
-    public List<ChattingMessageDto> selectFirstChatList(String chat_room_id) {
-        return chatDao.selectFirstChatList(chat_room_id);
+    public List<ChattingMessageDto> recentlyChatMessage(String chat_room_id) {
+        return chatDao.recentlyChatMessage(chat_room_id);
     }
 
 }
