@@ -93,11 +93,11 @@ public class ChattingController {
     // 채팅 메세지 전달
     @MessageMapping("/hello/{chat_room_id}")
     @SendTo("/subscribe/chat/{chat_room_id}")
-    public ChattingMessageDto broadcasting(@DestinationVariable String chat_room_id) {
-        List<ChattingMessageDto> chattingMessageDto = chatMessageService.recentlyChatMessage(
+    public Map<String, Object> broadcasting(@DestinationVariable String chat_room_id) {
+        List<Map<String, Object>> chattingMessage = chatMessageService.recentlyChatMessage(
                 chat_room_id);
 
-        return chattingMessageDto.get(0);
+        return chattingMessage.get(0);
     }
 
 

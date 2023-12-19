@@ -27,13 +27,16 @@
     ORDER BY cm.chat_date;
   </select>
 
-  <select id="recentlyChatMessage" parameterType="String" resultType="ChattingMessageDto">
-    SELECT *
-    FROM ChattingMessage
-    WHERE chatting_room_id = #{chatting_room_id}
-      AND chat_id = (SELECT MAX(chat_id)
-                     FROM ChattingMessage
-                     WHERE chatting_room_id = #{chatting_room_id});
+  <select id="recentlyChatMessage" parameterType="String" resultType="map">
+    SELECT cm.*, u.user_name, pi.profile_img_url
+    FROM ChattingMessage cm
+           JOIN User u ON cm.user_id = u.user_id
+           JOIN ProfileImg pi ON cm.user_id = pi.user_id
+    WHERE cm.chatting_room_id = #{chatting_room_id}
+      AND cm.chat_id = (SELECT MAX(chat_id)
+                        FROM ChattingMessage
+                        WHERE chatting_room_id = #{chatting_room_id})
+      AND pi.profile_img_is_remove = 'N';
   </select>
 
 </mapper>

@@ -676,14 +676,16 @@
     content = "<p class='otherChat bg-light p-2'>" + contentDto.chat_ctt
         + "</p>";
 
-    html = "<li class='pl-2'>"
-        + "<strong>" + contentDto.user_id + "</strong>"
+    html = "<div>" +
+        "<img src='" + contentDto.profile_img_url
+        + "' style='width: 50px; height: 50px; border-radius: 50%;'>"
+        + "<strong>" + contentDto.user_name + "</strong>"
         + "<div class='row ml-0'>"
         + content
         + "<strong class='align-self-center'>" + date
         + "</strong>"
         + "</div>"
-        + "</li>";
+        + "</div>";
 
     return html;
 
@@ -732,9 +734,9 @@
       // 여기는 입장시
       //	           일반메세지 들어오는곳
       client.subscribe('/subscribe/chat/' + chat_room_id,
-          function (chatMessage) {
+          function (chattingMessage) {
             //받은 데이터
-            var contentDto = JSON.parse(chatMessage.body);
+            var contentDto = JSON.parse(chattingMessage.body);
 
             var html = renderList(contentDto);
             $("#list-guestbook").append(html);

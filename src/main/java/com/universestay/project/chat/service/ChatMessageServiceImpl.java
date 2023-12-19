@@ -31,7 +31,7 @@ public class ChatMessageServiceImpl implements ChatMessageService {
     }
 
     @Override
-    public List<ChattingMessageDto> recentlyChatMessage(String chat_room_id) {
+    public List<Map<String, Object>> recentlyChatMessage(String chat_room_id) {
         return chatDao.recentlyChatMessage(chat_room_id);
     }
 

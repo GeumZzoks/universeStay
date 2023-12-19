@@ -10,5 +10,5 @@ public interface ChatMessageService {
 
     List<Map<String, Object>> selectChatList(String chat_room_id);
 
-    List<ChattingMessageDto> recentlyChatMessage(String chat_room_id);
+    List<Map<String, Object>> recentlyChatMessage(String chat_room_id);
 }
