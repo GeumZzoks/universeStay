@@ -25,6 +25,11 @@ public class PaymentDaoImpl implements PaymentDao {
     }
 
     @Override
+    public Map<String, Object> findOrderById(String booking_id) throws CommonException {
+        return session.selectOne(namespace + "findOrderById", booking_id);
+	}
+
+	@Override
     public int insertPaymentInfo(PaymentDto paymentDto) throws CommonException {
         return session.insert(namespace + "insertPaymentInfo", paymentDto);
     }
