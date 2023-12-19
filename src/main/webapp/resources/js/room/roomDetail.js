@@ -277,6 +277,43 @@ function countWeekdaysAndWeekends(startDate, endDate) {
       weekdays++;
     }
 
+  });
+
+  $('.screens-room-roomDetail__reservation__check-in-out').on(
+      'apply.daterangepicker',
+      function (ev, picker) {
+        inputCheckIn.innerHTML = picker.startDate.format('YYYY.MM.DD');
+        inputCheckOut.innerHTML = picker.endDate.format('YYYY.MM.DD');
+      });
+
+  $('.screens-room-roomDetail__reservation__check-in-out').on(
+      'cancel.daterangepicker',
+      function (ev, picker) {
+        inputCheckIn.innerHTML = picker.startDate.format('YYYY.MM.DD');
+        inputCheckOut.innerHTML = picker.endDate.format('YYYY.MM.DD');
+      });
+});
+
+const openBtn = document.querySelector(
+    ".screens-room-roomDetail__btn-review-modal");
+const reviewModal = document.querySelector(".reviewModal");
+const overlay = reviewModal.querySelector(".reviewModal__overlay");
+const closeBtn = reviewModal.querySelector(
+    ".reviewModal__content__header__button");
+const openreviewModal = () => {
+  reviewModal.classList.remove("hidden");
+  document.body.style.overflow = 'hidden';
+}
+const closereviewModal = () => {
+  reviewModal.classList.add("hidden");
+  document.body.style.overflow = 'auto';
+}
+overlay.addEventListener("click", closereviewModal);
+closeBtn.addEventListener("click", closereviewModal);
+openBtn.addEventListener("click", openreviewModal);
+
+=======
+
     // Move to the next day
     currentDate.setDate(currentDate.getDate() + 1);
   }
@@ -446,3 +483,4 @@ btnMinus.addEventListener("click", function (e) {
     btnPlus.classList.remove("disable");
   }
 });
+

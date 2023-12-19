@@ -2,6 +2,8 @@ package com.universestay.project.notice.dao;
 
 import com.universestay.project.admin.dao.NoticeDao;
 import com.universestay.project.admin.dto.NoticeDto;
+import java.util.HashMap;
+import java.util.Map;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,13 +46,16 @@ public class NoticeDaoImplTest {
         // 공지사항 등록(NoticeDto에 데아터 담아서 noticeDao.insert 메서드로 데이터 전달, 글 등록 완료 시 1 / 등록이 안될 시 0 반환)
         NoticeDto noticeDto = new NoticeDto();
         noticeDto.setAdmin_id("0ca24692-89ea-11ee-b9d1-0242ac120002");
-        noticeDto.setNotice_title("@@@@@ 2023/11/25 토요일 - 서버 점검이 있습니다.");
+//        noticeDto.setNotice_title("@@@@@ 2023/11/25 토요일 - 서버 점검이 있습니다.");
         noticeDto.setNotice_ctt(
                 "universeStay를 이용하시는 고객 여러분 감사드립니다! 조금 더 안정적인 서비스 제공을 위하여 2023/11/23 목요일 23:50 ~ 24:00 까지 점검이 있을 예정입니다.");
-        noticeDto.setNotice_is_open("N");
+        noticeDto.setNotice_is_open("Y");
         noticeDto.setCreated_id("0ca24692-89ea-11ee-b9d1-0242ac120002");
         noticeDto.setUpdated_id("0ca24692-89ea-11ee-b9d1-0242ac120002");
-        System.out.println("INSERT COUNT = " + noticeDao.insert(noticeDto));
+        for (int i = 0; i < 200; i++) {
+            noticeDto.setNotice_title(i + "번째 공지사항");
+            System.out.println("INSERT COUNT = " + noticeDao.insert(noticeDto));
+        }
         System.out.println("notice_id : " + noticeDto.getNotice_id());
     }
 
@@ -82,6 +87,24 @@ public class NoticeDaoImplTest {
     @Test
     public void selectAdminId() throws Exception {
         System.out.println("GET Admin_id : " + noticeDao.selectAdminId("alskadmlcraz1@gmail.com"));
+    }
+
+    @Test
+    public void selectMainPage() throws Exception {
+        Map map = new HashMap();
+        map.put("offset", 1);
+        map.put("pageSize", 10);
+        System.out.println(noticeDao.selectMainPage(map));
+    }
+
+    @Test
+    public void 공개_공지사항_카운트() throws Exception {
+        System.out.println(noticeDao.openCount());
+    }
+
+    @Test
+    public void 메인_공지사항_상세() throws Exception {
+        System.out.println(noticeDao.mainSelect(530));
     }
 
 }

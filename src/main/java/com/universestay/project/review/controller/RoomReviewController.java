@@ -1,16 +1,17 @@
 package com.universestay.project.review.controller;
 
-import com.universestay.project.review.dto.RoomReviewDto;
 import com.universestay.project.review.service.RoomReviewService;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class RoomReviewController {
@@ -19,40 +20,19 @@ public class RoomReviewController {
     RoomReviewService roomReviewService;
 
     @GetMapping("/room/{room_id}/reviews")
-    public String reviews(@PathVariable String room_id, Model m, RedirectAttributes rttr) {
+    @ResponseBody
+    public ResponseEntity<List<Map<String, Object>>> reviews(@PathVariable String room_id,
+            Model m) {
+        List<Map<String, Object>> list = null;
         try {
-            List<RoomReviewDto> list = roomReviewService.getRoomReviewList(room_id);
-            m.addAttribute("list", list);
-            return "redirect:/room/" + room_id;
+            list = roomReviewService.getRoomReviewList(room_id);
+            System.out.println("LIST@@@ : " + list);
+            return new ResponseEntity<List<Map<String, Object>>>(list, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            rttr.addFlashAttribute("msg", "REV_ERR");
-            return "redirect:/room/" + room_id;
+            return new ResponseEntity<List<Map<String, Object>>>(HttpStatus.BAD_REQUEST);
         }
     }
-
-//    @GetMapping("/user/review/write")
-//    public String getWrite() {
-//        return "review/reviewWrite";
-//    }
-
-//    @PostMapping("/user/review/write")
-//    public String write(RedirectAttributes rttr, HttpSession session, RoomReviewDto roomReviewDto,
-//            String room_id, Model m) {
-//        String writer = (String) session.getAttribute("user_email");
-//        roomReviewDto.setUser_id(writer);
-//        roomReviewDto.setRoom_id(room_id);
-//        roomReviewDto.setReview_writer(writer);
-//        roomReviewDto.setCreated_id(writer);
-//        roomReviewDto.setUpdated_id(writer);
-//        try {
-//            return "redirect:/user/reviews";
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            m.addAttribute(roomReviewDto);
-//            return "";
-//        }
-//    }
 
     @GetMapping("/user/reviews")
     public String reviews(Model m, HttpSession session) {
@@ -68,6 +48,5 @@ public class RoomReviewController {
         }
         return "review/userReviews";
     }
-
-
+    
 }
