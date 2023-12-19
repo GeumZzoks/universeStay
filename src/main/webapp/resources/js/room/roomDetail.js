@@ -121,6 +121,9 @@ var btnsMore = document.querySelectorAll(
     ".screens-room-roomDetail__section-3__info-3__btn");
 descTexts.forEach(descText => {
   const full = descText.textContent;
+  if (full.length <= 300) {
+    return;
+  }
   const less = full.substring(0, 300) + "...";
   descText.textContent = less;
 });
@@ -137,138 +140,309 @@ btnsMore.forEach(btnMore => {
   })
 });
 
-//---------------------- 캘린더 라이브러리 --------------------------------------------
-// const inputCheckIn = document.querySelector(
-//     "#check-in-button");
-// const inputCheckOut = document.querySelector(
-//     "#check-out-button");
-//
-// const reservedDates = ['2023-12-21', '2023-12-22', '2023-12-23', '2023-12-27',
-//   '2023-12-28'];
-//
-// $(function () {
-//   let selectedStartDate = null;
-//
-//   $('.screens-room-roomDetail__reservation__check-in-out').daterangepicker({
-//     autoUpdateInput: true,
-//     locale: {
-//       format: 'YYYY-MM-DD',
-//       cancelLabel: '취소',
-//       applyLabel: '확인'
-//     },
-//     isInvalidDate: function (date) {
-//       var dateString = date.format('YYYY-MM-DD');
-//
-//       // Check if the date is reserved or after the closest reserved date
-//       if (reservedDates.indexOf(dateString) !== -1) {
-//         return true; // Date is reserved, mark as invalid
-//       }
-//
-//       // Check if the date is after the selected start date
-//       if (selectedStartDate && date.isAfter(selectedStartDate, 'day')) {
-//         return true;
-//       }
-//
-//       return false;
-//     }
-//   });
-//
-//   $('.screens-room-roomDetail__reservation__check-in-out').on(
-//       'apply.daterangepicker',
-//       function (ev, picker) {
-//         // Use picker.startDate and picker.endDate directly
-//         inputCheckIn.innerHTML = picker.startDate.format('YYYY-MM-DD');
-//         inputCheckOut.innerHTML = picker.endDate.format('YYYY-MM-DD');
-//       });
-//
-//   $('.screens-room-roomDetail__reservation__check-in-out').on(
-//       'cancel.daterangepicker',
-//       function (ev, picker) {
-//         // Use picker.startDate and picker.endDate directly
-//         inputCheckIn.innerHTML = picker.startDate.format('YYYY-MM-DD');
-//         inputCheckOut.innerHTML = picker.endDate.format('YYYY-MM-DD');
-//       });
-//
-//   $('.screens-room-roomDetail__reservation__check-in-out').on(
-//       'showCalendar.daterangepicker',
-//       function (ev, picker) {
-//         // Capture the selected start date when the calendar is shown
-//         selectedStartDate = picker.startDate;
-//       });
-//
-//   $('.screens-room-roomDetail__reservation__check-in-out').on(
-//       'hideCalendar.daterangepicker',
-//       function () {
-//         // Reset the selected start date when the calendar is hidden
-//         selectedStartDate = null;
-//       });
-// });
-
+//---------------------- dateRangePicker 라이브러리 --------------------------------------------
 const inputCheckIn = document.querySelector("#check-in-button");
 const inputCheckOut = document.querySelector("#check-out-button");
+const priceWeekdayDiv = document.querySelector(
+    ".screens-room-roomDetail__reservation__part-3");
+const priceWeekendDiv = document.querySelector(
+    ".screens-room-roomDetail__reservation__part-4");
+const extraPersonFeeDiv = document.querySelector(
+    ".screens-room-roomDetail__reservation__part-5");
+const bookingSum = document.querySelector(
+    ".screens-room-roomDetail__reservation__part-6");
+const inputPeopleNum = document.querySelector(
+    ".screens-room-roomDetail__reservation__number-people");
+const togglePeopleNum = document.querySelector(
+    ".screens-room-roomDetail__number-people-toggle");
 
-const reservedDates = ['2023-12-21', '2023-12-22', '2023-12-23', '2023-12-27',
-  '2023-12-28'];
+priceWeekdayDiv.children[0].children[0].innerHTML = priceToString(
+    priceWeekdayDiv.children[0].children[0].innerHTML);
+priceWeekendDiv.children[0].children[0].innerHTML = priceToString(
+    priceWeekendDiv.children[0].children[0].innerHTML);
+extraPersonFeeDiv.children[0].children[0].innerHTML = priceToString(
+    extraPersonFeeDiv.children[0].children[0].innerHTML);
 
-$(function () {
-  let selectedStartDate = null;
+priceWeekday = priceWeekdayDiv.children[2];
+priceWeekend = priceWeekendDiv.children[2];
+priceExtraPerson = extraPersonFeeDiv.children[2];
 
-  $('.screens-room-roomDetail__reservation__check-in-out').daterangepicker({
-    autoUpdateInput: true,
-    locale: {
-      format: 'YYYY-MM-DD',
-      cancelLabel: '취소',
-      applyLabel: '확인'
-    },
-    isInvalidDate: function (date) {
-      var dateString = date.format('YYYY-MM-DD');
+let priceWeekdayValue = 0;
+let priceWeekendValue = 0;
+let priceExtraPersonValue = 0;
 
-      // Check if the date is reserved or after the closest reserved date
-      if (reservedDates.indexOf(dateString) !== -1) {
-        return true; // Date is reserved, mark as invalid
-      }
+const reservedDates = [];
 
-      // Check if the date is after the selected start date
-      if (selectedStartDate) {
-        console.log(selectedStartDate.format('YYYY-MM-DD'));
-        let closestReservedDate = moment.min(
-            reservedDates.map(reservedDate => moment(reservedDate)));
+const bookingDates = document.querySelectorAll(
+    ".screens-room-roomDetail__bookingDate");
+bookingDates.forEach(bookingDate => {
+  const checkInDate = bookingDate.children[0].value.substring(0, 10);
+  const checkOutDate = bookingDate.children[1].value.substring(0, 10);
 
-        // Disable dates after the closest reserved date
-        return date.isAfter(closestReservedDate, 'day');
-      }
+  const startDate = new Date(checkInDate);
+  const endDate = new Date(checkOutDate);
 
-      return false;
+  for (let currentDate = startDate; currentDate <= endDate;
+      currentDate.setDate(currentDate.getDate() + 1)) {
+    const formattedDate = currentDate.toISOString().split('T')[0];
+    reservedDates.push(formattedDate);
+  }
+});
+
+$('.screens-room-roomDetail__reservation__check-in-out').dateRangePicker({
+  showShortcuts: false,
+  format: 'YYYY-MM-DD',
+  beforeShowDay: function (date) {
+    const currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0); // Set hours, minutes, seconds, and milliseconds to zero for accurate comparison
+
+    const dateString = formatDate(date);
+    const isReserved = reservedDates.includes(dateString);
+    const isBeforeToday = date < currentDate;
+
+    return [!isReserved && !isBeforeToday];
+  }
+}).bind('datepicker-first-date-selected', function (event, obj) {
+}).bind('datepicker-change', function (event, obj) {
+  inputCheckIn.innerHTML = formatDate(new Date(obj.date1));
+  inputCheckOut.innerHTML = formatDate(new Date(obj.date2));
+
+  document.querySelector(
+      "input[name='booking_checkin_date']").value = formatDate(
+      new Date(obj.date1));
+  document.querySelector(
+      "input[name='booking_checkout_date']").value = formatDate(
+      new Date(obj.date2));
+
+  const countDay = countWeekdaysAndWeekends(formatDate(new Date(obj.date1)),
+      formatDate(new Date(obj.date2)));
+
+  priceWeekdayDiv.children[0].children[1].innerHTML = `${countDay.weekdays}`;
+  priceWeekendDiv.children[0].children[1].innerHTML = `${countDay.weekends}`;
+  extraPersonFeeDiv.children[0].children[2].innerHTML = `${countDay.weekdays
+  + countDay.weekends}`;
+
+  priceWeekdayValue = Number(priceWeekday.value) * Number(countDay.weekdays);
+  priceWeekendValue = Number(priceWeekend.value) * Number(countDay.weekends);
+  priceExtraPersonValue = Number(priceExtraPerson.value) * Number(
+      countDay.weekdays + countDay.weekends) * Number(
+      extraPersonFeeDiv.children[0].children[1].innerHTML);
+
+  priceWeekdayDiv.children[1].innerHTML = `₩ ${priceToString(
+      priceWeekdayValue)}`;
+  priceWeekendDiv.children[1].innerHTML = `₩ ${priceToString(
+      priceWeekendValue)}`;
+  extraPersonFeeDiv.children[1].innerHTML = `₩ ${priceToString(
+      priceExtraPersonValue)}`;
+
+  bookingSum.children[1].innerHTML = `₩ 
+    ${priceWeekdayValue + priceWeekendValue + priceExtraPersonValue}
+  `;
+
+  document.querySelector(
+      "input[name='booking_price_sum']").value = priceWeekdayValue
+      + priceWeekendValue + priceExtraPersonValue;
+
+});
+
+const calendar = document.querySelector(".date-picker-wrapper");
+calendar.style.zIndex = 100;
+calendar.style.borderRadius = '10px';
+
+function formatDate(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // Adding 1 because months are zero-based
+  const day = String(date.getDate()).padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
+}
+
+function countWeekdaysAndWeekends(startDate, endDate) {
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+  let weekdays = 0;
+  let weekends = 0;
+
+  let currentDate = new Date(start);
+  currentDate.setDate(currentDate.getDate() + 1);
+
+  // Iterate over each day in the range
+  while (currentDate <= end) {
+    const dayOfWeek = currentDate.getDay();
+
+    // Sunday (0) and Saturday (6) are weekends
+    if (dayOfWeek === 0 || dayOfWeek === 6) {
+      weekends++;
+    } else {
+      weekdays++;
     }
-  });
 
-  $('.screens-room-roomDetail__reservation__check-in-out').on(
-      'apply.daterangepicker',
-      function (ev, picker) {
-        // Use picker.startDate and picker.endDate directly
-        inputCheckIn.innerHTML = picker.startDate.format('YYYY-MM-DD');
-        inputCheckOut.innerHTML = picker.endDate.format('YYYY-MM-DD');
-      });
+    // Move to the next day
+    currentDate.setDate(currentDate.getDate() + 1);
+  }
 
-  $('.screens-room-roomDetail__reservation__check-in-out').on(
-      'cancel.daterangepicker',
-      function (ev, picker) {
-        // Use picker.startDate and picker.endDate directly
-        inputCheckIn.innerHTML = picker.startDate.format('YYYY-MM-DD');
-        inputCheckOut.innerHTML = picker.endDate.format('YYYY-MM-DD');
-      });
+  return {weekdays, weekends};
+}
 
-  $('.screens-room-roomDetail__reservation__check-in-out').on(
-      'showCalendar.daterangepicker',
-      function (ev, picker) {
-        // Capture the selected start date when the calendar is shown
-        selectedStartDate = picker.startDate;
-      });
+function priceToString(price) {
+  return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
 
-  $('.screens-room-roomDetail__reservation__check-in-out').on(
-      'hideCalendar.daterangepicker',
-      function () {
-        // Reset the selected start date when the calendar is hidden
-        selectedStartDate = null;
-      });
+inputPeopleNum.addEventListener("click", function () {
+  togglePeopleNum.classList.toggle("active");
+  if (togglePeopleNum.classList.contains("active")) {
+    document.querySelector(
+        ".screens-room-roomDetail__reservation__number-people").style.outline = "2px solid black";
+  } else {
+    document.querySelector(
+        ".screens-room-roomDetail__reservation__number-people").style.outline = "";
+  }
+});
+
+const btnMinus = document.querySelector(
+    ".screens-room-roomDetail__toggle-btn-minus");
+const btnPlus = document.querySelector(
+    ".screens-room-roomDetail__toggle-btn-plus");
+
+btnMinus.innerHTML = `
+      <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" 
+        style="display:block;height:12px;width:12px;fill:#EDEDED" aria-hidden="true" 
+        role="presentation" focusable="false">
+          <path d="m.75 6.75h10.5v-1.5h-10.5z"></path>
+      </svg>
+    `;
+btnMinus.setAttribute("style", "border: 1px #EDEDED solid;");
+
+btnPlus.addEventListener("click", function (e) {
+  // 플러스 버튼을 누르면 값이 올라간다.
+  const inputToggle = document.querySelector(
+      ".screens-room-roomDetail__toggle-num");
+  const max = document.querySelector("input[name='room_max_capa']").value;
+  const standard = document.querySelector(
+      "input[name='room_standard_capa']").value;
+
+  if (inputToggle.value >= max) {
+    return;
+  }
+
+  inputToggle.value = Number(inputToggle.value) + 1;
+  if (standard
+      < inputToggle.value) {
+    extraPersonFeeDiv.children[0].children[1].innerHTML = inputToggle.value
+        - standard;
+  } else {
+    extraPersonFeeDiv.children[0].children[1].innerHTML = 0;
+  }
+
+  document.querySelector(
+      "input[name='booking_num_of_guest']").value = inputToggle.value;
+  document.querySelector("#totalGuest-button").innerHTML = inputToggle.value;
+
+  // 추가인원 innerHTML을 수정해준다.
+  priceExtraPersonValue = Number(priceExtraPerson.value) * Number(
+      extraPersonFeeDiv.children[0].children[1].innerHTML) * Number(
+      extraPersonFeeDiv.children[0].children[2].innerHTML);
+  extraPersonFeeDiv.children[1].innerHTML = `₩ ${priceToString(
+      priceExtraPersonValue)}`;
+  // 합계를 계산하고 합계 HTML을 수정해준다.
+  bookingSum.children[1].innerHTML = `₩ 
+    ${priceWeekdayValue + priceWeekendValue + priceExtraPersonValue}
+  `;
+  // 합계 input hidden value를 수정해준다.
+  document.querySelector(
+      "input[name='booking_price_sum']").value = priceWeekdayValue
+      + priceWeekendValue + priceExtraPersonValue;
+
+  // 값을 올렸을 때 최대 인원 수에 해당하면 플러스 버튼 disable
+  if (inputToggle.value >= max) {
+    btnPlus.innerHTML = `
+      <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" 
+        style="display:block;height:12px;width:12px;fill:#EDEDED" aria-hidden="true" 
+        role="presentation" focusable="false">
+          <path d="m6.75.75v4.5h4.5v1.5h-4.5v4.5h-1.5v-4.5h-4.5v-1.5h4.5v-4.5z"></path>
+      </svg>
+    `;
+    btnPlus.setAttribute("style", "border: 1px #EDEDED solid;");
+    btnPlus.classList.add("disable");
+  }
+  // 값을 올렸을 때 최소 인원 (=1) 보다 크면 마이너스 버튼 able
+  if (1 < inputToggle.value) {
+    btnMinus.innerHTML = `
+      <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"
+           aria-hidden="true"
+           role="presentation" focusable="false"
+           style="display: block; height: 12px; width: 12px; fill: #717171;">
+          <path d="m.75 6.75h10.5v-1.5h-10.5z"></path>
+      </svg>
+    `;
+    btnMinus.setAttribute("style", "  border: 1px solid #B0B0B0;");
+    btnMinus.classList.remove("disable");
+  }
+});
+
+btnMinus.addEventListener("click", function (e) {
+  // 플러스 버튼을 누르면 값이 올라간다.
+  const inputToggle = document.querySelector(
+      ".screens-room-roomDetail__toggle-num");
+  const max = document.querySelector("input[name='room_max_capa']").value;
+  const standard = document.querySelector(
+      "input[name='room_standard_capa']").value;
+
+  if (inputToggle.value <= 1) {
+    return;
+  }
+
+  inputToggle.value = Number(inputToggle.value) - 1;
+  if (standard
+      < inputToggle.value) {
+    extraPersonFeeDiv.children[0].children[1].innerHTML = inputToggle.value
+        - standard;
+  } else {
+    extraPersonFeeDiv.children[0].children[1].innerHTML = 0;
+  }
+
+  document.querySelector(
+      "input[name='booking_num_of_guest']").value = inputToggle.value;
+  document.querySelector("#totalGuest-button").innerHTML = inputToggle.value;
+
+  // 추가인원 innerHTML을 수정해준다.
+  priceExtraPersonValue = Number(priceExtraPerson.value) * Number(
+      extraPersonFeeDiv.children[0].children[1].innerHTML) * Number(
+      extraPersonFeeDiv.children[0].children[2].innerHTML);
+  extraPersonFeeDiv.children[1].innerHTML = `₩ ${priceToString(
+      priceExtraPersonValue)}`;
+  // 합계를 계산하고 합계 HTML을 수정해준다.
+  bookingSum.children[1].innerHTML = `₩ 
+    ${priceWeekdayValue + priceWeekendValue + priceExtraPersonValue}
+  `;
+  // 합계 input hidden value를 수정해준다.
+  document.querySelector(
+      "input[name='booking_price_sum']").value = priceWeekdayValue
+      + priceWeekendValue + priceExtraPersonValue;
+
+  // 값을 올렸을 때 최대 인원 수에 해당하면 플러스 버튼 disable
+  if (inputToggle.value <= 1) {
+    btnMinus.innerHTML = `
+      <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" 
+        style="display:block;height:12px;width:12px;fill:#EDEDED" aria-hidden="true" 
+        role="presentation" focusable="false">
+          <path d="m.75 6.75h10.5v-1.5h-10.5z"></path>
+      </svg>
+    `;
+    btnMinus.setAttribute("style", "border: 1px #EDEDED solid;");
+    btnMinus.classList.add("disable");
+  }
+  // 값을 올렸을 때 최소 인원 (=1) 보다 크면 마이너스 버튼 able
+  if (inputToggle.value < max) {
+    btnPlus.innerHTML = `
+      <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"
+           aria-hidden="true"
+           role="presentation" focusable="false"
+           style="display: block; height: 12px; width: 12px; fill: #717171;">
+          <path d="m6.75.75v4.5h4.5v1.5h-4.5v4.5h-1.5v-4.5h-4.5v-1.5h4.5v-4.5z"></path>
+      </svg>
+    `;
+    btnPlus.setAttribute("style", "  border: 1px solid #B0B0B0;");
+    btnPlus.classList.remove("disable");
+  }
 });

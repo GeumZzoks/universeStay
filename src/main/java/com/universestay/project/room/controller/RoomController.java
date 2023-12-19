@@ -1,5 +1,7 @@
 package com.universestay.project.room.controller;
 
+import com.universestay.project.dto.BookingDto;
+import com.universestay.project.room.dao.BookDao;
 import com.universestay.project.room.dto.RoomAmenityDto;
 import com.universestay.project.room.dto.RoomDto;
 import com.universestay.project.room.dto.RoomImgDto;
@@ -45,6 +47,8 @@ public class RoomController {
     UserInfoService userInfoService;
     @Autowired
     WishListService wishListService;
+    @Autowired
+    BookDao bookDao;
 
     @GetMapping("")
     public String showRoom() {
@@ -62,6 +66,7 @@ public class RoomController {
             List<String[]> roomAmenities = roomAmenityService.lookUpRoomAmenity(room_id);
             UserDto host = userWithdrawalDao.selectUserByUuid((String) room.get("user_id"));
             String profileImgUrl = profileImgService.getProfileImgUrl((String) room.get("user_id"));
+            List<BookingDto> bookingDtos = bookDao.selectUnavailableDates(room_id);
 
             if (room == null) {
                 // TODO: 에러메세지 보여주고 메인으로 이동
@@ -81,6 +86,7 @@ public class RoomController {
             model.addAttribute("host", host);
             model.addAttribute("profileImgUrl", profileImgUrl);
             model.addAttribute("roomAmenities", roomAmenities);
+            model.addAttribute("bookingDtos", bookingDtos);
 
             return "room/roomDetail";
         } catch (Exception e) {
