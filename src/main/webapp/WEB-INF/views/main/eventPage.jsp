@@ -43,13 +43,19 @@
             border-radius: 10px;
         }
 
+        .screens-user-event__wrapper:hover {
+            transform: scale(1.02, 1.02);
+            transition-duration: 200ms;
+            cursor: pointer;
+        }
+
         .screens-user-event__img__wrapper {
             width: 400px;
             height: 200px;
             border-radius: 5%;
             margin-bottom: 10px;
             overflow: hidden;
-            background-color: #FF365A;
+            background-color: #F48475;
         }
 
         .screens-user-event__info__wrapper {
@@ -67,7 +73,7 @@
     <br>
     <div class="screens-user-event_list__wrapper">
         <c:forEach var="eventMainDto" items="${eventMainDto}">
-            <div class="screens-user-event__wrapper">
+            <div class="screens-user-event__wrapper" onclick="location.href='/event/${eventMainDto.event_id}'">
                 <div class="screens-user-event__img__wrapper">
                 </div>
                 <div class="screens-user-event__info__wrapper">

@@ -187,8 +187,7 @@ function fnSubmit() {
   var tel_rule = /^\d{2,3}-\d{3,4}-\d{4}$/;
 
   if ($("#screens-user-join_signup_id").val() == null || $(
-      "#screens-user-join_signup_id").val() === "") {
-    console.log(123);
+      "#screens-user-join_signup_id").val() == "") {
     alert("아이디를 입력해주세요.");
     $("#screens-user-join_signup_id").focus();
 
@@ -196,7 +195,7 @@ function fnSubmit() {
   }
 
   if ($("#screens-user-join_signup_pw").val() == null || $(
-      "#screens-user-join_signup_pw").val() === "") {
+      "screens-user-join_signup_pw").val() == "") {
     alert("비밀번호를 입력해주세요.");
     $("#screens-user-join_signup_pw").focus();
 
@@ -204,7 +203,7 @@ function fnSubmit() {
   }
 
   if ($("#screens-user-join_signup_pww").val() == null || $(
-      "#screens-user-join_signup_pww").val() === "") {
+      "#screens-user-join_signup_pww").val() == "") {
     alert("비밀번호 확인을 입력해주세요.");
     $("#screens-user-join_signup_pww").focus();
 
@@ -212,7 +211,7 @@ function fnSubmit() {
   }
 
   if ($("#screens-user-join_signup_name").val() == null || $(
-      "#screens-user-join_signup_name").val() === "") {
+      "#screens-user-join_signup_name").val() == "") {
     alert("이름을 입력해주세요.");
     $("#screens-user-join_signup_name").focus();
 
@@ -220,7 +219,7 @@ function fnSubmit() {
   }
 
   if ($("#screens-user-join_signup_email").val() == null || $(
-      "#screens-user-join_signup_email").val() === "") {
+      "#screens-user-join_signup_email").val() == "") {
     alert("이메일을 입력해주세요.");
     $("#screens-user-join_signup_email").focus();
 
@@ -234,7 +233,8 @@ function fnSubmit() {
   }
 
   if ($("#screens-user-join_code_check_input").val() == null || $(
-      "#screens-user-join_code_check_input").val() === "") {
+          "#screens-user-join_code_check_input").val()
+      == "") {
     alert("인증번호를 입력해주세요.");
     $("#screens-user-join_code_check_input").focus();
 
@@ -248,10 +248,10 @@ function fnSubmit() {
   }
 
   if (confirm("회원가입하시겠습니까?")) {
-    $("#screens-user-join_signup_btn").trigger('submit');
+    $("#screens-user-join_signup_btn").submit();
     return true;
   }
-}
+};
 
 $(function () {
   $("#screens-user-join_signup_pw").on('input', function () {
@@ -275,4 +275,70 @@ $(function () {
           "unavailable");
     }
   })
+});
+
+var timeLeft = 180;
+var timerInterval;
+
+function startTimer() {
+  document.getElementById("screens-user-join_mail_Check_Btn").disabled = true; // 버튼 비활성화
+  countdown(); // 타이머 시작
+}
+
+function countdown() {
+  var minutes = Math.floor(timeLeft / 60);
+  var seconds = timeLeft % 60;
+
+  minutes = minutes < 10 ? "0" + minutes : minutes;
+  seconds = seconds < 10 ? "0" + seconds : seconds;
+
+  var timerElement = document.getElementsByClassName("certificationTime")[0];
+  timerElement.innerHTML = minutes + ":" + seconds;
+
+  if (timeLeft <= 0) {
+    timerElement.innerHTML = "만료";
+
+  } else {
+    timeLeft--;
+    timerInterval = setTimeout(countdown, 1000); // 1초마다 갱신
+  }
+}
+
+document.getElementById(
+    "screens-user-join_mail_code_check_Btn").addEventListener("click",
+    function () {
+      clearTimeout(timerInterval); // 타이머 중지
+      var timerElement = document.getElementsByClassName(
+          "certificationTime")[0];
+      timerElement.innerHTML = "03:00"; // 초기값으로 타이머를 설정
+      timeLeft = 180; // 타이머 시간을 초기화
+    });
+
+document.getElementById("screens-user-join_mail_Check_Btn").addEventListener(
+    "click",
+    function () {
+      startTimer(); // 타이머 시작
+    });
+
+$('#screens-user-join_mail_code_check_Btn').click(function () {
+  const inputCode = $('#screens-user-join_code_check_input').val();
+  console.log(inputCode);
+
+  $.ajax({
+    type: 'post',
+    url: '/user/checkMailCode',
+    data: {"inputCode": inputCode},
+    success: function (data) {
+      if ("Y" === data) {
+        alert('인증번호가 확인되었습니다.');
+      } else {
+        alert('인증번호가 일치하지 않습니다.');
+      }
+    },
+    error: function (xhr, status, error) {
+      alert('인증번호가 일치하지 않습니다. 다시 전송해주세요.');
+      console.error("Ajax request failed:", status, error);
+      console.log(xhr.responseText);
+    }
+  });
 });

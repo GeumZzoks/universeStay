@@ -1,12 +1,14 @@
 package com.universestay.project.room.service;
 
 import com.universestay.project.common.exception.CommonException;
-import com.universestay.project.dto.BookingDto;
 import com.universestay.project.room.dao.BookDao;
+import com.universestay.project.user.dto.BookingDto;
 import com.universestay.project.user.dto.UserDto;
+
 import java.util.Map;
 import java.util.UUID;
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +30,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Integer bookRoom(BookingDto bookingDto, Map<String, Object> roomDto,
-            HttpSession httpSession)
+                            HttpSession httpSession)
             throws CommonException {
 
         // Setter - BookingDTO

@@ -186,13 +186,12 @@
     let isScrolling = false;
 
     $(window).on("scroll", function () {
-        if (isScrolling) return; // 이미 스크롤 중인 경우 무시
         isScrolling = true;
 
         let scrollTop = $(window).scrollTop();
         let windowHeight = $(window).height();
         let documentHeight = $(document).height();
-        let isBottom = scrollTop + windowHeight + 100 >= documentHeight;
+        let isBottom = scrollTop + windowHeight >= documentHeight;
 
         if (isBottom) {
             if (currentPage === totalPageCount) {
@@ -203,7 +202,7 @@
             currentPage++;
 
             window.scrollTo({
-                top: scrollTop - 200,
+                top: scrollTop - 150,
                 behavior: "auto"
             });
 
@@ -211,7 +210,7 @@
 
             setTimeout(function () {
                 isScrolling = false; // 스크롤 이벤트의 디바운싱 설정 해제
-            }, 500); // 0.5초 딜레이 (원하는 시간으로 조절 가능)
+            }, 300); // 0.3초 딜레이
         }
     });
 
