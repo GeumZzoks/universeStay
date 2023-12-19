@@ -75,9 +75,6 @@ public class PaymentDto {
     @ApiModelProperty(notes = "주문자 우편번호", example = "12093")
     private String payment_buyer_postcode;
 
-    @ApiModelProperty(notes = "가맹자 임의 지정 데이터")
-    private String payment_custom_data;
-
     @ApiModelProperty(notes = "결제 승인 시간", example = "1648344363")
     private Timestamp payment_paid_at;
 
@@ -101,6 +98,24 @@ public class PaymentDto {
 
     @ApiModelProperty(notes = "취소 승인 날짜")
     private String payment_cancel_date;
+
+    @ApiModelProperty(notes = "통화", example = "KRW")
+    private String payment_currency;
+
+    @ApiModelProperty(notes = "주문자 카드사", example = "BC카드")
+    private String payment_card_name;
+
+    @ApiModelProperty(notes = "은행", example = "국민은행")
+    private String payment_bank_name;
+
+    @ApiModelProperty(notes = "카드 한도", example = "0")
+    private int payment_card_quota;
+
+    @ApiModelProperty(notes = "카드 번호", example = "5389200000007150")
+    private String payment_card_number;
+
+    @ApiModelProperty(notes = "최종 승인 여부", example = "N")
+    private String payment_is_approved = "N";
 
     @ApiModelProperty(notes = "최초등록일자", example = "0000-00-00 00:00:00", required = true)
     private Timestamp created_at;
