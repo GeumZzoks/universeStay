@@ -16,7 +16,7 @@ public class RoomAmenityServiceImpl implements RoomAmenityService {
     @Override
     public List<String[]> lookUpRoomAmenity(String room_id) throws Exception {
         RoomAmenityDto roomAmenityDto = roomAmenityDao.lookUpRoomAmenity(room_id);
-        System.out.println("roomAmenityDto = " + roomAmenityDto);
+//        System.out.println("roomAmenityDto = " + roomAmenityDto);
 
         String[][] roomAmenityBathArr = {
                 {"욕조",

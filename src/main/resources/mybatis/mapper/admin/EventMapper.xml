@@ -16,14 +16,29 @@
         </selectKey>
     </insert>
 
+    <insert id="insertImg" parameterType="com.universestay.project.admin.dto.EventImgDto">
+        INSERT into EventImg (event_id, event_img_url, event_img_comment, event_img_is_remove, created_id,
+                              updated_id)
+        VALUES (#{event_id}, #{event_img_url}, #{event_img_comment}, #{event_img_is_remove},
+                #{created_id}, #{updated_id})
+    </insert>
+
     <select id="select" parameterType="int" resultType="EventDto">
         SELECT *
         FROM Event
         WHERE event_id = #{event_id}
     </select>
 
+
+    <select id="selectWithImg" parameterType="int" resultType="map">
+        SELECT e.*, ei.event_img_url as img
+        FROM Event e
+                 LEFT JOIN EventImg ei on e.event_id = ei.event_id
+        WHERE e.event_id = #{event_id}
+    </select>
+
     <select id="selectMain" resultType="EventDto">
-        SELECT event_title, event_ctt, event_start_date, event_expire_date
+        SELECT event_id, event_title, event_ctt, event_start_date, event_expire_date
         FROM Event
         WHERE event_is_open = "Y";
     </select>

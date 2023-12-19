@@ -88,10 +88,10 @@ public class RoomController {
             model.addAttribute("roomAmenities", roomAmenities);
             model.addAttribute("bookingDtos", bookingDtos);
 
+
             return "room/roomDetail";
         } catch (Exception e) {
             e.printStackTrace();
-//            System.out.println("여길 타고있어2");
             // TODO: 에러메세지 보여주고 메인으로 이동
             return "redirect:/";
         }

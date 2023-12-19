@@ -10,6 +10,8 @@
         FROM Room R
         LEFT JOIN RoomImg RI ON R.room_id = RI.room_id
         WHERE RI.room_img_url IS NOT NULL
+        AND R.status_id = 'RA02'
+        AND R.room_status_id = 'R01'
         <if test="category != null and category != ''">
             AND R.room_category_id = #{category}
         </if>
@@ -53,6 +55,8 @@
         LEFT JOIN WishList W
         ON R.room_id = W.room_id AND W.user_id = #{user_id}
         WHERE RI.room_img_url IS NOT NULL
+        AND R.status_id = 'RA02'
+        AND R.room_status_id = 'R01'
         -- 카테고리 버튼 클릭시 발현하는 쿼리
         <if test="category != null and category != ''">
             AND room_category_id = #{category}

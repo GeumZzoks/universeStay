@@ -1,9 +1,11 @@
 package com.universestay.project.room.dao;
 
 import com.universestay.project.common.exception.CommonException;
-import com.universestay.project.dto.BookingDto;
 import java.util.List;
+import com.universestay.project.user.dto.BookingDto;
+import com.universestay.project.user.dto.UserDto;
 import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -38,5 +40,9 @@ public class BookDaoImpl implements BookDao {
     @Override
     public List<BookingDto> selectUnavailableDates(String room_id) throws Exception {
         return session.selectList(namespace + "selectUnavailableDates", room_id);
+      
+    @Override 
+    public UserDto getUserInfo(String userEmail) throws CommonException {
+        return session.selectOne(namespace + "selectUserInfo", userEmail);
     }
 }
