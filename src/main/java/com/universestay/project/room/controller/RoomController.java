@@ -1,6 +1,5 @@
 package com.universestay.project.room.controller;
 
-import com.universestay.project.dto.BookingDto;
 import com.universestay.project.room.dao.BookDao;
 import com.universestay.project.room.dto.RoomAmenityDto;
 import com.universestay.project.room.dto.RoomDto;
@@ -9,6 +8,7 @@ import com.universestay.project.room.dto.RoomPhotoDto;
 import com.universestay.project.room.service.RoomAmenityService;
 import com.universestay.project.room.service.RoomService;
 import com.universestay.project.user.dao.UserWithdrawalDao;
+import com.universestay.project.user.dto.BookingDto;
 import com.universestay.project.user.dto.UserDto;
 import com.universestay.project.user.service.ProfileImgServiceImpl;
 import com.universestay.project.user.service.UserInfoService;
@@ -87,7 +87,6 @@ public class RoomController {
             model.addAttribute("profileImgUrl", profileImgUrl);
             model.addAttribute("roomAmenities", roomAmenities);
             model.addAttribute("bookingDtos", bookingDtos);
-
 
             return "room/roomDetail";
         } catch (Exception e) {
