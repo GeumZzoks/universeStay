@@ -39,7 +39,7 @@ for (let i = 0; i < cardPaymentButtons.length; i++) {
 
             },
             error: function (res) {
-                console.log("error: " + res);
+                console.log(res);
             },
         });
 
@@ -56,9 +56,10 @@ for (let i = 0; i < kakaoPaymentButtons.length; i++) {
         $.ajax({
             url: "/payment/getPaymentInfo",
             method: "post",
+            dataType: "json",
             data: {bookingId: bookingId},
             success: function (res) {
-                // console.log(res);
+                console.log(res);
                 IMP.request_pay({
                     pg: "kakaopay",
                     pay_method: "kakaopay",
@@ -68,14 +69,15 @@ for (let i = 0; i < kakaoPaymentButtons.length; i++) {
                     buyer_email: res.user_email,
                     buyer_name: res.user_name,
                     buyer_tel: res.user_phone_num1,
-                    // buyer_addr: "서울특별시 강남구 신사동",
-                    // buyer_postcode: "01181"
-                }, async function (rsp) { // callback
-                    //rsp.imp_uid 값으로 결제 단건조회 API를 호출하여 결제결과를 판단합니다.
+                    custom_data: {
+                        booking_id: bookingId
+                    }
+                }, function (rsp) {
+                    console.log(rsp);
+                    // 결제 성공 시
                     if (rsp.success) {
                         const paymentDto = {
-                            // booking_id: rsp.custom_data.booking_id, ==> booking_id는 추후 해당 구조로 가져오면 됨.
-                            booking_id: "e07f07dd-4485-4253-accb-e89a715b0fad", // 테스트를 위해 고정값 삽입.
+                            booking_id: rsp.custom_data.booking_id,
                             payment_is_success: rsp.success,
                             payment_apply_num: rsp.apply_num,
                             payment_buyer_name: rsp.buyer_name,
@@ -83,14 +85,13 @@ for (let i = 0; i < kakaoPaymentButtons.length; i++) {
                             payment_buyer_email: rsp.buyer_email,
                             payment_buyer_postcode: rsp.buyer_postcode,
                             payment_buyer_tel: rsp.buyer_tel,
-                            payment_custom_data: rsp.custom_data,
                             payment_imp_uid: rsp.imp_uid,
                             payment_merchant_uid: rsp.merchant_uid,
                             payment_name: rsp.name,
                             payment_paid_amount: rsp.paid_amount,
                             payment_paid_at: rsp.paid_at,
                             payment_pay_method: rsp.pay_method,
-                            paymnet_pg_provider: rsp.pg_provider,
+                            payment_pg_provider: rsp.pg_provider,
                             payment_pg_tid: rsp.pg_tid,
                             payment_pg_type: rsp.pg_type,
                             payment_receipt_url: rsp.receipt_url,
@@ -103,50 +104,51 @@ for (let i = 0; i < kakaoPaymentButtons.length; i++) {
                         }
 
                         console.log(paymentDto);
+                        let payment_id = "";
                         $.ajax({
                             url: "/payment/saveResponse",
                             method: "post",
                             contentType: "application/json",
                             data: JSON.stringify(paymentDto),
-                            success: function (data) {
-                                console.log(data)
-                                console.log("성공")
+                            success: function (res) {
+                                payment_id = res;
 
-                            }, error: function (xhr, status, error) {
-                                console.log(xhr)
-                                console.log(status)
-                                console.error(error)
-                                console.log("에러")
+                            }, error: function (res) {
+                                console.log(res);
                             }
                         })
 
-                        // const {} = rsp.imp_uid
-                        // rsp.merchant_uid
+                        const imp_uid = rsp.imp_uid;
+                        const merchant_uid = rsp.merchant_uid;
+                        // 엑세스 토큰(access token) 발급 받기
+                        $.ajax({
+                            url: "/payment/getAccessToken",
+                            method: "post",
+                            dataType: "json",
+                            success: function (res) {
+                                const access_token = res.response.access_token;
+                                console.log(rsp.custom_data.booking_id);
 
-                        // $.ajax({
-                        //     url: "/payment/getAccessToken",
-                        //     method: "post",
-                        //     success: function (res) {
-                        //         console.log(res);
-                        //     },
-                        //     error: function (res) {
-                        //         console.log(res);
-                        //     },
-                        // })
-
-                        // const getToken = $.ajax({
-                        //     crossOrigin: true,
-                        //     url: "https://api.iamport.kr/users/getToken",
-                        //     method: "post", // POST method
-                        //     headers: {"Content-Type": "application/json"},
-                        //     data: {
-                        //         imp_key: "5372858343674204", // REST API 키
-                        //         imp_secret: "jc6Sxc1cbULMvRP40c7cnkPkj73i2VSJWzor9RpxLTSzjkbhnASK4d4Uf5gobqPDl4UIrdCdSiZUbBBm" // REST API Secret
-                        //     }
-                        // });
-                        //
-                        // console.log(getToken);
-                        // const access_token = getToken.data;
+                                // imp_uid로 포트원 서버에서 결제 정보 조회
+                                // 결제 검증
+                                $.ajax({
+                                    url: "/payment/lookUpImpUid",
+                                    method: "post",
+                                    data: {
+                                        imp_uid: imp_uid,
+                                        Authorization: access_token,
+                                        booking_id: rsp.custom_data.booking_id,
+                                        payment_id: payment_id
+                                    },
+                                    success: function (res) {
+                                        console.log(res);
+                                    },
+                                    error: function (res) {
+                                        console.log(res);
+                                    },
+                                });
+                            },
+                        })
 
                     } else {
                         alert(`결제에 실패하였습니다. 에러 내용: ${rsp.error_msg}`);

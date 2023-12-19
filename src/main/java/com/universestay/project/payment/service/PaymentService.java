@@ -8,5 +8,6 @@ public interface PaymentService {
 
     Map<String, Object> findPaymentUser(String booking_id) throws CommonException;
 
+    Map<String, Object> findOrderById(String booking_id) throws CommonException;
     int insertPaymentInfo(PaymentDto paymentDto) throws CommonException;
 }

@@ -23,7 +23,13 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
+    public Map<String, Object> findOrderById(String booking_id) throws CommonException {
+        return paymentDao.findOrderById(booking_id);
+	}
+
+    @Override
     public int insertPaymentInfo(PaymentDto paymentDto) throws CommonException {
         return paymentDao.insertPaymentInfo(paymentDto);
     }
+
 }
