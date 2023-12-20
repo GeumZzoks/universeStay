@@ -433,4 +433,9 @@ public class RoomAmenityServiceImpl implements RoomAmenityService {
     public RoomAmenityDto readRoomAmenity(String room_id) throws Exception {
         return null;
     }
+
+    @Override
+    public Integer modifyRoomAmenity(RoomAmenityDto roomAmenityDto) throws Exception {
+        return roomAmenityDao.updateRoomAmenity(roomAmenityDto);
+    }
 }

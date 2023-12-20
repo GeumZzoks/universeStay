@@ -8,4 +8,6 @@ public interface RoomAmenityService {
     List<String[]> lookUpRoomAmenity(String room_id) throws Exception;
 
     RoomAmenityDto readRoomAmenity(String room_id) throws Exception;
+
+    Integer modifyRoomAmenity(RoomAmenityDto roomAmenityDto) throws Exception;
 }
