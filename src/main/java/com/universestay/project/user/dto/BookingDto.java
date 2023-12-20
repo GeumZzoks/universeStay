@@ -60,6 +60,9 @@ public class BookingDto {
     @ApiModelProperty(notes = "유저 리뷰 등록 여부", example = "N", required = true)
     private String is_user_review;
 
+    @ApiModelProperty(notes = "숙박 가격", example = "500000", required = false)
+    private Integer booking_total_pay_amount;
+
     @ApiModelProperty(notes = "최초등록일자", example = "0000-00-00 00:00:00", required = true)
     private Timestamp created_at;
 
