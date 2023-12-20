@@ -206,14 +206,13 @@ $('.screens-room-roomDetail__reservation__check-in-out').dateRangePicker({
     return [!isReserved && !isBeforeToday];
   }
 }).bind('datepicker-first-date-selected', function (event, obj) {
-  // Validate that obj.date2 is after obj.date1
+}).bind('datepicker-change', function (event, obj) {
   const isValidDateRange = obj.date2 && (obj.date2 > obj.date1);
 
   if (!isValidDateRange) {
-    // If not valid, reset date2 to date1
     $(this).data('dateRangePicker').clear();
+    return;
   }
-}).bind('datepicker-change', function (event, obj) {
   inputCheckIn.innerHTML = formatDate(new Date(obj.date1));
   inputCheckOut.innerHTML = formatDate(new Date(obj.date2));
 
