@@ -951,6 +951,8 @@
     <input type="submit" class="screens-room-roomEnroll__btn-submit" value="숙소 사진 등록">
 </form>
 
+<jsp:include page="/WEB-INF/views/common/user/footerNotFix.jsp"/>
+
 <%--<jsp:include page="/WEB-INF/views/common/user/footer.jsp"/>--%>
 
 <%-- 숙소 주소 입력 Script --%>
