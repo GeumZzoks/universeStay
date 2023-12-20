@@ -50,6 +50,13 @@ submitButton.addEventListener("click", function (ev) {
         "totalGuest-button").innerText,
   }
 
+  if (bookingDto.booking_checkin_date == 'YYYY-MM-DD'
+      || bookingDto.booking_checkout_date
+      == 'YYYY-MM-DD') {
+    alert("체크인 날짜와 체크아웃 날짜를 입력해주세요.");
+    return;
+  }
+
   console.log(bookingDto);
   console.log(encodeURIComponent(bookingDto.booking_checkin_date))
 
