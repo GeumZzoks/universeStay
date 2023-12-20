@@ -328,7 +328,10 @@
                         <div class="screens-room-book__border-bound-top"></div>
                         <div class="screens-room-book__reservation__part-6">
                             <span class="screens-room-book__reservation__part-6__mul">합계</span>
-                            <span>₩ ${BookingPriceSum}</span>
+                            <div>
+                                <span>₩ </span>
+                                <span id="BookingPriceSum">${BookingPriceSum}</span>
+                            </div>
                             <input type="hidden" name="booking_price_sum">
                         </div>
 

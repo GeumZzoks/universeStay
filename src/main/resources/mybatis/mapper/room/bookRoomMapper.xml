@@ -19,7 +19,7 @@
     <insert id="bookRoom" parameterType="BookingDto">
         INSERT INTO Booking ( booking_id, user_id, room_id, booking_checkin_date
                             , booking_checkout_date, booking_num_of_guest, booking_date
-                            , booking_checkin_time, booking_checkout_time
+                            , booking_checkin_time, booking_checkout_time, booking_total_pay_amount
                             , created_id, updated_id)
         VALUES (#{booking_id},
                 #{user_id},
@@ -30,6 +30,7 @@
                 #{booking_date},
                 #{booking_checkin_time},
                 #{booking_checkout_time},
+                #{booking_total_pay_amount},
                 #{created_id},
                 #{updated_id})
     </insert>
