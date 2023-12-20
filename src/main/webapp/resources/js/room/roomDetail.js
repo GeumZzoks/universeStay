@@ -50,6 +50,13 @@ submitButton.addEventListener("click", function (ev) {
         "totalGuest-button").innerText,
   }
 
+  if (bookingDto.booking_checkin_date == 'YYYY-MM-DD'
+      || bookingDto.booking_checkout_date
+      == 'YYYY-MM-DD') {
+    alert("체크인 날짜와 체크아웃 날짜를 입력해주세요.");
+    return;
+  }
+
   console.log(bookingDto);
   console.log(encodeURIComponent(bookingDto.booking_checkin_date))
 
@@ -207,6 +214,12 @@ $('.screens-room-roomDetail__reservation__check-in-out').dateRangePicker({
   }
 }).bind('datepicker-first-date-selected', function (event, obj) {
 }).bind('datepicker-change', function (event, obj) {
+  const isValidDateRange = obj.date2 && (obj.date2 > obj.date1);
+
+  if (!isValidDateRange) {
+    $(this).data('dateRangePicker').clear();
+    return;
+  }
   inputCheckIn.innerHTML = formatDate(new Date(obj.date1));
   inputCheckOut.innerHTML = formatDate(new Date(obj.date2));
 
@@ -246,9 +259,37 @@ $('.screens-room-roomDetail__reservation__check-in-out').dateRangePicker({
   document.querySelector(
       "input[name='booking_price_sum']").value = priceWeekdayValue
       + priceWeekendValue + priceExtraPersonValue;
-
+}).bind('datepicker-open', function () {
+  document.querySelector(
+      ".screens-room-roomDetail__reservation__check-in-out").style.outline = "2px solid black";
+  togglePeopleNum.classList.remove("active");
+  document.querySelector(
+      ".screens-room-roomDetail__reservation__number-people").style.outline = "";
+}).bind('datepicker-close', function () {
+  document.querySelector(
+      ".screens-room-roomDetail__reservation__check-in-out").style.outline = "";
+}).bind('datepicker-opened', function () {
+  document.querySelector(
+      ".screens-room-roomDetail__reservation__check-in-out").classList.add(
+      "active");
+}).bind('datepicker-closed', function () {
+  document.querySelector(
+      ".screens-room-roomDetail__reservation__check-in-out").classList.remove(
+      "active");
 });
 
+$('.screens-room-roomDetail__reservation__check-in-out').click(function (e) {
+
+  e.stopPropagation();
+  if (document.querySelector(
+      ".screens-room-roomDetail__reservation__check-in-out").classList.contains(
+      "active")) {
+    $('.screens-room-roomDetail__reservation__check-in-out').data(
+        'dateRangePicker').close();
+  }
+});
+
+// 캘린더 css 변경
 const calendar = document.querySelector(".date-picker-wrapper");
 calendar.style.zIndex = 100;
 calendar.style.borderRadius = '10px';
@@ -275,7 +316,7 @@ function countWeekdaysAndWeekends(startDate, endDate) {
     const dayOfWeek = currentDate.getDay();
 
     // Sunday (0) and Saturday (6) are weekends
-    if (dayOfWeek === 0 || dayOfWeek === 6) {
+    if (dayOfWeek === 5 || dayOfWeek === 6) {
       weekends++;
     } else {
       weekdays++;
@@ -288,11 +329,15 @@ function countWeekdaysAndWeekends(startDate, endDate) {
   return {weekdays, weekends};
 }
 
+// 가격 컴마
 function priceToString(price) {
   return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
-inputPeopleNum.addEventListener("click", function () {
+// 인원수
+inputPeopleNum.addEventListener("click", function (event) {
+  event.stopPropagation();
+
   togglePeopleNum.classList.toggle("active");
   if (togglePeopleNum.classList.contains("active")) {
     document.querySelector(
@@ -303,6 +348,19 @@ inputPeopleNum.addEventListener("click", function () {
   }
 });
 
+// 바디를 눌렀을 때 인원 수 토글이 아니면 토글창을 끈다.
+document.body.addEventListener('click', function (event) {
+  // Check if the clicked element or any of its ancestors include '.screens-room-roomDetail__number-people-toggle'
+  if (!event.target.closest('.screens-room-roomDetail__number-people-toggle')) {
+    if (togglePeopleNum.classList.contains("active")) {
+      togglePeopleNum.classList.remove("active");
+      document.querySelector(
+          ".screens-room-roomDetail__reservation__number-people").style.outline = "";
+    }
+  }
+});
+
+// 인원수 플러스 마이너스 버튼
 const btnMinus = document.querySelector(
     ".screens-room-roomDetail__toggle-btn-minus");
 const btnPlus = document.querySelector(
@@ -318,6 +376,7 @@ btnMinus.innerHTML = `
 btnMinus.setAttribute("style", "border: 1px #EDEDED solid;");
 
 btnPlus.addEventListener("click", function (e) {
+  e.stopPropagation();
   // 플러스 버튼을 누르면 값이 올라간다.
   const inputToggle = document.querySelector(
       ".screens-room-roomDetail__toggle-num");
@@ -361,7 +420,7 @@ btnPlus.addEventListener("click", function (e) {
   // 값을 올렸을 때 최대 인원 수에 해당하면 플러스 버튼 disable
   if (inputToggle.value >= max) {
     btnPlus.innerHTML = `
-      <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" 
+      <svg class="btn-disable" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" 
         style="display:block;height:12px;width:12px;fill:#EDEDED" aria-hidden="true" 
         role="presentation" focusable="false">
           <path d="m6.75.75v4.5h4.5v1.5h-4.5v4.5h-1.5v-4.5h-4.5v-1.5h4.5v-4.5z"></path>
@@ -386,6 +445,7 @@ btnPlus.addEventListener("click", function (e) {
 });
 
 btnMinus.addEventListener("click", function (e) {
+  e.stopPropagation();
   // 플러스 버튼을 누르면 값이 올라간다.
   const inputToggle = document.querySelector(
       ".screens-room-roomDetail__toggle-num");
@@ -429,7 +489,7 @@ btnMinus.addEventListener("click", function (e) {
   // 값을 올렸을 때 최대 인원 수에 해당하면 플러스 버튼 disable
   if (inputToggle.value <= 1) {
     btnMinus.innerHTML = `
-      <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" 
+      <svg class="btn-disable" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" 
         style="display:block;height:12px;width:12px;fill:#EDEDED" aria-hidden="true" 
         role="presentation" focusable="false">
           <path d="m.75 6.75h10.5v-1.5h-10.5z"></path>
