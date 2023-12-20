@@ -17,7 +17,7 @@
     <!--웹페이지 상단-->
     <header class="screens-user-join_header">
         <!--UniverseStay LOGO-->
-        <a href="/" class="screens-user-join_a" title="유니버스테이 홈페이지">
+        <a href="/main.jsp" class="screens-user-join_a" title="유니버스테이 홈페이지">
             <img src="/resources/img/logo/logo.png" class="screens-user-join_logo_image"></a>
     </header>
 
@@ -39,29 +39,33 @@
         </div>
         <span class="screens-user-join_helper_text_span" id="id_input_helper_text"></span>
 
-        <h5 class="screens-user-join_h5" style="margin-bottom: 0px;">비밀번호*</h5>
-        <span class="screens-user-join_signup_input">
+        <div class="screens-user-join__pwd-wrapper">
+            <h5 class="screens-user-join_h5" style="margin-bottom: 0px;">비밀번호*</h5>
+            <span class="screens-user-join_signup_input">
             <input type="password" id="screens-user-join_signup_pw" placeholder="비밀번호"
                    class="screens-user-join_input"
                    value="" maxlength="20" autocomplete="new-password" aria-autocomplete="list">
             <span class="screens-user-join_pw_lock"></span>
         </span>
-        <span class="screens-user-join_helper_text_span" id="pwd_input_first_helper_text"></span>
+            <span class="screens-user-join_helper_text_span"
+                  id="pwd_input_first_helper_text"></span>
 
-        <h5 class="screens-user-join_h5" style="margin-top: 25px;">비밀번호 재확인*</h5>
-        <span class="screens-user-join_signup_input">
+            <h5 class="screens-user-join_h5" style="margin-top: 25px;">비밀번호 재확인*</h5>
+            <span class="screens-user-join_signup_input">
                 <input type="password" id="screens-user-join_signup_pww" placeholder="비밀번호 재확인"
                        class="screens-user-join_input" value="" maxlength="20"
                        autocomplete="new-password"
                        aria-autocomplete="list">
                 <span class="screens-user-join_pww_lock"></span>
             </span>
-        <span class="screens-user-join_helper_text_span" id="pwd_input_helper_text"></span>
+            <span class="screens-user-join_helper_text_span" id="pwd_input_helper_text"></span>
+        </div>
+
         <div style="margin-top: 35px;">
             <!--이름,생년월일,성별,이메일-->
             <h5 class="screens-user-join_h5" style="margin-bottom: 0px;">이름*</h5>
             <span class="screens-user-join_signup_input">
-                    <input id="screens-user-join_signup_name" type="text"></input>
+                    <input id="screens-user-join_signup_name" placeholder="이름" type="text"></input>
                 </span>
             <h5 class="screens-user-join_h5" style="margin-bottom: 0px;">생년월일</h5>
             <span style="display: flex;  margin-top: 10px;">
@@ -93,28 +97,39 @@
                                placeholder="일"></input>
                     </span>
             </span>
-            <h5 class="screens-user-join_h5" style="margin-bottom: 0px;">본인 확인 이메일*</h5>
-            <div style="display: flex;">
+            <div class="screens-user-join__email-wrapper">
+                <h5 class="screens-user-join_h5" style="margin-bottom: 0px;">본인 확인 이메일*</h5>
+                <div style="display: flex;">
                 <span class="screens-user-join_signup_input"
                       style="width:100%; margin: 10px 0px 0px 0px">
                     <input id="screens-user-join_signup_email" type="text" class="form-control"
                            placeholder="이메일 입력"></input>
                 </span>
-                <span class="screens-user-join_helper_text_span"
-                      id="email_input_helper_text"></span>
+                    <span class="screens-user-join_helper_text_span"
+                          id="email_input_helper_text"></span>
 
-                <span class="screens-user-join_mail_Check_Btn_wrap">
+                    <span class="screens-user-join_mail_Check_Btn_wrap">
                     <input type="button" class="btn btn-primary"
                            id="screens-user-join_mail_Check_Btn"
                            value="인증번호 보내기"> <br>
                 </span>
-            </div>
-
-            <div style="margin-top: 10px;">
-                <span class="screens-user-join_signup_input">
+                </div>
+                <div style="display: flex;">
+                <span class="screens-user-join_signup_input"
+                      style="width:100%; margin: 10px 0px 0px 0px">
                     <input id="screens-user-join_code_check_input" type="text" class="form-control"
                            placeholder="인증번호 입력"></input>
+                    <span class="certificationTime" style="color: #222222">03:00</span>
                 </span>
+                    <span class="screens-user-join_helper_text_span"
+                          id="email_code_input_helper_text"></span>
+
+                    <span class="screens-user-join_mail_code_Check_Btn_wrap">
+                    <input type="button" class="btn btn-primary"
+                           id="screens-user-join_mail_code_check_Btn"
+                           value="인증번호 확인"> <br>
+                </span>
+                </div>
             </div>
         </div>
 
@@ -185,44 +200,44 @@
 <script src="/resources/js/user/join.js"></script>
 
 <script>
-    // 이메일 인증
-    $('#screens-user-join_mail_Check_Btn').click(function () {
-        const email = $('#screens-user-join_signup_email').val(); // 이메일 주소값 얻어오기!
-        const checkInput = $('.screens-user-join_code_check_input') // 인증번호 입력하는곳
+  // 이메일 인증
+  $('#screens-user-join_mail_Check_Btn').click(function () {
+    const email = $('#screens-user-join_signup_email').val(); // 이메일 주소값 얻어오기!
+    const checkInput = $('.screens-user-join_code_check_input') // 인증번호 입력하는곳
 
-        $.ajax({
-            type: 'get',
-            url: '<c:url value ="/user/mailCheck?email="/>' + email,
-            success: function (data) {
-                checkInput.attr('disabled', false);
-                console.log(data)
-                if ("Y" == data) {
-                    alert('인증번호가 전송되었습니다.')
-                }
-            },
-            error: function (xhr, status, error) {
-                alert('이미 가입된 이메일입니다. 다시 입력해주세요');
-                $("#screens-user-join_signup_email").focus();
-                console.error("Ajax 요청 실패:", status, error);
-                console.log(xhr.responseText);
-            }
-        });
+    $.ajax({
+      type: 'get',
+      url: '<c:url value ="/user/mailCheck?email="/>' + email,
+      success: function (data) {
+        checkInput.attr('disabled', false);
+        console.log(data)
+        if ("Y" == data) {
+          alert('인증번호가 전송되었습니다.')
+        }
+      },
+      error: function (xhr, status, error) {
+        alert('이미 가입된 이메일입니다. 다시 입력해주세요');
+        $("#screens-user-join_signup_email").focus();
+        console.error("Ajax 요청 실패:", status, error);
+        console.log(xhr.responseText);
+      }
     });
+  });
 
-    // 만약 Oauth로 회원가입을 들어오면 email, pwd 입력란 value 채우고 hidden으로 바꾼다.
-    if ("${userEmail}" != null && "${userEmail}" != "") {
-        $('#signup_pw')
-        .attr('value', '${userPwd}');
-        $('#signup_pww')
-        .attr('value', '${userPwd}');
-        $('#signup_email')
-        .attr('value', '${userEmail}');
+  // 만약 Oauth로 회원가입을 들어오면 email, pwd 입력란 value 채우고 hidden으로 바꾼다.
+  if ("${userEmail}" != null && "${userEmail}" != "") {
+    $('#screens-user-join_signup_pw')
+    .attr('value', '${userPwd}');
+    $('#screens-user-join_signup_pww')
+    .attr('value', '${userPwd}');
+    $('#screens-user-join_signup_email')
+    .attr('value', '${userEmail}');
 
-        $('.signup_pwd_wrapper')
-        .hide();
-        $('.signup_email_wrapper')
-        .hide();
-    }
+    $('.screens-user-join__pwd-wrapper')
+    .hide();
+    $('.screens-user-join__email-wrapper')
+    .hide();
+  }
 
 
 </script>

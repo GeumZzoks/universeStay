@@ -29,6 +29,8 @@
                 쿠폰생성</h2>
             <form action="/admin/coupon/input" method="POST">
                 <div class="screens-admin-coupon__content-input-div">
+                    <h3>이벤트 번호</h3>
+                    <input type="number" name="event_id" placeholder="미진행시 공백">
                     <h3>쿠폰이름</h3>
                     <input type="text" name="coupon_name" placeholder="쿠폰 이름을 입력해주세요.">
                     <h3>쿠폰설명</h3>
@@ -39,20 +41,20 @@
                     <textarea name="coupon_usage" rows="3" placeholder="발행 사유를 입력해주세요."></textarea>
                     <h3>사용가능일수</h3>
                     <input type="number" name="coupon_usable_day" placeholder="일">
-                    <h3 style="position: absolute; top: 98px; right: 60px;">프로모션 진행 여부</h3>
-                    <select name="coupon_is_activated" style="position: absolute; top: 135px; right: 98px">
-                        <option value="Y">발급가능</option>
+                    <h3 style="position: absolute; top: 78px; right: 60px;">프로모션 진행 여부</h3>
+                    <select name="coupon_is_activated" style="position: absolute; top: 113px; right: 98px">
                         <option value="N">발급중지</option>
+                        <option value="Y">발급가능</option>
                     </select>
                 </div>
                 <div class="screens-admin-coupon__content-input-div" style="left: 670px;">
                     <h3>쿠폰타입</h3>
-                    <select name="coupon_type">
+                    <select name="coupon_type" id="select_type" onchange="selectType()">
                         <option value="정액할인">정액할인</option>
                         <option value="정률할인">정률할인</option>
                     </select>
                     <h3>혜택(원/%)</h3>
-                    <input type="number" name="coupon_discount_rate" placeholder="원 or %">
+                    <input type="number" name="coupon_discount_amount" id="inputType" placeholder="원 or %">
                     <h3>사용제한금액</h3>
                     <input type="number" name="coupon_discount_limit" placeholder="최소 or 최대금액">
                 </div>
@@ -110,13 +112,19 @@
                     <td class="screens-admin-coupon__content-table__type">${couponDto.coupon_type}</td>
                     <c:choose>
                         <c:when test="${couponDto.coupon_type eq '정액할인'}">
-                            <td class="screens-admin-coupon__content-table__discount">${couponDto.coupon_discount_rate}원<br>
-                                (최소 ${couponDto.coupon_discount_limit}원)
+                            <td class="screens-admin-coupon__content-table__discount">
+                                <fmt:formatNumber type="number" maxFractionDigits="3"
+                                                  value="${couponDto.coupon_discount_amount}"/>원<br>
+                                (최소 <fmt:formatNumber type="number" maxFractionDigits="3"
+                                                      value="${couponDto.coupon_discount_limit}"/>원)
                             </td>
                         </c:when>
                         <c:otherwise>
-                            <td class="screens-admin-coupon__content-table__discount">${couponDto.coupon_discount_rate}%<br>
-                                (최대 ${couponDto.coupon_discount_limit}원)
+                            <td class="screens-admin-coupon__content-table__discount">
+                                <fmt:formatNumber type="number" maxFractionDigits="3"
+                                                  value="${couponDto.coupon_discount_rate}"/>%<br>
+                                (최소 <fmt:formatNumber type="number" maxFractionDigits="3"
+                                                      value="${couponDto.coupon_discount_limit}"/>원)
                             </td>
                         </c:otherwise>
                     </c:choose>
@@ -132,7 +140,7 @@
             </c:forEach>
         </table>
         <div class="screens-admin-coupon__content-btn__bottom">
-            <button type="submit" formaction="/admin/coupon/update">수정</button>
+            <button onclick="update()">수정</button>
             <button onclick="Delete()">삭제</button>
             <button onclick="Issue()">발급</button>
             <button onclick="StopIssue()">중지</button>
@@ -173,6 +181,20 @@
     if (msg == "STISU_OK") alert("선택한 쿠폰 발급이 중단되었습니다.");
     if (msg == "STISU_ERR") alert("쿠폰 발급 중단에 실패하였습니다. 다시 시도해주세요.");
 
+    // 선택한 타입에 따라 입력될 컬럼 변경
+    function selectType() {
+        let type = document.getElementById("select_type");
+        let inputType = document.getElementById("inputType");
+        let selected_type = type.options[type.selectedIndex].value;
+
+        if (selected_type === "정률할인") {
+            inputType.setAttribute("name", "coupon_discount_rate")
+        } else {
+            inputType.setAttribute("name", "coupon_discount_amount");
+        }
+    }
+
+
     // 전체 체크 기능
     function checkAll(checkAll) {
         const checkboxes
@@ -181,6 +203,20 @@
         checkboxes.forEach((checkbox) => {
             checkbox.checked = checkAll.checked
         })
+    }
+
+    function update() {
+        const query = 'input[name="check"]:checked'
+        const selectedElements = document.querySelectorAll(query)
+
+        const selectedElementsCnt = selectedElements.length;
+
+        if (selectedElementsCnt == 0) {
+            alert("수정할 쿠폰을 선택해주세요.");
+            return false;
+        } else {
+            alert("발급된 쿠폰은 수정할 수 없습니다.")
+        }
     }
 
     // 체크된 항목 일괄 삭제 기능
@@ -287,7 +323,6 @@
             }
         }
     }
-
 </script>
 </body>
 </html>

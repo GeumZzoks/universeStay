@@ -152,7 +152,7 @@ function handleClickBtnMinus(e) {
           && input.value == 15) ||
       (!(input.name == 'room_standard_capa' || input.name == 'room_max_capa')
           && input.value == 49)) {
-    btnPlus = input.nextElementSibling;
+    let btnPlus = input.nextElementSibling;
     btnPlus.innerHTML = `
       <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
          role="presentation" focusable="false"
@@ -244,7 +244,7 @@ function handleClickBtnPlus(e) {
           && input.value == 16) ||
       (!(input.name == 'room_standard_capa' || input.name == 'room_max_capa')
           && input.value == 50)) {
-    btnPlus = input.nextElementSibling;
+    let btnPlus = input.nextElementSibling;
     btnPlus.innerHTML = `
       <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" 
         style="display:block;height:12px;width:12px;fill:#EDEDED" aria-hidden="true" 
@@ -320,6 +320,8 @@ function handleSelectSpace(e) {
       categoryData.value -= clickedBtnData.value;
     }
   }
+
+  console.log(categoryData.value);
 }
 
 // 숙소 가격을 책정해주세요

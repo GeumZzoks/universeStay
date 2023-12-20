@@ -5,12 +5,10 @@ import com.universestay.project.room.dto.SendEmailBookInfoDto;
 import com.universestay.project.room.service.BookService;
 import com.universestay.project.room.service.BookShareMailSendService;
 import com.universestay.project.room.service.RoomService;
-
+import com.universestay.project.user.dto.BookingDto;
 import java.util.Arrays;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
-
-import com.universestay.project.user.dto.BookingDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +31,7 @@ public class BookingRoomController {
 
     @Autowired
     public BookingRoomController(BookShareMailSendService bookShareMailSendService,
-                                 RoomService roomService, BookService bookService) {
+            RoomService roomService, BookService bookService) {
         this.bookShareMailSendService = bookShareMailSendService;
         this.roomService = roomService;
         this.bookService = bookService;
@@ -55,6 +53,7 @@ public class BookingRoomController {
             throws Exception {
 
         // 숙소에 대한 정보 가져오기
+
         Map<String, Object> roomDto = roomService.lookUpRoom(bookingDto.getRoom_id(),
                 (String) httpSession.getAttribute("user_email"));
 
@@ -64,14 +63,14 @@ public class BookingRoomController {
         }
 
         // DB에 저장 Booking(예약 확정 상태는 아님)
-        bookService.bookRoom(bookingDto, roomDto, httpSession);
+//        bookService.bookRoom(bookingDto, roomDto, httpSession);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("/share/{room_id}")
     public String bookShare(@PathVariable String room_id, BookingDto bookingDto,
-                            HttpSession httpSession, Model model) {
+            HttpSession httpSession, Model model) {
 
         Map<String, Object> bookInfo = bookService.selectRoomBookInfo(room_id);
 

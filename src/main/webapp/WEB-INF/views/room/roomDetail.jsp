@@ -10,6 +10,9 @@
 
     <link rel="stylesheet" type="text/css"
           href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
+    <%--  dateRangePicker  --%>
+    <link rel="stylesheet"
+          href="http://longbill.github.io/jquery-date-range-picker/dist/daterangepicker.min.css">
 
 
     <style>
@@ -79,6 +82,10 @@
     </div>
     <%--  section-2  --%>
     <div class="screens-room-roomDetail__section-2">
+        <button class="screens-room-roomDetail__btn screens-room-roomDetail__room-photo">
+            <img class="screens-room-roomDetail__room-photo__img"
+                 src="${room.room_main_photo}" alt="">
+        </button>
         <c:forEach var="roomImg" items="${roomImgList}">
             <button class="screens-room-roomDetail__btn screens-room-roomDetail__room-photo">
                 <img class="screens-room-roomDetail__room-photo__img"
@@ -96,7 +103,8 @@
                         펜션
                     </div>
                     <div class="screens-room-roomDetail__section-3__info-1__desc2">
-                        최대 인원 ${room.room_max_capa}명 · 침실 ${room.room_bedroom_cnt}개 ·
+                        기준 인원 ${room.room_standard_capa}명 · 최대 인원 ${room.room_max_capa}명 ·
+                        침실 ${room.room_bedroom_cnt}개 ·
                         욕실 ${room.room_bathroom_cnt}개
                     </div>
                 </div>
@@ -127,7 +135,7 @@
                     </c:forEach>
                 </ul>
                 <button class="screens-room-roomDetail__btn screens-room-roomDetail__btn-square screens-room-roomDetail__btn-shrink screens-room-roomDetail__section-3__room-info__info-2__modal-btn">
-                    편의시설 40개 모두 보기
+                    편의시설 ${roomAmenities.size()}개 모두 보기
                 </button>
                 <div class="screens-room-roomDetail__section-3__room-info__info-2__modal-outer screens-room-roomDetail__modal-amenity">
                     <div class="screens-room-roomDetail__section-3__room-info__info-2__modal-inner">
@@ -244,7 +252,7 @@
             <div class="screens-room-roomDetail__reservation__part-1">
                 <div class="screens-room-roomDetail__reservation__price">
                     <span class="screens-room-roomDetail__price__part-1">₩ ${room.room_weekday_price}</span>
-                    <span class="screens-room-roomDetail__price__part-2">/박</span>
+                    <span class="screens-room-roomDetail__price__part-2">/박 (주중)</span>
                 </div>
                 <div class="screens-room-roomDetail__reservation__info">
                     <button class="screens-room-roomDetail__btn screens-room-roomDetail__reservation__check-in-out">
@@ -255,9 +263,9 @@
 
                             <div class="screens-room-roomDetail__check-in-out__desc screens-room-roomDetail__check-in-out__desc2"
                                  id="check-in-button">
-                                2024-01-07
-
+                                YYYY-MM-DD
                             </div>
+                            <input type="hidden" name="booking_checkin_date">
                         </div>
                         <div class="screens-room-roomDetail__check-in-out">
                             <div class="screens-room-roomDetail__check-in-out__desc screens-room-roomDetail__check-in-out__desc1">
@@ -266,9 +274,9 @@
 
                             <div class="screens-room-roomDetail__check-in-out__desc screens-room-roomDetail__check-in-out__desc2"
                                  id="check-out-button">
-                                2024-01-12
-
+                                YYYY-MM-DD
                             </div>
+                            <input type="hidden" name="booking_checkout_date">
                         </div>
                     </button>
                     <button class="screens-room-roomDetail__btn screens-room-roomDetail__reservation__number-people">
@@ -279,6 +287,10 @@
                                   id="totalGuest-button">1
                             </span>
                             <span>명</span>
+                            <input type="hidden" name="booking_num_of_guest">
+                            <input type="hidden" name="room_max_capa" value="${room.room_max_capa}">
+                            <input type="hidden" name="room_standard_capa"
+                                   value="${room.room_standard_capa}">
                         </div>
                         <div class="screens-room-roomDetail__number-people__arrow">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
@@ -288,6 +300,31 @@
                             </svg>
                         </div>
                     </button>
+                    <div class="screens-room-roomDetail__number-people-toggle">
+                        <span class="screens-room-roomDetail__toggle-part-1">성인</span>
+                        <div class="screens-room-roomDetail__toggle-part-2">
+                            <button type="button"
+                                    class="screens-room-roomDetail__toggle-btn-minus disable">
+                                <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"
+                                     aria-hidden="true"
+                                     role="presentation" focusable="false"
+                                     style="display: block; height: 12px; width: 12px; fill: #717171;">
+                                    <path d="m.75 6.75h10.5v-1.5h-10.5z"></path>
+                                </svg>
+                            </button>
+                            <input type="text" class="screens-room-roomDetail__toggle-num"
+                                   name="toggle-people-num" value='1' readonly/>
+                            <button type="button"
+                                    class="screens-room-roomDetail__toggle-btn-plus">
+                                <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"
+                                     aria-hidden="true"
+                                     role="presentation" focusable="false"
+                                     style="display: block; height: 12px; width: 12px; fill: #717171;">
+                                    <path d="m6.75.75v4.5h4.5v1.5h-4.5v4.5h-1.5v-4.5h-4.5v-1.5h4.5v-4.5z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <div>
                     <button class="screens-room-roomDetail__btn screens-room-roomDetail__reservation__btn screens-room-roomDetail__btn-shrink"
@@ -301,9 +338,33 @@
                 예약 확정 전에는 요금이 청구되지 않습니다.
             </div>
             <div class="screens-room-roomDetail__reservation__part-3">
-                <span class="screens-room-roomDetail__reservation__part-3__mul">₩${room_weekday_price} X 7박</span>
-                <span>₩1,167,740</span>
+                <span class="screens-room-roomDetail__reservation__part-3__mul">₩ <span>${room.room_weekday_price}</span> X <span>0</span>박 (주중)</span>
+                <span>₩ 0</span>
+                <input type="hidden" value="${room.room_weekday_price}">
             </div>
+            <div class="screens-room-roomDetail__reservation__part-4">
+                <span class="screens-room-roomDetail__reservation__part-4__mul">₩ <span>${room.room_weekend_price}</span> X <span>0</span>박 (주말)</span>
+                <span>₩ 0</span>
+                <input type="hidden" value="${room.room_weekend_price}">
+            </div>
+            <div class="screens-room-roomDetail__reservation__part-5">
+                <span class="screens-room-roomDetail__reservation__part-5__mul">₩ <span>${room.room_extra_person_fee}</span> X <span>0</span>명 (추가인원) X <span>0</span>박 </span>
+                <span>₩ 0</span>
+                <input type="hidden" value="${room.room_extra_person_fee}">
+            </div>
+            <div class="screens-room-roomDetail__reservation__part-6">
+                <span class="screens-room-roomDetail__reservation__part-6__mul">합계</span>
+                <span>₩ 0 </span>
+                <input type="hidden" name="booking_price_sum">
+            </div>
+        </div>
+        <div class="screens-room-roomDetail__bookingDates">
+            <c:forEach var="bookingDto" items="${bookingDtos}">
+                <div class="screens-room-roomDetail__bookingDate">
+                    <input type="hidden" value="${bookingDto.booking_checkin_date}">
+                    <input type="hidden" value="${bookingDto.booking_checkout_date}">
+                </div>
+            </c:forEach>
         </div>
     </div>
     <%--  section-4  --%>
@@ -344,7 +405,71 @@
                 </div>
             </c:forEach>
         </div>
-        <button class="screens-room-roomDetail__btn screens-room-roomDetail__btn-shrink screens-room-roomDetail__btn-square">
+
+        <div class="reviewModal hidden">
+            <div class="reviewModal__overlay"></div>
+            <div class="reviewModal__content">
+                <div class="reviewModal__content__header">
+                    <svg class="reviewModal__content__header__button"
+                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
+                         aria-hidden="true" role="presentation" focusable="false"
+                         style="display: block; fill: none; height: 20px; width: 20px; stroke: currentcolor; stroke-width: 3; overflow: visible;">
+                        <path d="m6 6 20 20M26 6 6 26"></path>
+                    </svg>
+                </div>
+                <div class="reviewModal__content__body">
+                    <div class="reviewModal__content__reviewandstar">
+                        <svg class="reviewModal__content__reviewandstar__svg"
+                             xmlns="http://www.w3.org/2000/svg"
+                             viewBox="0 0 32 32" aria-hidden="true" role="presentation"
+                             focusable="false"
+                             style="display: inline; height: 50px; width: 60px; fill: currentcolor;">
+                            <path fill-rule="evenodd"
+                                  d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
+                            </path>
+                        </svg>
+
+                        <div style="font-size: 50px; margin-left: 10px;">4.5</div>
+
+                        <div style="font-size: 50px; margin-left: 98px;">후기 109개</div>
+                    </div>
+                    <div class="reviewModal__content__body__all">
+                        <div class="reviewModal__content__body__wrap">
+                            <div class="reviewModal__content__search">
+                                <svg class="reviewModal__content__search__svg" focusable="false"
+                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path
+                                            d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+                                    </path>
+                                </svg>
+                                <input class="reviewModal__content__search__input"
+                                       style="width: 90%; border: none; outline: none;" type="text"
+                                       placeholder="후기 검색">
+                            </div>
+                        </div>
+                        <div class="reviewModal__content__reviews">
+                            <%--                            <div class="reviewModal__content__review">--%>
+                            <%--                                <div class="reviewModal__content__review__nickname"><img src="">닉네임--%>
+                            <%--                                </div>--%>
+                            <%--                                <div class="reviewModal__content__review__star">★️★️★️★️★️️</div>--%>
+                            <%--                                <div class="reviewModal__content__review__content">--%>
+                            <%--                                    너무--%>
+                            <%--                                    좋아요ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ--%>
+                            <%--                                </div>--%>
+                            <%--                            </div>--%>
+                            <%--                            <div class="reviewModal__content__review">--%>
+                            <%--                                <div class="reviewModal__content__review__nickname"><img src="">닉네임--%>
+                            <%--                                </div>--%>
+                            <%--                                <div class="reviewModal__content__review__star"></div>--%>
+                            <%--                                <div class="reviewModal__content__review__content">너무 좋아요</div>--%>
+                            <%--                            </div>--%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="screens-room-roomDetail__btn-review-modal screens-room-roomDetail__btn screens-room-roomDetail__btn-shrink screens-room-roomDetail__btn-square">
             후기 191개
             모두 보기
         </button>
@@ -407,7 +532,8 @@
             </div>
         </div>
         <div class="screens-room-roomDetail__section-7__host-contact">
-            <button class="screens-room-roomDetail__btn screens-room-roomDetail__btn-square screens-room-roomDetail__btn-shrink screens-room-roomDetail__host-contact__btn">
+            <button onclick="createChatRoom()"
+                    class="screens-room-roomDetail__btn screens-room-roomDetail__btn-square screens-room-roomDetail__btn-shrink screens-room-roomDetail__host-contact__btn">
                 호스트에게 연락하기
             </button>
             <div class="screens-room-roomDetail__host-contact__contact-with-guest">숙박 중 게스트와의 교류
@@ -424,10 +550,11 @@
                         font-size: 12px; padding: 10px 10px 0 10px;">
         <img class="modal-img" src="${room.room_main_photo}"
              style="float: left; width: 50px; height: 50px; margin-right: 10px; border-radius: 5px;">
-        <h4 style="float: left; color: #717171; margin-top: 6px; width: 170px;">
+        <h4 style="float: left; color: #717171; margin-top: 6px; width: 190px;">
             <h3 style="float: left; font-size: 14px; font-weight: 500; margin-top: 10px;">${room.room_name}</h3>
         </h4>
     </div>
+
 
     <%--    <jsp:include page="/WEB-INF/views/common/user/footer.jsp"/>--%>
 
@@ -444,7 +571,13 @@
     <%-- 캘린더 스크립트 --%>
     <script type="text/javascript"
             src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <script src="/resources/js/room/roomDetail.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <%--  dateRangePicker  --%>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery-date-range-picker/0.14.2/jquery.daterangepicker.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.16.0/moment.min.js"></script>
+    <%--    <script src="/resources/js/room/roomDetail.js"></script>--%>
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
     <script>
@@ -524,7 +657,72 @@
 
     </script>
 
-  <script src="/resources/js/room/roomDetail.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        $(".screens-room-roomDetail__btn-review-modal").click(function () {
+          $.ajax({
+            type: 'GET',                                    // 요청 메서드
+            url: '/room/${room.room_id}/reviews',           // 요청 URL
+            headers: {"content-type": "application/json"},  // 요청 헤더
+            dataType: 'text',                               // 전송받을 데이터의 타입
+            success: function (result) {
+              let reviewList = JSON.parse(result);
+              console.log(reviewList);
+              $('.reviewModal__content__reviews').empty();
+              $.each(reviewList, function (index, reviewList) {
+                let fullStar = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 20px; width: 20px; fill: var(--f-k-smk-x);"><path fill-rule="evenodd" d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"></path></svg>';
+                let halfStar = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false"style="display: block; height: 20px; width: 20px;"><defs><linearGradient id="half-fill-gradient" x1="0%" y1="0%" x2="100%" y2="0%"> <stop offset="0%" style="stop-color: var(--f-k-smk-x);"></stop><stop offset="50%" style="stop-color: var(--f-k-smk-x);"></stop><stop offset="50%" style="stop-color: transparent;"></stop><stop offset="100%" style="stop-color: transparent;"></stop></linearGradient></defs><path fill-rule="evenodd" d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z" style="fill: url(#half-fill-gradient); stroke: #000000; stroke-width: 1; stroke-linejoin: round;"></path></svg>';
+                let emptyStar = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 20px; width: 20px; fill: #ffffff; stroke: #000000; stroke-width: 1;"><path fill-rule="evenodd" d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"></path></svg>';
+
+                let reviewStars = '';
+                let fullStars = Math.floor(reviewList.review_stars);
+                let halfStars = (reviewList.review_stars % 1) !== 0 ? 1 : 0;
+                let emptyStars = 5 - fullStars - halfStars;
+
+                for (let i = 0; i < fullStars; i++) {
+                  reviewStars += fullStar;
+                }
+                for (let i = 0; i < halfStars; i++) {
+                  reviewStars += halfStar;
+                }
+                for (let i = 0; i < emptyStars; i++) {
+                  reviewStars += emptyStar;
+                }
+
+                let html = '<div class="reviewModal__content__review" style="padding-top: 10px; margin-bottom: 20px;">'
+                    +
+                    '    <div class="reviewModal__content__review__nickname"><img src="">'
+                    + reviewList.user_nickname + '</div>' +
+                    '    <div class="reviewModal__content__review__star" style="display: flex;">'
+                    + reviewStars
+                    + '</div>' +
+                    '    <div class="reviewModal__content__review__content">'
+                    + reviewList.review_ctt
+                    + '</div>' +
+                    '</div>';
+                $('.reviewModal__content__reviews').append(html);
+              });
+
+            },
+            error: function () {
+              alert("후기를 불러오는 도중 문제가 발생하였습니다. 관리자에게 문의 부탁드립니다.");
+            }
+          });
+        });
+      });
+    </script>
+
+
+    <script src="/resources/js/room/roomDetail.js"></script>
+
+
+    <script>
+      function createChatRoom() {
+        var room_id = '${room.room_id}';
+        location.href = '/chatting/createRoom/' + room_id;
+      }
+    </script>
 
 </body>
 </html>

@@ -6,18 +6,32 @@
 <mapper namespace="com.universestay.project.mybatis.mapper.admin.couponMapper">
 
     <insert id="insert" parameterType="CouponDto">
-        INSERT INTO Coupon (coupon_name, coupon_desc, coupon_usage, coupon_usable_day, coupon_is_activated, coupon_type,
+        INSERT INTO Coupon (event_id, coupon_name, coupon_desc, coupon_usage, coupon_usable_day, coupon_is_activated,
+                            coupon_type,
                             coupon_discount_rate, coupon_discount_limit, coupon_discount_amount,
                             created_id, updated_id)
-        VALUES (#{coupon_name}, #{coupon_desc}, #{coupon_usage}, #{coupon_usable_day}, #{coupon_is_activated},
+        VALUES (#{event_id}, #{coupon_name}, #{coupon_desc}, #{coupon_usage}, #{coupon_usable_day},
+                #{coupon_is_activated},
                 #{coupon_type}, #{coupon_discount_rate}, #{coupon_discount_limit}, #{coupon_discount_amount},
                 #{created_id}, #{updated_id})
     </insert>
 
-    <select id="select" parameterType="int" resultType="CouponDto">
+    <select id="select" parameterType="Integer" resultType="CouponDto">
         SELECT *
         FROM Coupon
         WHERE coupon_id = #{coupon_id}
+    </select>
+
+    <select id="selectOnEvent" parameterType="Integer" resultType="CouponDto">
+        SELECT *
+        FROM Coupon
+        WHERE event_id = #{event_id}
+    </select>
+
+    <select id="selectByEvent" parameterType="Integer" resultType="Integer">
+        SELECT coupon_id
+        FROM Coupon
+        WHERE event_id = #{event_id}
     </select>
 
     <select id="selectAll" resultType="CouponDto">

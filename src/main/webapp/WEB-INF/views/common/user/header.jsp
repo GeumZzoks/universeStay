@@ -2,7 +2,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%String isHost = (String) request.getAttribute("isHost");%>
-
+<%
+    String user_profile_img_url = "";
+    Cookie[] cookies = request.getCookies();
+    if (cookies != null) {
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("user_profile_img_url")) {
+                user_profile_img_url = cookie.getValue();
+            }
+        }
+    }
+%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -161,6 +171,7 @@
     <!--헤더 프로필 영역-->
     <div class="components-user-header__header__profile">
         <div class="components-user-header__header__profile__to-host">
+
             <a class="components-user-header__a" href="#">
                 <% if
                 (
@@ -185,9 +196,11 @@
                                         ==
                                         null
                 ) { %>
+
                 <div>당신의 공간을 공유하세요.</div>
-                <% } %>
             </a>
+            <% } %>
+
         </div>
 
         <div class="components-user-header__header__profile__my-profile components-user-header__dropdown">
@@ -195,27 +208,9 @@
                 <div components-user-header__header__profile__my-profile__wrapper>
                     <img class="components-user-header__header__profile__hamburger"
                          src="/resources/img/user/bars-3.png"/>
-                    <% //세션에 'user_email'이라는 값이 저장되어 있으면? (즉, 로그인 상태면) 아래 드롭다운을 보여준다.
-                        if
-                        (
-                                session
-                                        .
-                                        getAttribute
-                                                (
-                                                        "user_email"
-                                                )
-                                        !=
-                                        null
-                        ) {
-                    %>
-                    <img class="components-user-header__header__profile__img"
-                         src="${profileImgUrl}"/>
-                    <%
-                    } else {
-                    %>
-                    <img class="components-user-header__header__profile__img"
-                         src="/resources/img/user/default_profile_icon.png"/>
-                    <%}%>
+                    <img class="components-user-header__header__profile__img"/>
+                    <%--                    <img class="components-user-header__header__profile__img"--%>
+                    <%--                         src="/resources/img/user/default_profile_icon.png"/>--%>
                 </div>
 
                 <%-- 마이프로필 버튼 눌렀을때 나오는 드롭다운--%>
@@ -233,7 +228,8 @@
                                         null
                         ) {
                     %>
-                    <div class="components-user-header__dropdown__option dropdown__option-msg">
+                    <div onclick="location.href='/chatting/chattingRoomList'"
+                         class="components-user-header__dropdown__option dropdown__option-msg">
                         <span>메시지</span>
                     </div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-reservation"
@@ -244,9 +240,11 @@
                         <span>위시리스트</span></div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-reviews">
                         <span>나의 리뷰</span></div>
-                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-coupon">
+                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-coupon"
+                         onclick="location.href='/user/myPage/coupon'">
                         <span>나의 쿠폰</span></div>
-                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-notice">
+                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-notice"
+                         onclick="location.href ='/notice'">
                         <span>공지사항</span></div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-event"
                          onclick="location.href ='/event'">
@@ -265,7 +263,8 @@
                         <span>회원가입</span></div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-sign-in">
                         <span>로그인</span></div>
-                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-notice">
+                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-notice"
+                         onclick="location.href='/notice'">
                         <span>공지사항</span></div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-event"
                          onclick="location.href ='/event'">
@@ -321,6 +320,21 @@
                                     'YYYY/MM/DD'));
                 });
     });
+
+    const userProfileUrl = "<%=user_profile_img_url%>";
+    const profileImg = document.querySelector(".components-user-header__header__profile__img");
+    console.log("userProfileUrl:", userProfileUrl);
+
+    window.onload = () => {
+        if (userProfileUrl == "" || userProfileUrl
+                == null) {
+            profileImg.src = "/resources/img/user/default_profile_icon.png"
+        } else {
+            profileImg.src = userProfileUrl;
+        }
+
+    }
+
 </script>
 
 

@@ -66,12 +66,12 @@
                     $('.modal-div').finish();
                     if (response === 'DEL_OK') {
                         button.toggleClass(
-                                'screens-user-main__wishlist__not_wished screens-user-main__wishlist__wished');
+                            'screens-user-main__wishlist__not_wished screens-user-main__wishlist__wished');
                         $('.modal-div h4').text('위시리스트에서 삭제되었습니다.')
                         $("#" + roomID).fadeIn('slow').delay(3000).fadeOut('slow');
                     } else if (response === 'IST_OK') {
                         button.toggleClass(
-                                'screens-user-main__wishlist__not_wished screens-user-main__wishlist__wished');
+                            'screens-user-main__wishlist__not_wished screens-user-main__wishlist__wished');
                         $('.modal-div h4').text('위시리스트에 추가되었습니다.')
                         $("#" + roomID).fadeIn('slow').delay(3000).fadeOut('slow');
                     } else {
@@ -95,7 +95,7 @@
         // 무한 스크롤
         $.ajax({
             url: "/scroll" + "?currentPage=" + currentPage + "&"
-                    + queryStringWithoutQuestionMark,
+                + queryStringWithoutQuestionMark,
             method: "GET",
             success: function (data) {
                 totalPageCount = data[0].totalPageCount;
@@ -112,71 +112,71 @@
                     }
 
                     $(".screens-user-main__main__wrapper").append(
-                            '<div class="screens-user-main__room__wrapper" value="'
-                            + room.room_id
-                            + '" onclick="location.href=\'/room/' + room.room_id + '\'">' +
-                            '<div class="screens-user-main__room__img__wrapper">' +
-                            '<div class="swiper mySwiper">' +
-                            '<div class="swiper-wrapper">' +
-                            room.room_img_url_list.map(function (img) {
-                                return '<div class="swiper-slide">' +
-                                        '<img src="' + img + '">' +
-                                        '</div>';
-                            }).join('') +
-                            '</div>' +
-                            '<div class="swiper-pagination"></div>' +
-                            '<div class="swiper-button-prev swiper-button" onclick="handleButtonClick(event)"></div>'
-                            +
-                            '<div class="swiper-button-next swiper-button" onclick="handleButtonClick(event)"></div>'
-                            +
-                            '</div>' +
-                            '</div>' +
-                            '<span class="screens-user-main__room-location">'
-                            + room.room_address
-                            + '</span>' +
-                            '<span class="screens-user-main__room-title">' + room.room_name
-                            + '</span>' +
-                            '<div class="screens-user-main__room-price__wrapper">' +
-                            '<span>₩</span> <span class="screens-user-main__room-price">'
-                            + refinedPrice + '</span><span> /박</span>' +
-                            '</div>' +
-                            '<span class="screens-user-main__room-stars">✭'
-                            + starsAvg
-                            + '</span>'
-                            + '<form class="screens-user-main__wishlist">'
-                            + wished
-                            + room.room_id
-                            + '>' + '</button>'
-                            + '</form>'
-                            + '</div>'
-                            + '<div id="'
-                            + room.room_id
-                            + '" class="modal-div" style="position: fixed; bottom: 5%; left: 3%; width: 250px; height: 60px; display: none; z-index: 99; box-shadow: 1px 1px 4px 0 darkgray; border-radius: 10px; background-color: white; font-size: 12px; padding: 10px 10px 0 10px;">'
-                            + ' <img class="modal-img" src="'
-                            + room.room_main_photo
-                            + '" style="float: left; width: 50px; height: 50px; margin-right: 10px; border-radius: 5px;">'
-                            + '<h4 style="float: left; color: #717171; margin-top: 6px; width: 170px;">'
-                            + '<h3 style="float: left; font-size: 14px; font-weight: 500; margin-top: 10px;">'
-                            + room.room_name
-                            + '</h3>'
-                            + '</h4>'
-                            + '</div>'
+                        '<div class="screens-user-main__room__wrapper" value="'
+                        + room.room_id
+                        + '" onclick="location.href=\'/room/' + room.room_id + '\'">' +
+                        '<div class="screens-user-main__room__img__wrapper">' +
+                        '<div class="swiper mySwiper">' +
+                        '<div class="swiper-wrapper">' +
+                        room.room_img_url_list.map(function (img) {
+                            return '<div class="swiper-slide">' +
+                                '<img src="' + img + '">' +
+                                '</div>';
+                        }).join('') +
+                        '</div>' +
+                        '<div class="swiper-pagination"></div>' +
+                        '<div class="swiper-button-prev swiper-button" onclick="handleButtonClick(event)"></div>'
+                        +
+                        '<div class="swiper-button-next swiper-button" onclick="handleButtonClick(event)"></div>'
+                        +
+                        '</div>' +
+                        '</div>' +
+                        '<span class="screens-user-main__room-location">'
+                        + room.room_address
+                        + '</span>' +
+                        '<span class="screens-user-main__room-title">' + room.room_name
+                        + '</span>' +
+                        '<div class="screens-user-main__room-price__wrapper">' +
+                        '<span>₩</span> <span class="screens-user-main__room-price">'
+                        + refinedPrice + '</span><span> /박</span>' +
+                        '</div>' +
+                        '<span class="screens-user-main__room-stars">✭'
+                        + starsAvg
+                        + '</span>'
+                        + '<form class="screens-user-main__wishlist">'
+                        + wished
+                        + room.room_id
+                        + '>' + '</button>'
+                        + '</form>'
+                        + '</div>'
+                        + '<div id="'
+                        + room.room_id
+                        + '" class="modal-div" style="position: fixed; bottom: 5%; left: 3%; width: 250px; height: 60px; display: none; z-index: 99; box-shadow: 1px 1px 4px 0 darkgray; border-radius: 10px; background-color: white; font-size: 12px; padding: 10px 10px 0 10px;">'
+                        + ' <img class="modal-img" src="'
+                        + room.room_main_photo
+                        + '" style="float: left; width: 50px; height: 50px; margin-right: 10px; border-radius: 5px;">'
+                        + '<h4 style="float: left; color: #717171; margin-top: 6px; width: 190px;">'
+                        + '<h3 style="float: left; font-size: 14px; font-weight: 500; margin-top: 10px;">'
+                        + room.room_name
+                        + '</h3>'
+                        + '</h4>'
+                        + '</div>'
                     )
                     ;
                 });
 
                 const mySwiper = new Swiper('.mySwiper',
-                        {
-                            pagination: {
-                                el: ".swiper-pagination",
-                            },
-                            loop: true,
-                            direction: 'horizontal',
-                            navigation: {
-                                nextEl: '.swiper-button-next',
-                                prevEl: '.swiper-button-prev',
-                            }
-                        });
+                    {
+                        pagination: {
+                            el: ".swiper-pagination",
+                        },
+                        loop: true,
+                        direction: 'horizontal',
+                        navigation: {
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
+                        }
+                    });
                 wishList() // 수정필요!!
             }
 
@@ -186,13 +186,12 @@
     let isScrolling = false;
 
     $(window).on("scroll", function () {
-        if (isScrolling) return; // 이미 스크롤 중인 경우 무시
         isScrolling = true;
 
         let scrollTop = $(window).scrollTop();
         let windowHeight = $(window).height();
         let documentHeight = $(document).height();
-        let isBottom = scrollTop + windowHeight + 100 >= documentHeight;
+        let isBottom = scrollTop + windowHeight >= documentHeight;
 
         if (isBottom) {
             if (currentPage === totalPageCount) {
@@ -203,7 +202,7 @@
             currentPage++;
 
             window.scrollTo({
-                top: scrollTop - 200,
+                top: scrollTop - 150,
                 behavior: "auto"
             });
 
@@ -211,7 +210,7 @@
 
             setTimeout(function () {
                 isScrolling = false; // 스크롤 이벤트의 디바운싱 설정 해제
-            }, 500); // 0.5초 딜레이 (원하는 시간으로 조절 가능)
+            }, 300); // 0.3초 딜레이
         }
     });
 

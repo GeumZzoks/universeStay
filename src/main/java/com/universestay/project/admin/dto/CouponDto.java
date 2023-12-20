@@ -1,13 +1,9 @@
 package com.universestay.project.admin.dto;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.*;
+
 import java.sql.Timestamp;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
@@ -19,6 +15,9 @@ public class CouponDto {
 
     @ApiModelProperty(notes = "쿠폰 ID", example = "0", required = true)
     private int coupon_id;
+
+    @ApiModelProperty(notes = "이벤트 ID", example = "1", required = false)
+    private int event_id;
 
     @ApiModelProperty(notes = "쿠폰 생성일", example = "YYYY-MM-DD hh:mm:ss.000000", required = false)
     private Timestamp coupon_created_date;

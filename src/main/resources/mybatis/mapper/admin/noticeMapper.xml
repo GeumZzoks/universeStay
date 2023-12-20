@@ -81,4 +81,28 @@
         where admin_email = #{admin_email}
     </select>
 
+    <select id="selectMainPage" parameterType="map" resultType="map">
+        SELECT n.notice_id,
+               n.notice_title,
+               n.created_at
+        FROM Notice n,
+             Admin a
+        where n.admin_id = a.admin_id
+          and n.notice_is_open = 'Y'
+        ORDER BY notice_id DESC
+            LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="openCount" resultType="int">
+        SELECT count(*)
+        FROM Notice
+        where notice_is_open = 'Y'
+    </select>
+
+    <select id="mainSelect" parameterType="int" resultType="NoticeDto">
+        select notice_title, notice_ctt, created_at
+        from Notice
+        where notice_id = #{notice_id}
+    </select>
+
 </mapper>

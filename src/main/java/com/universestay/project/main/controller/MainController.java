@@ -1,7 +1,5 @@
 package com.universestay.project.main.controller;
 
-import com.universestay.project.admin.dto.EventDto;
-import com.universestay.project.admin.service.EventService;
 import com.universestay.project.common.MainSearchCondition;
 import com.universestay.project.common.PageHandler;
 import com.universestay.project.common.SearchCondition;
@@ -37,25 +35,9 @@ public class MainController {
     RoomService roomService;
     @Autowired
     WishListService wishListService;
-    @Autowired
-    EventService eventService;
-
-    @GetMapping("/event")
-    public String main(Model model) {
-        try {
-            List<EventDto> eventMainDto = eventService.selectMain();
-            System.out.println("eventMainDto = " + eventMainDto);
-            model.addAttribute("eventMainDto", eventMainDto);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return "main/eventPage";
-    }
 
     @GetMapping("/")
-    public String main(HttpSession session, Model model,
+    public String main(HttpSession session, Model model, HttpServletResponse response,
             @ModelAttribute("statusId") String statusId)
             throws Exception {
         String userEmail = (String) (session.getAttribute("user_email"));
@@ -69,9 +51,10 @@ public class MainController {
         String isHost = user.getUser_is_host();
 
         model.addAttribute("userInfo", user);
-        model.addAttribute("profileImgUrl", profileImgUrl);
         model.addAttribute("isHost", isHost);
         model.addAttribute("statusId", statusId);
+        System.out.println(model);
+
         return "main/main";
     }
 

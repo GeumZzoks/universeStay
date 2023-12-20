@@ -960,6 +960,9 @@
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${KakaoApiKey}&libraries=services"></script>
 <%-- Script --%>
 <script src="/resources/js/room/roomEnroll.js"></script>
+<script>
+  console.log("${KakaoApiKey}")
+</script>
 
 </body>
 </html>
