@@ -147,6 +147,12 @@ btnsMore.forEach(btnMore => {
   })
 });
 
+// 숙소 설명 공백 자르기
+document.querySelectorAll(
+    ".screens-room-roomDetail__section-3__info-3__desc2-2").forEach(textDiv => {
+  textDiv.innerHTML = textDiv.innerHTML.trim();
+})
+
 //---------------------- dateRangePicker 라이브러리 --------------------------------------------
 const inputCheckIn = document.querySelector("#check-in-button");
 const inputCheckOut = document.querySelector("#check-out-button");

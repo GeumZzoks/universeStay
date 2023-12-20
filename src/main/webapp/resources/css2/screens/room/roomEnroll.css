@@ -288,6 +288,10 @@
   position: relative;
 }
 
+.screens-room-roomEnroll__photo-sub-1, .screens-room-roomEnroll__photo-sub-2, .screens-room-roomEnroll__photo-sub-3, .screens-room-roomEnroll__photo-sub-4 {
+  overflow: hidden;
+}
+
 .screens-room-roomEnroll__photo-main__prev-upload-photo {
   display: flex;
   flex-direction: column;
@@ -388,6 +392,10 @@
   display: block;
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .screens-room-roomEnroll__photos-sub {
