@@ -53,6 +53,7 @@ public class BookingRoomController {
             throws Exception {
 
         // 숙소에 대한 정보 가져오기
+
         Map<String, Object> roomDto = roomService.lookUpRoom(bookingDto.getRoom_id(),
                 (String) httpSession.getAttribute("user_email"));
 
@@ -62,7 +63,7 @@ public class BookingRoomController {
         }
 
         // DB에 저장 Booking(예약 확정 상태는 아님)
-        bookService.bookRoom(bookingDto, roomDto, httpSession);
+//        bookService.bookRoom(bookingDto, roomDto, httpSession);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }

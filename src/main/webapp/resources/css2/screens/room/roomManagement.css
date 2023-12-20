@@ -1,3 +1,111 @@
+/*!* 숙소 버튼 스타일링 *!*/
+/*.screens-room-management__menuButton-box input[type="radio"] {*/
+/*  display: none; !* 라디오 버튼을 감춤 *!*/
+/*}*/
+
+/*.screens-room-management__menuButton-box label {*/
+/*  display: inline-block;*/
+/*  color: #fff;*/
+/*  cursor: pointer;*/
+/*}*/
+
+/*!* 선택된 버튼 스타일링 *!*/
+/*.screens-room-management__menuButton-box input[type="radio"]:checked + label {*/
+/*  background-color: #777777;*/
+/*}*/
+
+/*.room-management-header-btn-active:checked {*/
+/*  background-color: #FA998C;*/
+/*}*/
+
+/**/
+
+/*헤더 영역*/
+.screens-room-management__menuButton-box {
+  width: 100px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 30px;
+}
+
+.screens-room-management__menuButton-box:hover {
+  background-color: #f8f8f8;
+  width: 100px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #777777;
+  border-radius: 30px;
+
+  /*div 상자 만들었을떄*/
+  /*text-decoration: underline;*/
+  /*text-decoration-thickness: 2px;*/
+}
+
+.screens-room-management__menuButton-box div {
+  width: 20px;
+  height: 1.6px;
+  background-color: #777777;
+  margin-top: 10px;
+}
+
+.screens-room-management__menuButton-box button {
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  /*background-color: #FA998C;*/
+  background-color: inherit;
+  padding: 0;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
+  color: #777777;
+}
+
+/*여기부터*/
+.screens-room-management__menuButton-box h2 {
+  color: #000;
+  display: inline-block;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.screens-room-management__menuButton-box button:after {
+  display: block;
+  content: '';
+  border-bottom: solid 3px #777777;
+  transform: scaleX(0);
+  transition: transform 250ms ease-in-out;
+}
+
+.screens-room-management__menuButton-box button:hover:after {
+  transform: scaleX(1);
+}
+
+.screens-room-management__menuButton-box button.fromRight:after {
+  transform-origin: 100% 50%;
+}
+
+.screens-room-management__menuButton-box button.fromLeft:after {
+  transform-origin: 0% 50%;
+}
+
+/*여기까지*/
+
+/*최하단 구분선*/
+.components-user-header__line {
+  width: 100%;
+  height: 0;
+  border-top: rgb(221, 221, 221) 0.5px solid;
+}
+
+/*바디 영역*/
 .screens-room-management__container {
   /*background-color: #fee426;*/
   display: flex;
@@ -19,7 +127,7 @@
   /*border-radius: 20px; !* 잠시 영역 구분할라고*!*/
   width: 100%;
   height: 20%;
-  margin: 30px 0px 30px 0px;
+  margin: 0px 0px 10px 0px;
 
   /*자식 적용*/
   display: flex;
@@ -46,8 +154,25 @@
   gap: 15px;
 }
 
+.screens-room-management__top__button {
+  border: none;
+  outline: none;
+  padding: 0;
+  border-radius: 30px;
+}
+
 .screens-room-management__top__button-icn {
   width: 40px;
+  cursor: pointer;
+  border-radius: 30px;
+}
+
+.screens-room-management__top__button-icn:hover {
+  width: 40px;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: 0.1ms all ease-in; /*애니메이션 효과*/
+  box-shadow: 3px 3px 3px #DDDDDD;
 }
 
 .screens-room-management__cards {
@@ -66,6 +191,7 @@
 
   /*visibility: hidden;*/
   position: relative;
+  cursor: pointer;
 }
 
 .screens-room-management__card p {
@@ -101,13 +227,11 @@
 
 .screens-room-management__card .screens-room-management__card__info {
   margin: 10px 0px 10px 0px;
-  /*width: 100%;*/
-  /*height: 10%;*/
-
 }
 
 .screens-room-management__card .screens-room-management__card__info p {
   font-size: 13px;
+  font-weight: bold;
   color: #999999;
   margin: 0px 0px 0px 0px;
 }
@@ -115,6 +239,7 @@
 .screens-room-management__card_status {
   background-color: #ffffff;
   border-radius: 35px;
+  box-shadow: 2px 2px 1px #3C3C3C;
 
   display: flex;
   align-items: center;
@@ -217,8 +342,8 @@
 }
 
 .screens-room-management__modalText-box span {
-  font-size: 21px;
-  font-weight: 999;
+  font-size: 22px;
+  font-weight: 530;
   padding: 5px;
   line-height: 30px;
   text-align: center;
@@ -227,6 +352,9 @@
 
 .screens-room-management__modalText-box__text {
   /*color: #;*/
+  /*overflow: hidden;*/
+  /*text-overflow: ellipsis;*/
+  /*white-space: nowrap;*/
 }
 
 .screens-room-management__btnStatus-box {
@@ -235,13 +363,12 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-
   height: 30%;
   margin-bottom: 10px;
 
 }
 
-/* 숙소 상태 수정 버튼 : 활성화/비활성화, 폐점 */
+/* 숙소 상태 수정 버튼 : 활성화,비활성화,폐점 */
 .screens-room-management__btnStatus-box button {
   border: none;
   outline: none;
@@ -255,37 +382,33 @@
   margin: 4px;
 }
 
-/*.screens-admin-dashboard__btn:hover {*/
-/*  color: #F48475;*/
-/*  background: white;*/
-/*  padding: 3px 8px;*/
-/*  border: 2px solid #F48475;*/
-/*}*/
-
 .screens-room-management__btnStatus-box button:hover {
   background-color: #F7F7F7;
   color: #717171;
+  cursor: pointer;
 }
 
 /* 숙소 수정하기 링크 */
 .screens-room-management__modifyHostRoom-box {
   display: flex;
   justify-content: flex-end;
-
   height: 10%;
   margin-bottom: 10px;
 }
 
 .screens-room-management__modifyHostRoom-box a {
-  /*text-decoration: none;*/
-  /*display: inline-block;*/
   color: #bdbdbd;
   font-size: 16px;
   margin: 20px 15px;
-  /*text-underline-position: under;*/ /*글자와 밑줄간격 띄기*/
+  text-decoration-line: underline;
+}
+
+.screens-room-management__modifyHostRoom-box a:hover {
+  color: #FA998C;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 20px 15px;
+  cursor: pointer;
 }
 
 
-/* 버튼의 기본 속성 제거 */
-/*border: none;*/
-/*outline: none;*/
