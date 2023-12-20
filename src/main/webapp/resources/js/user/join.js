@@ -80,9 +80,14 @@ $(document).ready(function () {
       var user_pwd = $("#screens-user-join_signup_pw").val();
       var user_confirmPassword = $("#screens-user-join_signup_pww").val();
       var user_name = $("#screens-user-join_signup_name").val();
-      var user_birthYear = $("#screens-user-join_signup_birth_yy").val();
+      var user_birthYear = $(".screens-user-join_dropdown__textBox").val();
       var user_birthMonth = $(".screens-user-join_dropdown__textBox").val();
-      var user_birthDay = $("#screens-user-join_signup_birth_dd").val();
+      var user_birthDay = $(".screens-user-join_dropdown__textBox").val();
+      console.log(user_birthYear, user_birthMonth, user_birthDay);
+
+      // var user_birthYear = $("#screens-user-join_signup_birth_yy").val();
+      // var user_birthMonth = $(".screens-user-join_dropdown__textBox").val();
+      // var user_birthDay = $("#screens-user-join_signup_birth_dd").val();
       var user_email = $("#screens-user-join_signup_email").val();
       var user_phone_num1 = $("#screens-user-join_signup_phone_1").val();
       var user_phone_num2 = $("#screens-user-join_signup_phone_2").val();
@@ -183,7 +188,6 @@ $(function () {
 
 function fnSubmit() {
 
-  var email_rule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
   var tel_rule = /^\d{2,3}-\d{3,4}-\d{4}$/;
 
   if ($("#screens-user-join_signup_id").val() == null || $(
@@ -226,11 +230,13 @@ function fnSubmit() {
     return false;
   }
 
-  if (!email_rule.test($("#screens-user-join_signup_email").val())) {
-    alert("이메일을 형식에 맞게 입력해주세요. ex) 1234@naver.com");
-    $("#screens-user-join_signup_email").focus();
-    return false;
-  }
+  // 아이디 중복확인 버튼 눌렀는지 확인
+  // if (!isButtonPressed) {
+  //   alert("아이디 중복확인을 해주세요.");
+  //   $("#screens-user-join_signup_id").focus();
+  //
+  //   return false;
+  // }
 
   if ($("#screens-user-join_code_check_input").val() == null || $(
           "#screens-user-join_code_check_input").val()
@@ -247,9 +253,25 @@ function fnSubmit() {
     return false;
   }
 
+  let user_pw = $("#screens-user-join_signup_pw").val();
+  let user_pww = $("#screens-user-join_signup_pww").val();
+
+  if (user_pw !== user_pww) {
+    alert("비밀번호가 맞지 않습니다. 다시 확인해주세요.");
+
+    // Optionally, you can clear the password fields or take other actions
+    $("#screens-user-join_signup_pw").val("");
+    $("#screens-user-join_signup_pww").val("");
+    $("#screens-user-join_signup_pw").focus();
+  }
+
   if (confirm("회원가입하시겠습니까?")) {
-    $("#screens-user-join_signup_btn").submit();
-    return true;
+    if (isButtonPressed && isEmailCodeChecked && isIdCheckButtonPressed) {
+      $("#screens-user-join_signup_btn").submit();
+      return true;
+    } else {
+      alert("인증번호 확인 혹은 아이디 중복체크를 확인하세요");
+    }
   }
 };
 
@@ -281,7 +303,6 @@ var timeLeft = 180;
 var timerInterval;
 
 function startTimer() {
-  document.getElementById("screens-user-join_mail_Check_Btn").disabled = true; // 버튼 비활성화
   countdown(); // 타이머 시작
 }
 
@@ -307,22 +328,26 @@ function countdown() {
 document.getElementById(
     "screens-user-join_mail_code_check_Btn").addEventListener("click",
     function () {
-      clearTimeout(timerInterval); // 타이머 중지
+      //  clearTimeout(timerInterval); // 타이머 중지
       var timerElement = document.getElementsByClassName(
           "certificationTime")[0];
       timerElement.innerHTML = "03:00"; // 초기값으로 타이머를 설정
       timeLeft = 180; // 타이머 시간을 초기화
     });
 
-document.getElementById("screens-user-join_mail_Check_Btn").addEventListener(
-    "click",
-    function () {
-      startTimer(); // 타이머 시작
-    });
+let isButtonPressed = false;
+let isEmailCodeChecked = false;
+var isIdCheckButtonPressed = false;
+
+function IdcheckButtonPressed() {
+  isIdCheckButtonPressed = true;
+
+}
 
 $('#screens-user-join_mail_code_check_Btn').click(function () {
   const inputCode = $('#screens-user-join_code_check_input').val();
-  console.log(inputCode);
+
+  isButtonPressed = true;
 
   $.ajax({
     type: 'post',
@@ -331,14 +356,28 @@ $('#screens-user-join_mail_code_check_Btn').click(function () {
     success: function (data) {
       if ("Y" === data) {
         alert('인증번호가 확인되었습니다.');
+        isEmailCodeChecked = true;
+        confirmAuthenticationNumber();
+        clearTimeout(timerInterval); // 타이머 중지
+
       } else {
-        alert('인증번호가 일치하지 않습니다.');
+        document.getElementById(
+            "screens-user-join_code_check_input").disabled = false;
+        alert('인증번호가 확인되지 않았습니다.');
       }
     },
     error: function (xhr, status, error) {
-      alert('인증번호가 일치하지 않습니다. 다시 전송해주세요.');
+      document.getElementById(
+          "screens-user-join_code_check_input").disabled = false;
+
+      alert('인증번호가 일치하지 않습니다. 다시 입력해주세요.');
       console.error("Ajax request failed:", status, error);
       console.log(xhr.responseText);
     }
   });
 });
+
+function confirmAuthenticationNumber() {
+  document.getElementById("screens-user-join_code_check_input").disabled = true;
+
+}
