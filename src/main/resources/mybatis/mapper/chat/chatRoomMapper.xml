@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.universestay.project.chat.dao.ChatRoomDao">
+
+  <insert id="createRoom" parameterType="ChattingRoomDto">
+    INSERT INTO ChattingRoom (chatting_room_id, user_id, user_id2, room_id, created_id, updated_id)
+    VALUES (#{chatting_room_id}, #{user_id}, #{user_id2}, #{room_id}, #{created_id}, #{updated_id})
+  </insert>
+
+  <select id="selectChatRoom" parameterType="ChattingRoomDto" resultType="ChattingRoomDto">
+    SELECT *
+    FROM ChattingRoom
+    WHERE user_id = #{user_id}
+      AND user_id2 = #{user_id2}
+      AND room_id = #{room_id}
+  </select>
+
+  <select id="selectChatRoomId" parameterType="ChattingRoomDto" resultType="String">
+    SELECT chatting_room_id
+    FROM ChattingRoom
+    WHERE user_id = #{user_id}
+      AND user_id2 = #{user_id2}
+      AND room_id = #{room_id}
+  </select>
+
+  <select id="selectChatRoomList" parameterType="String" resultType="map">
+    SELECT cr.*, cm.chat_date, cm.chat_ctt, u.user_name, pi.profile_img_url, cm.chatting_room_id
+    FROM ChattingRoom cr
+           JOIN (SELECT cm1.*
+                 FROM ChattingMessage cm1
+                 WHERE cm1.chat_date = (SELECT MAX(chat_date)
+                                        FROM ChattingMessage
+                                        WHERE chatting_room_id = cm1.chatting_room_id)) cm
+                ON cr.chatting_room_id = cm.chatting_room_id
+           JOIN User u ON cm.user_id = u.user_id
+           LEFT JOIN ProfileImg pi ON cm.user_id = pi.user_id AND pi.profile_img_is_remove = 'N'
+    WHERE (cr.user_id = #{user_id} OR cr.user_id2 = #{user_id});
+
+  </select>
+</mapper>
+
+

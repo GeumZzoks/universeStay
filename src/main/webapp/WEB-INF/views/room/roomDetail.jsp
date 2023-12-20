@@ -531,7 +531,8 @@
             </div>
         </div>
         <div class="screens-room-roomDetail__section-7__host-contact">
-            <button class="screens-room-roomDetail__btn screens-room-roomDetail__btn-square screens-room-roomDetail__btn-shrink screens-room-roomDetail__host-contact__btn">
+            <button onclick="createChatRoom()"
+                    class="screens-room-roomDetail__btn screens-room-roomDetail__btn-square screens-room-roomDetail__btn-shrink screens-room-roomDetail__host-contact__btn">
                 호스트에게 연락하기
             </button>
             <div class="screens-room-roomDetail__host-contact__contact-with-guest">숙박 중 게스트와의 교류
@@ -552,6 +553,7 @@
             <h3 style="float: left; font-size: 14px; font-weight: 500; margin-top: 10px;">${room.room_name}</h3>
         </h4>
     </div>
+
 
     <%--    <jsp:include page="/WEB-INF/views/common/user/footer.jsp"/>--%>
 
@@ -712,6 +714,14 @@
 
 
     <script src="/resources/js/room/roomDetail.js"></script>
+  
+  
+    <script>
+      function createChatRoom() {
+        var room_id = '${room.room_id}';
+        location.href = '/chatting/createRoom/' + room_id;
+      }
+    </script>
 
 </body>
 </html>

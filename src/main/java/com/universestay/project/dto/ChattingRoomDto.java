@@ -26,6 +26,9 @@ public class ChattingRoomDto {
     @ApiModelProperty(notes = "게스트 ID", example = "02c13ef6-89e7-11ee-b9d1-0242ac120002", required = true)
     private String user_id;
 
+    @ApiModelProperty(notes = "숙소 ID", example = "b2b729a2-89e6-11ee-b9d1-0242ac120002", required = true)
+    private String room_id;
+
     @ApiModelProperty(notes = "최초등록일자", example = "2023/08/11", required = true)
     private Timestamp created_at;
 
