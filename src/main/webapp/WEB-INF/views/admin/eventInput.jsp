@@ -23,7 +23,8 @@
 
     <div class="screens-admin-event__content">
         <h3 style="color:indianred; margin-top: 20px; font-weight: 600;">이벤트 등록</h3>
-        <form action='/admin/event/write' method='post'><input type='hidden' value='${eventDto.event_id}'>
+        <form action='/admin/event/write' method='post' enctype="multipart/form-data">
+            <input type='hidden' value='${eventDto.event_id}'>
             <h5 class="screens-admin-event__content-input__type">이벤트 제목</h5>
             <input name="event_title" type="text" style="width: 50%;">
             <h5 class="screens-admin-event__content-input__type">이벤트 내용</h5>
@@ -53,35 +54,36 @@
                 <div class="screens-admin-event__content-input__filebox">
                     <input class="upload-name" placeholder="첨부파일">
                     <label for="file">탐색</label>
-                    <input type="file" id="file" accept="image/*" onchange="readURL(this)">
+                    <input type="file" name="eventFile" id="file" accept="image/*"
+                           onchange="readURL(this)">
                 </div>
             </div>
             <button class='screens-admin-event__content-bottom__btn__submit' type='submit'>등록</button>
         </form>
+        </form>
     </div>
-</div>
-<script>
+    <script>
 
-    let msg = "${msg}";
-    if (msg == "WRT_ERR") alert("게시물 작성에 실패하였습니다. 날짜를 입력해주세요.");
+        let msg = "${msg}";
+        if (msg == "WRT_ERR") alert("게시물 작성에 실패하였습니다. 날짜를 입력해주세요.");
 
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                document.getElementById('preview').src = e.target.result;
-            };
-            reader.readAsDataURL(input.files[0]);
-        } else {
-            document.getElementById('preview').src = "";
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('preview').src = e.target.result;
+                };
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                document.getElementById('preview').src = "";
+            }
         }
-    }
 
-    $("#file").on('change', function () {
-        var fileName = $("#file").val();
-        $(".upload-name").val(fileName);
-    });
+        $("#file").on('change', function () {
+            var fileName = $("#file").val();
+            $(".upload-name").val(fileName);
+        });
 
-</script>
+    </script>
 </body>
 </html>

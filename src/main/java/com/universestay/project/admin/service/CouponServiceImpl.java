@@ -27,6 +27,16 @@ public class CouponServiceImpl implements CouponService {
     }
 
     @Override
+    public CouponDto selectOnEvent(Integer event_id) throws Exception {
+        return couponDao.selectOnEvent(event_id);
+    }
+
+    @Override
+    public Integer selectByEvent(Integer event_id) throws Exception {
+        return couponDao.selectByEvent(event_id);
+    }
+
+    @Override
     public List<CouponDto> selectAll() throws Exception {
         return couponDao.selectAll();
     }

@@ -60,5 +60,20 @@ public class NoticeDaoImpl implements NoticeDao {
         return session.selectOne(namespace + "selectAdminId", admin_email);
     }
 
+    @Override
+    public List<Map<String, Object>> selectMainPage(Map map) throws Exception {
+        return session.selectList(namespace + "selectMainPage", map);
+    }
+
+    @Override
+    public int openCount() throws Exception {
+        return session.selectOne(namespace + "openCount");
+    }
+
+    @Override
+    public NoticeDto mainSelect(Integer notice_id) throws Exception {
+        return session.selectOne(namespace + "mainSelect", notice_id);
+    }
+
 
 }

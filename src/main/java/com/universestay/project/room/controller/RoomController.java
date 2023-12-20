@@ -1,6 +1,7 @@
 package com.universestay.project.room.controller;
 
 import com.universestay.project.room.dao.RoomViewDao;
+import com.universestay.project.room.dao.BookDao;
 import com.universestay.project.room.dto.RoomAmenityDto;
 import com.universestay.project.room.dto.RoomDto;
 import com.universestay.project.room.dto.RoomImgDto;
@@ -10,24 +11,28 @@ import com.universestay.project.room.dto.RoomViewDto;
 import com.universestay.project.room.service.RoomAmenityService;
 import com.universestay.project.room.service.RoomService;
 import com.universestay.project.user.dao.UserWithdrawalDao;
+import com.universestay.project.user.dto.BookingDto;
 import com.universestay.project.user.dto.UserDto;
 import com.universestay.project.user.service.ProfileImgServiceImpl;
 import com.universestay.project.user.service.UserInfoService;
 import com.universestay.project.user.service.UserLoginService;
 import com.universestay.project.user.service.WishListService;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/room")
@@ -49,6 +54,9 @@ public class RoomController {
     WishListService wishListService;
     @Autowired
     RoomViewDao roomViewDao;
+    @Autowired
+    BookDao bookDao;
+
 
     @GetMapping("")
     public String showRoom() {
@@ -64,25 +72,34 @@ public class RoomController {
             Map<String, Object> room = roomService.lookUpRoom(room_id, user_id);
             List<RoomImgDto> roomImgs = roomService.lookUp5RoomImg(room_id);
             List<String[]> roomAmenities = roomAmenityService.lookUpRoomAmenity(room_id);
-            UserDto host = userWithdrawalDao.selectUserByUuid(user_id);
-            String profileImgUrl = profileImgService.getProfileImgUrl(user_id);
+            UserDto host = userWithdrawalDao.selectUserByUuid((String) room.get("user_id"));
+            String profileImgUrl = profileImgService.getProfileImgUrl((String) room.get("user_id"));
+            List<BookingDto> bookingDtos = bookDao.selectUnavailableDates(room_id);
 
             if (room == null) {
                 // TODO: 에러메세지 보여주고 메인으로 이동
                 return "redirect:/";
             }
 
+            List<RoomImgDto> roomImgList = new ArrayList<>();
+            for (RoomImgDto roomImg : roomImgs) {
+                if (roomImg.getRoom_img_url().equals(room.get("room_main_photo"))) {
+                    continue;
+                }
+                roomImgList.add(roomImg);
+            }
+
             model.addAttribute("room", room);
-            model.addAttribute("roomImgList", roomImgs);
+            model.addAttribute("roomImgList", roomImgList);
             model.addAttribute("host", host);
             model.addAttribute("profileImgUrl", profileImgUrl);
             model.addAttribute("roomAmenities", roomAmenities);
+            model.addAttribute("bookingDtos", bookingDtos);
 
             return "room/roomDetail";
 
         } catch (Exception e) {
             e.printStackTrace();
-
             // TODO: 에러메세지 보여주고 메인으로 이동
             return "redirect:/";
         }
@@ -137,7 +154,7 @@ public class RoomController {
 
     @PostMapping("/enroll")
     public String enrollRoom(RoomDto roomDto, RoomAmenityDto roomAmenityDto, Integer room_view,
-            HttpSession session, RedirectAttributes redirectAttributes) {
+                             HttpSession session, RedirectAttributes redirectAttributes) {
         try {
             String room_id = roomService.enroll(roomDto, roomAmenityDto, room_view, session);
             redirectAttributes.addAttribute("room_id", room_id);
@@ -251,7 +268,7 @@ public class RoomController {
      */
     @GetMapping("/statusHostroom")
     public String statusHostroom(@RequestParam String room_id,
-            @RequestParam(defaultValue = "") String room_status_id) throws Exception {
+                                 @RequestParam(defaultValue = "") String room_status_id) throws Exception {
         try {
             roomService.statusHostroom(room_id, room_status_id);
             return "redirect:/room/management";

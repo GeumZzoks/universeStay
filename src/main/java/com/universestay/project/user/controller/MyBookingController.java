@@ -21,20 +21,10 @@ public class MyBookingController {
     @Autowired
     MyBookingService myBookingService;
 
-    @GetMapping("/abc")
-    public String abc() {
-        System.out.println("111111");
-        return "room/reservation";
-    }
-
     // 서비스페이지 상단에서 내 예약 내역 눌렀을 때
-    @GetMapping("/")
+    @GetMapping
     public String myBooking(HttpSession session, Model model) throws Exception {
-        // TODO: 2023-12-09 나중에 지우기 세션 코드 넣기
-//        session.setAttribute("user_email", "ming7606@naver.com");
-        // TODO: 2023-12-09 여기까지----------------
 
-        System.out.println("URL ---- /user/mybookings/");
         String user_email = (String) session.getAttribute("user_email");
         try {
             // mapper에 전달해줄 parameter
@@ -56,15 +46,6 @@ public class MyBookingController {
             List<Map<String, Object>> list1 = myBookingService.getMyBookingList(map1);
             List<Map<String, Object>> list2 = myBookingService.getMyBookingList(map2);
 
-            // TODO: 2023-12-09 test용 나중에 지울 것.
-            for (Map<String, Object> dto : list1) {
-                System.out.println("dto = " + dto);
-            }
-            System.out.println("---------------------------------------------------");
-            for (Map<String, Object> dto : list2) {
-                System.out.println("dto = " + dto);
-            }
-
             // 뷰파일에 넘겨줄 model setting
             model.addAttribute("list1", list1);
             model.addAttribute("list2", list2);
@@ -82,7 +63,6 @@ public class MyBookingController {
         if (!str.equals("null")) {
             double1 = Double.parseDouble(str);
         }
-        System.out.println("double1 = " + double1);
 
         String uuid_review_id = UUID.randomUUID().toString();
         RoomReviewDto dto2 = new RoomReviewDto();
@@ -98,11 +78,9 @@ public class MyBookingController {
 
         dto2.setReview_ctt(review_ctt);
         dto2.setCreated_id((String) session.getAttribute("user_id"));
-        System.out.println("agasgsagsagsag");
+
         try {
-            System.out.println("111111111111111");
-            int result = myBookingService.writeRoomReview(dto2);
-            System.out.println("222222222222");
+            myBookingService.writeRoomReview(dto2);
         } catch (Exception e) {
             e.printStackTrace();
         }

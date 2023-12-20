@@ -19,6 +19,7 @@ public class MyBookingDaoImpl implements MyBookingDao {
         return session.selectList(namespace + "selectMyBookings", map);
     }
 
+
     @Override
     public int insertRoomReview(RoomReviewDto dto) throws Exception {
         return session.insert(namespace + "insertReview", dto);
