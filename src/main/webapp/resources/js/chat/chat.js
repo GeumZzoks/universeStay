@@ -7,19 +7,6 @@ function moveDown() {
 
 }
 
-//무한 스크롤
-$(".chat_ctt").scroll(function () {
-  var $window = $(this);
-  var scrollTop = $window.scrollTop();
-
-  // scrollbar의 thumb가 위의1px까지 도달 하면 리스트를 가져옴
-  if (scrollTop < 1 && isScrolled == false) {
-    isScrolled = true;
-    fetchList();
-
-  }
-});
-
 $(document).ready(function () {
   $('.chat_list').click(function () {
     var chatting_room_id = $(this).data('chat-room-id');

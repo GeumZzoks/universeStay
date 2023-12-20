@@ -146,7 +146,7 @@ public class ChattingRoomController {
 
             rattr.addFlashAttribute("msg", msg);
             // 채팅방 목록 화면으로 이동
-            return "/chatting/chattingRoomList2";
+            return "/chatting/chattingRoomList";
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -156,13 +156,5 @@ public class ChattingRoomController {
             return "redirect:/";
         }
     }
-
-    // 채팅 테스트 화면 - 삭제 예정
-    @RequestMapping("/chatting/chatting")
-    public String chatTest() {
-
-        return "/chatting/chatting";
-    }
-
 
 }

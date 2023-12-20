@@ -72,47 +72,47 @@
         top: 32px;
       }
 
-      .first_info {
+      .screens-chat-send_host__first_info {
         padding-bottom: 32px;
       }
 
-      .first_info_title {
+      .screens-chat-send_host__first_info_title {
         padding-bottom: 16px;
 
       }
 
-      .first_info_content {
+      .screens-chat-send_host__first_info_content {
         margin-left: 20px;
       }
 
-      .second_info {
+      .screens-chat-send_host__second_info {
         padding-bottom: 32px;
       }
 
-      .second_info_title {
+      .screens-chat-send_host__second_info_title {
         padding-bottom: 16px;
       }
 
-      .second_info_content {
+      .screens-chat-send_host__second_info_content {
         margin-left: 20px;
       }
 
-      .third_info {
+      .screens-chat-send_host__third_info {
         padding-bottom: 32px;
       }
 
-      .third_info_title {
+      .screens-chat-send_host__third_info_title {
         padding-bottom: 16px;
       }
 
-      .third_info_content {
+      .screens-chat-send_host__third_info_content {
         margin-left: 20px;
       }
 
       /*--------------------------------------*/
 
 
-      .send_message {
+      .screens-chat-send_host__send_message {
         color: inherit;
         display: block;
         min-width: 100%;
@@ -128,7 +128,7 @@
 
       }
 
-      .send_message_button {
+      .screens-chat-send_host__send_message_button {
         padding: 13px 23px;
         padding-top: 13px;
         padding-right: 23px;
@@ -145,7 +145,7 @@
         cursor: pointer;
       }
 
-      .send_message_button_btn {
+      .screens-chat-send_host__send_message_button_btn {
         width: 100%;
         background: #FFFFFF;
         color: #222222;
@@ -154,11 +154,11 @@
         border: 1px solid #222222;
       }
 
-      .send_message_button-shrink {
+      .screens-chat-send_host__send_message_button-shrink {
         transition: 0.1s;
       }
 
-      .send_message_button-shrink:active {
+      .screens-chat-send_host__send_message_button-shrink:active {
         transform: scale(0.97);
       }
 
@@ -179,47 +179,43 @@
 
 
                     <div style="--gp-section-max-width: 1120px;">
-                        <div class="_1a6d9c4">
-                            <div class="plmw1e5 atm_e2_1osqo2v atm_gz_1wugsn5 atm_h0_1wugsn5 atm_vy_1osqo2v mq5rv0q atm_j3_1v7vjkn dir dir-ltr"
-                                 style="--maxWidth: 1120px;">
-                                <div data-plugin-in-point-id="CONTACT_HOST_OVERVIEW"
-                                     data-section-id="CONTACT_HOST_OVERVIEW"
-                                     style="padding-top: 16px; padding-bottom: 32px;">
-
-                                </div>
+                        <div style="--maxWidth: 1120px;">
+                            <div data-plugin-in-point-id="CONTACT_HOST_OVERVIEW"
+                                 data-section-id="CONTACT_HOST_OVERVIEW"
+                                 style="padding-top: 16px; padding-bottom: 32px;">
                             </div>
                         </div>
                     </div>
 
-                    <div class="send_message">
-                        <div class="first_info">
+                    <div class="screens-chat-send_host__send_message">
+                        <div class="screens-chat-send_host__first_info">
                             <h3 tabindex="-1"
-                                class="first_info_title"
+                                class="screens-chat-send_host__first_info_title"
                                 elementtiming="LCP-target">
                                 <div>찾아가기</div>
                             </h3>
-                            <ul class="first_info_content">
+                            <ul class="screens-chat-send_host__first_info_content">
                                 <li>• 이 숙소의 체크인 시간은 오후 3:00부터입니다이며, 체크아웃은 오전 11:00입니다.</li>
                             </ul>
                         </div>
 
-                        <div class="second_info">
+                        <div class="screens-chat-send_host__second_info">
                             <h3 tabindex="-1"
-                                class="second_info_title"
+                                class="screens-chat-send_host__second_info_title"
                                 elementtiming="LCP-target">
                                 <div>숙소 세부 정보 및 이용 규칙</div>
                             </h3>
-                            <ul class="second_info_content">
+                            <ul class="screens-chat-send_host__second_info_content">
                                 <li>• 흡연 금지. 파티나 이벤트 금지. 반려동물 동반 불가.</li>
                             </ul>
                         </div>
 
-                        <div class="third_info">
+                        <div class="screens-chat-send_host__third_info">
                             <h3 tabindex="-1"
-                                class="third_info_title">
+                                class="screens-chat-send_host__third_info_title">
                                 <div>요금 설정 및 예약 가능 여부</div>
                             </h3>
-                            <ul class="third_info_content">
+                            <ul class="screens-chat-send_host__third_info_content">
                                 <li>• 일주일 이상 숙박하시면 10% 할인이, 한 달 이상 숙박하시면 15% 할인이 적용됩니다.</li>
                                 <li>• 체크인 24시간 전까지 예약을 취소하면 전액이 환불됩니다. 그 이후로는 체크인 전에 취소할 경우, 첫 1박
                                     요금과 서비스 수수료를 제외한 전액이 환불됩니다.
@@ -233,37 +229,30 @@
                          data-section-id="MESSAGE_HOST_TITLE"
                          style="padding-top: 32px; padding-bottom: 16px;">
                         <section>
-                            <div class="tu9uqg8 atm_cs_qo5vgd sgst31r atm_c8_8nb4eg atm_g3_1dpnnv7 atm_fr_11dsdeo atm_c8_8nb4eg__oggzyc atm_g3_1dpnnv7__oggzyc atm_fr_11dsdeo__oggzyc dir dir-ltr">
-                                <h2 tabindex="-1"
-                                    class="">질문이 더 있으신가요? 호스트에게 메시지를 보내
-                                    문의하세요.</h2></div>
+                            <h2 tabindex="-1"
+                                class="">질문이 더 있으신가요? 호스트에게 메시지를 보내
+                                문의하세요.</h2>
                         </section>
                     </div>
                     <div>
-                        <%--                    <form action=""--%>
                         <div data-pageslot="true"
-                             class="c1yo0219 atm_9s_1txwivl_vmtskl atm_92_1yyfdc7_vmtskl atm_9s_1txwivl_9in345 atm_92_1yyfdc7_9in345 dir dir-ltr"
                              style="">
                             <div style="--gp-section-max-width: 1120px;">
-                                <div class="_1a6d9c4">
-                                    <div class="plmw1e5 atm_e2_1osqo2v atm_gz_1wugsn5 atm_h0_1wugsn5 atm_vy_1osqo2v mq5rv0q atm_j3_1v7vjkn dir dir-ltr"
-                                         style="--maxWidth: 1120px;">
-                                        <div data-plugin-in-point-id="TEXT_AREA"
-                                             data-section-id="TEXT_AREA"
-                                             style="padding-bottom: 16px;">
-                                            <div id="textarea-error"><span
-                                                    class="send_text_box_essential"></span>
-                                            </div>
-                                            <div class="_pf06jz">
-                                                <div dir="ltr"><textarea
+                                <div style="--maxWidth: 1120px;">
+                                    <div data-plugin-in-point-id="TEXT_AREA"
+                                         data-section-id="TEXT_AREA"
+                                         style="padding-bottom: 16px;">
+                                        <div id="textarea-error"><span
+                                                class="send_text_box_essential"></span>
+                                        </div>
+                                        <div dir="ltr">
+                                                <textarea
                                                         aria-describedby="textarea-error"
                                                         aria-required="true"
                                                         name="msg"
-                                                        class="send_message form-control col-sm-8"
+                                                        class="screens-chat-send_host__send_message form-control col-sm-8"
                                                         id="msgi"
                                                         style="height: 116px;"></textarea>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -275,7 +264,7 @@
                             <div class=" dir dir-ltr">
                                 <button onclick="insertChat();" data-testid="send-message-button"
                                         type="button"
-                                        class="send col-sm-4 btn btn-secondary send_message_button send_message_button_btn send_message_button-shrink">
+                                        class="send col-sm-4 btn btn-secondary screens-chat-send_host__send_message_button screens-chat-send_host__send_message_button_btn screens-chat-send_host__send_message_button-shrink">
                                     메시지 전송하기
                                 </button>
                             </div>
@@ -379,6 +368,9 @@
 
         if (result == 1) {
           alert("메시지가 전송되었습니다. 메시지함을 확인하세요");
+          var msgInput = document.getElementById('msgi');
+
+          msgInput.value = '';
         }
       },
       error: function (xhr, status, err) {
@@ -391,6 +383,4 @@
   }
 
 </script>
-
-
 </html>

@@ -77,10 +77,10 @@ public class ChattingController {
             model.addAttribute("user_id", user_id);
             model.addAttribute("firstList", firstList);
             model.addAttribute("twoUsername", twoUsername);
-            return "/chatting/chattingMessageList2";
+            return "/chatting/chattingMessageList";
         } catch (Exception e) {
             e.printStackTrace();
-            return "/chatting/chattingMessageList2";
+            return "/chatting/chattingMessageList";
         }
 
     }
