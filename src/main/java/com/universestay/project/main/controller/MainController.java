@@ -36,7 +36,6 @@ public class MainController {
     @Autowired
     WishListService wishListService;
 
-
     @GetMapping("/")
     public String main(HttpSession session, Model model, HttpServletResponse response,
             @ModelAttribute("statusId") String statusId)
@@ -51,13 +50,7 @@ public class MainController {
         String profileImgUrl = profileImgService.getProfileImgUrl(user.getUser_id());
         String isHost = user.getUser_is_host();
 
-//        Cookie user_profile_img_url_cookie = new Cookie("user_profile_img_url", profileImgUrl);
-//        user_profile_img_url_cookie.setPath("/");
-//        user_profile_img_url_cookie.setMaxAge(60 * 60 * 24 * 365);
-//        response.addCookie(user_profile_img_url_cookie);
-
         model.addAttribute("userInfo", user);
-//        model.addAttribute("profileImgUrl", profileImgUrl);
         model.addAttribute("isHost", isHost);
         model.addAttribute("statusId", statusId);
         System.out.println(model);
