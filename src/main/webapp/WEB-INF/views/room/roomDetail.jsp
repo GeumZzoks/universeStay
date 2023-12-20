@@ -16,13 +16,13 @@
 
 
     <style>
-        .screens-room-roomDetail__section-1__btns {
-            vertical-align: bottom;
-        }
+      .screens-room-roomDetail__section-1__btns {
+        vertical-align: bottom;
+      }
 
-        .screens-room-roomDetail__btn-share__text {
-            margin: 2px 0 0 2px;
-        }
+      .screens-room-roomDetail__btn-share__text {
+        margin: 2px 0 0 2px;
+      }
 
     </style>
 </head>
@@ -103,7 +103,8 @@
                         펜션
                     </div>
                     <div class="screens-room-roomDetail__section-3__info-1__desc2">
-                        최대 인원 ${room.room_max_capa}명 · 침실 ${room.room_bedroom_cnt}개 ·
+                        기준 인원 ${room.room_standard_capa}명 · 최대 인원 ${room.room_max_capa}명 ·
+                        침실 ${room.room_bedroom_cnt}개 ·
                         욕실 ${room.room_bathroom_cnt}개
                     </div>
                 </div>
@@ -553,175 +554,174 @@
             <h3 style="float: left; font-size: 14px; font-weight: 500; margin-top: 10px;">${room.room_name}</h3>
         </h4>
     </div>
+</div>
+<jsp:include page="/WEB-INF/views/common/user/footerNotFix.jsp"/>
 
+<%--<!-- 카카오 지도 API : services 라이브러리 불러오기 -->--%>
+<script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${KakaoApiKey}&libraries=services"></script>
+<%-- 스크립트 --%>
+<script>
+  const roomAddress = '${room.room_address}';
+</script>
+<%-- 제이쿼리 --%>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<%-- 캘린더 스크립트 --%>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<%--  dateRangePicker  --%>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-date-range-picker/0.14.2/jquery.daterangepicker.min.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.16.0/moment.min.js"></script>
+<%--    <script src="/resources/js/room/roomDetail.js"></script>--%>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
-    <%--    <jsp:include page="/WEB-INF/views/common/user/footer.jsp"/>--%>
+<script>
+  // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
+  Kakao.init('${KakaoApiKey}');
 
-    <%--<!-- 카카오 지도 API : services 라이브러리 불러오기 -->--%>
-    <script type="text/javascript"
-            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${KakaoApiKey}&libraries=services"></script>
-    <%-- 스크립트 --%>
-    <script>
-        const roomAddress = '${room.room_address}';
-    </script>
-    <%-- 제이쿼리 --%>
-    <script type="text/javascript"
-            src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-    <%-- 캘린더 스크립트 --%>
-    <script type="text/javascript"
-            src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <%--  dateRangePicker  --%>
-    <script type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/jquery-date-range-picker/0.14.2/jquery.daterangepicker.min.js"></script>
-    <script type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.16.0/moment.min.js"></script>
-    <%--    <script src="/resources/js/room/roomDetail.js"></script>--%>
-    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+  function kakaoShare() {
+    Kakao.Link.sendDefault({
+      objectType: 'feed',
+      content: {
+        title: '${room.room_name}',
+        description: '${room.room_total_desc}',
+        imageUrl: '${roomImg.room_img_url}',
+        link: {
+          webUrl: 'localhost:8080/room/roomDetail?room_id=${room.room_id}',
+        },
+      },
+      buttons: [
+        {
+          title: '웹으로 보기',
+          link: {
+            webUrl: 'localhost:8080/room/roomDetail?room_id=${room.room_id}',
+          },
+        },
+      ],
+    })
+  }
 
-    <script>
-        // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
-        Kakao.init('${KakaoApiKey}');
+  $(document).ready(function () {
+    $('#wishlist').on('click', function (e) {
+      // form 전송 시 새로고침 안하기(기본 이벤트 x)
+      e.preventDefault();
+      // 새로고침 안할 시 다른 요소의 이밴트 받지 않기
+      e.stopPropagation();
+      // 변수 선언
+      // roomID는 list의 각 value값을 가져옴
+      var roomID = $(this).val();
+      let wished = "/resources/img/room/wished.png";
+      let unwished = "/resources/img/room/unwished.png";
 
-        function kakaoShare() {
-            Kakao.Link.sendDefault({
-                objectType: 'feed',
-                content: {
-                    title: '${room.room_name}',
-                    description: '${room.room_total_desc}',
-                    imageUrl: '${roomImg.room_img_url}',
-                    link: {
-                        webUrl: 'localhost:8080/room/roomDetail?room_id=${room.room_id}',
-                    },
-                },
-                buttons: [
-                    {
-                        title: '웹으로 보기',
-                        link: {
-                            webUrl: 'localhost:8080/room/roomDetail?room_id=${room.room_id}',
-                        },
-                    },
-                ],
-            })
+      // ajax
+      $.ajax({
+        url: "/user/wishLists/active",
+        type: "POST",
+        dataType: "text",
+        data: {room_id: roomID},
+        success: function (response) {
+          $('.modal-div').finish();
+          if (response === 'DEL_OK') {
+            wished = "/resources/img/room/unwished.png";
+            $('#wished').attr('src', wished);
+            $('#wished_text').html('저장하기');
+            unwished = "/resources/img/room/unwished.png";
+            $('#unwished').attr('src', unwished);
+            $('#unwished_text').html('저장하기')
+            $('.modal-div h4').text('위시리스트에서 삭제되었습니다.')
+            $("#" + roomID).fadeIn('slow').delay(3000).fadeOut('slow');
+          } else if (response === 'IST_OK') {
+            wished = "/resources/img/room/wished.png";
+            $('#wished').attr('src', wished);
+            $('#wished_text').html('저장됨');
+            unwished = "/resources/img/room/wished.png";
+            $('#unwished').attr('src', unwished);
+            $('#unwished_text').html('저장됨')
+            $('.modal-div h4').text('위시리스트에 추가되었습니다.')
+            $("#" + roomID).fadeIn('slow').delay(3000).fadeOut('slow');
+          } else {
+            alert("알 수 없는 문제가 발생했습니다. 다시 시도해주세요.");
+          }
+        },
+        error: function () {
+          location.href = "/user/loginForm";
         }
-
-        $(document).ready(function () {
-            $('#wishlist').on('click', function (e) {
-                // form 전송 시 새로고침 안하기(기본 이벤트 x)
-                e.preventDefault();
-                // 새로고침 안할 시 다른 요소의 이밴트 받지 않기
-                e.stopPropagation();
-                // 변수 선언
-                // roomID는 list의 각 value값을 가져옴
-                var roomID = $(this).val();
-                let wished = "/resources/img/room/wished.png";
-                let unwished = "/resources/img/room/unwished.png";
-
-                // ajax
-                $.ajax({
-                    url: "/user/wishLists/active",
-                    type: "POST",
-                    dataType: "text",
-                    data: {room_id: roomID},
-                    success: function (response) {
-                        $('.modal-div').finish();
-                        if (response === 'DEL_OK') {
-                            wished = "/resources/img/room/unwished.png";
-                            $('#wished').attr('src', wished);
-                            $('#wished_text').html('저장하기');
-                            unwished = "/resources/img/room/unwished.png";
-                            $('#unwished').attr('src', unwished);
-                            $('#unwished_text').html('저장하기')
-                            $('.modal-div h4').text('위시리스트에서 삭제되었습니다.')
-                            $("#" + roomID).fadeIn('slow').delay(3000).fadeOut('slow');
-                        } else if (response === 'IST_OK') {
-                            wished = "/resources/img/room/wished.png";
-                            $('#wished').attr('src', wished);
-                            $('#wished_text').html('저장됨');
-                            unwished = "/resources/img/room/wished.png";
-                            $('#unwished').attr('src', unwished);
-                            $('#unwished_text').html('저장됨')
-                            $('.modal-div h4').text('위시리스트에 추가되었습니다.')
-                            $("#" + roomID).fadeIn('slow').delay(3000).fadeOut('slow');
-                        } else {
-                            alert("알 수 없는 문제가 발생했습니다. 다시 시도해주세요.");
-                        }
-                    },
-                    error: function () {
-                        location.href = "/user/loginForm";
-                    }
-                });
-            });
-        });
-
-    </script>
-
-
-    <script>
-      $(document).ready(function () {
-        $(".screens-room-roomDetail__btn-review-modal").click(function () {
-          $.ajax({
-            type: 'GET',                                    // 요청 메서드
-            url: '/room/${room.room_id}/reviews',           // 요청 URL
-            headers: {"content-type": "application/json"},  // 요청 헤더
-            dataType: 'text',                               // 전송받을 데이터의 타입
-            success: function (result) {
-              let reviewList = JSON.parse(result);
-              console.log(reviewList);
-              $('.reviewModal__content__reviews').empty();
-              $.each(reviewList, function (index, reviewList) {
-                let fullStar = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 20px; width: 20px; fill: var(--f-k-smk-x);"><path fill-rule="evenodd" d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"></path></svg>';
-                let halfStar = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false"style="display: block; height: 20px; width: 20px;"><defs><linearGradient id="half-fill-gradient" x1="0%" y1="0%" x2="100%" y2="0%"> <stop offset="0%" style="stop-color: var(--f-k-smk-x);"></stop><stop offset="50%" style="stop-color: var(--f-k-smk-x);"></stop><stop offset="50%" style="stop-color: transparent;"></stop><stop offset="100%" style="stop-color: transparent;"></stop></linearGradient></defs><path fill-rule="evenodd" d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z" style="fill: url(#half-fill-gradient); stroke: #000000; stroke-width: 1; stroke-linejoin: round;"></path></svg>';
-                let emptyStar = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 20px; width: 20px; fill: #ffffff; stroke: #000000; stroke-width: 1;"><path fill-rule="evenodd" d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"></path></svg>';
-
-                let reviewStars = '';
-                let fullStars = Math.floor(reviewList.review_stars);
-                let halfStars = (reviewList.review_stars % 1) !== 0 ? 1 : 0;
-                let emptyStars = 5 - fullStars - halfStars;
-
-                for (let i = 0; i < fullStars; i++) {
-                  reviewStars += fullStar;
-                }
-                for (let i = 0; i < halfStars; i++) {
-                  reviewStars += halfStar;
-                }
-                for (let i = 0; i < emptyStars; i++) {
-                  reviewStars += emptyStar;
-                }
-
-                let html = '<div class="reviewModal__content__review" style="padding-top: 10px; margin-bottom: 20px;">'
-                    +
-                    '    <div class="reviewModal__content__review__nickname"><img src="">'
-                    + reviewList.user_nickname + '</div>' +
-                    '    <div class="reviewModal__content__review__star" style="display: flex;">'
-                    + reviewStars
-                    + '</div>' +
-                    '    <div class="reviewModal__content__review__content">'
-                    + reviewList.review_ctt
-                    + '</div>' +
-                    '</div>';
-                $('.reviewModal__content__reviews').append(html);
-              });
-
-            },
-            error: function () {
-              alert("후기를 불러오는 도중 문제가 발생하였습니다. 관리자에게 문의 부탁드립니다.");
-            }
-          });
-        });
       });
-    </script>
+    });
+  });
+
+</script>
 
 
-    <script src="/resources/js/room/roomDetail.js"></script>
-  
-  
-    <script>
-      function createChatRoom() {
-        var room_id = '${room.room_id}';
-        location.href = '/chatting/createRoom/' + room_id;
-      }
-    </script>
+<script>
+  $(document).ready(function () {
+    $(".screens-room-roomDetail__btn-review-modal").click(function () {
+      $.ajax({
+        type: 'GET',                                    // 요청 메서드
+        url: '/room/${room.room_id}/reviews',           // 요청 URL
+        headers: {"content-type": "application/json"},  // 요청 헤더
+        dataType: 'text',                               // 전송받을 데이터의 타입
+        success: function (result) {
+          let reviewList = JSON.parse(result);
+          console.log(reviewList);
+          $('.reviewModal__content__reviews').empty();
+          $.each(reviewList, function (index, reviewList) {
+            let fullStar = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 20px; width: 20px; fill: var(--f-k-smk-x);"><path fill-rule="evenodd" d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"></path></svg>';
+            let halfStar = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false"style="display: block; height: 20px; width: 20px;"><defs><linearGradient id="half-fill-gradient" x1="0%" y1="0%" x2="100%" y2="0%"> <stop offset="0%" style="stop-color: var(--f-k-smk-x);"></stop><stop offset="50%" style="stop-color: var(--f-k-smk-x);"></stop><stop offset="50%" style="stop-color: transparent;"></stop><stop offset="100%" style="stop-color: transparent;"></stop></linearGradient></defs><path fill-rule="evenodd" d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z" style="fill: url(#half-fill-gradient); stroke: #000000; stroke-width: 1; stroke-linejoin: round;"></path></svg>';
+            let emptyStar = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 20px; width: 20px; fill: #ffffff; stroke: #000000; stroke-width: 1;"><path fill-rule="evenodd" d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"></path></svg>';
+
+            let reviewStars = '';
+            let fullStars = Math.floor(reviewList.review_stars);
+            let halfStars = (reviewList.review_stars % 1) !== 0 ? 1 : 0;
+            let emptyStars = 5 - fullStars - halfStars;
+
+            for (let i = 0; i < fullStars; i++) {
+              reviewStars += fullStar;
+            }
+            for (let i = 0; i < halfStars; i++) {
+              reviewStars += halfStar;
+            }
+            for (let i = 0; i < emptyStars; i++) {
+              reviewStars += emptyStar;
+            }
+
+            let html = '<div class="reviewModal__content__review" style="padding-top: 10px; margin-bottom: 20px;">'
+                +
+                '    <div class="reviewModal__content__review__nickname"><img src="">'
+                + reviewList.user_nickname + '</div>' +
+                '    <div class="reviewModal__content__review__star" style="display: flex;">'
+                + reviewStars
+                + '</div>' +
+                '    <div class="reviewModal__content__review__content">'
+                + reviewList.review_ctt
+                + '</div>' +
+                '</div>';
+            $('.reviewModal__content__reviews').append(html);
+          });
+
+        },
+        error: function () {
+          alert("후기를 불러오는 도중 문제가 발생하였습니다. 관리자에게 문의 부탁드립니다.");
+        }
+      });
+    });
+  });
+</script>
+
+
+<script src="/resources/js/room/roomDetail.js"></script>
+
+
+<script>
+  function createChatRoom() {
+    var room_id = '${room.room_id}';
+    location.href = '/chatting/createRoom/' + room_id;
+  }
+</script>
 
 </body>
 </html>

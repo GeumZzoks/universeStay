@@ -96,20 +96,17 @@ public class OauthLoginController {
             userEmail = userInfo.getEmail();
         }
 
-        UserDto userDto = userLoginService.checkSignUp(userEmail);
+        UserDto userDto = userLoginService.signinOauth(userEmail, session);
 
         if (userDto != null) {
-            String userPwd = userDto.getUser_pwd();
-            userLoginService.signin(userEmail, userPwd, session, model);
-
-            return "main/main";
+            return "redirect:/";
         } else {
             model.addAttribute("userEmail", userEmail);
             String allowedCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_-+=<>?";
             String userPwd = RandomStringUtils.random(20, allowedCharacters);
             model.addAttribute("userPwd", userPwd);
 
-            return "user/join";
+            return "user/joinOauth";
         }
     }
 

@@ -152,6 +152,7 @@ screens-user-withdrawal__li {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 60px;
 }
 
 .screens-user-withdrawal__box-back-delete__btn-back {
@@ -170,6 +171,11 @@ screens-user-withdrawal__li {
   background: #F7F7F7;
 }
 
+
+.screens-user-withdrawal__box-back-delete__btn-delete:hover {
+  background: #000000;
+}
+
 .screens-user-withdrawal__box-back-delete__btn-delete {
   width: 100px;
   height: 50px;
@@ -181,9 +187,5 @@ screens-user-withdrawal__li {
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
   padding: 12px 20px;
   border-radius: 10px;
-  margin-bottom: 30px;
-}
-
-.screens-user-withdrawal__box-back-delete__btn-back:hover {
-  background: #000000;
+  /*margin-bottom: 30px;*/
 }

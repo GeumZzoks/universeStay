@@ -66,11 +66,11 @@
             </button>
 
             <%-- 쿠키 시작점 - checked: 쿠키 생성 요청, "": noCookie --%>
-            <label class="screens-user-login__label"><input type="checkbox"
-                                                            class="screens-user-login__login-wrapper__checkbox"
-                                                            name="remember_id"
-                                                            autocomplete="off" <%= hasCookie ? "checked" : "" %>>아이디
-                저장</label>
+            <label class="screens-user-login__label">
+                <input type="checkbox" class="screens-user-login__login-wrapper__checkbox"
+                       name="remember_id" autocomplete="off"
+                    <%= hasCookie ? "checked" : "" %>>아이디 저장
+            </label>
 
             <!-- 이동 링크 -->
             <div class="screens-user-login__linkContainer">

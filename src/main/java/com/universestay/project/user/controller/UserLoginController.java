@@ -6,6 +6,7 @@ import com.universestay.project.user.service.ProfileImgService;
 import com.universestay.project.user.service.UserLoginService;
 import java.util.HashMap;
 import java.util.Map;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -54,11 +55,11 @@ public class UserLoginController {
 
         // 사용자가 로그인을 시도하면 DB 조회
         UserDto userInfo = userLoginService.signin(user_email, user_pwd, session, model);
-        // 유저 상태 담기
-        String statusId = userInfo.getStatus_id();
 
         try {
             if (userInfo != null) { // 3. 로그인 시도 시
+                // 유저 상태 담기
+                String statusId = userInfo.getStatus_id();
 
                 // 회원탈퇴한 유저가 로그인 시도 시 메인으로 이동 후 알럿창 띄우기
                 if (statusId.equals("U02")) {
@@ -71,6 +72,13 @@ public class UserLoginController {
 
                 // 정상적으로 로그인 됐을 때,
                 userLoginService.userLastLogin(user_email);
+
+                String profileImgUrl = profileImgService.getProfileImgUrl(userInfo.getUser_id());
+                Cookie user_profile_img_url_cookie = new Cookie("user_profile_img_url",
+                        profileImgUrl);
+                user_profile_img_url_cookie.setPath("/");
+                user_profile_img_url_cookie.setMaxAge(60 * 60 * 24 * 365);
+                response.addCookie(user_profile_img_url_cookie);
 
                 return "redirect:/";
 
