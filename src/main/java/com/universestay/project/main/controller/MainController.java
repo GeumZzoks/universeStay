@@ -8,17 +8,20 @@ import com.universestay.project.user.dto.UserDto;
 import com.universestay.project.user.service.ProfileImgService;
 import com.universestay.project.user.service.UserInfoService;
 import com.universestay.project.user.service.WishListService;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Slf4j
 @Controller
@@ -35,8 +38,8 @@ public class MainController {
 
 
     @GetMapping("/")
-    public String main(HttpSession session, Model model,
-                       @ModelAttribute("statusId") String statusId)
+    public String main(HttpSession session, Model model, HttpServletResponse response,
+            @ModelAttribute("statusId") String statusId)
             throws Exception {
         String userEmail = (String) (session.getAttribute("user_email"));
 
@@ -48,26 +51,33 @@ public class MainController {
         String profileImgUrl = profileImgService.getProfileImgUrl(user.getUser_id());
         String isHost = user.getUser_is_host();
 
+//        Cookie user_profile_img_url_cookie = new Cookie("user_profile_img_url", profileImgUrl);
+//        user_profile_img_url_cookie.setPath("/");
+//        user_profile_img_url_cookie.setMaxAge(60 * 60 * 24 * 365);
+//        response.addCookie(user_profile_img_url_cookie);
+
         model.addAttribute("userInfo", user);
-        model.addAttribute("profileImgUrl", profileImgUrl);
+//        model.addAttribute("profileImgUrl", profileImgUrl);
         model.addAttribute("isHost", isHost);
         model.addAttribute("statusId", statusId);
+        System.out.println(model);
+
         return "main/main";
     }
 
     @ResponseBody
     @RequestMapping("/scroll")
     public List<Map<String, Object>> main2(HttpSession session, Model model,
-                                           @RequestParam String currentPage,
-                                           @RequestParam(value = "category", defaultValue = "") String category,
-                                           @RequestParam(value = "view", defaultValue = "") String view,
-                                           @RequestParam(value = "address", defaultValue = "") String address,
-                                           @RequestParam(value = "search_capa", defaultValue = "") String search_capa,
-                                           @RequestParam(value = "search_start_date", defaultValue = "") String search_start_date,
-                                           @RequestParam(value = "search_end_date", defaultValue = "") String search_end_date,
-                                           @RequestParam(value = "search_min_price", defaultValue = "") String search_min_price,
-                                           @RequestParam(value = "search_max_price", defaultValue = "") String search_max_price,
-                                           HttpServletResponse response
+            @RequestParam String currentPage,
+            @RequestParam(value = "category", defaultValue = "") String category,
+            @RequestParam(value = "view", defaultValue = "") String view,
+            @RequestParam(value = "address", defaultValue = "") String address,
+            @RequestParam(value = "search_capa", defaultValue = "") String search_capa,
+            @RequestParam(value = "search_start_date", defaultValue = "") String search_start_date,
+            @RequestParam(value = "search_end_date", defaultValue = "") String search_end_date,
+            @RequestParam(value = "search_min_price", defaultValue = "") String search_min_price,
+            @RequestParam(value = "search_max_price", defaultValue = "") String search_max_price,
+            HttpServletResponse response
     ) throws Exception {
         List<Map<String, Object>> roomList = new ArrayList<>();
 
