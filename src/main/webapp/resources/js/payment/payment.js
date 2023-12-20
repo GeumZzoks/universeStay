@@ -2,10 +2,10 @@ IMP.init("imp55505214");
 
 // 카드 결제
 const cardPaymentButtons = document.querySelectorAll(
-        ".screens-room-booking__payment-button-card");
+        ".screens-room-myBookings__payment-button-card");
 
 const bookingIdArray = document.querySelectorAll(
-        ".screens-room-booking__hiddenValue");
+        ".screens-room-myBookings__hiddenValue");
 
 for (let i = 0; i < cardPaymentButtons.length; i++) {
     cardPaymentButtons[i].addEventListener("click", function (ev) {
@@ -49,7 +49,7 @@ for (let i = 0; i < cardPaymentButtons.length; i++) {
 
 // 카카오페이 결제
 const kakaoPaymentButtons = document.querySelectorAll(
-        ".screens-room-booking__payment-button-kakao");
+        ".screens-room-myBookings__payment-button-kakao");
 
 for (let i = 0; i < kakaoPaymentButtons.length; i++) {
     kakaoPaymentButtons[i].addEventListener("click", function (ev) {
@@ -106,7 +106,6 @@ for (let i = 0; i < kakaoPaymentButtons.length; i++) {
                             payment_card_number: rsp.card_number
                         }
 
-
                         let payment_id = "";
                         $.ajax({
                             url: "/payment/saveResponse",
@@ -115,7 +114,6 @@ for (let i = 0; i < kakaoPaymentButtons.length; i++) {
                             data: JSON.stringify(paymentDto),
                             success: function (res) {
                                 payment_id = res;
-
 
                                 const imp_uid = rsp.imp_uid;
                                 const merchant_uid = rsp.merchant_uid;
