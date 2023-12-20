@@ -2,7 +2,6 @@ package com.universestay.project.chat.controller;
 
 import com.universestay.project.chat.service.ChatRoomService;
 import com.universestay.project.dto.ChattingRoomDto;
-import com.universestay.project.room.dto.RoomDto;
 import com.universestay.project.room.service.RoomService;
 import com.universestay.project.user.dao.UserWithdrawalDao;
 import com.universestay.project.user.dto.UserDto;
@@ -44,11 +43,13 @@ public class ChattingRoomController {
     @RequestMapping("/chatting/contact_host/{room_id}")
     public String contact_host(@PathVariable String room_id, @RequestParam String chat_room_id,
             @ModelAttribute ChattingRoomDto chattingRoomDto,
-            Model model) {
+            Model model, HttpSession session) {
         try {
-            RoomDto room = roomService.lookUpRoom(room_id);
-            UserDto host = userWithdrawalDao.selectUserByUuid(room.getUser_id());
-            String profileImgUrl = profileImgService.getProfileImgUrl(room.getUser_id());
+            String user_id = (String) session.getAttribute("user_id");
+            Map<String, Object> room = roomService.lookUpRoom(room_id, user_id);
+            UserDto host = userWithdrawalDao.selectUserByUuid(room.get("user_id").toString());
+            String profileImgUrl = profileImgService.getProfileImgUrl(
+                    room.get("user_id").toString());
 
             model.addAttribute("room", room);
             model.addAttribute("host", host);
@@ -72,9 +73,10 @@ public class ChattingRoomController {
             // 로그인한 사용자 id 받아오기
             String user_id = (String) session.getAttribute("user_id");
             // 호스트 id 받아오기
-            RoomDto room = roomService.lookUpRoom(room_id);
+            Map<String, Object> room = roomService.lookUpRoom(room_id, user_id);
             String user_id2 = String.valueOf(
-                    userWithdrawalDao.selectUserByUuid(room.getUser_id()).getUser_id());
+                    userWithdrawalDao.selectUserByUuid(room.get("user_id").toString())
+                            .getUser_id());
 
             chattingRoomDto.setUser_id(user_id);
             chattingRoomDto.setUser_id2(user_id2);
