@@ -256,6 +256,15 @@
 .screens-room-roomEnroll__select-btn {
   width: 100%;
   height: 100%;
+  border: #DDDDDD 1px solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.screens-room-roomEnroll__select-btn svg {
+  margin-bottom: 15px;
 }
 
 /* 숙소 전망을 추가하세요 */
@@ -277,6 +286,10 @@
 
 .screens-room-roomEnroll__photo-sub {
   position: relative;
+}
+
+.screens-room-roomEnroll__photo-sub-1, .screens-room-roomEnroll__photo-sub-2, .screens-room-roomEnroll__photo-sub-3, .screens-room-roomEnroll__photo-sub-4 {
+  overflow: hidden;
 }
 
 .screens-room-roomEnroll__photo-main__prev-upload-photo {
@@ -379,6 +392,10 @@
   display: block;
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .screens-room-roomEnroll__photos-sub {
@@ -416,12 +433,16 @@
   appearance: none;
   font-family: NotoSansKR-Regular;
   resize: vertical;
-  min-height: 144px;
+  min-height: 350px;
   padding: 16px;
   text-overflow: ellipsis;
   font-size: 16px;
   overflow-y: hidden;
   border-radius: 8px;
+}
+
+.screens-room-roomEnroll__textarea-room-name {
+  min-height: 150px;
 }
 
 .screens-room-roomEnroll__textarea:focus {
