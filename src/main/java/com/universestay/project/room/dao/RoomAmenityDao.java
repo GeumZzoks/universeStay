@@ -10,4 +10,5 @@ public interface RoomAmenityDao {
 
     RoomAmenityDto selectRoomAmenity(String room_id) throws Exception;
 
+    Integer updateRoomAmenity(RoomAmenityDto roomAmenityDto) throws Exception;
 }

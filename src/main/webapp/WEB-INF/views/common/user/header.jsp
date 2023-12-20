@@ -162,7 +162,7 @@
     <div class="components-user-header__header__profile">
         <div class="components-user-header__header__profile__to-host">
 
-            <a class="components-user-header__a" href="#">
+            <a class="components-user-header__a" href="/room/management">
                 <% if
                 (
                         "Y"

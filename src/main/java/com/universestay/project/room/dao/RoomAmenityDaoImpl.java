@@ -31,5 +31,10 @@ public class RoomAmenityDaoImpl implements RoomAmenityDao {
         return session.selectOne(namespace + "selectRoomAmenity", room_id);
     }
 
+    @Override
+    public Integer updateRoomAmenity(RoomAmenityDto roomAmenityDto) throws Exception {
+        return session.update(namespace + "updateRoomAmenity", roomAmenityDto);
+    }
+
 
 }

@@ -434,4 +434,10 @@ public class RoomAmenityServiceImpl implements RoomAmenityService {
         return roomAmenityDao.selectRoomAmenity(room_id);
     }
 
+    @Override
+    public Integer modifyRoomAmenity(RoomAmenityDto roomAmenityDto) throws Exception {
+        return roomAmenityDao.updateRoomAmenity(roomAmenityDto);
+    }
+
+
 }

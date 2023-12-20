@@ -1,7 +1,7 @@
 package com.universestay.project.room.controller;
 
-import com.universestay.project.room.dao.RoomViewDao;
 import com.universestay.project.room.dao.BookDao;
+import com.universestay.project.room.dao.RoomViewDao;
 import com.universestay.project.room.dto.RoomAmenityDto;
 import com.universestay.project.room.dto.RoomDto;
 import com.universestay.project.room.dto.RoomImgDto;
@@ -10,6 +10,7 @@ import com.universestay.project.room.dto.RoomPhotoDto;
 import com.universestay.project.room.dto.RoomViewDto;
 import com.universestay.project.room.service.RoomAmenityService;
 import com.universestay.project.room.service.RoomService;
+import com.universestay.project.room.service.RoomViewService;
 import com.universestay.project.user.dao.UserWithdrawalDao;
 import com.universestay.project.user.dto.BookingDto;
 import com.universestay.project.user.dto.UserDto;
@@ -17,41 +18,42 @@ import com.universestay.project.user.service.ProfileImgServiceImpl;
 import com.universestay.project.user.service.UserInfoService;
 import com.universestay.project.user.service.UserLoginService;
 import com.universestay.project.user.service.WishListService;
-
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/room")
 public class RoomController {
 
     @Autowired
-    RoomService roomService;
-    @Autowired
     UserLoginService userLoginService;
-    @Autowired
-    UserWithdrawalDao userWithdrawalDao;
-    @Autowired
-    ProfileImgServiceImpl profileImgService;
-    @Autowired
-    RoomAmenityService roomAmenityService;
     @Autowired
     UserInfoService userInfoService;
     @Autowired
+    RoomService roomService;
+    @Autowired
+    RoomViewService roomViewService;
+    @Autowired
+    RoomAmenityService roomAmenityService;
+    @Autowired
+    ProfileImgServiceImpl profileImgService;
+    @Autowired
     WishListService wishListService;
+    @Autowired
+    UserWithdrawalDao userWithdrawalDao;
     @Autowired
     RoomViewDao roomViewDao;
     @Autowired
@@ -154,7 +156,7 @@ public class RoomController {
 
     @PostMapping("/enroll")
     public String enrollRoom(RoomDto roomDto, RoomAmenityDto roomAmenityDto, Integer room_view,
-                             HttpSession session, RedirectAttributes redirectAttributes) {
+            HttpSession session, RedirectAttributes redirectAttributes) {
         try {
             String room_id = roomService.enroll(roomDto, roomAmenityDto, room_view, session);
             redirectAttributes.addAttribute("room_id", room_id);
@@ -227,7 +229,7 @@ public class RoomController {
 
         // 수정하기 위해 룸뷰 테이블도 조회해온다.
         List<RoomViewDto> roomViewDtoList = roomViewDao.selectRoomView(room_id);
-        System.out.println("roomViewDto = " + roomViewDtoList);
+//        System.out.println("roomViewDto = " + roomViewDtoList);
         model.addAttribute("roomViewDtoList", roomViewDtoList);
 
         String loginedUserEmail = (String) session.getAttribute("user_email");
@@ -252,11 +254,83 @@ public class RoomController {
      * @featuer 수정완료 후 맵핑
      */
     @PostMapping("/modify")
-    public String modify() {
+    public String modify(RoomDto roomDto, RoomAmenityDto roomAmenityDto, Integer room_view,
+            HttpSession session, RedirectAttributes redirectAttributes) {
 
-        // 수정한 값을 가지고 디비에 저장시킨 후에
-        // 저장된 값을 가지고 가야지.
+        // 뷰에서 수정한 값들을 디비에 저장한다.
+        try {
+            // 룸 테이블 수정 저장
+            String room_id = roomDto.getRoom_id();
+            roomService.modifyRoom(roomDto);
+
+            // 룸어메니티 테이블 수정 저장
+            roomAmenityService.modifyRoomAmenity(roomAmenityDto);
+
+            // 룸뷰 테이블 수정 저장 => 룸뷰서비스를 나중에 만들어야 할듯
+            // 받아온 10진수 숫자를 2진수로 변환
+            String binaryString = Integer.toBinaryString(room_view);
+            // 거꾸로 뒤집기
+            StringBuffer sb = new StringBuffer(binaryString);
+            String reverse = sb.reverse().toString(); //11000001101101
+
+            // 수정할 전망 정보
+            // => 전망은 여러개 가질 수 있어 컬럼으로 저장되므로 기존에 가지고 있는 전망을 모두 밀고, 새로 저장해야함
+
+            // 딜리트
+            Integer rv = roomViewService.removeRoomView(room_id);
+            System.out.println("rv 딜리트 = " + rv);
+
+            // 인설트
+//            roomViewService.saveRoomView(roomViewDto);
+            String[] roomViewArr = {"RV01", "RV02", "RV03", "RV04", "RV05", "RV06", "RV07", "RV08",
+                    "RV09", "RV10", "RV11", "RV12", "RV13", "RV14"};
+
+            // 수정한 전망만 리스트에 담아놈
+            List<String> list = new ArrayList<>();
+            for (int i = 0; i < reverse.length(); i++) {
+                if (reverse.charAt(i) == '1') {
+                    list.add(roomViewArr[i]);
+                }
+            }
+
+            // room_id created_id updated_id room_view_id view_status_id created_at  updated_at
+            // 룸스테이터스아이디 == 전망이 여러개일때 아래값들이 다 세팅이 되어야 하니까 for문안에있어야
+
+            RoomViewDto roomViewDto = new RoomViewDto();
+            roomViewDto.setRoom_id(room_id);
+            roomViewDto.setCreated_id(roomDto.getCreated_id());
+            System.out.println("여기가문제니" + roomDto.getCreated_id());
+            roomViewDto.setUpdated_id(roomDto.getUpdated_id());
+
+            System.out.println("roomViewDto 나오나 " + roomViewDto.getRoom_id());
+
+            for (String roomView : list) {
+                String uuid = UUID.randomUUID().toString();
+                roomViewDto.setRoom_view_id(uuid);
+                roomViewDto.setView_status_id(roomView);
+                roomViewDao.saveRoomView(roomViewDto);
+//                System.out.println("roomView = " + roomView);
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "redirect:/room/modifyPhoto";
+    }
+
+    @GetMapping("/modifyPhoto")
+    public String modifyPhoto() {
+        System.out.println(" 모디파이포토 ? ?");
+        return "/room/roomPhotoModify";
+    }
+
+    @PostMapping("/modifyPhoto")
+    public String modifyPhoto(RoomDto roomDto, RoomAmenityDto roomAmenityDto, Integer room_view,
+            HttpSession session, RedirectAttributes redirectAttributes) {
         return "redirect:/room/management";
+
     }
 
     /**
@@ -268,7 +342,7 @@ public class RoomController {
      */
     @GetMapping("/statusHostroom")
     public String statusHostroom(@RequestParam String room_id,
-                                 @RequestParam(defaultValue = "") String room_status_id) throws Exception {
+            @RequestParam(defaultValue = "") String room_status_id) throws Exception {
         try {
             roomService.statusHostroom(room_id, room_status_id);
             return "redirect:/room/management";
