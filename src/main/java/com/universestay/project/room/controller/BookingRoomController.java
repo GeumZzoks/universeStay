@@ -6,6 +6,7 @@ import com.universestay.project.room.service.BookService;
 import com.universestay.project.room.service.BookShareMailSendService;
 import com.universestay.project.room.service.RoomService;
 import com.universestay.project.user.dto.BookingDto;
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
@@ -73,7 +74,7 @@ public class BookingRoomController {
         }
 
         // DB에 저장 Booking(예약 확정 상태는 아님)
-//        bookService.bookRoom(bookingDto, roomDto, httpSession);
+        bookService.bookRoom(bookingDto, roomDto, httpSession);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -87,6 +88,16 @@ public class BookingRoomController {
         model.addAttribute("user_email", httpSession.getAttribute("user_email"));
         model.addAttribute("bookInfo", bookInfo);
         model.addAttribute("bookInfoDto", bookingDto);
+
+        // 숫자 포맷을 설정합니다.
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+
+        // 표시할 숫자를 가져옵니다.
+        int bookingTotalPayAmount = bookingDto.getBooking_total_pay_amount();
+
+        // 숫자를 백단위로 포맷합니다.
+        String formattedAmount = decimalFormat.format(bookingTotalPayAmount);
+        model.addAttribute("formattedAmount", formattedAmount);
 
         return "room/bookShare";
     }
