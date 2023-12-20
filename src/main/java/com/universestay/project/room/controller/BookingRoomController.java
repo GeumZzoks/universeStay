@@ -62,7 +62,7 @@ public class BookingRoomController {
         }
 
         // DB에 저장 Booking(예약 확정 상태는 아님)
-//        bookService.bookRoom(bookingDto, roomDto, httpSession);
+        bookService.bookRoom(bookingDto, roomDto, httpSession);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
