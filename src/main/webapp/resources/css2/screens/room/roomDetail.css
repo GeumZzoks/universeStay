@@ -413,10 +413,6 @@
   border-radius: 8px;
 }
 
-.screens-room-roomDetail__reservation__check-in-out:focus {
-  outline: 2px solid black;
-}
-
 .screens-room-roomDetail__check-in-out {
   width: 50%;
   padding: 10px 12px;

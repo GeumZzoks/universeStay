@@ -252,9 +252,34 @@ $('.screens-room-roomDetail__reservation__check-in-out').dateRangePicker({
   document.querySelector(
       "input[name='booking_price_sum']").value = priceWeekdayValue
       + priceWeekendValue + priceExtraPersonValue;
-
+}).bind('datepicker-open', function () {
+  document.querySelector(
+      ".screens-room-roomDetail__reservation__check-in-out").style.outline = "2px solid black";
+}).bind('datepicker-close', function () {
+  document.querySelector(
+      ".screens-room-roomDetail__reservation__check-in-out").style.outline = "";
+}).bind('datepicker-opened', function () {
+  document.querySelector(
+      ".screens-room-roomDetail__reservation__check-in-out").classList.add(
+      "active");
+}).bind('datepicker-closed', function () {
+  document.querySelector(
+      ".screens-room-roomDetail__reservation__check-in-out").classList.remove(
+      "active");
 });
 
+$('.screens-room-roomDetail__reservation__check-in-out').click(function (e) {
+  
+  e.stopPropagation();
+  if (document.querySelector(
+      ".screens-room-roomDetail__reservation__check-in-out").classList.contains(
+      "active")) {
+    $('.screens-room-roomDetail__reservation__check-in-out').data(
+        'dateRangePicker').close();
+  }
+});
+
+// 캘린더 css 변경
 const calendar = document.querySelector(".date-picker-wrapper");
 calendar.style.zIndex = 100;
 calendar.style.borderRadius = '10px';
@@ -294,10 +319,12 @@ function countWeekdaysAndWeekends(startDate, endDate) {
   return {weekdays, weekends};
 }
 
+// 가격 컴마
 function priceToString(price) {
   return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
+// 인원수
 inputPeopleNum.addEventListener("click", function () {
   togglePeopleNum.classList.toggle("active");
   if (togglePeopleNum.classList.contains("active")) {
