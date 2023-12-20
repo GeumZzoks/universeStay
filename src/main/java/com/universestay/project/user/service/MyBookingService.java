@@ -1,6 +1,5 @@
 package com.universestay.project.user.service;
 
-
 import com.universestay.project.review.dto.RoomReviewDto;
 import java.util.List;
 import java.util.Map;

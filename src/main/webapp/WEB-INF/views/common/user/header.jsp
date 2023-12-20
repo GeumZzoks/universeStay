@@ -171,6 +171,7 @@
     <!--헤더 프로필 영역-->
     <div class="components-user-header__header__profile">
         <div class="components-user-header__header__profile__to-host">
+
             <a class="components-user-header__a" href="#">
                 <% if
                 (
@@ -195,9 +196,11 @@
                                         ==
                                         null
                 ) { %>
+
                 <div>당신의 공간을 공유하세요.</div>
-                <% } %>
             </a>
+            <% } %>
+
         </div>
 
         <div class="components-user-header__header__profile__my-profile components-user-header__dropdown">
@@ -240,7 +243,8 @@
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-coupon"
                          onclick="location.href='/user/myPage/coupon'">
                         <span>나의 쿠폰</span></div>
-                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-notice">
+                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-notice"
+                         onclick="location.href ='/notice'">
                         <span>공지사항</span></div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-event"
                          onclick="location.href ='/event'">
@@ -259,7 +263,8 @@
                         <span>회원가입</span></div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-sign-in">
                         <span>로그인</span></div>
-                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-notice">
+                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-notice"
+                         onclick="location.href='/notice'">
                         <span>공지사항</span></div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-event"
                          onclick="location.href ='/event'">
@@ -329,7 +334,6 @@
         }
 
     }
-
 
 </script>
 

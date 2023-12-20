@@ -26,4 +26,5 @@
         <typeAlias alias="ChattingRoomDto" type="com.universestay.project.dto.ChattingRoomDto"/>
         <typeAlias alias="ChattingMessageDto" type="com.universestay.project.dto.ChattingMessageDto"/>
     </typeAliases>
+
 </configuration>

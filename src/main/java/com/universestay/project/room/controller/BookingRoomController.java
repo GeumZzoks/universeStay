@@ -53,6 +53,7 @@ public class BookingRoomController {
             throws Exception {
 
         // 숙소에 대한 정보 가져오기
+
         Map<String, Object> roomDto = roomService.lookUpRoom(bookingDto.getRoom_id(),
                 (String) httpSession.getAttribute("user_email"));
 

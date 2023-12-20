@@ -155,6 +155,8 @@ const inputPeopleNum = document.querySelector(
     ".screens-room-roomDetail__reservation__number-people");
 const togglePeopleNum = document.querySelector(
     ".screens-room-roomDetail__number-people-toggle");
+const priceWeekday1day = document.querySelector(
+    ".screens-room-roomDetail__price__part-1");
 
 priceWeekdayDiv.children[0].children[0].innerHTML = priceToString(
     priceWeekdayDiv.children[0].children[0].innerHTML);
@@ -162,6 +164,7 @@ priceWeekendDiv.children[0].children[0].innerHTML = priceToString(
     priceWeekendDiv.children[0].children[0].innerHTML);
 extraPersonFeeDiv.children[0].children[0].innerHTML = priceToString(
     extraPersonFeeDiv.children[0].children[0].innerHTML);
+priceWeekday1day.innerHTML = priceToString(priceWeekday1day.innerHTML);
 
 priceWeekday = priceWeekdayDiv.children[2];
 priceWeekend = priceWeekendDiv.children[2];
@@ -236,7 +239,8 @@ $('.screens-room-roomDetail__reservation__check-in-out').dateRangePicker({
       priceExtraPersonValue)}`;
 
   bookingSum.children[1].innerHTML = `₩ 
-    ${priceWeekdayValue + priceWeekendValue + priceExtraPersonValue}
+    ${priceToString(
+      priceWeekdayValue + priceWeekendValue + priceExtraPersonValue)}
   `;
 
   document.querySelector(
@@ -346,7 +350,8 @@ btnPlus.addEventListener("click", function (e) {
       priceExtraPersonValue)}`;
   // 합계를 계산하고 합계 HTML을 수정해준다.
   bookingSum.children[1].innerHTML = `₩ 
-    ${priceWeekdayValue + priceWeekendValue + priceExtraPersonValue}
+    ${priceToString(
+      priceWeekdayValue + priceWeekendValue + priceExtraPersonValue)}
   `;
   // 합계 input hidden value를 수정해준다.
   document.querySelector(
@@ -413,7 +418,8 @@ btnMinus.addEventListener("click", function (e) {
       priceExtraPersonValue)}`;
   // 합계를 계산하고 합계 HTML을 수정해준다.
   bookingSum.children[1].innerHTML = `₩ 
-    ${priceWeekdayValue + priceWeekendValue + priceExtraPersonValue}
+    ${priceToString(
+      priceWeekdayValue + priceWeekendValue + priceExtraPersonValue)}
   `;
   // 합계 input hidden value를 수정해준다.
   document.querySelector(

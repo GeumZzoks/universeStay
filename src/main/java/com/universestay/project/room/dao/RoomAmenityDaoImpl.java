@@ -25,4 +25,11 @@ public class RoomAmenityDaoImpl implements RoomAmenityDao {
     public RoomAmenityDto lookUpRoomAmenity(String room_id) throws Exception {
         return session.selectOne(namespace + "lookUpRoomAmenity", room_id);
     }
+
+    @Override
+    public RoomAmenityDto selectRoomAmenity(String room_id) throws Exception {
+        return session.selectOne(namespace + "selectRoomAmenity", room_id);
+    }
+
+
 }
