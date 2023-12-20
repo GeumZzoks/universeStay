@@ -1,6 +1,7 @@
 package com.universestay.project.admin.dao;
 
 import com.universestay.project.admin.dto.EventDto;
+import com.universestay.project.admin.dto.EventImgDto;
 import com.universestay.project.common.SearchCondition;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,23 @@ public class EventDaoImpl implements EventDao {
     }
 
     @Override
+    public Integer insertImg(EventImgDto eventImgDto) throws Exception {
+        return session.insert(namespace + "insertImg", eventImgDto);
+    }
+
+    @Override
     public EventDto select(Integer event_id) throws Exception {
         return session.selectOne(namespace + "select", event_id);
+    }
+
+    @Override
+    public Map<String, Object> selectWithImg(Integer event_id) throws Exception {
+        return session.selectOne(namespace + "selectWithImg", event_id);
+    }
+
+    @Override
+    public List<Map<String, Object>> selectMain() throws Exception {
+        return session.selectList(namespace + "selectMain");
     }
 
     @Override
@@ -57,6 +73,11 @@ public class EventDaoImpl implements EventDao {
     @Override
     public Integer update(EventDto dto) throws Exception {
         return session.update(namespace + "update", dto);
+    }
+
+    @Override
+    public Integer updateImg(EventImgDto eventImgDto) throws Exception {
+        return session.update(namespace + "updateImg", eventImgDto);
     }
 
     @Override

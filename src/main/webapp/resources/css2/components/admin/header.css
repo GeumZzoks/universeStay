@@ -25,8 +25,9 @@
 .components-admin-header__header__img {
     width: 20px;
     height: 20px;
-    vertical-align: bottom;
-    margin-right: 5px;
+    vertical-align: middle;
+    position: relative;
+    margin: -2px 5px 0 0;
 }
 
 .components-admin-header__header__btn {
@@ -49,9 +50,9 @@
 
 .components-admin-header__header__adminbtn {
     border: 0;
-    background-color: transparent;
     float: right;
-    width: 100px;
+    background-color: transparent;
+    width: fit-content;
     height: 30px;
     margin: 10px 10px 0 0;
     font-size: 14px;

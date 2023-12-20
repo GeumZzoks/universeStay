@@ -16,10 +16,32 @@
         </selectKey>
     </insert>
 
+    <insert id="insertImg" parameterType="com.universestay.project.admin.dto.EventImgDto">
+        INSERT into EventImg (event_id, event_img_url, event_img_comment, event_img_is_remove, created_id,
+                              updated_id)
+        VALUES (#{event_id}, #{event_img_url}, #{event_img_comment}, #{event_img_is_remove},
+                #{created_id}, #{updated_id})
+    </insert>
+
     <select id="select" parameterType="int" resultType="EventDto">
         SELECT *
         FROM Event
         WHERE event_id = #{event_id}
+    </select>
+
+    <select id="selectWithImg" parameterType="int" resultType="map">
+        SELECT e.*, ei.event_img_url as img
+        FROM Event e
+                 LEFT JOIN EventImg ei on e.event_id = ei.event_id
+        WHERE e.event_id = #{event_id}
+    </select>
+
+    <select id="selectMain" resultType="map">
+        SELECT e.event_id, e.event_title, e.event_ctt, e.event_start_date, e.event_expire_date, ei.event_img_url as img
+        FROM Event e
+                 LEFT JOIN EventImg ei on e.event_id = ei.event_id
+        WHERE e.event_is_open = "Y"
+        ORDER BY e.event_expire_date DESC
     </select>
 
     <select id="getAdminUuid" parameterType="String" resultType="String">
@@ -58,10 +80,21 @@
         WHERE event_id = #{event_id}
     </update>
 
+    <update id="updateImg" parameterType="com.universestay.project.admin.dto.EventImgDto">
+        UPDATE EventImg
+        SET event_img_url     = #{event_img_url},
+            event_img_comment = #{event_img_comment},
+            updated_at        = now(),
+            updated_id        = #{updated_id}
+        WHERE event_id = #{event_id}
+    </update>
+
     <delete id="delete">
         DELETE
-        FROM Event
-        WHERE event_id = #{event_id}
+        e.*, ei.*
+        FROM Event e LEFT JOIN EventImg ei on e.event_id = ei.event_id
+        WHERE e.event_id =
+        #{event_id}
     </delete>
 
     <update id="update_hit" parameterType="EventDto">

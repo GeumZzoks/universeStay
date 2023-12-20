@@ -48,7 +48,8 @@
                 </div>
                 <div class="cont">
                     <textarea name="notice_ctt"
-                              placeholder="내용 입력">${noticeDto.notice_ctt}</textarea>
+                              placeholder="내용 입력"
+                              style="white-space: pre">${noticeDto.notice_ctt}</textarea>
                 </div>
             </div>
             <div class="bt_wrap">

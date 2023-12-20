@@ -26,14 +26,23 @@ public class RoomDto {
     @ApiModelProperty(notes = "유저 ID", example = "0ca24692-89ea-11ee-b9d1-0242ac120002", required = true)
     private String user_id;
 
-    @ApiModelProperty(notes = "숙소 승인 상태", example = "R01", required = true)
+    @ApiModelProperty(notes = "숙소 승인 상태", example = "RA01", required = true)
     private String status_id;
+
+    @ApiModelProperty(notes = "숙소 상태", example = "R01", required = true)
+    private String room_status_id;
 
     @ApiModelProperty(notes = "숙소 이름", example = "남산레지던스", required = true)
     private String room_name;
 
     @ApiModelProperty(notes = "숙소 주소", example = "0", required = true)
     private String room_address;
+
+    @ApiModelProperty(notes = "숙소 상세 주소", example = "0", required = true)
+    private String room_address_detail;
+
+    @ApiModelProperty(notes = "숙소 대표 사진", example = "0", required = true)
+    private String room_main_photo;
 
     @ApiModelProperty(notes = "숙소 장점 설명", example = "야경이 훌륭합니다. 남산이 가깝습니다.", required = false)
     private String room_total_desc;
@@ -43,12 +52,6 @@ public class RoomDto {
 
     @ApiModelProperty(notes = "기타 상세 설명", example = "화장실 수리중", required = false)
     private String room_etc_desc;
-
-    @ApiModelProperty(notes = "위도", example = "37.579617", required = true)
-    private Double room_latitude;
-
-    @ApiModelProperty(notes = "경도", example = "126.977041", required = true)
-    private Double room_longtitude;
 
     @ApiModelProperty(notes = "연락 방법", example = "phone : 010-7777-7777", required = true)
     private String room_contact_method;

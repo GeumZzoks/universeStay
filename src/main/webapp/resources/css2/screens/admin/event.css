@@ -7,8 +7,8 @@
 .screens-admin-event__content {
     width: 80%;
     min-width: 1150px;
+    height: auto;
     min-height: 550px;
-    overflow: hidden;
     position: absolute;
     float: left;
     margin: 0 100px 0 230px;
@@ -16,6 +16,7 @@
     bottom: 25px;
     padding: 0 20px 0 20px;
     background-color: white;
+    overflow: auto;
 }
 
 .screens-admin-event__content-search {
@@ -137,9 +138,9 @@
 }
 
 .screens-admin-event__content-top__btn {
-    position: absolute;
-    top: 20px;
-    right: 90px;
+    position: fixed;
+    top: 100px;
+    right: 120px;
     width: 60px;
     height: 24px;
     background-color: indianred;
@@ -317,3 +318,21 @@
     z-index: 5;
 }
 
+.screens-admin-event__content-div__status {
+    width: 100px;
+    height: 300px;
+    position: fixed;
+    top: 150px;
+    right: 50px;
+    font-size: 14px;
+    border: 2px solid indianred;
+    border-radius: 10px;
+    padding: 60px 0 0 20px;
+}
+
+.screens-admin-event__content__img {
+    width: 700px;
+    height: auto;
+    margin: 40px 0 20px 20px;
+    background-color: gainsboro;
+}

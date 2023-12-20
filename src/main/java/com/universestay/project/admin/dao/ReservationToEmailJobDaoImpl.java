@@ -16,7 +16,6 @@ public class ReservationToEmailJobDaoImpl implements ReservationToEmailJobDao {
 
     @Override
     public List<Map<String, Object>> selectAlert() throws Exception {
-        System.out.println("daoimpl@@@@@");
         return session.selectList(namespace + "selectAlert");
     }
 }

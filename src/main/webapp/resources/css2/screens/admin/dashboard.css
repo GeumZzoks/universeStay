@@ -1,198 +1,235 @@
 
 .screens-admin-dashboard__btn {
-  background: #F48475;
-  color: white;
-  padding: 5px 10px;
-  text-align: center;
-  border-radius: 5px;
+    background: #F48475;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration-line: none;
 }
 
 .screens-admin-dashboard__btn:hover {
-  color: #F48475;
-  background: white;
-  padding: 3px 8px;
-  border: 2px solid #F48475;
+    color: #F48475;
+    background: white;
+    padding: 3px 8px;
+    border: 2px solid #F48475;
+}
+
+.screens-admin-dashboard__btn span {
+    font-size: 20px;
+    margin: 0;
 }
 
 .screens-admin-dashboard__btn-span-confirm,
 .screens-admin-dashboard__btn-span-reject,
 .screens-admin-dashboard__btn-span-content {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .screens-admin-dashboard__title {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  padding: 15px 10px;
-  border-bottom: 2px solid #999;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 30px 15px;
+    border-bottom: 2px solid #999;
+    position: relative;
+}
+
+.screens-admin-dashboard__title h2 {
+    font-size: 20px;
+    position: absolute;
+    left: 10px;
+}
+
+.screens-admin-dashboard__title a {
+    position: absolute;
+    right: 5%;
 }
 
 .screens-admin-dashboard__table {
-  padding: 10px;
+    padding: 10px;
+    table-layout: fixed;
 }
 
+.screens-admin-dashboard__table td {
+    height: 50px;
+}
+
+
 .screens-admin-dashboard__table__common {
-  text-align: left;
-  padding: 8px;
+    text-align: center;
+    padding: 8px;
 }
 
 .screens-admin-dashboard__table__common__price {
-  text-align: right;
-  padding: 8px 30px 8px 0px;
+    text-align: right;
+    width: 90px;
+    padding: 8px 30px 8px 0px;
 }
 
-screens-admin-dashboard__table__common__choose {
-  text-align: center;
+.screens-admin-dashboard__table__common__choose {
+    text-align: left;
+    padding-left: 40px;
 }
 
 .screens-admin-dashboard__side-menu {
-  position: fixed;
-  background: #F48475;
-  width: 15vw;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+    position: fixed;
+    background: #F48475;
+    width: 15vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.screens-admin-dashboard__list-inquiry td {
+    height: 40px;
 }
 
 .screens-admin-dashboard__side-menu .screens-admin-dashboard__brand-logo {
-  height: 10vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .screens-admin-dashboard__logo-universe {
-  width: 100%;
+    width: 100%;
 }
 
 .screens-admin-dashboard__side-menu li {
-  font-size: 24px;
-  padding: 20px 40px;
-  margin: 10px 0px;
-  color: white;
-  display: flex;
-  align-items: center;
+    font-size: 24px;
+    padding: 20px 40px;
+    margin: 10px 0px;
+    color: white;
+    display: flex;
+    align-items: center;
 }
 
 .screens-admin-dashboard__side-menu li:hover {
-  background: whitesmoke;
-  color: #F48475;
+    background: whitesmoke;
+    color: #F48475;
 }
 
 .screens-admin-dashboard__container {
-  position: absolute;
-  right: 0;
-  width: 85vw;
-  height: 100vh;
-  background: #f1f1f1;
+    position: absolute;
+    width: 85vw;
+    padding-left: 15vw;
+    height: 100vh;
+    background: #f1f1f1;
 }
 
 .screens-admin-dashboard__container .screens-admin-dashboard__header {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 85vw;
-  height: 10vh;
-  background: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  z-index: 1;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 85vw;
+    height: 10vh;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    z-index: 1;
 }
 
 .screens-admin-dashboard__container .screens-admin-dashboard__header .screens-admin-dashboard__nav {
-  width: 90%;
-  display: flex;
-  align-items: center;
+    width: 90%;
+    display: flex;
+    align-items: center;
 }
 
 .screens-admin-dashboard__container .screens-admin-dashboard__header .screens-admin-dashboard__nav .screens-admin-dashboard__search {
-  flex: 3;
-  display: flex;
-  justify-content: center;
-  border-radius: 5px;
+    flex: 3;
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
 }
 
 .screens-admin-dashboard__container .screens-admin-dashboard__header .screens-admin-dashboard__nav .screens-admin-dashboard__search input[type=text] {
-  border: none;
-  background: #f1f1f1;
-  padding: 10px;
-  width: 50%;
-  border-radius: 5px 0 0 5px;
+    border: none;
+    background: #f1f1f1;
+    padding: 10px;
+    width: 50%;
+    border-radius: 5px 0 0 5px;
 }
 
 .screens-admin-dashboard__container .screens-admin-dashboard__header .screens-admin-dashboard__nav .screens-admin-dashboard__search button {
-  width: 40px;
-  height: 40px;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0 5px 5px 0;
+    width: 40px;
+    height: 40px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 5px 5px 0;
 }
 
 .screens-admin-dashboard__container .screens-admin-dashboard__header .screens-admin-dashboard__nav .screens-admin-dashboard__search button img {
-  width: 30px;
-  height: 30px;
-  border-radius: 5px;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
 }
 
 .screens-admin-dashboard__container .screens-admin-dashboard__header .screens-admin-dashboard__nav .screens-admin-dashboard__user {
-  flex: 1;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .screens-admin-dashboard__container .screens-admin-dashboard__header .screens-admin-dashboard__nav .screens-admin-dashboard__user img {
-  width: 40px;
-  height: 40px;
+    width: 40px;
+    height: 40px;
 }
 
 .screens-admin-dashboard__container .screens-admin-dashboard__header .screens-admin-dashboard__nav .screens-admin-dashboard__user .screens-admin-dashboard__img-case {
-  position: relative;
-  width: 50px;
-  height: 50px;
+    position: relative;
+    width: 50px;
+    height: 50px;
 }
 
 .screens-admin-dashboard__container .screens-admin-dashboard__header .screens-admin-dashboard__nav .screens-admin-dashboard__user .screens-admin-dashboard__img-case img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .screens-admin-dashboard__container .screens-admin-dashboard__content {
-  position: relative;
-  margin-top: 15vh;
-  min-height: 85vh;
-  background: #f1f1f1;
+    position: relative;
+    margin-top: 6vh;
+    min-height: 85vh;
+    background: #f1f1f1;
 }
 
 .screens-admin-dashboard__container .screens-admin-dashboard__content .screens-admin-dashboard__cards {
-  padding: 20px 15px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
+    padding: 20px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .screens-admin-dashboard__container .screens-admin-dashboard__content .screens-admin-dashboard__cards .screens-admin-dashboard__card {
-  width: 250px;
-  height: 150px;
-  background: white;
-  margin: 20px 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background: #F48475;
-  border-radius: 5px;
-  color: white;
-  font-weight: bold;
+    width: 250px;
+    height: 150px;
+    background: white;
+    margin: 20px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background: #F48475;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+}
+
+.screens-admin-dashboard__container .screens-admin-dashboard__content .screens-admin-dashboard__cards .screens-admin-dashboard__card h1 {
+    font-size: 30px;
+    margin-bottom: 15px;
+
 }
 
 /* 카드 호버 기능 주기 */
@@ -203,102 +240,108 @@ screens-admin-dashboard__table__common__choose {
 /*}*/
 
 .screens-admin-dashboard__container .screens-admin-dashboard__content .screens-admin-dashboard__cards .screens-admin-dashboard__card:hover {
-  background: whitesmoke;
-  color: #F48475;
+    background: whitesmoke;
+    color: #F48475;
 }
 
 .screens-admin-dashboard__container .screens-admin-dashboard__content .screens-admin-dashboard__content-2 {
-  min-height: 60vh;
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
-  flex-wrap: wrap;
+    min-height: 60vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
 }
 
 .screens-admin-dashboard__container .screens-admin-dashboard__content .screens-admin-dashboard__content-2 .screens-admin-dashboard__list-host-management {
-  min-height: 50vh;
-  max-height: 50vh;
-  flex: 6;
-  background: white;
-  margin: 0 25px 25px 25px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  display: flex;
-  flex-direction: column;
-  border-radius: 5px;
-  overflow: auto;
+    min-height: 55vh;
+    max-height: 55vh;
+    flex: 6;
+    background: white;
+    margin: 0 25px 25px 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    overflow-y: scroll;
 }
 
 .screens-admin-dashboard__container .screens-admin-dashboard__content .screens-admin-dashboard__content-2 .screens-admin-dashboard__list-inquiry {
-  flex: 4;
-  background: white;
-  min-height: 50vh;
-  margin: 0 25px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  display: flex;
-  flex-direction: column;
-  border-radius: 5px;
+    flex: 4;
+    background: white;
+    min-height: 55vh;
+    max-height: 55vh;
+    margin: 0 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    overflow-y: scroll;
+    position: relative;
 }
 
 .screens-admin-dashboard__container .screens-admin-dashboard__content .screens-admin-dashboard__content-2 .screens-admin-dashboard__list-inquiry table td:nth-child(1) img {
-  height: 40px;
-  width: 40px;
+    height: 40px;
+    width: 40px;
 }
 
 @media screen and (max-width: 1050px) {
-  .screens-admin-dashboard__side-menu li {
-    font-size: 18px;
-  }
+    .screens-admin-dashboard__side-menu li {
+        font-size: 18px;
+    }
 }
 
 @media screen and (max-width: 940px) {
-  .screens-admin-dashboard__side-menu li span {
-    display: none;
-  }
+    .screens-admin-dashboard__side-menu li span {
+        display: none;
+    }
 
-  .screens-admin-dashboard__side-menu {
-    align-items: center;
-  }
+    .screens-admin-dashboard__side-menu {
+        align-items: center;
+    }
 
-  .screens-admin-dashboard__side-menu li img {
-    width: 40px;
-    height: 40px;
-  }
+    .screens-admin-dashboard__side-menu li img {
+        width: 40px;
+        height: 40px;
+    }
 
-  .screens-admin-dashboard__side-menu li:hover {
-    background: #F48475;
-    padding: 8px 38px;
-    border: 2px solid white;
-  }
+    .screens-admin-dashboard__side-menu li:hover {
+        background: #F48475;
+        padding: 8px 38px;
+        border: 2px solid white;
+    }
 }
 
 @media screen and (max-width: 536px) {
-  .screens-admin-dashboard__container .screens-admin-dashboard__content .screens-admin-dashboard__cards {
-    justify-content: center;
-  }
+    .screens-admin-dashboard__container .screens-admin-dashboard__content .screens-admin-dashboard__cards {
+        justify-content: center;
+    }
 
-  .screens-admin-dashboard__container .screens-admin-dashboard__content .screens-admin-dashboard__content-2 .screens-admin-dashboard__list-host-management table th:nth-child(2),
-  .screens-admin-dashboard__container .screens-admin-dashboard__content .screens-admin-dashboard__content-2 .screens-admin-dashboard__list-host-management table td:nth-child(2) {
-    display: none;
-  }
+    .screens-admin-dashboard__container .screens-admin-dashboard__content .screens-admin-dashboard__content-2 .screens-admin-dashboard__list-host-management table th:nth-child(2),
+    .screens-admin-dashboard__container .screens-admin-dashboard__content .screens-admin-dashboard__content-2 .screens-admin-dashboard__list-host-management table td:nth-child(2) {
+        display: none;
+    }
 }
 
 /*네비게이션 아이콘 크기 */
 .screens-admin-dashboard__img {
-  width: 20%;
-  height: 20%;
+    width: 20%;
+    height: 20%;
 
-  vertical-align: bottom;
-  margin-right: 20px;
+    vertical-align: bottom;
+    margin-right: 20px;
 
 }
 
 .screens-admin-dashboard__img + a {
-  color: inherit;
-  text-decoration: none;
+    color: inherit;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: bold;
+
 }
 
 screens-admin-dashboard__img-body {
-  width: 20%;
-  height: 20%;
+    width: 20%;
+    height: 20%;
 
 }

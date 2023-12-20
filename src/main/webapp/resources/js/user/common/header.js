@@ -1,29 +1,87 @@
-//---------------------- 캘린더 라이브러리 --------------------------------------------
-$(function () {
-    $('input[name="datefilter"]').daterangepicker({
-        autoUpdateInput: true,
-        locale: {
-            cancelLabel: '취소',
-            applyLabel: '확인'
+// ------------------------ 메인 검색 ajax 코드  ----------------------------------------//
+
+$(".components-user-header__header__searchbar__search-btn").click(function () {
+    // 사용자가 입력한 정보
+    const searchInfo = {
+        address: $(
+                '.components-user-header__where__default').text().trim().replace(
+                /\n/g, ''),
+        search_capa: $(
+                '.components-user-header__people_default').text().trim().replace(
+                /\n/g, ''),
+        search_start_date: $('input[name="datefilter"]').data(
+                'daterangepicker').startDate.format('YYYY-MM-DD'),
+        search_end_date: $('input[name="datefilter"]').data(
+                'daterangepicker').endDate.format('YYYY-MM-DD'),
+        search_min_price: $('.components-user-header__min-input').val(),
+        search_max_price: $('.components-user-header__max-input').val(),
+    };
+
+    $.ajax({
+        type: "POST",
+        url: "/room/search", // 메인 검색 컨트롤러
+        contentType: "application/json",
+        data: JSON.stringify(searchInfo),
+        success: function (response) {
+            $('.screens-user-main__room__wrapper:last').after(response);
+        },
+        error: function (error) {
+            console.error("검색 실패:", error);
         }
     });
+});
 
-    $('input[name="datefilter"]').on('apply.daterangepicker',
-            function (ev, picker) {
-                $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - '
-                        + picker.endDate.format(
-                                'MM/DD/YYYY'));
-            });
+document.querySelector(
+        ".components-user-header__header__searchbar__search-btn").addEventListener(
+        "click", function () {
+            const searchInfo = {
+                address: $(
+                        '.components-user-header__where__default').text().trim().replace(
+                        /\n/g, ''),
+                search_capa: $(
+                        '.components-user-header__people_default').text().trim().replace(
+                        /\n/g, ''),
+                search_start_date: $('input[name="datefilter"]').data(
+                        'daterangepicker').startDate.format('YYYY-MM-DD'),
+                search_end_date: $('input[name="datefilter"]').data(
+                        'daterangepicker').endDate.format('YYYY-MM-DD'),
+                search_min_price: $('.components-user-header__min-input').val(),
+                search_max_price: $('.components-user-header__max-input').val(),
+            };
 
-    $('input[name="datefilter"]').on('cancel.daterangepicker',
-            function (ev, picker) {
-                $(this).val('');
-            });
+            // URL 생성
+            const url = "/?" +
+                    "address=" + searchInfo.address +
+                    "&search_capa=" + searchInfo.search_capa +
+                    "&search_start_date=" + searchInfo.search_start_date +
+                    "&search_end_date=" + searchInfo.search_end_date +
+                    "&search_min_price=" + searchInfo.search_min_price +
+                    "&search_max_price=" + searchInfo.search_max_price;
+
+            // 페이지 새로고침을 통한 GET 요청
+            window.location.href = url;
+        });
+
+//달력 인풋이 아닌 체크인/체크아웃 버튼 영역을 눌러도 달력이 열리고 닫히도록 설정
+document.addEventListener('DOMContentLoaded', function () {
+    const checkinBtn = document.querySelector(
+            '.components-user-header__header__searchbar__checkin-btn');
+
+    checkinBtn.addEventListener('click', function () {
+        document.querySelectorAll(
+                '.components-user-header__dropdown-div').forEach(
+                function (dropdown) {
+                    dropdown.classList.remove('show');
+                });
+
+        // input[name="datefilter"] 요소를 클릭하는 것과 같은 효과
+        document.querySelector('input[name="datefilter"]').click();
+    });
 });
 
 //버튼들을 누르면 드롭다운이 내려오면서 클래스 이름에 'show'가 토글됨, 그런데 드롭다운 하위 요소들에게도 이벤트가 전파되어서 드롭다운 요소를 누르면 드롭다운이 자꾸 꺼짐.
 //그것을 막기 위한 이벤트 전파 중단 코드
-const dropdowns = document.querySelectorAll(
+let dropdowns = document.querySelectorAll(
         '.components-user-header__dropdown-div');
 
 document.addEventListener("click", function (e) {
@@ -39,7 +97,9 @@ document.addEventListener("click", function (e) {
             e.target.classList.contains(
                     "components-user-header__header__profile__hamburger") ||
             e.target.classList.contains(
-                    "components-user-header__header__profile__img")
+                    "components-user-header__header__profile__img") ||
+            e.target.classList.contains(
+                    "components-user-header__header__searchbar__checkin-btn")
     ) {
         return;
     }
@@ -76,9 +136,7 @@ const toggleDropdown1 = function () {
             dropdown.classList.remove("show");
         }
     });
-    console.log(dropdownDiv[0].classList);
     dropdownDiv[0].classList.toggle('show')
-    console.log(dropdownDiv[0].classList);
 }
 // '여행자'를 눌렀을때 발현하는 함수
 const toggleDropdown2 = function () {
@@ -93,9 +151,7 @@ const toggleDropdown2 = function () {
             dropdown.classList.remove("show");
         }
     });
-    console.log(dropdownDiv[1].classList);
     dropdownDiv[1].classList.toggle('show')
-    console.log(dropdownDiv[1].classList);
 }
 //  '1박당 예산을 눌렀을 때 발현하는 함수
 const toggleDropdown3 = function () {
@@ -233,13 +289,18 @@ function syncValues() {
     const maxTxtElement = document.querySelector(
             '.components-user-header__header__searchbar__sub_txt__max');
 
-    minTxtElement.textContent = `${convertToTenThousand(minInput.value)}`; // minInput 값 변환하여 적용
-    maxTxtElement.textContent = `${convertToTenThousand(maxInput.value)}`; // maxInput 값 변환하여 적용
+    minTxtElement.textContent = priceToString(minInput.value); // minInput 값 변환하여 적용
+    maxTxtElement.textContent = priceToString(maxInput.value); // maxInput 값 변환하여 적용
 }
 
 // 입력 필드에서 값이 변경될 때마다 syncValues 함수 호출
 minInput.addEventListener('input', syncValues);
 maxInput.addEventListener('input', syncValues);
+
+//화면이 로드될때마다 실행
+document.addEventListener('DOMContentLoaded', function () {
+    syncValues(); // 페이지가 로드되면 syncValues 함수를 실행합니다.
+});
 
 //---------------------- 각 메뉴 & 컨트롤러 맵핑 --------------------------------------------
 const signUpBtn = document.querySelector(
