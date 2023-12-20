@@ -206,6 +206,13 @@ $('.screens-room-roomDetail__reservation__check-in-out').dateRangePicker({
     return [!isReserved && !isBeforeToday];
   }
 }).bind('datepicker-first-date-selected', function (event, obj) {
+  // Validate that obj.date2 is after obj.date1
+  const isValidDateRange = obj.date2 && (obj.date2 > obj.date1);
+
+  if (!isValidDateRange) {
+    // If not valid, reset date2 to date1
+    $(this).data('dateRangePicker').clear();
+  }
 }).bind('datepicker-change', function (event, obj) {
   inputCheckIn.innerHTML = formatDate(new Date(obj.date1));
   inputCheckOut.innerHTML = formatDate(new Date(obj.date2));
@@ -275,7 +282,7 @@ function countWeekdaysAndWeekends(startDate, endDate) {
     const dayOfWeek = currentDate.getDay();
 
     // Sunday (0) and Saturday (6) are weekends
-    if (dayOfWeek === 0 || dayOfWeek === 6) {
+    if (dayOfWeek === 5 || dayOfWeek === 6) {
       weekends++;
     } else {
       weekdays++;
