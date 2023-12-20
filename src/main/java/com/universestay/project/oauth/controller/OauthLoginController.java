@@ -102,7 +102,7 @@ public class OauthLoginController {
             String userPwd = userDto.getUser_pwd();
             userLoginService.signin(userEmail, userPwd, session, model);
 
-            return "main/main";
+            return "redirect:/";
         } else {
             model.addAttribute("userEmail", userEmail);
             String allowedCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_-+=<>?";
