@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -38,11 +39,20 @@ public class BookingRoomController {
     }
 
     @GetMapping("/{room_id}")
-    public String bookRoom(BookingDto bookingDto, Model model) throws CommonException {
+    public String bookRoom(BookingDto bookingDto,
+            @RequestParam("weekdayPrice") String weekdayPrice,
+            @RequestParam("weekendPrice") String weekendPrice,
+            @RequestParam("extraPersonFee") String extraPersonFee,
+            @RequestParam("BookingPriceSum") String BookingPriceSum,
+            Model model) throws CommonException {
 
         Map<String, Object> bookInfo = bookService.selectRoomBookInfo(bookingDto.getRoom_id());
         model.addAttribute("bookInfo", bookInfo);
-        model.addAttribute("bookingDto", bookingDto); // 체크인, 체크아웃, 게스트 인원
+        model.addAttribute("bookingDto", bookingDto);
+        model.addAttribute("weekdayPrice", weekdayPrice);
+        model.addAttribute("weekendPrice", weekendPrice);
+        model.addAttribute("extraPersonFee", extraPersonFee);
+        model.addAttribute("BookingPriceSum", BookingPriceSum);
 
         return "room/book";
     }

@@ -18,9 +18,16 @@
 <html>
 <head>
     <title>확인 및 결제</title>
-    <link rel="stylesheet" href="/resources/css2/style.css">
+    <link rel="stylesheet" href="/resources/css2/style.css"/>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
+    <%--  dateRangePicker  --%>
+    <link rel="stylesheet"
+          href="http://longbill.github.io/jquery-date-range-picker/dist/daterangepicker.min.css"/>
+
 </head>
 <body>
 
@@ -49,15 +56,18 @@
                         <h3>날짜</h3>
                         <%--                        <div>12월 30일 ~ 1월 4일</div>--%>
                         <%-- TODO: timestamp로 바꾸기 --%>
-                        <div>${bookingDto.booking_checkin_date}
-                            ~ ${bookingDto.booking_checkout_date}</div>
+                        <span id="check-in-button">${bookingDto.booking_checkin_date}</span>
+                        <span> ~ </span>
+                        <span id="check-out-button">${bookingDto.booking_checkout_date}</span>
                         <div style="display: none"
                              id="screens-room-book__check-in-data">${bookingDto.booking_checkin_date}</div>
+                        <input type="hidden" name="booking_checkin_date">
                         <div style="display: none"
                              id="screens-room-book__check-out-data">${bookingDto.booking_checkout_date}</div>
+                        <input type="hidden" name="booking_checkout_date">
 
                     </div>
-                    <span class="screens-room-book__container__div-common__span">수정</span>
+                    <span class="screens-room-book__container__div-common__span screens-room-book__reservation__check-in-out">수정</span>
                 </div>
 
                 <div class="screens-room-book__container__div-common">
@@ -65,13 +75,43 @@
                         <h3>게스트</h3>
                         <div>
                             <span>게스트</span>
-                            <span>${bookingDto.booking_num_of_guest}</span>
+                            <span id="totalGuest-button">${bookingDto.booking_num_of_guest}</span>
                             <span>명</span>
                         </div>
                         <div style="display: none"
                              id="screens-room-book__total-guest">${bookingDto.booking_num_of_guest}</div>
                     </div>
-                    <span class="screens-room-book__container__div-common__span">수정</span>
+                    <span class="screens-room-book__container__div-common__span screens-room-book__reservation__number-people">수정</span>
+                    <input type="hidden" name="booking_num_of_guest">
+                    <input type="hidden" name="room_max_capa" value="${bookInfo.room_max_capa}">
+                    <input type="hidden" name="room_standard_capa"
+                           value="${bookInfo.room_standard_capa}">
+                </div>
+
+                <div class="screens-room-book__number-people-toggle">
+                    <span class="screens-room-book__toggle-part-1">성인</span>
+                    <div class="screens-room-book__toggle-part-2">
+                        <button type="button"
+                                class="screens-room-book__toggle-btn-minus disable">
+                            <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"
+                                 aria-hidden="true"
+                                 role="presentation" focusable="false"
+                                 style="display: block; height: 12px; width: 12px; fill: #717171;">
+                                <path d="m.75 6.75h10.5v-1.5h-10.5z"></path>
+                            </svg>
+                        </button>
+                        <input type="text" class="screens-room-book__toggle-num"
+                               name="toggle-people-num" value='1' readonly/>
+                        <button type="button"
+                                class="screens-room-book__toggle-btn-plus">
+                            <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"
+                                 aria-hidden="true"
+                                 role="presentation" focusable="false"
+                                 style="display: block; height: 12px; width: 12px; fill: #717171;">
+                                <path d="m6.75.75v4.5h4.5v1.5h-4.5v4.5h-1.5v-4.5h-4.5v-1.5h4.5v-4.5z"></path>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
 
                 <%-- 결제 수단 --%>
@@ -265,27 +305,37 @@
                             </div>
 
                             <div>
-                                <div class="screens-room-book__container__right-side__second-box__sub-box">
-                                    <div>₩${bookInfo.room_weekend_price} x 5박</div>
-                                    <div>₩${bookInfo.room_weekend_price * 5}</div>
+                                <div class="screens-room-book__reservation__part-3 screens-room-book__container__right-side__second-box__sub-box">
+                                    <span class="screens-room-book__reservation__part-3__mul">₩ <span>${bookInfo.room_weekday_price}</span> X <span>0</span>박 (주중)</span>
+                                    <span>₩ ${weekdayPrice}</span>
+                                    <input type="hidden" value="${bookInfo.room_weekday_price}">
                                 </div>
-                                <div class="screens-room-book__container__right-side__second-box__sub-box">
-                                    <div>청소비</div>
-                                    <div>₩30,000</div>
+                                <div class="screens-room-book__reservation__part-4 screens-room-book__container__right-side__second-box__sub-box">
+                                    <span class="screens-room-book__reservation__part-4__mul">₩ <span>${bookInfo.room_weekend_price}</span> X <span>0</span>박 (주말)</span>
+                                    <span>₩ ${weekendPrice}</span>
+                                    <input type="hidden" value="${bookInfo.room_weekend_price}">
                                 </div>
-                                <div class="screens-room-book__container__right-side__second-box__sub-box">
-                                    <div>유니버스 서비스 수수료</div>
-                                    <div>₩${bookInfo.room_weekend_price * 5 * 0.1}</div>
+                                <div class="screens-room-book__reservation__part-5 screens-room-book__container__right-side__second-box__sub-box">
+                                    <span class="screens-room-book__reservation__part-5__mul">₩ <span>${bookInfo.room_extra_person_fee}</span> X <span>0</span>명 (추가인원) X <span>0</span>박 </span>
+                                    <span>₩ ${extraPersonFee}</span>
+                                    <input type="hidden" value="${bookInfo.room_extra_person_fee}">
                                 </div>
+
                             </div>
                         </div>
 
                         <%-- 3번째 박스 --%>
                         <div class="screens-room-book__border-bound-top"></div>
-                        <div class="screens-room-book__container__right-side__flex-box-column__total-payment">
-                            <div>총 합계(KRW)</div>
-                            <div>₩583,423</div>
+                        <div class="screens-room-book__reservation__part-6">
+                            <span class="screens-room-book__reservation__part-6__mul">합계</span>
+                            <span>₩ ${BookingPriceSum}</span>
+                            <input type="hidden" name="booking_price_sum">
                         </div>
+
+                        <%--                        <div class="screens-room-book__container__right-side__flex-box-column__total-payment">--%>
+                        <%--                            <div>총 합계(KRW)</div>--%>
+                        <%--                            <div>₩583,423</div>--%>
+                        <%--                        </div>--%>
 
                     </div>
                 </div>
@@ -302,6 +352,12 @@
         src="https://kit.fontawesome.com/d1e61c2fb7.js"
         crossorigin="anonymous"
 ></script>
+
+<%--  dateRangePicker  --%>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-date-range-picker/0.14.2/jquery.daterangepicker.min.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.16.0/moment.min.js"></script>
 
 <script src="/resources/js/room/book.js"></script>
 </body>
