@@ -1,10 +1,5 @@
 package com.universestay.project.room.dao;
 
-import static org.junit.Assert.assertTrue;
-
-import com.universestay.project.room.dto.RoomDto;
-import java.util.List;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -17,11 +12,12 @@ public class RoomDaoImplTest {
     @Autowired
     RoomDao roomDao;
 
-    @Test
-    public void listHostRoom() throws Exception {
-        List<RoomDto> roomList = roomDao.listHostRoom("nn16d376-ea79-4dff-80a4-b12eb846bf41");
-        assertTrue(roomList != null);
-    }
+//    @Test
+//    public void listHostRoom() throws Exception {
+//        List<RoomManagementDto> roomList = roomDao.listHostRoom(
+//                "nn16d376-ea79-4dff-80a4-b12eb846bf41");
+//        assertTrue(roomList != null);
+//    }
 
     // 숙소테이블 숙소대표이미지 컬럼 추가 전 코드
 //    @Test

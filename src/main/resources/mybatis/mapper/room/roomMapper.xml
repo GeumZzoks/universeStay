@@ -114,8 +114,13 @@
     WHERE room_id = #{room_id} LIMIT 0, 5
   </select>
 
-  <select id="listHostRoom" resultType="RoomDto">
-    SELECT *
+  <select id="listHostRoom" resultType="RoomManagementDto">
+    SELECT room_id,
+           room_main_photo,
+           room_status_id,
+           room_name,
+           room_address,
+           DATE_FORMAT(created_at, '%Y-%m-%d') created_at
     FROM Room
     WHERE user_id = #{user_id}
       AND room_status_id NOT IN ('R03')
@@ -193,7 +198,8 @@
     WHERE room_id = #{room_id}
   </update>
 
-  <select id="selectOneHostRoom" resultType="RoomDto">
+
+  <select id="selectHostRoom" resultType="RoomDto">
     SELECT *
     FROM Room
     WHERE room_id = #{room_id}

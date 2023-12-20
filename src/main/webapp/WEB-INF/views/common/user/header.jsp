@@ -158,13 +158,17 @@
     <!--헤더 프로필 영역-->
     <div class="components-user-header__header__profile">
         <div class="components-user-header__header__profile__to-host">
-            <a class="components-user-header__a" href="#">
-                <% if ("Y".equals(isHost)) { %>
+
+            <% if ("Y".equals(isHost)) { %>
+            <a class="components-user-header__a" href="/room/management">
                 <div>호스트 모드로 전환</div>
-                <% } else if ("N".equals(isHost) || isHost == null) { %>
-                <div>당신의 공간을 공유하세요.</div>
-                <% } %>
             </a>
+            <% } else if ("N".equals(isHost) || isHost == null) { %>
+            <a class="components-user-header__a" href="#">
+                <div>당신의 공간을 공유하세요.</div>
+            </a>
+            <% } %>
+
         </div>
 
         <div class="components-user-header__header__profile__my-profile components-user-header__dropdown">
@@ -206,7 +210,7 @@
                         <span>메시지</span>
                     </div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-reservation"
-                    onclick="location.href = '/user/myPage/mybookings/'">
+                         onclick="location.href = '/user/myPage/mybookings/'">
                         <span>여행</span></div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-wishlist"
                          onclick="location.href ='/user/wishLists'">

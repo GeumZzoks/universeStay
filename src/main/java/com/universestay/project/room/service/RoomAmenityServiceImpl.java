@@ -428,4 +428,10 @@ public class RoomAmenityServiceImpl implements RoomAmenityService {
 
         return roomAmenities;
     }
+
+    @Override
+    public RoomAmenityDto readRoomAmenity(String room_id) throws Exception {
+        return roomAmenityDao.selectRoomAmenity(room_id);
+    }
+
 }

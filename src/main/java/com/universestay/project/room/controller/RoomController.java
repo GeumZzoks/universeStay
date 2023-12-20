@@ -1,9 +1,12 @@
 package com.universestay.project.room.controller;
 
+import com.universestay.project.room.dao.RoomViewDao;
 import com.universestay.project.room.dto.RoomAmenityDto;
 import com.universestay.project.room.dto.RoomDto;
 import com.universestay.project.room.dto.RoomImgDto;
+import com.universestay.project.room.dto.RoomManagementDto;
 import com.universestay.project.room.dto.RoomPhotoDto;
+import com.universestay.project.room.dto.RoomViewDto;
 import com.universestay.project.room.service.RoomAmenityService;
 import com.universestay.project.room.service.RoomService;
 import com.universestay.project.user.dao.UserWithdrawalDao;
@@ -44,6 +47,8 @@ public class RoomController {
     UserInfoService userInfoService;
     @Autowired
     WishListService wishListService;
+    @Autowired
+    RoomViewDao roomViewDao;
 
     @GetMapping("")
     public String showRoom() {
@@ -92,7 +97,6 @@ public class RoomController {
      */
     @GetMapping("/management")
     public String roomManagement(HttpSession session, Model model) throws Exception {
-
         try {
             // 로그인한 유저의 정보를 세션에서 얻어온다.
             String loginedUserEmail = (String) session.getAttribute("user_email");
@@ -103,13 +107,20 @@ public class RoomController {
 
             // 숙소목록을 조회한 후 모델에 담는다.
             // 룸상태가 R03(숙소폐점)인 숙소는 제외 한다.
-            List<RoomDto> roomDtoList = roomService.listHostRoom(userId);
+            List<RoomManagementDto> roomManagementDtoList = roomService.listHostRoom(userId);
+//            System.out.println("roomManagementDtoList = " + roomManagementDtoList);
 
-            model.addAttribute("roomDtoList", roomDtoList);
-
+            model.addAttribute("roomManagementDtoList", roomManagementDtoList);
             // 숙소테이블에 대표사진 컬럼을 추가 하기 전 코드
 //            List<Map<String, Object>> roomDtoList = roomService.listHostRoom(userId);
 //            System.out.println("roomDtoList = " + roomDtoList);
+
+            // 헤더에 프로필이미지/토글
+            String profileImgUrl = profileImgService.getProfileImgUrl(userDto.getUser_id());
+            String isHost = userDto.getUser_is_host();
+            model.addAttribute("userInfo", userDto);
+            model.addAttribute("profileImgUrl", profileImgUrl);
+            model.addAttribute("isHost", isHost);
 
             return "/room/management";
 
@@ -163,20 +174,18 @@ public class RoomController {
      * @param model
      * @return
      * @throws Exception
-     * @feat 모달창 숙소 수정하기 링크
+     * @feat 모달창 숙소 수정하기 맵핑
      */
     @GetMapping("/modify")
-    public String modifyRoom(@RequestParam String room_id, Model model) throws Exception {
-        System.out.println("room_id 컨트롤러 = " + room_id);
-        // 등록한 숙소를 조회해온다.
-        RoomDto roomDto = roomService.readroom(room_id);
-        // 뷰에 넘겨주기 위해 모델에 담는다.
+    public String modifyRoom(@RequestParam String room_id, Model model, HttpSession session)
+            throws Exception {
+//        System.out.println("room_id 컨트롤러 = " + room_id);
+        // 수정하기 위해서는 디비에 저장되어 있는 숙소를 불러온 후 뷰에 담는다.
+        RoomDto roomDto = roomService.readRoom(room_id);
         model.addAttribute("roomDto", roomDto);
 
-        String roomCategoryId = roomDto.getRoom_category_id();
-        System.out.println("roomCategoryId = " + roomCategoryId);
-
-        // 숙소 카테고리를 전부 맵에 담고, 맵에서 파라미터로 받아온 값을 찾는다.
+        // roomDto에 있는 카테고리 아이디로(R03) status_name을 얻어와야 하는데
+        // 디비에 들리지 않고 맵에 담아 값을 가져오는 방법이 더 간단하고, 비용을 절감할수 있대.
         Map<String, String> map = new HashMap<>();
         map.put("RC01", "아파트");
         map.put("RC02", "주택");
@@ -191,19 +200,46 @@ public class RoomController {
         map.put("RC11", "캠핑장/아웃도어");
         map.put("RC12", "호스텔");
         map.put("RC13", "리조트");
-
-//        System.out.println("나와라 맵" + map.get(roomCategoryId));
-        String roomCategoryName = map.get(roomCategoryId);
+        // 글서 숙소 카테고리를 전부 맵에 담고, 파라미터로 받아온 값을 이용해 맵에서 카테고리네임을 찾은 후 모델에 추가한다.
+        String roomCategoryName = map.get(roomDto.getRoom_category_id());
         model.addAttribute("roomCategoryName", roomCategoryName);
 
+        // 수정하기 위해 룸어메니티 테이블도 조회해온다.
+        RoomAmenityDto roomAmenityDto = roomAmenityService.readRoomAmenity(room_id);
+        model.addAttribute("roomAmenityDto", roomAmenityDto);
+
+        // 수정하기 위해 룸뷰 테이블도 조회해온다.
+        List<RoomViewDto> roomViewDtoList = roomViewDao.selectRoomView(room_id);
+        System.out.println("roomViewDto = " + roomViewDtoList);
+        model.addAttribute("roomViewDtoList", roomViewDtoList);
+
+        String loginedUserEmail = (String) session.getAttribute("user_email");
+
+        // 헤더에 프로필이미지/토글 불러오기 위해 필요한 코드 => managementController와 중복되는 코드
+        UserDto userDto = userLoginService.checkSignUp(loginedUserEmail);
+        String userId = userDto.getUser_id();
+        String profileImgUrl = profileImgService.getProfileImgUrl(userDto.getUser_id());
+        String isHost = userDto.getUser_is_host();
+        model.addAttribute("userInfo", userDto);
+        model.addAttribute("profileImgUrl", profileImgUrl);
+        model.addAttribute("isHost", isHost);
+
         return "/room/modify";
+
+
     }
 
-    // 수정 완료 눌렀을 경우
+
+    /**
+     * @return
+     * @featuer 수정완료 후 맵핑
+     */
     @PostMapping("/modify")
     public String modify() {
 
-        return null;
+        // 수정한 값을 가지고 디비에 저장시킨 후에
+        // 저장된 값을 가지고 가야지.
+        return "redirect:/room/management";
     }
 
     /**
@@ -211,7 +247,7 @@ public class RoomController {
      * @param room_status_id
      * @return
      * @throws Exception
-     * @feature 호스트룸 활성 상태 변경
+     * @feature 모달창에서 호스트룸 활성 상태 변경 시 맵핑 경로
      */
     @GetMapping("/statusHostroom")
     public String statusHostroom(@RequestParam String room_id,

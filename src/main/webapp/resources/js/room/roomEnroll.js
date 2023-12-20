@@ -320,6 +320,8 @@ function handleSelectSpace(e) {
       categoryData.value -= clickedBtnData.value;
     }
   }
+
+  console.log(categoryData.value);
 }
 
 // 숙소 가격을 책정해주세요

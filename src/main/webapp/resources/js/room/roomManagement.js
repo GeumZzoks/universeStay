@@ -1,3 +1,46 @@
+// 헤더 메뉴바
+// 헤더메뉴바 밑에 선을 만들어 주기위해
+// 부모태그잡아오고 부모태그의 1번째자식에 클래스네임을 추가해준다.
+// 호버로 되었을때 밑줄 없어지게
+
+// window.onload = function () {
+//
+//   const btnRoom = document.querySelector(
+//       '.screens-room-management__menuButton-box__btn-room');
+//   btnRoom.classList.add('checked');
+//
+//   btnRoom.addEventListener('click', function () {
+//     location.href = '/room/management';
+//   })
+//
+//   for(let i=0; i<4; i++){
+//     if(btnRoom.att)
+//   }
+
+//
+// 클릭 시 버튼의 색상 변경
+//   document.querySelectorAll('.room-management-header-btn').forEach(
+//       function (button) {
+//         button.addEventListener('click', function () {
+//           // 모든 버튼에서 'checked' 클래스 제거
+//           document.querySelectorAll('.room-management-header-btn').forEach(
+//               function (btn) {
+//                 btn.classList.remove('checked');
+//               });
+//
+//           // 선택된 버튼에 'checked' 클래스 추가
+//           this.classList.add('checked');
+//         });
+//       });
+//
+// }
+
+// document.querySelectorAll('.room-management-header-btn').addEventListener(
+//     'click',
+//     function () {
+//       changeColor(this);
+//     });
+
 // 모달창
 // 모달창 오픈
 const modal = document.querySelector(
@@ -53,31 +96,9 @@ for (let i = 0; i < roomCards.length; i++) {
     roomName = e.target.parentElement.parentElement.children[3].value;
     document.querySelector(
         '.screens-room-management__modalText-box__text').innerHTML
-        = "[" + roomName + "] 숙소의 운영 상태를 선택 해 주세요";
-
-    // TODO : 추후 숙소 이름 => 숙소 등록일 (일자만 잘라오기) & 숙소 주소로 업데이트 하기
-    // roomCreatedAt = e.target.parentElement.parentElement.children[4].value;
-    //
-    // document.querySelector(
-    //     '.screens-room-management__createdAt').innerHTML = "숙소 등록일: "
-    //     + roomCreatedAt;
-    //
-    // roomAddress = e.target.parentElement.parentElement.children[5].value;
-    //
-    // document.querySelector(
-    //     '.screens-room-management__address').innerHTML = roomAddress;
-    //
-    // console.log(roomCreatedAt);
-    // console.log(roomAddress);
-
-    // console.log(e);
-    // console.log(e.target);
-    // console.dir(e);
-    // console.dir(e.target);
-    // console.log(e.target.parentElement.parentElement.children[0].value);
-    // console.log(e.target.parentElement.parentElement.children[1].value);
-    // console.log(e.target.parentElement.parentElement.children[2]);
-    // console.log(e.target.parentElement.parentElement.children[3]);
+        // = "[" + roomName + "] 숙소의 운영 상태를 선택 해 주세요";
+        // TODO: 숙소의 이름을 함께 보여주고 싶은데 숙소 이름이 길 경우 모달창도 같이 길어져 예뻐지지 않음..
+        = "등록한 숙소의 운영 상태를 선택 해 주세요";
   })
 }
 
@@ -118,10 +139,7 @@ $(".screens-room-management__activateHostroom").on("click", function (e) {
 // 숙소 수정하기 링크
 $(".screens-room-management__modifyHostRoom-box__alink").on("click",
     function (e) {
-      console.log(room_id);
       location.href = "/room/modify?room_id=" + room_id;
-
-      console.log("/room/modify?room_id=" + room_id);
-      console.log(href);
       console.log(room_id);
+      console.log(location.href);
     });
