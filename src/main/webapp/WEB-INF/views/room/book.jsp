@@ -115,77 +115,77 @@
                 </div>
 
                 <%-- 결제 수단 --%>
-                <div class="screens-room-book__border-bound-top"></div>
-                <div class="screens-room-book__container__left-side--space-topdown">
-                    <section>
-                        <div>
-                            <div class="screens-room-book__container__left-side--space-topdown__header">
-                                <div class="screens-room-book__container__left-side--space-topdown__header__payment">
-                                    <h2 class="screens-room-book__text-size-reservation-room-info-h2">
-                                        결제 수단</h2>
-                                    <div style="display: flex">
-                                        <div class="screens-room-book__container__left-side--space-topdown__header__img">
-                                            <img src="https://a0.muscache.com/airbnb/static/packages/assets/frontend/legacy-shared/svgs/payments/logo_visa.0adea522bb26bd90821a8fade4911913.svg">
-                                        </div>
-                                        <div class="screens-room-book__container__left-side--space-topdown__header__img">
-                                            <img src="https://a0.muscache.com/airbnb/static/packages/assets/frontend/legacy-shared/svgs/payments/logo_mastercard.f18379cf1f27d22abd9e9cf44085d149.svg">
-                                        </div>
-                                        <div class="screens-room-book__container__left-side--space-topdown__header__img">
-                                            <img src="https://a0.muscache.com/airbnb/static/packages/assets/frontend/legacy-shared/svgs/payments/logo_naver_pay.4e1254eb1a8052c11c88d1ebc4a44382.svg">
-                                        </div>
-                                    </div>
-                                </div>
+                <%--                <div class="screens-room-book__border-bound-top"></div>--%>
+                <%--                <div class="screens-room-book__container__left-side--space-topdown">--%>
+                <%--                    <section>--%>
+                <%--                        <div>--%>
+                <%--                            <div class="screens-room-book__container__left-side--space-topdown__header">--%>
+                <%--                                <div class="screens-room-book__container__left-side--space-topdown__header__payment">--%>
+                <%--                                    <h2 class="screens-room-book__text-size-reservation-room-info-h2">--%>
+                <%--                                        결제 수단</h2>--%>
+                <%--                                    <div style="display: flex">--%>
+                <%--                                        <div class="screens-room-book__container__left-side--space-topdown__header__img">--%>
+                <%--                                            <img src="https://a0.muscache.com/airbnb/static/packages/assets/frontend/legacy-shared/svgs/payments/logo_visa.0adea522bb26bd90821a8fade4911913.svg">--%>
+                <%--                                        </div>--%>
+                <%--                                        <div class="screens-room-book__container__left-side--space-topdown__header__img">--%>
+                <%--                                            <img src="https://a0.muscache.com/airbnb/static/packages/assets/frontend/legacy-shared/svgs/payments/logo_mastercard.f18379cf1f27d22abd9e9cf44085d149.svg">--%>
+                <%--                                        </div>--%>
+                <%--                                        <div class="screens-room-book__container__left-side--space-topdown__header__img">--%>
+                <%--                                            <img src="https://a0.muscache.com/airbnb/static/packages/assets/frontend/legacy-shared/svgs/payments/logo_naver_pay.4e1254eb1a8052c11c88d1ebc4a44382.svg">--%>
+                <%--                                        </div>--%>
+                <%--                                    </div>--%>
+                <%--                                </div>--%>
 
-                                <div class="screens-room-book__container__left-side--space-topdown__header__select">
-                                    <button>
-                                        <div class="screens-room-book__container__left-side--space-topdown__header__select__box">
-                                            <div style="display: flex; align-items: center">
-                                                <div style="margin-right: 16px">
-                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                         viewBox="0 0 44 32" aria-label="마스터카드"
-                                                         role="img"
-                                                         focusable="false"
-                                                         style="display: block; height: 33px; width: 33px;">
-                                                        <g fill="none" fill-rule="evenodd">
-                                                            <path fill="#F26122" fill-rule="nonzero"
-                                                                  d="M17.45 9.12h9.13V23.8h-9.13z"></path>
-                                                            <path fill="#EA1D25" fill-rule="nonzero"
-                                                                  d="M21.97 23.8a9.54 9.54 0 0 1-5.84 2 9.75 9.75 0 0 1-6.73-2.77 9.1 9.1 0 0 1-2.74-6.56A9.09 9.09 0 0 1 9.39 9.9a9.64 9.64 0 0 1 6.74-2.76c2.13 0 4.19.7 5.84 2a9.36 9.36 0 0 0-3.6 7.33 9.34 9.34 0 0 0 3.6 7.33z"></path>
-                                                            <path fill="#F69E1E" fill-rule="nonzero"
-                                                                  d="M37.32 16.45a9.1 9.1 0 0 1-2.74 6.57 9.65 9.65 0 0 1-6.74 2.76c-2.13 0-4.18-.7-5.84-2a9.36 9.36 0 0 0 3.6-7.33A9.34 9.34 0 0 0 22 9.12a9.54 9.54 0 0 1 5.84-2 9.76 9.76 0 0 1 6.74 2.77 9.07 9.07 0 0 1 2.74 6.56z"></path>
-                                                            <path fill="#B0B0B0"
-                                                                  d="M2.04 1C1.47 1 1 1.47 1 2.05v27.9c0 .58.47 1.05 1.04 1.05h39.92c.57 0 1.04-.47 1.04-1.05V2.05C43 1.47 42.53 1 41.96 1H2.04zM0 2.05C0 .92.9 0 2.04 0h39.92C43.1 0 44 .92 44 2.05v27.9c0 1.13-.9 2.05-2.04 2.05H2.04A2.04 2.04 0 0 1 0 29.95V2.05z"></path>
-                                                        </g>
-                                                    </svg>
-                                                </div>
-                                                <div style="font-family: NotoSansKR-Light">•••• 7150
-                                                </div>
-                                            </div>
+                <%--                                <div class="screens-room-book__container__left-side--space-topdown__header__select">--%>
+                <%--                                    <button>--%>
+                <%--                                        <div class="screens-room-book__container__left-side--space-topdown__header__select__box">--%>
+                <%--                                            <div style="display: flex; align-items: center">--%>
+                <%--                                                <div style="margin-right: 16px">--%>
+                <%--                                                    <svg xmlns="http://www.w3.org/2000/svg"--%>
+                <%--                                                         viewBox="0 0 44 32" aria-label="마스터카드"--%>
+                <%--                                                         role="img"--%>
+                <%--                                                         focusable="false"--%>
+                <%--                                                         style="display: block; height: 33px; width: 33px;">--%>
+                <%--                                                        <g fill="none" fill-rule="evenodd">--%>
+                <%--                                                            <path fill="#F26122" fill-rule="nonzero"--%>
+                <%--                                                                  d="M17.45 9.12h9.13V23.8h-9.13z"></path>--%>
+                <%--                                                            <path fill="#EA1D25" fill-rule="nonzero"--%>
+                <%--                                                                  d="M21.97 23.8a9.54 9.54 0 0 1-5.84 2 9.75 9.75 0 0 1-6.73-2.77 9.1 9.1 0 0 1-2.74-6.56A9.09 9.09 0 0 1 9.39 9.9a9.64 9.64 0 0 1 6.74-2.76c2.13 0 4.19.7 5.84 2a9.36 9.36 0 0 0-3.6 7.33 9.34 9.34 0 0 0 3.6 7.33z"></path>--%>
+                <%--                                                            <path fill="#F69E1E" fill-rule="nonzero"--%>
+                <%--                                                                  d="M37.32 16.45a9.1 9.1 0 0 1-2.74 6.57 9.65 9.65 0 0 1-6.74 2.76c-2.13 0-4.18-.7-5.84-2a9.36 9.36 0 0 0 3.6-7.33A9.34 9.34 0 0 0 22 9.12a9.54 9.54 0 0 1 5.84-2 9.76 9.76 0 0 1 6.74 2.77 9.07 9.07 0 0 1 2.74 6.56z"></path>--%>
+                <%--                                                            <path fill="#B0B0B0"--%>
+                <%--                                                                  d="M2.04 1C1.47 1 1 1.47 1 2.05v27.9c0 .58.47 1.05 1.04 1.05h39.92c.57 0 1.04-.47 1.04-1.05V2.05C43 1.47 42.53 1 41.96 1H2.04zM0 2.05C0 .92.9 0 2.04 0h39.92C43.1 0 44 .92 44 2.05v27.9c0 1.13-.9 2.05-2.04 2.05H2.04A2.04 2.04 0 0 1 0 29.95V2.05z"></path>--%>
+                <%--                                                        </g>--%>
+                <%--                                                    </svg>--%>
+                <%--                                                </div>--%>
+                <%--                                                <div style="font-family: NotoSansKR-Light">•••• 7150--%>
+                <%--                                                </div>--%>
+                <%--                                            </div>--%>
 
-                                        </div>
-                                    </button>
-                                    <span style="position: absolute !important; top: 0 !important; right: 20px !important; height: 100%; pointer-events: none !important;">
-                                    <div style="display: table !important; position:relative !important; height: 100% !important;">
-                                        <div style="display: table-cell !important; vertical-align: middle !important;">
-                                            <div style="transform: rotate(90deg)">
-                                                <i class="fa-solid fa-chevron-right fa-xs"></i>
-<%--                                                <svg viewBox="0 0 18 18" role="presentation"--%>
-<%--                                                     aria-hidden="true"--%>
-<%--                                                     focusable="false"--%>
-<%--                                                     style="height: 16px; width: 16px; display: block; fill: rgb(72, 72, 72);">--%>
-<%--                                                    <path d="m16.29 4.3a1 1 0 1 1 1.41 1.42l-8 8a1 1 0 0 1 -1.41 0l-8-8a1 1 0 1 1 1.41-1.42l7.29 7.29z"--%>
-<%--                                                          fill-rule="evenodd"></path>--%>
-<%--                                                </svg>--%>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </span>
-                                </div>
-                            </div>
+                <%--                                        </div>--%>
+                <%--                                    </button>--%>
+                <%--                                    <span style="position: absolute !important; top: 0 !important; right: 20px !important; height: 100%; pointer-events: none !important;">--%>
+                <%--                                    <div style="display: table !important; position:relative !important; height: 100% !important;">--%>
+                <%--                                        <div style="display: table-cell !important; vertical-align: middle !important;">--%>
+                <%--                                            <div style="transform: rotate(90deg)">--%>
+                <%--                                                <i class="fa-solid fa-chevron-right fa-xs"></i>--%>
+                <%--&lt;%&ndash;                                                <svg viewBox="0 0 18 18" role="presentation"&ndash;%&gt;--%>
+                <%--&lt;%&ndash;                                                     aria-hidden="true"&ndash;%&gt;--%>
+                <%--&lt;%&ndash;                                                     focusable="false"&ndash;%&gt;--%>
+                <%--&lt;%&ndash;                                                     style="height: 16px; width: 16px; display: block; fill: rgb(72, 72, 72);">&ndash;%&gt;--%>
+                <%--&lt;%&ndash;                                                    <path d="m16.29 4.3a1 1 0 1 1 1.41 1.42l-8 8a1 1 0 0 1 -1.41 0l-8-8a1 1 0 1 1 1.41-1.42l7.29 7.29z"&ndash;%&gt;--%>
+                <%--&lt;%&ndash;                                                          fill-rule="evenodd"></path>&ndash;%&gt;--%>
+                <%--&lt;%&ndash;                                                </svg>&ndash;%&gt;--%>
+                <%--                                            </div>--%>
+                <%--                                        </div>--%>
+                <%--                                    </div>--%>
+                <%--                                </span>--%>
+                <%--                                </div>--%>
+                <%--                            </div>--%>
 
-                        </div>
-                    </section>
-                </div>
+                <%--                        </div>--%>
+                <%--                    </section>--%>
+                <%--                </div>--%>
 
                 <%-- 필수입력정보 --%>
                 <div class="screens-room-book__border-bound-top"></div>
