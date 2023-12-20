@@ -3,7 +3,6 @@ package com.universestay.project.chat.controller;
 import com.universestay.project.chat.service.ChatMessageService;
 import com.universestay.project.chat.service.ChatRoomService;
 import com.universestay.project.dto.ChattingMessageDto;
-import com.universestay.project.room.dto.RoomDto;
 import com.universestay.project.room.service.RoomService;
 import com.universestay.project.user.dao.UserWithdrawalDao;
 import com.universestay.project.user.dto.UserDto;
@@ -61,8 +60,8 @@ public class ChattingController {
                     chatting_room_id);
 
             String chat_room_id = chatting_room_id;
-            RoomDto room = roomService.lookUpRoom(room_id);
-            UserDto host = userWithdrawalDao.selectUserByUuid(room.getUser_id());
+            Map<String, Object> room = roomService.lookUpRoom(room_id, user_id);
+            UserDto host = userWithdrawalDao.selectUserByUuid(room.get("user_id").toString());
 
             // 채팅방 id 를 통해 채팅방의 참여자 목록을 가져온다.
             List<Map<String, Object>> twoUsername = chatMessageService.selectTwoUsername(
