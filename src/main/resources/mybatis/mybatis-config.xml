@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration
-        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
         <typeAlias alias="SearchCondition"
@@ -23,6 +23,7 @@
         <typeAlias alias="BookingDto" type="com.universestay.project.user.dto.BookingDto"/>
         <typeAlias alias="RoomReviewDto" type="com.universestay.project.review.dto.RoomReviewDto"/>
         <typeAlias alias="PaymentDto" type="com.universestay.project.payment.dto.PaymentDto"/>
+        <typeAlias alias="ChattingRoomDto" type="com.universestay.project.dto.ChattingRoomDto"/>
+        <typeAlias alias="ChattingMessageDto" type="com.universestay.project.dto.ChattingMessageDto"/>
     </typeAliases>
-
 </configuration>

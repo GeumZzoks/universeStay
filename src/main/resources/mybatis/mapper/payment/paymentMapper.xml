@@ -10,6 +10,15 @@
         WHERE B.booking_id = #{booking_id}
     </select>
 
+    <select id="findOrderById" parameterType="String" resultType="map">
+        SELECT *
+        FROM Room R,
+             (SELECT *
+              FROM Booking
+              WHERE booking_id = #{booking_id}) B
+        WHERE R.room_id = B.room_id;
+    </select>
+
     <insert id="insertPaymentInfo" parameterType="PaymentDto">
         INSERT INTO Payment (payment_id,
                              booking_id,
@@ -81,5 +90,10 @@
                 #{updated_id})
     </insert>
 
+    <update id="updateOrderById" parameterType="String">
+        UPDATE Payment
+        SET payment_is_approved = 'Y'
+        WHERE payment_id = #{paymentId}
+    </update>
 
 </mapper>
