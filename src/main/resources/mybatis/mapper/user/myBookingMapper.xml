@@ -10,28 +10,48 @@
         r.room_id,
         r.room_address,
         r.room_address_detail,
-        r.status_id room_status_id,
+        r.status_id,
+        r.room_status_id,
         r.room_main_photo,
-        b.booking_id ,
+        r.room_weekday_price,
+        r.room_weekend_price,
+        b.booking_id,
         b.status_id booking_status_id,
         b.booking_checkin_date,
         b.booking_checkout_date,
         b.booking_checkin_time,
-        b.booking_checkout_time
-        from Room r, Booking b, User u
+        b.booking_checkout_time,
+        b.booking_total_pay_amount,
+        b.created_at,
+        p.payment_id,
+        p.booking_id,
+        p.payment_is_success,
+        p.payment_paid_amount,
+        p.payment_status,
+        p.payment_pg_provider,
+        p.payment_is_approved
+        from Room r
+        join Booking b on r.room_id = b.room_id
+        join User u on u.user_id = b.user_id
+        left join Payment p on b.booking_id = p.booking_id
+        where u.user_email = #{user_email}
         <choose>
             <when test="status_id=='이용완료'">
-                where r.room_id = b.room_id and u.user_id = b.user_id and u.user_email = #{user_email} and b.status_id = 'B05';
+                and b.status_id = 'B05'
             </when>
             <otherwise>
-                where r.room_id = b.room_id and u.user_id = b.user_id and u.user_email = #{user_email} and b.status_id != 'B05';
+                and b.status_id != 'B05'
             </otherwise>
         </choose>
+        ORDER BY b.created_at desc;
     </select>
 
+
     <insert id="insertReview" parameterType="RoomReviewDto">
-        insert into RoomReview (review_id, user_id, room_id, review_writer, review_stars, review_ctt, created_id)
-        VALUES (#{review_id}, #{user_id}, #{room_id}, #{review_writer}, #{review_stars}, #{review_ctt}, #{created_id});
+        insert into RoomReview (review_id, user_id, room_id, review_writer, review_stars,
+                                review_ctt, created_id)
+        VALUES (#{review_id}, #{user_id}, #{room_id}, #{review_writer}, #{review_stars},
+                #{review_ctt}, #{created_id});
     </insert>
 
 </mapper>
