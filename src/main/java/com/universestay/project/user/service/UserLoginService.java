@@ -14,7 +14,10 @@ public interface UserLoginService {
     public void isCredentialsPresent(Map<String, String> error, String user_email, String user_pwd)
             throws Exception;
 
-    public UserDto signin(String user_email, String user_pwd, HttpSession session, Model model) throws Exception;
+    public UserDto signin(String user_email, String user_pwd, HttpSession session, Model model)
+            throws Exception;
+
+    public UserDto signinOauth(String user_email, HttpSession session) throws Exception;
 
     public UserDto checkSignUp(String user_email) throws Exception;
 
