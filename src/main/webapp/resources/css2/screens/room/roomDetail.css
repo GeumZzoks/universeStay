@@ -148,6 +148,7 @@
 .screens-room-roomDetail__section-3 {
   display: flex;
   justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .screens-room-roomDetail__section-3__room-info {
@@ -370,7 +371,6 @@
 .screens-room-roomDetail__section-3__reservation {
   width: 33.33%;
   margin-left: 8.33%;
-  height: 460px;
   padding: 24px;
   margin-top: 32px;
   border-radius: 12px;
@@ -553,7 +553,7 @@
   justify-content: space-between;
   font-family: NotoSansKR-Regular;
   font-size: 20px;
-  padding: 30px 0;
+  padding: 25px 0 10px;
 }
 
 .screens-room-roomDetail__reservation__part-6__mul {
