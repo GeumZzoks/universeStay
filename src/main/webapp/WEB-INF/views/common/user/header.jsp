@@ -247,7 +247,8 @@
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-coupon"
                          onclick="location.href='/user/myPage/coupon'">
                         <span>나의 쿠폰</span></div>
-                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-notice">
+                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-notice"
+                         onclick="location.href ='/notice'">
                         <span>공지사항</span></div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-event"
                          onclick="location.href ='/event'">
@@ -266,7 +267,8 @@
                         <span>회원가입</span></div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-sign-in">
                         <span>로그인</span></div>
-                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-notice">
+                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-notice"
+                         onclick="location.href='/notice'">
                         <span>공지사항</span></div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-event"
                          onclick="location.href ='/event'">
@@ -294,34 +296,34 @@
         src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script src="/resources/js/user/common/header.js"></script>
 <script>
-    //---------------------- 캘린더 라이브러리 --------------------------------------------
-    $(function () {
-        let today = new Date();
-        // 내일 날짜 구하기 (오늘 날짜에 1을 더함)
-        let tomorrow = new Date(today);
-        tomorrow.setDate(tomorrow.getDate() + 1);
+  //---------------------- 캘린더 라이브러리 --------------------------------------------
+  $(function () {
+    let today = new Date();
+    // 내일 날짜 구하기 (오늘 날짜에 1을 더함)
+    let tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
 
-        const search_start_date = '${param.search_start_date}';
-        const search_end_date = '${param.search_end_date}';
+    const search_start_date = '${param.search_start_date}';
+    const search_end_date = '${param.search_end_date}';
 
-        $('input[name="datefilter"]').daterangepicker({
-            // autoUpdateInput: true,
-            locale: {
-                format: 'YYYY/MM/DD',
-                cancelLabel: '취소',
-                applyLabel: '확인'
-            },
-            startDate: search_start_date !== "" ? search_start_date : today,
-            endDate: search_end_date !== "" ? search_end_date : tomorrow,
-        });
-
-        $('input[name="datefilter"]').on('apply.daterangepicker',
-            function (ev, picker) {
-                $(this).val(picker.startDate.format('YYYY/MM/DD') + ' - '
-                    + picker.endDate.format(
-                        'YYYY/MM/DD'));
-            });
+    $('input[name="datefilter"]').daterangepicker({
+      // autoUpdateInput: true,
+      locale: {
+        format: 'YYYY/MM/DD',
+        cancelLabel: '취소',
+        applyLabel: '확인'
+      },
+      startDate: search_start_date !== "" ? search_start_date : today,
+      endDate: search_end_date !== "" ? search_end_date : tomorrow,
     });
+
+    $('input[name="datefilter"]').on('apply.daterangepicker',
+        function (ev, picker) {
+          $(this).val(picker.startDate.format('YYYY/MM/DD') + ' - '
+              + picker.endDate.format(
+                  'YYYY/MM/DD'));
+        });
+  });
 </script>
 
 
