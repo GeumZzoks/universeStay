@@ -34,7 +34,7 @@ public class MyBookingController {
 //        session.setAttribute("user_email", "ming7606@naver.com");
         // TODO: 2023-12-09 여기까지----------------
 
-        System.out.println("URL ---- /user/mybookings/");
+//        System.out.println("URL ---- /user/mybookings/");
         String user_email = (String) session.getAttribute("user_email");
         try {
             // mapper에 전달해줄 parameter
@@ -56,14 +56,14 @@ public class MyBookingController {
             List<Map<String, Object>> list1 = myBookingService.getMyBookingList(map1);
             List<Map<String, Object>> list2 = myBookingService.getMyBookingList(map2);
 
-            // TODO: 2023-12-09 test용 나중에 지울 것.
-            for (Map<String, Object> dto : list1) {
-                System.out.println("dto = " + dto);
-            }
-            System.out.println("---------------------------------------------------");
-            for (Map<String, Object> dto : list2) {
-                System.out.println("dto = " + dto);
-            }
+//            // TODO: 2023-12-09 test용 나중에 지울 것.
+//            for (Map<String, Object> dto : list1) {
+//                System.out.println("dto = " + dto);
+//            }
+//            System.out.println("---------------------------------------------------");
+//            for (Map<String, Object> dto : list2) {
+//                System.out.println("dto = " + dto);
+//            }
 
             // 뷰파일에 넘겨줄 model setting
             model.addAttribute("list1", list1);
