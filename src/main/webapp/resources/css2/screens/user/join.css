@@ -150,7 +150,7 @@ screens-user-join_h5 {
 
 .screens-user-join_dropdown__textBox {
   position: absolute;
-  width: 113px;
+  width: 100px;
   height: 29px;
   outline: none;
   border-radius: 5px;
@@ -166,12 +166,14 @@ screens-user-join_h5 {
 .screens-user-join_dropdown__option {
   position: absolute;
   top: 60px;
-  width: 155px;
+  width: 140px;
   background: #fff;
   box-shadow: 0 30px 30px rgba(0, 0, 0, 0.05);
   border-radius: 5px;
   overflow: hidden;
   display: none;
+  overflow-y: auto;
+  max-height: 200px;
 }
 
 .screens-user-join_dropdown.active .screens-user-join_dropdown__option {
@@ -284,3 +286,10 @@ screens-user-join_h5 {
   color: red;
 }
 
+. screens-user-join_click_button-shrink {
+  transition: 0.1s;
+}
+
+. screens-user-join_click_button-shrink:hover {
+  transform: scale(0.97);
+}

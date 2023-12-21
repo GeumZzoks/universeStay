@@ -129,7 +129,7 @@ public class ChattingRoomController {
             e.printStackTrace();
             rattr.addFlashAttribute("msg", msg);
 
-            return "redirect:/room/" + room_id;
+            return "redirect:/user/loginForm";
         }
 
     }
