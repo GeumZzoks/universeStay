@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.universestay.project.chat.dao.ChatMessageDao">
+
+  <insert id="insertChat" parameterType="ChattingMessageDto">
+    INSERT INTO ChattingMessage (chatting_room_id, user_id, chat_ctt,
+                                 created_id, updated_id)
+    VALUES ( #{chatting_room_id}, #{user_id}, #{chat_ctt}
+           , #{created_id}, #{updated_id})
+  </insert>
+
+  <select id="selectChatList" parameterType="String" resultType="map">
+    SELECT cm.chat_id,
+           cm.chatting_room_id,
+           cm.user_id,
+           u.user_name,
+           cm.chat_date,
+           cm.chat_ctt,
+           pi.profile_img_url
+    FROM ChattingMessage cm
+           JOIN
+         User u ON cm.user_id = u.user_id
+           LEFT JOIN ProfileImg pi ON cm.user_id = pi.user_id AND pi.profile_img_is_remove = 'N'
+
+    WHERE cm.chatting_room_id = #{chatting_room_id}
+    ORDER BY cm.chat_date;
+  </select>
+
+  <select id="recentlyChatMessage" parameterType="String" resultType="map">
+    SELECT cm.*, u.user_name, pi.profile_img_url
+    FROM ChattingMessage cm
+           JOIN User u ON cm.user_id = u.user_id
+           JOIN ProfileImg pi ON cm.user_id = pi.user_id
+    WHERE cm.chatting_room_id = #{chatting_room_id}
+      AND cm.chat_id = (SELECT MAX(chat_id)
+                        FROM ChattingMessage
+                        WHERE chatting_room_id = #{chatting_room_id})
+      AND pi.profile_img_is_remove = 'N';
+  </select>
+
+  <select id="selectTwoUsername" parameterType="String" resultType="map">
+    SELECT cr.chatting_room_id,
+           u1.user_id   AS user_id_1,
+           u1.user_name AS user_name_1,
+           u2.user_id   AS user_id_2,
+           u2.user_name AS user_name_2
+    FROM ChattingRoom cr
+           JOIN
+         User u1 ON cr.user_id = u1.user_id
+           JOIN
+         User u2 ON cr.user_id2 = u2.user_id
+    WHERE cr.chatting_room_id = #{chatting_room_id}
+  </select>
+
+</mapper>

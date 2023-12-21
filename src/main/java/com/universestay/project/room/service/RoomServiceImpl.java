@@ -8,6 +8,7 @@ import com.universestay.project.room.dao.RoomViewDao;
 import com.universestay.project.room.dto.RoomAmenityDto;
 import com.universestay.project.room.dto.RoomDto;
 import com.universestay.project.room.dto.RoomImgDto;
+import com.universestay.project.room.dto.RoomManagementDto;
 import com.universestay.project.room.dto.RoomPhotoDto;
 import com.universestay.project.room.dto.RoomViewDto;
 import com.universestay.project.user.dto.UserDto;
@@ -55,7 +56,7 @@ public class RoomServiceImpl implements RoomService {
         return roomDao.select5RoomImg(room_id);
     }
 
-    public List<RoomDto> listHostRoom(String user_id) throws Exception {
+    public List<RoomManagementDto> listHostRoom(String user_id) throws Exception {
         return roomDao.listHostRoom(user_id);
     }
     // 숙소테이블에 대표사진 컬럼을 추가 하기 전 코드
@@ -148,5 +149,16 @@ public class RoomServiceImpl implements RoomService {
 
         return null;
     }
+
+    @Override
+    public RoomDto readRoom(String room_id) throws Exception {
+        return roomDao.selectHostRoom(room_id);
+    }
+
+    @Override
+    public Integer modifyRoom(RoomDto roomDto) throws Exception {
+        return roomDao.updateHostRoom(roomDto);
+    }
+
 
 }

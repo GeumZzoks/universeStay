@@ -111,6 +111,39 @@ public class UserLoginServiceImpl implements UserLoginService, PasswordEncryptio
     }
 
     @Override
+    public UserDto signinOauth(String user_email, HttpSession session)
+            throws Exception {
+        try {
+            // 유저가 입력한 이메일 정보로 디비 조회
+            UserDto userInfo = userLoginDao.selectUser(user_email);
+            // 유저 활동 상태 확인
+            String statusId = userInfo.getStatus_id();
+
+            // 유저 정보가 조회 됐으면
+            if (userInfo != null) {
+                String userId = userInfo.getUser_id();
+                // 회원 정지 상태 또는 탈퇴 상태가 아니라면
+                if (statusId.equals("U03") || statusId.equals("U04")) {
+
+                    // 세션에 저장하지 않고 반환
+                    return userInfo;
+                }
+                // 세션에 저장
+                session.setAttribute("user_email", user_email);
+                session.setAttribute("user_id", userId);
+                session.setMaxInactiveInterval(30 * 60);
+                return userInfo;
+            } else {
+                return null; // null을 반환하여 컨트롤러에서 뷰 처리
+            }
+            // 위 상황에서 null 발생시에도 null을 반환하여 컨트롤러에서 뷰 처리
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
     public UserDto checkSignUp(String user_email) throws Exception {
         return userLoginDao.selectUser(user_email);
     }

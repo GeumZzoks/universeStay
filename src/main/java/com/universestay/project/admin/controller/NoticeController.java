@@ -7,7 +7,6 @@ import com.universestay.project.admin.service.NoticeService;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,8 +28,7 @@ public class NoticeController {
     // 공지사항 목록
     @GetMapping("/list")
     public String list(@RequestParam(defaultValue = "1") Integer page,
-            @RequestParam(defaultValue = "10") Integer pageSize, Model m,
-            HttpServletRequest request) {
+            @RequestParam(defaultValue = "10") Integer pageSize, Model m) {
         try {
             int totalCnt = noticeService.getCount();
             NoticePageHandler nph = new NoticePageHandler(totalCnt, page, pageSize);
