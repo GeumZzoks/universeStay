@@ -67,19 +67,18 @@
                    value="" maxlength="20" autocomplete="new-password" aria-autocomplete="list">
             <span class="screens-user-join_pw_lock"></span>
         </span>
-            <span class="screens-user-join_helper_text_span"
-                  id="pwd_input_first_helper_text"></span>
+        <span class="screens-user-join_helper_text_span"
+              id="pwd_input_first_helper_text"></span>
 
-            <h5 class="screens-user-join_h5" style="margin-top: 25px;">비밀번호 재확인*</h5>
-            <span class="screens-user-join_signup_input">
+        <h5 class="screens-user-join_h5" style="margin-top: 25px;">비밀번호 재확인*</h5>
+        <span class="screens-user-join_signup_input">
                 <input type="password" id="screens-user-join_signup_pww" placeholder="비밀번호 재확인"
                        class="screens-user-join_input" value="" maxlength="20"
                        autocomplete="new-password"
                        aria-autocomplete="list">
                 <span class="screens-user-join_pww_lock"></span>
             </span>
-            <span class="screens-user-join_helper_text_span" id="pwd_input_helper_text"></span>
-        </div>
+        <span class="screens-user-join_helper_text_span" id="pwd_input_helper_text"></span>
 
         <div style="margin-top: 35px;">
             <!--이름,생년월일,성별,이메일-->
@@ -316,14 +315,15 @@
             </div>
         </div>
     </section>
+</div>
 
-    <!--저작권 정보-->
-    <footer class="screens-user-join_footer">
-        <div style="font-size: 12px; text-align: center">
-            <span>이용약관 | 개인정보처리방침 | 책임의 한계와 고지 | 회원정보 고객센터</span>
-            <div>© UniverseStay Corp.</div>
-        </div>
-    </footer>
+<!--저작권 정보-->
+<footer class="screens-user-join_footer">
+    <div style="font-size: 12px; text-align: center">
+        <span>이용약관 | 개인정보처리방침 | 책임의 한계와 고지 | 회원정보 고객센터</span>
+        <div>© UniverseStay Corp.</div>
+    </div>
+</footer>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
