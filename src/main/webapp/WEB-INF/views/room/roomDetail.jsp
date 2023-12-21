@@ -656,7 +656,6 @@
 
 </script>
 
-
 <script>
   $(document).ready(function () {
     $(".screens-room-roomDetail__btn-review-modal").click(function () {
@@ -711,10 +710,6 @@
     });
   });
 </script>
-
-
-<script src="/resources/js/room/roomDetail.js"></script>
-
 
 <script>
   $(document).ready(function () {
