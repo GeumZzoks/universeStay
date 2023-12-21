@@ -11,6 +11,7 @@ import com.universestay.project.room.dto.RoomViewDto;
 import com.universestay.project.room.service.RoomAmenityService;
 import com.universestay.project.room.service.RoomService;
 import com.universestay.project.room.service.RoomViewService;
+import com.universestay.project.user.dao.UserInfoDao;
 import com.universestay.project.user.dao.UserWithdrawalDao;
 import com.universestay.project.user.dto.BookingDto;
 import com.universestay.project.user.dto.UserDto;
@@ -58,6 +59,8 @@ public class RoomController {
     RoomViewDao roomViewDao;
     @Autowired
     BookDao bookDao;
+    @Autowired
+    UserInfoDao userInfoDao;
 
 
     @GetMapping("")
@@ -159,6 +162,7 @@ public class RoomController {
             HttpSession session, RedirectAttributes redirectAttributes) {
         try {
             String room_id = roomService.enroll(roomDto, roomAmenityDto, room_view, session);
+            userInfoDao.updateIsHostY((String) session.getAttribute("user_id"));
             redirectAttributes.addAttribute("room_id", room_id);
         } catch (Exception e) {
             e.printStackTrace();
