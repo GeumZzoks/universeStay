@@ -172,33 +172,33 @@
     <div class="components-user-header__header__profile">
         <div class="components-user-header__header__profile__to-host">
 
-            <a class="components-user-header__a" href="/room/management">
-                <% if
-                (
-                        "Y"
-                                .
-                                equals
-                                        (
-                                                isHost
-                                        )
-                ) { %>
-                <div>호스트 모드로 전환</div>
-                <% } else if
-                (
-                        "N"
-                                .
-                                equals
-                                        (
-                                                isHost
-                                        )
-                                ||
-                                isHost
-                                        ==
-                                        null
-                ) { %>
+            <%--            <a class="components-user-header__a" href="/room/management">--%>
+            <% if
+            (
+                    "Y"
+                            .
+                            equals
+                                    (
+                                            isHost
+                                    )
+            ) { %>
+            <div><a class="components-user-header__a" href="/room/management">호스트 모드로 전환</a></div>
+            <% } else if
+            (
+                    "N"
+                            .
+                            equals
+                                    (
+                                            isHost
+                                    )
+                            ||
+                            isHost
+                                    ==
+                                    null
+            ) { %>
 
-                <div>당신의 공간을 공유하세요.</div>
-            </a>
+            <div>당신의 공간을 공유하세요.</div>
+            <%--            </a>--%>
             <% } %>
 
         </div>
