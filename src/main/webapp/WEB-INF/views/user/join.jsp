@@ -61,22 +61,26 @@
 
         <h5 class="screens-user-join_h5" style="margin-top:30px;">비밀번호*</h5>
         <span class="screens-user-join_signup_input">
+
             <input type="password" id="screens-user-join_signup_pw" placeholder="비밀번호"
                    class="screens-user-join_input"
                    value="" maxlength="20" autocomplete="new-password" aria-autocomplete="list">
             <span class="screens-user-join_pw_lock"></span>
         </span>
-        <span class="screens-user-join_helper_text_span" id="pwd_input_first_helper_text"></span>
+            <span class="screens-user-join_helper_text_span"
+                  id="pwd_input_first_helper_text"></span>
 
-        <h5 class="screens-user-join_h5" style="margin-top: 25px;">비밀번호 재확인*</h5>
-        <span class="screens-user-join_signup_input">
+            <h5 class="screens-user-join_h5" style="margin-top: 25px;">비밀번호 재확인*</h5>
+            <span class="screens-user-join_signup_input">
                 <input type="password" id="screens-user-join_signup_pww" placeholder="비밀번호 재확인"
                        class="screens-user-join_input" value="" maxlength="20"
                        autocomplete="new-password"
                        aria-autocomplete="list">
                 <span class="screens-user-join_pww_lock"></span>
             </span>
-        <span class="screens-user-join_helper_text_span" id="pwd_input_helper_text"></span>
+            <span class="screens-user-join_helper_text_span" id="pwd_input_helper_text"></span>
+        </div>
+
         <div style="margin-top: 35px;">
             <!--이름,생년월일,성별,이메일-->
             <h5 class="screens-user-join_h5" style="margin-bottom: 0px;">이름*</h5>
@@ -259,7 +263,6 @@
             </div>
             <span class="screens-user-join_helper_text_span" id="id_input_helper_text"></span>
 
-
         </div>
 
         <div style="margin-top: 35px;">
@@ -364,16 +367,16 @@
 
   // 만약 Oauth로 회원가입을 들어오면 email, pwd 입력란 value 채우고 hidden으로 바꾼다.
   if ("${userEmail}" != null && "${userEmail}" != "") {
-    $('#signup_pw')
+    $('#screens-user-join_signup_pw')
     .attr('value', '${userPwd}');
-    $('#signup_pww')
+    $('#screens-user-join_signup_pww')
     .attr('value', '${userPwd}');
-    $('#signup_email')
+    $('#screens-user-join_signup_email')
     .attr('value', '${userEmail}');
 
-    $('.signup_pwd_wrapper')
+    $('.screens-user-join__pwd-wrapper')
     .hide();
-    $('.signup_email_wrapper')
+    $('.screens-user-join__email-wrapper')
     .hide();
   }
 

@@ -86,6 +86,7 @@ public class EventController {
     @PostMapping("/write")
     // 이벤트 게시글 작성 코드
     public String write(EventDto eventDto, EventImgDto eventImgDto, @RequestParam("eventFile") MultipartFile event_img_url, Model m, HttpSession session, RedirectAttributes rattr) throws Exception {
+        String event_img_src = "";
         // 로그인시 세션에 전송된 이메일 가져오기
         String adminEmail = (String) session.getAttribute("admin_email");
         // 가져온 세션 이메일로 현재 로그인된 Admin 테이블의 UUID 가져오기
@@ -100,7 +101,12 @@ public class EventController {
             eventDto.setUpdated_id(writer);
             eventImgDto.setCreated_id(writer);
             eventImgDto.setUpdated_id(writer);
-            String event_img_src = awsS3ImgUploaderService.uploadImageToS3(event_img_url, "event-img");
+
+            // 이미지가 입력되었을 경우
+            if (!event_img_url.isEmpty()) {
+                event_img_src = awsS3ImgUploaderService.uploadImageToS3(event_img_url, "event-img");
+            }
+            // 입력된 이미지 URL 지정
             eventImgDto.setEvent_img_url(event_img_src);
             // 입력처리
             eventService.write(eventDto, eventImgDto);
@@ -217,18 +223,23 @@ public class EventController {
             // 가져온 세션 이메일로 Admin 테이블의 UUID 가져오기
             String adminId = eventService.getAdminUuid(adminEmail);
             // 수정창에 접근할때 이미 작성자 여부를 확인했으므로 수정만 진행하면 됨
-            String event_img_src = awsS3ImgUploaderService.uploadImageToS3(event_img_url, "event-img");
 
+            // 수정시 이미지에 변경사항이 있을 경우
+            if (!event_img_url.isEmpty()) {
+                String event_img_src = awsS3ImgUploaderService.uploadImageToS3(event_img_url, "event-img");
+                // 수정한 이미지 url 지정
+                eventImgDto.setEvent_img_url(event_img_src);
+                // 최종 수정자 ID를 현재 로그인된 UUID로 지정
+                eventImgDto.setUpdated_id(adminId);
+                // 이미지 업데이트
+                eventService.updateImg(eventImgDto);
+            }
             // 수정할 게시글을 ID로 지정
             eventDto.setEvent_id(event_id);
             // 최종 수정자 ID를 현재 로그인된 UUID로 지정
             eventDto.setUpdated_id(adminId);
-            eventImgDto.setUpdated_id(adminId);
-            // 수정한 이미지 url 지정
-            eventImgDto.setEvent_img_url(event_img_src);
-
             // 업데이트
-            eventService.update(eventDto, eventImgDto);
+            eventService.update(eventDto);
 
             // 예외처리
         } catch (Exception e) {

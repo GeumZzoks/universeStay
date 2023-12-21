@@ -24,7 +24,13 @@
     <div class="screens-admin-event__content">
         <h3 style="font-size: 20px; color: indianred; margin-top: 20px; font-weight: 600;">이벤트</h3>
         <h5 style="font-size: 20px; font-weight: 800; margin: 20px 0 0 20px;">${eventDto.event_title}</h5>
-        <img class="screens-admin-event__content__img" src="${eventDto.img}">
+        <c:choose>
+            <c:when test="${eventDto.img ne ''}">
+                <img class="screens-admin-event__content__img" src="${eventDto.img}">
+            </c:when>
+            <c:otherwise>
+            </c:otherwise>
+        </c:choose>
         <h5 style="white-space:pre; margin: 20px 0 100px 20px">${eventDto.event_ctt}</h5>
         <div class="screens-admin-event__content-div__status">
             <h3 style="color: indianred; margin-top: 20px; font-weight: 600;">이벤트 상태</h3>

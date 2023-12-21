@@ -12,11 +12,8 @@
 
     <select id="findOrderById" parameterType="String" resultType="map">
         SELECT *
-        FROM Room R,
-             (SELECT *
-              FROM Booking
-              WHERE booking_id = #{booking_id}) B
-        WHERE R.room_id = B.room_id;
+        FROM Booking
+        WHERE booking_id = #{booking_id}
     </select>
 
     <insert id="insertPaymentInfo" parameterType="PaymentDto">

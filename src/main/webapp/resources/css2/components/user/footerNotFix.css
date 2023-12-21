@@ -1,0 +1,55 @@
+/*.components-user-footerNotFix__body {*/
+
+/*}*/
+
+.components-user-footerNotFix__wrapper {
+  font-family: NotoSansKR-Regular;
+  padding: 20px 60px 20px;
+  background: rgb(245, 245, 245);
+  font-size: 10px;
+  line-height: 16px;
+  color: rgba(0, 0, 0, 0.38);
+}
+
+.components-user-footerNotFix__a {
+  color: rgba(0, 0, 0, 0.38);
+  text-decoration: none;
+  outline: none
+}
+
+.components-user-footerNotFix__a:hover, .components-user-footerNotFix__a:active {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.38);
+}
+
+.components-user-footerNotFix__ul, .components-user-footerNotFix__li {
+  list-style: none;
+}
+
+.components-user-footerNotFix__ul {
+  overflow: hidden;
+}
+
+.components-user-footerNotFix__li {
+  display: inline-block;
+}
+
+.components-user-footerNotFix__li span {
+  display: inline-block;
+  margin: 0 5px 0 5px;
+}
+
+.components-user-footerNotFix__p {
+  margin-bottom: 15px;
+}
+
+.components-user-footerNotFix__p b {
+  font-size: 11px;
+  font-weight: bolder;
+  margin-right: 5px;
+}
+
+.components-user-footerNotFix__order {
+  display: inline-block;
+  margin-bottom: 15px;
+}

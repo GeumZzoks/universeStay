@@ -193,10 +193,8 @@
     </div>
     <input type="hidden" name="room_id" value="${room_id}">
 
-    <input type="submit" class="screens-room-roomEnroll__btn-submit" value="숙소 등록">
+    <input type="submit" class="screens-room-roomEnroll__btn-submit" value="수정 완료">
 </form>
-
-<jsp:include page="/WEB-INF/views/common/user/footerNotFix.jsp"/>
 
 <%--<jsp:include page="/WEB-INF/views/common/user/footer.jsp"/>--%>
 

@@ -55,8 +55,8 @@
     width: 67px;
     height: 113px;
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 8px;
+    right: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -85,10 +85,12 @@
 }
 
 .screens-user-eventDetail-Coupon__issue {
-    width: 350px;
-    height: 110px;
+    width: 370px;
+    height: 130px;
+    border-radius: 5px;
     position: absolute;
-    left: 225px;
+    background-color: transparent;
+    left: 215px;
     bottom: 10%;
 }
 
@@ -99,7 +101,7 @@
     border: 2px solid #F48475;
     border-radius: 8px;
     padding: 10px 0 10px 10px;
-    margin-bottom: 30px;
+    margin: 8px 0 0 10px;
     font-size: 12px;
     position: relative;
     cursor: default;
