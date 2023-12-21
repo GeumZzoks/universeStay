@@ -58,7 +58,7 @@
 
             // WishList ajax
             $.ajax({
-                url: "/user/wishLists/active",
+                url: "/user/myPage/wishLists/active",
                 type: "POST",
                 dataType: "text",
                 data: {room_id: roomID},
@@ -156,7 +156,7 @@
                         + room.room_main_photo
                         + '" style="float: left; width: 50px; height: 50px; margin-right: 10px; border-radius: 5px;">'
                         + '<h4 style="float: left; color: #717171; margin-top: 6px; width: 190px;">'
-                        + '<h3 style="float: left; font-size: 14px; font-weight: 500; margin-top: 10px;">'
+                        + '<h3 style="float: left; font-size: 14px; font-weight: 500; margin-top: 10px; width: 180px; height: 12px; overflow: hidden; text-overflow: ellipsis; white-space:nowrap;">'
                         + room.room_name
                         + '</h3>'
                         + '</h4>'

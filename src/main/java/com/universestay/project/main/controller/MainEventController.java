@@ -31,7 +31,6 @@ public class MainEventController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return "main/eventPage";
     }
 
@@ -42,8 +41,6 @@ public class MainEventController {
             CouponDto couponDto = couponService.selectOnEvent(event_id);
             model.addAttribute("eventDto", eventDto);
             model.addAttribute("couponDto", couponDto);
-            System.out.println("eventDto = " + eventDto);
-            System.out.println("couponDto = " + couponDto);
         } catch (Exception e) {
             e.printStackTrace();
         }
