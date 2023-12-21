@@ -323,7 +323,6 @@
 
     const userProfileUrl = "<%=user_profile_img_url%>";
     const profileImg = document.querySelector(".components-user-header__header__profile__img");
-    console.log("userProfileUrl:", userProfileUrl);
 
     window.onload = () => {
         if (userProfileUrl == "" || userProfileUrl
