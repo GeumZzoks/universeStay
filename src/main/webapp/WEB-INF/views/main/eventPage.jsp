@@ -24,6 +24,8 @@
             <div class="screens-user-eventPage__wrapper" onclick="location.href='/event/${eventMainDto.event_id}'">
                 <div class="screens-user-eventPage__img__wrapper">
                     <img src="${eventMainDto.img}">
+                    <div class="event">
+                    </div>
                 </div>
                 <div class="screens-user-eventPage__info__wrapper">
                     <ul>

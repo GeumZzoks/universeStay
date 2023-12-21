@@ -94,7 +94,7 @@
 <script>
 
     let msg = "${msg}";
-    if (msg == "UDT_ERR2") alert("게시물 수정에 실패하였습니다. 날짜를 입력해주세요.");
+    if (msg == "UDT_ERR2") alert("게시물 수정에 실패하였습니다. 다시 시도해주세요.");
 
     function readURL(input) {
         if (input.files && input.files[0]) {
