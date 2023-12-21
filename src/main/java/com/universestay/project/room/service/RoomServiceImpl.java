@@ -155,4 +155,10 @@ public class RoomServiceImpl implements RoomService {
         return roomDao.selectHostRoom(room_id);
     }
 
+    @Override
+    public Integer modifyRoom(RoomDto roomDto) throws Exception {
+        return roomDao.updateHostRoom(roomDto);
+    }
+
+
 }

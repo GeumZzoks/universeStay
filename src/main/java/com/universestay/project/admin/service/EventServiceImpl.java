@@ -82,10 +82,13 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    @Transactional
-    public Integer update(EventDto eventDto, EventImgDto eventImgDto) throws Exception {
-        eventDao.updateImg(eventImgDto);
+    public Integer update(EventDto eventDto) throws Exception {
         return eventDao.update(eventDto);
+    }
+
+    @Override
+    public Integer updateImg(EventImgDto eventImgDto) throws Exception {
+        return eventDao.updateImg(eventImgDto);
     }
 
     @Override

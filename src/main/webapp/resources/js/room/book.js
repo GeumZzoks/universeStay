@@ -4,6 +4,12 @@ submitButton.addEventListener("click", function (ev) {
     const roomId = document.getElementById("submit-button").getAttribute(
             "value");
 
+    let BookingPriceSum = document.querySelector("#BookingPriceSum").innerHTML;
+
+    if (BookingPriceSum !== "0") {
+        BookingPriceSum = BookingPriceSum.replaceAll(",", "");
+    }
+
     const bookingDto = {
         room_id: roomId,
         booking_checkin_date: document.getElementById(
@@ -13,8 +19,7 @@ submitButton.addEventListener("click", function (ev) {
         booking_num_of_guest: document.getElementById(
                 "screens-room-book__total-guest"
         ).innerText,
-        booking_total_pay_amount: document.getElementById(
-                "BookingPriceSum").innerText.replace(",", ""),
+        booking_total_pay_amount: BookingPriceSum,
     };
 
     $.ajax({
@@ -57,9 +62,7 @@ const priceWeekendDiv = document.querySelector(
 const extraPersonFeeDiv = document.querySelector(
         ".screens-room-book__reservation__part-5"
 );
-const bookingSum = document.querySelector(
-        ".screens-room-book__reservation__part-6"
-);
+const bookingSum = document.querySelector("#BookingPriceSum");
 
 priceWeekdayDiv.children[0].children[0].innerHTML = priceToString(
         priceWeekdayDiv.children[0].children[0].innerHTML
@@ -157,11 +160,9 @@ btnPlus.addEventListener("click", function (e) {
             priceExtraPersonValue
     )}`;
     // 합계를 계산하고 합계 HTML을 수정해준다.
-    bookingSum.children[1].innerHTML = `₩ 
-    ${priceToString(
+    bookingSum.innerHTML = `${priceToString(
             priceWeekdayValue + priceWeekendValue + priceExtraPersonValue
-    )}
-  `;
+    )}`;
     // 합계 input hidden value를 수정해준다.
     document.querySelector("input[name='booking_price_sum']").value =
             priceWeekdayValue + priceWeekendValue + priceExtraPersonValue;
@@ -231,11 +232,10 @@ btnMinus.addEventListener("click", function (e) {
             priceExtraPersonValue
     )}`;
     // 합계를 계산하고 합계 HTML을 수정해준다.
-    bookingSum.children[1].innerHTML = `₩ 
-    ${priceToString(
+    bookingSum.innerHTML = `${priceToString(
             priceWeekdayValue + priceWeekendValue + priceExtraPersonValue
-    )}
-  `;
+    )}`;
+
     // 합계 input hidden value를 수정해준다.
     document.querySelector("input[name='booking_price_sum']").value =
             priceWeekdayValue + priceWeekendValue + priceExtraPersonValue;
@@ -353,11 +353,9 @@ $(".screens-room-book__reservation__check-in-out")
             priceExtraPersonValue
     )}`;
 
-    bookingSum.children[1].innerHTML = `₩ 
-    ${priceToString(
+    bookingSum.innerHTML = `${priceToString(
             priceWeekdayValue + priceWeekendValue + priceExtraPersonValue
-    )}
-  `;
+    )}`;
 
     document.querySelector("input[name='booking_price_sum']").value =
             priceWeekdayValue + priceWeekendValue + priceExtraPersonValue;

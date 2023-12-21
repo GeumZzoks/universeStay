@@ -86,4 +86,8 @@ public class RoomDaoImpl implements RoomDao {
     public RoomDto selectHostRoom(String room_id) throws Exception {
         return session.selectOne(namespace + "selectHostRoom", room_id);
     }
+
+    public Integer updateHostRoom(RoomDto roomDto) throws Exception {
+        return session.update(namespace + "updateHostRoom", roomDto);
+    }
 }

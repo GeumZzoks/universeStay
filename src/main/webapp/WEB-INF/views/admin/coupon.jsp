@@ -148,7 +148,7 @@
         <div class="screens-admin-coupon__paging-container">
             <div class="screens-admin-coupon__paging">
                 <c:if test="${totalCnt==null || totalCnt==0}">
-                    <div style="margin-top: -110px; color: indianred">검색 결과가 없습니다.</div>
+                    <div style="margin-top: -110px;">검색 결과가 없습니다.</div>
                 </c:if>
                 <c:if test="${totalCnt!=null && totalCnt!=0}">
                     <c:if test="${ph.showPrev}">

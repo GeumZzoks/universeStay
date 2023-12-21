@@ -2,10 +2,10 @@ IMP.init("imp55505214");
 
 // 카드 결제
 const cardPaymentButtons = document.querySelectorAll(
-        ".screens-room-booking__payment-button-card");
+        ".screens-room-myBookings__payment-button-card");
 
 const bookingIdArray = document.querySelectorAll(
-        ".screens-room-booking__hiddenValue");
+        ".screens-room-myBookings__hiddenValue");
 
 for (let i = 0; i < cardPaymentButtons.length; i++) {
     cardPaymentButtons[i].addEventListener("click", function (ev) {
@@ -49,7 +49,7 @@ for (let i = 0; i < cardPaymentButtons.length; i++) {
 
 // 카카오페이 결제
 const kakaoPaymentButtons = document.querySelectorAll(
-        ".screens-room-booking__payment-button-kakao");
+        ".screens-room-myBookings__payment-button-kakao");
 
 for (let i = 0; i < kakaoPaymentButtons.length; i++) {
     kakaoPaymentButtons[i].addEventListener("click", function (ev) {
@@ -62,13 +62,12 @@ for (let i = 0; i < kakaoPaymentButtons.length; i++) {
             dataType: "json",
             data: {bookingId: bookingId},
             success: function (res) {
-
                 IMP.request_pay({
                     pg: "kakaopay",
                     pay_method: "kakaopay",
                     merchant_uid: `${crypto.randomUUID()}`,   // 주문번호는 결제창 요청 시 항상 고유 값으로 채번 되어야 합니다.
                     name: res.room_name,
-                    amount: res.room_weekend_price,                         // 숫자 타입
+                    amount: res.booking_total_pay_amount,                         // 숫자 타입
                     buyer_email: res.user_email,
                     buyer_name: res.user_name,
                     buyer_tel: res.user_phone_num1,
@@ -106,7 +105,6 @@ for (let i = 0; i < kakaoPaymentButtons.length; i++) {
                             payment_card_number: rsp.card_number
                         }
 
-
                         let payment_id = "";
                         $.ajax({
                             url: "/payment/saveResponse",
@@ -115,7 +113,6 @@ for (let i = 0; i < kakaoPaymentButtons.length; i++) {
                             data: JSON.stringify(paymentDto),
                             success: function (res) {
                                 payment_id = res;
-
 
                                 const imp_uid = rsp.imp_uid;
                                 const merchant_uid = rsp.merchant_uid;
@@ -139,6 +136,7 @@ for (let i = 0; i < kakaoPaymentButtons.length; i++) {
                                             },
                                             success: function (res) {
                                                 alert("결제가 정상 처리되었습니다.");
+                                                window.location.reload(true);
                                             },
                                             error: function (res) {
                                                 alert(res);

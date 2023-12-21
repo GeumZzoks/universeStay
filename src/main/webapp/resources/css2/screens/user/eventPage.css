@@ -41,11 +41,12 @@
     overflow: hidden;
     background-color: #F48475;
     position: relative;
+    border: 2px solid indianred;
 }
 
 .screens-user-eventPage__img__wrapper img {
     position: absolute;
-    top: -100px;
+    top: -120px;
     width: 400px;
     height: fit-content;
 }

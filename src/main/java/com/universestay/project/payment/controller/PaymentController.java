@@ -168,7 +168,7 @@ public class PaymentController {
         // DB에서 결제되어야 하는 금액 조회(결제 되어야 하는 금액)
         Map<String, Object> orderInfo = paymentService.findOrderById(booking_id);
 
-        Integer amountToBePaid = (Integer) orderInfo.get("room_weekend_price");
+        Integer amountToBePaid = (Integer) orderInfo.get("booking_total_pay_amount");
 
         if (amountToBePaid == null) {
             return new ResponseEntity("DB값이 조회되지 않음", HttpStatus.INTERNAL_SERVER_ERROR);

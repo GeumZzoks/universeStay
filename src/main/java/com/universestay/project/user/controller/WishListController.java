@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/user/wishLists")
+@RequestMapping("/user/myPage/wishLists")
 public class WishListController {
 
     @Autowired

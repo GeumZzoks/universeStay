@@ -3,6 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+  
     <typeAliases>
         <typeAlias alias="SearchCondition"
                 type="com.universestay.project.common.SearchCondition"/>
@@ -29,5 +30,5 @@
         <typeAlias alias="ChattingMessageDto"
                 type="com.universestay.project.dto.ChattingMessageDto"/>
     </typeAliases>
-
+  
 </configuration>

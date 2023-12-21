@@ -151,18 +151,29 @@
 
 
                         <%-- 2번째 박스 --%>
-                        <div class="screens-room-bookShare__border-bound-top"></div>
-                        <div class="screens-room-bookShare__container__right-side__flex-box-column__total-payment">
-                            <div>총 합계(KRW)</div>
-                            <div>₩583,423</div>
+                        <%--                        <div class="screens-room-bookShare__border-bound-top"></div>--%>
+                        <%--                        <div class="screens-room-bookShare__container__right-side__flex-box-column__total-payment">--%>
+                        <%--                            <div>총 합계(KRW)</div>--%>
+                        <%--                            <div>₩583,423</div>--%>
+                        <%--                        </div>--%>
+
+                        <div class="screens-room-book__border-bound-top"></div>
+                        <div class="screens-room-book__reservation__part-6">
+                            <span class="screens-room-book__reservation__part-6__mul">숙박 비용</span>
+
+                            <div>
+                                <span>₩ </span>
+                                <span id="BookingPriceSum">${formattedAmount}</span>
+                            </div>
+                            <input type="hidden" name="booking_price_sum">
                         </div>
 
                         <%-- 3번째 박스 --%>
-                        <div class="screens-room-bookShare__border-bound-top"></div>
-                        <div class="screens-room-bookShare__container__right-side__flex-box-column__total-payment">
-                            <div>예약 코드</div>
-                            <div>HMERQXJJ84</div>
-                        </div>
+                        <%--                        <div class="screens-room-bookShare__border-bound-top"></div>--%>
+                        <%--                        <div class="screens-room-bookShare__container__right-side__flex-box-column__total-payment">--%>
+                        <%--                            <div>예약 코드</div>--%>
+                        <%--                            <div>HMERQXJJ84</div>--%>
+                        <%--                        </div>--%>
 
                     </div>
                 </div>

@@ -172,7 +172,7 @@
     <div class="components-user-header__header__profile">
         <div class="components-user-header__header__profile__to-host">
 
-            <a class="components-user-header__a" href="#">
+            <a class="components-user-header__a" href="/room/management">
                 <% if
                 (
                         "Y"
@@ -236,7 +236,7 @@
                          onclick="location.href = '/user/myPage/mybookings/'">
                         <span>여행</span></div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-wishlist"
-                         onclick="location.href ='/user/wishLists'">
+                         onclick="location.href ='/user/myPage/wishLists'">
                         <span>위시리스트</span></div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-reviews">
                         <span>나의 리뷰</span></div>
