@@ -588,7 +588,7 @@
       objectType: 'feed',
       content: {
         title: '${room.room_name}',
-        description: '${room.room_total_desc}',
+        description: `${room.room_total_desc}`,
         imageUrl: '${roomImg.room_img_url}',
         link: {
           webUrl: 'localhost:8080/room/roomDetail?room_id=${room.room_id}',
@@ -604,7 +604,7 @@
       ],
     })
   }
-  
+
 </script>
 
 <script>
@@ -725,7 +725,6 @@
     location.href = '/chatting/createRoom/' + room_id;
   }
 </script>
-
 
 </body>
 </html>
