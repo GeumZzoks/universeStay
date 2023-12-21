@@ -280,142 +280,141 @@
                 </div>
 
                 <%--                <div class="screens-chat-send_host__section-1__reservation">--%>
-                <%--  TODO : 주중 주말 가격과 숙박 일정설정에 따른 총합계 구현  --%>
-                <%--                    <div class="screens-room-roomDetail__reservation__part-1">--%>
-                <%--                        <div class="screens-room-roomDetail__reservation__price">--%>
-                <%--                            <span class="screens-room-roomDetail__price__part-1">₩ ${room.room_weekday_price}</span>--%>
-                <%--                            <span class="screens-room-roomDetail__price__part-2">/박 (주중)</span>--%>
-                <%--                        </div>--%>
-                <%--                        <div class="screens-room-roomDetail__reservation__info">--%>
-                <%--                            <button class="screens-room-roomDetail__btn screens-room-roomDetail__reservation__check-in-out">--%>
-                <%--                                <div class="screens-room-roomDetail__check-in-out">--%>
-                <%--                                    <div class="screens-room-roomDetail__check-in-out__desc screens-room-roomDetail__check-in-out__desc1">--%>
-                <%--                                        체크인--%>
-                <%--                                    </div>--%>
+                <div class="screens-room-roomDetail__section-3__reservation">
 
-                <%--                                    <div class="screens-room-roomDetail__check-in-out__desc screens-room-roomDetail__check-in-out__desc2"--%>
-                <%--                                         id="check-in-button">--%>
-                <%--                                        YYYY-MM-DD--%>
-                <%--                                    </div>--%>
-                <%--                                    <input type="hidden" name="booking_checkin_date">--%>
-                <%--                                </div>--%>
-                <%--                                <div class="screens-room-roomDetail__check-in-out">--%>
-                <%--                                    <div class="screens-room-roomDetail__check-in-out__desc screens-room-roomDetail__check-in-out__desc1">--%>
-                <%--                                        체크아웃--%>
-                <%--                                    </div>--%>
+                    TODO : 주중 주말 가격과 숙박 일정설정에 따른 총합계 구현
+                    <div class="screens-room-roomDetail__reservation__part-1">
+                        <div class="screens-room-roomDetail__reservation__price">
+                            <span class="screens-room-roomDetail__price__part-1">₩ ${room.room_weekday_price}</span>
+                            <span class="screens-room-roomDetail__price__part-2">/박 (주중)</span>
+                        </div>
+                        <div class="screens-room-roomDetail__reservation__info">
+                            <button class="screens-room-roomDetail__btn screens-room-roomDetail__reservation__check-in-out">
+                                <div class="screens-room-roomDetail__check-in-out">
+                                    <div class="screens-room-roomDetail__check-in-out__desc screens-room-roomDetail__check-in-out__desc1">
+                                        체크인
+                                    </div>
 
-                <%--                                    <div class="screens-room-roomDetail__check-in-out__desc screens-room-roomDetail__check-in-out__desc2"--%>
-                <%--                                         id="check-out-button">--%>
-                <%--                                        YYYY-MM-DD--%>
-                <%--                                    </div>--%>
-                <%--                                    <input type="hidden" name="booking_checkout_date">--%>
-                <%--                                </div>--%>
-                <%--                            </button>--%>
-                <%--                            <button class="screens-room-roomDetail__btn screens-room-roomDetail__reservation__number-people">--%>
-                <%--                                <div class="screens-room-roomDetail__number-people__desc">--%>
-                <%--                                    <div class="screens-room-roomDetail__number-people__desc1">--%>
-                <%--                                        인원--%>
-                <%--                                    </div>--%>
-                <%--                                    <span>게스트</span>--%>
-                <%--                                    <span class="screens-room-roomDetail__number-people__desc2"--%>
-                <%--                                          id="totalGuest-button">1--%>
-                <%--                            </span>--%>
-                <%--                                    <span>명</span>--%>
-                <%--                                    <input type="hidden" name="booking_num_of_guest">--%>
-                <%--                                    <input type="hidden" name="room_max_capa"--%>
-                <%--                                           value="${room.room_max_capa}">--%>
-                <%--                                    <input type="hidden" name="room_standard_capa"--%>
-                <%--                                           value="${room.room_standard_capa}">--%>
-                <%--                                </div>--%>
-                <%--                                <div class="screens-room-roomDetail__number-people__arrow">--%>
-                <%--                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"--%>
-                <%--                                         aria-hidden="true" role="presentation"--%>
-                <%--                                         focusable="false"--%>
-                <%--                                         style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 4; overflow: visible;">--%>
-                <%--                                        <path fill="none"--%>
-                <%--                                              d="M28 12 16.7 23.3a1 1 0 0 1-1.4 0L4 12"></path>--%>
-                <%--                                    </svg>--%>
-                <%--                                </div>--%>
-                <%--                            </button>--%>
-                <%--                            <div class="screens-room-roomDetail__number-people-toggle">--%>
-                <%--                                <span class="screens-room-roomDetail__toggle-part-1">성인</span>--%>
-                <%--                                <div class="screens-room-roomDetail__toggle-part-2">--%>
-                <%--                                    <button type="button"--%>
-                <%--                                            class="screens-room-roomDetail__toggle-btn-minus disable">--%>
-                <%--                                        <svg viewBox="0 0 12 12"--%>
-                <%--                                             xmlns="http://www.w3.org/2000/svg"--%>
-                <%--                                             aria-hidden="true"--%>
-                <%--                                             role="presentation" focusable="false"--%>
-                <%--                                             style="display: block; height: 12px; width: 12px; fill: #717171;">--%>
-                <%--                                            <path d="m.75 6.75h10.5v-1.5h-10.5z"></path>--%>
-                <%--                                        </svg>--%>
-                <%--                                    </button>--%>
-                <%--                                    <input type="text"--%>
-                <%--                                           class="screens-room-roomDetail__toggle-num"--%>
-                <%--                                           name="toggle-people-num" value='1' readonly/>--%>
-                <%--                                    <button type="button"--%>
-                <%--                                            class="screens-room-roomDetail__toggle-btn-plus">--%>
-                <%--                                        <svg viewBox="0 0 12 12"--%>
-                <%--                                             xmlns="http://www.w3.org/2000/svg"--%>
-                <%--                                             aria-hidden="true"--%>
-                <%--                                             role="presentation" focusable="false"--%>
-                <%--                                             style="display: block; height: 12px; width: 12px; fill: #717171;">--%>
-                <%--                                            <path d="m6.75.75v4.5h4.5v1.5h-4.5v4.5h-1.5v-4.5h-4.5v-1.5h4.5v-4.5z"></path>--%>
-                <%--                                        </svg>--%>
-                <%--                                    </button>--%>
-                <%--                                </div>--%>
-                <%--                            </div>--%>
-                <%--                        </div>--%>
-                <%--                        <div>--%>
-                <%--                            <button class="screens-room-roomDetail__btn screens-room-roomDetail__reservation__btn screens-room-roomDetail__btn-shrink"--%>
-                <%--                                    id="submit-button"--%>
-                <%--                                    value="${room.room_id}">--%>
-                <%--                                예약하기--%>
-                <%--                            </button>--%>
-                <%--                        </div>--%>
-                <%--                    </div>--%>
-                <%--                    <div class="screens-room-roomDetail__reservation__part-2">--%>
-                <%--                        예약 확정 전에는 요금이 청구되지 않습니다.--%>
-                <%--                    </div>--%>
-                <%--                    <div class="screens-room-roomDetail__reservation__part-3">--%>
-                <%--                        <span class="screens-room-roomDetail__reservation__part-3__mul">₩ <span>${room.room_weekday_price}</span> X <span>0</span>박 (주중)</span>--%>
-                <%--                        <span>₩ 0</span>--%>
-                <%--                        <input type="hidden" value="${room.room_weekday_price}">--%>
-                <%--                    </div>--%>
-                <%--                    <div class="screens-room-roomDetail__reservation__part-4">--%>
-                <%--                        <span class="screens-room-roomDetail__reservation__part-4__mul">₩ <span>${room.room_weekend_price}</span> X <span>0</span>박 (주말)</span>--%>
-                <%--                        <span>₩ 0</span>--%>
-                <%--                        <input type="hidden" value="${room.room_weekend_price}">--%>
-                <%--                    </div>--%>
-                <%--                    <div class="screens-room-roomDetail__reservation__part-5">--%>
-                <%--                        <span class="screens-room-roomDetail__reservation__part-5__mul">₩ <span>${room.room_extra_person_fee}</span> X <span>0</span>명 (추가인원) X <span>0</span>박 </span>--%>
-                <%--                        <span>₩ 0</span>--%>
-                <%--                        <input type="hidden" value="${room.room_extra_person_fee}">--%>
-                <%--                    </div>--%>
-                <%--                    <div class="screens-room-roomDetail__reservation__part-6">--%>
-                <%--                        <span class="screens-room-roomDetail__reservation__part-6__mul">합계</span>--%>
-                <%--                        <span>₩ 0 </span>--%>
-                <%--                        <input type="hidden" name="booking_price_sum">--%>
-                <%--                    </div>--%>
-                <%--                </div>--%>
-                <%--                <div class="screens-room-roomDetail__bookingDates">--%>
-                <%--                    <c:forEach var="bookingDto" items="${bookingDtos}">--%>
-                <%--                        <div class="screens-room-roomDetail__bookingDate">--%>
-                <%--                            <input type="hidden" value="${bookingDto.booking_checkin_date}">--%>
-                <%--                            <input type="hidden" value="${bookingDto.booking_checkout_date}">--%>
-                <%--                        </div>--%>
-                <%--                    </c:forEach>--%>
-                <%--                </div>--%>
-                <%--                </div>--%>
+                                    <div class="screens-room-roomDetail__check-in-out__desc screens-room-roomDetail__check-in-out__desc2"
+                                         id="check-in-button">
+                                        YYYY-MM-DD
+                                    </div>
+                                    <input type="hidden" name="booking_checkin_date">
+                                </div>
+                                <div class="screens-room-roomDetail__check-in-out">
+                                    <div class="screens-room-roomDetail__check-in-out__desc screens-room-roomDetail__check-in-out__desc1">
+                                        체크아웃
+                                    </div>
 
+                                    <div class="screens-room-roomDetail__check-in-out__desc screens-room-roomDetail__check-in-out__desc2"
+                                         id="check-out-button">
+                                        YYYY-MM-DD
+                                    </div>
+                                    <input type="hidden" name="booking_checkout_date">
+                                </div>
+                            </button>
+                            <button class="screens-room-roomDetail__btn screens-room-roomDetail__reservation__number-people">
+                                <div class="screens-room-roomDetail__number-people__desc">
+                                    <div class="screens-room-roomDetail__number-people__desc1">
+                                        인원
+                                    </div>
+                                    <span>게스트</span>
+                                    <span class="screens-room-roomDetail__number-people__desc2"
+                                          id="totalGuest-button">1
+                                            </span>
+                                    <span>명</span>
+                                    <input type="hidden" name="booking_num_of_guest">
+                                    <input type="hidden" name="room_max_capa"
+                                           value="${room.room_max_capa}">
+                                    <input type="hidden" name="room_standard_capa"
+                                           value="${room.room_standard_capa}">
+                                </div>
+                                <div class="screens-room-roomDetail__number-people__arrow">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
+                                         aria-hidden="true" role="presentation"
+                                         focusable="false"
+                                         style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 4; overflow: visible;">
+                                        <path fill="none"
+                                              d="M28 12 16.7 23.3a1 1 0 0 1-1.4 0L4 12"></path>
+                                    </svg>
+                                </div>
+                            </button>
+                            <div class="screens-room-roomDetail__number-people-toggle">
+                                <span class="screens-room-roomDetail__toggle-part-1">성인</span>
+                                <div class="screens-room-roomDetail__toggle-part-2">
+                                    <button type="button"
+                                            class="screens-room-roomDetail__toggle-btn-minus disable">
+                                        <svg viewBox="0 0 12 12"
+                                             xmlns="http://www.w3.org/2000/svg"
+                                             aria-hidden="true"
+                                             role="presentation" focusable="false"
+                                             style="display: block; height: 12px; width: 12px; fill: #717171;">
+                                            <path d="m.75 6.75h10.5v-1.5h-10.5z"></path>
+                                        </svg>
+                                    </button>
+                                    <input type="text"
+                                           class="screens-room-roomDetail__toggle-num"
+                                           name="toggle-people-num" value='1' readonly/>
+                                    <button type="button"
+                                            class="screens-room-roomDetail__toggle-btn-plus">
+                                        <svg viewBox="0 0 12 12"
+                                             xmlns="http://www.w3.org/2000/svg"
+                                             aria-hidden="true"
+                                             role="presentation" focusable="false"
+                                             style="display: block; height: 12px; width: 12px; fill: #717171;">
+                                            <path d="m6.75.75v4.5h4.5v1.5h-4.5v4.5h-1.5v-4.5h-4.5v-1.5h4.5v-4.5z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="screens-room-roomDetail__btn screens-room-roomDetail__reservation__btn screens-room-roomDetail__btn-shrink"
+                                    id="submit-button"
+                                    value="${room.room_id}">
+                                예약하기
+                            </button>
+                        </div>
+                    </div>
+                    <div class="screens-room-roomDetail__reservation__part-2">
+                        예약 확정 전에는 요금이 청구되지 않습니다.
+                    </div>
+                    <div class="screens-room-roomDetail__reservation__part-3">
+                        <span class="screens-room-roomDetail__reservation__part-3__mul">₩ <span>${room.room_weekday_price}</span> X <span>0</span>박 (주중)</span>
+                        <span>₩ 0</span>
+                        <input type="hidden" value="${room.room_weekday_price}">
+                    </div>
+                    <div class="screens-room-roomDetail__reservation__part-4">
+                        <span class="screens-room-roomDetail__reservation__part-4__mul">₩ <span>${room.room_weekend_price}</span> X <span>0</span>박 (주말)</span>
+                        <span>₩ 0</span>
+                        <input type="hidden" value="${room.room_weekend_price}">
+                    </div>
+                    <div class="screens-room-roomDetail__reservation__part-5">
+                        <span class="screens-room-roomDetail__reservation__part-5__mul">₩ <span>${room.room_extra_person_fee}</span> X <span>0</span>명 (추가인원) X <span>0</span>박 </span>
+                        <span>₩ 0</span>
+                        <input type="hidden" value="${room.room_extra_person_fee}">
+                    </div>
+                    <div class="screens-room-roomDetail__reservation__part-6">
+                        <span class="screens-room-roomDetail__reservation__part-6__mul">합계</span>
+                        <span>₩ 0 </span>
+                        <input type="hidden" name="booking_price_sum">
+                    </div>
+                </div>
+                <div class="screens-room-roomDetail__bookingDates">
+                    <c:forEach var="bookingDto" items="${bookingDtos}">
+                        <div class="screens-room-roomDetail__bookingDate">
+                            <input type="hidden" value="${bookingDto.booking_checkin_date}">
+                            <input type="hidden" value="${bookingDto.booking_checkout_date}">
+                        </div>
+                    </c:forEach>
+                </div>
             </div>
+            <%--            </div>--%>
+
         </div>
     </div>
 </div>
-</div>
-<%--<jsp:include page="/WEB-INF/views/common/user/footer.jsp"/>--%>
 
-<script src="/resources/js/room/roomDetail.js"></script>
 
 <script>
   var client;
@@ -458,22 +457,16 @@
       }
     });
   }
-
 </script>
-<%-- 제이쿼리 --%>
-<script type="text/javascript"
-        src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-<%-- 캘린더 스크립트 --%>
-<script type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
 <%--  dateRangePicker  --%>
 <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery-date-range-picker/0.14.2/jquery.daterangepicker.min.js"></script>
 <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.16.0/moment.min.js"></script>
 
-
 </body>
+<script src="/resources/js/chat/contact_host.js"></script>
+
 
 </html>
