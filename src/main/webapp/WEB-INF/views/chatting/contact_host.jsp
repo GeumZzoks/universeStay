@@ -281,8 +281,6 @@
 
                 <%--                <div class="screens-chat-send_host__section-1__reservation">--%>
                 <div class="screens-room-roomDetail__section-3__reservation">
-
-                    TODO : 주중 주말 가격과 숙박 일정설정에 따른 총합계 구현
                     <div class="screens-room-roomDetail__reservation__part-1">
                         <div class="screens-room-roomDetail__reservation__price">
                             <span class="screens-room-roomDetail__price__part-1">₩ ${room.room_weekday_price}</span>
