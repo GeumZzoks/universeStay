@@ -716,59 +716,59 @@
 <script src="/resources/js/room/roomDetail.js"></script>
 
 
+<script>
+  $(document).ready(function () {
+    $('#wishlist').on('click', function (e) {
+      // form 전송 시 새로고침 안하기(기본 이벤트 x)
+      e.preventDefault();
+      // 새로고침 안할 시 다른 요소의 이밴트 받지 않기
+      e.stopPropagation();
+      // 변수 선언
+      // roomID는 list의 각 value값을 가져옴
+      var roomID = $(this).val();
+      let wished = "/resources/img/room/wished.png";
+      let unwished = "/resources/img/room/unwished.png";
 
-        $(document).ready(function () {
-            $('#wishlist').on('click', function (e) {
-                // form 전송 시 새로고침 안하기(기본 이벤트 x)
-                e.preventDefault();
-                // 새로고침 안할 시 다른 요소의 이밴트 받지 않기
-                e.stopPropagation();
-                // 변수 선언
-                // roomID는 list의 각 value값을 가져옴
-                var roomID = $(this).val();
-                let wished = "/resources/img/room/wished.png";
-                let unwished = "/resources/img/room/unwished.png";
+      // ajax
+      $.ajax({
+        url: "/user/myPage/wishLists/active",
+        type: "POST",
+        dataType: "text",
+        data: {room_id: roomID},
+        success: function (response) {
+          $('.modal-div').finish();
+          if (response === 'DEL_OK') {
+            wished = "/resources/img/room/unwished.png";
+            $('#wished').attr('src', wished);
+            $('#wished_text').html('저장하기');
+            unwished = "/resources/img/room/unwished.png";
+            $('#unwished').attr('src', unwished);
+            $('#unwished_text').html('저장하기')
+            $('.modal-div h4').text('위시리스트에서 삭제되었습니다.')
+            $("#" + roomID).fadeIn('slow').delay(3000).fadeOut('slow');
+          } else if (response === 'IST_OK') {
+            wished = "/resources/img/room/wished.png";
+            $('#wished').attr('src', wished);
+            $('#wished_text').html('저장됨');
+            unwished = "/resources/img/room/wished.png";
+            $('#unwished').attr('src', unwished);
+            $('#unwished_text').html('저장됨')
+            $('.modal-div h4').text('위시리스트에 추가되었습니다.')
+            $("#" + roomID).fadeIn('slow').delay(3000).fadeOut('slow');
+          } else {
+            alert("알 수 없는 문제가 발생했습니다. 다시 시도해주세요.");
+          }
+        },
+        error: function () {
+          location.href = "/user/loginForm";
+        }
+      });
+    });
+  });
 
-                // ajax
-                $.ajax({
-                    url: "/user/myPage/wishLists/active",
-                    type: "POST",
-                    dataType: "text",
-                    data: {room_id: roomID},
-                    success: function (response) {
-                        $('.modal-div').finish();
-                        if (response === 'DEL_OK') {
-                            wished = "/resources/img/room/unwished.png";
-                            $('#wished').attr('src', wished);
-                            $('#wished_text').html('저장하기');
-                            unwished = "/resources/img/room/unwished.png";
-                            $('#unwished').attr('src', unwished);
-                            $('#unwished_text').html('저장하기')
-                            $('.modal-div h4').text('위시리스트에서 삭제되었습니다.')
-                            $("#" + roomID).fadeIn('slow').delay(3000).fadeOut('slow');
-                        } else if (response === 'IST_OK') {
-                            wished = "/resources/img/room/wished.png";
-                            $('#wished').attr('src', wished);
-                            $('#wished_text').html('저장됨');
-                            unwished = "/resources/img/room/wished.png";
-                            $('#unwished').attr('src', unwished);
-                            $('#unwished_text').html('저장됨')
-                            $('.modal-div h4').text('위시리스트에 추가되었습니다.')
-                            $("#" + roomID).fadeIn('slow').delay(3000).fadeOut('slow');
-                        } else {
-                            alert("알 수 없는 문제가 발생했습니다. 다시 시도해주세요.");
-                        }
-                    },
-                    error: function () {
-                        location.href = "/user/loginForm";
-                    }
-                });
-            });
-        });
+</script>
 
-    </script>
-
-    <script src="/resources/js/room/roomDetail.js"></script>
+<script src="/resources/js/room/roomDetail.js"></script>
 
 <script>
   function createChatRoom() {
