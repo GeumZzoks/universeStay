@@ -17,4 +17,6 @@ public interface RoomReviewDao {
     // 숙소 리뷰 평균
     double roomReviewAvg(String room_id) throws Exception;
 
+    List<Map<String, Object>> roomReviewSelectSix(String room_id) throws Exception;
+
 }

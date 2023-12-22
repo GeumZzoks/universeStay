@@ -13,4 +13,6 @@ public interface RoomReviewService {
 
     double getRoomReviewAvg(String room_id) throws Exception;
 
+    List<Map<String, Object>> getRoomReviewSix(String room_id) throws Exception;
+
 }

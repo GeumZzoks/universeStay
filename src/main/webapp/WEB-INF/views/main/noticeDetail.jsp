@@ -159,7 +159,8 @@
         <div class="screens-user-noticeDetail__main__wrap">
             <div class="screens-user-noticeDetail__main__wrap__top">
                 <button type="button"
-                        class="screens-user-noticeDetail__main__wrap__top">
+                        class="screens-user-noticeDetail__main__wrap__top"
+                        onclick="location.href='/notice'">
                     <p class="screens-user-noticeDetail__main__wrap__top__p">
                         <svg width="20" height="20"
                              viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -177,7 +178,10 @@
                     <div class="gc-tag css-bm68df" aria-label="태그"><span
                             class="css-iul3il">공지</span></div>
                 </span>
-            <h1 class="css-eep2qs">채용 개인정보처리방침 변경 안내</h1><span class="css-6jt3x5">2023.09.06</span>
+            <h1 class="css-eep2qs">${noticeDto.notice_title}</h1><span
+                    class="css-6jt3x5"><fmt:formatDate
+                    value="${noticeDto.created_at}"
+                    pattern="yyyy-MM-dd" type="date"/></span>
         </header>
         <section class="css-1gjhcbr">
             <div style="white-space: pre">${noticeDto.notice_ctt}
