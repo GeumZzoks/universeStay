@@ -22,6 +22,7 @@
         b.booking_checkin_time,
         b.booking_checkout_time,
         b.booking_total_pay_amount,
+        b.is_user_review,
         b.created_at,
         p.payment_id,
         p.booking_id,
@@ -53,5 +54,11 @@
         VALUES (#{review_id}, #{user_id}, #{room_id}, #{review_writer}, #{review_stars},
                 #{review_ctt}, #{created_id});
     </insert>
+
+    <update id="updateReviewStatus" parameterType="String">
+        UPDATE Booking
+        SET is_user_review = 'Y'
+        Where booking_id = #{booking_id}
+    </update>
 
 </mapper>

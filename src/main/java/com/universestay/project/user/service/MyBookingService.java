@@ -9,4 +9,6 @@ public interface MyBookingService {
     List<Map<String, Object>> getMyBookingList(Map map) throws Exception;
 
     int writeRoomReview(RoomReviewDto dto) throws Exception;
+
+    int updateReviewStatus(String booking_id) throws Exception;
 }
