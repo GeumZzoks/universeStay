@@ -440,6 +440,11 @@
     var chat_room_id = chat_room_id2;
     var chat_ctt = $("#msgi").val();
 
+    if (!chat_ctt) {
+      alert("메시지 입력 후 전송하세요");
+      return;
+    }
+
     // 서버로 전송할 데이터를 객체화
     var insertChatDto = {
       user_id: user_id,
