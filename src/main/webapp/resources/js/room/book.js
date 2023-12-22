@@ -22,6 +22,9 @@ submitButton.addEventListener("click", function (ev) {
         booking_total_pay_amount: BookingPriceSum,
     };
 
+    const profile_img_url = document.querySelector(
+            "#screens-room-book__profile_img_url").src;
+
     $.ajax({
         type: "POST",
         url: `/room/book/share/${roomId}`,
@@ -33,7 +36,7 @@ submitButton.addEventListener("click", function (ev) {
             location.href =
                     `/room/book/share/${roomId}` +
                     `?booking_checkin_date=${bookingDto.booking_checkin_date}&booking_checkout_date=${bookingDto.booking_checkout_date}&booking_num_of_guest=${bookingDto.booking_num_of_guest}
-                    &booking_total_pay_amount=${bookingDto.booking_total_pay_amount}`;
+                    &booking_total_pay_amount=${bookingDto.booking_total_pay_amount}&profile_img_url=${profile_img_url}`;
         },
         error: function (res) {
             console.log(res + " 에러 발생");
@@ -274,21 +277,18 @@ btnMinus.addEventListener("click", function (e) {
 const reservedDates = [];
 
 const bookingDates = document.querySelectorAll(
-        ".screens-room-roomDetail__bookingDate"
+        ".screens-room-book__bookingDate"
 );
-bookingDates.forEach((bookingDate) => {
+bookingDates.forEach(bookingDate => {
     const checkInDate = bookingDate.children[0].value.substring(0, 10);
     const checkOutDate = bookingDate.children[1].value.substring(0, 10);
 
     const startDate = new Date(checkInDate);
     const endDate = new Date(checkOutDate);
 
-    for (
-            let currentDate = startDate;
-            currentDate <= endDate;
-            currentDate.setDate(currentDate.getDate() + 1)
-    ) {
-        const formattedDate = currentDate.toISOString().split("T")[0];
+    for (let currentDate = startDate; currentDate <= endDate;
+            currentDate.setDate(currentDate.getDate() + 1)) {
+        const formattedDate = currentDate.toISOString().split('T')[0];
         reservedDates.push(formattedDate);
     }
 });

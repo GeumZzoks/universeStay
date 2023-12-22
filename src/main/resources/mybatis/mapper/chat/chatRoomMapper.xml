@@ -36,8 +36,8 @@
                 ON cr.chatting_room_id = cm.chatting_room_id
            JOIN User u ON cm.user_id = u.user_id
            LEFT JOIN ProfileImg pi ON cm.user_id = pi.user_id AND pi.profile_img_is_remove = 'N'
-    WHERE (cr.user_id = #{user_id} OR cr.user_id2 = #{user_id});
-
+    WHERE (cr.user_id = #{user_id} OR cr.user_id2 = #{user_id})
+    ORDER BY cm.chat_date DESC;
   </select>
 </mapper>
 
