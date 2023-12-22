@@ -272,13 +272,12 @@ btnMinus.addEventListener("click", function (e) {
 });
 
 /**
- * TODO: 어떤 역할인지 확인 및 수정 필요
+ * 달력에 예약된 날짜를 표시하기 위한 데이터 처리 작업
+ * @type {*[]}
  */
 const reservedDates = [];
-
 const bookingDates = document.querySelectorAll(
-        ".screens-room-book__bookingDate"
-);
+        ".screens-room-book__bookingDate");
 bookingDates.forEach(bookingDate => {
     const checkInDate = bookingDate.children[0].value.substring(0, 10);
     const checkOutDate = bookingDate.children[1].value.substring(0, 10);
