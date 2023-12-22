@@ -1,5 +1,6 @@
 package com.universestay.project.room.controller;
 
+import com.universestay.project.review.service.RoomReviewService;
 import com.universestay.project.room.dao.BookDao;
 import com.universestay.project.room.dao.RoomViewDao;
 import com.universestay.project.room.dto.RoomAmenityDto;
@@ -63,8 +64,9 @@ public class RoomController {
     @Autowired
     BookDao bookDao;
     @Autowired
+    RoomReviewService roomReviewService;
+    @Autowired
     UserInfoDao userInfoDao;
-
 
     @GetMapping("")
     public String showRoom() {
@@ -83,6 +85,9 @@ public class RoomController {
             UserDto host = userWithdrawalDao.selectUserByUuid((String) room.get("user_id"));
             String profileImgUrl = profileImgService.getProfileImgUrl((String) room.get("user_id"));
             List<BookingDto> bookingDtos = bookDao.selectUnavailableDates(room_id);
+            int roomReviewCount = roomReviewService.getRoomReviewCount(room_id);
+            double roomReviewAvg = roomReviewService.getRoomReviewAvg(room_id);
+            List<Map<String, Object>> reviewList = roomReviewService.getRoomReviewSix(room_id);
 
             if (room == null) {
                 // TODO: 에러메세지 보여주고 메인으로 이동
@@ -103,6 +108,9 @@ public class RoomController {
             model.addAttribute("profileImgUrl", profileImgUrl);
             model.addAttribute("roomAmenities", roomAmenities);
             model.addAttribute("bookingDtos", bookingDtos);
+            model.addAttribute("roomReviewCount", roomReviewCount);
+            model.addAttribute("roomReviewAvg", roomReviewAvg);
+            model.addAttribute("reviewList", reviewList);
 
             return "room/roomDetail";
 

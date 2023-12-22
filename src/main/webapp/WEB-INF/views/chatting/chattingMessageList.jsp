@@ -440,6 +440,11 @@
     var chat_room_id = chat_room_id2;
     var chat_ctt = $("#msgi").val();
 
+    if (!chat_ctt) {
+      alert("메시지 입력 후 전송하세요");
+      return;
+    }
+
     // 서버로 전송할 데이터를 객체화
     var insertChatDto = {
       user_id: user_id,
@@ -483,7 +488,13 @@
   // 실시간 채팅 내용 렌더링
   var renderList = function (contentDto) {
     // 리스트 html을 정의
-    var date = moment(contentDto.chat_date).format('YY/MM/DD HH:mm');
+    //var date = moment(contentDto.chat_date).format('YY/MM/DD HH:mm');
+    var originalDate = moment(contentDto.chat_date);
+    var newDate = originalDate.add(9, 'hours');
+    var formattedDate = newDate.format('YY/MM/DD HH:mm');
+
+    console.log(formattedDate);
+
     var html = "";
 
     content = "<p class='otherChat bg-light p-2'>" + contentDto.chat_ctt
@@ -499,7 +510,7 @@
         "<strong>" + contentDto.user_name + "님</strong>" +
         "<div class='me'>" +
         content +
-        "<p style='display: inline;'>" + date + "</p>" +
+        "<p style='display: inline;'>" + formattedDate + "</p>" +
         "</div>" +
         "</div>" +
         "</div>" +
