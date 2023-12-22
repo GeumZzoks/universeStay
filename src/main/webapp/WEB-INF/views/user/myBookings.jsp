@@ -97,29 +97,40 @@
                                 <div>
                                     <div class="screens-room-myBookings__hiddenValue" hidden
                                          data-value="${dto.booking_id}"></div>
-                                    <div>${dto.user_nickname}님이 호스팅하는 집 전체</div>
+                                    <div class="screens-room-myBookings__comming-reservation__name">${dto.user_nickname}님이
+                                        호스팅하는 집 전체
+                                    </div>
                                 </div>
 
 
                                 <div>
-                                    <span>${dto.booking_checkin_date} ~</span><span>${dto.booking_checkout_date}</span>
+                                    <span class="screens-room-myBookings__comming-gray-font">여행 날짜: ${dto.booking_checkin_date} ~ </span><span
+                                        class="screens-room-myBookings__comming-gray-font">${dto.booking_checkout_date}</span>
                                 </div>
 
                                 <div>
-                                    <span>${dto.room_address}</span>
-                                    <span>${dto.room_address_detail}</span>
+                                    <span class="screens-room-myBookings__comming-gray-font">장소: ${dto.room_address}</span>
+                                    <span class="screens-room-myBookings__comming-gray-font">${dto.room_address_detail}</span>
                                 </div>
                                 <div>
-                                    <span>${dto.booking_total_pay_amount}</span><span>원</span>
+                                    <span class="screens-room-myBookings__comming-reservation__pay-amount screens-room-myBookings__comming-gray-font">총 금액: ${dto.booking_total_pay_amount}</span><span
+                                        class="screens-room-myBookings__comming-gray-font">원</span>
                                 </div>
-                                <div>${dto.created_at}</div>
+                                <div class="screens-room-myBookings__comming-gray-font">예약한
+                                    날짜: ${dto.created_at}</div>
 
-                                <div>
+                                <div class="screens-room-myBookings__payment-button-card-div">
                                     <button class="screens-room-myBookings__payment-button-card screens-room-myBookings__button">
                                         카드결제
                                     </button>
                                     <button class="screens-room-myBookings__payment-button-kakao screens-room-myBookings__button">
                                         카카오페이
+                                    </button>
+                                    <button class="screens-room-myBookings__cancel-button screens-room-myBookings__button">
+                                        예약 취소
+                                    </button>
+                                    <button class="screens-room-myBookings__refund-button screens-room-myBookings__button">
+                                        예약 취소/환불
                                     </button>
                                 </div>
                             </div>
@@ -147,9 +158,12 @@
                                      src="${dto.room_main_photo}">
                             </div>
                             <div class="screens-room-myBookings__completed-reservation__div__info">
-                                <div>${dto.room_address}</div>
-                                <div>호스트 : ${dto.user_nickname}</div>
-                                <div>${dto.booking_checkin_date}
+                                <div class="screens-room-myBookings__comming-gray-font">
+                                    지역: ${dto.room_address}</div>
+                                <div class="screens-room-myBookings__comming-gray-font">
+                                    호스트: ${dto.user_nickname}</div>
+                                <div class="screens-room-myBookings__comming-gray-font">여행
+                                    날짜: ${dto.booking_checkin_date}
                                     ~ ${dto.booking_checkout_date}</div>
                                 <button class="screens-room-myBookings__button screens-room-myBookings__reviewWriteBtn screens-room-myBookings__reviewWriteBtn-${dto.booking_id}"
                                         value="${dto.room_id}"> 리뷰쓰기
@@ -243,53 +257,72 @@
         this.submit();
     });
 
-    //결제 상태에 따라 결제버튼 활성화 및 취소 기능
+    //결제 상태에 따라 결제버튼 활성화 및 취소 기능 / css 변경
+    document.addEventListener('DOMContentLoaded', function () {
+        var reservations = document.querySelectorAll(
+                '.screens-room-myBookings__comming-reservation__div');
 
-    reservationStatusIds.forEach(statusId => {
-        const statusText = statusId.textContent.trim(); // 상태 텍스트 가져오기
+        reservations.forEach(function (reservation) {
+            const statusIdElement = reservation.querySelector(
+                    '.screens-room-myBookings__comming-reservation__div__status_id');
 
-        // "결제 대기" 상태인 경우
-        if (statusText === "결제 대기") {
-            const buttonCard = statusId.parentElement.querySelector(
-                    ".screens-room-myBookings__payment-button-card");
-            const buttonKakao = statusId.parentElement.querySelector(
-                    ".screens-room-myBookings__payment-button-kakao");
+            const statusId = reservation.querySelector(
+                    '.screens-room-myBookings__comming-reservation__div__status_id').textContent.trim();
+            const buttonDiv = reservation.querySelector(
+                    '.screens-room-myBookings__payment-button-card-div');
 
-            // 버튼이 존재하는 경우 활성화, 존재하지 않으면 아무 작업도 하지 않음
-            if (buttonCard) {
-                buttonCard.disabled = false; // 활성화
+            // 버튼 삭제하기
+            if (statusId === '예약 신청' || statusId === '승인 대기') {
+                // removeButton(buttonDiv, 'screens-room-myBookings__cancel-button');
+                removeButton(buttonDiv, 'screens-room-myBookings__payment-button-card');
+                removeButton(buttonDiv, 'screens-room-myBookings__payment-button-kakao');
+                removeButton(buttonDiv, 'screens-room-myBookings__refund-button');
+            } else if (statusId === '결제 대기') {
+                removeButton(buttonDiv, 'screens-room-myBookings__refund-button');
+            } else if (statusId === '결제 완료') {
+                removeButton(buttonDiv, 'screens-room-myBookings__cancel-button');
+                removeButton(buttonDiv, 'screens-room-myBookings__payment-button-card');
+                removeButton(buttonDiv, 'screens-room-myBookings__payment-button-kakao');
+            } else if (statusId === '예약 반려' || statusId === '예약 취소') {
+                const image = reservation.querySelector(
+                        '.screens-room-myBookings__comming-reservation__main-photo');
+                if (image) {
+                    image.style.filter = 'grayscale(100%)';
+                }
+
+                if (statusIdElement) {
+                    statusIdElement.style.color = 'gray';
+                }
+                removeAllButtons(buttonDiv);
             }
-            if (buttonKakao) {
-                buttonKakao.disabled = false; // 활성화
+        });
+
+        function removeButton(parentElement, className) {
+            const buttonToRemove = parentElement.querySelector('.' + className);
+            if (buttonToRemove) {
+                buttonToRemove.parentNode.removeChild(buttonToRemove);
             }
-        } else {
-            // "결제 대기" 상태가 아닌 경우 해당 버튼들 삭제
-            const buttons = statusId.parentElement.querySelectorAll(
-                    ".screens-room-myBookings__payment-button-card, .screens-room-myBookings__payment-button-kakao");
-            buttons.forEach(button => {
-                button.remove(); // 버튼 삭제
+        }
+
+        function removeAllButtons(parentElement) {
+            const buttons = parentElement.querySelectorAll('.screens-room-myBookings__button');
+            buttons.forEach(function (button) {
+                button.parentNode.removeChild(button);
             });
         }
     });
 
-    //TODO 아래 함수 작동안함, 수정 필요 (한나)
-    // reservationStatusIds.forEach(statusId => {
-    //     const statusText = statusId.textContent.trim(); // 상태 텍스트 가져오기
-    //
-    //     // "예약 취소" 또는 "예약 반려" 상태인 경우
-    //     if (statusText === "예약 취소" || statusText === "예약 반려") {
-    //         const imageWrapper = statusId.parentElement.querySelector(
-    //                 ".screens-room-myBookings__comming-reservation__main-photo__wrapper");
-    //         const mainPhoto = imageWrapper.querySelector(
-    //                 ".screens-room-myBookings__comming-reservation__main-photo");
-    //
-    //         // 이미지를 회색으로 변환
-    //         console.log("main" + mainPhoto);
-    //         if (mainPhoto) {
-    //             mainPhoto.style.filter = "grayscale(100%)"; // 이미지 회색으로 변환
-    //         }
-    //     }
-    // });
+    //가격 원화 단위로 콤마 붙여주는 함수
+    const priceToString = function (price) {
+        return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+    const payAmounts = Array.from(document.querySelectorAll(
+            ".screens-room-myBookings__comming-reservation__pay-amount")
+    )
+    payAmounts.forEach((payAmount) => {
+                payAmount.innerText = priceToString(payAmount.innerText);
+            }
+    )
 
 </script>
 <script src="/resources/js/payment/payment.js"></script>

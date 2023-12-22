@@ -2,6 +2,10 @@ package com.universestay.project.user.controller;
 
 import com.universestay.project.user.dto.WishListDto;
 import com.universestay.project.user.service.WishListService;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,11 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.servlet.http.HttpSession;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 @Controller
 @RequestMapping("/user/myPage/wishLists")
@@ -44,23 +43,30 @@ public class WishListController {
     }
 
     @PostMapping("/active")
-    public ResponseEntity<String> insert(String room_id, WishListDto wishListDto, HttpSession session) {
+    public ResponseEntity<String> insert(String room_id, WishListDto wishListDto,
+            HttpSession session) {
         try {
             String user_email = (String) session.getAttribute("user_email");
             String user_id = wishListService.getUserUuid(user_email);
+            System.out.println("user_email = " + user_email);
+            System.out.println("user_id = " + user_id);
 
             if (user_email == null) {
+                System.out.println("exception1");
                 throw new Exception();
             }
 
             try {
                 if (wishListService.delete(user_id, room_id) == 1) {
+                    System.out.println("1 = " + 1);
                     return ResponseEntity.ok("DEL_OK");
                 } else {
+                    System.out.println("exception2");
                     throw new Exception();
                 }
             } catch (Exception DelErr) {
                 try {
+                    System.out.println("exception3");
                     String wishlist_id = UUID.randomUUID().toString();
                     wishListDto.setWishlist_id(wishlist_id);
                     wishListDto.setUser_id(user_id);
@@ -70,11 +76,13 @@ public class WishListController {
                     wishListService.insert(wishListDto);
                     return ResponseEntity.ok("IST_OK");
                 } catch (Exception IstErr) {
+                    System.out.println("exception4");
                     IstErr.printStackTrace();
                     return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("IST_ERR");
                 }
             }
         } catch (Exception e) {
+            System.out.println("exception5");
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("NOT_LOGGED_IN");
         }
