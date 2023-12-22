@@ -1,6 +1,7 @@
 package com.universestay.project.room.service;
 
 import com.universestay.project.room.dto.SendEmailBookInfoDto;
+import java.time.DayOfWeek;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,16 +19,17 @@ public class BookShareMailSendService {
     /**
      * 여행 예약 내역 공유 - 메일 전송
      *
-     * @param admin_nickname
+     * @param sendEmailBookInfoDto
      * @return ResponseEntity
      * @throws RuntimeException
      */
 
     //이메일 보낼 양식
-    public String sendEmailForRoomInfo(String[] emails, SendEmailBookInfoDto sendEmailBookInfoDto) {
+    public String sendEmailForRoomInfo(SendEmailBookInfoDto sendEmailBookInfoDto,
+            DayOfWeek checkInDateDayOfWeek, DayOfWeek checkOutDateDayOfWeek) {
         String setFrom = "universestay23@gmail.com"; // email-config에 설정한 자신의 이메일 주소를 입력
-        String[] toMails = emails;
-//        String title = sendEmailBookInfoDto.getRoom_name() + " 예약 요청 전송 완료"; // 이메일 제목
+        String[] toMails = sendEmailBookInfoDto.getEmails();
+        String title = sendEmailBookInfoDto.getRoom_name() + " 예약 요청 전송 완료"; // 이메일 제목
 
         String content = ""
                 + "<html>\n"
@@ -178,11 +180,11 @@ public class BookShareMailSendService {
                 + "                                <tbody>\n"
                 + "                                <tr>\n"
                 + "                                    <td style=\"padding-top: 48px\">\n"
-                + "                                        <a href=\"https://www.airbnb.co.kr/?c=.pi80.pkYm9va2luZy92Ml9taWdyYXRpb24vcmVzZXJ2YXRpb25fZ3Vlc3RfcGVuZGluZw==&euid=89ac8dd0-ac76-aad8-9379-8538c114c53c\"\n"
-                + "                                           style=\"width: 100px; height: 80px; overflow: hidden\">\n"
+                + "                                        <a href=\"http://localhost:8080\"\n"
+                + "                                           style=\"width: 32px; height: 32px; overflow: hidden\">\n"
                 + "                                            <img src=\"https://universestay-img-server.s3.ap-northeast-2.amazonaws.com/big_logo_no_bgd.png\"\n"
                 + "                                                 alt=\"\"\n"
-                + "                                                 style=\"width: 100px; height: 80px; object-fit: cover\">\n"
+                + "                                                 style=\"width: 32px; height: 32px; object-fit: cover\">\n"
                 + "                                        </a>\n"
                 + "                                    </td>\n"
                 + "                                </tr>\n"
@@ -219,15 +221,19 @@ public class BookShareMailSendService {
                 + "                        <tbody>\n"
                 + "                        <tr>\n"
                 + "                            <td style=\"padding-left: 48px; padding-right: 48px; padding-top: 24px;\">\n"
-                + "                                <a href=\"https://www.airbnb.co.kr/rooms/996785586061300637?c=.pi80.pkYm9va2luZy92Ml9taWdyYXRpb24vcmVzZXJ2YXRpb25fZ3Vlc3RfcGVuZGluZw%3D%3D&euid=89ac8dd0-ac76-aad8-9379-8538c114c53c&source_impression_id=p3_1702054252_i8xTpiDGhlstT3nO\"\n"
+                + "                                <a href=\""
+                + sendEmailBookInfoDto.getRoom_detail_link() + "\"\n"
                 + "                                   target=\"_blank\"\n"
-                + "                                   data-saferedirecturl=\"https://www.airbnb.co.kr/rooms/996785586061300637?c=.pi80.pkYm9va2luZy92Ml9taWdyYXRpb24vcmVzZXJ2YXRpb25fZ3Vlc3RfcGVuZGluZw%3D%3D&euid=89ac8dd0-ac76-aad8-9379-8538c114c53c&source_impression_id=p3_1702054252_i8xTpiDGhlstT3nO\">\n"
+                + "                                   data-saferedirecturl=\""
+                + sendEmailBookInfoDto.getRoom_detail_link() + "\">\n"
                 + "                                    <table class=\"screens-room-mailSend__table__common-component-table\">\n"
                 + "                                        <tbody>\n"
                 + "                                        <tr>\n"
                 + "                                            <td style=\"width: 500px; height: 300px; overflow: hidden;\">\n"
-                + "                                                <img src=\"https://a0.muscache.com/im/pictures/miso/Hosting-995274425691622381/original/f261190c-1c03-4392-a349-3ec7b9729179.jpeg?im_w=720\"\n"
-                + "                                                     alt=\"[무릉한옥스테이_목련실] 여유와 낭만이 가득한 &quot;木蓮室&quot;/독채\">\n"
+                + "                                                <img src=\""
+                + sendEmailBookInfoDto.getRoom_main_photo() + "\"\n"
+                + "                                                     alt=\""
+                + sendEmailBookInfoDto.getRoom_name() + "\">\n"
                 + "                                            </td>\n"
                 + "                                        </tr>\n"
                 + "                                        </tbody>\n"
@@ -244,22 +250,27 @@ public class BookShareMailSendService {
                 + "                            <div style=\"padding: 8px 0;\">\n"
                 + "                                <div class=\"screens-room-mailSend__table__common-component-padding-box\"\n"
                 + "                                     style=\"display: flex; justify-content: space-around; align-items: center\">\n"
-                + "                                    <a href=\"https://www.airbnb.co.kr/rooms/996785586061300637?c=.pi80.pkYm9va2luZy92Ml9taWdyYXRpb24vcmVzZXJ2YXRpb25fZ3Vlc3RfcGVuZGluZw%3D%3D&euid=89ac8dd0-ac76-aad8-9379-8538c114c53c&source_impression_id=p3_1702052158_JGaCS9lAMDMOwXB5\"\n"
+                + "                                    <a href=\""
+                + sendEmailBookInfoDto.getRoom_detail_link() + "\"\n"
                 + "                                       target=\"_blank\"\n"
                 + "                                       style=\"color: black; text-decoration: none;\">\n"
                 + "                                        <h2 class=\"screens-room-mailSend__table__common-component-table--h2\">\n"
-                + "                                            [무릉한옥스테이_목련실] 여유와 낭만이 가득한 \"木蓮室\"/독채</h2>\n"
+                + "                                            "
+                + sendEmailBookInfoDto.getRoom_name() + "</h2>\n"
                 + "                                        <p class=\"screens-room-mailSend__table__common-component-table--p\">\n"
                 + "                                            유빈 님이 호스팅하는 집 전체\n"
                 + "                                        </p>\n"
                 + "                                    </a>\n"
                 + "\n"
                 + "                                    <div style=\"padding: 0 8px; margin-left: 32px\">\n"
-                + "                                        <a href=\"https://www.airbnb.co.kr/users/show/537642283?c=.pi80.pkYm9va2luZy92Ml9taWdyYXRpb24vcmVzZXJ2YXRpb25fZ3Vlc3RfcGVuZGluZw==&euid=89ac8dd0-ac76-aad8-9379-8538c114c53c&email_cta=link_host_profile\"\n"
+                + "                                        <a href=\""
+                + sendEmailBookInfoDto.getRoom_detail_link() + "\"\n"
                 + "                                           target=\"_blank\"\n"
-                + "                                           data-saferedirecturl=\"https://www.airbnb.co.kr/users/show/537642283?https://www.airbnb.co.kr/users/show/537642283?c=.pi80.pkYm9va2luZy92Ml9taWdyYXRpb24vcmVzZXJ2YXRpb25fZ3Vlc3RfcGVuZGluZw==&euid=89ac8dd0-ac76-aad8-9379-8538c114c53c&email_cta=link_host_profile\">\n"
-                + "                                            <img src=\"https://cdn.pixabay.com/photo/2020/05/17/20/21/cat-5183427_1280.jpg\"\n"
-                + "                                                 alt=\"유빈 님의 프로필 보기\"\n"
+                + "                                           data-saferedirecturl=\""
+                + sendEmailBookInfoDto.getRoom_detail_link() + "\">\n"
+                + "                                            <img src=\""
+                + sendEmailBookInfoDto.getProfile_img_url() + "\"\n"
+                + "                                                 alt=\"프로필 보기\"\n"
                 + "                                                 class=\"screens-room-mailSend__table__common-component-table__profile-img\"\n"
                 + "                                                 style=\"width: 54px; height: 54px; border-radius: 50%\">\n"
                 + "                                        </a>\n"
@@ -291,17 +302,21 @@ public class BookShareMailSendService {
                 + "                                    <tr>\n"
                 + "                                        <td style=\"width: 50%\">\n"
                 + "                                            <p class=\"screens-room-mailSend__table__common-component-table--p\">\n"
-                + "                                                목요일</p>\n"
+                + "                                                " + checkInDateDayOfWeek
+                + "</p>\n"
                 + "                                            <p class=\"screens-room-mailSend__table__common-component-table--p\">\n"
-                + "                                                2024년 1월 25일\n"
+                + "                                                "
+                + sendEmailBookInfoDto.getBooking_checkin_date() + "\n"
                 + "                                            </p>\n"
                 + "                                        </td>\n"
                 + "\n"
                 + "                                        <td>\n"
                 + "                                            <p class=\"screens-room-mailSend__table__common-component-table--p\">\n"
-                + "                                                목요일</p>\n"
+                + "                                                " + checkOutDateDayOfWeek
+                + "</p>\n"
                 + "                                            <p class=\"screens-room-mailSend__table__common-component-table--p\">\n"
-                + "                                                2024년 1월 25일\n"
+                + "                                                "
+                + sendEmailBookInfoDto.getBooking_checkout_date() + "\n"
                 + "                                            </p>\n"
                 + "                                        </td>\n"
                 + "                                    </tr>\n"
@@ -360,7 +375,7 @@ public class BookShareMailSendService {
                 + "</body>\n"
                 + "</html>\n";
 
-//        mailSend(setFrom, toMails, title, content);
+        mailSend(setFrom, toMails, title, content);
         return Integer.toString(1);
     }
 

@@ -1,13 +1,16 @@
 package com.universestay.project.room.controller;
 
-import com.universestay.project.common.exception.CommonException;
+import com.universestay.project.room.dao.BookDao;
 import com.universestay.project.room.dto.SendEmailBookInfoDto;
 import com.universestay.project.room.service.BookService;
 import com.universestay.project.room.service.BookShareMailSendService;
 import com.universestay.project.room.service.RoomService;
 import com.universestay.project.user.dto.BookingDto;
 import java.text.DecimalFormat;
-import java.util.Arrays;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,14 +33,17 @@ public class BookingRoomController {
     private BookShareMailSendService bookShareMailSendService;
     private RoomService roomService;
     private BookService bookService;
+    private BookDao bookDao;
 
     @Autowired
     public BookingRoomController(BookShareMailSendService bookShareMailSendService,
-            RoomService roomService, BookService bookService) {
+            RoomService roomService, BookService bookService, BookDao bookDao) {
         this.bookShareMailSendService = bookShareMailSendService;
         this.roomService = roomService;
         this.bookService = bookService;
+        this.bookDao = bookDao;
     }
+
 
     @GetMapping("/{room_id}")
     public String bookRoom(BookingDto bookingDto,
@@ -45,15 +51,18 @@ public class BookingRoomController {
             @RequestParam("weekendPrice") String weekendPrice,
             @RequestParam("extraPersonFee") String extraPersonFee,
             @RequestParam("BookingPriceSum") String BookingPriceSum,
-            Model model) throws CommonException {
+            Model model) throws Exception {
 
         Map<String, Object> bookInfo = bookService.selectRoomBookInfo(bookingDto.getRoom_id());
+        List<BookingDto> bookingDtos = bookDao.selectUnavailableDates(bookingDto.getRoom_id());
+
         model.addAttribute("bookInfo", bookInfo);
         model.addAttribute("bookingDto", bookingDto);
         model.addAttribute("weekdayPrice", weekdayPrice);
         model.addAttribute("weekendPrice", weekendPrice);
         model.addAttribute("extraPersonFee", extraPersonFee);
         model.addAttribute("BookingPriceSum", BookingPriceSum);
+        model.addAttribute("bookingDtos", bookingDtos);
 
         return "room/book";
     }
@@ -81,13 +90,16 @@ public class BookingRoomController {
 
     @GetMapping("/share/{room_id}")
     public String bookShare(@PathVariable String room_id, BookingDto bookingDto,
+            @RequestParam(value = "profile_img_url", defaultValue = "https://universestay-img-server.s3.ap-northeast-2.amazonaws.com/big_logo_no_bgd.png") String profile_img_url,
             HttpSession httpSession, Model model) {
 
+        // Room, User, ProfileImg 테이블 전체 가져오기
         Map<String, Object> bookInfo = bookService.selectRoomBookInfo(room_id);
 
         model.addAttribute("user_email", httpSession.getAttribute("user_email"));
         model.addAttribute("bookInfo", bookInfo);
         model.addAttribute("bookInfoDto", bookingDto);
+        model.addAttribute("profile_img_url", profile_img_url);
 
         // 숫자 포맷을 설정합니다.
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
@@ -103,20 +115,31 @@ public class BookingRoomController {
     }
 
     @PostMapping("/sendEmailForRoomInfo")
-    public ResponseEntity<String> sendEmailForRoomInfo(
+    public ResponseEntity sendEmailForRoomInfo(
             @RequestBody SendEmailBookInfoDto sendEmailBookInfoDto) {
-        /* 사용자가 입력한 이메일을 받는다. */
-        /* VIEW에서 정보를 가져와서 이메일과 함께 ajax 요청을 보낸다. */
-        /* 사용자 - 예정된 예약 페이지로 가게 해야한다. */
 
-        System.out.println(Arrays.toString(sendEmailBookInfoDto.getEmails()));
-        System.out.println(sendEmailBookInfoDto.getString());
-        System.out.println(sendEmailBookInfoDto);
+        String localHost = "http://localhost:8080";
 
-//        String[] emails = request.getParameterValues("emails");
-//        bookShareMailSendService.sendEmailForRoomInfo(emails, sendEmailBookInfoDto);
+        String profileLink = localHost + sendEmailBookInfoDto.getProfile_link();
+        String roomDetailLink =
+                localHost + sendEmailBookInfoDto.getRoom_detail_link();
 
-//
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("YES");
+        sendEmailBookInfoDto.setProfile_link(profileLink);
+        sendEmailBookInfoDto.setRoom_detail_link(roomDetailLink);
+
+        // 문자열을 LocalDate로 변환
+        LocalDate checkIndate = LocalDate.parse(sendEmailBookInfoDto.getBooking_checkin_date(),
+                DateTimeFormatter.ISO_DATE);
+        LocalDate checkOutdate = LocalDate.parse(sendEmailBookInfoDto.getBooking_checkout_date(),
+                DateTimeFormatter.ISO_DATE);
+
+        // 요일을 얻기
+        DayOfWeek checkInDateDayOfWeek = checkIndate.getDayOfWeek();
+        DayOfWeek checkOutDateDayOfWeek = checkOutdate.getDayOfWeek();
+
+        bookShareMailSendService.sendEmailForRoomInfo(sendEmailBookInfoDto, checkInDateDayOfWeek,
+                checkOutDateDayOfWeek);
+
+        return new ResponseEntity(HttpStatus.OK);
     }
 }
