@@ -10,6 +10,7 @@ import java.util.UUID;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,7 +49,6 @@ public class MyBookingController {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
             List<Map<String, Object>> list1 = myBookingService.getMyBookingList(map1);
-            System.out.println(list1);
             System.out.println(
                     "--------------------------------------------------------------------------------------------------------------------------------");
             for (int i = 0; i < list1.size(); i++) {
@@ -77,6 +77,9 @@ public class MyBookingController {
 //            booking_checkout_date
             // created_at
             // 뷰파일에 넘겨줄 model setting
+
+            System.out.println(list2);
+
             model.addAttribute("list1", list1);
             model.addAttribute("list2", list2);
         } catch (Exception e) {
@@ -86,9 +89,12 @@ public class MyBookingController {
     }
 
     @PostMapping("/writereview")
-    public String writeReview(String room_id, String review_stars, String review_ctt,
+    @Transactional(rollbackFor = Exception.class)
+    public String writeReview(String booking_id, String room_id, String review_stars,
+            String review_ctt,
             HttpSession session) {
         String str = review_stars;
+        System.out.println("booking_id = " + booking_id);
         Double double1 = null;
         if (!str.equals("null")) {
             double1 = Double.parseDouble(str);
@@ -111,6 +117,7 @@ public class MyBookingController {
 
         try {
             myBookingService.writeRoomReview(dto2);
+            myBookingService.updateReviewStatus(booking_id);
         } catch (Exception e) {
             e.printStackTrace();
         }

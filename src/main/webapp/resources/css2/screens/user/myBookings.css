@@ -1,7 +1,6 @@
 /*버튼 디자인*/
 .screens-room-myBookings__button {
   font-family: NotoSansKR-Regular;
-  width: 65x;
   height: 25px;
   font-size: 12px;
   border-radius: 5px;
@@ -188,7 +187,24 @@
 }
 
 
+.screens-room-myBookings__reviewWriteBtn[disabled] {
+  background-color: #DDDDDD;
+  pointer-events: none;
+  cursor: none;
+}
+
+/* 리뷰 완료 버튼 호버 효과 제거 */
+.screens-room-myBookings__reviewWriteBtn[disabled]:hover {
+  background-color: #DDDDDD;
+}
+
+
 /*모달 CSS*/
+.screens-room-myBookings__modalContent__form {
+  width: 500px;
+  height: 300px;
+}
+
 .screens-room-myBookings__modalContainer {
   position: fixed;
   top: 0;
@@ -200,7 +216,7 @@
   align-items: center;
   background-color: rgba(0, 0, 0, 0.4);
   justify-content: center;
-  z-index: 1;
+  z-index: 100;
 }
 
 .screens-room-myBookings__modalContent__form {
@@ -211,6 +227,7 @@
 
 .screens-room-myBookings__modalContent__starBox {
   margin-top: 20px;
+  margin-left: 70px;
   height: 70px;
 }
 
@@ -229,4 +246,26 @@
 
 .screens-room-myBookings__modalContent__rightStar {
   background-position: right;
+}
+
+textarea[name="review_ctt"] {
+  margin-left: 55px;
+  width: 400px;
+  height: 150px;
+  resize: none;
+  outline-color: #f6b6ad;
+  padding: 10px;
+  border: #d4d7e5 0.5px solid;
+  border-radius: 5px;
+}
+
+.screens-room-myBookings__modalContent__title {
+  margin-left: 125px;
+  font-size: 16px;
+  font-family: NotoSansKR-Regular;
+}
+
+.screens-room-myBookings__modalContent__button-box {
+  margin-top: 15px;
+  margin-left: 370px;
 }

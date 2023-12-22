@@ -22,4 +22,9 @@ public class MyBookingServiceImpl implements MyBookingService {
     public int writeRoomReview(RoomReviewDto dto) throws Exception {
         return myBookingDao.insertRoomReview(dto);
     }
+
+    @Override
+    public int updateReviewStatus(String booking_id) throws Exception {
+        return myBookingDao.updateReviewStatus(booking_id);
+    }
 }
