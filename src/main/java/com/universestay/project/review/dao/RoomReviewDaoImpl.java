@@ -34,4 +34,9 @@ public class RoomReviewDaoImpl implements RoomReviewDao {
         return session.selectOne(namespace + "roomReviewAvg", room_id);
     }
 
+    @Override
+    public List<Map<String, Object>> roomReviewSelectSix(String room_id) throws Exception {
+        return session.selectList(namespace + "roomReviewSelectSix", room_id);
+    }
+
 }
