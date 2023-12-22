@@ -39,4 +39,9 @@ public class UserInfoDaoImpl implements UserInfoDao {
         Map<String, String> map = Map.of("user_email", user_email, "user_pwd", user_pwd);
         return session.update(namespace + "changePwd", map);
     }
+
+    @Override
+    public int updateIsHostY(String user_id) throws Exception {
+        return session.update(namespace + "updateIsHostY", user_id);
+    }
 }

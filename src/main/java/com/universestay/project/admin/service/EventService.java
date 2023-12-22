@@ -31,7 +31,9 @@ public interface EventService {
 
     List<EventDto> list() throws Exception;
 
-    Integer update(EventDto dto, EventImgDto eventImgDto) throws Exception;
+    Integer update(EventDto dto) throws Exception;
+
+    Integer updateImg(EventImgDto eventImgDto) throws Exception;
 
     Integer delete(Integer event_id) throws Exception;
 

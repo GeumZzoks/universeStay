@@ -49,6 +49,38 @@ document.querySelector(
                 search_max_price: $('.components-user-header__max-input').val(),
             };
 
+            $.ajax({
+                type: "POST",
+                url: "/room/search", // 메인 검색 컨트롤러
+                contentType: "application/json",
+                data: JSON.stringify(searchInfo),
+                success: function (response) {
+                    $('.screens-user-main__room__wrapper:last').after(response);
+                },
+                error: function (error) {
+                    console.error("검색 실패:", error);
+                }
+            });
+        });
+
+document.querySelector(
+        ".components-user-header__header__searchbar__search-btn").addEventListener(
+        "click", function () {
+            const searchInfo = {
+                address: $(
+                        '.components-user-header__where__default').text().trim().replace(
+                        /\n/g, ''),
+                search_capa: $(
+                        '.components-user-header__people_default').text().trim().replace(
+                        /\n/g, ''),
+                search_start_date: $('input[name="datefilter"]').data(
+                        'daterangepicker').startDate.format('YYYY-MM-DD'),
+                search_end_date: $('input[name="datefilter"]').data(
+                        'daterangepicker').endDate.format('YYYY-MM-DD'),
+                search_min_price: $('.components-user-header__min-input').val(),
+                search_max_price: $('.components-user-header__max-input').val(),
+            };
+
             // URL 생성
             const url = "/?" +
                     "address=" + searchInfo.address +
@@ -130,7 +162,6 @@ const toggleDropdown1 = function () {
         dropdownDiv[0].classList.remove("show");
         return;
     }
-
     dropdowns.forEach(dropdown => {
         if (dropdown.classList.contains("show")) {
             dropdown.classList.remove("show");

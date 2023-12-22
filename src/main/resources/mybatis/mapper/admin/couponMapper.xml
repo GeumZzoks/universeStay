@@ -26,6 +26,7 @@
         SELECT *
         FROM Coupon
         WHERE event_id = #{event_id}
+          AND coupon_is_activated = 'Y'
     </select>
 
     <select id="selectByEvent" parameterType="Integer" resultType="Integer">

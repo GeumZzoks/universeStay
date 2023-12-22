@@ -1,24 +1,45 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.universestay.project.resources.mybatis.mapper.room.roomAmenityMapper">
 
-    <insert id="saveRoomAmenityDto" parameterType="RoomAmenityDto">
-        INSERT INTO RoomAmenity
-        VALUES (#{room_id}, #{room_amenity_bath}, #{room_amenity_bedAndLaundry},
-                #{room_amenity_entertain}, #{room_amenity_heatAndCold},
-                #{room_amenity_safety}, #{room_amenity_internetAndWorkSpace},
-                #{room_amenity_kitchen}, #{room_amenity_outdoor},
-                #{room_amenity_garageAndEtc},
-                #{room_amenity_service}, now(), #{created_id}, now(),
-                #{updated_id})
-    </insert>
+  <insert id="saveRoomAmenityDto" parameterType="RoomAmenityDto">
+    INSERT INTO RoomAmenity
+    VALUES (#{room_id}, #{room_amenity_bath}, #{room_amenity_bedAndLaundry},
+            #{room_amenity_entertain}, #{room_amenity_heatAndCold},
+            #{room_amenity_safety}, #{room_amenity_internetAndWorkSpace},
+            #{room_amenity_kitchen}, #{room_amenity_outdoor},
+            #{room_amenity_garageAndEtc},
+            #{room_amenity_service}, now(), #{created_id}, now(),
+            #{updated_id})
+  </insert>
 
-    <select id="lookUpRoomAmenity" resultType="RoomAmenityDto">
-        SELECT *
-        FROM RoomAmenity
-        WHERE room_id = #{room_id}
-    </select>
+  <select id="lookUpRoomAmenity" resultType="RoomAmenityDto">
+    SELECT *
+    FROM RoomAmenity
+    WHERE room_id = #{room_id}
+  </select>
+
+  <select id="selectRoomAmenity" resultType="RoomAmenityDto">
+    SELECT *
+    FROM RoomAmenity
+    WHERE room_id = #{room_id}
+  </select>
+
+  <update id="updateRoomAmenity" parameterType="RoomAmenityDto">
+    UPDATE RoomAmenity
+    SET room_amenity_bath                 = #{room_amenity_bath},
+        room_amenity_bedAndLaundry        = #{room_amenity_bedAndLaundry},
+        room_amenity_entertain            = #{room_amenity_entertain},
+        room_amenity_heatAndCold          = #{room_amenity_heatAndCold},
+        room_amenity_safety               = #{room_amenity_safety},
+        room_amenity_internetAndWorkSpace = #{room_amenity_internetAndWorkSpace},
+        room_amenity_kitchen              = #{room_amenity_kitchen},
+        room_amenity_outdoor              = #{room_amenity_outdoor},
+        room_amenity_garageAndEtc         = #{room_amenity_garageAndEtc},
+        room_amenity_service              = #{room_amenity_service}
+    WHERE room_id = #{room_id}
+  </update>
 
 </mapper>

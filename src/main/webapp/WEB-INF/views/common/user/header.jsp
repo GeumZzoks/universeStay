@@ -2,7 +2,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%String isHost = (String) request.getAttribute("isHost");%>
-
+<%
+    String user_profile_img_url = "";
+    Cookie[] cookies = request.getCookies();
+    if (cookies != null) {
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("user_profile_img_url")) {
+                user_profile_img_url = cookie.getValue();
+            }
+        }
+    }
+%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -161,33 +171,36 @@
     <!--헤더 프로필 영역-->
     <div class="components-user-header__header__profile">
         <div class="components-user-header__header__profile__to-host">
-            <a class="components-user-header__a" href="#">
-                <% if
-                (
-                        "Y"
-                                .
-                                equals
-                                        (
-                                                isHost
-                                        )
-                ) { %>
-                <div>호스트 모드로 전환</div>
-                <% } else if
-                (
-                        "N"
-                                .
-                                equals
-                                        (
-                                                isHost
-                                        )
-                                ||
-                                isHost
-                                        ==
-                                        null
-                ) { %>
-                <div>당신의 공간을 공유하세요.</div>
-                <% } %>
-            </a>
+
+            <%--            <a class="components-user-header__a" href="/room/management">--%>
+            <% if
+            (
+                    "Y"
+                            .
+                            equals
+                                    (
+                                            isHost
+                                    )
+            ) { %>
+            <div><a class="components-user-header__a" href="/room/management">호스트 모드로 전환</a></div>
+            <% } else if
+            (
+                    "N"
+                            .
+                            equals
+                                    (
+                                            isHost
+                                    )
+                            ||
+                            isHost
+                                    ==
+                                    null
+            ) { %>
+
+            <div>당신의 공간을 공유하세요.</div>
+            <%--            </a>--%>
+            <% } %>
+
         </div>
 
         <div class="components-user-header__header__profile__my-profile components-user-header__dropdown">
@@ -195,27 +208,9 @@
                 <div components-user-header__header__profile__my-profile__wrapper>
                     <img class="components-user-header__header__profile__hamburger"
                          src="/resources/img/user/bars-3.png"/>
-                    <% //세션에 'user_email'이라는 값이 저장되어 있으면? (즉, 로그인 상태면) 아래 드롭다운을 보여준다.
-                        if
-                        (
-                                session
-                                        .
-                                        getAttribute
-                                                (
-                                                        "user_email"
-                                                )
-                                        !=
-                                        null
-                        ) {
-                    %>
-                    <img class="components-user-header__header__profile__img"
-                         src="${profileImgUrl}"/>
-                    <%
-                    } else {
-                    %>
-                    <img class="components-user-header__header__profile__img"
-                         src="/resources/img/user/default_profile_icon.png"/>
-                    <%}%>
+                    <img class="components-user-header__header__profile__img"/>
+                    <%--                    <img class="components-user-header__header__profile__img"--%>
+                    <%--                         src="/resources/img/user/default_profile_icon.png"/>--%>
                 </div>
 
                 <%-- 마이프로필 버튼 눌렀을때 나오는 드롭다운--%>
@@ -241,7 +236,7 @@
                          onclick="location.href = '/user/myPage/mybookings/'">
                         <span>여행</span></div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-wishlist"
-                         onclick="location.href ='/user/wishLists'">
+                         onclick="location.href ='/user/myPage/wishLists'">
                         <span>위시리스트</span></div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-reviews">
                         <span>나의 리뷰</span></div>
@@ -297,34 +292,48 @@
         src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script src="/resources/js/user/common/header.js"></script>
 <script>
-  //---------------------- 캘린더 라이브러리 --------------------------------------------
-  $(function () {
-    let today = new Date();
-    // 내일 날짜 구하기 (오늘 날짜에 1을 더함)
-    let tomorrow = new Date(today);
-    tomorrow.setDate(tomorrow.getDate() + 1);
+    //---------------------- 캘린더 라이브러리 --------------------------------------------
+    $(function () {
+        let today = new Date();
+        // 내일 날짜 구하기 (오늘 날짜에 1을 더함)
+        let tomorrow = new Date(today);
+        tomorrow.setDate(tomorrow.getDate() + 1);
 
-    const search_start_date = '${param.search_start_date}';
-    const search_end_date = '${param.search_end_date}';
+        const search_start_date = '${param.search_start_date}';
+        const search_end_date = '${param.search_end_date}';
 
-    $('input[name="datefilter"]').daterangepicker({
-      // autoUpdateInput: true,
-      locale: {
-        format: 'YYYY/MM/DD',
-        cancelLabel: '취소',
-        applyLabel: '확인'
-      },
-      startDate: search_start_date !== "" ? search_start_date : today,
-      endDate: search_end_date !== "" ? search_end_date : tomorrow,
+        $('input[name="datefilter"]').daterangepicker({
+            // autoUpdateInput: true,
+            locale: {
+                format: 'YYYY/MM/DD',
+                cancelLabel: '취소',
+                applyLabel: '확인'
+            },
+            startDate: search_start_date !== "" ? search_start_date : today,
+            endDate: search_end_date !== "" ? search_end_date : tomorrow,
+        });
+
+        $('input[name="datefilter"]').on('apply.daterangepicker',
+                function (ev, picker) {
+                    $(this).val(picker.startDate.format('YYYY/MM/DD') + ' - '
+                            + picker.endDate.format(
+                                    'YYYY/MM/DD'));
+                });
     });
 
-    $('input[name="datefilter"]').on('apply.daterangepicker',
-        function (ev, picker) {
-          $(this).val(picker.startDate.format('YYYY/MM/DD') + ' - '
-              + picker.endDate.format(
-                  'YYYY/MM/DD'));
-        });
-  });
+    const userProfileUrl = "<%=user_profile_img_url%>";
+    const profileImg = document.querySelector(".components-user-header__header__profile__img");
+
+    window.onload = () => {
+        if (userProfileUrl == "" || userProfileUrl
+                == null) {
+            profileImg.src = "/resources/img/user/default_profile_icon.png"
+        } else {
+            profileImg.src = userProfileUrl;
+        }
+
+    }
+
 </script>
 
 
