@@ -28,22 +28,27 @@ public class SendEmailBookInfoDto {
      */
 
     private String[] emails;
-    private String string;
 
-    /* RoomImg - room_img_url | 사진(링크 - 숙소 상세) */
-    private String room_img_url;
+    /* Room - room_main_photo */
+    private String room_main_photo;
 
-    /* ROOM - room_name | 제목(링크 - 숙소 상세) */
+    /* ROOM - room_name */
     private String room_name;
 
-    /* ProfileImg - profile_img_url | 프로필 이미지(링크 - 숙소 상세) */
+    /* 제목(링크 - 숙소 상세) / 사진(링크 - 숙소 상세) */
+    private String room_detail_link;
+
+    /* ProfileImg - profile_img_url*/
     private String profile_img_url;
+
+    /* 프로필 이미지(링크 - 유저 정보 링크) */
+    private String profile_link;
 
     /* Booking - booking_checkin_date | 체크인 */
     private String booking_checkin_date;
 
-    /* Booking - room_checkout_time | 체크아웃 */
-    private String room_checkout_time;
+    /* Booking - booking_checkout_date | 체크아웃 */
+    private String booking_checkout_date;
 
 
 }

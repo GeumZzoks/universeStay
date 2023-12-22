@@ -31,6 +31,14 @@
 </head>
 <body>
 
+<div class="screens-room-book__bookingDates">
+    <c:forEach var="bookingDto" items="${bookingDtos}">
+        <div class="screens-room-book__bookingDate">
+            <input type="hidden" value="${bookingDto.booking_checkin_date}">
+            <input type="hidden" value="${bookingDto.booking_checkout_date}">
+        </div>
+    </c:forEach>
+</div>
 
 <%-- header --%>
 <jsp:include page="/WEB-INF/views/common/user/header.jsp"/>
@@ -208,7 +216,9 @@
                         <div style="display: flex; padding: 32px 0;">
                             <div style="width: 50px;">
                                 <img style="border-radius: 50%; width: 100%;"
-                                     src="${bookInfo.profile_img_url}"/>
+                                     src="${bookInfo.profile_img_url}"
+                                     id="screens-room-book__profile_img_url"
+                                />
                             </div>
                             <div style="padding-left: 16px">
                                 <div style="font-family: NotoSansKR-Medium">${bookInfo.user_nickname}</div>
