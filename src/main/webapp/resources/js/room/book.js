@@ -1,4 +1,8 @@
-// 예약하기 버튼 누르고 예약 창으로 넘어가기
+/**
+ * 예약하기 버튼 누르고 예약 확정 페이지로 넘어가기
+ *
+ * @type {HTMLElement}
+ */
 const submitButton = document.getElementById("submit-button");
 submitButton.addEventListener("click", function (ev) {
     const roomId = document.getElementById("submit-button").getAttribute(

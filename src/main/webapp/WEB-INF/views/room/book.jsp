@@ -96,6 +96,7 @@
                            value="${bookInfo.room_standard_capa}">
                 </div>
 
+                <%-- 인원 수 조정 모달 --%>
                 <div class="screens-room-book__number-people-toggle">
                     <span class="screens-room-book__toggle-part-1">성인</span>
                     <div class="screens-room-book__toggle-part-2">
