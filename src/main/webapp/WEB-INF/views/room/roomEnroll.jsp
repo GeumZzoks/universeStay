@@ -13,7 +13,8 @@
 <form action="/room/enroll" method="post" class="screens-room-roomEnroll__wrapper">
 
     <%--  숙소 유형을 선택하세요  --%>
-    <div class="screens-room-roomEnroll__title">숙소 유형을 선택하세요</div>
+    <div class="screens-room-roomEnroll__title">숙소 유형을 선택하세요 <span
+            class="screens-room-roomEnroll__required-input">(필수 입력)</span></div>
     <div class="screens-room-roomEnroll__dropdown">
         <input name="" type="text" class="screens-room-roomEnroll__dropdown__textBox"
                placeholder="숙소 유형을 선택하세요" readonly>
@@ -63,7 +64,8 @@
     </div>
 
     <%--  숙소의 위치는 어디인가요?  --%>
-    <div class="screens-room-roomEnroll__title">숙소의 위치는 어디인가요?</div>
+    <div class="screens-room-roomEnroll__title">숙소의 위치는 어디인가요? <span
+            class="screens-room-roomEnroll__required-input">(필수 입력)</span></div>
     <div class="screens-room-roomEnroll__input__address">
         <input type="text" name="room_address" class="screens-room-roomEnroll__address-main"
                placeholder="주소" readonly>
@@ -76,7 +78,8 @@
     </div>
 
     <%--  숙소 기본정보를 알려주세요  --%>
-    <div class="screens-room-roomEnroll__title">숙소 기본정보를 알려주세요</div>
+    <div class="screens-room-roomEnroll__title">숙소 기본정보를 알려주세요 <span
+            class="screens-room-roomEnroll__required-input">(필수 입력)</span></div>
     <div class="screens-room-roomEnroll__sub-title">침대 유형과 같은 세부 사항은 나중에 추가하실 수 있습니다.</div>
     <div class="screens-room-roomEnroll__info-basic">
         <div class="screens-room-roomEnroll__info-basic__partition">
@@ -1397,7 +1400,8 @@
     </div>
 
     <%--  숙소 이름을 지어주세요  --%>
-    <div class="screens-room-roomEnroll__title">숙소 이름을 지어주세요</div>
+    <div class="screens-room-roomEnroll__title">숙소 이름을 지어주세요 <span
+            class="screens-room-roomEnroll__required-input">(필수 입력)</span></div>
     <div class="screens-room-roomEnroll__sub-title">
         숙소 이름은 짧을수록 효과적입니다. 나중에 언제든지 변경할 수 있으니, 너무 걱정하지 마세요.
     </div>
@@ -1426,7 +1430,8 @@
     <textarea name="room_etc_desc" class="screens-room-roomEnroll__textarea"></textarea>
 
     <%--  숙소 가격을 책정해주세요  --%>
-    <div class="screens-room-roomEnroll__title">숙소 가격을 책정해주세요</div>
+    <div class="screens-room-roomEnroll__title">숙소 가격을 책정해주세요 <span
+            class="screens-room-roomEnroll__required-input">(필수 입력)</span></div>
     <div class="screens-room-roomEnroll__sub-title">
         언제든지 변경하실 수 있습니다.
     </div>
