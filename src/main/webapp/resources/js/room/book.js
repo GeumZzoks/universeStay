@@ -137,22 +137,23 @@ btnPlus.addEventListener("click", function (e) {
             "input[name='room_standard_capa']"
     ).value;
 
-    if (inputToggle.value >= max) {
+    if (Number(inputToggle.value) >= Number(max)) {
         return;
     }
 
     inputToggle.value = Number(inputToggle.value) + 1;
-    if (standard < inputToggle.value) {
+    if (Number(standard) < Number(inputToggle.value)) {
         extraPersonFeeDiv.children[0].children[1].innerHTML =
-                inputToggle.value - standard;
+                Number(inputToggle.value) - Number(standard);
     } else {
         extraPersonFeeDiv.children[0].children[1].innerHTML = 0;
     }
 
     // 오른쪽 정보 창에 인원 수 대입해주기
     document.querySelector("input[name='booking_num_of_guest']").value =
-            inputToggle.value;
-    document.querySelector("#totalGuest-button").innerHTML = inputToggle.value;
+            Number(inputToggle.value);
+    document.querySelector("#totalGuest-button").innerHTML = Number(
+            inputToggle.value);
 
     // 추가인원 innerHTML을 수정해준다.
     priceExtraPersonValue =
@@ -171,7 +172,7 @@ btnPlus.addEventListener("click", function (e) {
             priceWeekdayValue + priceWeekendValue + priceExtraPersonValue;
 
     // 값을 올렸을 때 최대 인원 수에 해당하면 플러스 버튼 disable
-    if (inputToggle.value >= max) {
+    if (Number(inputToggle.value) >= Number(max)) {
         btnPlus.innerHTML = `
       <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" 
         style="display:block;height:12px;width:12px;fill:#EDEDED" aria-hidden="true" 
@@ -184,7 +185,7 @@ btnPlus.addEventListener("click", function (e) {
     }
 
     // 값을 올렸을 때 최소 인원 (=1) 보다 크면 마이너스 버튼 able
-    if (1 < inputToggle.value) {
+    if (1 < Number(inputToggle.value)) {
         btnMinus.innerHTML = `
       <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"
            aria-hidden="true"
@@ -210,21 +211,22 @@ btnMinus.addEventListener("click", function (e) {
             "input[name='room_standard_capa']"
     ).value;
 
-    if (inputToggle.value <= 1) {
+    if (Number(inputToggle.value) <= 1) {
         return;
     }
 
     inputToggle.value = Number(inputToggle.value) - 1;
-    if (standard < inputToggle.value) {
+    if (Number(standard) < Number(inputToggle.value)) {
         extraPersonFeeDiv.children[0].children[1].innerHTML =
-                inputToggle.value - standard;
+                Number(inputToggle.value) - Number(standard);
     } else {
         extraPersonFeeDiv.children[0].children[1].innerHTML = 0;
     }
 
     document.querySelector("input[name='booking_num_of_guest']").value =
-            inputToggle.value;
-    document.querySelector("#totalGuest-button").innerHTML = inputToggle.value;
+            Number(inputToggle.value);
+    document.querySelector("#totalGuest-button").innerHTML = Number(
+            inputToggle.value);
 
     // 추가인원 innerHTML을 수정해준다.
     priceExtraPersonValue =
@@ -244,7 +246,7 @@ btnMinus.addEventListener("click", function (e) {
             priceWeekdayValue + priceWeekendValue + priceExtraPersonValue;
 
     // 값을 올렸을 때 최대 인원 수에 해당하면 플러스 버튼 disable
-    if (inputToggle.value <= 1) {
+    if (Number(inputToggle.value) <= 1) {
         btnMinus.innerHTML = `
       <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" 
         style="display:block;height:12px;width:12px;fill:#EDEDED" aria-hidden="true" 
@@ -257,7 +259,7 @@ btnMinus.addEventListener("click", function (e) {
     }
 
     // 값을 올렸을 때 최소 인원 (=1) 보다 크면 마이너스 버튼 able
-    if (inputToggle.value < max) {
+    if (Number(inputToggle.value) < Number(max)) {
         btnPlus.innerHTML = `
       <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"
            aria-hidden="true"
