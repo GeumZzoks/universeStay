@@ -28,6 +28,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -158,9 +161,53 @@ public class RoomController {
     }
 
     @PostMapping("/enroll")
-    public String enrollRoom(RoomDto roomDto, RoomAmenityDto roomAmenityDto, Integer room_view,
-            HttpSession session, RedirectAttributes redirectAttributes) {
+    public String enrollRoom(@Validated RoomDto roomDto, BindingResult bindingResult,
+            RoomAmenityDto roomAmenityDto, Integer room_view,
+            HttpSession session, RedirectAttributes redirectAttributes, Model model) {
         try {
+            if (bindingResult.hasErrors()) {
+                List<ObjectError> allErrors = bindingResult.getAllErrors();
+                for (ObjectError allError : allErrors) {
+                    System.out.println("allError = " + allError);
+                }
+
+                Map<String, String> map = new HashMap<>();
+                map.put("RC01", "아파트");
+                map.put("RC02", "주택");
+                map.put("RC03", "별채");
+                map.put("RC04", "호텔");
+                map.put("RC05", "모텔");
+                map.put("RC06", "펜션");
+                map.put("RC07", "콘도");
+                map.put("RC08", "레지던스");
+                map.put("RC09", "오피스텔");
+                map.put("RC10", "한옥");
+                map.put("RC11", "캠핑장/아웃도어");
+                map.put("RC12", "호스텔");
+                map.put("RC13", "리조트");
+
+                String roomCategoryName = map.get(roomDto.getRoom_category_id());
+                model.addAttribute("roomCategoryName", roomCategoryName);
+
+                // 수정하기 위해 룸뷰 테이블도 조회해온다.
+//                List<RoomViewDto> roomViewDtoList = roomViewDao.selectRoomView(room_id);
+
+//                model.addAttribute("roomViewDtoList", roomViewDtoList);
+
+                String loginedUserEmail = (String) session.getAttribute("user_email");
+
+                // 헤더에 프로필이미지/토글 불러오기 위해 필요한 코드 => managementController와 중복되는 코드
+                UserDto userDto = userLoginService.checkSignUp(loginedUserEmail);
+                String userId = userDto.getUser_id();
+                String profileImgUrl = profileImgService.getProfileImgUrl(userDto.getUser_id());
+                String isHost = userDto.getUser_is_host();
+                model.addAttribute("userInfo", userDto);
+                model.addAttribute("profileImgUrl", profileImgUrl);
+                model.addAttribute("isHost", isHost);
+
+                return "room/roomReEnroll";
+            }
+
             String room_id = roomService.enroll(roomDto, roomAmenityDto, room_view, session);
             userInfoDao.updateIsHostY((String) session.getAttribute("user_id"));
             redirectAttributes.addAttribute("room_id", room_id);
