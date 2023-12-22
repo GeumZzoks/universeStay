@@ -86,9 +86,12 @@ extraPersonFeeDiv.children[0].children[0].innerHTML = priceToString(
  *
  * @type {Element}
  */
+// 수정 버튼
 const inputPeopleNum = document.querySelector(
         ".screens-room-book__reservation__number-people"
 );
+
+// 인원 수 조정 모달
 const togglePeopleNum = document.querySelector(
         ".screens-room-book__number-people-toggle"
 );

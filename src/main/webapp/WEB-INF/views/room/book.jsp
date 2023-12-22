@@ -62,8 +62,6 @@
                 <div class="screens-room-book__container__div-common">
                     <div class="screens-room-book__container__left-side--info-common">
                         <h3>날짜</h3>
-                        <%--                        <div>12월 30일 ~ 1월 4일</div>--%>
-                        <%-- TODO: timestamp로 바꾸기 --%>
                         <span id="check-in-button">${bookingDto.booking_checkin_date}</span>
                         <span> ~ </span>
                         <span id="check-out-button">${bookingDto.booking_checkout_date}</span>
