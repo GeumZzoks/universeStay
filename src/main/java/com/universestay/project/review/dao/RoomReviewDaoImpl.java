@@ -30,7 +30,7 @@ public class RoomReviewDaoImpl implements RoomReviewDao {
     }
 
     @Override
-    public double roomReviewAvg(String room_id) throws Exception {
+    public Double roomReviewAvg(String room_id) throws Exception {
         return session.selectOne(namespace + "roomReviewAvg", room_id);
     }
 

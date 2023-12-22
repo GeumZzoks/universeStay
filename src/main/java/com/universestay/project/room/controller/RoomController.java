@@ -83,7 +83,7 @@ public class RoomController {
             String profileImgUrl = profileImgService.getProfileImgUrl((String) room.get("user_id"));
             List<BookingDto> bookingDtos = bookDao.selectUnavailableDates(room_id);
             int roomReviewCount = roomReviewService.getRoomReviewCount(room_id);
-            double roomReviewAvg = roomReviewService.getRoomReviewAvg(room_id);
+            Double roomReviewAvg = roomReviewService.getRoomReviewAvg(room_id);
             List<Map<String, Object>> reviewList = roomReviewService.getRoomReviewSix(room_id);
 
             if (room == null) {
