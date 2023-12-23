@@ -351,7 +351,8 @@
             <div class="screens-chat-chattingRoomPage__container__divx-2">
                 <div>
                     <div>
-                        <div class="screens-chat-chattingRoomPage__chatWrap">
+                        <div class="screens-chat-chattingRoomPage__chatWrap" id="messageContainer"
+                             style="height: 700px; overflow-y: scroll;">
 
                             <div class="content chatcontent " data-room-no="${chat_room_id}"
                                  data-member="${user_name}">
@@ -399,15 +400,15 @@
 
                         </div>
                     </div>
-                    <div class="chat-fixK">
+                    <div class="chat-fixK" style="margin-bottom: 30px;">
                         <div id="alertK" onclick="moveDown();" class="alert alert-success"
                              role="alert">
-                            <form class="screens-chat-chattingRoomPage__container__form"
-                                  action="" onsubmit="return false;">
+                            <form class="screens-chat-chattingRoomPage__container__form">
                                 <input type="text" name="msg" id="msgi"
-                                       onkeypress="checkEnter(event)">
+                                       checkEnter()>
                                 <input type="button" id="send"
-                                       class="send col-sm-4 btn btn-secondary" onclick="sendmsg()"
+                                       class="send col-sm-4 btn btn-secondary"
+                                       onclick="sendmsg(); moveDown()"
                                        value="전송">
                             </form>
                         </div>
@@ -479,10 +480,14 @@
     });
   }
 
+  // function moveDown() {
+  //   $(".chat_ctt").scrollTop($(".chat_ctt")[0].scrollHeight);
+  //   // $('#alertK').css('display', 'none');
+  //
+  // }
   function moveDown() {
-    $(".chat_ctt").scrollTop($(".chat_ctt")[0].scrollHeight);
-    $('#alertK').css('display', 'none');
-
+    var chatWrap = $(".screens-chat-chattingRoomPage__chatWrap");
+    chatWrap.scrollTop(chatWrap[0].scrollHeight);
   }
 
   // 실시간 채팅 내용 렌더링
@@ -545,6 +550,7 @@
 
             var html = renderList(contentDto);
             $("#list-guestbook").append(html);
+            moveDown();
             newAlerts(contentDto);
           });
     });
@@ -560,6 +566,7 @@
     function checkEnter(event) {
       if (event.key === 'Enter') {
         sendmsg();
+        moveDown();
       }
     }
 
@@ -589,6 +596,17 @@
     });
   });
 
+  function addNewMessage(message) {
+    var messageContainer = document.getElementById('messageContainer');
+
+    // Add your new message to the container
+    var newMessageElement = document.createElement('div');
+    newMessageElement.textContent = message;
+    messageContainer.appendChild(newMessageElement);
+
+    // Scroll to the bottom by focusing on the newly added element
+    newMessageElement.scrollIntoView({behavior: 'smooth', block: 'end'});
+  }
 </script>
 
 </html>
