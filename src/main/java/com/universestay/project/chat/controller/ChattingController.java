@@ -76,7 +76,6 @@ public class ChattingController {
                 String chat_date = adjustedChatDateTime.format(formatter);
 
                 chat.put("chat_date", chat_date);
-                System.out.println("*******" + chat.get("chat_date").toString());
             }
 
             String chat_room_id = chatting_room_id;
@@ -107,7 +106,6 @@ public class ChattingController {
                 String chat_date = adjustedChatDateTime.format(formatter);
 
                 chatRoom.put("chat_date", chat_date);
-                System.out.println(chatRoom.get("chat_date").toString());
             }
 
             // 채팅방 목록을 하나씩 화면에 전달

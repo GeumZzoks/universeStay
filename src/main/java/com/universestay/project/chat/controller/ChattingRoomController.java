@@ -147,12 +147,10 @@ public class ChattingRoomController {
         try {
             // 현재 로그인한 id 의 채팅방 목록 조회
             List<Map<String, Object>> chatRoomList = chatRoomService.selectChatRoomList(user_id);
-            System.out.println(chatRoomList.get(0).get("chat_date").toString());
 
             // 채팅방 목록의 "chat_date" 값을 9시간 더한 값(한국시)으로 변경
             for (int i = 0; i < chatRoomList.size(); i++) {
                 Map<String, Object> chatRoom = chatRoomList.get(i);
-                System.out.println(chatRoom.get("chat_date").toString());
 
                 // Timestamp to String
                 LocalDateTime chatDateTime = ((Timestamp) chatRoom.get(
@@ -167,7 +165,6 @@ public class ChattingRoomController {
                 String chat_date = adjustedChatDateTime.format(formatter);
 
                 chatRoom.put("chat_date", chat_date);
-                System.out.println(chatRoom.get("chat_date").toString());
             }
 
             // 채팅방 목록을 하나씩 화면에 전달
