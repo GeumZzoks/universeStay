@@ -15,6 +15,7 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
@@ -46,6 +47,7 @@ public class UserInfoServiceImpl implements UserInfoService, PasswordEncryption 
     }
 
     @Override
+    @Transactional
     public int updateUserInfo(MultipartFile img, UserDto user) throws Exception {
         //img를 첨부했다면 아래 과정 진행
         if (img == null) {
