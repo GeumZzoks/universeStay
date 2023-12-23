@@ -131,6 +131,7 @@
         overflow: auto;
         padding-top: 1rem;
         padding-bottom: 1rem;
+        width: 92%;
       }
 
       .screens-chat-chattingRoomPage__container__div2 > div:nth-child(2) > div:first-child > div:last-child {
@@ -147,8 +148,9 @@
       }
 
       .screens-chat-chattingRoomPage__container__form > input:first-child {
+        margin-left: 70px;
         height: 97%;
-        width: 93%;
+        width: 80%;
         border: 1px solid #EBEBEB;
       }
 
@@ -261,6 +263,7 @@
         align-items: center;
         margin-bottom: 20px;
         margin-right: 30px;
+        width: 85%;
 
       }
 
@@ -296,9 +299,7 @@
 
                         <c:set var="user_name" value="${chatRoom.user_name}"/>
                         <c:set var="chat_ctt" value="${chatRoom.chat_ctt}"/>
-                        <fmt:formatDate value="${chatRoom.chat_date}"
-                                        pattern="yyyy.MM.dd HH:mm"
-                                        var="chat_date"/>
+                        <c:set var="chat_date" value="${chatRoom.chat_date}"/>
                         <c:set var="profile_img" value="${chatRoom.profile_img_url}"/>
                         <c:set var="chat_room_id" value="${chatRoom.chatting_room_id}"/>
                         <form id="chatForm" action="/enter/chattingRoomList/${chat_room_id}"
@@ -370,9 +371,7 @@
                                                     <div class="me">
                                                         <p class="myChat text-left p-2">${chatMessage.chat_ctt}</p>
 
-                                                        <p style="display: inline;"><fmt:formatDate
-                                                                value="${chatMessage.chat_date}"
-                                                                pattern="yy/MM/dd HH:mm"/></p>
+                                                        <p style="display: inline;">${chatMessage.chat_date}</p>
                                                     </div>
                                                 </div>
                                             </div>
