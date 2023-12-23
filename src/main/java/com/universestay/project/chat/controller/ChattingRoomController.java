@@ -131,8 +131,8 @@ public class ChattingRoomController {
                     return "redirect:/chatting/contact_host/" + room_id;
                 }
             } else {
+                // 현재 페이지 uri를 세션에 저장
                 session.setAttribute("uri", "/room/" + room_id);
-
                 return "redirect:/user/loginForm";
             }
         } catch (Exception e) {

@@ -73,19 +73,13 @@ public class UserLoginController {
                 userLoginService.userLastLogin(user_email);
 
                 String currentUri = (String) session.getAttribute("uri");
-
-                // Check if the URI is present
                 if (currentUri != null && !currentUri.isEmpty()) {
-                    // Clear the saved URI from the session
                     session.removeAttribute("currentUri");
 
-                    // Redirect to the saved URI
                     return "redirect:" + currentUri;
                 } else {
-                    // If the URI is not present, redirect to a default page
                     return "redirect:/";
                 }
-
                 //  return "redirect:/";
 
             }
