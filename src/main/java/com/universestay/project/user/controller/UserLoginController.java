@@ -71,7 +71,22 @@ public class UserLoginController {
 
                 // 정상적으로 로그인 됐을 때,
                 userLoginService.userLastLogin(user_email);
-                return "redirect:/";
+
+                String currentUri = (String) session.getAttribute("uri");
+
+                // Check if the URI is present
+                if (currentUri != null && !currentUri.isEmpty()) {
+                    // Clear the saved URI from the session
+                    session.removeAttribute("currentUri");
+
+                    // Redirect to the saved URI
+                    return "redirect:" + currentUri;
+                } else {
+                    // If the URI is not present, redirect to a default page
+                    return "redirect:/";
+                }
+
+                //  return "redirect:/";
 
             }
             // 여기에 오는 경우가
