@@ -151,14 +151,19 @@
         margin-left: 70px;
         height: 97%;
         width: 80%;
-        border: 1px solid #EBEBEB;
+        border: 1px solid #F48475;
+        border-radius: 5px;
+
       }
 
       .screens-chat-chattingRoomPage__container__form > input:last-child {
         height: 97%;
         width: 6%;
         align-items: end;
-        border: 1px solid #EBEBEB;
+        background-color: #F48475;
+        border: 1px solid #F48475;
+        border-radius: 5px;
+
       }
 
       .screens-chat-chattingRoomPage__container__div1 > div:nth-child(2) > div:nth-child(1) > div {
@@ -232,7 +237,7 @@
       }
 
       .screens-chat-chattingRoomPage__chat_list:hover {
-        background-color: #DDDDDD;
+        background-color: #f9B1A7;
         /* 다른 스타일을 추가하거나 변경할 수 있습니다. */
       }
 
@@ -268,7 +273,7 @@
       }
 
       .chat_message_item:hover {
-        background-color: #DDDDDD;
+        background-color: #f9B1A7;
         border-radius: 15px;
         margin-right: 30px;
 
