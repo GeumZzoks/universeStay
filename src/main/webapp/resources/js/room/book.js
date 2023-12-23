@@ -95,7 +95,9 @@ const inputPeopleNum = document.querySelector(
 const togglePeopleNum = document.querySelector(
         ".screens-room-book__number-people-toggle"
 );
-inputPeopleNum.addEventListener("click", function () {
+inputPeopleNum.addEventListener("click", function (event) {
+    event.stopPropagation();
+
     togglePeopleNum.classList.toggle("active");
     // if (togglePeopleNum.classList.contains("active")) {
     //     document.querySelector(
@@ -104,6 +106,16 @@ inputPeopleNum.addEventListener("click", function () {
     //     document.querySelector(
     //             ".screens-room-book__reservation__number-people").style.outline = "";
     // }
+});
+
+// 바디를 눌렀을 때 인원 수 토글이 아니면 토글창을 끈다.
+document.body.addEventListener('click', function (event) {
+    // Check if the clicked element or any of its ancestors include '.screens-room-book__number-people-toggle'
+    if (!event.target.closest('.screens-room-book__number-people-toggle')) {
+        if (togglePeopleNum.classList.contains("active")) {
+            togglePeopleNum.classList.remove("active");
+        }
+    }
 });
 
 /**
@@ -357,6 +369,7 @@ $(".screens-room-book__reservation__check-in-out")
 .bind("datepicker-first-date-selected", function (event, obj) {
 })
 .bind("datepicker-change", function (event, obj) {
+    // togglePeopleNum.classList.remove("active");
     inputCheckIn.innerHTML = formatDate(new Date(obj.date1));
     inputCheckOut.innerHTML = formatDate(new Date(obj.date2));
 
