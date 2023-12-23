@@ -1,5 +1,6 @@
 package com.universestay.project.user.service;
 
+import com.universestay.project.user.dao.ProfileImgDao;
 import com.universestay.project.user.dao.UserJoinDao;
 import com.universestay.project.user.dto.UserDto;
 import java.io.UnsupportedEncodingException;
@@ -15,6 +16,7 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 
@@ -24,9 +26,13 @@ public class JoinServiceImpl implements JoinService, PasswordEncryption {
     @Autowired
     UserJoinDao userJoinDao;
 
+    @Autowired
+    ProfileImgDao profileImgDao;
+
     private String uuid_user_id;
 
     @Override
+    @Transactional
     public int registerUser(UserDto userDto) {
 
         uuid_user_id = UUID.randomUUID().toString();
@@ -47,6 +53,8 @@ public class JoinServiceImpl implements JoinService, PasswordEncryption {
         userDto.setUpdated_id(uuid_user_id);
 
         try {
+            profileImgDao.insertProfileImg(uuid_user_id,
+                    "/resources/img/user/default_profile_icon.png");
             return userJoinDao.insertUser(userDto);
         } catch (Exception e) {
             throw new RuntimeException(e);
