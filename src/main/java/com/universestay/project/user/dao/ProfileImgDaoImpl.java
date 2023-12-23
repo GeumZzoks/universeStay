@@ -7,6 +7,7 @@ import java.util.UUID;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class ProfileImgDaoImpl implements ProfileImgDao {
@@ -35,6 +36,7 @@ public class ProfileImgDaoImpl implements ProfileImgDao {
     }
 
     @Override
+    @Transactional
     public int insertProfileImg(String user_id, String profile_img_url)
             throws Exception {
 

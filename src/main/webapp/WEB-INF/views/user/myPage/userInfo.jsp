@@ -39,7 +39,7 @@
 
                 <div class="screens-user-userInfo__id-verification">
                     <span class="screens-user-userInfo__label">신분증 인증 여부</span>
-                    <span class="screens-user-userInfo__content">${user.user_is_certificated}</span>
+                    <span class="screens-user-userInfo__content">${user.user_is_certificated == 'N' ? '미인증' : '인증 완료'}</span>
                     <button class="screens-user-userInfo__button">인증하기</button>
                 </div>
 

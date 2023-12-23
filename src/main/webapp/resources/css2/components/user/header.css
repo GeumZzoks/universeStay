@@ -361,19 +361,29 @@ input[name="datefilter"] {
 }
 
 .components-user-header__header__profile__my-profile__btn {
-  width: 70px;
+  width: 85px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+.components-user-header__header__profile__my-profile__wrapper {
+  width: 85px;
+}
+
+.components-user-header__header__profile__hamburger {
+  margin-bottom: 4px;
+}
+
 .components-user-header__header__profile__img {
-  width: 25px;
-  height: 25px;
+  margin-left: 6px;
+  width: 35px;
+  height: 35px;
   border-radius: 70%;
   -moz-border-radius: 70%;
   -khtml-border-radius: 70%;
   -webkit-border-radius: 70%;
+  box-shadow: 1px 1px 3px rgb(221, 221, 221);
 }
 
 /*드롭다운 이후에 보여지는 화면 속성*/
