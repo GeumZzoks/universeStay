@@ -51,6 +51,10 @@ public class BookingRoomController {
             @RequestParam("weekendPrice") String weekendPrice,
             @RequestParam("extraPersonFee") String extraPersonFee,
             @RequestParam("BookingPriceSum") String BookingPriceSum,
+            @RequestParam("weekdayCount") String weekdayCount,
+            @RequestParam("weekendCount") String weekendCount,
+            @RequestParam("extraPersonCount") String extraPersonCount,
+            @RequestParam("totalDay") String totalDay,
             Model model) throws Exception {
 
         Map<String, Object> bookInfo = bookService.selectRoomBookInfo(bookingDto.getRoom_id());
@@ -63,6 +67,10 @@ public class BookingRoomController {
         model.addAttribute("extraPersonFee", extraPersonFee);
         model.addAttribute("BookingPriceSum", BookingPriceSum);
         model.addAttribute("bookingDtos", bookingDtos);
+        model.addAttribute("weekdayCount", weekdayCount);
+        model.addAttribute("weekendCount", weekendCount);
+        model.addAttribute("extraPersonCount", extraPersonCount);
+        model.addAttribute("totalDay", totalDay);
 
         return "room/book";
     }
