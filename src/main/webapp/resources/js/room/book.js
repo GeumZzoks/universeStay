@@ -166,6 +166,16 @@ btnPlus.addEventListener("click", function (e) {
     document.querySelector("#totalGuest-button").innerHTML = Number(
             inputToggle.value);
 
+    // 주중 숙박 가격 총합 계산
+    priceWeekdayValue = Number(priceWeekday.value) * Number(
+            document.querySelector(
+                    ".screens-room-book__reservation__part-3").children[0].children[1].innerHTML);
+
+    // 주말 숙박 가격 총합 계산
+    priceWeekendValue = Number(priceWeekend.value) * Number(
+            document.querySelector(
+                    ".screens-room-book__reservation__part-4").children[0].children[1].innerHTML);
+
     // 추가인원 innerHTML을 수정해준다.
     priceExtraPersonValue =
             // 추가 인원에 대한 요금
@@ -246,7 +256,15 @@ btnMinus.addEventListener("click", function (e) {
     document.querySelector("#totalGuest-button").innerHTML = Number(
             inputToggle.value);
 
-    // TODO: 여기까지 오케이
+    // 주중 숙박 가격 총합 계산
+    priceWeekdayValue = Number(priceWeekday.value) * Number(
+            document.querySelector(
+                    ".screens-room-book__reservation__part-3").children[0].children[1].innerHTML);
+
+    // 주말 숙박 가격 총합 계산
+    priceWeekendValue = Number(priceWeekend.value) * Number(
+            document.querySelector(
+                    ".screens-room-book__reservation__part-4").children[0].children[1].innerHTML);
 
     // 추가인원 innerHTML을 수정해준다.
     priceExtraPersonValue =
