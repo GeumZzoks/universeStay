@@ -76,64 +76,71 @@ public class ChattingRoomController {
         try {
             // 로그인한 사용자 id 받아오기
             String user_id = (String) session.getAttribute("user_id");
-            // 호스트 id 받아오기
-            Map<String, Object> room = roomService.lookUpRoom(room_id, user_id);
-            String user_id2 = String.valueOf(
-                    userWithdrawalDao.selectUserByUuid(room.get("user_id").toString())
-                            .getUser_id());
 
-            chattingRoomDto.setUser_id(user_id);
-            chattingRoomDto.setUser_id2(user_id2);
-            chattingRoomDto.setRoom_id(room_id);
+            if (user_id != null) {
+                // 호스트 id 받아오기
+                Map<String, Object> room = roomService.lookUpRoom(room_id, user_id);
+                String user_id2 = String.valueOf(
+                        userWithdrawalDao.selectUserByUuid(room.get("user_id").toString())
+                                .getUser_id());
 
-            // 기존 채팅방이 존재하는지 조회
-            ChattingRoomDto chatRoom = chatRoomService.selectChatRoom(chattingRoomDto);
-
-            // 기존 채팅방이 존재할 경우
-            if (chatRoom != null && chatRoom.getRoom_id().equals(room_id) && chatRoom.getUser_id()
-                    .equals(user_id) && chatRoom.getUser_id2().equals(user_id2)) {
-
-                // 채팅방 아이디 조회
-                String chat_room_id = chatRoomService.selectChatRoomId(chattingRoomDto);
-                rattr.addAttribute("chat_room_id", chat_room_id); // chat_room_id를 요청 파라미터로 추가
-
-                // 채팅방으로 이동
-                return "redirect:/chatting/contact_host/" + room_id;
-            }
-            // 기존 채팅방이 존재하지 않을 경우
-            else {
-                // 채팅방 아이디 생성
-                String chat_room_id = UUID.randomUUID().toString();
-
-                // dto에 채팅방 아이디, 유저 아이디, 호스트 아이디 저장
-                chattingRoomDto.setChatting_room_id(chat_room_id);
                 chattingRoomDto.setUser_id(user_id);
                 chattingRoomDto.setUser_id2(user_id2);
                 chattingRoomDto.setRoom_id(room_id);
-                chattingRoomDto.setCreated_id(user_id);
-                chattingRoomDto.setUpdated_id(user_id);
 
-                // 채팅방 생성
-                int result = chatRoomService.createRoom(chattingRoomDto);
-                // 채팅방 생성 성공 시
-                String msg = "OK";
+                // 기존 채팅방이 존재하는지 조회
+                ChattingRoomDto chatRoom = chatRoomService.selectChatRoom(chattingRoomDto);
 
-                model.addAttribute("chat_room_id", chat_room_id);
-                model.addAttribute("room_id", room_id);
-                model.addAttribute("user_id", user_id);
-                model.addAttribute("user_id2", user_id2);
-                rattr.addAttribute("chat_room_id", chat_room_id); // chat_room_id를 요청 파라미터로 추가
-                rattr.addFlashAttribute("msg", msg);
-                // 채팅방으로 이동
-                return "redirect:/chatting/contact_host/" + room_id;
+                // 기존 채팅방이 존재할 경우
+                if (chatRoom != null && chatRoom.getRoom_id().equals(room_id)
+                        && chatRoom.getUser_id()
+                        .equals(user_id) && chatRoom.getUser_id2().equals(user_id2)) {
+
+                    // 채팅방 아이디 조회
+                    String chat_room_id = chatRoomService.selectChatRoomId(chattingRoomDto);
+                    rattr.addAttribute("chat_room_id", chat_room_id); // chat_room_id를 요청 파라미터로 추가
+
+                    // 채팅방으로 이동
+                    return "redirect:/chatting/contact_host/" + room_id;
+                }
+                // 기존 채팅방이 존재하지 않을 경우
+                else {
+                    // 채팅방 아이디 생성
+                    String chat_room_id = UUID.randomUUID().toString();
+
+                    // dto에 채팅방 아이디, 유저 아이디, 호스트 아이디 저장
+                    chattingRoomDto.setChatting_room_id(chat_room_id);
+                    chattingRoomDto.setUser_id(user_id);
+                    chattingRoomDto.setUser_id2(user_id2);
+                    chattingRoomDto.setRoom_id(room_id);
+                    chattingRoomDto.setCreated_id(user_id);
+                    chattingRoomDto.setUpdated_id(user_id);
+
+                    // 채팅방 생성
+                    int result = chatRoomService.createRoom(chattingRoomDto);
+                    // 채팅방 생성 성공 시
+                    String msg = "OK";
+
+                    model.addAttribute("chat_room_id", chat_room_id);
+                    model.addAttribute("room_id", room_id);
+                    model.addAttribute("user_id", user_id);
+                    model.addAttribute("user_id2", user_id2);
+                    rattr.addAttribute("chat_room_id", chat_room_id); // chat_room_id를 요청 파라미터로 추가
+                    rattr.addFlashAttribute("msg", msg);
+                    // 채팅방으로 이동
+                    return "redirect:/chatting/contact_host/" + room_id;
+                }
+            } else {
+                // 현재 페이지 uri를 세션에 저장
+                session.setAttribute("uri", "/room/" + room_id);
+                return "redirect:/user/loginForm";
             }
         } catch (Exception e) {
             // 채팅방 생성 실패 시
             String msg = "FAIL";
-            e.printStackTrace();
             rattr.addFlashAttribute("msg", msg);
-
-            return "redirect:/user/loginForm";
+            // 메인 화면으로 이동
+            return "redirect:/";
         }
 
     }
