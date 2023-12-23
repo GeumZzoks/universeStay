@@ -1,4 +1,8 @@
-// 예약하기 버튼 누르고 예약 창으로 넘어가기
+/**
+ * 예약하기 버튼 누르고 예약 확정 페이지로 넘어가기
+ *
+ * @type {HTMLElement}
+ */
 const submitButton = document.getElementById("submit-button");
 submitButton.addEventListener("click", function (ev) {
     const roomId = document.getElementById("submit-button").getAttribute(
@@ -82,9 +86,12 @@ extraPersonFeeDiv.children[0].children[0].innerHTML = priceToString(
  *
  * @type {Element}
  */
+// 게스트 인원 수 수정 버튼
 const inputPeopleNum = document.querySelector(
         ".screens-room-book__reservation__number-people"
 );
+
+// 인원 수 조정 모달
 const togglePeopleNum = document.querySelector(
         ".screens-room-book__number-people-toggle"
 );
@@ -137,41 +144,63 @@ btnPlus.addEventListener("click", function (e) {
             "input[name='room_standard_capa']"
     ).value;
 
-    if (inputToggle.value >= max) {
+    // 숙박 최대 인원 초과 시 아무 일도 하지 않음
+    if (Number(inputToggle.value) >= Number(max)) {
         return;
     }
 
+    // 플러스 버튼 클릭 시 인원 조정 모달창에 인원 수 + 1
     inputToggle.value = Number(inputToggle.value) + 1;
-    if (standard < inputToggle.value) {
+
+    // 기준 인원 수가 초과될 시 오른쪽 사이드 바에 추가된 인원 수 만큼 표시
+    if (Number(standard) < Number(inputToggle.value)) {
         extraPersonFeeDiv.children[0].children[1].innerHTML =
-                inputToggle.value - standard;
-    } else {
+                Number(inputToggle.value) - Number(standard);
+    } else { // 인원 수가 기준 인원 수에 충족되면 0으로 초기화
         extraPersonFeeDiv.children[0].children[1].innerHTML = 0;
     }
 
-    // 오른쪽 정보 창에 인원 수 대입해주기
+    // 추가된 인원 수만큼 정보 표시
     document.querySelector("input[name='booking_num_of_guest']").value =
-            inputToggle.value;
-    document.querySelector("#totalGuest-button").innerHTML = inputToggle.value;
+            Number(inputToggle.value);
+    document.querySelector("#totalGuest-button").innerHTML = Number(
+            inputToggle.value);
+
+    // 주중 숙박 가격 총합 계산
+    priceWeekdayValue = Number(priceWeekday.value) * Number(
+            document.querySelector(
+                    ".screens-room-book__reservation__part-3").children[0].children[1].innerHTML);
+
+    // 주말 숙박 가격 총합 계산
+    priceWeekendValue = Number(priceWeekend.value) * Number(
+            document.querySelector(
+                    ".screens-room-book__reservation__part-4").children[0].children[1].innerHTML);
 
     // 추가인원 innerHTML을 수정해준다.
     priceExtraPersonValue =
+            // 추가 인원에 대한 요금
             Number(priceExtraPerson.value) *
+            // 추가 인원 수
             Number(extraPersonFeeDiv.children[0].children[1].innerHTML) *
+            // 숙박 일수
             Number(extraPersonFeeDiv.children[0].children[2].innerHTML);
+
+    // 추가 인원에 대한 가격 산정 후 추가 인원 가격 표시 HTML을 수정
     extraPersonFeeDiv.children[1].innerHTML = `₩ ${priceToString(
             priceExtraPersonValue
     )}`;
+
     // 합계를 계산하고 합계 HTML을 수정해준다.
     bookingSum.innerHTML = `${priceToString(
             priceWeekdayValue + priceWeekendValue + priceExtraPersonValue
     )}`;
+
     // 합계 input hidden value를 수정해준다.
     document.querySelector("input[name='booking_price_sum']").value =
             priceWeekdayValue + priceWeekendValue + priceExtraPersonValue;
 
     // 값을 올렸을 때 최대 인원 수에 해당하면 플러스 버튼 disable
-    if (inputToggle.value >= max) {
+    if (Number(inputToggle.value) >= Number(max)) {
         btnPlus.innerHTML = `
       <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" 
         style="display:block;height:12px;width:12px;fill:#EDEDED" aria-hidden="true" 
@@ -184,7 +213,7 @@ btnPlus.addEventListener("click", function (e) {
     }
 
     // 값을 올렸을 때 최소 인원 (=1) 보다 크면 마이너스 버튼 able
-    if (1 < inputToggle.value) {
+    if (1 < Number(inputToggle.value)) {
         btnMinus.innerHTML = `
       <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"
            aria-hidden="true"
@@ -202,7 +231,7 @@ btnPlus.addEventListener("click", function (e) {
  * 인원 수 변경 (+, -) - 마이너스 버튼
  */
 btnMinus.addEventListener("click", function (e) {
-    // 플러스 버튼을 누르면 값이 올라간다.
+    // 마이너스 버튼을 누르면 값이 내려간다.
     const inputToggle = document.querySelector(
             ".screens-room-book__toggle-num");
     const max = document.querySelector("input[name='room_max_capa']").value;
@@ -210,21 +239,32 @@ btnMinus.addEventListener("click", function (e) {
             "input[name='room_standard_capa']"
     ).value;
 
-    if (inputToggle.value <= 1) {
+    if (Number(inputToggle.value) <= 1) {
         return;
     }
 
     inputToggle.value = Number(inputToggle.value) - 1;
-    if (standard < inputToggle.value) {
+    if (Number(standard) < Number(inputToggle.value)) {
         extraPersonFeeDiv.children[0].children[1].innerHTML =
-                inputToggle.value - standard;
+                Number(inputToggle.value) - Number(standard);
     } else {
         extraPersonFeeDiv.children[0].children[1].innerHTML = 0;
     }
 
     document.querySelector("input[name='booking_num_of_guest']").value =
-            inputToggle.value;
-    document.querySelector("#totalGuest-button").innerHTML = inputToggle.value;
+            Number(inputToggle.value);
+    document.querySelector("#totalGuest-button").innerHTML = Number(
+            inputToggle.value);
+
+    // 주중 숙박 가격 총합 계산
+    priceWeekdayValue = Number(priceWeekday.value) * Number(
+            document.querySelector(
+                    ".screens-room-book__reservation__part-3").children[0].children[1].innerHTML);
+
+    // 주말 숙박 가격 총합 계산
+    priceWeekendValue = Number(priceWeekend.value) * Number(
+            document.querySelector(
+                    ".screens-room-book__reservation__part-4").children[0].children[1].innerHTML);
 
     // 추가인원 innerHTML을 수정해준다.
     priceExtraPersonValue =
@@ -244,7 +284,7 @@ btnMinus.addEventListener("click", function (e) {
             priceWeekdayValue + priceWeekendValue + priceExtraPersonValue;
 
     // 값을 올렸을 때 최대 인원 수에 해당하면 플러스 버튼 disable
-    if (inputToggle.value <= 1) {
+    if (Number(inputToggle.value) <= 1) {
         btnMinus.innerHTML = `
       <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" 
         style="display:block;height:12px;width:12px;fill:#EDEDED" aria-hidden="true" 
@@ -257,7 +297,7 @@ btnMinus.addEventListener("click", function (e) {
     }
 
     // 값을 올렸을 때 최소 인원 (=1) 보다 크면 마이너스 버튼 able
-    if (inputToggle.value < max) {
+    if (Number(inputToggle.value) < Number(max)) {
         btnPlus.innerHTML = `
       <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"
            aria-hidden="true"
@@ -272,13 +312,13 @@ btnMinus.addEventListener("click", function (e) {
 });
 
 /**
- * TODO: 어떤 역할인지 확인 및 수정 필요
+ * 달력에 예약된 날짜를 표시하기 위한 데이터 처리 작업
+ * @type {*[]}
+ *
  */
 const reservedDates = [];
-
 const bookingDates = document.querySelectorAll(
-        ".screens-room-book__bookingDate"
-);
+        ".screens-room-book__bookingDate");
 bookingDates.forEach(bookingDate => {
     const checkInDate = bookingDate.children[0].value.substring(0, 10);
     const checkOutDate = bookingDate.children[1].value.substring(0, 10);
