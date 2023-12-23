@@ -11,7 +11,7 @@ public interface RoomReviewService {
 
     int getRoomReviewCount(String room_id) throws Exception;
 
-    double getRoomReviewAvg(String room_id) throws Exception;
+    Double getRoomReviewAvg(String room_id) throws Exception;
 
     List<Map<String, Object>> getRoomReviewSix(String room_id) throws Exception;
 
