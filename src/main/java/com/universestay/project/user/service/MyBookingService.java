@@ -11,4 +11,6 @@ public interface MyBookingService {
     int writeRoomReview(RoomReviewDto dto) throws Exception;
 
     int updateReviewStatus(String booking_id) throws Exception;
+
+    int updateBookingStatus() throws Exception;
 }

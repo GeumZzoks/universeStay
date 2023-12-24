@@ -12,4 +12,6 @@ public interface MyBookingDao {
 
     int updateReviewStatus(String booking_id) throws Exception;
 
+    int updateBookingStatus() throws Exception;
+
 }

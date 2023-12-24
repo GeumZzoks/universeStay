@@ -27,4 +27,9 @@ public class MyBookingServiceImpl implements MyBookingService {
     public int updateReviewStatus(String booking_id) throws Exception {
         return myBookingDao.updateReviewStatus(booking_id);
     }
+
+    @Override
+    public int updateBookingStatus() throws Exception {
+        return myBookingDao.updateBookingStatus();
+    }
 }
