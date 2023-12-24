@@ -93,7 +93,7 @@ public class NoticeController {
     // 공지사항 등록(get 요청)
     @GetMapping("/write")
     public String getWrite() {
-        return "admin/noticeWrite";
+        return "admin/noticeInput";
     }
 
     // 공지사항 등록
@@ -115,7 +115,7 @@ public class NoticeController {
             e.printStackTrace();
             m.addAttribute(noticeDto);
             m.addAttribute("msg", "WRT_ERR");
-            return "admin/noticeWrite";
+            return "admin/noticeInput";
         }
     }
 
