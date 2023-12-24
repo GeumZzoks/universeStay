@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/admin/register")
@@ -45,17 +46,18 @@ public class RegisterController {
      * @throws RuntimeException
      */
     @PostMapping("/confirm")
-    public ResponseEntity<Integer> confirm(@RequestBody AdminDto adminDto) {
-        try {
-            if (registerService.registerAdmin(adminDto) != 1) {
-                System.out.println("try");
-                throw new RuntimeException("등록 실패");
-            }
-        } catch (Exception e) {
-            System.out.println("Exception e");
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(0);
+    @ResponseBody
+    public ResponseEntity confirm(@RequestBody AdminDto adminDto) {
+
+        if (!(adminDto.getAdmin_pwd().equals(adminDto.getAdmin_pwd2()))) {
+            return new ResponseEntity("비밀번호가 맞지 않습니다.", HttpStatus.BAD_REQUEST);
         }
-        return ResponseEntity.ok(1);
+
+        if (registerService.registerAdmin(adminDto) != 1) {
+            return new ResponseEntity("", HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     /**
@@ -88,13 +90,15 @@ public class RegisterController {
      * @return String
      * @throws CommonException
      */
-    @GetMapping("/mailCheck")
-    public String mailCheck(@RequestParam("email") String email) throws CommonException {
+    @PostMapping("/mailCheck")
+    @ResponseBody
+    public ResponseEntity mailCheck(@RequestParam("email") String email) throws CommonException {
         try {
-            return mailSendService.joinEmail(email);
+            mailSendService.joinEmail(email);
+            return new ResponseEntity(HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            return "redirect:/admin/register/join";
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
