@@ -74,14 +74,6 @@ $(document).ready(function () {
                         $("#id_input_helper_text").html(result).removeClass(
                                 "unavailable")
                     }
-                    // } else { // 실패한 경우
-                    //   const result = "이 아이디는 이미 사용 중입니다.";
-                    //   $("#id_input_helper_text").html(result).addClass(
-                    //       "unavailable");
-                    //
-                    //   $("#screens-admin-register_signup_id").val("").trigger("focus");
-                    // }
-
                 },
                 error: function (error) {
                     const result = "이 아이디는 이미 사용 중입니다.";
@@ -97,8 +89,7 @@ $(document).ready(function () {
 
         $(function () {
             $("#screens-admin-register_signup_pw, #screens-admin-register_signup_pww").on(
-                    'input',
-                    function () {
+                    'input', function () {
 
                         let admin_pwd1 = $(
                                 "#screens-admin-register_signup_pw").val();
@@ -109,8 +100,7 @@ $(document).ready(function () {
 
                             result = "비밀번호가 일치합니다.";
                             $("#pwd_input_helper_text").html(
-                                    result).removeClass(
-                                    "unavailable");
+                                    result).removeClass("unavailable");
                         } else { // In case of failure
                             const result = "비밀번호가 일치하지 않습니다.";
                             $("#pwd_input_helper_text").html(result).addClass(
@@ -172,8 +162,7 @@ $(document).ready(function () {
         }
 
         if ($("#screens-admin-register_code_check_input").val() == null || $(
-                        "#screens-admin-register_code_check_input").val()
-                == "") {
+                "#screens-admin-register_code_check_input").val() == "") {
             alert("인증번호를 입력해주세요.");
             $("#screens-admin-register_code_check_input").focus();
 
@@ -194,3 +183,62 @@ $(document).ready(function () {
     }
 });
 
+const sendDataToServer = function (inputValue, url) {
+    // Ajax 요청
+    $.ajax({
+        url: `/admin/register/${url}?value=${inputValue}`,
+        method: 'GET',
+        success: function (response) {
+            // 성공적으로 응답을 받았을 때 수행할 작업
+            let result = "";
+            if (response === "success-email") {
+
+                result = "이 메일을 사용할 수 있습니다.";
+                $("#email_input_helper_text").html(result).removeClass(
+                        "unavailable");
+
+            } else if (response === "success-phone") {
+
+                result = "이 핸드폰을 사용할 수 있습니다.";
+                $("#phone_input_helper_text").html(result).removeClass(
+                        "unavailable");
+            }
+        },
+        error: function (res) {
+            // 오류가 발생했을 때 수행할 작업
+
+            let result = "";
+            if (res.responseText === "error-email") {
+                result = "이 메일을 사용할 수 없습니다.";
+                $("#email_input_helper_text").html(result).addClass(
+                        "unavailable");
+
+            } else if (res.responseText === "error-phone") {
+                result = "이 핸드폰을 사용할 수 없습니다.";
+                $("#phone_input_helper_text").html(result).addClass(
+                        "unavailable");
+            }
+        }
+    });
+
+};
+
+// input 요소에 대한 blur 이벤트 리스너 등록
+document.getElementById('screens-admin-register_signup_email').addEventListener(
+        'blur', function () {
+
+            let inputValue = $('#screens-admin-register_signup_email').val();
+
+            // 사용자가 입력을 마치고 포커스를 잃으면 Ajax 요청을 보냄
+            sendDataToServer(inputValue, "checkUniqueEmail");
+        });
+
+document.getElementById(
+        'screens-admin-register_signup_phone_1').addEventListener('blur',
+        function () {
+
+            let inputValue = $('#screens-admin-register_signup_phone_1').val();
+
+            // 사용자가 입력을 마치고 포커스를 잃으면 Ajax 요청을 보냄
+            sendDataToServer(inputValue, "checkUniquePhoneNumber");
+        });

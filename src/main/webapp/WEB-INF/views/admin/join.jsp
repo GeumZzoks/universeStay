@@ -82,6 +82,8 @@
                            placeholder="인증번호 입력"></input>
                 </span>
             </div>
+            <span class="screens-admin-register_helper_text_span"
+                  id="email_input_helper_text"></span>
         </div>
 
         <div style="margin-top: 35px;">
@@ -90,6 +92,8 @@
                     <input id="screens-admin-register_signup_phone_1" type="text"
                            placeholder="전화번호 입력"/>
             </span>
+            <span class="screens-admin-register_helper_text_span"
+                  id="phone_input_helper_text"></span>
         </div>
 
         <div>

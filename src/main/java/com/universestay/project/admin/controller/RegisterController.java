@@ -101,4 +101,28 @@ public class RegisterController {
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/checkUniqueEmail")
+    @ResponseBody
+    public ResponseEntity checkUniqueEmail(@RequestParam String value) throws CommonException {
+
+        if (registerService.checkUniqueEmail(value) > 0) {
+            return new ResponseEntity("error-email", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return new ResponseEntity("success-email", HttpStatus.OK);
+
+    }
+
+    @GetMapping("/checkUniquePhoneNumber")
+    @ResponseBody
+    public ResponseEntity checkUniquePhoneNumber(@RequestParam String value)
+            throws CommonException {
+
+        if (registerService.checkUniquePhoneNumber(value) > 0) {
+            return new ResponseEntity("error-phone", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return new ResponseEntity("success-phone", HttpStatus.OK);
+    }
 }
