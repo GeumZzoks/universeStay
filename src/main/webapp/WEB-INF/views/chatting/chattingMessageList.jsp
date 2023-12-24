@@ -383,38 +383,20 @@
                                         </div>
                                     </c:forEach>
                                 </div>
-
                             </div>
-                            <%--                            <div class="chat-fixK">--%>
-                            <%--                                <div id="" onclick="moveDown();" class="alert alert-success"--%>
-                            <%--                                     role="alert">--%>
-                            <%--                                    <strong></strong>--%>
-                            <%--                                </div>--%>
-                            <%--                                <div>--%>
-                            <%--                                    &lt;%&ndash;                <textarea type="text" style="width: 70%;" name="msg" id="msgi" rows="2"&ndash;%&gt;--%>
-                            <%--                                    &lt;%&ndash;                          placeholder="메세지를 입력하세요"&ndash;%&gt;--%>
-                            <%--                                    &lt;%&ndash;                          class="form-control col-sm-8"></textarea>&ndash;%&gt;--%>
-                            <%--                                    &lt;%&ndash;                                    &lt;%&ndash;                        <input type="text" id="msgi" name="msg" placeholder="메세지를 입력하세요"/>&ndash;%&gt;&ndash;%&gt;--%>
-                            <%--                                    &lt;%&ndash;                                    <button type="button" id="send"&ndash;%&gt;--%>
-                            <%--                                    &lt;%&ndash;                                            class="send col-sm-4 btn btn-secondary">&ndash;%&gt;--%>
-                            <%--                                    &lt;%&ndash;                                        보내기&ndash;%&gt;--%>
-                            <%--                                    &lt;%&ndash;                                    </button>&ndash;%&gt;--%>
-                            <%--                                </div>--%>
-                            <%--                            </div>--%>
-
                         </div>
                     </div>
                     <div class="chat-fixK" style="margin-bottom: 30px;">
                         <div id="alertK" onclick="moveDown();" class="alert alert-success"
                              role="alert">
-                            <form class="screens-chat-chattingRoomPage__container__form">
+                            <div class="screens-chat-chattingRoomPage__container__form">
                                 <input type="text" name="msg" id="msgi"
-                                       checkEnter()>
+                                       onkeydown="checkEnter(event);">
                                 <input type="button" id="send"
                                        class="send col-sm-4 btn btn-secondary"
                                        onclick="sendmsg(); moveDown()"
                                        value="전송">
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -528,20 +510,12 @@
     return html;
 
   }
-
+  let messageInput = '';
   $(function () {
-    var messageInput = $('textarea[name="msg"]');
+    messageInput = $('textarea[name="msg"]');
     var sock = new SockJS(
         "/endpoint");
     client = Stomp.over(sock);
-
-    function sendmsg() {
-      var message = messageInput.val();
-      if (message == "") {
-        return false;
-      }
-      insertChat();
-    }
 
     client.connect({}, function () {
       var chat_room_id = chat_room_id2;
@@ -555,7 +529,6 @@
             var html = renderList(contentDto);
             $("#list-guestbook").append(html);
             moveDown();
-            newAlerts(contentDto);
           });
     });
 
@@ -567,12 +540,12 @@
       msgInput.value = '';
     });
 
-    function checkEnter(event) {
-      if (event.key === 'Enter') {
-        sendmsg();
-        moveDown();
-      }
-    }
+    // $('.send').onkeydown(function () {
+    //   sendmsg();
+    //   var msgInput = document.getElementById('msgi');
+    //
+    //   msgInput.value = '';
+    // });
 
     //채팅창 떠날시에
     function disconnect() {
@@ -603,13 +576,28 @@
   function addNewMessage(message) {
     var messageContainer = document.getElementById('messageContainer');
 
-    // Add your new message to the container
     var newMessageElement = document.createElement('div');
     newMessageElement.textContent = message;
     messageContainer.appendChild(newMessageElement);
 
-    // Scroll to the bottom by focusing on the newly added element
     newMessageElement.scrollIntoView({behavior: 'smooth', block: 'end'});
+  }
+
+  function checkEnter(event) {
+    console.log(event);
+    if (event.key === 'Enter') {
+      sendmsg();
+      const msgInput = document.getElementById('msgi');
+      msgInput.value = '';
+    }
+  }
+
+  function sendmsg() {
+    var message = messageInput.val();
+    if (message == "") {
+      return false;
+    }
+    insertChat();
   }
 </script>
 

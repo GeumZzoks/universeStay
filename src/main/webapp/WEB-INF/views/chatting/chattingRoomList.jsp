@@ -230,7 +230,7 @@
       }
 
       .screens-chat-chattingRoomPage__chat_list:hover {
-        background-color: #DDDDDD;
+        background-color: #f9B1A7;
         /* 다른 스타일을 추가하거나 변경할 수 있습니다. */
       }
 
