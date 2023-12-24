@@ -576,12 +576,10 @@
   function addNewMessage(message) {
     var messageContainer = document.getElementById('messageContainer');
 
-    // Add your new message to the container
     var newMessageElement = document.createElement('div');
     newMessageElement.textContent = message;
     messageContainer.appendChild(newMessageElement);
 
-    // Scroll to the bottom by focusing on the newly added element
     newMessageElement.scrollIntoView({behavior: 'smooth', block: 'end'});
   }
 
