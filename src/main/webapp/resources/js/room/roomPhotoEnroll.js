@@ -91,8 +91,12 @@ btnsPhotoSubDelete.forEach(btnPhotoSubDelete => {
     const img = btnPhotoSubDelete.parentElement.previousElementSibling.previousElementSibling;
     const btnMore = btnPhotoSubDelete.parentElement.previousElementSibling;
     const photoSub = btnPhotoSubDelete.parentElement.parentElement;
+    const fileInput = photoSub.children[4];
+    const inputEvent = new Event('input', {bubbles: true});
 
     img.src = "";
+    fileInput.value = '';
+    fileInput.dispatchEvent(inputEvent);
     toggle.classList.toggle("active");
     img.classList.remove("active");
     btnMore.classList.remove("active");
@@ -119,3 +123,37 @@ function readURLSub(input) {
     imgPhotoMain.src = "";
   }
 }
+
+const inputFiles = document.querySelectorAll("input[type='file']");
+const btnSubmit = document.querySelector(
+    ".screens-room-roomEnroll__btn-submit-photo");
+
+inputFiles.forEach(inputFile => {
+  inputFile.addEventListener("input", handleChangeInput);
+});
+
+function handleChangeInput() {
+  let inputNum = 0;
+  inputFiles.forEach(inputFile => {
+    if (inputFile.files.length === 1) {
+      inputNum++;
+    }
+  });
+  if (inputNum === 5) {
+    btnSubmit.classList.add("active");
+  } else {
+    btnSubmit.classList.remove("active");
+  }
+}
+
+const form = document.querySelector(".screens-room-roomEnroll__wrapper");
+
+btnSubmit.addEventListener("click", function (event) {
+  event.preventDefault();
+
+  if (this.classList.contains("active")) {
+    form.submit();
+  }
+
+  return;
+});
