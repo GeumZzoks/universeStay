@@ -131,6 +131,7 @@
         overflow: auto;
         padding-top: 1rem;
         padding-bottom: 1rem;
+        width: 92%;
       }
 
       .screens-chat-chattingRoomPage__container__div2 > div:nth-child(2) > div:first-child > div:last-child {
@@ -147,16 +148,22 @@
       }
 
       .screens-chat-chattingRoomPage__container__form > input:first-child {
+        margin-left: 70px;
         height: 97%;
-        width: 93%;
-        border: 1px solid #EBEBEB;
+        width: 80%;
+        border: 1px solid #F48475;
+        border-radius: 5px;
+
       }
 
       .screens-chat-chattingRoomPage__container__form > input:last-child {
         height: 97%;
         width: 6%;
         align-items: end;
-        border: 1px solid #EBEBEB;
+        background-color: #F48475;
+        border: 1px solid #F48475;
+        border-radius: 5px;
+
       }
 
       .screens-chat-chattingRoomPage__container__div1 > div:nth-child(2) > div:nth-child(1) > div {
@@ -230,7 +237,7 @@
       }
 
       .screens-chat-chattingRoomPage__chat_list:hover {
-        background-color: #DDDDDD;
+        background-color: #f9B1A7;
         /* 다른 스타일을 추가하거나 변경할 수 있습니다. */
       }
 
@@ -261,11 +268,12 @@
         align-items: center;
         margin-bottom: 20px;
         margin-right: 30px;
+        width: 85%;
 
       }
 
       .chat_message_item:hover {
-        background-color: #DDDDDD;
+        background-color: #f9B1A7;
         border-radius: 15px;
         margin-right: 30px;
 
@@ -296,9 +304,7 @@
 
                         <c:set var="user_name" value="${chatRoom.user_name}"/>
                         <c:set var="chat_ctt" value="${chatRoom.chat_ctt}"/>
-                        <fmt:formatDate value="${chatRoom.chat_date}"
-                                        pattern="yyyy.MM.dd HH:mm"
-                                        var="chat_date"/>
+                        <c:set var="chat_date" value="${chatRoom.chat_date}"/>
                         <c:set var="profile_img" value="${chatRoom.profile_img_url}"/>
                         <c:set var="chat_room_id" value="${chatRoom.chatting_room_id}"/>
                         <form id="chatForm" action="/enter/chattingRoomList/${chat_room_id}"
@@ -351,7 +357,8 @@
             <div class="screens-chat-chattingRoomPage__container__divx-2">
                 <div>
                     <div>
-                        <div class="screens-chat-chattingRoomPage__chatWrap">
+                        <div class="screens-chat-chattingRoomPage__chatWrap" id="messageContainer"
+                             style="height: 700px; overflow-y: scroll;">
 
                             <div class="content chatcontent " data-room-no="${chat_room_id}"
                                  data-member="${user_name}">
@@ -369,47 +376,27 @@
                                                     <div class="me">
                                                         <p class="myChat text-left p-2">${chatMessage.chat_ctt}</p>
 
-                                                        <p style="display: inline;"><fmt:formatDate
-                                                                value="${chatMessage.chat_date}"
-                                                                pattern="yy/MM/dd HH:mm"/></p>
+                                                        <p style="display: inline;">${chatMessage.chat_date}</p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </c:forEach>
                                 </div>
-
                             </div>
-                            <%--                            <div class="chat-fixK">--%>
-                            <%--                                <div id="" onclick="moveDown();" class="alert alert-success"--%>
-                            <%--                                     role="alert">--%>
-                            <%--                                    <strong></strong>--%>
-                            <%--                                </div>--%>
-                            <%--                                <div>--%>
-                            <%--                                    &lt;%&ndash;                <textarea type="text" style="width: 70%;" name="msg" id="msgi" rows="2"&ndash;%&gt;--%>
-                            <%--                                    &lt;%&ndash;                          placeholder="메세지를 입력하세요"&ndash;%&gt;--%>
-                            <%--                                    &lt;%&ndash;                          class="form-control col-sm-8"></textarea>&ndash;%&gt;--%>
-                            <%--                                    &lt;%&ndash;                                    &lt;%&ndash;                        <input type="text" id="msgi" name="msg" placeholder="메세지를 입력하세요"/>&ndash;%&gt;&ndash;%&gt;--%>
-                            <%--                                    &lt;%&ndash;                                    <button type="button" id="send"&ndash;%&gt;--%>
-                            <%--                                    &lt;%&ndash;                                            class="send col-sm-4 btn btn-secondary">&ndash;%&gt;--%>
-                            <%--                                    &lt;%&ndash;                                        보내기&ndash;%&gt;--%>
-                            <%--                                    &lt;%&ndash;                                    </button>&ndash;%&gt;--%>
-                            <%--                                </div>--%>
-                            <%--                            </div>--%>
-
                         </div>
                     </div>
-                    <div class="chat-fixK">
+                    <div class="chat-fixK" style="margin-bottom: 30px;">
                         <div id="alertK" onclick="moveDown();" class="alert alert-success"
                              role="alert">
-                            <form class="screens-chat-chattingRoomPage__container__form"
-                                  action="" onsubmit="return false;">
+                            <div class="screens-chat-chattingRoomPage__container__form">
                                 <input type="text" name="msg" id="msgi"
-                                       onkeypress="checkEnter(event)">
+                                       onkeydown="checkEnter(event);">
                                 <input type="button" id="send"
-                                       class="send col-sm-4 btn btn-secondary" onclick="sendmsg()"
+                                       class="send col-sm-4 btn btn-secondary"
+                                       onclick="sendmsg(); moveDown()"
                                        value="전송">
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -439,6 +426,11 @@
     var user_id = "${user_id}";
     var chat_room_id = chat_room_id2;
     var chat_ctt = $("#msgi").val();
+
+    if (!chat_ctt) {
+      alert("메시지 입력 후 전송하세요");
+      return;
+    }
 
     // 서버로 전송할 데이터를 객체화
     var insertChatDto = {
@@ -474,16 +466,26 @@
     });
   }
 
+  // function moveDown() {
+  //   $(".chat_ctt").scrollTop($(".chat_ctt")[0].scrollHeight);
+  //   // $('#alertK').css('display', 'none');
+  //
+  // }
   function moveDown() {
-    $(".chat_ctt").scrollTop($(".chat_ctt")[0].scrollHeight);
-    $('#alertK').css('display', 'none');
-
+    var chatWrap = $(".screens-chat-chattingRoomPage__chatWrap");
+    chatWrap.scrollTop(chatWrap[0].scrollHeight);
   }
 
   // 실시간 채팅 내용 렌더링
   var renderList = function (contentDto) {
     // 리스트 html을 정의
-    var date = moment(contentDto.chat_date).format('YY/MM/DD HH:mm');
+    //var date = moment(contentDto.chat_date).format('YY/MM/DD HH:mm');
+    var originalDate = moment(contentDto.chat_date);
+    var newDate = originalDate.add(9, 'hours');
+    var formattedDate = newDate.format('YY/MM/DD HH:mm');
+
+    console.log(formattedDate);
+
     var html = "";
 
     content = "<p class='otherChat bg-light p-2'>" + contentDto.chat_ctt
@@ -499,7 +501,7 @@
         "<strong>" + contentDto.user_name + "님</strong>" +
         "<div class='me'>" +
         content +
-        "<p style='display: inline;'>" + date + "</p>" +
+        "<p style='display: inline;'>" + formattedDate + "</p>" +
         "</div>" +
         "</div>" +
         "</div>" +
@@ -508,20 +510,12 @@
     return html;
 
   }
-
+  let messageInput = '';
   $(function () {
-    var messageInput = $('textarea[name="msg"]');
+    messageInput = $('textarea[name="msg"]');
     var sock = new SockJS(
         "/endpoint");
     client = Stomp.over(sock);
-
-    function sendmsg() {
-      var message = messageInput.val();
-      if (message == "") {
-        return false;
-      }
-      insertChat();
-    }
 
     client.connect({}, function () {
       var chat_room_id = chat_room_id2;
@@ -534,7 +528,7 @@
 
             var html = renderList(contentDto);
             $("#list-guestbook").append(html);
-            newAlerts(contentDto);
+            moveDown();
           });
     });
 
@@ -546,11 +540,12 @@
       msgInput.value = '';
     });
 
-    function checkEnter(event) {
-      if (event.key === 'Enter') {
-        sendmsg();
-      }
-    }
+    // $('.send').onkeydown(function () {
+    //   sendmsg();
+    //   var msgInput = document.getElementById('msgi');
+    //
+    //   msgInput.value = '';
+    // });
 
     //채팅창 떠날시에
     function disconnect() {
@@ -578,6 +573,32 @@
     });
   });
 
+  function addNewMessage(message) {
+    var messageContainer = document.getElementById('messageContainer');
+
+    var newMessageElement = document.createElement('div');
+    newMessageElement.textContent = message;
+    messageContainer.appendChild(newMessageElement);
+
+    newMessageElement.scrollIntoView({behavior: 'smooth', block: 'end'});
+  }
+
+  function checkEnter(event) {
+    console.log(event);
+    if (event.key === 'Enter') {
+      sendmsg();
+      const msgInput = document.getElementById('msgi');
+      msgInput.value = '';
+    }
+  }
+
+  function sendmsg() {
+    var message = messageInput.val();
+    if (message == "") {
+      return false;
+    }
+    insertChat();
+  }
 </script>
 
 </html>

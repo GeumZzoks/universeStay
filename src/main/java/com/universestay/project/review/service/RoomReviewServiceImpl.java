@@ -28,8 +28,13 @@ public class RoomReviewServiceImpl implements RoomReviewService {
     }
 
     @Override
-    public double getRoomReviewAvg(String room_id) throws Exception {
+    public Double getRoomReviewAvg(String room_id) throws Exception {
         return roomReviewDao.roomReviewAvg(room_id);
+    }
+
+    @Override
+    public List<Map<String, Object>> getRoomReviewSix(String room_id) throws Exception {
+        return roomReviewDao.roomReviewSelectSix(room_id);
     }
 
 }

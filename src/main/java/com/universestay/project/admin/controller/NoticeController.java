@@ -44,9 +44,6 @@ public class NoticeController {
             map.put("offset", (page - 1) * pageSize);
             map.put("pageSize", pageSize);
 
-            System.out.println("showPrev : " + nph.isShowPrev());
-            System.out.println("showNext : " + nph.isShowNext());
-
             List<Map<String, Object>> list = noticeService.getPage(map);
             m.addAttribute("list", list);
             m.addAttribute("nph", nph);
@@ -93,7 +90,7 @@ public class NoticeController {
     // 공지사항 등록(get 요청)
     @GetMapping("/write")
     public String getWrite() {
-        return "admin/noticeWrite";
+        return "admin/noticeInput";
     }
 
     // 공지사항 등록
@@ -115,7 +112,7 @@ public class NoticeController {
             e.printStackTrace();
             m.addAttribute(noticeDto);
             m.addAttribute("msg", "WRT_ERR");
-            return "admin/noticeWrite";
+            return "admin/noticeInput";
         }
     }
 

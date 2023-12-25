@@ -17,4 +17,6 @@ public interface UserInfoDao {
     public int checkNickname(String user_email, String user_nickname) throws Exception;
 
     public int changePwd(String user_email, String user_pwd) throws Exception;
+
+    public int updateIsHostY(String user_id) throws Exception;
 }

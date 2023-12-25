@@ -34,6 +34,8 @@
   font-family: NotoSansKR-Medium;
   font-size: 25px;
   margin: 80px 0 12px;
+  display: flex;
+  align-items: center;
 }
 
 .screens-room-roomEnroll__title:first-child {
@@ -65,7 +67,7 @@
   position: relative;
   width: 100%;
   height: 50px;
-  margin: 20px 0 30px;
+  margin: 20px 0;
 }
 
 .screens-room-roomEnroll__dropdown::before {
@@ -141,6 +143,7 @@
 .screens-room-roomEnroll__map {
   position: relative;
   z-index: -1;
+  margin-bottom: 20px;
 }
 
 .screens-room-roomEnroll__input__address {
@@ -169,10 +172,11 @@
   border-radius: 10px;
   cursor: pointer;
   margin-left: 4.2%;
+  outline: 1px solid black;
 }
 
 .screens-room-roomEnroll__btn-address-main:hover {
-  outline: 1px solid black;
+  background: #F7F7F7;
 }
 
 .screens-room-roomEnroll__address-detail {
@@ -183,7 +187,7 @@
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
   padding: 12px 20px;
   border-radius: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 /* 숙소 기본정보를 알려주세요 */
@@ -256,6 +260,15 @@
 .screens-room-roomEnroll__select-btn {
   width: 100%;
   height: 100%;
+  border: #DDDDDD 1px solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.screens-room-roomEnroll__select-btn svg {
+  margin-bottom: 15px;
 }
 
 /* 숙소 전망을 추가하세요 */
@@ -277,6 +290,10 @@
 
 .screens-room-roomEnroll__photo-sub {
   position: relative;
+}
+
+.screens-room-roomEnroll__photo-sub-1, .screens-room-roomEnroll__photo-sub-2, .screens-room-roomEnroll__photo-sub-3, .screens-room-roomEnroll__photo-sub-4 {
+  overflow: hidden;
 }
 
 .screens-room-roomEnroll__photo-main__prev-upload-photo {
@@ -379,6 +396,10 @@
   display: block;
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .screens-room-roomEnroll__photos-sub {
@@ -416,12 +437,17 @@
   appearance: none;
   font-family: NotoSansKR-Regular;
   resize: vertical;
-  min-height: 144px;
+  min-height: 350px;
   padding: 16px;
   text-overflow: ellipsis;
   font-size: 16px;
   overflow-y: hidden;
   border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.screens-room-roomEnroll__textarea-room-name {
+  min-height: 150px;
 }
 
 .screens-room-roomEnroll__textarea:focus {
@@ -473,6 +499,50 @@
   transition: all 0.1s ease-in;
 }
 
+.screens-room-roomEnroll__btn-submit-photo {
+  float: right;
+  min-width: 100px;
+  height: 50px;
+  color: #fff;
+  background: #939393;
+  border: 1px solid #B0B0B0;
+  outline: none;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  padding: 12px 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  transition: all 0.1s ease-in;
+  cursor: not-allowed;
+}
+
+.screens-room-roomEnroll__btn-submit-photo.active {
+  background: #222222;
+  cursor: pointer;
+}
+
 .screens-room-roomEnroll__btn-submit:active {
   transform: scale(0.95);
+}
+
+/* error non-component */
+.screens-room-roomEnroll__error-room-category, .screens-room-roomEnroll__error-room-address, .screens-room-roomEnroll__error-room-name {
+  color: #0D63BC;
+  font-size: 16px;
+  font-family: NotoSansKR-Regular;
+}
+
+/* error component */
+.screens-room-roomEnroll__required-input {
+  font-family: NotoSansKR-Light;
+  font-size: 14px;
+  color: #FF395C;
+  margin-left: 10px;
+}
+
+.screens-room-roomEnroll__error {
+  color: #FF395C;
+}
+
+.screens-room-roomEnroll__error-border-style {
+  border: 2px solid #FF395C;
 }

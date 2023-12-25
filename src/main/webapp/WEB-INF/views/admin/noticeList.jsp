@@ -122,7 +122,7 @@
 
         <div class="screens-admin-event__content-bottom">
             <button class="screens-admin-event__content-bottom__btn"
-                    onclick="location.href='/admin/event/write'">등록
+                    onclick="location.href='/admin/notice/write'">등록
             </button>
         </div>
         <div class="paging-container">

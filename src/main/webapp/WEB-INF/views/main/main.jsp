@@ -58,7 +58,7 @@
 
             // WishList ajax
             $.ajax({
-                url: "/user/wishLists/active",
+                url: "/user/myPage/wishLists/active",
                 type: "POST",
                 dataType: "text",
                 data: {room_id: roomID},
@@ -75,12 +75,14 @@
                         $('.modal-div h4').text('위시리스트에 추가되었습니다.')
                         $("#" + roomID).fadeIn('slow').delay(3000).fadeOut('slow');
                     } else {
-                        alert("알 수 없는 문제가 발생했습니다. 다시 시도해주세요.");
+                        alert("로그인이 필요합니다.");
+                        location.href = "/user/loginForm";
                     }
                 }
                 ,
                 error: function () {
-                    location.href = "/user/loginForm";
+                    alert("알 수 없는 문제가 발생하였습니다. 관리자에게 문의 부탁드립니다.")
+                    location.href = "/";
                 }
             });
         })
@@ -156,7 +158,7 @@
                         + room.room_main_photo
                         + '" style="float: left; width: 50px; height: 50px; margin-right: 10px; border-radius: 5px;">'
                         + '<h4 style="float: left; color: #717171; margin-top: 6px; width: 190px;">'
-                        + '<h3 style="float: left; font-size: 14px; font-weight: 500; margin-top: 10px;">'
+                        + '<h3 style="float: left; font-size: 14px; font-weight: 500; margin-top: 10px; width: 180px; height: 12px; overflow: hidden; text-overflow: ellipsis; white-space:nowrap;">'
                         + room.room_name
                         + '</h3>'
                         + '</h4>'

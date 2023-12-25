@@ -36,4 +36,12 @@ public class RoomReviewServiceTest {
         System.out.println(
                 roomReviewService.getRoomReviewAvg("165b5ec4-39bb-4df9-a28a-6d6c7df28756"));
     }
+
+    @Test
+    public void 속소_최근6개리뷰_불러오기() throws Exception {
+        System.out.println(
+                roomReviewService.getRoomReviewSix("468b1cd5-9bc1-45d3-a51c-a1d8592852f2")
+        );
+    }
+
 }

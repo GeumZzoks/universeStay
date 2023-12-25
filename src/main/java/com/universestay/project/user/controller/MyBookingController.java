@@ -2,6 +2,7 @@ package com.universestay.project.user.controller;
 
 import com.universestay.project.review.dto.RoomReviewDto;
 import com.universestay.project.user.service.MyBookingService;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,7 @@ import java.util.UUID;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,10 +45,41 @@ public class MyBookingController {
             // 또한, 예약 2건 이상일 수 있으므로 List 형태로 받는다.
             // list2는 이용완료 된 예약건들에 대한 List이며
             // 나머지는 상동하다.
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
             List<Map<String, Object>> list1 = myBookingService.getMyBookingList(map1);
+            System.out.println(
+                    "--------------------------------------------------------------------------------------------------------------------------------");
+            for (int i = 0; i < list1.size(); i++) {
+                String booking_checkin_date = sdf.format(list1.get(i)
+                        .get("booking_checkin_date"));
+                String booking_checkout_date = sdf.format(list1.get(i)
+                        .get("booking_checkout_date"));
+                String created_at = sdf.format(list1.get(i).get("created_at"));
+                list1.get(i).put("booking_checkin_date", booking_checkin_date);
+                list1.get(i).put("booking_checkout_date", booking_checkout_date);
+                list1.get(i).put("created_at", created_at);
+            }
             List<Map<String, Object>> list2 = myBookingService.getMyBookingList(map2);
 
+            for (int i = 0; i < list2.size(); i++) {
+                String booking_checkin_date = sdf.format(list2.get(i)
+                        .get("booking_checkin_date"));
+                String booking_checkout_date = sdf.format(list2.get(i)
+                        .get("booking_checkout_date"));
+                String created_at = sdf.format(list2.get(i).get("created_at"));
+                list2.get(i).put("booking_checkin_date", booking_checkin_date);
+                list2.get(i).put("booking_checkout_date", booking_checkout_date);
+                list2.get(i).put("created_at", created_at);
+            }
+//            booking_checkin_date
+//            booking_checkout_date
+            // created_at
             // 뷰파일에 넘겨줄 model setting
+
+            System.out.println(list2);
+
             model.addAttribute("list1", list1);
             model.addAttribute("list2", list2);
         } catch (Exception e) {
@@ -56,9 +89,12 @@ public class MyBookingController {
     }
 
     @PostMapping("/writereview")
-    public String writeReview(String room_id, String review_stars, String review_ctt,
+    @Transactional(rollbackFor = Exception.class)
+    public String writeReview(String booking_id, String room_id, String review_stars,
+            String review_ctt,
             HttpSession session) {
         String str = review_stars;
+        System.out.println("booking_id = " + booking_id);
         Double double1 = null;
         if (!str.equals("null")) {
             double1 = Double.parseDouble(str);
@@ -81,6 +117,7 @@ public class MyBookingController {
 
         try {
             myBookingService.writeRoomReview(dto2);
+            myBookingService.updateReviewStatus(booking_id);
         } catch (Exception e) {
             e.printStackTrace();
         }

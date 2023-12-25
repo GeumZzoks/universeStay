@@ -36,4 +36,16 @@
         From RoomReview
         where room_id = #{room_id}
     </select>
+
+    <select id="roomReviewSelectSix" parameterType="String" resultType="map">
+        select rr.review_ctt, rr.created_at, u.user_nickname, p.profile_img_url
+        from RoomReview rr
+                 left join User u
+                           ON rr.user_id = u.user_id
+                 left join ProfileImg p
+                           ON u.user_id = p.user_id
+        where rr.room_id = #{room_id}
+          and rr.user_id = rr.review_writer
+        order by created_at desc limit 6
+    </select>
 </mapper>

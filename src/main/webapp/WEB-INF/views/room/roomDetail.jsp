@@ -16,13 +16,13 @@
 
 
     <style>
-      .screens-room-roomDetail__section-1__btns {
-        vertical-align: bottom;
-      }
+        .screens-room-roomDetail__section-1__btns {
+            vertical-align: bottom;
+        }
 
-      .screens-room-roomDetail__btn-share__text {
-        margin: 2px 0 0 2px;
-      }
+        .screens-room-roomDetail__btn-share__text {
+            margin: 2px 0 0 2px;
+        }
 
     </style>
 </head>
@@ -373,30 +373,32 @@
         <%--  TODO : 리뷰 구현되면 완성  --%>
 
         <div class="screens-room-roomDetail__font-title screens-room-roomDetail__section-4__part-1">
-            ★️ ${room.room_stars_avg} 후기 · 191개
+            ★️ ${roomReviewAvg} 후기 · ${roomReviewCount}개
         </div>
         <div class="screens-room-roomDetail__section-4__part-2">
 
             <%--  TODO : 리뷰 6개만 끊어서 보여주기  --%>
 
-            <c:forEach var="roomImg" items="${roomImgList}">
+            <c:forEach var="reviewList" items="${reviewList}">
                 <div class="screens-room-roomDetail__review">
                     <div class="screens-room-roomDetail__review__profile">
                         <div class="screens-room-roomDetail__review__profile__part-1">
                             <img class="screens-room-roomDetail__review__profile-img"
-                                 src="/resources/img/mock/reviewer1.jpeg"
+                                 src="${reviewList.profile_img_url}"
                                  alt="리뷰어 프로필 이미지">
                         </div>
                         <div class="screens-room-roomDetail__review__profile__part-2">
-                            <div class="screens-room-roomDetail__review__profile__reviewer">Yongtae
+                            <div class="screens-room-roomDetail__review__profile__reviewer">${reviewList.user_nickname}
                             </div>
-                            <div class="screens-room-roomDetail__review__profile__review-date">2023년
-                                11월
+                            <div class="screens-room-roomDetail__review__profile__review-date">
+                                <fmt:formatDate
+                                        value="${reviewList.created_at}"
+                                        pattern="yyyy-MM-dd" type="date"/>
                             </div>
                         </div>
                     </div>
                     <div class="screens-room-roomDetail__review__content">
-                        훌륭한 숙박이었습니다. 사진과 같습니다. 매우 고요하고 평화롭습니다. 얻는 것에 비해 상당히 비쌉니다.
+                            ${reviewList.review_ctt}
                     </div>
                     <div></div>
                     <button class="screens-room-roomDetail__btn screens-room-roomDetail__review__btn-more screens-room-roomDetail__btn-more">
@@ -423,15 +425,16 @@
                              xmlns="http://www.w3.org/2000/svg"
                              viewBox="0 0 32 32" aria-hidden="true" role="presentation"
                              focusable="false"
-                             style="display: inline; height: 50px; width: 60px; fill: currentcolor;">
+                             style="display: inline; height: 20px; width: 20px; fill: currentcolor;">
                             <path fill-rule="evenodd"
                                   d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
                             </path>
                         </svg>
 
-                        <div style="font-size: 50px; margin-left: 10px;">4.5</div>
+                        <div style="font-size: 25px; margin-left: 10px;">${roomReviewAvg}</div>
 
-                        <div style="font-size: 50px; margin-left: 98px;">후기 109개</div>
+                        <div style="font-size: 25px; margin-left: 98px;">후기 ${roomReviewCount}개
+                        </div>
                     </div>
                     <div class="reviewModal__content__body__all">
                         <div class="reviewModal__content__body__wrap">
@@ -447,22 +450,8 @@
                                        placeholder="후기 검색">
                             </div>
                         </div>
-                        <div class="reviewModal__content__reviews">
-                            <%--                            <div class="reviewModal__content__review">--%>
-                            <%--                                <div class="reviewModal__content__review__nickname"><img src="">닉네임--%>
-                            <%--                                </div>--%>
-                            <%--                                <div class="reviewModal__content__review__star">★️★️★️★️★️️</div>--%>
-                            <%--                                <div class="reviewModal__content__review__content">--%>
-                            <%--                                    너무--%>
-                            <%--                                    좋아요ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ--%>
-                            <%--                                </div>--%>
-                            <%--                            </div>--%>
-                            <%--                            <div class="reviewModal__content__review">--%>
-                            <%--                                <div class="reviewModal__content__review__nickname"><img src="">닉네임--%>
-                            <%--                                </div>--%>
-                            <%--                                <div class="reviewModal__content__review__star"></div>--%>
-                            <%--                                <div class="reviewModal__content__review__content">너무 좋아요</div>--%>
-                            <%--                            </div>--%>
+                        <div class="reviewModal__content__reviews" style="padding-top: 15px">
+                            <%-- TODO: 숙소 리뷰 목록 들어감 --%>
                         </div>
                     </div>
                 </div>
@@ -470,7 +459,7 @@
         </div>
 
         <button class="screens-room-roomDetail__btn-review-modal screens-room-roomDetail__btn screens-room-roomDetail__btn-shrink screens-room-roomDetail__btn-square">
-            후기 191개
+            후기 ${roomReviewCount}개
             모두 보기
         </button>
     </div>
@@ -551,7 +540,7 @@
         <img class="modal-img" src="${room.room_main_photo}"
              style="float: left; width: 50px; height: 50px; margin-right: 10px; border-radius: 5px;">
         <h4 style="float: left; color: #717171; margin-top: 6px; width: 190px;">
-            <h3 style="float: left; font-size: 14px; font-weight: 500; margin-top: 10px;">${room.room_name}</h3>
+            <h3 style="float: left; font-size: 14px; font-weight: 500; margin-top: 10px; width: 180px; height: 12px; overflow: hidden; text-overflow: ellipsis; white-space:nowrap;">${room.room_name}</h3>
         </h4>
     </div>
 </div>
@@ -562,7 +551,7 @@
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${KakaoApiKey}&libraries=services"></script>
 <%-- 스크립트 --%>
 <script>
-  const roomAddress = '${room.room_address}';
+    const roomAddress = '${room.room_address}';
 </script>
 <%-- 제이쿼리 --%>
 <script type="text/javascript"
@@ -580,82 +569,32 @@
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
 <script>
-  // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
-  Kakao.init('${KakaoApiKey}');
+    // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('${KakaoApiKey}');
 
-  function kakaoShare() {
-    Kakao.Link.sendDefault({
-      objectType: 'feed',
-      content: {
-        title: '${room.room_name}',
-        description: '${room.room_total_desc}',
-        imageUrl: '${roomImg.room_img_url}',
-        link: {
-          webUrl: 'localhost:8080/room/roomDetail?room_id=${room.room_id}',
-        },
-      },
-      buttons: [
-        {
-          title: '웹으로 보기',
-          link: {
-            webUrl: 'localhost:8080/room/roomDetail?room_id=${room.room_id}',
-          },
-        },
-      ],
-    })
-  }
-
-  $(document).ready(function () {
-    $('#wishlist').on('click', function (e) {
-      // form 전송 시 새로고침 안하기(기본 이벤트 x)
-      e.preventDefault();
-      // 새로고침 안할 시 다른 요소의 이밴트 받지 않기
-      e.stopPropagation();
-      // 변수 선언
-      // roomID는 list의 각 value값을 가져옴
-      var roomID = $(this).val();
-      let wished = "/resources/img/room/wished.png";
-      let unwished = "/resources/img/room/unwished.png";
-
-      // ajax
-      $.ajax({
-        url: "/user/wishLists/active",
-        type: "POST",
-        dataType: "text",
-        data: {room_id: roomID},
-        success: function (response) {
-          $('.modal-div').finish();
-          if (response === 'DEL_OK') {
-            wished = "/resources/img/room/unwished.png";
-            $('#wished').attr('src', wished);
-            $('#wished_text').html('저장하기');
-            unwished = "/resources/img/room/unwished.png";
-            $('#unwished').attr('src', unwished);
-            $('#unwished_text').html('저장하기')
-            $('.modal-div h4').text('위시리스트에서 삭제되었습니다.')
-            $("#" + roomID).fadeIn('slow').delay(3000).fadeOut('slow');
-          } else if (response === 'IST_OK') {
-            wished = "/resources/img/room/wished.png";
-            $('#wished').attr('src', wished);
-            $('#wished_text').html('저장됨');
-            unwished = "/resources/img/room/wished.png";
-            $('#unwished').attr('src', unwished);
-            $('#unwished_text').html('저장됨')
-            $('.modal-div h4').text('위시리스트에 추가되었습니다.')
-            $("#" + roomID).fadeIn('slow').delay(3000).fadeOut('slow');
-          } else {
-            alert("알 수 없는 문제가 발생했습니다. 다시 시도해주세요.");
-          }
-        },
-        error: function () {
-          location.href = "/user/loginForm";
-        }
-      });
-    });
-  });
+    function kakaoShare() {
+        Kakao.Link.sendDefault({
+            objectType: 'feed',
+            content: {
+                title: '${room.room_name}',
+                description: `${room.room_total_desc}`,
+                imageUrl: '${roomImg.room_img_url}',
+                link: {
+                    webUrl: 'localhost:8080/room/roomDetail?room_id=${room.room_id}',
+                },
+            },
+            buttons: [
+                {
+                    title: '웹으로 보기',
+                    link: {
+                        webUrl: 'localhost:8080/room/roomDetail?room_id=${room.room_id}',
+                    },
+                },
+            ],
+        })
+    }
 
 </script>
-
 
 <script>
   $(document).ready(function () {
@@ -667,7 +606,20 @@
         dataType: 'text',                               // 전송받을 데이터의 타입
         success: function (result) {
           let reviewList = JSON.parse(result);
-          console.log(reviewList);
+
+          let options = {
+            timeZone: 'Asia/Seoul', // 한국 시간대를 설정합니다.
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          };
+
+          for (let i = 0; i < Object.keys(reviewList).length; i++) {
+            let date = new Date(reviewList[i].created_at); // UNIX 타임스탬프를 기반으로 Date 객체 생성
+            let koreanTime = date.toLocaleString('ko-KR', options); // 한국 시간으로 변환
+            reviewList[i].created_at = koreanTime;
+          }
+
           $('.reviewModal__content__reviews').empty();
           $.each(reviewList, function (index, reviewList) {
             let fullStar = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 20px; width: 20px; fill: var(--f-k-smk-x);"><path fill-rule="evenodd" d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"></path></svg>';
@@ -689,16 +641,29 @@
               reviewStars += emptyStar;
             }
 
-            let html = '<div class="reviewModal__content__review" style="padding-top: 10px; margin-bottom: 20px;">'
+            let html = '<div class="screens-room-roomDetail__review">' +
+                '    <div class="screens-room-roomDetail__review__profile">' +
+                '        <div class="screens-room-roomDetail__review__profile__part-1">' +
+                '            <img class="screens-room-roomDetail__review__profile-img" src="' +
+                reviewList.profile_img_url + '" alt="리뷰어 프로필 이미지">' +
+                '        </div>' +
+                '        <div class="screens-room-roomDetail__review__profile__part-2">' +
+                '            <div class="screens-room-roomDetail__review__profile__reviewer">' +
+                reviewList.user_nickname +
+                '            </div>' +
+                '            <div class="screens-room-roomDetail__review__profile__review-date">'
                 +
-                '    <div class="reviewModal__content__review__nickname"><img src="">'
-                + reviewList.user_nickname + '</div>' +
-                '    <div class="reviewModal__content__review__star" style="display: flex;">'
+                reviewList.created_at +
+                '            </div>' +
+                '        </div>' +
+                '    </div>' +
+                '    <div class="reviewModal__content__review__star" style="display: flex; padding-bottom: 10px;">'
                 + reviewStars
                 + '</div>' +
-                '    <div class="reviewModal__content__review__content">'
+                '    <div class="screens-room-roomDetail__review__content" style="width: 442px">'
                 + reviewList.review_ctt
-                + '</div>' +
+                +
+                '    </div>' +
                 '</div>';
             $('.reviewModal__content__reviews').append(html);
           });
@@ -712,15 +677,69 @@
   });
 </script>
 
+<script>
+    $(document).ready(function () {
+        $('#wishlist').on('click', function (e) {
+            // form 전송 시 새로고침 안하기(기본 이벤트 x)
+            e.preventDefault();
+            // 새로고침 안할 시 다른 요소의 이밴트 받지 않기
+            e.stopPropagation();
+            // 변수 선언
+            // roomID는 list의 각 value값을 가져옴
+            var roomID = $(this).val();
+            let wished = "/resources/img/room/wished.png";
+            let unwished = "/resources/img/room/unwished.png";
+
+            // ajax
+            $.ajax({
+                url: "/user/myPage/wishLists/active",
+                type: "POST",
+                dataType: "text",
+                data: {room_id: roomID},
+                success: function (response) {
+                    $('.modal-div').finish();
+                    if (response === 'DEL_OK') {
+                        console.log("DEL OK");
+                        wished = "/resources/img/room/unwished.png";
+                        $('#wished').attr('src', wished);
+                        $('#wished_text').html('저장하기');
+                        unwished = "/resources/img/room/unwished.png";
+                        $('#unwished').attr('src', unwished);
+                        $('#unwished_text').html('저장하기')
+                        $('.modal-div h4').text('위시리스트에서 삭제되었습니다.')
+                        $("#" + roomID).fadeIn('slow').delay(3000).fadeOut('slow');
+                    } else if (response === 'IST_OK') {
+                        console.log("IST_OK")
+                        wished = "/resources/img/room/wished.png";
+                        $('#wished').attr('src', wished);
+                        $('#wished_text').html('저장됨');
+                        unwished = "/resources/img/room/wished.png";
+                        $('#unwished').attr('src', unwished);
+                        $('#unwished_text').html('저장됨')
+                        $('.modal-div h4').text('위시리스트에 추가되었습니다.')
+                        $("#" + roomID).fadeIn('slow').delay(3000).fadeOut('slow');
+                    } else {
+                        alert("로그인이 필요합니다.");
+                        location.href = "/user/loginForm";
+                    }
+                },
+                error: function () {
+                    console.log("error!!!@")
+                    alert("알 수 없는 문제가 발생하였습니다. 관리자에게 문의 부탁드립니다.")
+                }
+            });
+        });
+    });
+
+</script>
 
 <script src="/resources/js/room/roomDetail.js"></script>
 
-
 <script>
-  function createChatRoom() {
-    var room_id = '${room.room_id}';
-    location.href = '/chatting/createRoom/' + room_id;
-  }
+    function createChatRoom() {
+        var room_id = '${room.room_id}';
+        location.href = '/chatting/createRoom/' + room_id;
+    }
 </script>
 
 </body>

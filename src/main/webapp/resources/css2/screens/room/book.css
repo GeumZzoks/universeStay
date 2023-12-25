@@ -125,6 +125,7 @@
 
 
 .screens-room-book__container__left-side {
+  position: relative;
   width: 50%;
   margin-bottom: 60px;
 }
@@ -205,4 +206,78 @@
   width: 100%;
   height: 100%;
   border-radius: 8px;
+}
+
+.screens-room-book__number-people-toggle {
+  /*display: flex;*/
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px #EBEBEB solid;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 6px, rgba(0, 0, 0, 0.07) 0px 0px 0px 1px;
+  border-radius: 10px;
+  position: absolute;
+  top: 130px;
+  left: 200px;
+  width: 60%;
+  z-index: 100;
+  background: #ffffff;
+  display: none;
+}
+
+.screens-room-book__number-people-toggle.active {
+  display: flex;
+}
+
+
+.screens-room-book__toggle-btn-minus, .screens-room-book__toggle-btn-plus {
+  background: inherit;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  overflow: visible;
+  cursor: pointer;
+  border: 1px solid #B0B0B0;
+  border-radius: 50%;
+  padding: 10px;
+}
+
+.screens-room-book__toggle-btn-minus:hover, .screens-room-book__toggle-btn-plus:hover {
+  outline: 1px black solid;
+}
+
+.screens-room-book__toggle-btn-minus.disable, .screens-room-book__toggle-btn-plus.disable {
+  background: inherit;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  overflow: visible;
+  cursor: pointer;
+  border: 1px solid #B0B0B0;
+  border-radius: 50%;
+  padding: 10px;
+}
+
+.screens-room-book__toggle-btn-minus.disable:hover, .screens-room-book__toggle-btn-plus.disable:hover {
+  cursor: not-allowed;
+  outline: none;
+}
+
+.screens-room-book__toggle-num {
+  border: none;
+  width: 35px;
+  text-align: center;
+  background-color: transparent;
+}
+
+.screens-room-book__reservation__part-6 {
+  display: flex;
+  justify-content: space-between;
+  font-family: NotoSansKR-Regular;
+  font-size: 20px;
+  padding: 30px 0;
+}
+
+.screens-room-book__reservation__part-6__mul {
+  text-decoration: underline;
 }

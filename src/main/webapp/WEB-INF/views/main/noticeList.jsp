@@ -93,6 +93,10 @@
         gap: 24px;
       }
 
+      .screens-user-notice__wrap__headBtn:hover {
+        background-color: #d4d7e5;
+      }
+
       .notice-item .notice-item-category {
         font-size: 9px;
         line-height: normal;
@@ -187,12 +191,11 @@
         border-radius: 500px;
         cursor: pointer;
         --tw-bg-opacity: 1;
-        background-color: rgb(18 115 228 / var(--tw-bg-opacity));
         font-size: 0.75rem;
         line-height: normal;
         letter-spacing: 0px;
         font-weight: 600;
-        color: rgb(255, 255, 255);
+        color: rgb(0, 0, 0);
       }
     </style>
 </head>
@@ -283,6 +286,13 @@
 <jsp:include page="/WEB-INF/views/common/user/footer.jsp"/>
 <script>
 
+  const pageClickBtn = document.querySelectorAll(".screens-user-notice__wrap__headBtn");
+
+  window.onload = function () {
+    const clickPage = pageClickBtn[${nph.page-nph.beginPage}];
+    clickPage.style.color = 'rgb(255, 255, 255)';
+    clickPage.style.backgroundColor = 'rgb(18, 115, 228)';
+  }
 </script>
 </body>
 </html>

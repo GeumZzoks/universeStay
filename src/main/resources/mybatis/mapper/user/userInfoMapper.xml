@@ -39,4 +39,10 @@
         where user_email =
               #{user_email}
     </delete>
+
+    <update id="updateIsHostY">
+        UPDATE User
+        SET user_is_host = 'Y'
+        WHERE user_id = #{user_id}
+    </update>
 </mapper>

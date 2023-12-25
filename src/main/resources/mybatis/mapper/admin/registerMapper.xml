@@ -45,10 +45,16 @@
         WHERE admin_nickname = #{admin_nickname};
     </select>
 
-    <!--    <select id="select" parameterType="String" resultType="AdminDto">-->
-    <!--        SELECT *-->
-    <!--        FROM Admin-->
-    <!--        WHERE admin_id = #{admin_id};-->
-    <!--    </select>-->
+    <select id="checkUniqueEmail" parameterType="String" resultType="int">
+        SELECT count(*)
+        FROM Admin
+        WHERE admin_email = #{admin_email};
+    </select>
+
+    <select id="checkUniquePhoneNumber" parameterType="String" resultType="int">
+        SELECT count(*)
+        FROM Admin
+        WHERE admin_phone_num = #{admin_phone_num};
+    </select>
 
 </mapper>

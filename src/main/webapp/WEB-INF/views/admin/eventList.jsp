@@ -97,7 +97,8 @@
         <br>
 
         <div class="screens-admin-event__content-bottom">
-            <button class="screens-admin-event__content-bottom__btn" onclick="location.href='/admin/event/write'">이벤트 작성
+            <button class="screens-admin-event__content-bottom__btn" style="position: absolute; right: -4px; top: -4px"
+                    onclick="location.href='/admin/event/write'">이벤트 작성
             </button>
         </div>
         <div class="screens-admin-event__paging-container">

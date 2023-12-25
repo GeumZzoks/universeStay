@@ -1,18 +1,17 @@
 package com.universestay.project.admin.controller;
 
+import com.universestay.project.admin.service.UserManagementService;
 import com.universestay.project.common.PageHandler;
 import com.universestay.project.common.SearchCondition;
-import com.universestay.project.admin.service.UserManagementService;
 import com.universestay.project.user.dto.UserDto;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 // TODO: 2023-11-28     filter or interceptor 구현
 // TODO: 2023-11-28     css 태그에 직접 입력한거 다듬기
@@ -20,6 +19,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("/admin/user")
 public class UserManagementController {
+
     @Autowired
     UserManagementService userManagementService;
 
@@ -49,15 +49,11 @@ public class UserManagementController {
             // 생성자에 count와 SearchCondition 입력해서 초기화
             // 이때 dopaging 실행되서 iv들 알맞게 초기화 됨
             PageHandler ph = new PageHandler(count, sc);
-            System.out.println("sc = " + sc);
-            System.out.println("map = " + map);
-            System.out.println("list = " + list);
 
             // Model - list, ph 셋팅해서 뷰에 넘겨준다
             model.addAttribute("list", list);
             model.addAttribute("ph", ph);
-            System.out.println(list);
-            System.out.println(ph);
+
         } catch (Exception e) {
 
             e.printStackTrace();
@@ -74,7 +70,7 @@ public class UserManagementController {
         // mapper에 user_id 넘겨주고 userDto 받아오기
         try {
             UserDto dto = userManagementService.read(user_id);
-            System.out.println("dto = " + dto);
+            
             model.addAttribute("dto", dto);
             model.addAttribute("sc", sc);
         } catch (Exception e) {
@@ -86,7 +82,7 @@ public class UserManagementController {
     }
 
     @GetMapping("/update")
-    public String updateUser(String user_id, String status_id, SearchCondition sc,  Model model) {
+    public String updateUser(String user_id, String status_id, SearchCondition sc, Model model) {
         try {
             UserDto dto = userManagementService.read(user_id);
             dto.setStatus_id(status_id);
@@ -94,7 +90,7 @@ public class UserManagementController {
             model.addAttribute("dto", dto);
             model.addAttribute("sc", sc);
 
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return "/admin/userInfo";

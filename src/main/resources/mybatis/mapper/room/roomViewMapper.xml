@@ -10,6 +10,12 @@
             now(), #{updated_id})
   </insert>
 
+  <delete id="deleteRoomView">
+    DELETE
+    FROM RoomView
+    WHERE room_id = #{room_id}
+  </delete>
+
   <select id="selectRoomView" resultType="RoomViewDto">
     SELECT *
     FROM RoomView

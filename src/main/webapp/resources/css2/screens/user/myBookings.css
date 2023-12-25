@@ -1,0 +1,271 @@
+/*버튼 디자인*/
+.screens-room-myBookings__button {
+  font-family: NotoSansKR-Regular;
+  height: 25px;
+  font-size: 12px;
+  border-radius: 5px;
+  background-color: #ffcdc5;
+  border: none;
+  color: #3c3c3c;
+  cursor: pointer;
+}
+
+.screens-room-myBookings__button:hover {
+  background-color: #f8a499;
+  color: #FFFFFF;
+}
+
+
+.screens-room-myBookings {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center
+}
+
+.screens-room-myBookings * {
+  box-sizing: border-box;
+}
+
+.screens-room-myBookings__divide-line {
+  margin-top: 20px;
+  height: 1000px;
+  border: #dedede 0.5px solid;
+}
+
+
+.screens-room-myBookings__total-wrapper {
+  width: 80%;
+  height: auto;
+
+}
+
+.screens-room-myBookings__wrapper {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.screens-room-myBookings__title {
+  width: 80%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-family: NotoSansKR-Medium;
+  font-size: 25px;
+  align-self: center;
+
+}
+
+
+/*예정된 예약*/
+
+.screens-room-myBookings__comming-reservation {
+  width: 45%;
+}
+
+.screens-room-myBookings__comming-reservation__title {
+  font-family: NotoSansKR-Regular;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.screens-room-myBookings__comming-reservation__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+.screens-room-myBookings__comming-reservation__div {
+  border: #dcdcdc 0.3px solid;
+  border-radius: 20px;
+  display: flex;
+  overflow: hidden;
+  flex-direction: row;
+  justify-content: flex-start;
+  box-shadow: 1px 1px 2px rgb(221, 221, 221);
+}
+
+.screens-room-myBookings__comming-reservation__div:hover {
+
+}
+
+.screens-room-myBookings__payment-button-card-div {
+  margin-top: 5px;
+}
+
+.screens-room-myBookings__comming-reservation__div__status_id {
+  color: #ed6452;
+  font-family: NotoSansKR-Bold;
+  font-size: 18px;
+}
+
+
+.screens-room-myBookings__comming-reservation__main-photo__wrapper {
+  width: 40%;
+  height: 160px;
+  overflow: hidden;
+}
+
+.screens-room-myBookings__comming-reservation__div__info {
+  margin-right: auto;
+  width: 60%;
+  padding: 10px 10px 10px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  line-height: 1.2;
+}
+
+.screens-room-myBookings__comming-gray-font {
+  color: #5d5d5d;
+  font-family: NotoSansKR-Light;
+  font-size: 13px;
+}
+
+.screens-room-myBookings__comming-reservation__name {
+  font-family: NotoSansKR-Medium;
+  font-size: 14px;
+}
+
+.screens-room-myBookings__comming-reservation__main-photo {
+  width: 100%;
+  height: 100%;
+}
+
+/*이전 여행지 (완료한 여행)*/
+
+.screens-room-myBookings__completed-reservation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 45%;
+}
+
+.screens-room-myBookings__completed-reservation__title {
+  font-family: NotoSansKR-Regular;
+  align-self: flex-start;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.screens-room-myBookings__reviewWriteBtn {
+  margin-top: 5px;
+}
+
+.screens-room-myBookings__completed-reservation__wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.screens-room-myBookings__completed-reservation__div {
+  border: #dcdcdc 0.3px solid;
+  border-radius: 20px;
+  width: 240px;
+  height: 230px;
+  overflow: hidden;
+  box-shadow: 1px 1px 3px rgb(221, 221, 221);
+}
+
+.screens-room-myBookings__completed-reservation__div__info {
+  line-height: 1.5;
+  padding: 10px;
+}
+
+.screens-room-myBookings__completed-reservation__main-photo__wrapper {
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+}
+
+.screens-room-myBookings__completed-reservation__main-photo {
+  width: 100%;
+}
+
+
+.screens-room-myBookings__reviewWriteBtn[disabled] {
+  background-color: #DDDDDD;
+  pointer-events: none;
+  cursor: none;
+}
+
+/* 리뷰 완료 버튼 호버 효과 제거 */
+.screens-room-myBookings__reviewWriteBtn[disabled]:hover {
+  background-color: #DDDDDD;
+}
+
+
+/*모달 CSS*/
+.screens-room-myBookings__modalContent__form {
+  width: 500px;
+  height: 300px;
+}
+
+.screens-room-myBookings__modalContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  z-index: 100;
+}
+
+.screens-room-myBookings__modalContent__form {
+  border-radius: 20px;
+  padding: 20px 20px 20px 20px;
+  background-color: white;
+}
+
+.screens-room-myBookings__modalContent__starBox {
+  margin-top: 20px;
+  margin-left: 70px;
+  height: 70px;
+}
+
+.screens-room-myBookings__modalContent__star {
+  float: left;
+  width: 25px;
+  height: 50px;
+  background-repeat: no-repeat;
+  background-image: url('/resources/img/user/star-white.svg')
+
+}
+
+.screens-room-myBookings__modalContent__leftStar {
+  background-position: left;
+}
+
+.screens-room-myBookings__modalContent__rightStar {
+  background-position: right;
+}
+
+textarea[name="review_ctt"] {
+  margin-left: 55px;
+  width: 400px;
+  height: 150px;
+  resize: none;
+  outline-color: #f6b6ad;
+  padding: 10px;
+  border: #d4d7e5 0.5px solid;
+  border-radius: 5px;
+}
+
+.screens-room-myBookings__modalContent__title {
+  margin-left: 125px;
+  font-size: 16px;
+  font-family: NotoSansKR-Regular;
+}
+
+.screens-room-myBookings__modalContent__button-box {
+  margin-top: 15px;
+  margin-left: 370px;
+}

@@ -50,6 +50,7 @@ public class MainController {
         String profileImgUrl = profileImgService.getProfileImgUrl(user.getUser_id());
         String isHost = user.getUser_is_host();
 
+        session.setAttribute("profileImgUrl", profileImgUrl);
         model.addAttribute("userInfo", user);
         model.addAttribute("isHost", isHost);
         model.addAttribute("statusId", statusId);

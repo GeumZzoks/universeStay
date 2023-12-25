@@ -133,7 +133,7 @@
 </header>
 <div class="components-user-header__line"></div>
 
-<form action="/room/enroll" method="post" class="screens-room-roomEnroll__wrapper">
+<form action="/room/modify" method="post" class="screens-room-roomEnroll__wrapper">
 
     <%--  숙소 유형을 선택하세요  --%>
     <div class="screens-room-roomEnroll__title">숙소 유형을 선택하세요</div>
@@ -143,6 +143,23 @@
         <input name="room_category_id" type="hidden"
                class="screens-room-roomEnroll__dropdown__valueBox"
                value="${roomDto.room_category_id}">
+        <input name="room_id" type="hidden"
+               class="screens-room-modifyRoom__room_id"
+               value="${roomDto.room_id}">
+        <input name="created_at" type="hidden"
+               class="screens-room-modifyRoom__room_created_at"
+               value="${roomDto.created_at}">
+        <input name="created_id" type="hidden"
+               class="screens-room-modifyRoom__room_created_id"
+               value="${roomDto.created_id}">
+        <input name="updated_at" type="hidden"
+               class="screens-room-modifyRoom__room_updated_at"
+               value="${roomDto.updated_at}">
+        <input name="updated_id" type="hidden"
+               class="screens-room-modifyRoom__room_updated_id"
+               value="${roomDto.updated_id}">
+
+
         <div class="screens-room-roomEnroll__dropdown__option">
             <div onclick="show('아파트')">
                 아파트
@@ -1082,7 +1099,10 @@
         </div>
     </div>
 
-    <input type="submit" class="screens-room-roomEnroll__btn-submit" value="숙소 사진 등록">
+    <input type="submit" class="screens-room-roomEnroll__btn-submit" value="목록으로 이동"
+           onclick="'/room/management'">
+    <input type="submit" class="screens-room-roomEnroll__btn-submit" value="저장하기"
+           onclick="location.href='/room/modify'">
 </form>
 
 <%--<jsp:include page="/WEB-INF/views/common/user/footer.jsp"/>--%>

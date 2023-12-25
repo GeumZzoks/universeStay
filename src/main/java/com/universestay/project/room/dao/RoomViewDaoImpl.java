@@ -22,6 +22,10 @@ public class RoomViewDaoImpl implements RoomViewDao {
         return session.insert(namespace + "saveRoomView", roomViewDto);
     }
 
+    public Integer deleteRoomView(String room_id) throws Exception {
+        return session.delete(namespace + "deleteRoomView", room_id);
+    }
+
     @Override
     public List<RoomViewDto> selectRoomView(String room_id) throws Exception {
         return session.selectList(namespace + "selectRoomView", room_id);

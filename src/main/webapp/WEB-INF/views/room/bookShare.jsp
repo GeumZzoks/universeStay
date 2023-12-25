@@ -22,6 +22,21 @@
 <jsp:include page="/WEB-INF/views/common/user/header.jsp"/>
 <section>
 
+    <input name="room_id" type="hidden"
+           value="${bookInfo.room_id}">
+    <input name="user_id" type="hidden"
+           value="${bookInfo.user_id}">
+    <input name="room_main_photo" type="hidden"
+           value="${bookInfo.room_main_photo}">
+    <input name="profile_img_url" type="hidden" value="${profile_img_url}">
+    <input name="room_name" type="hidden"
+           value="${bookInfo.room_name}"/>
+    <input name="booking_checkin_date" type="hidden"
+           value="${bookingDto.booking_checkin_date}"/>
+    <input name="booking_checkout_date" type="hidden"
+           value="${bookingDto.booking_checkout_date}"/>
+    <input type="hidden" name="booking_price_sum">
+
     <%-- 중앙 컨텐츠 --%>
     <div class="screens-room-bookShare__container">
         <%-- left side --%>
@@ -134,6 +149,7 @@
                                      id="screens-room-bookShare__img_url">
                             </div>
 
+
                         </div>
                         <div class="screens-room-bookShare__container__right-side__box-size__space-box">
                             <h3 id="screens-room-bookShare__title">
@@ -151,18 +167,28 @@
 
 
                         <%-- 2번째 박스 --%>
-                        <div class="screens-room-bookShare__border-bound-top"></div>
-                        <div class="screens-room-bookShare__container__right-side__flex-box-column__total-payment">
-                            <div>총 합계(KRW)</div>
-                            <div>₩583,423</div>
+                        <%--                        <div class="screens-room-bookShare__border-bound-top"></div>--%>
+                        <%--                        <div class="screens-room-bookShare__container__right-side__flex-box-column__total-payment">--%>
+                        <%--                            <div>총 합계(KRW)</div>--%>
+                        <%--                            <div>₩583,423</div>--%>
+                        <%--                        </div>--%>
+
+                        <div class="screens-room-book__border-bound-top"></div>
+                        <div class="screens-room-book__reservation__part-6">
+                            <span class="screens-room-book__reservation__part-6__mul">숙박 비용</span>
+
+                            <div>
+                                <span>₩ </span>
+                                <span id="BookingPriceSum">${formattedAmount}</span>
+                            </div>
                         </div>
 
                         <%-- 3번째 박스 --%>
-                        <div class="screens-room-bookShare__border-bound-top"></div>
-                        <div class="screens-room-bookShare__container__right-side__flex-box-column__total-payment">
-                            <div>예약 코드</div>
-                            <div>HMERQXJJ84</div>
-                        </div>
+                        <%--                        <div class="screens-room-bookShare__border-bound-top"></div>--%>
+                        <%--                        <div class="screens-room-bookShare__container__right-side__flex-box-column__total-payment">--%>
+                        <%--                            <div>예약 코드</div>--%>
+                        <%--                            <div>HMERQXJJ84</div>--%>
+                        <%--                        </div>--%>
 
                     </div>
                 </div>
@@ -172,8 +198,6 @@
 
     </div>
 </section>
-
-<jsp:include page="/WEB-INF/views/common/user/footer.jsp"/>
 
 
 <script

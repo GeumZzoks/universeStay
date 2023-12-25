@@ -5,6 +5,8 @@ import com.universestay.project.admin.service.CouponService;
 import com.universestay.project.admin.service.EventService;
 import com.universestay.project.common.PageHandler;
 import com.universestay.project.common.SearchCondition;
+import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,9 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @Controller
 @RequestMapping("/admin/coupon")
@@ -33,7 +32,7 @@ public class CouponController {
     @GetMapping
     public String list(SearchCondition sc, Model m) {
         try {
-            System.out.println(sc);
+
             // 페이징 처리
             int totalCnt = couponService.getSearchResultCnt(sc);
             m.addAttribute("totalCnt", totalCnt);
@@ -55,7 +54,7 @@ public class CouponController {
 
     @PostMapping("/input")
     // 쿠폰 생성
-    public String input(CouponDto couponDto, RedirectAttributes rattr, HttpSession session) {
+    public String input(CouponDto dto, RedirectAttributes rattr, HttpSession session) {
         // 쿠폰 생성 성공 메세지 선언
         String msg = "IPT_OK";
         // 세션에서 현재 로그인된 이메일 가져오기
@@ -64,10 +63,10 @@ public class CouponController {
             // 현재 로그인된 이메일로 uuid 가져오기
             String uuid = eventService.getAdminUuid(admin);
             // uuid로 필수값 선언
-            couponDto.setCreated_id(uuid);
-            couponDto.setUpdated_id(uuid);
+            dto.setCreated_id(uuid);
+            dto.setUpdated_id(uuid);
             // 쿠폰 생성
-            couponService.insert(couponDto);
+            couponService.insert(dto);
 
             // 예외처리
         } catch (Exception e) {

@@ -31,4 +31,6 @@ public interface RoomService {
     Integer enrollPhoto(RoomPhotoDto roomPhotoDto, String room_id, String host_id) throws Exception;
 
     RoomDto readRoom(String room_id) throws Exception;
+
+    Integer modifyRoom(RoomDto roomDto) throws Exception;
 }
