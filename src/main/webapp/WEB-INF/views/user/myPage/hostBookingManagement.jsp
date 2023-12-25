@@ -109,7 +109,7 @@
     </style>
 </head>
 <body class="screens-user-myPage-hostBookingManagement">
-<jsp:include page="/WEB-INF/views/common/user/header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/user/hostHeader.jsp"/>
 <section class="screens-user-myPage-hostBookingManagement__section">
     <div class="screens-user-myPage-hostBookingManagement__container">
         <div class="screens-user-myPage-hostBookingManagement__newBookings screens-hostBookingManagement-flex-column">
