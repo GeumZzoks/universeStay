@@ -329,18 +329,25 @@ function handleSelectSpace(e) {
 }
 
 // 숙소 가격을 책정해주세요
-// const inputsPrice = document.querySelectorAll(
-//     ".screens-room-roomEnroll__input-price");
-//
-// inputsPrice.forEach(inputPrice => {
-//   inputPrice.addEventListener('keyup', function (e) {
-//     let value = e.target.value;
-//     value = Number(value.replaceAll(',', ''));
-//     if (isNaN(value)) {         //NaN인지 판별
-//       inputPrice.value = 0;
-//     } else {                   //NaN이 아닌 경우
-//       const formatValue = value.toLocaleString('ko-KR');
-//       inputPrice.value = formatValue;
-//     }
-//   });
-// });
+const inputPrices = document.querySelectorAll(
+    ".screens-room-roomEnroll__input-price");
+
+inputPrices.forEach(inputPrice => {
+  inputPrice.addEventListener("input", () => {
+    handleInput(inputPrice);
+  });
+});
+
+function handleInput(input) {
+  console.log(input);
+  // Remove non-numeric characters from the input value
+  var numericValue = input.value.replace(/[^0-9]/g, '');
+
+  // Set the input value to 0 if it's blank or contains non-numeric characters
+  if (numericValue === '') {
+    input.value = 0;
+  } else {
+    // Update the input value with the numeric part
+    input.value = parseInt(numericValue, 10);
+  }
+}
