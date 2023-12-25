@@ -4,9 +4,14 @@ import com.universestay.project.inquiry.dto.InquiryChattingMessageDto;
 import com.universestay.project.inquiry.dto.InquiryChattingRoomDto;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserInquiryDao {
     InquiryChattingRoomDto selectChattingRoom(String chatting_room_id) throws Exception;
+
+    List<Map<String, Object>> selectSimpleChattingRoomList(String user_id) throws Exception;
+
+    String selectUserIdCheck(String chatting_room_id) throws Exception;
 
     List<InquiryChattingRoomDto> selectChattingRoomList(String user_id) throws Exception;
 

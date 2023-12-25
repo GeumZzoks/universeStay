@@ -45,11 +45,15 @@
         }
 
         .screens-inquiry-userInquiry__section {
-            position: relative;
-            top: 50px;
+            position: absolute;
+            top: 100px;
             width: 100%;
-            height: calc(100% - 50px);
+            height: calc(100% - 100px);
             border-top: 1px solid #EBEBEB;
+        }
+
+        .screens-inquiry-userInquiry__section > div {
+            border-right: 1px solid #EBEBEB;
         }
 
         .screens-inquiry-userInquiry__inquiryList {
@@ -65,13 +69,18 @@
         }
 
         .screens-inquiry-userInquiry-headDiv {
-            height: 20%;
-            /*flex-basis: 7%;*/
+            height: 7%;
+            border-bottom: 1px solid #EBEBEB;
         }
 
         .screens-inquiry-userInquiry-bodyDiv {
-            height: 80%;
-            /*flex-basis: 93%;*/
+            height: 93%;
+        }
+
+
+        .screens-inquiry-userInquiry__inquiryList__head__content > div > img {
+            height: 1.3rem;
+            width: 1.3rem;
         }
 
         .screens-inquiry-userInquiry__inquiryList-imgDiv > img {
@@ -89,6 +98,15 @@
             height: 5rem;
         }
 
+        .screens-inquiry-userInquiry__inquiryMessage__body__content__messageList {
+            overflow: auto;
+        }
+
+        .screens-inquiry-userInquiry__inquiryMessage__body__content {
+            /*width: 50%;*/
+        }
+
+
         /*overflow: auto;*/
         /*align-items: end;*/
         /*word-break: break-all;*/
@@ -96,14 +114,15 @@
         /*font-family: 'NotoSansKR-Bold';*/
     </style>
 </head>
-<body class="screens-inquiry-userInquiry">
 <jsp:include page="/WEB-INF/views/common/user/header.jsp"/>
+<body class="screens-inquiry-userInquiry">
 <section class="screens-inquiry-userInquiry__section screens-inquiry-flex-row">
     <div class="screens-inquiry-userInquiry__inquiryList screens-inquiry-flex-column">
         <div class="screens-inquiry-userInquiry__inquiryList__head screens-inquiry-userInquiry-headDiv screens-inquiry-flex-row">
             <div class="screens-inquiry-userInquiry__inquiryList__head__content screens-inquiry-flex-row">
-                <div class="screens-inquiry-userInquiry__inquiryList__head__content-text"><p>메시지</p></div>
-                <div class="screens-inquiry-userInquiry__inquiryList__head__content-plustmark"><p>+</p></div>
+                <div class="screens-inquiry-userInquiry__inquiryList__head__content-text"><p>문의사항 목록</p></div>
+                <div class="screens-inquiry-userInquiry__inquiryList__head__content-plustmark"><img
+                        src="/resources/img/symbol/plus-svgrepo-com.svg"></div>
                 <div class="screens-inquiry-userInquiry__inquiryList__head__content-filtermark"><img
                         src="/resources/img/symbol/filter_km.svg"></div>
             </div>
@@ -118,8 +137,6 @@
                     <div class="screens-inquiry-flex-column">
                         <div><p>UNIVERSESTAY 고객지원 팀</p></div>
                         <div><p>이 채팅방의 마지막 메시지</p></div>
-                    </div>
-                    <div class="screens-inquiry-flex-row">
                         <div><p>메시지 보낸 시간 </p></div>
                     </div>
                 </div>
@@ -131,8 +148,6 @@
                     <div class="screens-inquiry-flex-column">
                         <div><p>UNIVERSESTAY 고객지원 팀</p></div>
                         <div><p>이 채팅방의 마지막 메시지</p></div>
-                    </div>
-                    <div class="screens-inquiry-flex-row">
                         <div><p>메시지 보낸 시간 </p></div>
                     </div>
                 </div>
@@ -174,8 +189,8 @@
                 </div>
                 <div class="screens-inquiry-userInquiry__inquiryMessage__body__content__inputcontainer screens-inquiry-flex-row">
                     <div class="screens-inquiry-userInquiry__inquiryMessage__body__content__inputbody screens-inquiry-flex-row">
-                        <div><input type="text" name="message"></div>
-                        <div><input type="submit" value="전송"></div>
+                        <div><input type="text" name="message" class="screens-inquiry-userInquiry-sendText"></div>
+                        <div><input type="submit" value="전송" class="screens-inquiry-userInquiry-sendBtn"></div>
                     </div>
                 </div>
             </div>
@@ -217,26 +232,146 @@
 </section>
 </body>
 <script>
-    var socket;
-    var stompClient;
+    const ChattingRoomList = document.querySelector('.screens-inquiry-userInquiry__inquiryList__body__content');
+    const ChattingRoom = document.querySelector('.screens-inquiry-userInquiry__inquiryList__body__content__chattingRoom');
+    const copiedChattingRoom = ChattingRoom.cloneNode(true);
 
-    function connect() {
-        // 브라우저와 서버 간의 핸드쉐이크, 이 때부터 socket 통신도 가능
-        socket = new SockJS("/endpoint");
-        // webSocket을 다루는데 stomp로 다루겠다!
-        stompClient = Stomp.over(socket);
-        stompClient.connect({}, function (frame) {
-            console.log("Connected: " + frame);
-            stompClient.subscribe('subscribe/inquiry/' + chatting_room_id, function (chatMessage) {
-                var Dto = JSON.parse(chatting)
+    const ChattingMessageList = document.querySelector('.screens-inquiry-userInquiry__inquiryMessage__body__content__messageList');
+    const ChattingMessage = document.querySelector('.screens-inquiry-userInquiry__inquiryMessage__body__content__message');
+    const copiedChattingMessage = ChattingMessage.cloneNode(true);
+
+    const inputText = document.querySelector('.screens-inquiry-userInquiry-sendText');
+    const inputBtn = document.querySelector('.screens-inquiry-userInquiry-sendBtn');
+
+    let socket;
+    let stompClient;
+    let chatting_room_id;
+
+
+    window.onload = function () {
+        firstPageAjax();
+    };
+
+    function emptyChattingRoomList() {
+        if (ChattingRoomList) {
+            while (ChattingRoomList.firstChild) {
+                ChattingRoomList.removeChild(ChattingRoomList.firstChild);
+            }
+        }
+    }
+
+    function emptyChattingMessageList() {
+        if (ChattingMessageList) {
+            while (ChattingMessageList.firstChild) {
+                ChattingMessageList.removeChild(ChattingMessageList.firstChild);
+            }
+        }
+    }
+
+    function fillChattingRoomList(list) {
+        list.forEach(function (component) {
+            const cloneElement = copiedChattingRoom.cloneNode(true);
+            cloneElement.querySelector('.screens-inquiry-userInquiry__inquiryList__body__content__chattingRoom > div:nth-of-type(2) > div:nth-of-type(2) > p').textContent = component.m_chatting_ctt;
+            cloneElement.querySelector('.screens-inquiry-userInquiry__inquiryList__body__content__chattingRoom > div:nth-of-type(2) > div:nth-of-type(3) > p').textContent = component.m_created_at;
+            cloneElement.addEventListener("click", function () {
+                clickChattingRoomAjax(component.r_chatting_room_id);
             })
+            cloneElement.addEventListener("mouseover", function () {
+                cloneElement.style.backgroundColor = "black";
+            })
+            cloneElement.addEventListener("mouseout", function () {
+                cloneElement.style.backgroundColor = ""; // 빈 문자열로 설정하여 원래 색상으로 복원
+            });
+            ChattingRoomList.appendChild(cloneElement);
+        })
+    }
+
+    function fillChattingMessageList(list) {
+        list.forEach(function (component) {
+            const cloneElement = copiedChattingMessage.cloneNode(true);
+            console.log(cloneElement);
+            cloneElement.querySelector('.screens-inquiry-userInquiry__inquiryMessage__body__content__message-right > div:nth-of-type(1) > p').textContent = component.writer_id;
+            cloneElement.querySelector('.screens-inquiry-userInquiry__inquiryMessage__body__content__message-right > div:nth-of-type(2) > p').textContent = component.chatting_ctt;
+            cloneElement.querySelector('.screens-inquiry-userInquiry__inquiryMessage__body__content__message-right > div:nth-of-type(3) > p').textContent = component.created_at;
+            ChattingMessageList.appendChild(cloneElement);
+        })
+    }
+
+    function clickChattingRoomAjax(r_chatting_room_id) {
+        $.ajax({
+            type: 'get',
+            url: "/user/myPage/inquiry/" + r_chatting_room_id,
+            data: {},
+            success: function (result) {
+                console.log("123");
+                emptyChattingMessageList();
+                console.log("456");
+                fillChattingMessageList(result);
+                console.log("4");
+                chatting_room_id = r_chatting_room_id
+                console.log("clickChattingRoomAjax() 성공");
+            },
+            error: function () {
+                console.log("clickChattingRoomAjax() 실패");
+            }
         })
 
     }
 
+    function firstPageAjax() {
+        $.ajax({
+            type: 'post',
+            url: "/user/myPage/inquiry",
+            data: {},
+            success: function (result) {
+                emptyChattingRoomList();
+                emptyChattingMessageList();
+                fillChattingRoomList(result);
+            },
+            error: function () {
+                console.log("firstPageAjax() 실패");
+            }
+        })
+    }
 
-    $(function () {
+    inputBtn.addEventListener('click', function () {
+        // send 함수
+        // 첫번째 인자는 어디로 보낼지를 적는다.
+        // 두번째 인자는 서버로 보낼 때 추가하고 싶은 stomp헤더이다. 여러개 쓸 수 있는듯?
+        // 세번째 인자는 보내고 싶은 body
+        console.log("123111");
+        stompClient.send('/app/inquiry/' + chatting_room_id, {}, JSON.stringify(inputText.value));
     })
 
+    $(function () {
+        function connect() {
+            // 브라우저와 서버 간의 핸드쉐이크, 이 때부터 socket 통신도 가능
+            socket = new SockJS("/endpoint");
+            // webSocket을 다루는데 stomp로 다루겠다!
+            stompClient = Stomp.over(socket);
+
+
+            stompClient.connect({}, function (frame) {
+                console.log("Connected: " + frame);
+                stompClient.subscribe('subscribe/inquiry/' + chatting_room_id, function (receivedData) {
+                    console.log(receivedData);
+                    // var Dto = JSON.parse(chatting)
+                })
+            })
+
+        }
+    })
+
+    function stompDisconnect() {
+        if (stompClient != null) {
+            stompClient.disconnect();
+        }
+    }
+
+    // function pressEnter(event) {
+    //     if (event.key === 'Enter') {
+    //         sendmsg();
+    //     }
+    // }
 </script>
 </html>

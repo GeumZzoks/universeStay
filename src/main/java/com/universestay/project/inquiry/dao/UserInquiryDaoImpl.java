@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class UserInquiryDaoImpl implements UserInquiryDao {
@@ -18,6 +19,16 @@ public class UserInquiryDaoImpl implements UserInquiryDao {
     @Override
     public InquiryChattingRoomDto selectChattingRoom(String chatting_room_id) throws Exception {
         return session.selectOne(namespace + "selectChattingRoom", chatting_room_id);
+    }
+
+    @Override
+    public List<Map<String, Object>> selectSimpleChattingRoomList(String user_id) throws Exception {
+        return session.selectList(namespace + "selectSimpleChattingRoomList", user_id);
+    }
+
+    @Override
+    public String selectUserIdCheck(String chatting_room_id) throws Exception {
+        return session.selectOne(namespace + "selectUserIdCheck", chatting_room_id);
     }
 
     @Override

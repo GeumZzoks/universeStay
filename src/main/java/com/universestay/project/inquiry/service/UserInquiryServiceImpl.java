@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserInquiryServiceImpl implements UserInquiryService {
@@ -22,6 +23,16 @@ public class UserInquiryServiceImpl implements UserInquiryService {
     @Override
     public List<InquiryChattingRoomDto> getChattingRoomList(String user_id) throws Exception {
         return userInquiryDao.selectChattingRoomList(user_id);
+    }
+
+    @Override
+    public List<Map<String, Object>> getSimpleChattingRoomList(String user_id) throws Exception {
+        return userInquiryDao.selectSimpleChattingRoomList(user_id);
+    }
+
+    @Override
+    public String getUserId(String chatting_room_id) throws Exception {
+        return userInquiryDao.selectUserIdCheck(chatting_room_id);
     }
 
     @Override

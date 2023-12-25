@@ -15,6 +15,20 @@
         order by updated_at desc
     </select>
 
+    <select id="selectSimpleChattingRoomList" resultType="map">
+        select r.chatting_room_id r_chatting_room_id, m.chatting_ctt m_chatting_ctt, m.created_at m_created_at
+        from InquiryChattingRoom r,
+             InquiryChattingMessage m
+        where r.user_id = #{user_id} and (r.chatting_room_id, m.chatting_message_id)
+            in (select chatting_room_id, max(chatting_message_id) max_id
+                from InquiryChattingMessage
+                group by chatting_room_id);
+    </select>
+    
+    <select id="selectUserIdCheck" resultType="String">
+        select user_id from InquiryChattingRoom where chatting_room_id = #{chatting_room_id}
+    </select>
+
     <insert id="insertChattingRoom" parameterType="InquiryChattingRoomDto">
         insert into InquiryChattingRoom (chatting_room_id, user_id, admin_id, status_id, created_at, created_id,
                                          updated_at, updated_id)
@@ -42,7 +56,7 @@
     </select>
 
     <select id="selectChattingMessageList" resultType="InquiryChattingMessageDto">
-        select * from InquiryChattingMessage where chatting_room_id = #{chatting_room_id} order by desc
+        select * from InquiryChattingMessage where chatting_room_id = #{chatting_room_id} order by chatting_message_id desc
     </select>
 
     <insert id="insertChattingMessage" parameterType="InquiryChattingMessageDto">

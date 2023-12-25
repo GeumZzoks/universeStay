@@ -5,32 +5,48 @@
 <mapper namespace="com.universestay.project.resources.mybatis.mapper.inquiry.AdminInquiryMapper">
 
     <select id="selectChattingRoom" resultType="InquiryChattingRoomDto">
-        select * from InquiryChattingRoom where chatting_room_id = #{chatting_room_id}
+        select *
+        from InquiryChattingRoom
+        where chatting_room_id = #{chatting_room_id}
     </select>
 
 
     <select id="selectChattingRoomList" resultType="InquiryChattingRoomDto">
-        select * from InquiryChattingRoom where admin_id = #{admin_id} order by updated_at desc
+        select *
+        from InquiryChattingRoom
+        where admin_id = #{admin_id}
+        order by updated_at desc
     </select>
 
     <update id="updateChattingRoomAdminId" parameterType="InquiryChattingRoomDto">
-        update InquiryChattingRoom set admin_id = #{admin_id}, status_id = 'I02' where chatting_room_id = #{chatting_room_id}
+        update InquiryChattingRoom
+        set admin_id  = #{admin_id},
+            status_id = 'I02'
+        where chatting_room_id = #{chatting_room_id}
     </update>
 
     <update id="updateChattingRoomUpdatedAt">
-        update InquiryChattingRoom set updated_at = current_timestamp where chatting_room_id = #{chatting_room_id}
+        update InquiryChattingRoom
+        set updated_at = current_timestamp
+        where chatting_room_id = #{chatting_room_id}
     </update>
 
     <delete id="deleteChattingRoom">
-        delete from InquiryChattingRoom where chatting_room_id = #{chatting_room_id}
+        delete
+        from InquiryChattingRoom
+        where chatting_room_id = #{chatting_room_id}
     </delete>
 
     <select id="selectChattingMessage" resultType="InquiryChattingMessageDto">
-        select * from InquiryChattingMessage where chatting_message_id = #{chatting_message_id}
+        select *
+        from InquiryChattingMessage
+        where chatting_message_id = #{chatting_message_id}
     </select>
 
     <select id="selectChattingMessageList" resultType="InquiryChattingMessageDto">
-        select * from InquiryChattingMessage where chatting_room_id = #{chatting_room_id}
+        select *
+        from InquiryChattingMessage
+        where chatting_room_id = #{chatting_room_id}
     </select>
 
     <insert id="insertChattingMessage" parameterType="InquiryChattingMessageDto">
