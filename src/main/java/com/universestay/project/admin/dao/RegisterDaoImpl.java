@@ -22,11 +22,6 @@ public class RegisterDaoImpl implements RegisterDao {
         return session.selectOne(namespace + "select", admin_id);
     }
 
-//    @Override
-//    public AdminDto selectUser(String admin_id) throws CommonException {
-//        return session.selectOne(namespace + "select", admin_id);
-//    }
-
     @Override
     public Integer insertUser(AdminDto adminDto) throws CommonException {
         return session.insert(namespace + "insert", adminDto);
@@ -45,6 +40,16 @@ public class RegisterDaoImpl implements RegisterDao {
     @Override
     public Integer checkUniqueId(String admin_nickname) throws CommonException {
         return session.selectOne(namespace + "checkUniqueId", admin_nickname);
+    }
+
+    @Override
+    public Integer checkUniqueEmail(String admin_email) throws CommonException {
+        return session.selectOne(namespace + "checkUniqueEmail", admin_email);
+    }
+
+    @Override
+    public Integer checkUniquePhoneNumber(String admin_phone_num) throws CommonException {
+        return session.selectOne(namespace + "checkUniquePhoneNumber", admin_phone_num);
     }
 
     @Override

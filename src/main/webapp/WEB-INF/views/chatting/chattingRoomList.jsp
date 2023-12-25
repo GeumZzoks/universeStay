@@ -230,7 +230,7 @@
       }
 
       .screens-chat-chattingRoomPage__chat_list:hover {
-        background-color: #DDDDDD;
+        background-color: #f9B1A7;
         /* 다른 스타일을 추가하거나 변경할 수 있습니다. */
       }
 
@@ -296,9 +296,8 @@
 
                         <c:set var="user_name" value="${chatRoom.user_name}"/>
                         <c:set var="chat_ctt" value="${chatRoom.chat_ctt}"/>
-                        <fmt:formatDate value="${chatRoom.chat_date}"
-                                        pattern="yyyy.MM.dd HH:mm"
-                                        var="chat_date"/>
+                        <c:set value="${chatRoom.chat_date}"
+                               var="chat_date"/>
                         <c:set var="profile_img" value="${chatRoom.profile_img_url}"/>
                         <c:set var="chat_room_id" value="${chatRoom.chatting_room_id}"/>
                         <form id="chatForm" action="/enter/chattingRoomList/${chat_room_id}"

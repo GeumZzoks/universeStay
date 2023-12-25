@@ -576,7 +576,7 @@
 .screens-room-roomDetail__review {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: flex-start;
   width: 41.6667%;
   margin-right: 8.33333%;
@@ -767,7 +767,7 @@
 
 .reviewModal__content {
   background-color: white;
-  width: 70%;
+  width: 35%;
   height: 88%;
   position: relative;
   top: 0px;
@@ -780,7 +780,7 @@
 }
 
 .reviewModal__content__reviewandstar {
-  padding-top: 32px;
+  padding-top: 7px;
   display: flex;
   flex-direction: row;
   justify-content: center;

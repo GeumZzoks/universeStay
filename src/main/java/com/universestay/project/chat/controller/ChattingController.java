@@ -6,6 +6,10 @@ import com.universestay.project.dto.ChattingMessageDto;
 import com.universestay.project.room.service.RoomService;
 import com.universestay.project.user.dao.UserWithdrawalDao;
 import com.universestay.project.user.dto.UserDto;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
@@ -59,6 +63,21 @@ public class ChattingController {
             List<Map<String, Object>> firstList = chatMessageService.selectChatList(
                     chatting_room_id);
 
+            for (int i = 0; i < firstList.size(); i++) {
+                Map<String, Object> chat = firstList.get(i);
+                LocalDateTime chatDateTime = ((Timestamp) chat.get("chat_date")).toLocalDateTime();
+
+                ZoneId sourceZone = ZoneId.of("UTC");
+                ZoneId targetZone = ZoneId.of("Asia/Seoul");
+                LocalDateTime adjustedChatDateTime = chatDateTime.atZone(sourceZone)
+                        .withZoneSameInstant(targetZone)
+                        .toLocalDateTime();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                String chat_date = adjustedChatDateTime.format(formatter);
+
+                chat.put("chat_date", chat_date);
+            }
+
             String chat_room_id = chatting_room_id;
             Map<String, Object> room = roomService.lookUpRoom(room_id, user_id);
             UserDto host = userWithdrawalDao.selectUserByUuid(room.get("user_id").toString());
@@ -69,6 +88,26 @@ public class ChattingController {
 
             // 현재 로그인한 id 의 채팅방 목록 조회
             List<Map<String, Object>> chatRoomList = chatRoomService.selectChatRoomList(user_id);
+
+            // 채팅방 목록의 "chat_date" 값을 9시간 더한 값(한국시)으로 변경
+            for (int i = 0; i < chatRoomList.size(); i++) {
+                Map<String, Object> chatRoom = chatRoomList.get(i);
+
+                // Timestamp to String
+                LocalDateTime chatDateTime = ((Timestamp) chatRoom.get(
+                        "chat_date")).toLocalDateTime();
+
+                ZoneId sourceZone = ZoneId.of("UTC");
+                ZoneId targetZone = ZoneId.of("Asia/Seoul");
+                LocalDateTime adjustedChatDateTime = chatDateTime.atZone(sourceZone)
+                        .withZoneSameInstant(targetZone)
+                        .toLocalDateTime();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                String chat_date = adjustedChatDateTime.format(formatter);
+
+                chatRoom.put("chat_date", chat_date);
+            }
+
             // 채팅방 목록을 하나씩 화면에 전달
             model.addAttribute("chatRoomList", chatRoomList);
             model.addAttribute("host", host);

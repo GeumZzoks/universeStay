@@ -1,18 +1,11 @@
 <%@ page import="javax.servlet.http.Cookie" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%String isHost = (String) request.getAttribute("isHost");%>
 <%
-    String user_profile_img_url = "";
-    Cookie[] cookies = request.getCookies();
-    if (cookies != null) {
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("user_profile_img_url")) {
-                user_profile_img_url = cookie.getValue();
-            }
-        }
-    }
+    String isHost = (String) request.getAttribute("isHost");
+    String sessionProfileImgUrl = (String) session.getAttribute("profileImgUrl");
 %>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -124,10 +117,8 @@
                     <span class="components-user-header__header__searchbar__main_txt">총 예산</span>
                     <div class="components-user-header__header__searchbar__sub_txt">
                      <span class="components-user-header__header__searchbar__sub_txt__min">
-                         <%--                         ${param.search_min_price != null ? param.search_min_price : '0'}--%>
                      </span>원 부터
                         <span class="components-user-header__header__searchbar__sub_txt__max">
-                            <%--                            ${param.search_max_price != null ? param.search_max_price : '200,000'}--%>
                         </span>원 까지
                     </div>
 
@@ -171,63 +162,27 @@
     <!--헤더 프로필 영역-->
     <div class="components-user-header__header__profile">
         <div class="components-user-header__header__profile__to-host">
-
-            <%--            <a class="components-user-header__a" href="/room/management">--%>
-            <% if
-            (
-                    "Y"
-                            .
-                            equals
-                                    (
-                                            isHost
-                                    )
+            <% if ("Y".equals(isHost)
             ) { %>
             <div><a class="components-user-header__a" href="/room/management">호스트 모드로 전환</a></div>
-            <% } else if
-            (
-                    "N"
-                            .
-                            equals
-                                    (
-                                            isHost
-                                    )
-                            ||
-                            isHost
-                                    ==
-                                    null
-            ) { %>
-
+            <% } else if ("N".equals(isHost) || isHost == null) { %>
             <div>당신의 공간을 공유하세요.</div>
-            <%--            </a>--%>
             <% } %>
 
         </div>
 
         <div class="components-user-header__header__profile__my-profile components-user-header__dropdown">
             <button class="components-user-header__header__profile__my-profile__btn components-user-header__button">
-                <div components-user-header__header__profile__my-profile__wrapper>
+                <div class="components-user-header__header__profile__my-profile__wrapper">
                     <img class="components-user-header__header__profile__hamburger"
                          src="/resources/img/user/bars-3.png"/>
-                    <img class="components-user-header__header__profile__img"/>
-                    <%--                    <img class="components-user-header__header__profile__img"--%>
-                    <%--                         src="/resources/img/user/default_profile_icon.png"/>--%>
+                    <img class="components-user-header__header__profile__img"
+                         src="<%= sessionProfileImgUrl != null ? sessionProfileImgUrl : "/resources/img/user/default_profile_icon.png" %>"/>
                 </div>
 
                 <%-- 마이프로필 버튼 눌렀을때 나오는 드롭다운--%>
                 <div class="components-user-header__header__profile__option components-user-header__dropdown-div">
-                    <% //세션에 'user_email'이라는 값이 저장되어 있으면? (즉, 로그인 상태면) 아래 드롭다운을 보여준다.
-                        if
-                        (
-                                session
-                                        .
-                                        getAttribute
-                                                (
-                                                        "user_email"
-                                                )
-                                        !=
-                                        null
-                        ) {
-                    %>
+                    <%if (session.getAttribute("user_email") != null) {%>
                     <div onclick="location.href='/chatting/chattingRoomList'"
                          class="components-user-header__dropdown__option dropdown__option-msg">
                         <span>메시지</span>
@@ -238,8 +193,8 @@
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-wishlist"
                          onclick="location.href ='/user/myPage/wishLists'">
                         <span>위시리스트</span></div>
-                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-reviews">
-                        <span>나의 리뷰</span></div>
+                    <%--                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-reviews">--%>
+                    <%--                        <span>나의 리뷰</span></div>--%>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-coupon"
                          onclick="location.href='/user/myPage/coupon'">
                         <span>나의 쿠폰</span></div>
@@ -255,10 +210,7 @@
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-log-out"
                          onclick="location.href ='/user/userLogout'">
                         <span>로그아웃</span></div>
-                    <%
-                    } else  //세션에 'user_email'이라는 값이 저장되어 있지 않으면(즉, 로그아웃 상태면) 아래 드롭다운을 보여준다.
-                    {
-                    %>
+                    <%} else {%>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-sign-up">
                         <span>회원가입</span></div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-sign-in">
@@ -320,20 +272,6 @@
                                     'YYYY/MM/DD'));
                 });
     });
-
-    const userProfileUrl = "<%=user_profile_img_url%>";
-    const profileImg = document.querySelector(".components-user-header__header__profile__img");
-
-    window.onload = () => {
-        if (userProfileUrl == "" || userProfileUrl
-                == null) {
-            profileImg.src = "/resources/img/user/default_profile_icon.png"
-        } else {
-            profileImg.src = userProfileUrl;
-        }
-
-    }
-
 </script>
 
 

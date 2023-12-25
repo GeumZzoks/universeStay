@@ -2,6 +2,16 @@
 const submitButton = document.getElementById("submit-button");
 submitButton.onclick = function () {
 
+    document.querySelector(
+            ".screens-room-bookshare__submit--button").innerHTML = `<div class="screens-room-bookShare__loading">
+                            <div class="screens-room-bookShare__loading-container">
+                                <span></span>   <!--1. span은 하나의 원이다. -->
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>`
+
     const emailsElement = document.querySelectorAll(
             ".screens-room-bookShare__write-email-box--email");
 
@@ -49,7 +59,6 @@ submitButton.onclick = function () {
         data: JSON.stringify(sendEmailBookInfoDto),
         success: function (res) {
             console.log(res);
-            alert("메일 전송중입니다. 최대 1분이 소요될 수 있습니다.");
             location.href = "/user/myPage/mybookings";
         },
         error: function (res) {

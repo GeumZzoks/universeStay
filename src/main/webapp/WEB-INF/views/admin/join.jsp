@@ -65,7 +65,8 @@
                 <span class="screens-admin-register_signup_input"
                       style="width:100%; margin: 10px 0px 0px 0px">
                     <input id="screens-admin-register_signup_email" type="text" class="form-control"
-                           placeholder="이메일 입력"></input>
+                           required
+                           placeholder="이메일 입력">
                 </span>
                 <span class="screens-admin-register_mail_Check_Btn_wrap">
                     <input type="button" class="btn btn-primary"
@@ -81,6 +82,8 @@
                            placeholder="인증번호 입력"></input>
                 </span>
             </div>
+            <span class="screens-admin-register_helper_text_span"
+                  id="email_input_helper_text"></span>
         </div>
 
         <div style="margin-top: 35px;">
@@ -89,6 +92,8 @@
                     <input id="screens-admin-register_signup_phone_1" type="text"
                            placeholder="전화번호 입력"/>
             </span>
+            <span class="screens-admin-register_helper_text_span"
+                  id="phone_input_helper_text"></span>
         </div>
 
         <div>
@@ -114,45 +119,36 @@
 <script src="/resources/js/admin/register.js"></script>
 
 <script>
-  // 이메일 인증
-  $('#screens-admin-register_mail_Check_Btn').click(function () {
-    const email = $('#screens-admin-register_signup_email').val(); // 이메일 주소값 얻어오기!
-    const checkInput = $('#screens-admin-register_code_check_input') // 인증번호 입력하는곳
+    /**
+     * 이메일 인증번호 보내기
+     */
+    document.querySelector("#screens-admin-register_mail_Check_Btn").addEventListener("click",
+            function () {
 
-    $.ajax({
-      type: 'GET',
-      url: '<c:url value ="/admin/register/mailCheck?email="/>' + email,
-      success: function (data) {
-        console.log(data);
-        checkInput.attr('disabled', false);
-        code = data;
-        alert('인증번호가 전송되었습니다.');
-      },
-      error: function (xhr, status, error) {
-        console.error("Ajax 요청 실패:", status, error);
-        console.log(xhr.responseText);
-      }
-    });
-  });
+                const email = document.getElementById("screens-admin-register_signup_email").value; // 이메일 주소값 얻어오기!
 
-  // 만약 Oauth로 회원가입을 들어오면 email, pwd 입력란 value 채우고 hidden으로 바꾼다.
-  if ("${userEmail}" != null && "${userEmail}" != "") {
-    $('#signup_pw')
-    .attr('value', '${userPwd}');
-    $('#signup_pww')
-    .attr('value', '${userPwd}');
-    $('#signup_email')
-    .attr('value', '${userEmail}');
+                if (email === '') {
+                    alert("메일을 입력해주세요!");
+                    return;
+                }
 
-    $('.signup_pwd_wrapper')
-    .hide();
-    $('.signup_email_wrapper')
-    .hide();
-  }
-
+                $.ajax({
+                    type: 'post',
+                    url: `/admin/register/mailCheck`,
+                    data: {
+                        email,
+                    },
+                    success: function (res) {
+                        alert('인증번호가 전송되었습니다.');
+                        console.log(res);
+                    },
+                    error: function (res) {
+                        alert("잘못된 요청입니다.");
+                        console.log(res);
+                    }
+                });
+            });
 
 </script>
-
 </body>
-
 </html>

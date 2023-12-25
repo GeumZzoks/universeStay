@@ -61,4 +61,17 @@
         Where booking_id = #{booking_id}
     </update>
 
+    <update id="updateBookingStatus">
+        UPDATE Booking b
+            LEFT JOIN Payment p
+        On b.booking_id = p.booking_id
+            SET b.status_id = 'B05'
+        <![CDATA[
+        WHERE b.booking_checkout_date
+            < CURDATE()
+        ]]>
+        AND b.status_id = 'B02'
+          AND p.payment_is_approved = 'Y';
+    </update>
+
 </mapper>
