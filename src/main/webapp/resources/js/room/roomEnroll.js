@@ -75,6 +75,10 @@ function sample5_execDaumPostcode() {
           marker.setPosition(coords)
         }
       });
+      // 이벤트를 발생시킨다.
+      const inputEvent = new Event('input', {bubbles: true});
+      document.querySelector(
+          '.screens-room-roomEnroll__address-main').dispatchEvent(inputEvent);
     }
   }).open();
 }
