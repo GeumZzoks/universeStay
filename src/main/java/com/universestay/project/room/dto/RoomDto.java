@@ -34,9 +34,11 @@ public class RoomDto {
     @ApiModelProperty(notes = "숙소 상태", example = "R01", required = true)
     private String room_status_id;
 
+    @NotBlank
     @ApiModelProperty(notes = "숙소 이름", example = "남산레지던스", required = true)
     private String room_name;
 
+    @NotBlank
     @ApiModelProperty(notes = "숙소 주소", example = "0", required = true)
     private String room_address;
 

@@ -86,7 +86,7 @@ public class RoomController {
             String profileImgUrl = profileImgService.getProfileImgUrl((String) room.get("user_id"));
             List<BookingDto> bookingDtos = bookDao.selectUnavailableDates(room_id);
             int roomReviewCount = roomReviewService.getRoomReviewCount(room_id);
-            double roomReviewAvg = roomReviewService.getRoomReviewAvg(room_id);
+            Double roomReviewAvg = roomReviewService.getRoomReviewAvg(room_id);
             List<Map<String, Object>> reviewList = roomReviewService.getRoomReviewSix(room_id);
 
             if (room == null) {
@@ -164,8 +164,15 @@ public class RoomController {
     }
 
     @GetMapping("/enroll")
-    public String enrollRoom() {
-        return "/room/roomEnroll";
+    public String enrollRoom(HttpSession session, Model model) {
+        try {
+            getInfoForRoomManagementHeader(session, model);
+
+            return "/room/roomEnroll";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "redirect:/";
+        }
     }
 
     @PostMapping("/enroll")
@@ -173,6 +180,9 @@ public class RoomController {
             RoomAmenityDto roomAmenityDto, Integer room_view,
             HttpSession session, RedirectAttributes redirectAttributes, Model model) {
         try {
+            getInfoForRoomManagementHeader(session, model);
+            System.out.println("roomDto.getRoom_address() = " + roomDto.getRoom_address());
+
             if (bindingResult.hasErrors()) {
                 List<ObjectError> allErrors = bindingResult.getAllErrors();
                 for (ObjectError allError : allErrors) {
@@ -196,22 +206,8 @@ public class RoomController {
 
                 String roomCategoryName = map.get(roomDto.getRoom_category_id());
                 model.addAttribute("roomCategoryName", roomCategoryName);
-
-                // 수정하기 위해 룸뷰 테이블도 조회해온다.
-//                List<RoomViewDto> roomViewDtoList = roomViewDao.selectRoomView(room_id);
-
-//                model.addAttribute("roomViewDtoList", roomViewDtoList);
-
-                String loginedUserEmail = (String) session.getAttribute("user_email");
-
-                // 헤더에 프로필이미지/토글 불러오기 위해 필요한 코드 => managementController와 중복되는 코드
-                UserDto userDto = userLoginService.checkSignUp(loginedUserEmail);
-                String userId = userDto.getUser_id();
-                String profileImgUrl = profileImgService.getProfileImgUrl(userDto.getUser_id());
-                String isHost = userDto.getUser_is_host();
-                model.addAttribute("userInfo", userDto);
-                model.addAttribute("profileImgUrl", profileImgUrl);
-                model.addAttribute("isHost", isHost);
+                model.addAttribute("room_view", room_view);
+                model.addAttribute("allErrors", allErrors);
 
                 return "room/roomReEnroll";
             }
@@ -227,18 +223,36 @@ public class RoomController {
     }
 
     @GetMapping("/photoEnroll")
-    public String enrollRoomPhoto(String room_id, Model model) {
-        model.addAttribute("room_id", room_id);
-        return "/room/roomPhotoEnroll";
+    public String enrollRoomPhoto(HttpSession session, String room_id, Model model) {
+        try {
+            getInfoForRoomManagementHeader(session, model);
+            model.addAttribute("room_id", room_id);
+
+            return "/room/roomPhotoEnroll";
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            return "redirect:/";
+        }
+    }
+
+    private void getInfoForRoomManagementHeader(HttpSession session, Model model) throws Exception {
+        String loginedUserEmail = (String) session.getAttribute("user_email");
+
+        // 헤더에 프로필이미지/토글 불러오기 위해 필요한 코드 => managementController와 중복되는 코드
+        UserDto userDto = userLoginService.checkSignUp(loginedUserEmail);
+        String userId = userDto.getUser_id();
+        String profileImgUrl = profileImgService.getProfileImgUrl(userDto.getUser_id());
+        String isHost = userDto.getUser_is_host();
+        model.addAttribute("userInfo", userDto);
+        model.addAttribute("profileImgUrl", profileImgUrl);
+        model.addAttribute("isHost", isHost);
     }
 
     @PostMapping("/photoEnroll")
     public String enrollRoomPhoto(RoomPhotoDto roomPhotoDto, String room_id, HttpSession session) {
         try {
             String host_id = (String) session.getAttribute("user_id");
-            System.out.println("host_id = " + host_id);
-            System.out.println("roomPhotoDto = " + roomPhotoDto);
-            System.out.println("room_id = " + room_id);
             roomService.enrollPhoto(roomPhotoDto, room_id, host_id);
         } catch (Exception e) {
             e.printStackTrace();
