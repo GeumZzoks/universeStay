@@ -38,6 +38,20 @@
             right: 20px;
         }
 
+        .screen-admin-userList__container__search-bar button {
+            background-color: indianred;
+            color: white;
+            border: 0;
+            border-radius: 2px;
+            height: 24px;
+        }
+
+        .screen-admin-userList__container__search-bar button:hover {
+            cursor: pointer;
+            transform: scale(1.02, 1.02);
+            transition-duration: 100ms;
+        }
+
         .screen-admin-userList__container__list {
             box-sizing: border-box;
         }
@@ -78,41 +92,41 @@
         }
 
         .screen-admin-userList__container__table > tbody > tr > td:nth-of-type(1) {
-            width: 150px;
+            width: 15%;
             max-width: 150px;
         }
 
         .screen-admin-userList__container__table > tbody > tr > td:nth-of-type(2) {
-            width: 100px;
+            width: 10%;
             max-width: 100px;
         }
 
         .screen-admin-userList__container__table > tbody > tr > td:nth-of-type(3) {
-            width: 250px;
+            width: 25%;
             max-width: 250px;
             text-align: center;
         }
 
         .screen-admin-userList__container__table > tbody > tr > td:nth-of-type(4) {
-            width: 100px;
+            width: 10%;
             max-width: 100px;
             text-align: center;
         }
 
         .screen-admin-userList__container__table > tbody > tr > td:nth-of-type(5) {
-            width: 200px;
+            width: 20%;
             max-width: 200px;
             text-align: center;
         }
 
         .screen-admin-userList__container__table > tbody > tr > td:nth-of-type(6) {
-            width: 100px;
+            width: 15%;
             max-width: 100px;
             text-align: center;
         }
 
         .screen-admin-userList__container__table > tbody > tr > td:nth-of-type(7) {
-            width: 50px;
+            width: 5%;
             max-width: 50px;
             text-align: center;
         }
@@ -130,8 +144,11 @@
         }
 
         .screen-admin-userList__container__page {
-            margin-top: 50px;
-            text-align: center;
+            position: absolute;
+            display: flex;
+            left: 50%;
+            transform: translate(-50%, 0);
+            bottom: 15px;
         }
 
         .screen-admin-userList__container__page a {
@@ -156,8 +173,6 @@
 <jsp:include page="/WEB-INF/views/common/admin/header.jsp" flush="false"/>
 
 <jsp:include page="/WEB-INF/views/common/admin/navigation.jsp" flush="false"/>
-
-<jsp:include page="/WEB-INF/views/common/admin/footer.jsp" flush="false"/>
 
 <article class="screen-admin-userList__container">
     <section class="screen-admin-userList__container__1">
@@ -246,9 +261,10 @@
         </div>
     </section>
 </article>
+<jsp:include page="/WEB-INF/views/common/admin/footer.jsp" flush="false"/>
 <script>
     var colorPage = document.getElementById("pagenum${ph.sc.page}");
-    colorPage.style.backgroundColor = "indianred";
+    colorPage.style.color = "indianred";
 
     if ('${ph.sc.page}' == 1) document.getElementById("prevbtn").href = "";
     if (${ph.sc.page} == ${ph.totalPage}) document.getElementById("nextbtn").href = "";
