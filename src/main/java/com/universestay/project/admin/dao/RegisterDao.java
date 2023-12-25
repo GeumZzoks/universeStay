@@ -23,4 +23,10 @@ public interface RegisterDao {
 
     /* 관리자 닉네임 존재 여부 확인 */
     Integer checkUniqueId(String admin_nickname) throws CommonException;
+
+    /* 관리자 이메일 존재 여부 확인 */
+    Integer checkUniqueEmail(String admin_email) throws CommonException;
+
+    /* 관리자 핸드폰 존재 여부 확인 */
+    Integer checkUniquePhoneNumber(String admin_phone_num) throws CommonException;
 }

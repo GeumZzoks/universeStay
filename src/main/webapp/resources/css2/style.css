@@ -14,7 +14,6 @@
 @import url(components/user/footer.css);
 @import url(components/user/footerNotFix.css);
 @import url(components/user/header.css);
-@import url(components/user/header_price-slider.css);
 @import url(components/user/nav.css);
 
 /* Screens */
@@ -36,6 +35,7 @@
 @import url(screens/user/eventDetail.css);
 @import url(screens/user/eventPage.css);
 @import url(screens/user/myCoupon.css);
+@import url(screens/user/myBookings.css);
 
 @import url(screens/room/roomDetail.css);
 @import url(screens/room/book.css);

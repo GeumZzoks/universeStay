@@ -1,5 +1,6 @@
 package com.universestay.project.common.config;
 
+import com.universestay.project.admin.service.ChangeBookingStatusJob;
 import com.universestay.project.admin.service.ReservationToEmailJob;
 import lombok.RequiredArgsConstructor;
 import org.quartz.JobDetail;
@@ -26,6 +27,13 @@ public class QuartzConfig {
         return jobDetailFactory;
     }
 
+    @Bean
+    public JobDetailFactoryBean changeBookingStatusJob() {
+        JobDetailFactoryBean jobDetailFactory = new JobDetailFactoryBean();
+        jobDetailFactory.setJobClass(ChangeBookingStatusJob.class);
+        return jobDetailFactory;
+    }
+
     @Bean // 작업을 실행할 주기 빈 등록
     public CronTriggerFactoryBean reservationEmailJobTrigger(JobDetail reservationEmailJob) {
         CronTriggerFactoryBean trigger = new CronTriggerFactoryBean();
@@ -34,14 +42,23 @@ public class QuartzConfig {
         return trigger;
     }
 
+    @Bean // 두 번째 작업을 실행할 주기 빈 등록
+    public CronTriggerFactoryBean changeBookingStatusJobTrigger(JobDetail changeBookingStatusJob) {
+        CronTriggerFactoryBean trigger = new CronTriggerFactoryBean();
+        trigger.setJobDetail(changeBookingStatusJob);
+        trigger.setCronExpression("0 0 0 * * ?"); // 매일 자정에 실행
+        return trigger;
+    }
+
     @Bean // 작업과 관련한 스케줄러 생성하는 빈 등록
-    public SchedulerFactoryBean schedulerFactory(Trigger reservationEmailJobTrigger) {
+    public SchedulerFactoryBean schedulerFactory(Trigger reservationEmailJobTrigger,
+            Trigger changeBookingStatusJobTrigger) {
         QuartzJobFactory quartzJobFactory = new QuartzJobFactory();
         quartzJobFactory.setApplicationContext(applicationContext);
 
         SchedulerFactoryBean schedulerFactory = new SchedulerFactoryBean();
         schedulerFactory.setJobFactory(quartzJobFactory);
-        schedulerFactory.setTriggers(reservationEmailJobTrigger);
+        schedulerFactory.setTriggers(reservationEmailJobTrigger, changeBookingStatusJobTrigger);
         return schedulerFactory;
     }
 }

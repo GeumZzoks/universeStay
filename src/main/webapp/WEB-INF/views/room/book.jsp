@@ -62,8 +62,6 @@
                 <div class="screens-room-book__container__div-common">
                     <div class="screens-room-book__container__left-side--info-common">
                         <h3>날짜</h3>
-                        <%--                        <div>12월 30일 ~ 1월 4일</div>--%>
-                        <%-- TODO: timestamp로 바꾸기 --%>
                         <span id="check-in-button">${bookingDto.booking_checkin_date}</span>
                         <span> ~ </span>
                         <span id="check-out-button">${bookingDto.booking_checkout_date}</span>
@@ -96,6 +94,7 @@
                            value="${bookInfo.room_standard_capa}">
                 </div>
 
+                <%-- 인원 수 조정 모달 --%>
                 <div class="screens-room-book__number-people-toggle">
                     <span class="screens-room-book__toggle-part-1">성인</span>
                     <div class="screens-room-book__toggle-part-2">
@@ -316,17 +315,17 @@
 
                             <div>
                                 <div class="screens-room-book__reservation__part-3 screens-room-book__container__right-side__second-box__sub-box">
-                                    <span class="screens-room-book__reservation__part-3__mul">₩ <span>${bookInfo.room_weekday_price}</span> X <span>0</span>박 (주중)</span>
+                                    <span class="screens-room-book__reservation__part-3__mul">₩ <span>${bookInfo.room_weekday_price}</span> X <span>${weekdayCount}</span>박 (주중)</span>
                                     <span>₩ ${weekdayPrice}</span>
                                     <input type="hidden" value="${bookInfo.room_weekday_price}">
                                 </div>
                                 <div class="screens-room-book__reservation__part-4 screens-room-book__container__right-side__second-box__sub-box">
-                                    <span class="screens-room-book__reservation__part-4__mul">₩ <span>${bookInfo.room_weekend_price}</span> X <span>0</span>박 (주말)</span>
+                                    <span class="screens-room-book__reservation__part-4__mul">₩ <span>${bookInfo.room_weekend_price}</span> X <span>${weekendCount}</span>박 (주말)</span>
                                     <span>₩ ${weekendPrice}</span>
                                     <input type="hidden" value="${bookInfo.room_weekend_price}">
                                 </div>
                                 <div class="screens-room-book__reservation__part-5 screens-room-book__container__right-side__second-box__sub-box">
-                                    <span class="screens-room-book__reservation__part-5__mul">₩ <span>${bookInfo.room_extra_person_fee}</span> X <span>0</span>명 (추가인원) X <span>0</span>박 </span>
+                                    <span class="screens-room-book__reservation__part-5__mul">₩ <span>${bookInfo.room_extra_person_fee}</span> X <span>${extraPersonCount}</span>명 (추가인원) X <span>${totalDay}</span>박 </span>
                                     <span>₩ ${extraPersonFee}</span>
                                     <input type="hidden" value="${bookInfo.room_extra_person_fee}">
                                 </div>

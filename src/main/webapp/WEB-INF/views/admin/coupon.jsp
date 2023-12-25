@@ -30,17 +30,17 @@
             <form action="/admin/coupon/input" method="POST">
                 <div class="screens-admin-coupon__content-input-div">
                     <h3>이벤트 번호</h3>
-                    <input type="number" name="event_id" placeholder="미진행시 공백">
+                    <input type="number" name="event_id" placeholder="미진행시 0" required>
                     <h3>쿠폰이름</h3>
-                    <input type="text" name="coupon_name" placeholder="쿠폰 이름을 입력해주세요.">
+                    <input type="text" name="coupon_name" placeholder="쿠폰 이름을 입력해주세요." required>
                     <h3>쿠폰설명</h3>
-                    <textarea name="coupon_desc" rows="3" placeholder="쿠폰 설명을 입력해주세요."></textarea>
+                    <textarea name="coupon_desc" rows="3" placeholder="쿠폰 설명을 입력해주세요." required></textarea>
                 </div>
                 <div class="screens-admin-coupon__content-input-div" style="left: 350px;">
                     <h3>발행사유</h3>
-                    <textarea name="coupon_usage" rows="3" placeholder="발행 사유를 입력해주세요."></textarea>
+                    <textarea name="coupon_usage" rows="3" placeholder="발행 사유를 입력해주세요." required></textarea>
                     <h3>사용가능일수</h3>
-                    <input type="number" name="coupon_usable_day" placeholder="일">
+                    <input type="number" name="coupon_usable_day" placeholder="일" required>
                     <h3 style="position: absolute; top: 78px; right: 60px;">프로모션 진행 여부</h3>
                     <select name="coupon_is_activated" style="position: absolute; top: 113px; right: 98px">
                         <option value="N">발급중지</option>
@@ -54,9 +54,9 @@
                         <option value="정률할인">정률할인</option>
                     </select>
                     <h3>혜택(원/%)</h3>
-                    <input type="number" name="coupon_discount_amount" id="inputType" placeholder="원 or %">
+                    <input type="number" name="coupon_discount_amount" id="inputType" placeholder="원 or %" required>
                     <h3>사용제한금액</h3>
-                    <input type="number" name="coupon_discount_limit" placeholder="최소 or 최대금액">
+                    <input type="number" name="coupon_discount_limit" placeholder="최소 or 최대금액" required>
                 </div>
                 <button type="submit" id="screens-admin-coupon__content-input-div__submit">등록</button>
             </form>

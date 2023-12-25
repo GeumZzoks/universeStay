@@ -36,7 +36,7 @@
         <form id="removeForm" action="/admin/notice/remove" method="post">
             <input type="hidden" name="notice_id" value="${noticeDto.notice_id}">
             <button type="button" id="removeBtn" class="screens-admin-event__content-top__btn"
-                    style="right: 20px">
+                    style="right: 48px">
                 삭제
             </button>
         </form>

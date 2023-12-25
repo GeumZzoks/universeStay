@@ -28,6 +28,9 @@ public class AdminDto {
     @ApiModelProperty(notes = "관리자 비밀번호", example = "12341234aA!", required = true)
     private String admin_pwd;
 
+    @ApiModelProperty(notes = "관리자 비밀번호", example = "12341234aA!", required = true)
+    private String admin_pwd2;
+
     @ApiModelProperty(notes = "전화번호", example = "010-3135-9103", required = true)
     private String admin_phone_num;
 

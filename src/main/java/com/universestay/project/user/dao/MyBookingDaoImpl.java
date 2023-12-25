@@ -25,4 +25,13 @@ public class MyBookingDaoImpl implements MyBookingDao {
         return session.insert(namespace + "insertReview", dto);
     }
 
+    @Override
+    public int updateReviewStatus(String booking_id) throws Exception {
+        return session.update(namespace + "updateReviewStatus", booking_id);
+    }
+
+    @Override
+    public int updateBookingStatus() throws Exception {
+        return session.update(namespace + "updateBookingStatus");
+    }
 }

@@ -16,7 +16,7 @@ public class CouponDto {
     @ApiModelProperty(notes = "쿠폰 ID", example = "0", required = true)
     private int coupon_id;
 
-    @ApiModelProperty(notes = "이벤트 ID", example = "1", required = false)
+    @ApiModelProperty(notes = "이벤트 ID", example = "1", required = true)
     private int event_id;
 
     @ApiModelProperty(notes = "쿠폰 생성일", example = "YYYY-MM-DD hh:mm:ss.000000", required = false)

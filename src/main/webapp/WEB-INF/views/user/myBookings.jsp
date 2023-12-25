@@ -14,14 +14,14 @@
     <script src="/resources/js/common/aboutTimestamp.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
     <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
-    <link rel="stylesheet" href="/resources/css2/screens/user/myBookings.css">
 </head>
 <body class="screens-room-myBookings__body">
+<jsp:include page="/WEB-INF/views/common/user/header.jsp"/>
 <div class="screens-room-myBookings__modalContainer">
     <div class="screens-room-myBookings__modalContent">
         <form action="<c:url value='/user/myPage/mybookings/writereview'/>" method="post"
               class="screens-room-myBookings__modalContent__form">
-            <div>별점을 선택해주세요</div>
+            <div class="screens-room-myBookings__modalContent__title">별점을 선택하고 리뷰를 작성해주세요.</div>
             <div class="screens-room-myBookings__modalContent__starBox">
                 <ul style="margin-left: 50px; margin-right: 50px;">
                     <li class="screens-room-myBookings__modalContent__star screens-room-myBookings__modalContent__leftStar"
@@ -48,15 +48,21 @@
             </div>
             <input type="hidden" name="review_stars">
             <input type="hidden" name="room_id">
-            <input type="text" name="review_ctt" placeholder="내용을 작성해주세요...">
-            <button type="submit ">등록</button>
-            <button type="button" onclick="cancelInsertReview()">취소</button>
+            <input type="hidden" name="booking_id">
+            <textarea type="text" name="review_ctt"
+                      placeholder="유니버스스테이에서의 숙박 경험을 공유해주세요:)"></textarea>
+            <div class="screens-room-myBookings__modalContent__button-box">
+                <button type="submit"
+                        class="screens-room-myBookings__button screens-room-myBookings__write-review-button">
+                    등록
+                </button>
+                <button type="button" class="screens-room-myBookings__button"
+                        onclick="cancelInsertReview()">취소
+                </button>
+            </div>
         </form>
     </div>
 </div>
-
-
-<jsp:include page="/WEB-INF/views/common/user/header.jsp"/>
 
 
 <section class="screens-room-myBookings">
@@ -152,7 +158,9 @@
                 <div class="screens-room-myBookings__completed-reservation__wrapper">
                     <c:forEach var="dto" items="${list2}" varStatus="status">
                         <div class="screens-room-myBookings__completed-reservation__div">
-
+                            <div class="screens-room-myBookings__completed-reservation-hiddenValue"
+                                 hidden
+                                 data-value="${dto.booking_id}"></div>
                             <div class="screens-room-myBookings__completed-reservation__main-photo__wrapper">
                                 <img class="screens-room-myBookings__completed-reservation__main-photo"
                                      src="${dto.room_main_photo}">
@@ -165,9 +173,20 @@
                                 <div class="screens-room-myBookings__comming-gray-font">여행
                                     날짜: ${dto.booking_checkin_date}
                                     ~ ${dto.booking_checkout_date}</div>
-                                <button class="screens-room-myBookings__button screens-room-myBookings__reviewWriteBtn screens-room-myBookings__reviewWriteBtn-${dto.booking_id}"
-                                        value="${dto.room_id}"> 리뷰쓰기
-                                </button>
+                                <c:choose>
+                                    <c:when test="${dto.is_user_review eq 'Y'}">
+                                        <button class="screens-room-myBookings__button screens-room-myBookings__reviewWriteBtn screens-room-myBookings__reviewWriteBtn-${dto.booking_id}"
+                                                disabled
+                                                style="background-color: #DDDDDD;">리뷰 완료
+                                        </button>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <button class="screens-room-myBookings__button screens-room-myBookings__reviewWriteBtn screens-room-myBookings__reviewWriteBtn-${dto.booking_id}"
+                                                data-room-id="${dto.room_id}"
+                                                data-booking-id="${dto.booking_id}">리뷰쓰기
+                                        </button>
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
 
                         </div>
@@ -184,6 +203,7 @@
 <%--<jsp:include page="/WEB-INF/views/common/user/footer.jsp"/>--%>
 <script>
     let room_id2 = null;
+    let booking_id2 = null;
     let review_stars2 = 0;
     let rating = 'null';
 
@@ -211,7 +231,7 @@
                 star2.style.backgroundImage = "url('/resources/img/user/star-white.svg')";
             });
             for (let i = 0; i < star.getAttribute('data-index'); i++) {
-                stars[i].style.backgroundImage = "url('/resources/img/user/star-yellow.svg')";
+                stars[i].style.backgroundImage = "url('/resources/img/user/star-pink.svg')";
             }
         });
     });
@@ -221,13 +241,14 @@
             star.style.backgroundImage = "url('/resources/img/user/star-white.svg')";
         });
         for (let i = 0; i < rating * 2; i++) {
-            stars[i].style.backgroundImage = "url('/resources/img/user/star-yellow.svg')";
+            stars[i].style.backgroundImage = "url('/resources/img/user/star-pink.svg')";
         }
     });
 
     reviewWriteBtn.forEach(function (btn) {
         btn.addEventListener('click', function () {
-            room_id2 = $(this).val();
+            room_id2 = $(this).data('roomId');
+            booking_id2 = $(this).data('bookingId')
             modalContainer.style.display = 'flex';
         });
     });
@@ -236,25 +257,36 @@
         if (event.key === 'Escape') {
             modalContainer.style.display = 'none';
             room_id2 = null;
+            booking_id2 = null;
             review_stars2 = null;
             rating = 'null';
-            $(`input[name="review_ctt"]`).val(null);
+            $(`textarea[name="review_ctt"]`).val(null);
         }
     });
 
     function cancelInsertReview() {
         modalContainer.style.display = 'none';
         room_id2 = null;
+        booking_id2 = null;
         review_stars2 = null;
         rating = 'null';
-        $(`input[name="review_ctt"]`).val(null);
+        $(`textarea[name="review_ctt"]`).val(null);
     }
 
     $(".screens-room-myBookings__modalContent__form").submit(function (event) {
         event.preventDefault();
         $(`input[name="review_stars"]`).val(rating);
         $(`input[name="room_id"]`).val(room_id2);
-        this.submit();
+        $(`input[name="booking_id"]`).val(booking_id2);
+        console.log("room_id : " + room_id2);
+        console.log("booking_id : " + booking_id2);
+
+        if ((!rating) || rating == "null") {
+            alert("별점을 선택해주세요.")
+        } else {
+            this.submit();
+            alert("리뷰 작성이 완료되었습니다.")
+        }
     });
 
     //결제 상태에 따라 결제버튼 활성화 및 취소 기능 / css 변경
@@ -273,7 +305,6 @@
 
             // 버튼 삭제하기
             if (statusId === '예약 신청' || statusId === '승인 대기') {
-                // removeButton(buttonDiv, 'screens-room-myBookings__cancel-button');
                 removeButton(buttonDiv, 'screens-room-myBookings__payment-button-card');
                 removeButton(buttonDiv, 'screens-room-myBookings__payment-button-kakao');
                 removeButton(buttonDiv, 'screens-room-myBookings__refund-button');

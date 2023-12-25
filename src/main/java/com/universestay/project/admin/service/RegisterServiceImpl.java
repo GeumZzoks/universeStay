@@ -32,4 +32,14 @@ public class RegisterServiceImpl implements RegisterService {
 
         return registerDao.insertUser(adminDto);
     }
+
+    @Override
+    public Integer checkUniqueEmail(String admin_email) throws CommonException {
+        return registerDao.checkUniqueEmail(admin_email);
+    }
+
+    @Override
+    public Integer checkUniquePhoneNumber(String admin_phone_num) throws CommonException {
+        return registerDao.checkUniquePhoneNumber(admin_phone_num);
+    }
 }

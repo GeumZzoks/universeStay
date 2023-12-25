@@ -6,7 +6,6 @@ import com.universestay.project.user.service.ProfileImgService;
 import com.universestay.project.user.service.UserLoginService;
 import java.util.HashMap;
 import java.util.Map;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -73,14 +72,15 @@ public class UserLoginController {
                 // 정상적으로 로그인 됐을 때,
                 userLoginService.userLastLogin(user_email);
 
-                String profileImgUrl = profileImgService.getProfileImgUrl(userInfo.getUser_id());
-                Cookie user_profile_img_url_cookie = new Cookie("user_profile_img_url",
-                        profileImgUrl);
-                user_profile_img_url_cookie.setPath("/");
-                user_profile_img_url_cookie.setMaxAge(60 * 60 * 24 * 365);
-                response.addCookie(user_profile_img_url_cookie);
+                String currentUri = (String) session.getAttribute("uri");
+                if (currentUri != null && !currentUri.isEmpty()) {
+                    session.removeAttribute("currentUri");
 
-                return "redirect:/";
+                    return "redirect:" + currentUri;
+                } else {
+                    return "redirect:/";
+                }
+                //  return "redirect:/";
 
             }
             // 여기에 오는 경우가
