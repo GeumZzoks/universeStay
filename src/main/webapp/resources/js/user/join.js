@@ -188,8 +188,6 @@ $(function () {
 
 function fnSubmit() {
 
-  var tel_rule = /^\d{2,3}-\d{3,4}-\d{4}$/;
-
   if ($("#screens-user-join_signup_id").val() == null || $(
       "#screens-user-join_signup_id").val() == "") {
     alert("아이디를 입력해주세요.");
@@ -247,9 +245,18 @@ function fnSubmit() {
     return false;
   }
 
-  if (!tel_rule.test($("#screens-user-join_signup_phone_1").val())) {
-    alert("전화번호 형식에 맞게 입력해주세요. ex) 010-0000-0000");
+  let tel_num_1 = $("#screens-user-join_signup_phone_1").val();
+  let tel_num_2 = $("#screens-user-join_signup_phone_2").val();
+
+  if (tel_num_1.length > 13) {
+    alert("전화번호 형식이 맞지 않습니다.");
     $("#screens-user-join_signup_phone_1").focus();
+    return false;
+  }
+
+  if (tel_num_2.length > 13) {
+    alert("전화번호 형식이 맞지 않습니다.");
+    $("#screens-user-join_signup_phone_2").focus();
     return false;
   }
 
@@ -380,4 +387,11 @@ $('#screens-user-join_mail_code_check_Btn').click(function () {
 function confirmAuthenticationNumber() {
   document.getElementById("screens-user-join_code_check_input").disabled = true;
 
+}
+
+const autoHyphen = (target) => {
+  target.value = target.value
+  .replace(/[^0-9]/g, '')
+  .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g,
+      "");
 }
