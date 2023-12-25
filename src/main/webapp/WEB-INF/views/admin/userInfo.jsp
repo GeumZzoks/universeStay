@@ -16,8 +16,8 @@
 
         .screen-admin-userInfo__container__1 {
             width: 80%;
-            height: auto;
-            min-height: 578px;
+            height: 85%;
+            min-height: 550px;
             position: relative;
             float: left;
             margin: 0 100px 0 230px;
@@ -245,5 +245,6 @@
         }
     </script>
 </article>
+<jsp:include page="/WEB-INF/views/common/admin/footer.jsp" flush="false"/>
 </body>
 </html>
