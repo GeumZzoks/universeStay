@@ -17,7 +17,7 @@
         .screen-admin-userInfo__container__1 {
             width: 80%;
             height: 85%;
-            min-height: 676px;
+            min-height: 550px;
             position: relative;
             float: left;
             margin: 0 100px 0 230px;
