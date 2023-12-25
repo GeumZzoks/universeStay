@@ -16,13 +16,13 @@
 
 
     <style>
-      .screens-room-roomDetail__section-1__btns {
-        vertical-align: bottom;
-      }
+        .screens-room-roomDetail__section-1__btns {
+            vertical-align: bottom;
+        }
 
-      .screens-room-roomDetail__btn-share__text {
-        margin: 2px 0 0 2px;
-      }
+        .screens-room-roomDetail__btn-share__text {
+            margin: 2px 0 0 2px;
+        }
 
     </style>
 </head>
@@ -551,7 +551,7 @@
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${KakaoApiKey}&libraries=services"></script>
 <%-- 스크립트 --%>
 <script>
-  const roomAddress = '${room.room_address}';
+    const roomAddress = '${room.room_address}';
 </script>
 <%-- 제이쿼리 --%>
 <script type="text/javascript"
@@ -569,30 +569,30 @@
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
 <script>
-  // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
-  Kakao.init('${KakaoApiKey}');
+    // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('${KakaoApiKey}');
 
-  function kakaoShare() {
-    Kakao.Link.sendDefault({
-      objectType: 'feed',
-      content: {
-        title: '${room.room_name}',
-        description: `${room.room_total_desc}`,
-        imageUrl: '${roomImg.room_img_url}',
-        link: {
-          webUrl: 'localhost:8080/room/roomDetail?room_id=${room.room_id}',
-        },
-      },
-      buttons: [
-        {
-          title: '웹으로 보기',
-          link: {
-            webUrl: 'localhost:8080/room/roomDetail?room_id=${room.room_id}',
-          },
-        },
-      ],
-    })
-  }
+    function kakaoShare() {
+        Kakao.Link.sendDefault({
+            objectType: 'feed',
+            content: {
+                title: '${room.room_name}',
+                description: `${room.room_total_desc}`,
+                imageUrl: '${roomImg.room_img_url}',
+                link: {
+                    webUrl: 'localhost:8080/room/roomDetail?room_id=${room.room_id}',
+                },
+            },
+            buttons: [
+                {
+                    title: '웹으로 보기',
+                    link: {
+                        webUrl: 'localhost:8080/room/roomDetail?room_id=${room.room_id}',
+                    },
+                },
+            ],
+        })
+    }
 
 </script>
 
@@ -678,67 +678,68 @@
 </script>
 
 <script>
-  $(document).ready(function () {
-    $('#wishlist').on('click', function (e) {
-      // form 전송 시 새로고침 안하기(기본 이벤트 x)
-      e.preventDefault();
-      // 새로고침 안할 시 다른 요소의 이밴트 받지 않기
-      e.stopPropagation();
-      // 변수 선언
-      // roomID는 list의 각 value값을 가져옴
-      var roomID = $(this).val();
-      let wished = "/resources/img/room/wished.png";
-      let unwished = "/resources/img/room/unwished.png";
+    $(document).ready(function () {
+        $('#wishlist').on('click', function (e) {
+            // form 전송 시 새로고침 안하기(기본 이벤트 x)
+            e.preventDefault();
+            // 새로고침 안할 시 다른 요소의 이밴트 받지 않기
+            e.stopPropagation();
+            // 변수 선언
+            // roomID는 list의 각 value값을 가져옴
+            var roomID = $(this).val();
+            let wished = "/resources/img/room/wished.png";
+            let unwished = "/resources/img/room/unwished.png";
 
-      // ajax
-      $.ajax({
-        url: "/user/myPage/wishLists/active",
-        type: "POST",
-        dataType: "text",
-        data: {room_id: roomID},
-        success: function (response) {
-          $('.modal-div').finish();
-          if (response === 'DEL_OK') {
-            console.log("DEL OK");
-            wished = "/resources/img/room/unwished.png";
-            $('#wished').attr('src', wished);
-            $('#wished_text').html('저장하기');
-            unwished = "/resources/img/room/unwished.png";
-            $('#unwished').attr('src', unwished);
-            $('#unwished_text').html('저장하기')
-            $('.modal-div h4').text('위시리스트에서 삭제되었습니다.')
-            $("#" + roomID).fadeIn('slow').delay(3000).fadeOut('slow');
-          } else if (response === 'IST_OK') {
-            console.log("IST_OK")
-            wished = "/resources/img/room/wished.png";
-            $('#wished').attr('src', wished);
-            $('#wished_text').html('저장됨');
-            unwished = "/resources/img/room/wished.png";
-            $('#unwished').attr('src', unwished);
-            $('#unwished_text').html('저장됨')
-            $('.modal-div h4').text('위시리스트에 추가되었습니다.')
-            $("#" + roomID).fadeIn('slow').delay(3000).fadeOut('slow');
-          } else {
-            alert("알 수 없는 문제가 발생했습니다. 다시 시도해주세요.");
-          }
-        },
-        error: function () {
-          console.log("error!!!@")
-          location.href = "/user/loginForm";
-        }
-      });
+            // ajax
+            $.ajax({
+                url: "/user/myPage/wishLists/active",
+                type: "POST",
+                dataType: "text",
+                data: {room_id: roomID},
+                success: function (response) {
+                    $('.modal-div').finish();
+                    if (response === 'DEL_OK') {
+                        console.log("DEL OK");
+                        wished = "/resources/img/room/unwished.png";
+                        $('#wished').attr('src', wished);
+                        $('#wished_text').html('저장하기');
+                        unwished = "/resources/img/room/unwished.png";
+                        $('#unwished').attr('src', unwished);
+                        $('#unwished_text').html('저장하기')
+                        $('.modal-div h4').text('위시리스트에서 삭제되었습니다.')
+                        $("#" + roomID).fadeIn('slow').delay(3000).fadeOut('slow');
+                    } else if (response === 'IST_OK') {
+                        console.log("IST_OK")
+                        wished = "/resources/img/room/wished.png";
+                        $('#wished').attr('src', wished);
+                        $('#wished_text').html('저장됨');
+                        unwished = "/resources/img/room/wished.png";
+                        $('#unwished').attr('src', unwished);
+                        $('#unwished_text').html('저장됨')
+                        $('.modal-div h4').text('위시리스트에 추가되었습니다.')
+                        $("#" + roomID).fadeIn('slow').delay(3000).fadeOut('slow');
+                    } else {
+                        alert("로그인이 필요합니다.");
+                        location.href = "/user/loginForm";
+                    }
+                },
+                error: function () {
+                    console.log("error!!!@")
+                    alert("알 수 없는 문제가 발생하였습니다. 관리자에게 문의 부탁드립니다.")
+                }
+            });
+        });
     });
-  });
 
 </script>
 
 <script src="/resources/js/room/roomDetail.js"></script>
 
 <script>
-  function createChatRoom() {
-    var room_id = '${room.room_id}';
-    location.href = '/chatting/createRoom/' + room_id;
-  }
+    function createChatRoom() {
+        var room_id = '${room.room_id}';
+        location.href = '/chatting/createRoom/' + room_id;
+    }
 </script>
 
 </body>
