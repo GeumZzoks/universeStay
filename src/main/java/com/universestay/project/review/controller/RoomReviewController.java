@@ -26,7 +26,6 @@ public class RoomReviewController {
         List<Map<String, Object>> list = null;
         try {
             list = roomReviewService.getRoomReviewList(room_id);
-            System.out.println("LIST@@@ : " + list);
             return new ResponseEntity<List<Map<String, Object>>>(list, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
@@ -48,5 +47,5 @@ public class RoomReviewController {
         }
         return "review/userReviews";
     }
-    
+
 }

@@ -213,8 +213,8 @@
                         </div>
 
                         <div style="display: flex; padding: 32px 0;">
-                            <div style="width: 50px;">
-                                <img style="border-radius: 50%; width: 100%;"
+                            <div style="width: 50px; height: 50px; overflow: hidden;">
+                                <img style="border-radius: 50%; width: 100%; height: 100%; object-fit: cover;"
                                      src="${bookInfo.profile_img_url}"
                                      id="screens-room-book__profile_img_url"
                                 />
