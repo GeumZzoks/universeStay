@@ -6,20 +6,23 @@ import com.universestay.project.admin.service.EventService;
 import com.universestay.project.common.PageHandler;
 import com.universestay.project.common.S3.AwsS3ImgUploaderService;
 import com.universestay.project.common.SearchCondition;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import javax.servlet.http.HttpSession;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Slf4j
 @Controller
@@ -37,7 +40,6 @@ public class EventController {
     // 이벤트 목록 조회 코드
     public String list(SearchCondition sc, Model m) {
         try {
-            System.out.println(sc);
             // 페이징 처리
             int totalCnt = eventService.getSearchResultCnt(sc);
             m.addAttribute("totalCnt", totalCnt);
@@ -85,7 +87,9 @@ public class EventController {
 
     @PostMapping("/write")
     // 이벤트 게시글 작성 코드
-    public String write(EventDto eventDto, EventImgDto eventImgDto, @RequestParam("eventFile") MultipartFile event_img_url, Model m, HttpSession session, RedirectAttributes rattr) throws Exception {
+    public String write(EventDto eventDto, EventImgDto eventImgDto,
+            @RequestParam("eventFile") MultipartFile event_img_url, Model m, HttpSession session,
+            RedirectAttributes rattr) throws Exception {
         String event_img_src = "";
         // 로그인시 세션에 전송된 이메일 가져오기
         String adminEmail = (String) session.getAttribute("admin_email");
@@ -128,7 +132,8 @@ public class EventController {
 
     @PostMapping("/{event_id}")
     // 이벤트 게시글 삭제 코드
-    public String delete(@PathVariable Integer event_id, HttpSession session, RedirectAttributes rattr) {
+    public String delete(@PathVariable Integer event_id, HttpSession session,
+            RedirectAttributes rattr) {
         // 삭제 성공 메세지
         String msg = "DEL_OK";
         try {
@@ -137,9 +142,8 @@ public class EventController {
             // 가져온 세션 이메일로 현재 로그인된 Admin 테이블의 UUID 가져오기
             String admin_id = eventService.getAdminUuid(adminEmail);
             // 삭제하려는 게시글의 작성자 UUID 가져오기
-            System.out.println("admin_id = " + admin_id);
             String getAdmin_id = eventService.select(event_id).getAdmin_id();
-            System.out.println("getAdmin_id = " + getAdmin_id);
+
             // 작성자와 현재 세션에 로그인된 관리자가 같으면 삭제
             if (admin_id.equals(getAdmin_id)) {
                 // if 문으로 작성자가 맞는지 먼저 확인하기 때문에 삭제 시 admin_id 는 확인하지 않음
@@ -169,7 +173,8 @@ public class EventController {
 
     @GetMapping("/update/{event_id}")
     // 이벤트 수정 화면으로 이동하는 코드
-    public String update(@PathVariable Integer event_id, Model m, HttpSession session, RedirectAttributes rattr) {
+    public String update(@PathVariable Integer event_id, Model m, HttpSession session,
+            RedirectAttributes rattr) {
         // 예외 메세지 코드 GET메서드로 수정페이지 권한 확인을 위해 예외 메세지만 출력
         String msg = "UDT_ERR";
         try {
@@ -214,7 +219,9 @@ public class EventController {
 
     @PostMapping("/update/{event_id}")
     // 이벤트 게시글 수정 코드
-    public String update(@PathVariable Integer event_id, EventDto eventDto, EventImgDto eventImgDto, @RequestParam("eventFile") MultipartFile event_img_url, HttpSession session, RedirectAttributes rattr) {
+    public String update(@PathVariable Integer event_id, EventDto eventDto, EventImgDto eventImgDto,
+            @RequestParam("eventFile") MultipartFile event_img_url, HttpSession session,
+            RedirectAttributes rattr) {
         // 성공 메세지 코드
         String msg = "UDT_OK";
         try {
@@ -226,7 +233,8 @@ public class EventController {
 
             // 수정시 이미지에 변경사항이 있을 경우
             if (!event_img_url.isEmpty()) {
-                String event_img_src = awsS3ImgUploaderService.uploadImageToS3(event_img_url, "event-img");
+                String event_img_src = awsS3ImgUploaderService.uploadImageToS3(event_img_url,
+                        "event-img");
                 // 수정한 이미지 url 지정
                 eventImgDto.setEvent_img_url(event_img_src);
                 // 최종 수정자 ID를 현재 로그인된 UUID로 지정
