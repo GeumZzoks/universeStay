@@ -349,5 +349,6 @@ function handleInput(input) {
   } else {
     // Update the input value with the numeric part
     input.value = parseInt(numericValue, 10);
+    console.log(1);
   }
 }
