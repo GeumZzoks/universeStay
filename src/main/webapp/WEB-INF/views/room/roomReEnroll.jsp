@@ -1,17 +1,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <spring:eval expression="@OauthProperties['KAKAO_JavaScript_KEY']" var="KakaoApiKey"/>
 <%
     String isHost = (String) request.getAttribute("isHost");
 %>
 <html>
 <head>
-    <title>RoomEnroll</title>
     <link rel="stylesheet" href="/resources/css2/style.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <title>숙소 등록하기</title>
 </head>
-<body>
 
-<%--<jsp:include page="/WEB-INF/views/common/user/header.jsp"/>--%>
+<body>
 <header class="components-user-header__header">
     <div class="components-user-header__header__inner">
 
@@ -133,13 +137,26 @@
 <form action="/room/enroll" method="post" class="screens-room-roomEnroll__wrapper">
 
     <%--  숙소 유형을 선택하세요  --%>
-    <div class="screens-room-roomEnroll__title">숙소 유형을 선택하세요 <span
+    <div class="screens-room-roomEnroll__title">숙소 유형을 선택하세요<span
             class="screens-room-roomEnroll__required-input">(필수 입력)</span></div>
     <div class="screens-room-roomEnroll__dropdown">
-        <input name="" type="text" class="screens-room-roomEnroll__dropdown__textBox"
-               placeholder="숙소 유형을 선택하세요" readonly>
+        <c:if test="${fn:contains(allErrors, 'roomDto.room_category_id')}">
+            <input name="" type="text"
+                   class="screens-room-roomEnroll__dropdown__textBox screens-room-roomEnroll__error-border-style"
+                   placeholder="숙소 유형을 선택하세요" value="${roomCategoryName}">
+        </c:if>
+        <c:if test="${!fn:contains(allErrors, 'roomDto.room_category_id')}">
+            <input name="" type="text" class="screens-room-roomEnroll__dropdown__textBox"
+                   placeholder="숙소 유형을 선택하세요" value="${roomCategoryName}">
+        </c:if>
         <input name="room_category_id" type="hidden"
-               class="screens-room-roomEnroll__dropdown__valueBox">
+               class="screens-room-roomEnroll__dropdown__valueBox"
+               value="${roomDto.room_category_id}">
+        <input name="room_id" type="hidden"
+               class="screens-room-modifyRoom__room_id"
+               value="${roomDto.room_id}">
+
+
         <div class="screens-room-roomEnroll__dropdown__option">
             <div onclick="show('아파트')">
                 아파트
@@ -182,23 +199,42 @@
             </div>
         </div>
     </div>
+    <c:if test="${fn:contains(allErrors, 'roomDto.room_category_id')}">
+        <div class="screens-room-roomEnroll__error screens-room-roomEnroll__error-room-category">
+            숙소 유형을 선택해주세요
+        </div>
+    </c:if>
+
 
     <%--  숙소의 위치는 어디인가요?  --%>
-    <div class="screens-room-roomEnroll__title">숙소의 위치는 어디인가요? <span
+    <div class="screens-room-roomEnroll__title">숙소의 위치는 어디인가요?<span
             class="screens-room-roomEnroll__required-input">(필수 입력)</span></div>
     <div class="screens-room-roomEnroll__input__address">
-        <input type="text" name="room_address" class="screens-room-roomEnroll__address-main"
-               placeholder="주소" readonly>
+        <c:if test="${fn:contains(allErrors, 'roomDto.room_address')}">
+            <input type="text" name="room_address"
+                   class="screens-room-roomEnroll__address-main screens-room-roomEnroll__error-border-style"
+                   placeholder="주소" readonly value="${roomDto.room_address}">
+        </c:if>
+        <c:if test="${!fn:contains(allErrors, 'roomDto.room_address')}">
+            <input type="text" name="room_address" class="screens-room-roomEnroll__address-main"
+                   placeholder="주소" readonly value="${roomDto.room_address}">
+        </c:if>
         <input type="button" class="screens-room-roomEnroll__btn-address-main"
                onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
         <input type="text" name="room_address_detail"
-               class="screens-room-roomEnroll__address-detail" placeholder="상세 주소 입력 (선택)"><br>
+               class="screens-room-roomEnroll__address-detail" placeholder="상세 주소 입력 (선택)"
+               value="${roomDto.room_address_detail}"><br>
         <div class="screens-room-roomEnroll__map"
              style="width:100%;height:300px;margin-top:10px;display:none"></div>
     </div>
+    <c:if test="${fn:contains(allErrors, 'roomDto.room_address')}">
+        <div class="screens-room-roomEnroll__error screens-room-roomEnroll__error-room-address">
+            숙소 위치를 알려주세요
+        </div>
+    </c:if>
 
     <%--  숙소 기본정보를 알려주세요  --%>
-    <div class="screens-room-roomEnroll__title">숙소 기본정보를 알려주세요 <span
+    <div class="screens-room-roomEnroll__title">숙소 기본정보를 알려주세요<span
             class="screens-room-roomEnroll__required-input">(필수 입력)</span></div>
     <div class="screens-room-roomEnroll__sub-title">침대 유형과 같은 세부 사항은 나중에 추가하실 수 있습니다.</div>
     <div class="screens-room-roomEnroll__info-basic">
@@ -213,7 +249,7 @@
                     </svg>
                 </button>
                 <input type="text" class="screens-room-roomEnroll__info-basic__num"
-                       name="room_standard_capa" value='4' readonly/>
+                       name="room_standard_capa" value='${roomDto.room_standard_capa}' readonly/>
                 <button type="button" class="screens-room-roomEnroll__info-basic__btn-plus">
                     <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
                          role="presentation" focusable="false"
@@ -234,7 +270,7 @@
                     </svg>
                 </button>
                 <input type="text" class="screens-room-roomEnroll__info-basic__num"
-                       name="room_max_capa" value='4' readonly/>
+                       name="room_max_capa" value='${roomDto.room_max_capa}' readonly/>
                 <button type="button" class="screens-room-roomEnroll__info-basic__btn-plus">
                     <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
                          role="presentation" focusable="false"
@@ -255,7 +291,7 @@
                     </svg>
                 </button>
                 <input type="text" class="screens-room-roomEnroll__info-basic__num"
-                       name="room_bedroom_cnt" value='2' readonly/>
+                       name="room_bedroom_cnt" value='${roomDto.room_bedroom_cnt}' readonly/>
                 <button type="button" class="screens-room-roomEnroll__info-basic__btn-plus">
                     <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
                          role="presentation" focusable="false"
@@ -276,7 +312,7 @@
                     </svg>
                 </button>
                 <input type="text" class="screens-room-roomEnroll__info-basic__num"
-                       name="room_bed_cnt" value='2' readonly/>
+                       name="room_bed_cnt" value='${roomDto.room_bed_cnt}' readonly/>
                 <button type="button" class="screens-room-roomEnroll__info-basic__btn-plus">
                     <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
                          role="presentation" focusable="false"
@@ -297,7 +333,7 @@
                     </svg>
                 </button>
                 <input type="text" class="screens-room-roomEnroll__info-basic__num"
-                       name="room_bathroom_cnt" value='2' readonly/>
+                       name="room_bathroom_cnt" value='${roomDto.room_bathroom_cnt}' readonly/>
                 <button type="button" class="screens-room-roomEnroll__info-basic__btn-plus">
                     <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
                          role="presentation" focusable="false"
@@ -420,7 +456,7 @@
             </li>
         </ul>
         <input type="hidden" name="room_amenity_bath" class="screens-room-roomEnroll__facility"
-               value="0">
+               value="${roomAmenityDto.room_amenity_bath}">
 
         <div>침실 및 세탁시설</div>
         <ul class="screens-room-roomEnroll__select">
@@ -559,7 +595,7 @@
         </ul>
         <input type="hidden" name="room_amenity_bedAndLaundry"
                class="screens-room-roomEnroll__facility"
-               value="0">
+               value="${roomAmenityDto.room_amenity_bedAndLaundry}">
 
         <div>엔터테인먼트</div>
         <ul class="screens-room-roomEnroll__select">
@@ -698,7 +734,7 @@
         </ul>
         <input type="hidden" name="room_amenity_entertain"
                class="screens-room-roomEnroll__facility"
-               value="0">
+               value="${roomAmenityDto.room_amenity_entertain}">
 
         <div>숙소 안전</div>
         <ul class="screens-room-roomEnroll__select">
@@ -749,7 +785,7 @@
         </ul>
         <input type="hidden" name="room_amenity_safety"
                class="screens-room-roomEnroll__facility"
-               value="0">
+               value="${roomAmenityDto.room_amenity_safety}">
 
         <div>냉난방</div>
         <ul class="screens-room-roomEnroll__select">
@@ -800,7 +836,7 @@
         </ul>
         <input type="hidden" name="room_amenity_heatAndCold"
                class="screens-room-roomEnroll__facility"
-               value="0">
+               value="${roomAmenityDto.room_amenity_heatAndCold}">
 
         <div>인터넷 및 업무 공간</div>
         <ul class="screens-room-roomEnroll__select">
@@ -840,7 +876,7 @@
         </ul>
         <input type="hidden" name="room_amenity_internetAndWorkSpace"
                class="screens-room-roomEnroll__facility"
-               value="0">
+               value="${roomAmenityDto.room_amenity_internetAndWorkSpace}">
 
         <div>주방 및 식당</div>
         <ul class="screens-room-roomEnroll__select">
@@ -1034,7 +1070,7 @@
         </ul>
         <input type="hidden" name="room_amenity_kitchen"
                class="screens-room-roomEnroll__facility"
-               value="0">
+               value="${roomAmenityDto.room_amenity_kitchen}">
 
         <div>야외</div>
         <ul class="screens-room-roomEnroll__select">
@@ -1173,7 +1209,7 @@
         </ul>
         <input type="hidden" name="room_amenity_outdoor"
                class="screens-room-roomEnroll__facility"
-               value="0">
+               value="${roomAmenityDto.room_amenity_outdoor}">
 
         <div>주차장 및 기타 시설</div>
         <ul class="screens-room-roomEnroll__select">
@@ -1301,7 +1337,7 @@
         </ul>
         <input type="hidden" name="room_amenity_garageAndEtc"
                class="screens-room-roomEnroll__facility"
-               value="0">
+               value="${roomAmenityDto.room_amenity_garageAndEtc}">
 
         <div>서비스</div>
         <ul class="screens-room-roomEnroll__select">
@@ -1352,11 +1388,12 @@
         </ul>
         <input type="hidden" name="room_amenity_service"
                class="screens-room-roomEnroll__facility"
-               value="0">
+               value="${roomAmenityDto.room_amenity_service}">
     </div>
 
     <%--  숙소 전망을 추가하세요  --%>
     <div class="screens-room-roomEnroll__title">숙소 전망을 추가하세요</div>
+
     <div class="screens-room-roomEnroll__views">
         <ul class="screens-room-roomEnroll__select">
             <li class="screens-room-roomEnroll__select-li">
@@ -1516,41 +1553,55 @@
         </ul>
         <input type="hidden" name="room_view"
                class="screens-room-roomEnroll__view"
-               value="0">
+               value="${room_view}">
     </div>
 
     <%--  숙소 이름을 지어주세요  --%>
-    <div class="screens-room-roomEnroll__title">숙소 이름을 지어주세요 <span
+    <div class="screens-room-roomEnroll__title">숙소 이름을 지어주세요<span
             class="screens-room-roomEnroll__required-input">(필수 입력)</span></div>
     <div class="screens-room-roomEnroll__sub-title">
         숙소 이름은 짧을수록 효과적입니다. 나중에 언제든지 변경할 수 있으니, 너무 걱정하지 마세요.
     </div>
-    <textarea name="room_name"
-              class="screens-room-roomEnroll__textarea screens-room-roomEnroll__textarea-room-name"></textarea>
+    <c:if test="${fn:contains(allErrors, 'roomDto.room_name')}">
+        <textarea name="room_name"
+                  class="screens-room-roomEnroll__textarea screens-room-roomEnroll__error-border-style screens-room-roomEnroll__textarea-room-name"></textarea>
+    </c:if>
+    <c:if test="${!fn:contains(allErrors, 'roomDto.room_name')}">
+        <textarea name="room_name"
+                  class="screens-room-roomEnroll__textarea screens-room-roomEnroll__textarea-room-name">${roomDto.room_name}</textarea>
+    </c:if>
+    <c:if test="${fn:contains(allErrors, 'roomDto.room_name')}">
+        <div class="screens-room-roomEnroll__error screens-room-roomEnroll__error-room-name">
+            숙소 이름을 지어주세요
+        </div>
+    </c:if>
 
     <%--  숙소 장점을 적어주세요  --%>
     <div class="screens-room-roomEnroll__title">숙소 장점을 적어주세요</div>
     <div class="screens-room-roomEnroll__sub-title">
         숙소의 특징과 장점을 알려주세요.
     </div>
-    <textarea name="room_total_desc" class="screens-room-roomEnroll__textarea"></textarea>
+    <textarea name="room_total_desc"
+              class="screens-room-roomEnroll__textarea">${roomDto.room_total_desc}</textarea>
 
     <%--  숙소 공간에 대해 설명해주세요  --%>
     <div class="screens-room-roomEnroll__title">숙소 공간에 대해 설명해주세요</div>
     <div class="screens-room-roomEnroll__sub-title">
         숙소 공간을 자세히 설명해주세요.
     </div>
-    <textarea name="room_space_desc" class="screens-room-roomEnroll__textarea"></textarea>
+    <textarea name="room_space_desc"
+              class="screens-room-roomEnroll__textarea">${roomDto.room_space_desc}</textarea>
 
     <%--  숙소 기타 참고할점을 적어주세요  --%>
     <div class="screens-room-roomEnroll__title">숙소 기타 참고할점을 적어주세요</div>
     <div class="screens-room-roomEnroll__sub-title">
         숙소 사용시 주의할점과 참고할점이 있다면 자세히 적어주세요.
     </div>
-    <textarea name="room_etc_desc" class="screens-room-roomEnroll__textarea"></textarea>
+    <textarea name="room_etc_desc"
+              class="screens-room-roomEnroll__textarea">${roomDto.room_etc_desc}</textarea>
 
     <%--  숙소 가격을 책정해주세요  --%>
-    <div class="screens-room-roomEnroll__title">숙소 가격을 책정해주세요 <span
+    <div class="screens-room-roomEnroll__title">숙소 가격을 책정해주세요<span
             class="screens-room-roomEnroll__required-input">(필수 입력)</span></div>
     <div class="screens-room-roomEnroll__sub-title">
         언제든지 변경하실 수 있습니다.
@@ -1562,7 +1613,7 @@
         <div class="screens-room-roomEnroll__price-input-container">
             <span>₩</span>
             <input name="room_weekday_price" class="screens-room-roomEnroll__input-price"
-                   type="number" value="50000">
+                   type="number" value="${roomDto.room_weekday_price}">
         </div>
 
         <div class="screens-room-roomEnroll__price-title">
@@ -1571,7 +1622,7 @@
         <div class="screens-room-roomEnroll__price-input-container">
             <span>₩</span>
             <input name="room_weekend_price" class="screens-room-roomEnroll__input-price"
-                   type="number" value="70000">
+                   type="number" value="${roomDto.room_weekend_price}">
         </div>
 
         <div class="screens-room-roomEnroll__price-title">
@@ -1580,7 +1631,7 @@
         <div class="screens-room-roomEnroll__price-input-container">
             <span>₩</span>
             <input name="room_extra_person_fee" class="screens-room-roomEnroll__input-price"
-                   type="number" value="10000">
+                   type="number" value="${roomDto.room_extra_person_fee}">
         </div>
     </div>
 
@@ -1589,8 +1640,6 @@
 
 <jsp:include page="/WEB-INF/views/common/user/footerNotFix.jsp"/>
 
-<%--<jsp:include page="/WEB-INF/views/common/user/footer.jsp"/>--%>
-
 <%-- 숙소 주소 입력 Script --%>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <!-- 카카오 지도 API : services 라이브러리 불러오기 -->
@@ -1598,6 +1647,17 @@
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${KakaoApiKey}&libraries=services"></script>
 <%-- Script --%>
 <script src="/resources/js/room/roomEnroll.js"></script>
+<script src="/resources/js/room/roomReEnroll.js"></script>
+
+<script type="module"
+        src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script>
   let dropdowns = document.querySelectorAll(
       '.components-user-header__dropdown-div');
@@ -1652,6 +1712,7 @@
 
   headerMyProfileBtn.addEventListener("click", toggleDropdown4);
 </script>
+
 
 </body>
 </html>

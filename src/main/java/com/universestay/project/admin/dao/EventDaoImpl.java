@@ -3,12 +3,11 @@ package com.universestay.project.admin.dao;
 import com.universestay.project.admin.dto.EventDto;
 import com.universestay.project.admin.dto.EventImgDto;
 import com.universestay.project.common.SearchCondition;
+import java.util.List;
+import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
-import java.util.Map;
 
 @Repository
 public class EventDaoImpl implements EventDao {
@@ -65,8 +64,6 @@ public class EventDaoImpl implements EventDao {
 
     @Override
     public int searchResultCnt(SearchCondition sc) throws Exception {
-        System.out.println("sc in searchResultCnt() = " + sc);
-        System.out.println("session = " + session);
         return session.selectOne(namespace + "searchResultCnt", sc);
     }
 

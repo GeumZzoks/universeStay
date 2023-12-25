@@ -37,9 +37,6 @@ public class MainNoticeController {
             map.put("offset", (page - 1) * pageSize);
             map.put("pageSize", pageSize);
 
-            System.out.println("showPrev : " + nph.isShowPrev());
-            System.out.println("showNext : " + nph.isShowNext());
-
             List<Map<String, Object>> list = noticeService.getMainPage(map);
             m.addAttribute("list", list);
             m.addAttribute("nph", nph);
