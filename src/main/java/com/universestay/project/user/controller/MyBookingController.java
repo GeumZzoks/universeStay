@@ -59,6 +59,7 @@ public class MyBookingController {
                 list1.get(i).put("booking_checkout_date", booking_checkout_date);
                 list1.get(i).put("created_at", created_at);
             }
+
             List<Map<String, Object>> list2 = myBookingService.getMyBookingList(map2);
 
             for (int i = 0; i < list2.size(); i++) {
@@ -71,12 +72,6 @@ public class MyBookingController {
                 list2.get(i).put("booking_checkout_date", booking_checkout_date);
                 list2.get(i).put("created_at", created_at);
             }
-//            booking_checkin_date
-//            booking_checkout_date
-            // created_at
-            // 뷰파일에 넘겨줄 model setting
-
-            System.out.println(list2);
 
             model.addAttribute("list1", list1);
             model.addAttribute("list2", list2);

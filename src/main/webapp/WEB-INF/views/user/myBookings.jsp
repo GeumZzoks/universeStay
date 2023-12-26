@@ -102,7 +102,7 @@
                                 <div>
                                     <div class="screens-room-myBookings__hiddenValue" hidden
                                          data-value="${dto.booking_id}"></div>
-                                    <div class="screens-room-myBookings__comming-reservation__name">${dto.user_nickname}님이
+                                    <div class="screens-room-myBookings__comming-reservation__name">${dto.host_nickname}님이
                                         호스팅하는 집 전체
                                     </div>
                                 </div>
@@ -168,7 +168,7 @@
                                 <div class="screens-room-myBookings__comming-gray-font">
                                     지역: ${dto.room_address}</div>
                                 <div class="screens-room-myBookings__comming-gray-font">
-                                    호스트: ${dto.user_nickname}</div>
+                                    호스트: ${dto.host_nickname}</div>
                                 <div class="screens-room-myBookings__comming-gray-font">여행
                                     날짜: ${dto.booking_checkin_date}
                                     ~ ${dto.booking_checkout_date}</div>
