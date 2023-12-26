@@ -126,7 +126,7 @@ public class BookingRoomController {
     public ResponseEntity sendEmailForRoomInfo(
             @RequestBody SendEmailBookInfoDto sendEmailBookInfoDto) {
 
-        String localHost = "http://localhost:8080";
+        String localHost = "http://universestay.store";
 
         String profileLink = localHost + sendEmailBookInfoDto.getProfile_link();
         String roomDetailLink =
