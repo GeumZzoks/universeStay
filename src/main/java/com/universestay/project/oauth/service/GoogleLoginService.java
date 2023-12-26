@@ -3,7 +3,6 @@ package com.universestay.project.oauth.service;
 import com.universestay.project.oauth.dto.google.GoogleInfResponseDto;
 import com.universestay.project.oauth.dto.google.GoogleRequestDto;
 import com.universestay.project.oauth.dto.google.GoogleResponseDto;
-import com.universestay.project.oauth.dto.kakao.KakaoDTO;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,7 +22,7 @@ public class GoogleLoginService {
     @Value("${GOOGLE_REDIRECT_URL}")
     private String GOOGLE_REDIRECT_URL;
 
-    public  ResponseEntity<GoogleInfResponseDto> getGoogleInfo(String authCode) throws Exception {
+    public ResponseEntity<GoogleInfResponseDto> getGoogleInfo(String authCode) throws Exception {
         RestTemplate restTemplate = new RestTemplate();
 
         System.out.println(authCode);
@@ -33,7 +32,7 @@ public class GoogleLoginService {
                 .clientId(googleClientId)
                 .clientSecret(googleClientPw)
                 .code(authCode)
-                .redirectUri("http://localhost:8080/oauth2/google")
+                .redirectUri("http://universestay.store/oauth2/google")
                 .grantType("authorization_code").build();
 
         // RestTemplate을 활용하여 https://oauth2.googleapis.com/token (구글 인가 서버)에 토큰을 요청한다.
@@ -47,7 +46,8 @@ public class GoogleLoginService {
         return getUserInfoWithToken(jwtToken);
     }
 
-    private ResponseEntity<GoogleInfResponseDto> getUserInfoWithToken(String jwtToken) throws Exception {
+    private ResponseEntity<GoogleInfResponseDto> getUserInfoWithToken(String jwtToken)
+            throws Exception {
         RestTemplate restTemplate = new RestTemplate();
         // Map에 토큰을 저장한다.
         Map<String, String> map = new HashMap<>();
