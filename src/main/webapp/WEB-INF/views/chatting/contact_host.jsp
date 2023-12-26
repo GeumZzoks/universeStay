@@ -2,6 +2,31 @@
 <html>
 <head>
     <title>contact_host</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="/resources/img/favi.ico/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/resources/img/favi.ico//apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/resources/img/favi.ico/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/resources/img/favi.ico/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114"
+          href="/resources/img/favi.ico/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120"
+          href="/resources/img/favi.ico/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144"
+          href="/resources/img/favi.ico/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152"
+          href="/resources/img/favi.ico/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180"
+          href="/resources/img/favi.ico/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"
+          href="/resources/img/favi.ico/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="/resources/img/favi.ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96"
+          href="/resources/img/favi.ico/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="/resources/img/favi.ico/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <link rel="stylesheet" href="/resources/css2/style.css">
 
     <link rel="stylesheet" type="text/css"
@@ -415,51 +440,51 @@
 
 
 <script>
-  var client;
-  var user_id = "<%= request.getAttribute("user_id") %>";
-  var chat_room_id = "<%= request.getAttribute("chat_room_id") %>";
+    var client;
+    var user_id = "<%= request.getAttribute("user_id") %>";
+    var chat_room_id = "<%= request.getAttribute("chat_room_id") %>";
 
-  //채팅 저장
-  function insertChat() {
+    //채팅 저장
+    function insertChat() {
 
-    var user_id = "${user_id}";
-    var chat_room_id = "${chat_room_id}";
-    var chat_ctt = $("#msgi").val();
+        var user_id = "${user_id}";
+        var chat_room_id = "${chat_room_id}";
+        var chat_ctt = $("#msgi").val();
 
-    if (!chat_ctt) {
-      alert("메시지 입력 후 전송하세요");
-      return;
-    }
-
-    // 서버로 전송할 데이터를 객체화
-    var insertChatDto = {
-      user_id: user_id,
-      chatting_room_id: chat_room_id,
-      chat_ctt: chat_ctt
-    };
-
-    $.ajax({
-      url: "/chat/insertChat.do",
-      type: "post",
-      data: JSON.stringify(insertChatDto),
-      contentType: "application/json",
-      success: function (result) {
-
-        if (result == 1) {
-          alert("메시지가 전송되었습니다. 메시지함을 확인하세요");
-          var msgInput = document.getElementById('msgi');
-
-          msgInput.value = '';
+        if (!chat_ctt) {
+            alert("메시지 입력 후 전송하세요");
+            return;
         }
-      },
-      error: function (xhr, status, err) {
-        console.log("처리실패!");
-        console.log(xhr);
-        console.log(status);
-        console.log(err);
-      }
-    });
-  }
+
+        // 서버로 전송할 데이터를 객체화
+        var insertChatDto = {
+            user_id: user_id,
+            chatting_room_id: chat_room_id,
+            chat_ctt: chat_ctt
+        };
+
+        $.ajax({
+            url: "/chat/insertChat.do",
+            type: "post",
+            data: JSON.stringify(insertChatDto),
+            contentType: "application/json",
+            success: function (result) {
+
+                if (result == 1) {
+                    alert("메시지가 전송되었습니다. 메시지함을 확인하세요");
+                    var msgInput = document.getElementById('msgi');
+
+                    msgInput.value = '';
+                }
+            },
+            error: function (xhr, status, err) {
+                console.log("처리실패!");
+                console.log(xhr);
+                console.log(status);
+                console.log(err);
+            }
+        });
+    }
 </script>
 
 <%--  dateRangePicker  --%>

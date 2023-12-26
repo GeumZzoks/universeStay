@@ -9,6 +9,31 @@
 <html>
 <head>
     <title>Admin 문의사항</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="/resources/img/favi.ico/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/resources/img/favi.ico//apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/resources/img/favi.ico/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/resources/img/favi.ico/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114"
+          href="/resources/img/favi.ico/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120"
+          href="/resources/img/favi.ico/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144"
+          href="/resources/img/favi.ico/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152"
+          href="/resources/img/favi.ico/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180"
+          href="/resources/img/favi.ico/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"
+          href="/resources/img/favi.ico/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="/resources/img/favi.ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96"
+          href="/resources/img/favi.ico/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="/resources/img/favi.ico/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <link rel="stylesheet" href="/resources/css2/style.css">
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -17,112 +42,112 @@
     <!-- STOMP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
     <style>
-        .screens-inquiry-flex-row {
-            display: flex;
-            flex-direction: row;
-        }
+      .screens-inquiry-flex-row {
+        display: flex;
+        flex-direction: row;
+      }
 
-        .screens-inquiry-flex-column {
-            display: flex;
-            flex-direction: column;
-        }
+      .screens-inquiry-flex-column {
+        display: flex;
+        flex-direction: column;
+      }
 
-        .screens-inquiry-adminInquiry {
-            width: 100vw;
-            height: 100vh;
-        }
+      .screens-inquiry-adminInquiry {
+        width: 100vw;
+        height: 100vh;
+      }
 
-        .screens-inquiry-justify-start {
-            justify-content: start;
-        }
+      .screens-inquiry-justify-start {
+        justify-content: start;
+      }
 
-        .screens-inquiry-justify-center {
-            justify-content: center;
-        }
+      .screens-inquiry-justify-center {
+        justify-content: center;
+      }
 
-        .screens-inquiry-justify-end {
-            justify-content: end;
-        }
+      .screens-inquiry-justify-end {
+        justify-content: end;
+      }
 
-        .screens-inquiry-align-start {
-            align-items: start;
-        }
+      .screens-inquiry-align-start {
+        align-items: start;
+      }
 
-        .screens-inquiry-align-center {
-            align-items: center;
-        }
+      .screens-inquiry-align-center {
+        align-items: center;
+      }
 
-        .screens-inquiry-align-end {
-            align-items: end;
-        }
+      .screens-inquiry-align-end {
+        align-items: end;
+      }
 
-        .screens-inquiry-adminInquiry * {
-            margin: 0;
-            padding: 0;
-        }
-
-
-        .screens-inquiry-adminInquiry > section * {
-            box-sizing: border-box;
-        }
-
-        .screens-inquiry-adminInquiry__section {
-            position: relative;
-            top: 50px;
-            width: 100%;
-            height: calc(100% - 51px);
-            border-top: 1px solid #EBEBEB;
-        }
-
-        .screens-inquiry-adminInquiry__section > div {
-            border-right: 1px solid #EBEBEB;
-        }
+      .screens-inquiry-adminInquiry * {
+        margin: 0;
+        padding: 0;
+      }
 
 
-        .screens-inquiry-adminInquiry__section > div > div:nth-child(1) {
-            height: 7%;
-            /*flex: 7;*/
-            border-bottom: 1px solid #EBEBEB;
-        }
+      .screens-inquiry-adminInquiry > section * {
+        box-sizing: border-box;
+      }
 
-        .screens-inquiry-adminInquiry__section > div > div:nth-child(2) {
-            height: 93%;
-            /*flex: 93;*/
-        }
+      .screens-inquiry-adminInquiry__section {
+        position: relative;
+        top: 50px;
+        width: 100%;
+        height: calc(100% - 51px);
+        border-top: 1px solid #EBEBEB;
+      }
 
-        .screens-inquiry-adminInquiry__inquiryList {
-            width: 25%;
-            /*flex: 1;*/
-        }
-
-        .screens-inquiry-adminInquiry__inquiryMessage {
-            width: 50%;
-            /*flex: 2;*/
-        }
-
-        .screens-inquiry-adminInquiry__inquiryEtc {
-            width: 25%;
-            /*flex: 1;*/
-        }
+      .screens-inquiry-adminInquiry__section > div {
+        border-right: 1px solid #EBEBEB;
+      }
 
 
-        .screens-inquiry-adminInquiry__inquiryMessage__body > div:nth-child(1) {
-            /*flex: 10;*/
-            height: 95%;
-            overflow: auto;
-        }
+      .screens-inquiry-adminInquiry__section > div > div:nth-child(1) {
+        height: 7%;
+        /*flex: 7;*/
+        border-bottom: 1px solid #EBEBEB;
+      }
 
-        .screens-inquiry-adminInquiry__inquiryMessage__body > div:nth-child(2) {
-            /*flex: 1;*/
-            /*height: 2rem;*/
-            height: 5%;
-        }
+      .screens-inquiry-adminInquiry__section > div > div:nth-child(2) {
+        height: 93%;
+        /*flex: 93;*/
+      }
 
-        .screens-inquiry-adminInquiry__inquiryList__body,
-        .screens-inquiry-adminInquiry__inquiryMessage__body__messages,
-        .screens-inquiry-adminInquiry__inquiryEtc__body {
-            overflow: auto;
-        }
+      .screens-inquiry-adminInquiry__inquiryList {
+        width: 25%;
+        /*flex: 1;*/
+      }
+
+      .screens-inquiry-adminInquiry__inquiryMessage {
+        width: 50%;
+        /*flex: 2;*/
+      }
+
+      .screens-inquiry-adminInquiry__inquiryEtc {
+        width: 25%;
+        /*flex: 1;*/
+      }
+
+
+      .screens-inquiry-adminInquiry__inquiryMessage__body > div:nth-child(1) {
+        /*flex: 10;*/
+        height: 95%;
+        overflow: auto;
+      }
+
+      .screens-inquiry-adminInquiry__inquiryMessage__body > div:nth-child(2) {
+        /*flex: 1;*/
+        /*height: 2rem;*/
+        height: 5%;
+      }
+
+      .screens-inquiry-adminInquiry__inquiryList__body,
+      .screens-inquiry-adminInquiry__inquiryMessage__body__messages,
+      .screens-inquiry-adminInquiry__inquiryEtc__body {
+        overflow: auto;
+      }
 
 
     </style>
@@ -235,8 +260,6 @@
     let socket = new SockJS("/endpoint");
     // stomp 사용
     let client = Stomp.over(socket);
-
-
 
     $(function () {
     })
