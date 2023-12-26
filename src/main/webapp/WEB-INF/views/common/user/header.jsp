@@ -166,7 +166,7 @@
             ) { %>
             <div><a class="components-user-header__a" href="/room/management">호스트 모드로 전환</a></div>
             <% } else if ("N".equals(isHost) || isHost == null) { %>
-            <div>당신의 공간을 공유하세요.</div>
+            <div><a class="components-user-header__a" href="/room/enroll">당신의 공간을 공유하세요.</a></div>
             <% } %>
 
         </div>
@@ -214,9 +214,11 @@
                          onclick="location.href ='/user/userLogout'">
                         <span>로그아웃</span></div>
                     <%} else {%>
-                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-sign-up">
+                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-sign-up"
+                         onclick="location.href = '/user/join'">
                         <span>회원가입</span></div>
-                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-sign-in">
+                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-sign-in"
+                         onclick="location.href = '/user/loginForm'">
                         <span>로그인</span></div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-notice"
                          onclick="location.href='/notice'">
