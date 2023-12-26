@@ -207,6 +207,9 @@
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-account"
                          onclick="location.href ='/user/myPage/info'">
                         <span>계정</span></div>
+                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-inquiry"
+                         onclick="location.href ='/user/myPage/inquiry'">
+                        <span>문의내역</span></div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-log-out"
                          onclick="location.href ='/user/userLogout'">
                         <span>로그아웃</span></div>
