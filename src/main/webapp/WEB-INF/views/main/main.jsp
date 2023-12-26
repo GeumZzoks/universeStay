@@ -20,7 +20,7 @@
 <div class="screens-user-main__back-drop" style="display: none;">
     <img src="/resources/img/spinner/spinner.gif">
 </div>
-<%--<jsp:include page="/WEB-INF/views/common/user/footer.jsp"/>--%>
+<jsp:include page="/WEB-INF/views/common/user/footer.jsp"/>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="/resources/js/main/main.js"></script>
 <script>
