@@ -27,6 +27,7 @@ public class MainEventController {
     public String eventList(Model model) {
         try {
             List<Map<String, Object>> eventMainDto = eventService.selectMain();
+
             model.addAttribute("eventMainDto", eventMainDto);
         } catch (Exception e) {
             e.printStackTrace();

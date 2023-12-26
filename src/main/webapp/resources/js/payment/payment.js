@@ -18,11 +18,12 @@ for (let i = 0; i < cardPaymentButtons.length; i++) {
             dataType: "json",
             data: {bookingId: bookingId},
             success: function (res) {
-                console.log(res);
+                const randomUUID = generateUUID();
+
                 IMP.request_pay({
                     pg: "kcp",
                     pay_method: "card",
-                    merchant_uid: `${crypto.randomUUID()}`,   // 주문번호는 결제창 요청 시 항상 고유 값으로 채번 되어야 합니다.
+                    merchant_uid: randomUUID,   // 주문번호는 결제창 요청 시 항상 고유 값으로 채번 되어야 합니다.
                     name: res.room_name,
                     amount: res.booking_total_pay_amount,                         // 숫자 타입
                     buyer_email: res.user_email,
@@ -32,7 +33,6 @@ for (let i = 0; i < cardPaymentButtons.length; i++) {
                         booking_id: bookingId
                     }
                 }, function (rsp) {
-
                     // 결제 성공 시
                     if (rsp.success) {
                         const paymentDto = {
@@ -136,11 +136,12 @@ for (let i = 0; i < kakaoPaymentButtons.length; i++) {
             dataType: "json",
             data: {bookingId: bookingId},
             success: function (res) {
-                console.log(res);
+                const randomUUID = generateUUID();
+
                 IMP.request_pay({
                     pg: "kakaopay",
                     pay_method: "kakaopay",
-                    merchant_uid: `${crypto.randomUUID()}`,   // 주문번호는 결제창 요청 시 항상 고유 값으로 채번 되어야 합니다.
+                    merchant_uid: randomUUID,   // 주문번호는 결제창 요청 시 항상 고유 값으로 채번 되어야 합니다.
                     name: res.room_name,
                     amount: res.booking_total_pay_amount,                         // 숫자 타입
                     buyer_email: res.user_email,
@@ -240,6 +241,16 @@ for (let i = 0; i < kakaoPaymentButtons.length; i++) {
     });
 }
 
+/* TODO: 밖에 화면 누르면 꺼지게 하기 */
 // document.body.addEventListener('click', function (event) {
 //     console.log(event);
 // });
+
+function generateUUID() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,
+            function (c) {
+                var r = Math.random() * 16 | 0,
+                        v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+}

@@ -13,4 +13,6 @@ public interface MyBookingService {
     int updateReviewStatus(String booking_id) throws Exception;
 
     int updateBookingStatus() throws Exception;
+
+    int updateRoomStarAvg(String room_id) throws Exception;
 }

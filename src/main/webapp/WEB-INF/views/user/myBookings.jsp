@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
-  Created by IntelliJ IDEA.
+  Created by IntelliJ IDEA..
   User: JKM
   Date: 2023-12-08
   Time: 오전 11:39
@@ -11,7 +11,6 @@
 <head>
     <title>Booking</title>
     <link rel="stylesheet" href="/resources/css2/style.css">
-    <script src="/resources/js/common/aboutTimestamp.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
     <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 </head>
@@ -103,7 +102,7 @@
                                 <div>
                                     <div class="screens-room-myBookings__hiddenValue" hidden
                                          data-value="${dto.booking_id}"></div>
-                                    <div class="screens-room-myBookings__comming-reservation__name">${dto.user_nickname}님이
+                                    <div class="screens-room-myBookings__comming-reservation__name">${dto.host_nickname}님이
                                         호스팅하는 집 전체
                                     </div>
                                 </div>
@@ -169,7 +168,7 @@
                                 <div class="screens-room-myBookings__comming-gray-font">
                                     지역: ${dto.room_address}</div>
                                 <div class="screens-room-myBookings__comming-gray-font">
-                                    호스트: ${dto.user_nickname}</div>
+                                    호스트: ${dto.host_nickname}</div>
                                 <div class="screens-room-myBookings__comming-gray-font">여행
                                     날짜: ${dto.booking_checkin_date}
                                     ~ ${dto.booking_checkout_date}</div>

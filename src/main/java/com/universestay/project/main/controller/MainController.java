@@ -111,12 +111,19 @@ public class MainController {
             //룸 리스트 반환
             roomList = roomService.lookUpAllRoom(sc);
 
-            //이미지 url 처리 + 룸 리스트에 정제해서 넣기
             for (int i = 0; i < roomList.size(); i++) {
                 String roomImgUrl = (String) roomList.get(i).get("room_img_url_list");
                 String[] roomImg = roomImgUrl.split(", ");
 
-                roomList.get(i).put("room_img_url_list", roomImg);
+                // room_main_photo 값을 배열의 맨 앞에 추가
+                String roomMainPhoto = (String) roomList.get(i).get("room_main_photo");
+                String[] updatedRoomImg = new String[roomImg.length + 1];
+                updatedRoomImg[0] = roomMainPhoto;
+                System.arraycopy(roomImg, 0, updatedRoomImg, 1, roomImg.length);
+
+                // room_img_url_list를 업데이트된 배열로 설정
+                roomList.get(i).put("room_img_url_list", updatedRoomImg);
+
                 // 총 페이지 숫자를 리스트에 추가해서 넣기
                 roomList.get(i).put("totalPageCount", totalPageCount);
             }

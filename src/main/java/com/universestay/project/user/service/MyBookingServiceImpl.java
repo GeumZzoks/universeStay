@@ -32,4 +32,9 @@ public class MyBookingServiceImpl implements MyBookingService {
     public int updateBookingStatus() throws Exception {
         return myBookingDao.updateBookingStatus();
     }
+
+    @Override
+    public int updateRoomStarAvg(String room_id) throws Exception {
+        return myBookingDao.updateRoomStarAvg(room_id);
+    }
 }

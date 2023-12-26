@@ -36,18 +36,17 @@
 .screens-user-eventPage__img__wrapper {
     width: 400px;
     height: 200px;
-    border-radius: 5%;
+    border-radius: 20px;
     margin-bottom: 10px;
     overflow: hidden;
-    background-color: #F48475;
     position: relative;
-    border: 2px solid indianred;
+    background-color: whitesmoke;
+    border: 0;
 }
 
 .screens-user-eventPage__img__wrapper img {
-    position: absolute;
-    top: -120px;
-    width: 400px;
+    float: left;
+    width: 150px;
     height: fit-content;
 }
 

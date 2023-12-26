@@ -37,11 +37,21 @@
     </select>
 
     <select id="selectMain" resultType="map">
-        SELECT e.event_id, e.event_title, e.event_ctt, e.event_start_date, e.event_expire_date, ei.event_img_url as img
+        SELECT e.event_id,
+               e.event_title,
+               e.event_ctt,
+               e.event_start_date,
+               e.event_expire_date,
+               ei.event_img_url         as img,
+               c.coupon_type            as coupon_type,
+               c.coupon_discount_rate   as coupon_discount_rate,
+               c.coupon_discount_amount as coupon_discount_amount
         FROM Event e
-                 LEFT JOIN EventImg ei on e.event_id = ei.event_id
+                 LEFT JOIN EventImg ei
+                           on e.event_id = ei.event_id
+                 LEFT JOIN Coupon c on e.event_id = c.event_id
         WHERE e.event_is_open = "Y"
-        ORDER BY e.event_expire_date DESC
+        ORDER BY e.event_expire_date ASC
     </select>
 
     <select id="getAdminUuid" parameterType="String" resultType="String">
