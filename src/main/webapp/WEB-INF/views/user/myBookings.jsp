@@ -11,7 +11,6 @@
 <head>
     <title>Booking</title>
     <link rel="stylesheet" href="/resources/css2/style.css">
-    <script src="/resources/js/common/aboutTimestamp.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
     <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 </head>
