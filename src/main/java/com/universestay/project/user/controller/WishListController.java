@@ -48,8 +48,6 @@ public class WishListController {
         try {
             String user_email = (String) session.getAttribute("user_email");
             String user_id = wishListService.getUserUuid(user_email);
-            System.out.println("user_email = " + user_email);
-            System.out.println("user_id = " + user_id);
 
             if (user_email == null) {
                 System.out.println("exception1");
@@ -58,15 +56,12 @@ public class WishListController {
 
             try {
                 if (wishListService.delete(user_id, room_id) == 1) {
-                    System.out.println("1 = " + 1);
                     return ResponseEntity.ok("DEL_OK");
                 } else {
-                    System.out.println("exception2");
                     throw new Exception();
                 }
             } catch (Exception DelErr) {
                 try {
-                    System.out.println("exception3");
                     String wishlist_id = UUID.randomUUID().toString();
                     wishListDto.setWishlist_id(wishlist_id);
                     wishListDto.setUser_id(user_id);
@@ -76,13 +71,11 @@ public class WishListController {
                     wishListService.insert(wishListDto);
                     return ResponseEntity.ok("IST_OK");
                 } catch (Exception IstErr) {
-                    System.out.println("exception4");
                     IstErr.printStackTrace();
                     return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("IST_ERR");
                 }
             }
         } catch (Exception e) {
-            System.out.println("exception5");
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("NOT_LOGGED_IN");
         }

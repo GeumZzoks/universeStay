@@ -356,33 +356,31 @@
             </div>
             <div class="screens-chat-chattingRoomPage__container__divx-2">
                 <div>
-                    <div>
-                        <div class="screens-chat-chattingRoomPage__chatWrap" id="messageContainer"
-                             style="height: 700px; overflow-y: scroll;">
+                    <div class="screens-chat-chattingRoomPage__chatWrap" id="messageContainer"
+                         style="height: 700px; overflow-y: scroll;">
 
-                            <div class="content chatcontent " data-room-no="${chat_room_id}"
-                                 data-member="${user_name}">
+                        <div class="content chatcontent " data-room-no="${chat_room_id}"
+                             data-member="${user_name}">
 
-                                <div id="list-guestbook" class="">
-                                    <c:forEach items="${firstList}" var="chatMessage">
-                                        <div class="chat_message_item" style="margin-bottom: 20px;">
-                                            <div style="display: flex; align-items: center;">
-                                                <div>
-                                                    <img src="${chatMessage.profile_img_url}"
-                                                         style="width: 30px; height: 30px; border-radius: 50%;">
-                                                </div>
-                                                <div style="margin-left: 10px;">
-                                                    <strong>${chatMessage.user_name}님</strong>
-                                                    <div class="me">
-                                                        <p class="myChat text-left p-2">${chatMessage.chat_ctt}</p>
+                            <div id="list-guestbook" class="">
+                                <c:forEach items="${firstList}" var="chatMessage">
+                                    <div class="chat_message_item" style="margin-bottom: 20px;">
+                                        <div style="display: flex; align-items: center;">
+                                            <div>
+                                                <img src="${chatMessage.profile_img_url}"
+                                                     style="width: 30px; height: 30px; border-radius: 50%;">
+                                            </div>
+                                            <div style="margin-left: 10px;">
+                                                <strong>${chatMessage.user_name}님</strong>
+                                                <div class="me">
+                                                    <p class="myChat text-left p-2">${chatMessage.chat_ctt}</p>
 
-                                                        <p style="display: inline;">${chatMessage.chat_date}</p>
-                                                    </div>
+                                                    <p style="display: inline;">${chatMessage.chat_date}</p>
                                                 </div>
                                             </div>
                                         </div>
-                                    </c:forEach>
-                                </div>
+                                    </div>
+                                </c:forEach>
                             </div>
                         </div>
                     </div>
@@ -394,7 +392,7 @@
                                        onkeydown="checkEnter(event);">
                                 <input type="button" id="send"
                                        class="send col-sm-4 btn btn-secondary"
-                                       onclick="sendmsg(); moveDown()"
+                                       onclick="sendmsg();"
                                        value="전송">
                             </div>
                         </div>
@@ -484,8 +482,6 @@
     var newDate = originalDate.add(9, 'hours');
     var formattedDate = newDate.format('YY/MM/DD HH:mm');
 
-    console.log(formattedDate);
-
     var html = "";
 
     content = "<p class='otherChat bg-light p-2'>" + contentDto.chat_ctt
@@ -510,6 +506,7 @@
     return html;
 
   }
+
   let messageInput = '';
   $(function () {
     messageInput = $('textarea[name="msg"]');
@@ -534,18 +531,13 @@
 
     //	         대화시
     $('.send').click(function () {
-      sendmsg();
+      console.log("채팅 중");
+      // insertChat();
+      // console.log("채팅중 전송 후 저장")
       var msgInput = document.getElementById('msgi');
 
       msgInput.value = '';
     });
-
-    // $('.send').onkeydown(function () {
-    //   sendmsg();
-    //   var msgInput = document.getElementById('msgi');
-    //
-    //   msgInput.value = '';
-    // });
 
     //채팅창 떠날시에
     function disconnect() {

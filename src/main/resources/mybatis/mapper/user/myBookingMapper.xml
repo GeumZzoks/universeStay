@@ -74,4 +74,12 @@
           AND p.payment_is_approved = 'Y';
     </update>
 
+    <update id="updateRoomStarAvg" parameterType="String">
+        UPDATE Room r
+        SET r.room_stars_avg = (SELECT AVG(rr.review_stars)
+                                FROM RoomReview rr
+                                WHERE rr.room_id = #{room_id})
+        WHERE r.room_id = #{room_id}
+    </update>
+
 </mapper>
