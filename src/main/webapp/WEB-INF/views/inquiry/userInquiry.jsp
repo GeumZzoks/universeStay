@@ -248,6 +248,39 @@
     let chatting_room_id;
 
 
+    socket = new SockJS("/endpoint");
+    // webSocket을 다루는데 stomp로 다루겠다!
+    stompClient = Stomp.over(socket);
+    stompClient.connect({}, function (frame) {
+        console.log("Connected: " + frame);
+        stompClient.subscribe('subscribe/inquiry/' + chatting_room_id, function (receivedData) {
+            console.log('receivedData - out');
+            console.log(receivedData);
+            // var Dto = JSON.parse(chatting)
+        })
+    })
+
+    $(function () {
+        function connect() {
+            // 브라우저와 서버 간의 핸드쉐이크, 이 때부터 socket 통신도 가능
+            socket = new SockJS("/endpoint");
+            // webSocket을 다루는데 stomp로 다루겠다!
+            stompClient = Stomp.over(socket);
+
+            stompClient.connect({}, function (frame) {
+                console.log("Connected: " + frame);
+                stompClient.subscribe('subscribe/inquiry/' + chatting_room_id, function (receivedData) {
+                    console.log('receivedData - in');
+                    console.log(receivedData);
+                    // var Dto = JSON.parse(chatting)
+                })
+            })
+        }
+    })
+
+
+
+
     window.onload = function () {
         firstPageAjax();
     };
@@ -303,11 +336,8 @@
             url: "/user/myPage/inquiry/" + r_chatting_room_id,
             data: {},
             success: function (result) {
-                console.log("123");
                 emptyChattingMessageList();
-                console.log("456");
                 fillChattingMessageList(result);
-                console.log("4");
                 chatting_room_id = r_chatting_room_id
                 console.log("clickChattingRoomAjax() 성공");
             },
@@ -327,6 +357,7 @@
                 emptyChattingRoomList();
                 emptyChattingMessageList();
                 fillChattingRoomList(result);
+                console.log("firstPageAjax() 성공");
             },
             error: function () {
                 console.log("firstPageAjax() 실패");
@@ -341,30 +372,14 @@
         // 세번째 인자는 보내고 싶은 body
         console.log("123111");
         stompClient.send('/app/inquiry/' + chatting_room_id, {}, JSON.stringify(inputText.value));
+        console.log("ddd");
     })
 
-    $(function () {
-        function connect() {
-            // 브라우저와 서버 간의 핸드쉐이크, 이 때부터 socket 통신도 가능
-            socket = new SockJS("/endpoint");
-            // webSocket을 다루는데 stomp로 다루겠다!
-            stompClient = Stomp.over(socket);
-
-
-            stompClient.connect({}, function (frame) {
-                console.log("Connected: " + frame);
-                stompClient.subscribe('subscribe/inquiry/' + chatting_room_id, function (receivedData) {
-                    console.log(receivedData);
-                    // var Dto = JSON.parse(chatting)
-                })
-            })
-
-        }
-    })
 
     function stompDisconnect() {
         if (stompClient != null) {
             stompClient.disconnect();
+            console.log("stompClient.disconnect() 성공")
         }
     }
 

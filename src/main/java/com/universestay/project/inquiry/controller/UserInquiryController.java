@@ -69,6 +69,8 @@ public class UserInquiryController {
     @SendTo("/subscribe/inquiry/{chatting_room_id}")
     public String broadcasting(@DestinationVariable String chatting_room_id, @Payload String message) {
         System.out.println("얄루");
+        System.out.println("11111111111");
+        System.out.println("aaaaaaaaaaa");
 //        Map<String, Object>
         //        List<Map<String, Object>> chattingMessage = chatMessageService.recentlyChatMessage(
 //                chatting_room_id);
