@@ -5,82 +5,107 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="apple-touch-icon" sizes="57x57" href="/resources/img/favi.ico/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/resources/img/favi.ico//apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/resources/img/favi.ico/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/resources/img/favi.ico/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114"
+          href="/resources/img/favi.ico/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120"
+          href="/resources/img/favi.ico/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144"
+          href="/resources/img/favi.ico/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152"
+          href="/resources/img/favi.ico/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180"
+          href="/resources/img/favi.ico/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"
+          href="/resources/img/favi.ico/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="/resources/img/favi.ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96"
+          href="/resources/img/favi.ico/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="/resources/img/favi.ico/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <title>유저 정보</title>
     <style>
-        .screen-admin-userInfo__container {
-            background-color: gainsboro;
-            width: 100vw;
-            height: 100%;
-            position: absolute;
-        }
+      .screen-admin-userInfo__container {
+        background-color: gainsboro;
+        width: 100vw;
+        height: 100%;
+        position: absolute;
+      }
 
-        .screen-admin-userInfo__container__1 {
-            width: 80%;
-            height: 85%;
-            min-height: 550px;
-            position: relative;
-            float: left;
-            margin: 0 100px 0 230px;
-            top: 78px;
-            bottom: 25px;
-            padding: 0 20px 0 20px;
-            background-color: white;
-            overflow: auto;
-        }
+      .screen-admin-userInfo__container__1 {
+        width: 80%;
+        height: 85%;
+        min-height: 550px;
+        position: relative;
+        float: left;
+        margin: 0 100px 0 230px;
+        top: 78px;
+        bottom: 25px;
+        padding: 0 20px 0 20px;
+        background-color: white;
+        overflow: auto;
+      }
 
-        .screens-admin-userInfo__btn {
-            width: 150px;
-            height: 40px;
-            float: right;
-            position: fixed;
-            right: 20px;
-            top: 100px;
-            z-index: 1;
-        }
+      .screens-admin-userInfo__btn {
+        width: 150px;
+        height: 40px;
+        float: right;
+        position: fixed;
+        right: 20px;
+        top: 100px;
+        z-index: 1;
+      }
 
-        .screens-admin-userInfo__btn button {
-            background-color: indianred;
-            color: white;
-            border: 0;
-            width: 50px;
-            height: 24px;
-            cursor: pointer;
-            margin-left: 10px;
-        }
+      .screens-admin-userInfo__btn button {
+        background-color: indianred;
+        color: white;
+        border: 0;
+        width: 50px;
+        height: 24px;
+        cursor: pointer;
+        margin-left: 10px;
+      }
 
-        .screens-admin-userInfo__btn a {
-            text-decoration: none;
+      .screens-admin-userInfo__btn a {
+        text-decoration: none;
 
-        }
+      }
 
-        .screen-admin-userInfo__container__2 {
-            width: 80%;
-            height: auto;
-            min-height: 550px;
-            position: absolute;
-            float: left;
-            margin: 20px 100px 0 230px;
-            top: 110px;
-            bottom: 25px;
-            padding: 0 20px 0 20px;
-            overflow: auto;
-        }
+      .screen-admin-userInfo__container__2 {
+        width: 80%;
+        height: auto;
+        min-height: 550px;
+        position: absolute;
+        float: left;
+        margin: 20px 100px 0 230px;
+        top: 110px;
+        bottom: 25px;
+        padding: 0 20px 0 20px;
+        overflow: auto;
+      }
 
-        .screen-admin-userInfo__container__2 > div {
-            display: inline-block;
-            margin-top: 10px;
-            margin-left: 20px;
-            width: auto;
-            min-width: 100px;
-        }
+      .screen-admin-userInfo__container__2 > div {
+        display: inline-block;
+        margin-top: 10px;
+        margin-left: 20px;
+        width: auto;
+        min-width: 100px;
+      }
 
-        .screen-admin-userInfo__container__2 > div:nth-of-type(2) select {
-            position: absolute;
-            margin-left: 5px;
-            top: 7px;
-            width: 60px;
-            height: 20px;
-        }
+      .screen-admin-userInfo__container__2 > div:nth-of-type(2) select {
+        position: absolute;
+        margin-left: 5px;
+        top: 7px;
+        width: 60px;
+        height: 20px;
+      }
 
     </style>
 </head>
@@ -189,7 +214,8 @@
 
             var mybtn = document.getElementById('mybtn');
             var options = [{U01: '활성'}, {U02: '휴면'}, {U03: '정지'}, {U04: '탈퇴'}];
-            var statusContainer = document.querySelector('.screen-admin-userInfo__container__2 > div:nth-of-type(2)');
+            var statusContainer = document.querySelector(
+                    '.screen-admin-userInfo__container__2 > div:nth-of-type(2)');
             var selectElement = document.createElement('select');
             selectElement.name = 'status_id';
             options.forEach(function (optionValue) {

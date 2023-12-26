@@ -9,172 +9,197 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link rel="apple-touch-icon" sizes="57x57" href="/resources/img/favi.ico/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/resources/img/favi.ico//apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/resources/img/favi.ico/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/resources/img/favi.ico/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114"
+          href="/resources/img/favi.ico/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120"
+          href="/resources/img/favi.ico/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144"
+          href="/resources/img/favi.ico/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152"
+          href="/resources/img/favi.ico/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180"
+          href="/resources/img/favi.ico/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"
+          href="/resources/img/favi.ico/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="/resources/img/favi.ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96"
+          href="/resources/img/favi.ico/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="/resources/img/favi.ico/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <title>문의사항</title>
     <style></style>
 </head>
 <style>
-    .screens-admin-inquiry__container {
-        box-sizing: border-box;
-    }
+  .screens-admin-inquiry__container {
+    box-sizing: border-box;
+  }
 
-    .screens-admin-inquiry__content {
-        width: 1200px;
-        background: yellow;
-        border-radius: 20px;
-        position: absolute;
-        left: 250px;
-        top: 120px;
+  .screens-admin-inquiry__content {
+    width: 1200px;
+    background: yellow;
+    border-radius: 20px;
+    position: absolute;
+    left: 250px;
+    top: 120px;
 
-    }
+  }
 
-    .screens-admin-inquiry__content__1 {
-        text-align: right;
-        margin: 10px 20px;
+  .screens-admin-inquiry__content__1 {
+    text-align: right;
+    margin: 10px 20px;
 
-    }
+  }
 
-    .screens-admin-inquiry__content__2 {
-        background: gainsboro;
-        text-align: center;
-        font-size: 20px;
-        display: grid;
-        grid-template-columns: 1fr 3fr 1fr 3fr 1fr 3fr;
-        /* grid-template-columns: 100px 200px auto */
+  .screens-admin-inquiry__content__2 {
+    background: gainsboro;
+    text-align: center;
+    font-size: 20px;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr 3fr 1fr 3fr;
+    /* grid-template-columns: 100px 200px auto */
 
-        grid-template-rows: repeat(3, minmax(50px, auto));
-        /*grid-template-rows: 200px 200px 500px;*/
-        /*grid-auto-rows: minmax(100px, auto);*/
+    grid-template-rows: repeat(3, minmax(50px, auto));
+    /*grid-template-rows: 200px 200px 500px;*/
+    /*grid-auto-rows: minmax(100px, auto);*/
 
-        row-gap: 0px;
-        column-gap: 0px;
-        /*gap: 10px; 20px*/
-    }
+    row-gap: 0px;
+    column-gap: 0px;
+    /*gap: 10px; 20px*/
+  }
 
-    .screens-admin-inquiry__content__2 * {
-        padding: 5px;
-        border: 1px solid black;
-    }
+  .screens-admin-inquiry__content__2 * {
+    padding: 5px;
+    border: 1px solid black;
+  }
 
 
-    .screens-admin-inquiry__content__2 > div:nth-of-type(1) {
-        grid-column: 1/2;
-    }
+  .screens-admin-inquiry__content__2 > div:nth-of-type(1) {
+    grid-column: 1/2;
+  }
 
-    .screens-admin-inquiry__content__2 > div:nth-of-type(2) {
-        grid-column: 2/7;
-    }
+  .screens-admin-inquiry__content__2 > div:nth-of-type(2) {
+    grid-column: 2/7;
+  }
 
-    .screens-admin-inquiry__content__2 > div:nth-of-type(3) {
-        grid-column: 1/2;
-    }
+  .screens-admin-inquiry__content__2 > div:nth-of-type(3) {
+    grid-column: 1/2;
+  }
 
-    .screens-admin-inquiry__content__2 > div:nth-of-type(4) {
-        grid-column: 2/3;
-    }
+  .screens-admin-inquiry__content__2 > div:nth-of-type(4) {
+    grid-column: 2/3;
+  }
 
-    .screens-admin-inquiry__content__2 > div:nth-of-type(5) {
-        grid-column: 3/4;
-    }
+  .screens-admin-inquiry__content__2 > div:nth-of-type(5) {
+    grid-column: 3/4;
+  }
 
-    .screens-admin-inquiry__content__2 > div:nth-of-type(6) {
-        grid-column: 4/5;
-    }
+  .screens-admin-inquiry__content__2 > div:nth-of-type(6) {
+    grid-column: 4/5;
+  }
 
-    .screens-admin-inquiry__content__2 > div:nth-of-type(7) {
-        grid-column: 5/6;
-    }
+  .screens-admin-inquiry__content__2 > div:nth-of-type(7) {
+    grid-column: 5/6;
+  }
 
-    .screens-admin-inquiry__content__2 > div:nth-of-type(8) {
-        grid-column: 6/7;
-    }
+  .screens-admin-inquiry__content__2 > div:nth-of-type(8) {
+    grid-column: 6/7;
+  }
 
-    .screens-admin-inquiry__content__2 > div:nth-of-type(9) {
-        grid-column: 1/2;
-    }
+  .screens-admin-inquiry__content__2 > div:nth-of-type(9) {
+    grid-column: 1/2;
+  }
 
-    .screens-admin-inquiry__content__2 > div:nth-of-type(10) {
-        grid-column: 2/7;
-    }
+  .screens-admin-inquiry__content__2 > div:nth-of-type(10) {
+    grid-column: 2/7;
+  }
 
-    .screens-admin-inquiry__content__3 {
+  .screens-admin-inquiry__content__3 {
 
-    }
+  }
 
-    .screens-admin-inquiry__content__3__form {
-        text-align: right;
-        margin-top: 20px;
-        margin-right: 20px;
-    }
+  .screens-admin-inquiry__content__3__form {
+    text-align: right;
+    margin-top: 20px;
+    margin-right: 20px;
+  }
 
-    .screens-admin-inquiry__content__3__form > input:nth-of-type(3) {
-        width: 1000px;
-        height: 80px;
-    }
+  .screens-admin-inquiry__content__3__form > input:nth-of-type(3) {
+    width: 1000px;
+    height: 80px;
+  }
 
-    .screens-admin-inquiry__content__3__form > input:nth-of-type(4) {
-        width: 40px;
-        height: 40px;
-        margin-left: 10px;
+  .screens-admin-inquiry__content__3__form > input:nth-of-type(4) {
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
 
-    }
+  }
 
-    .screens-admin-inquiry__content__4 {
-        width: calc(100% - 20px);
-        margin-top: 50px;
-        background: lightpink;
-        text-align: center;
-        font-size: 20px;
-        display: grid;
+  .screens-admin-inquiry__content__4 {
+    width: calc(100% - 20px);
+    margin-top: 50px;
+    background: lightpink;
+    text-align: center;
+    font-size: 20px;
+    display: grid;
 
-        /*grid-auto-columns: minmax(100px, auto);*/
-        /*grid-auto-rows: minmax(100px, auto);*/
+    /*grid-auto-columns: minmax(100px, auto);*/
+    /*grid-auto-rows: minmax(100px, auto);*/
 
-        row-gap: 10px;
-        column-gap: 20px;
-        /*gap: 10px; 20px*/
-    }
+    row-gap: 10px;
+    column-gap: 20px;
+    /*gap: 10px; 20px*/
+  }
 
-    .screens-admin-inquiry__content__4 > div {
-        border: 1px solid black;
-        margin-top: 15px;
-        background: #62baea;
-        text-align: center;
-        font-size: 10px;
-        display: grid;
+  .screens-admin-inquiry__content__4 > div {
+    border: 1px solid black;
+    margin-top: 15px;
+    background: #62baea;
+    text-align: center;
+    font-size: 10px;
+    display: grid;
 
-        grid-template-columns: 3fr 13fr 1fr;
-        grid-template-rows: 1fr 1fr;
-    }
+    grid-template-columns: 3fr 13fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
 
-    .screens-admin-inquiry__content__4 > div > * {
-        padding: 10px;
-    }
+  .screens-admin-inquiry__content__4 > div > * {
+    padding: 10px;
+  }
 
-    .screens-admin-inquiry__content__4 > div > div:nth-of-type(1) {
-        grid-column: 1/2;
-        grid-row: 1/2;
-    }
+  .screens-admin-inquiry__content__4 > div > div:nth-of-type(1) {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
 
-    .screens-admin-inquiry__content__4 > div > input {
-        border: 1px solid black;
-        grid-column: 2/3;
-        grid-row: 1/3;
-    }
+  .screens-admin-inquiry__content__4 > div > input {
+    border: 1px solid black;
+    grid-column: 2/3;
+    grid-row: 1/3;
+  }
 
-    .screens-admin-inquiry__content__4 > div > div:nth-of-type(2) {
-        grid-column: 3/4;
-        grid-row: 1/3;
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-        align-items: start;
-    }
+  .screens-admin-inquiry__content__4 > div > div:nth-of-type(2) {
+    grid-column: 3/4;
+    grid-row: 1/3;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: start;
+  }
 
-    .screens-admin-inquiry__content__4 > div > div:nth-of-type(3) {
-        grid-column: 1/2;
-        grid-row: 2/3;
-    }
+  .screens-admin-inquiry__content__4 > div > div:nth-of-type(3) {
+    grid-column: 1/2;
+    grid-row: 2/3;
+  }
 </style>
 <body>
 <div class="screens-admin-inquiry__container">
@@ -183,7 +208,8 @@
     <jsp:include page="/WEB-INF/views/common/admin/footer.jsp"/>
     <div class="screens-admin-inquiry__content">
         <div class="screens-admin-inquiry__content__1">
-            <button><a href="<c:url value='/admin/inquiry/list${sc.getQueryString()}'/>">목록</a></button>
+            <button><a href="<c:url value='/admin/inquiry/list${sc.getQueryString()}'/>">목록</a>
+            </button>
         </div>
         <div class="screens-admin-inquiry__content__2">
             <div class="screens-admin-inquiry__content__2-box1">제목</div>
@@ -199,7 +225,8 @@
         </div>
         <div class="screens-admin-inquiry__content__3">
             <form class="screens-admin-inquiry__content__3__form"
-                  action="<c:url value='/admin/inquiry/writereply${sc.getQueryString()}'/>" method="post">
+                  action="<c:url value='/admin/inquiry/writereply${sc.getQueryString()}'/>"
+                  method="post">
                 <input type="hidden" name="inquiry_id" value="${dto.inquiry_id}"/>
                 <input type="hidden" name="reply_writer_id" value="${dto.user_id}" readonly/>
                 <input type="text" name="reply_ctt" placeholder="내용을 입력해주세요..."/>
@@ -212,9 +239,21 @@
                     <div>${dto2.reply_writer_id}</div>
                     <input value="${dto2.reply_ctt}" readonly/>
                     <div>
-                        <a href="#;"><button class="screens-admin-inquiry__content__4-cancelbtn screens-admin-inquiry__content__4-cancelbtn-${status.count}" onclick="cancelUpdateReply()" hidden>취소</button></a>
-                        <a href="#;"><button class="screens-admin-inquiry__content__4-modifybtn screens-admin-inquiry__content__4-modifybtn-${status.count}" onclick="updateReply(${status.count}, ${dto2.reply_id})">수정</button></a>
-                        <a href="#;"><button class="screens-admin-inquiry__content__4-removebtn" onclick="deleteReply(${dto2.reply_id})">삭제</button></a>
+                        <a href="#;">
+                            <button class="screens-admin-inquiry__content__4-cancelbtn screens-admin-inquiry__content__4-cancelbtn-${status.count}"
+                                    onclick="cancelUpdateReply()" hidden>취소
+                            </button>
+                        </a>
+                        <a href="#;">
+                            <button class="screens-admin-inquiry__content__4-modifybtn screens-admin-inquiry__content__4-modifybtn-${status.count}"
+                                    onclick="updateReply(${status.count}, ${dto2.reply_id})">수정
+                            </button>
+                        </a>
+                        <a href="#;">
+                            <button class="screens-admin-inquiry__content__4-removebtn"
+                                    onclick="deleteReply(${dto2.reply_id})">삭제
+                            </button>
+                        </a>
                     </div>
                     <div>${dto2.created_at}</div>
                 </div>
@@ -227,15 +266,18 @@
         }
 
         function updateReply(num, replyId) {
-            let modifybtn = document.querySelector('.screens-admin-inquiry__content__4-modifybtn-' + num);
-            let inputtag = document.querySelector('.screens-admin-inquiry__content__4-' + num + '>input');
+            let modifybtn = document.querySelector(
+                    '.screens-admin-inquiry__content__4-modifybtn-' + num);
+            let inputtag = document.querySelector(
+                    '.screens-admin-inquiry__content__4-' + num + '>input');
             // let modifybtns = document.querySelectorAll('.screens-admin-inquiry__content__4-modifybtn');
 
             if (modifybtn.textContent === '수정') {
                 alert("gg")
                 modifybtn.innerHTML = '완료';
                 inputtag.removeAttribute("readonly");
-                let def = document.querySelector('.screens-admin-inquiry__content__4-cancelbtn-' + num);
+                let def = document.querySelector(
+                        '.screens-admin-inquiry__content__4-cancelbtn-' + num);
                 def.removeAttribute("hidden");
             } else {
                 alert("123")
@@ -278,7 +320,6 @@
 
                 modifybtn.innerHTML = '수정';
             }
-
 
         }
 

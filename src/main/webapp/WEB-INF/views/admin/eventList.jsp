@@ -13,6 +13,31 @@
     <title>이벤트</title>
     <link rel="stylesheet" href="/resources/css2/style.css">
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <link rel="apple-touch-icon" sizes="57x57" href="/resources/img/favi.ico/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/resources/img/favi.ico//apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/resources/img/favi.ico/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/resources/img/favi.ico/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114"
+          href="/resources/img/favi.ico/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120"
+          href="/resources/img/favi.ico/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144"
+          href="/resources/img/favi.ico/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152"
+          href="/resources/img/favi.ico/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180"
+          href="/resources/img/favi.ico/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"
+          href="/resources/img/favi.ico/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="/resources/img/favi.ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96"
+          href="/resources/img/favi.ico/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="/resources/img/favi.ico/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
 
 </head>
 <body>
@@ -24,7 +49,8 @@
 
     <div class="screens-admin-event__content">
         <h3 style="color: indianred; margin-top: 20px; font-weight: 600;">이벤트</h3>
-        <form action="<c:url value='/admin/event/list'/>" class="screens-admin-event__content-search" method="get"
+        <form action="<c:url value='/admin/event/list'/>"
+              class="screens-admin-event__content-search" method="get"
               style="width:150px; height: 24px;">
             <select class="screens-admin-event__content-search-option" name="option">
                 <option value="T" ${ph.sc.option=='T' ? "selected" : ""}>제목</option>
@@ -40,13 +66,26 @@
         <div class="screens-admin-event__content-table-div">
             <table class="screens-admin-event__content-table" style="table-layout: fixed">
                 <tr>
-                    <th class="screens-admin-event__content-table__no" style="font-size: 14px;">번호</th>
-                    <th class="screens-admin-event__content-table__title" style="text-align: center">이벤트</th>
-                    <th class="screens-admin-event__content-table__writer" style="font-size: 14px;">작성자</th>
-                    <th class="screens-admin-event__content-table__status" style="font-size: 14px;">진행상태</th>
-                    <th class="screens-admin-event__content-table__is_open" style="font-size: 14px;">공개여부</th>
-                    <th class="screens-admin-event__content-table__regdate" style="font-size: 14px;">등록일</th>
-                    <th class="screens-admin-event__content-table__viewcnt" style="font-size: 14px;">조회수</th>
+                    <th class="screens-admin-event__content-table__no" style="font-size: 14px;">번호
+                    </th>
+                    <th class="screens-admin-event__content-table__title"
+                        style="text-align: center">이벤트
+                    </th>
+                    <th class="screens-admin-event__content-table__writer" style="font-size: 14px;">
+                        작성자
+                    </th>
+                    <th class="screens-admin-event__content-table__status" style="font-size: 14px;">
+                        진행상태
+                    </th>
+                    <th class="screens-admin-event__content-table__is_open"
+                        style="font-size: 14px;">공개여부
+                    </th>
+                    <th class="screens-admin-event__content-table__regdate"
+                        style="font-size: 14px;">등록일
+                    </th>
+                    <th class="screens-admin-event__content-table__viewcnt"
+                        style="font-size: 14px;">조회수
+                    </th>
                 </tr>
                 <c:forEach var="eventDto" items="${list}">
                     <tr>
@@ -61,15 +100,21 @@
                                 <td class="screens-admin-event__content-table__status">준비중</td>
                             </c:when>
                             <c:when test="${eventDto.status_id eq 'E02'}">
-                                <td class="screens-admin-event__content-table__status" style="color: indianred">진행중</td>
+                                <td class="screens-admin-event__content-table__status"
+                                    style="color: indianred">진행중
+                                </td>
                             </c:when>
                             <c:otherwise>
-                                <td class="screens-admin-event__content-table__status" style="color: darkgray">종료</td>
+                                <td class="screens-admin-event__content-table__status"
+                                    style="color: darkgray">종료
+                                </td>
                             </c:otherwise>
                         </c:choose>
                         <c:choose>
                             <c:when test="${eventDto.event_is_open eq 'Y'}">
-                                <td class="screens-admin-event__content-table__is_open" style="color: indianred">공개</td>
+                                <td class="screens-admin-event__content-table__is_open"
+                                    style="color: indianred">공개
+                                </td>
                             </c:when>
                             <c:otherwise>
                                 <td class="screens-admin-event__content-table__is_open">비공개</td>
@@ -97,14 +142,17 @@
         <br>
 
         <div class="screens-admin-event__content-bottom">
-            <button class="screens-admin-event__content-bottom__btn" style="position: absolute; right: -4px; top: -4px"
+            <button class="screens-admin-event__content-bottom__btn"
+                    style="position: absolute; right: -4px; top: -4px"
                     onclick="location.href='/admin/event/write'">이벤트 작성
             </button>
         </div>
         <div class="screens-admin-event__paging-container">
             <div class="screens-admin-event__paging">
                 <c:if test="${totalCnt==null || totalCnt==0}">
-                    <div style="position: absolute; top: -250px; left: -80px; width: 120px;"> 게시물이 없습니다.</div>
+                    <div style="position: absolute; top: -250px; left: -80px; width: 120px;"> 게시물이
+                        없습니다.
+                    </div>
                 </c:if>
                 <c:if test="${totalCnt!=null && totalCnt!=0}">
                     <c:if test="${ph.showPrev}">

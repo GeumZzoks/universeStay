@@ -6,6 +6,31 @@
 <html>
 <head>
     <title>roomDetail</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="/resources/img/favi.ico/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/resources/img/favi.ico//apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/resources/img/favi.ico/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/resources/img/favi.ico/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114"
+          href="/resources/img/favi.ico/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120"
+          href="/resources/img/favi.ico/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144"
+          href="/resources/img/favi.ico/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152"
+          href="/resources/img/favi.ico/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180"
+          href="/resources/img/favi.ico/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"
+          href="/resources/img/favi.ico/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="/resources/img/favi.ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96"
+          href="/resources/img/favi.ico/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="/resources/img/favi.ico/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <link rel="stylesheet" href="/resources/css2/style.css">
 
     <link rel="stylesheet" type="text/css"
@@ -16,13 +41,13 @@
 
 
     <style>
-        .screens-room-roomDetail__section-1__btns {
-            vertical-align: bottom;
-        }
+      .screens-room-roomDetail__section-1__btns {
+        vertical-align: bottom;
+      }
 
-        .screens-room-roomDetail__btn-share__text {
-            margin: 2px 0 0 2px;
-        }
+      .screens-room-roomDetail__btn-share__text {
+        margin: 2px 0 0 2px;
+      }
 
     </style>
 </head>
@@ -597,84 +622,88 @@
 </script>
 
 <script>
-  $(document).ready(function () {
-    $(".screens-room-roomDetail__btn-review-modal").click(function () {
-      $.ajax({
-        type: 'GET',                                    // 요청 메서드
-        url: '/room/${room.room_id}/reviews',           // 요청 URL
-        headers: {"content-type": "application/json"},  // 요청 헤더
-        dataType: 'text',                               // 전송받을 데이터의 타입
-        success: function (result) {
-          let reviewList = JSON.parse(result);
+    $(document).ready(function () {
+        $(".screens-room-roomDetail__btn-review-modal").click(function () {
+            $.ajax({
+                type: 'GET',                                    // 요청 메서드
+                url: '/room/${room.room_id}/reviews',           // 요청 URL
+                headers: {"content-type": "application/json"},  // 요청 헤더
+                dataType: 'text',                               // 전송받을 데이터의 타입
+                success: function (result) {
+                    let reviewList = JSON.parse(result);
 
-          let options = {
-            timeZone: 'Asia/Seoul', // 한국 시간대를 설정합니다.
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          };
+                    let options = {
+                        timeZone: 'Asia/Seoul', // 한국 시간대를 설정합니다.
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                    };
 
-          for (let i = 0; i < Object.keys(reviewList).length; i++) {
-            let date = new Date(reviewList[i].created_at); // UNIX 타임스탬프를 기반으로 Date 객체 생성
-            let koreanTime = date.toLocaleString('ko-KR', options); // 한국 시간으로 변환
-            reviewList[i].created_at = koreanTime;
-          }
+                    for (let i = 0; i < Object.keys(reviewList).length; i++) {
+                        let date = new Date(reviewList[i].created_at); // UNIX 타임스탬프를 기반으로 Date 객체 생성
+                        let koreanTime = date.toLocaleString('ko-KR', options); // 한국 시간으로 변환
+                        reviewList[i].created_at = koreanTime;
+                    }
 
-          $('.reviewModal__content__reviews').empty();
-          $.each(reviewList, function (index, reviewList) {
-            let fullStar = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 20px; width: 20px; fill: var(--f-k-smk-x);"><path fill-rule="evenodd" d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"></path></svg>';
-            let halfStar = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false"style="display: block; height: 20px; width: 20px;"><defs><linearGradient id="half-fill-gradient" x1="0%" y1="0%" x2="100%" y2="0%"> <stop offset="0%" style="stop-color: var(--f-k-smk-x);"></stop><stop offset="50%" style="stop-color: var(--f-k-smk-x);"></stop><stop offset="50%" style="stop-color: transparent;"></stop><stop offset="100%" style="stop-color: transparent;"></stop></linearGradient></defs><path fill-rule="evenodd" d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z" style="fill: url(#half-fill-gradient); stroke: #000000; stroke-width: 1; stroke-linejoin: round;"></path></svg>';
-            let emptyStar = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 20px; width: 20px; fill: #ffffff; stroke: #000000; stroke-width: 1;"><path fill-rule="evenodd" d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"></path></svg>';
+                    $('.reviewModal__content__reviews').empty();
+                    $.each(reviewList, function (index, reviewList) {
+                        let fullStar = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 20px; width: 20px; fill: var(--f-k-smk-x);"><path fill-rule="evenodd" d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"></path></svg>';
+                        let halfStar = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false"style="display: block; height: 20px; width: 20px;"><defs><linearGradient id="half-fill-gradient" x1="0%" y1="0%" x2="100%" y2="0%"> <stop offset="0%" style="stop-color: var(--f-k-smk-x);"></stop><stop offset="50%" style="stop-color: var(--f-k-smk-x);"></stop><stop offset="50%" style="stop-color: transparent;"></stop><stop offset="100%" style="stop-color: transparent;"></stop></linearGradient></defs><path fill-rule="evenodd" d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z" style="fill: url(#half-fill-gradient); stroke: #000000; stroke-width: 1; stroke-linejoin: round;"></path></svg>';
+                        let emptyStar = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 20px; width: 20px; fill: #ffffff; stroke: #000000; stroke-width: 1;"><path fill-rule="evenodd" d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"></path></svg>';
 
-            let reviewStars = '';
-            let fullStars = Math.floor(reviewList.review_stars);
-            let halfStars = (reviewList.review_stars % 1) !== 0 ? 1 : 0;
-            let emptyStars = 5 - fullStars - halfStars;
+                        let reviewStars = '';
+                        let fullStars = Math.floor(reviewList.review_stars);
+                        let halfStars = (reviewList.review_stars % 1) !== 0 ? 1 : 0;
+                        let emptyStars = 5 - fullStars - halfStars;
 
-            for (let i = 0; i < fullStars; i++) {
-              reviewStars += fullStar;
-            }
-            for (let i = 0; i < halfStars; i++) {
-              reviewStars += halfStar;
-            }
-            for (let i = 0; i < emptyStars; i++) {
-              reviewStars += emptyStar;
-            }
+                        for (let i = 0; i < fullStars; i++) {
+                            reviewStars += fullStar;
+                        }
+                        for (let i = 0; i < halfStars; i++) {
+                            reviewStars += halfStar;
+                        }
+                        for (let i = 0; i < emptyStars; i++) {
+                            reviewStars += emptyStar;
+                        }
 
-            let html = '<div class="screens-room-roomDetail__review">' +
-                '    <div class="screens-room-roomDetail__review__profile">' +
-                '        <div class="screens-room-roomDetail__review__profile__part-1">' +
-                '            <img class="screens-room-roomDetail__review__profile-img" src="' +
-                reviewList.profile_img_url + '" alt="리뷰어 프로필 이미지">' +
-                '        </div>' +
-                '        <div class="screens-room-roomDetail__review__profile__part-2">' +
-                '            <div class="screens-room-roomDetail__review__profile__reviewer">' +
-                reviewList.user_nickname +
-                '            </div>' +
-                '            <div class="screens-room-roomDetail__review__profile__review-date">'
-                +
-                reviewList.created_at +
-                '            </div>' +
-                '        </div>' +
-                '    </div>' +
-                '    <div class="reviewModal__content__review__star" style="display: flex; padding-bottom: 10px;">'
-                + reviewStars
-                + '</div>' +
-                '    <div class="screens-room-roomDetail__review__content" style="width: 442px">'
-                + reviewList.review_ctt
-                +
-                '    </div>' +
-                '</div>';
-            $('.reviewModal__content__reviews').append(html);
-          });
+                        let html = '<div class="screens-room-roomDetail__review">' +
+                                '    <div class="screens-room-roomDetail__review__profile">' +
+                                '        <div class="screens-room-roomDetail__review__profile__part-1">'
+                                +
+                                '            <img class="screens-room-roomDetail__review__profile-img" src="'
+                                +
+                                reviewList.profile_img_url + '" alt="리뷰어 프로필 이미지">' +
+                                '        </div>' +
+                                '        <div class="screens-room-roomDetail__review__profile__part-2">'
+                                +
+                                '            <div class="screens-room-roomDetail__review__profile__reviewer">'
+                                +
+                                reviewList.user_nickname +
+                                '            </div>' +
+                                '            <div class="screens-room-roomDetail__review__profile__review-date">'
+                                +
+                                reviewList.created_at +
+                                '            </div>' +
+                                '        </div>' +
+                                '    </div>' +
+                                '    <div class="reviewModal__content__review__star" style="display: flex; padding-bottom: 10px;">'
+                                + reviewStars
+                                + '</div>' +
+                                '    <div class="screens-room-roomDetail__review__content" style="width: 442px">'
+                                + reviewList.review_ctt
+                                +
+                                '    </div>' +
+                                '</div>';
+                        $('.reviewModal__content__reviews').append(html);
+                    });
 
-        },
-        error: function () {
-          alert("후기를 불러오는 도중 문제가 발생하였습니다. 관리자에게 문의 부탁드립니다.");
-        }
-      });
+                },
+                error: function () {
+                    alert("후기를 불러오는 도중 문제가 발생하였습니다. 관리자에게 문의 부탁드립니다.");
+                }
+            });
+        });
     });
-  });
 </script>
 
 <script>
