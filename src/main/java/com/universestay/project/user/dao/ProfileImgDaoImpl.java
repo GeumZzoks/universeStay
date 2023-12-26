@@ -40,8 +40,6 @@ public class ProfileImgDaoImpl implements ProfileImgDao {
     public int insertProfileImg(String user_id, String profile_img_url)
             throws Exception {
 
-        System.out.println("user_id = " + user_id);
-
         //새로운 profileImg를 insert하기 전, 기존 프로필 이미지 사진들의 profile_img_is_remove속성을 Y로 바꾼다.
         try {
             updateProfileImgStatus(user_id);

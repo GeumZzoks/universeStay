@@ -14,7 +14,6 @@ To change this template use File | Settings | File Templates.
     <link rel="stylesheet" href="/resources/css2/style.css">
 </head>
 <body>
-
 <div class="components-admin-header__header">
     <button class="components-admin-header__header__homebtn" onclick="location.href=''"></button>
     <button class="components-admin-header__header__btn" style="background-color: indianred;"

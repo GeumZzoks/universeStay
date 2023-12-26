@@ -55,7 +55,6 @@ public class UserInfoServiceImpl implements UserInfoService, PasswordEncryption 
         }
 
         if (img != null && !img.isEmpty()) {
-            System.out.println("img = " + img);
             String imgUrl = awsS3ImgUploaderService.uploadImageToS3(
                     img, "profile-img"); // aws로 이미지 업로드후 s3 url 받아오기
             profileImgDao.insertProfileImg(user.getUser_id(),
