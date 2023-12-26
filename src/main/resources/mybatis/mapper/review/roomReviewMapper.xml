@@ -11,6 +11,7 @@
                            ON u.user_id = p.user_id
         where rr.room_id = #{room_id}
           and rr.user_id = rr.review_writer
+          and p.profile_img_is_remove = 'N'
         order by created_at desc
     </select>
 
@@ -46,6 +47,7 @@
                            ON u.user_id = p.user_id
         where rr.room_id = #{room_id}
           and rr.user_id = rr.review_writer
+          and p.profile_img_is_remove = 'N'
         order by created_at desc limit 6
     </select>
 </mapper>
