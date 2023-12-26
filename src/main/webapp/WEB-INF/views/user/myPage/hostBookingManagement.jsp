@@ -71,6 +71,7 @@
             box-shadow: 0px 0px 5px 0px gray;
             border-radius: 12px;
             margin-bottom: 1.5rem;
+            display: none;
         }
 
         .screens-user-myPage-hostBookingManagement__request__head > div {
@@ -151,6 +152,7 @@
     const requests = document.querySelector('.screens-user-myPage-hostBookingManagement__requests');
     const request = document.querySelector('.screens-user-myPage-hostBookingManagement__request');
     const copiedRequest = request.cloneNode(true);
+    copiedRequest.style.display = 'flex';
 
     window.onload = function () {
         requestPageAjax();
