@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
-  Created by IntelliJ IDEA.
+  Created by IntelliJ IDEA..
   User: JKM
   Date: 2023-12-08
   Time: 오전 11:39
