@@ -388,7 +388,7 @@
                         <div id="alertK" onclick="moveDown();" class="alert alert-success"
                              role="alert">
                             <div class="screens-chat-chattingRoomPage__container__form">
-                                <input type="text" name="msg" id="msgi"
+                                <input type="text" name="msg" id="msgi" class="msgi"
                                        onkeydown="checkEnter(event);">
                                 <input type="button" id="send"
                                        class="send col-sm-4 btn btn-secondary"
@@ -482,6 +482,8 @@
     var newDate = originalDate.add(9, 'hours');
     var formattedDate = newDate.format('YY/MM/DD HH:mm');
 
+    console.log(formattedDate);
+
     var html = "";
 
     content = "<p class='otherChat bg-light p-2'>" + contentDto.chat_ctt
@@ -506,7 +508,6 @@
     return html;
 
   }
-
   let messageInput = '';
   $(function () {
     messageInput = $('textarea[name="msg"]');
@@ -531,13 +532,18 @@
 
     //	         대화시
     $('.send').click(function () {
-      console.log("채팅 중");
-      // insertChat();
-      // console.log("채팅중 전송 후 저장")
+      //sendmsg();
       var msgInput = document.getElementById('msgi');
 
       msgInput.value = '';
     });
+
+    // $('.send').onkeydown(function () {
+    //   sendmsg();
+    //   var msgInput = document.getElementById('msgi');
+    //
+    //   msgInput.value = '';
+    // });
 
     //채팅창 떠날시에
     function disconnect() {
@@ -575,14 +581,26 @@
     newMessageElement.scrollIntoView({behavior: 'smooth', block: 'end'});
   }
 
-  function checkEnter(event) {
-    console.log(event);
-    if (event.key === 'Enter') {
-      sendmsg();
-      const msgInput = document.getElementById('msgi');
-      msgInput.value = '';
-    }
-  }
+  // function checkEnter(event) {
+  //   console.log(event);
+  //   if (event.key === 'Enter') {
+  //     sendmsg();
+  //     const msgInput = document.getElementById('msgi');
+  //     msgInput.value = '';
+  //   }
+  // }
+
+  //  input keydown 한글이 두번 찍힐 때 막는 함수
+  const textField = document.querySelector(".msgi");
+
+  textField.addEventListener("keydown", (event) => {
+    if (event.isComposing || event.key !== 'Enter') return;
+
+    sendmsg();
+
+    const msgInput = document.getElementById('msgi');
+    msgInput.value = '';
+  });
 
   function sendmsg() {
     var message = messageInput.val();
