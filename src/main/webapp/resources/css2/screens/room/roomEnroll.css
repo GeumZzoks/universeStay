@@ -499,6 +499,27 @@
   transition: all 0.1s ease-in;
 }
 
+.screens-room-roomEnroll__btn-submit-photo {
+  float: right;
+  min-width: 100px;
+  height: 50px;
+  color: #fff;
+  background: #939393;
+  border: 1px solid #B0B0B0;
+  outline: none;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  padding: 12px 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  transition: all 0.1s ease-in;
+  cursor: not-allowed;
+}
+
+.screens-room-roomEnroll__btn-submit-photo.active {
+  background: #222222;
+  cursor: pointer;
+}
+
 .screens-room-roomEnroll__btn-submit:active {
   transform: scale(0.95);
 }
@@ -523,5 +544,5 @@
 }
 
 .screens-room-roomEnroll__error-border-style {
-  border: 1px solid #FF395C;
+  border: 2px solid #FF395C;
 }

@@ -268,13 +268,13 @@
             <h5 class="screens-user-join_h5" style="margin-bottom: 0px;">휴대전화 1*</h5>
             <span class="screens-user-join_signup_input">
                     <input id="screens-user-join_signup_phone_1" type="text"
-                           placeholder="전화번호 입력"></input>
+                           placeholder="전화번호 입력" oninput="autoHyphen(this)"></input>
             </span>
 
             <h5 class="screens-user-join_h5" style="margin-top: 30px;">휴대전화 2</h5>
             <span class="screens-user-join_signup_input">
                     <input id="screens-user-join_signup_phone_2" type="text"
-                           placeholder="전화번호 입력"></input>
+                           placeholder="전화번호 입력" oninput="autoHyphen(this)"></input>
                 </span>
         </div>
 

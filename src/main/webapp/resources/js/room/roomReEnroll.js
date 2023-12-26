@@ -174,7 +174,7 @@ const roomNameErrorMessage = document.querySelector(
     ".screens-room-roomEnroll__error-room-name");
 
 roomCategoryOptions.addEventListener("click", handleInputChange);
-inputRoomAddress.addEventListener("change", handleRoomAddressInput);
+inputRoomAddress.addEventListener("input", handleRoomAddressInput);
 textAreaRoomName.addEventListener("input", handleRoomNameTextArea);
 
 function handleInputChange() {

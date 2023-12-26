@@ -112,12 +112,16 @@ public class RoomController {
             model.addAttribute("roomReviewAvg", roomReviewAvg);
             model.addAttribute("reviewList", reviewList);
 
+            String userEmail = (String) (session.getAttribute("user_email"));
+            UserDto user = userInfoService.getUserInfo(userEmail);
+            String isHost = user.getUser_is_host();
+            model.addAttribute("isHost", isHost);
+
             return "room/roomDetail";
 
         } catch (Exception e) {
             e.printStackTrace();
-            // TODO: 에러메세지 보여주고 메인으로 이동
-            return "redirect:/";
+            return "room/roomDetail";
         }
     }
 
