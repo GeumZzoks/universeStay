@@ -20,7 +20,9 @@
            r.room_address_detail
     FROM User u
            JOIN Booking b ON u.user_id = b.user_id
-           JOIN Room r ON b.room_id = r.room_id;
+           JOIN Room r ON b.room_id = r.room_id
+    WHERE DATE(b.booking_checkin_time) = DATE(NOW() + INTERVAL 1 DAY);
+
   </select>
 
 </mapper>
