@@ -105,8 +105,8 @@
                 data.forEach(function (room) {
                     //돈을 1000원 단위로 바꿔서 , 삽입
                     const refinedPrice = priceToString(room.room_weekend_price);
-                    let starsAvg = room.room_stars_avg === undefined ? 'new!' : room.room_stars_avg;
-
+                    let starsAvg = room.room_stars_avg === undefined ? 'new!' : parseFloat(
+                            room.room_stars_avg).toFixed(1);
                     if (room.has_wished != 1) {
                         wished = "<button class='screens-user-main__wishlist__not_wished' value=";
                     } else {

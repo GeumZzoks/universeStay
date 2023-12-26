@@ -49,8 +49,6 @@ public class MyBookingController {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
             List<Map<String, Object>> list1 = myBookingService.getMyBookingList(map1);
-            System.out.println(
-                    "--------------------------------------------------------------------------------------------------------------------------------");
             for (int i = 0; i < list1.size(); i++) {
                 String booking_checkin_date = sdf.format(list1.get(i)
                         .get("booking_checkin_date"));
@@ -94,7 +92,6 @@ public class MyBookingController {
             String review_ctt,
             HttpSession session) {
         String str = review_stars;
-        System.out.println("booking_id = " + booking_id);
         Double double1 = null;
         if (!str.equals("null")) {
             double1 = Double.parseDouble(str);
@@ -118,6 +115,7 @@ public class MyBookingController {
         try {
             myBookingService.writeRoomReview(dto2);
             myBookingService.updateReviewStatus(booking_id);
+            myBookingService.updateRoomStarAvg(room_id);
         } catch (Exception e) {
             e.printStackTrace();
         }
