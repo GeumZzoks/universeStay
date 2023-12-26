@@ -6,6 +6,7 @@
 
     <select id="selectMyBookings" parameterType="map" resultType="map">
         select u.user_email, u.user_nickname,
+        uh.user_nickname as host_nickname,
         r.user_id,
         r.room_id,
         r.room_address,
@@ -35,6 +36,7 @@
         join Booking b on r.room_id = b.room_id
         join User u on u.user_id = b.user_id
         left join Payment p on b.booking_id = p.booking_id
+        left join User uh on r.user_id = uh.user_id
         where u.user_email = #{user_email}
         <choose>
             <when test="status_id=='이용완료'">
@@ -46,8 +48,7 @@
         </choose>
         ORDER BY b.created_at desc;
     </select>
-
-
+    
     <insert id="insertReview" parameterType="RoomReviewDto">
         insert into RoomReview (review_id, user_id, room_id, review_writer, review_stars,
                                 review_ctt, created_id)
