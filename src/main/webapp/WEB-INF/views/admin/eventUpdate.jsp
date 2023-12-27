@@ -14,6 +14,31 @@
     <title>이벤트 수정</title>
     <link rel="stylesheet" href="/resources/css2/style.css">
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <link rel="apple-touch-icon" sizes="57x57" href="/resources/img/favi.ico/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/resources/img/favi.ico//apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/resources/img/favi.ico/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/resources/img/favi.ico/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114"
+          href="/resources/img/favi.ico/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120"
+          href="/resources/img/favi.ico/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144"
+          href="/resources/img/favi.ico/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152"
+          href="/resources/img/favi.ico/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180"
+          href="/resources/img/favi.ico/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"
+          href="/resources/img/favi.ico/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="/resources/img/favi.ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96"
+          href="/resources/img/favi.ico/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="/resources/img/favi.ico/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
 
 </head>
 <body>
@@ -25,15 +50,18 @@
 
     <div class="screens-admin-event__content">
         <h3 style="color:indianred; margin-top: 20px; font-weight: 600;">이벤트 수정</h3>
-        <form action='/admin/event/update/${eventDto.event_id}' method='post' enctype="multipart/form-data">
+        <form action='/admin/event/update/${eventDto.event_id}' method='post'
+              enctype="multipart/form-data">
             <input type='hidden' value='${eventDto.event_id}'>
             <h5 class="screens-admin-event__content-input__type">이벤트 제목</h5>
-            <input name="event_title" type="text" style="width: 50%;" value="${eventDto.event_title}">
+            <input name="event_title" type="text" style="width: 50%;"
+                   value="${eventDto.event_title}">
             <h5 class="screens-admin-event__content-input__type">이벤트 내용</h5>
             <textarea name="event_ctt"
                       class="screens-admin-event__content-input__text">${eventDto.event_ctt}</textarea>
             <div class="screens-admin-event__content-img-div">
-                <h5 class="screens-admin-event__content-input__type" style="margin-top: 12px; text-align: center">
+                <h5 class="screens-admin-event__content-input__type"
+                    style="margin-top: 12px; text-align: center">
                     미리보기</h5>
                 <img id="preview" class="screens-admin-event__content-input__img"
                      src="${eventDto.img}"/>
@@ -62,32 +90,40 @@
                 <h5 class="screens-admin-event__content-input__type">공개여부</h5>
                 <c:choose>
                     <c:when test="${eventDto.event_is_open eq 'Y'}">
-                        <input name="event_is_open" type="radio" class="screens-admin-event__content-input-div__radio"
+                        <input name="event_is_open" type="radio"
+                               class="screens-admin-event__content-input-div__radio"
                                value="N">비공개
-                        <input name="event_is_open" type="radio" class="screens-admin-event__content-input-div__radio"
+                        <input name="event_is_open" type="radio"
+                               class="screens-admin-event__content-input-div__radio"
                                value="Y" checked>공개
                     </c:when>
                     <c:otherwise>
-                        <input name="event_is_open" type="radio" class="screens-admin-event__content-input-div__radio"
+                        <input name="event_is_open" type="radio"
+                               class="screens-admin-event__content-input-div__radio"
                                value="N" checked>비공개
                         <input name="event_is_open" type="radio"
                                class="screens-admin-event__content-input-div__radio" value="Y">공개
                     </c:otherwise>
                 </c:choose>
                 <h5 class="screens-admin-event__content-input__type">이벤트 시작일</h5>
-                <input name="event_start_date" type="date" class="screens-admin-event__content-input__date"
+                <input name="event_start_date" type="date"
+                       class="screens-admin-event__content-input__date"
                        value="${start}">
                 <h5 class="screens-admin-event__content-input__type">이벤트 종료일</h5>
-                <input name="event_expire_date" type="date" class="screens-admin-event__content-input__date"
+                <input name="event_expire_date" type="date"
+                       class="screens-admin-event__content-input__date"
                        value="${expire}">
                 <h5 class="screens-admin-event__content-input__type">첨부파일(이미지)</h5>
                 <div class="screens-admin-event__content-input__filebox">
-                    <input class="upload-name" placeholder="첨부파일" value="/resources/img/admin/${eventDto.img}.png">
+                    <input class="upload-name" placeholder="첨부파일"
+                           value="/resources/img/admin/${eventDto.img}.png">
                     <label for="file">탐색</label>
-                    <input type="file" id="file" name="eventFile" accept="image/*" onchange="readURL(this)">
+                    <input type="file" id="file" name="eventFile" accept="image/*"
+                           onchange="readURL(this)">
                 </div>
             </div>
-            <button class='screens-admin-event__content-bottom__btn__submit' type='submit'>수정</button>
+            <button class='screens-admin-event__content-bottom__btn__submit' type='submit'>수정
+            </button>
         </form>
     </div>
 </div>

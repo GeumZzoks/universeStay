@@ -14,6 +14,31 @@
     <title>쿠폰</title>
     <link rel="stylesheet" href="/resources/css2/style.css">
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <link rel="apple-touch-icon" sizes="57x57" href="/resources/img/favi.ico/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/resources/img/favi.ico//apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/resources/img/favi.ico/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/resources/img/favi.ico/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114"
+          href="/resources/img/favi.ico/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120"
+          href="/resources/img/favi.ico/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144"
+          href="/resources/img/favi.ico/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152"
+          href="/resources/img/favi.ico/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180"
+          href="/resources/img/favi.ico/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"
+          href="/resources/img/favi.ico/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="/resources/img/favi.ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96"
+          href="/resources/img/favi.ico/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="/resources/img/favi.ico/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
 
 </head>
 <body>
@@ -34,15 +59,18 @@
                     <h3>쿠폰이름</h3>
                     <input type="text" name="coupon_name" placeholder="쿠폰 이름을 입력해주세요." required>
                     <h3>쿠폰설명</h3>
-                    <textarea name="coupon_desc" rows="3" placeholder="쿠폰 설명을 입력해주세요." required></textarea>
+                    <textarea name="coupon_desc" rows="3" placeholder="쿠폰 설명을 입력해주세요."
+                              required></textarea>
                 </div>
                 <div class="screens-admin-coupon__content-input-div" style="left: 350px;">
                     <h3>발행사유</h3>
-                    <textarea name="coupon_usage" rows="3" placeholder="발행 사유를 입력해주세요." required></textarea>
+                    <textarea name="coupon_usage" rows="3" placeholder="발행 사유를 입력해주세요."
+                              required></textarea>
                     <h3>사용가능일수</h3>
                     <input type="number" name="coupon_usable_day" placeholder="일" required>
                     <h3 style="position: absolute; top: 78px; right: 60px;">프로모션 진행 여부</h3>
-                    <select name="coupon_is_activated" style="position: absolute; top: 113px; right: 98px">
+                    <select name="coupon_is_activated"
+                            style="position: absolute; top: 113px; right: 98px">
                         <option value="N">발급중지</option>
                         <option value="Y">발급가능</option>
                     </select>
@@ -54,11 +82,14 @@
                         <option value="정률할인">정률할인</option>
                     </select>
                     <h3>혜택(원/%)</h3>
-                    <input type="number" name="coupon_discount_amount" id="inputType" placeholder="원 or %" required>
+                    <input type="number" name="coupon_discount_amount" id="inputType"
+                           placeholder="원 or %" required>
                     <h3>사용제한금액</h3>
-                    <input type="number" name="coupon_discount_limit" placeholder="최소 or 최대금액" required>
+                    <input type="number" name="coupon_discount_limit" placeholder="최소 or 최대금액"
+                           required>
                 </div>
-                <button type="submit" id="screens-admin-coupon__content-input-div__submit">등록</button>
+                <button type="submit" id="screens-admin-coupon__content-input-div__submit">등록
+                </button>
             </form>
         </div>
 
@@ -86,7 +117,8 @@
 
         <table class="screens-admin-coupon__content-table">
             <tr>
-                <th class="screens-admin-coupon__content-table__check"><input type="checkbox" onclick="checkAll(this)">
+                <th class="screens-admin-coupon__content-table__check"><input type="checkbox"
+                                                                              onclick="checkAll(this)">
                 </th>
                 <th class="screens-admin-coupon__content-table__no">쿠폰번호</th>
                 <th class="screens-admin-coupon__content-table__created_date">생성일</th>
@@ -101,8 +133,10 @@
 
             <c:forEach var="couponDto" items="${list}">
                 <tr>
-                    <td class="screens-admin-coupon__content-table__check"><input type="checkbox" name="check"
-                                                                                  value="${couponDto.coupon_id}"></td>
+                    <td class="screens-admin-coupon__content-table__check"><input type="checkbox"
+                                                                                  name="check"
+                                                                                  value="${couponDto.coupon_id}">
+                    </td>
                     <td class="screens-admin-coupon__content-table__no">${couponDto.coupon_id}</td>
                     <td class="screens-admin-coupon__content-table__created_date">${couponDto.coupon_created_date}</td>
                     <td class="screens-admin-coupon__content-table__name">${couponDto.coupon_name}</td>
@@ -133,7 +167,9 @@
                             <td class="screens-admin-coupon__content-table__status">발급가능</td>
                         </c:when>
                         <c:otherwise>
-                            <td class="screens-admin-coupon__content-table__status" style="color: red">발급중지</td>
+                            <td class="screens-admin-coupon__content-table__status"
+                                style="color: red">발급중지
+                            </td>
                         </c:otherwise>
                     </c:choose>
                 </tr>
@@ -194,11 +230,10 @@
         }
     }
 
-
     // 전체 체크 기능
     function checkAll(checkAll) {
         const checkboxes
-            = document.querySelectorAll('input[type="checkbox"]');
+                = document.querySelectorAll('input[type="checkbox"]');
 
         checkboxes.forEach((checkbox) => {
             checkbox.checked = checkAll.checked

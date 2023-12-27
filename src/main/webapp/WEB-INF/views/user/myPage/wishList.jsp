@@ -9,6 +9,31 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <html>
 <head>
+    <link rel="apple-touch-icon" sizes="57x57" href="/resources/img/favi.ico/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/resources/img/favi.ico//apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/resources/img/favi.ico/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/resources/img/favi.ico/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114"
+          href="/resources/img/favi.ico/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120"
+          href="/resources/img/favi.ico/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144"
+          href="/resources/img/favi.ico/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152"
+          href="/resources/img/favi.ico/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180"
+          href="/resources/img/favi.ico/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"
+          href="/resources/img/favi.ico/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="/resources/img/favi.ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96"
+          href="/resources/img/favi.ico/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="/resources/img/favi.ico/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <title>위시리스트</title>
     <link rel="stylesheet" href="/resources/css2/style.css">
     <link rel="stylesheet"
@@ -23,7 +48,8 @@
     <br>
     <div class="screens-user-wishlist__main__wrapper">
         <c:forEach var="wishListDto" items="${list}">
-            <div class="screens-user-wishlist__room__wrapper" value="${wishListDto.room_id}" data-key="test"
+            <div class="screens-user-wishlist__room__wrapper" value="${wishListDto.room_id}"
+                 data-key="test"
                  onclick="location.href='/room/${wishListDto.room_id}'">
                 <div class="screens-user-wishlist__room__img__wrapper">
                     <div class="swiper mySwiper">
@@ -77,17 +103,17 @@
 <script>
     //슬라이더 생성하는 JS 코드
     const mySwiper = new Swiper('.mySwiper',
-        {
-            pagination: {
-                el: ".swiper-pagination",
-            },
-            loop: true,
-            direction: 'horizontal',
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            }
-        });
+            {
+                pagination: {
+                    el: ".swiper-pagination",
+                },
+                loop: true,
+                direction: 'horizontal',
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                }
+            });
 
     const swiperButtons = document.querySelectorAll(".swiper-button");
     for (const swiperButton of swiperButtons) {

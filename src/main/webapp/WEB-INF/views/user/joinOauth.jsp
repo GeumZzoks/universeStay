@@ -4,10 +4,33 @@
 <html lnag="ko">
 
 <head>
+    <link rel="apple-touch-icon" sizes="57x57" href="/resources/img/favi.ico/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/resources/img/favi.ico//apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/resources/img/favi.ico/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/resources/img/favi.ico/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114"
+          href="/resources/img/favi.ico/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120"
+          href="/resources/img/favi.ico/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144"
+          href="/resources/img/favi.ico/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152"
+          href="/resources/img/favi.ico/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180"
+          href="/resources/img/favi.ico/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"
+          href="/resources/img/favi.ico/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="/resources/img/favi.ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96"
+          href="/resources/img/favi.ico/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="/resources/img/favi.ico/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta charset="UTF-8">
     <title>유니버스테이 회원가입</title>
-    <%--    <link rel="stylesheet" href="/resources/css/common/global.css">--%>
-    <%--    <link rel="stylesheet" href="/resources/css/user/join.css">--%>
     <link rel="stylesheet" href="/resources/css2/style.css">
 
 </head>
@@ -200,44 +223,44 @@
 <script src="/resources/js/user/joinOauth.js"></script>
 
 <script>
-  // 이메일 인증
-  $('#screens-user-join_mail_Check_Btn').click(function () {
-    const email = $('#screens-user-join_signup_email').val(); // 이메일 주소값 얻어오기!
-    const checkInput = $('.screens-user-join_code_check_input') // 인증번호 입력하는곳
+    // 이메일 인증
+    $('#screens-user-join_mail_Check_Btn').click(function () {
+        const email = $('#screens-user-join_signup_email').val(); // 이메일 주소값 얻어오기!
+        const checkInput = $('.screens-user-join_code_check_input') // 인증번호 입력하는곳
 
-    $.ajax({
-      type: 'get',
-      url: '<c:url value ="/user/mailCheck?email="/>' + email,
-      success: function (data) {
-        checkInput.attr('disabled', false);
-        console.log(data)
-        if ("Y" == data) {
-          alert('인증번호가 전송되었습니다.')
-        }
-      },
-      error: function (xhr, status, error) {
-        alert('이미 가입된 이메일입니다. 다시 입력해주세요');
-        $("#screens-user-join_signup_email").focus();
-        console.error("Ajax 요청 실패:", status, error);
-        console.log(xhr.responseText);
-      }
+        $.ajax({
+            type: 'get',
+            url: '<c:url value ="/user/mailCheck?email="/>' + email,
+            success: function (data) {
+                checkInput.attr('disabled', false);
+                console.log(data)
+                if ("Y" == data) {
+                    alert('인증번호가 전송되었습니다.')
+                }
+            },
+            error: function (xhr, status, error) {
+                alert('이미 가입된 이메일입니다. 다시 입력해주세요');
+                $("#screens-user-join_signup_email").focus();
+                console.error("Ajax 요청 실패:", status, error);
+                console.log(xhr.responseText);
+            }
+        });
     });
-  });
 
-  // 만약 Oauth로 회원가입을 들어오면 email, pwd 입력란 value 채우고 hidden으로 바꾼다.
-  if ("${userEmail}" != null && "${userEmail}" != "") {
-    $('#screens-user-join_signup_pw')
-    .attr('value', '${userPwd}');
-    $('#screens-user-join_signup_pww')
-    .attr('value', '${userPwd}');
-    $('#screens-user-join_signup_email')
-    .attr('value', '${userEmail}');
+    // 만약 Oauth로 회원가입을 들어오면 email, pwd 입력란 value 채우고 hidden으로 바꾼다.
+    if ("${userEmail}" != null && "${userEmail}" != "") {
+        $('#screens-user-join_signup_pw')
+        .attr('value', '${userPwd}');
+        $('#screens-user-join_signup_pww')
+        .attr('value', '${userPwd}');
+        $('#screens-user-join_signup_email')
+        .attr('value', '${userEmail}');
 
-    $('.screens-user-join__pwd-wrapper')
-    .hide();
-    $('.screens-user-join__email-wrapper')
-    .hide();
-  }
+        $('.screens-user-join__pwd-wrapper')
+        .hide();
+        $('.screens-user-join__email-wrapper')
+        .hide();
+    }
 
 
 </script>

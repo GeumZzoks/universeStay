@@ -8,6 +8,31 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link rel="apple-touch-icon" sizes="57x57" href="/resources/img/favi.ico/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/resources/img/favi.ico//apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/resources/img/favi.ico/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/resources/img/favi.ico/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114"
+          href="/resources/img/favi.ico/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120"
+          href="/resources/img/favi.ico/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144"
+          href="/resources/img/favi.ico/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152"
+          href="/resources/img/favi.ico/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180"
+          href="/resources/img/favi.ico/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"
+          href="/resources/img/favi.ico/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="/resources/img/favi.ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96"
+          href="/resources/img/favi.ico/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="/resources/img/favi.ico/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <title>User 문의사항</title>
     <link rel="stylesheet" href="/resources/css2/style.css">
 
@@ -18,100 +43,100 @@
     <!-- STOMP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
     <style>
-        .screens-inquiry-flex-row {
-            display: flex;
-            flex-direction: row;
-        }
+      .screens-inquiry-flex-row {
+        display: flex;
+        flex-direction: row;
+      }
 
-        .screens-inquiry-flex-column {
-            display: flex;
-            flex-direction: column;
-        }
+      .screens-inquiry-flex-column {
+        display: flex;
+        flex-direction: column;
+      }
 
-        .screens-inquiry-userInquiry {
-            width: 100vw;
-            height: 100vh;
-        }
+      .screens-inquiry-userInquiry {
+        width: 100vw;
+        height: 100vh;
+      }
 
-        .screens-inquiry-userInquiry * {
-            margin: 0;
-            padding: 0;
-        }
+      .screens-inquiry-userInquiry * {
+        margin: 0;
+        padding: 0;
+      }
 
-        .screens-inquiry-userInquiry > section,
-        .screens-inquiry-userInquiry > section * {
-            box-sizing: border-box;
-            margin: 0px;
-        }
+      .screens-inquiry-userInquiry > section,
+      .screens-inquiry-userInquiry > section * {
+        box-sizing: border-box;
+        margin: 0px;
+      }
 
-        .screens-inquiry-userInquiry__section {
-            position: absolute;
-            top: 100px;
-            width: 100%;
-            height: calc(100% - 100px);
-            border-top: 1px solid #EBEBEB;
-        }
+      .screens-inquiry-userInquiry__section {
+        position: absolute;
+        top: 100px;
+        width: 100%;
+        height: calc(100% - 100px);
+        border-top: 1px solid #EBEBEB;
+      }
 
-        .screens-inquiry-userInquiry__section > div {
-            border-right: 1px solid #EBEBEB;
-        }
+      .screens-inquiry-userInquiry__section > div {
+        border-right: 1px solid #EBEBEB;
+      }
 
-        .screens-inquiry-userInquiry__inquiryList {
-            width: 25%;
-        }
+      .screens-inquiry-userInquiry__inquiryList {
+        width: 25%;
+      }
 
-        .screens-inquiry-userInquiry__inquiryMessage {
-            width: 50%;
-        }
+      .screens-inquiry-userInquiry__inquiryMessage {
+        width: 50%;
+      }
 
-        .screens-inquiry-userInquiry__inquiryEtc {
-            width: 25%;
-        }
+      .screens-inquiry-userInquiry__inquiryEtc {
+        width: 25%;
+      }
 
-        .screens-inquiry-userInquiry-headDiv {
-            height: 7%;
-            border-bottom: 1px solid #EBEBEB;
-        }
+      .screens-inquiry-userInquiry-headDiv {
+        height: 7%;
+        border-bottom: 1px solid #EBEBEB;
+      }
 
-        .screens-inquiry-userInquiry-bodyDiv {
-            height: 93%;
-        }
-
-
-        .screens-inquiry-userInquiry__inquiryList__head__content > div > img {
-            height: 1.3rem;
-            width: 1.3rem;
-        }
-
-        .screens-inquiry-userInquiry__inquiryList-imgDiv > img {
-            width: 5rem;
-            height: 5rem;
-        }
-
-        .screens-inquiry-userInquiry__inquiryMessage-imgDiv > img {
-            width: 5rem;
-            height: 5rem;
-        }
-
-        .screens-inquiry-userInquiry__inquiryEtc-imgDiv > img {
-            width: 5rem;
-            height: 5rem;
-        }
-
-        .screens-inquiry-userInquiry__inquiryMessage__body__content__messageList {
-            overflow: auto;
-        }
-
-        .screens-inquiry-userInquiry__inquiryMessage__body__content {
-            /*width: 50%;*/
-        }
+      .screens-inquiry-userInquiry-bodyDiv {
+        height: 93%;
+      }
 
 
-        /*overflow: auto;*/
-        /*align-items: end;*/
-        /*word-break: break-all;*/
-        /*border-radius: 50px;*/
-        /*font-family: 'NotoSansKR-Bold';*/
+      .screens-inquiry-userInquiry__inquiryList__head__content > div > img {
+        height: 1.3rem;
+        width: 1.3rem;
+      }
+
+      .screens-inquiry-userInquiry__inquiryList-imgDiv > img {
+        width: 5rem;
+        height: 5rem;
+      }
+
+      .screens-inquiry-userInquiry__inquiryMessage-imgDiv > img {
+        width: 5rem;
+        height: 5rem;
+      }
+
+      .screens-inquiry-userInquiry__inquiryEtc-imgDiv > img {
+        width: 5rem;
+        height: 5rem;
+      }
+
+      .screens-inquiry-userInquiry__inquiryMessage__body__content__messageList {
+        overflow: auto;
+      }
+
+      .screens-inquiry-userInquiry__inquiryMessage__body__content {
+        /*width: 50%;*/
+      }
+
+
+      /*overflow: auto;*/
+      /*align-items: end;*/
+      /*word-break: break-all;*/
+      /*border-radius: 50px;*/
+      /*font-family: 'NotoSansKR-Bold';*/
     </style>
 </head>
 <jsp:include page="/WEB-INF/views/common/user/header.jsp"/>
@@ -120,7 +145,8 @@
     <div class="screens-inquiry-userInquiry__inquiryList screens-inquiry-flex-column">
         <div class="screens-inquiry-userInquiry__inquiryList__head screens-inquiry-userInquiry-headDiv screens-inquiry-flex-row">
             <div class="screens-inquiry-userInquiry__inquiryList__head__content screens-inquiry-flex-row">
-                <div class="screens-inquiry-userInquiry__inquiryList__head__content-text"><p>문의사항 목록</p></div>
+                <div class="screens-inquiry-userInquiry__inquiryList__head__content-text"><p>문의사항
+                    목록</p></div>
                 <div class="screens-inquiry-userInquiry__inquiryList__head__content-plustmark"><img
                         src="/resources/img/symbol/plus-svgrepo-com.svg"></div>
                 <div class="screens-inquiry-userInquiry__inquiryList__head__content-filtermark"><img
@@ -157,7 +183,8 @@
     <div class="screens-inquiry-userInquiry__inquiryMessage screens-inquiry-flex-column">
         <div class="screens-inquiry-userInquiry__inquiryMessage__head screens-inquiry-userInquiry-headDiv screens-inquiry-flex-row">
             <div class="screens-inquiry-userInquiry__inquiryMessage__head__content screens-inquiry-flex-row">
-                <div class="screens-inquiry-userInquiry__inquiryMessage__head__content-text"><p>UNIVERSESTAY 고객지원 팀</p>
+                <div class="screens-inquiry-userInquiry__inquiryMessage__head__content-text"><p>
+                    UNIVERSESTAY 고객지원 팀</p>
                 </div>
             </div>
         </div>
@@ -166,7 +193,8 @@
                 <div class="screens-inquiry-userInquiry__inquiryMessage__body__content__messageList screens-inquiry-flex-column">
                     <div class="screens-inquiry-userInquiry__inquiryMessage__body__content__message screens-inquiry-flex-row">
                         <div class="screens-inquiry-userInquiry__inquiryMessage__body__content__message-left screens-inquiry-flex-row">
-                            <div class="screens-inquiry-userInquiry__inquiryMessage-imgDiv"><img src="" alt="프로필사진">
+                            <div class="screens-inquiry-userInquiry__inquiryMessage-imgDiv"><img
+                                    src="" alt="프로필사진">
                             </div>
                         </div>
                         <div class="screens-inquiry-userInquiry__inquiryMessage__body__content__message-right screens-inquiry-flex-column">
@@ -177,7 +205,8 @@
                     </div>
                     <div class="screens-inquiry-userInquiry__inquiryMessage__body__content__message screens-inquiry-flex-row">
                         <div class="screens-inquiry-userInquiry__inquiryMessage__body__content__message-left screens-inquiry-flex-row">
-                            <div class="screens-inquiry-userInquiry__inquiryMessage-imgDiv"><img src="" alt="프로필사진">
+                            <div class="screens-inquiry-userInquiry__inquiryMessage-imgDiv"><img
+                                    src="" alt="프로필사진">
                             </div>
                         </div>
                         <div class="screens-inquiry-userInquiry__inquiryMessage__body__content__message-right screens-inquiry-flex-column">
@@ -189,8 +218,10 @@
                 </div>
                 <div class="screens-inquiry-userInquiry__inquiryMessage__body__content__inputcontainer screens-inquiry-flex-row">
                     <div class="screens-inquiry-userInquiry__inquiryMessage__body__content__inputbody screens-inquiry-flex-row">
-                        <div><input type="text" name="message" class="screens-inquiry-userInquiry-sendText"></div>
-                        <div><input type="submit" value="전송" class="screens-inquiry-userInquiry-sendBtn"></div>
+                        <div><input type="text" name="message"
+                                    class="screens-inquiry-userInquiry-sendText"></div>
+                        <div><input type="submit" value="전송"
+                                    class="screens-inquiry-userInquiry-sendBtn"></div>
                     </div>
                 </div>
             </div>
@@ -211,16 +242,18 @@
         <div class="screens-inquiry-userInquiry__inquiryEtc__body screens-inquiry-userInquiry-bodyDiv screens-inquiry-flex-row">
             <div class="screens-inquiry-userInquiry__inquiryEtc__body__content screens-inquiry-flex-column">
                 <div class="screens-inquiry-flex-row">
-                    <div class="screens-inquiry-userInquiry__inquiryEtc-imgDiv screens-inquiry-flex-row"><img
-                            src="/resources/img/logo/big_logo_no_bgd.png"></div>
+                    <div class="screens-inquiry-userInquiry__inquiryEtc-imgDiv screens-inquiry-flex-row">
+                        <img
+                                src="/resources/img/logo/big_logo_no_bgd.png"></div>
                     <div class="screens-inquiry-flex-column">
                         <div><p>UNIVERSESTAY 고객지원팀</p></div>
                         <div><p>글씨123123123</p></div>
                     </div>
                 </div>
                 <div class="screens-inquiry-flex-row">
-                    <div class="screens-inquiry-userInquiry__inquiryEtc-imgDiv screens-inquiry-flex-row"><img
-                            src="/resources/img/logo/big_logo_no_bgd.png"></div>
+                    <div class="screens-inquiry-userInquiry__inquiryEtc-imgDiv screens-inquiry-flex-row">
+                        <img
+                                src="/resources/img/logo/big_logo_no_bgd.png"></div>
                     <div class="screens-inquiry-flex-column">
                         <div><p>UNIVERSESTAY 고객지원팀</p></div>
                         <div><p>글씨123123123</p></div>
@@ -232,12 +265,16 @@
 </section>
 </body>
 <script>
-    const ChattingRoomList = document.querySelector('.screens-inquiry-userInquiry__inquiryList__body__content');
-    const ChattingRoom = document.querySelector('.screens-inquiry-userInquiry__inquiryList__body__content__chattingRoom');
+    const ChattingRoomList = document.querySelector(
+            '.screens-inquiry-userInquiry__inquiryList__body__content');
+    const ChattingRoom = document.querySelector(
+            '.screens-inquiry-userInquiry__inquiryList__body__content__chattingRoom');
     const copiedChattingRoom = ChattingRoom.cloneNode(true);
 
-    const ChattingMessageList = document.querySelector('.screens-inquiry-userInquiry__inquiryMessage__body__content__messageList');
-    const ChattingMessage = document.querySelector('.screens-inquiry-userInquiry__inquiryMessage__body__content__message');
+    const ChattingMessageList = document.querySelector(
+            '.screens-inquiry-userInquiry__inquiryMessage__body__content__messageList');
+    const ChattingMessage = document.querySelector(
+            '.screens-inquiry-userInquiry__inquiryMessage__body__content__message');
     const copiedChattingMessage = ChattingMessage.cloneNode(true);
 
     const inputText = document.querySelector('.screens-inquiry-userInquiry-sendText');
@@ -246,7 +283,6 @@
     let socket;
     let stompClient;
     let chatting_room_id;
-
 
     socket = new SockJS("/endpoint");
     // webSocket을 다루는데 stomp로 다루겠다!
@@ -269,17 +305,15 @@
 
             stompClient.connect({}, function (frame) {
                 console.log("Connected: " + frame);
-                stompClient.subscribe('subscribe/inquiry/' + chatting_room_id, function (receivedData) {
-                    console.log('receivedData - in');
-                    console.log(receivedData);
-                    // var Dto = JSON.parse(chatting)
-                })
+                stompClient.subscribe('subscribe/inquiry/' + chatting_room_id,
+                        function (receivedData) {
+                            console.log('receivedData - in');
+                            console.log(receivedData);
+                            // var Dto = JSON.parse(chatting)
+                        })
             })
         }
     })
-
-
-
 
     window.onload = function () {
         firstPageAjax();
@@ -304,8 +338,10 @@
     function fillChattingRoomList(list) {
         list.forEach(function (component) {
             const cloneElement = copiedChattingRoom.cloneNode(true);
-            cloneElement.querySelector('.screens-inquiry-userInquiry__inquiryList__body__content__chattingRoom > div:nth-of-type(2) > div:nth-of-type(2) > p').textContent = component.m_chatting_ctt;
-            cloneElement.querySelector('.screens-inquiry-userInquiry__inquiryList__body__content__chattingRoom > div:nth-of-type(2) > div:nth-of-type(3) > p').textContent = component.m_created_at;
+            cloneElement.querySelector(
+                    '.screens-inquiry-userInquiry__inquiryList__body__content__chattingRoom > div:nth-of-type(2) > div:nth-of-type(2) > p').textContent = component.m_chatting_ctt;
+            cloneElement.querySelector(
+                    '.screens-inquiry-userInquiry__inquiryList__body__content__chattingRoom > div:nth-of-type(2) > div:nth-of-type(3) > p').textContent = component.m_created_at;
             cloneElement.addEventListener("click", function () {
                 clickChattingRoomAjax(component.r_chatting_room_id);
             })
@@ -323,9 +359,12 @@
         list.forEach(function (component) {
             const cloneElement = copiedChattingMessage.cloneNode(true);
             console.log(cloneElement);
-            cloneElement.querySelector('.screens-inquiry-userInquiry__inquiryMessage__body__content__message-right > div:nth-of-type(1) > p').textContent = component.writer_id;
-            cloneElement.querySelector('.screens-inquiry-userInquiry__inquiryMessage__body__content__message-right > div:nth-of-type(2) > p').textContent = component.chatting_ctt;
-            cloneElement.querySelector('.screens-inquiry-userInquiry__inquiryMessage__body__content__message-right > div:nth-of-type(3) > p').textContent = component.created_at;
+            cloneElement.querySelector(
+                    '.screens-inquiry-userInquiry__inquiryMessage__body__content__message-right > div:nth-of-type(1) > p').textContent = component.writer_id;
+            cloneElement.querySelector(
+                    '.screens-inquiry-userInquiry__inquiryMessage__body__content__message-right > div:nth-of-type(2) > p').textContent = component.chatting_ctt;
+            cloneElement.querySelector(
+                    '.screens-inquiry-userInquiry__inquiryMessage__body__content__message-right > div:nth-of-type(3) > p').textContent = component.created_at;
             ChattingMessageList.appendChild(cloneElement);
         })
     }
@@ -374,7 +413,6 @@
         stompClient.send('/app/inquiry/' + chatting_room_id, {}, JSON.stringify(inputText.value));
         console.log("ddd");
     })
-
 
     function stompDisconnect() {
         if (stompClient != null) {
