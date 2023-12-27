@@ -61,9 +61,7 @@ public class JoinController {
     @GetMapping("/mailCheck")
     public ResponseEntity<String> mailCheck(String email) {
         try {
-            System.out.println(joinService.checkEmail(email));
             if (joinService.checkEmail(email) != 1) {
-                System.out.println("이메일 인증");
                 code = Integer.parseInt(mailSendService.joinEmail(email));
                 return ResponseEntity.ok("Y");
             } else {

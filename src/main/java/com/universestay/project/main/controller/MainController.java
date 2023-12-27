@@ -54,7 +54,6 @@ public class MainController {
         model.addAttribute("userInfo", user);
         model.addAttribute("isHost", isHost);
         model.addAttribute("statusId", statusId);
-        System.out.println(model);
 
         return "main/main";
     }
