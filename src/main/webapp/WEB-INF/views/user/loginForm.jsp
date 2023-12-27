@@ -5,11 +5,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="apple-touch-icon" sizes="57x57" href="/resources/img/favi.ico/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/resources/img/favi.ico//apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/resources/img/favi.ico/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/resources/img/favi.ico/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114"
+          href="/resources/img/favi.ico/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120"
+          href="/resources/img/favi.ico/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144"
+          href="/resources/img/favi.ico/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152"
+          href="/resources/img/favi.ico/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180"
+          href="/resources/img/favi.ico/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"
+          href="/resources/img/favi.ico/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="/resources/img/favi.ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96"
+          href="/resources/img/favi.ico/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="/resources/img/favi.ico/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <%--    <link rel="stylesheet" href="/resources/css/common/global.css">--%>
-    <%--    <link rel="stylesheet" href="/resources/css/user/login.css">--%>
     <link rel="stylesheet" href="/resources/css2/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -109,27 +132,27 @@
 </div>
 
 <script>
-  function loginGoogle() {
-    let f = document.createElement('form');
-    f.setAttribute('method', 'post');
-    f.setAttribute('action', '/oauth2/google');
-    document.body.appendChild(f);
-    f.submit();
-  }
+    function loginGoogle() {
+        let f = document.createElement('form');
+        f.setAttribute('method', 'post');
+        f.setAttribute('action', '/oauth2/google');
+        document.body.appendChild(f);
+        f.submit();
+    }
 
-  // 하나로
-  function loginKakao() {
-    let f = document.createElement('form');
-    f.setAttribute('method', 'post');
-    f.setAttribute('action', '/oauth2/kakao');
-    document.body.appendChild(f);
-    f.submit();
-  }
+    // 하나로
+    function loginKakao() {
+        let f = document.createElement('form');
+        f.setAttribute('method', 'post');
+        f.setAttribute('action', '/oauth2/kakao');
+        document.body.appendChild(f);
+        f.submit();
+    }
 
-  const error2 = "${error2}";
-  if (error2 != "") {
-    alert(error2)
-  }
+    const error2 = "${error2}";
+    if (error2 != "") {
+        alert(error2)
+    }
 </script>
 
 </body>

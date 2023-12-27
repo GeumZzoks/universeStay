@@ -340,14 +340,3 @@ const signInBtn = document.querySelector(
         ".components-user-header__dropdown__option-sign-in");
 const logOutBtn = document.querySelector(
         ".components-user-header__dropdown__option-log-out");
-
-//회원가입 컨트롤러 이동
-signUpBtn.addEventListener("click", () => {
-    location.href = "/user/join";
-})
-signInBtn.addEventListener("click", () => {
-    location.href = "/user/loginForm";
-})
-logOutBtn.addEventListener("click", () => {
-    location.href = "/user/withdrawal";
-});

@@ -13,6 +13,31 @@
 %>
 <html>
 <head>
+    <link rel="apple-touch-icon" sizes="57x57" href="/resources/img/favi.ico/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/resources/img/favi.ico//apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/resources/img/favi.ico/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/resources/img/favi.ico/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114"
+          href="/resources/img/favi.ico/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120"
+          href="/resources/img/favi.ico/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144"
+          href="/resources/img/favi.ico/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152"
+          href="/resources/img/favi.ico/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180"
+          href="/resources/img/favi.ico/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"
+          href="/resources/img/favi.ico/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="/resources/img/favi.ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96"
+          href="/resources/img/favi.ico/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="/resources/img/favi.ico/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <link rel="stylesheet" href="/resources/css2/style.css">
     <link rel="stylesheet" type="text/css"
           href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
@@ -255,58 +280,58 @@
     <script type="text/javascript"
             src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <script>
-      let dropdowns = document.querySelectorAll(
-          '.components-user-header__dropdown-div');
+        let dropdowns = document.querySelectorAll(
+                '.components-user-header__dropdown-div');
 
-      document.addEventListener("click", function (e) {
-        if (e.target.classList.contains(
-                "components-user-header__header__searchbar__main_txt") ||
-            e.target.classList.contains(
-                "components-user-header__header__searchbar__sub_txt") ||
-            e.target.classList.contains(
-                "components-user-header__header__profile__my-profile") ||
-            e.target.classList.contains(
-                "components-user-header__header__profile__my-profile__btn")
-            ||
-            e.target.classList.contains(
-                "components-user-header__header__profile__hamburger") ||
-            e.target.classList.contains(
-                "components-user-header__header__profile__img") ||
-            e.target.classList.contains(
-                "components-user-header__header__searchbar__checkin-btn")
-        ) {
-          console.log(1);
-          return;
-        }
+        document.addEventListener("click", function (e) {
+            if (e.target.classList.contains(
+                            "components-user-header__header__searchbar__main_txt") ||
+                    e.target.classList.contains(
+                            "components-user-header__header__searchbar__sub_txt") ||
+                    e.target.classList.contains(
+                            "components-user-header__header__profile__my-profile") ||
+                    e.target.classList.contains(
+                            "components-user-header__header__profile__my-profile__btn")
+                    ||
+                    e.target.classList.contains(
+                            "components-user-header__header__profile__hamburger") ||
+                    e.target.classList.contains(
+                            "components-user-header__header__profile__img") ||
+                    e.target.classList.contains(
+                            "components-user-header__header__searchbar__checkin-btn")
+            ) {
+                console.log(1);
+                return;
+            }
+
+            dropdowns.forEach(dropdown => {
+                if (dropdown.classList.contains("show")) {
+                    dropdown.classList.remove("show");
+                }
+            });
+        });
 
         dropdowns.forEach(dropdown => {
-          if (dropdown.classList.contains("show")) {
-            dropdown.classList.remove("show");
-          }
+            dropdown.addEventListener('click', function (event) {
+                event.stopPropagation(); // 드롭다운 요소가 클릭되었을 때 이벤트 전파 중단
+            });
         });
-      });
 
-      dropdowns.forEach(dropdown => {
-        dropdown.addEventListener('click', function (event) {
-          event.stopPropagation(); // 드롭다운 요소가 클릭되었을 때 이벤트 전파 중단
-        });
-      });
+        //-----------------------------------------------------------------
 
-      //-----------------------------------------------------------------
+        //코드에 중복이 많아서 해결하고 싶음.
+        const dropdownDiv = document.getElementsByClassName(
+                "components-user-header__dropdown-div");
 
-      //코드에 중복이 많아서 해결하고 싶음.
-      const dropdownDiv = document.getElementsByClassName(
-          "components-user-header__dropdown-div");
+        const toggleDropdown4 = function () {
+            dropdownDiv[0].classList.toggle('show')
+        }
 
-      const toggleDropdown4 = function () {
-        dropdownDiv[0].classList.toggle('show')
-      }
+        //마이프로필 버튼 이벤트 추가
+        const headerMyProfileBtn = document.querySelector(
+                ".components-user-header__header__profile__my-profile__btn");
 
-      //마이프로필 버튼 이벤트 추가
-      const headerMyProfileBtn = document.querySelector(
-          ".components-user-header__header__profile__my-profile__btn");
-
-      headerMyProfileBtn.addEventListener("click", toggleDropdown4);
+        headerMyProfileBtn.addEventListener("click", toggleDropdown4);
     </script>
     <%--위 까지 common 헤더--%>
     <script src="/resources/js/room/roomManagement.js"></script>

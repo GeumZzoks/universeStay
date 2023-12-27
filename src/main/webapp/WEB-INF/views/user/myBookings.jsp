@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
-  Created by IntelliJ IDEA.
+  Created by IntelliJ IDEA..
   User: JKM
   Date: 2023-12-08
   Time: 오전 11:39
@@ -9,9 +9,33 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link rel="apple-touch-icon" sizes="57x57" href="/resources/img/favi.ico/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/resources/img/favi.ico//apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/resources/img/favi.ico/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/resources/img/favi.ico/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114"
+          href="/resources/img/favi.ico/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120"
+          href="/resources/img/favi.ico/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144"
+          href="/resources/img/favi.ico/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152"
+          href="/resources/img/favi.ico/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180"
+          href="/resources/img/favi.ico/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"
+          href="/resources/img/favi.ico/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="/resources/img/favi.ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96"
+          href="/resources/img/favi.ico/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="/resources/img/favi.ico/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <title>Booking</title>
     <link rel="stylesheet" href="/resources/css2/style.css">
-    <script src="/resources/js/common/aboutTimestamp.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
     <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 </head>
@@ -103,7 +127,7 @@
                                 <div>
                                     <div class="screens-room-myBookings__hiddenValue" hidden
                                          data-value="${dto.booking_id}"></div>
-                                    <div class="screens-room-myBookings__comming-reservation__name">${dto.user_nickname}님이
+                                    <div class="screens-room-myBookings__comming-reservation__name">${dto.host_nickname}님이
                                         호스팅하는 집 전체
                                     </div>
                                 </div>
@@ -169,7 +193,7 @@
                                 <div class="screens-room-myBookings__comming-gray-font">
                                     지역: ${dto.room_address}</div>
                                 <div class="screens-room-myBookings__comming-gray-font">
-                                    호스트: ${dto.user_nickname}</div>
+                                    호스트: ${dto.host_nickname}</div>
                                 <div class="screens-room-myBookings__comming-gray-font">여행
                                     날짜: ${dto.booking_checkin_date}
                                     ~ ${dto.booking_checkout_date}</div>
