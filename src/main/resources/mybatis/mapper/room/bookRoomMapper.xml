@@ -3,10 +3,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.universestay.project.resources.mybatis.mapper.room.bookRoomMapper">
-    <!-- 왼쪽
-        유저 이미지, 유저 네임
-        
-    -->
     <select id="selectRoomBookInfo" parameterType="String" resultType="map">
         SELECT *
         FROM Room R
@@ -46,6 +42,7 @@
                 or (#{booking_checkin_date} BETWEEN booking_checkin_date AND booking_checkout_date)
                 or (#{booking_checkout_date} BETWEEN booking_checkin_date AND booking_checkout_date)
             )
+          and (status_id = 'B01' or status_id = 'B02' or status_id = 'B05')
     </select>
 
     <select id="findByRoom" resultType="BookingDto">
@@ -66,4 +63,11 @@
         from User
         where user_email = #{user_email}
     </select>
+
+    <update id="updateStatus" parameterType="String">
+        UPDATE Booking
+        SET status_id = 'B03'
+        WHERE booking_id = #{booking_id}
+    </update>
+
 </mapper>
