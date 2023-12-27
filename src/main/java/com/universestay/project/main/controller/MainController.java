@@ -127,7 +127,6 @@ public class MainController {
                 // 총 페이지 숫자를 리스트에 추가해서 넣기
                 roomList.get(i).put("totalPageCount", totalPageCount);
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
