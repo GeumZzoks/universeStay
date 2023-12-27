@@ -57,7 +57,9 @@
 
     <div class="screens-user-login__login-wrapper">
         <form action="/user/login" method="post">
-            <img src="/resources/img/logo/logo.png" class="screens-user-login__logo-universe">
+            <a class="screens-user-login__logo-alink" href="/"><img
+                    src="/resources/img/logo/logo.png"
+                    class="screens-user-login__logo-universe"></a>
 
             <!-- 메인 로그인 -->
             <div class="screens-user-login__main-login">
@@ -132,27 +134,27 @@
 </div>
 
 <script>
-    function loginGoogle() {
-        let f = document.createElement('form');
-        f.setAttribute('method', 'post');
-        f.setAttribute('action', '/oauth2/google');
-        document.body.appendChild(f);
-        f.submit();
-    }
+  function loginGoogle() {
+    let f = document.createElement('form');
+    f.setAttribute('method', 'post');
+    f.setAttribute('action', '/oauth2/google');
+    document.body.appendChild(f);
+    f.submit();
+  }
 
-    // 하나로
-    function loginKakao() {
-        let f = document.createElement('form');
-        f.setAttribute('method', 'post');
-        f.setAttribute('action', '/oauth2/kakao');
-        document.body.appendChild(f);
-        f.submit();
-    }
+  // 하나로
+  function loginKakao() {
+    let f = document.createElement('form');
+    f.setAttribute('method', 'post');
+    f.setAttribute('action', '/oauth2/kakao');
+    document.body.appendChild(f);
+    f.submit();
+  }
 
-    const error2 = "${error2}";
-    if (error2 != "") {
-        alert(error2)
-    }
+  const error2 = "${error2}";
+  if (error2 != "") {
+    alert(error2)
+  }
 </script>
 
 </body>
