@@ -1,25 +1,3 @@
-/*!* 숙소 버튼 스타일링 *!*/
-/*.screens-room-management__menuButton-box input[type="radio"] {*/
-/*  display: none; !* 라디오 버튼을 감춤 *!*/
-/*}*/
-
-/*.screens-room-management__menuButton-box label {*/
-/*  display: inline-block;*/
-/*  color: #fff;*/
-/*  cursor: pointer;*/
-/*}*/
-
-/*!* 선택된 버튼 스타일링 *!*/
-/*.screens-room-management__menuButton-box input[type="radio"]:checked + label {*/
-/*  background-color: #777777;*/
-/*}*/
-
-/*.room-management-header-btn-active:checked {*/
-/*  background-color: #FA998C;*/
-/*}*/
-
-/**/
-
 /*헤더 영역*/
 .screens-room-management__menuButton-box {
   width: 100px;
@@ -40,10 +18,6 @@
   align-items: center;
   color: #777777;
   border-radius: 30px;
-
-  /*div 상자 만들었을떄*/
-  /*text-decoration: underline;*/
-  /*text-decoration-thickness: 2px;*/
 }
 
 .screens-room-management__menuButton-box div {
@@ -59,7 +33,6 @@
   border-radius: 30px;
   border: none;
   outline: none;
-  /*background-color: #FA998C;*/
   background-color: inherit;
   padding: 0;
   cursor: pointer;
@@ -67,36 +40,6 @@
   font-size: 15px;
   color: #777777;
 }
-
-/*여기부터*/
-.screens-room-management__menuButton-box h2 {
-  color: #000;
-  display: inline-block;
-  margin: 0;
-  text-transform: uppercase;
-}
-
-.screens-room-management__menuButton-box button:after {
-  display: block;
-  content: '';
-  border-bottom: solid 3px #777777;
-  transform: scaleX(0);
-  transition: transform 250ms ease-in-out;
-}
-
-.screens-room-management__menuButton-box button:hover:after {
-  transform: scaleX(1);
-}
-
-.screens-room-management__menuButton-box button.fromRight:after {
-  transform-origin: 100% 50%;
-}
-
-.screens-room-management__menuButton-box button.fromLeft:after {
-  transform-origin: 0% 50%;
-}
-
-/*여기까지*/
 
 /*최하단 구분선*/
 .components-user-header__line {
@@ -107,39 +50,27 @@
 
 /*바디 영역*/
 .screens-room-management__container {
-  /*background-color: #fee426;*/
   display: flex;
   justify-content: center;
 }
 
 .screens-room-management__content {
-  /*background-color: #62baea;*/
-
   margin: 10px 50px 10px 50px;
   width: 90%;
-  height: 100%; /*자식이 height을 쓰니까 부모에도 height을 써야 됨.=>width,height은 부모기준이니까.*/
+  height: 100%;
 }
 
 .screens-room-management__top {
   background-color: #ffffff;
-  /*background-color: #62baea;*/
-  /*border: 1px solid;*/
-  /*border-radius: 20px; !* 잠시 영역 구분할라고*!*/
   width: 100%;
   height: 20%;
   margin: 0px 0px 10px 0px;
-
-  /*자식 적용*/
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.screens-room-management__top__title {
-
-}
-
-.screens-room-management__top__title h2 { /*airbnb꺼 다 긁어옴*/
+.screens-room-management__top__title h2 {
   display: block;
   font-size: 1.5em;
   margin-block-start: 0.83em;
@@ -171,15 +102,12 @@
   width: 40px;
   cursor: pointer;
   border-radius: 30px;
-  transition: 0.1ms all ease-in; /*애니메이션 효과*/
+  transition: 0.1ms all ease-in;
   box-shadow: 3px 3px 3px #DDDDDD;
 }
 
 .screens-room-management__cards {
-  /*background-color: #ffaaaa;*/
-  /*border: 3px solid red;*/
   height: 70%;
-
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
@@ -188,8 +116,6 @@
 .screens-room-management__card {
   padding-bottom: 50px;
   margin-right: 15px;
-
-  /*visibility: hidden;*/
   position: relative;
   cursor: pointer;
 }
@@ -198,31 +124,21 @@
   font-size: 10px;
 }
 
-.screens-room-management__card .screens-room-management__card__img { /*div*/
-  /*border-radius: 15px;*/
-  /*border: 1px solid;*/
-}
-
-.screens-room-management__card .screens-room-management__card__img img { /*img 태그*/
-
+.screens-room-management__card .screens-room-management__card__img img {
   border-radius: 15px;
-  /*border: 1px solid;*/
-  /*사진을 정사각형으로 만들고 싶은데 무슨 방법을 써야할지 모르겠습니다만...*/
   width: 440px;
-  height: 415px;
+  height: 404px;
 }
 
 .screens-room-management__card .screens-room-management__card__date {
   margin: 0px;
   width: 100%;
-
 }
 
 .screens-room-management__card .screens-room-management__card__date p {
   font-size: 15px;
   font-weight: bold;
   margin: 10px 0px 0px 0px;
-
 }
 
 .screens-room-management__card .screens-room-management__card__info {
@@ -240,11 +156,9 @@
   background-color: #ffffff;
   border-radius: 35px;
   box-shadow: 2px 2px 1px #3C3C3C;
-
   display: flex;
   align-items: center;
   justify-content: left;
-
   position: absolute;
   top: 10px;
   left: 10px;
@@ -256,10 +170,6 @@
   height: 10px;
 }
 
-.screens-room-management__card_status__img {
-  /*  얘한테 앱솔루트 줘서 옮겨보려했으나, 이미 부모가 앱솔루트여서 못쓰는 상황*/
-}
-
 .screens-room-management__card_status span {
   font-size: 13px;
   font-weight: bold;
@@ -267,18 +177,17 @@
 }
 
 
-/* 모달 css 코드*/
-/*모달팝업을 감싸고 있는 최상위 부모*/
+/* 모달 */
 .screens-room-management__modalWrap {
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
   display: none;
 }
 
@@ -291,18 +200,13 @@
   border: 1px solid #777;
   background-color: #fff;
   border-radius: 15px;
-
   display: flex;
-  /*justify-content: center;*/
   flex-direction: column;
-
 }
 
-/*닫기 버튼*/
 .screens-room-management__closeBtn-box {
   height: 5%;
   margin-bottom: 10px;
-
 }
 
 .screens-room-management__closeBtn-box span:hover {
@@ -316,8 +220,7 @@
   font-size: 30px;
   cursor: pointer;
   margin: -10px;
-
-  transition: 0.1ms all ease-in; /*애니메이션 효과*/
+  transition: 0.1ms all ease-in;
 }
 
 .screens-room-management__img-box {
@@ -325,7 +228,6 @@
   justify-content: center;
   height: 40%;
   margin-bottom: 10px;
-
 }
 
 .screens-room-management__img-box img {
@@ -338,7 +240,6 @@
 .screens-room-management__modalText-box {
   height: 10%;
   margin-bottom: 10px;
-
 }
 
 .screens-room-management__modalText-box span {
@@ -350,22 +251,13 @@
   display: block;
 }
 
-.screens-room-management__modalText-box__text {
-  /*color: #;*/
-  /*overflow: hidden;*/
-  /*text-overflow: ellipsis;*/
-  /*white-space: nowrap;*/
-}
-
 .screens-room-management__btnStatus-box {
-  /*background-color: #DDDDDD;*/
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   height: 30%;
   margin-bottom: 10px;
-
 }
 
 /* 숙소 상태 수정 버튼 : 활성화,비활성화,폐점 */

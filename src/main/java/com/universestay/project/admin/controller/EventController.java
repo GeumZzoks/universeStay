@@ -198,7 +198,6 @@ public class EventController {
                 m.addAttribute("start", event_start_val);
                 m.addAttribute("expire", event_expire_val);
 
-                System.out.println(event_start_val);
             } else {
                 // 권한이 없을경우 예외로 던짐
                 throw new Exception("Update Denied.");

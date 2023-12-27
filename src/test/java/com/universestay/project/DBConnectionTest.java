@@ -1,20 +1,18 @@
 package com.universestay.project;
 
+import static org.junit.Assert.assertTrue;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Date;
+import javax.sql.DataSource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.Arrays;
-import java.util.Date;
-
-import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/**/root-context.xml"})
@@ -29,7 +27,6 @@ public class DBConnectionTest {
     @Test
     public void initContext() {
         String[] beanDefinitionNames = context.getBeanDefinitionNames();
-        System.out.println(Arrays.toString(beanDefinitionNames));
     }
 
     @Test
@@ -48,15 +45,11 @@ public class DBConnectionTest {
             commonStatus.setStatus_category(resultSet.getString(2));
         }
 
-        System.out.println(commonStatus);
-
-        System.out.println("resultSet = " + resultSet);
-
-        System.out.println("conn = " + conn);
         assertTrue(conn != null);
     }
 
     public class CommonStatus {
+
         public String status_id;
         public String status_category;
         public String status_type_name;

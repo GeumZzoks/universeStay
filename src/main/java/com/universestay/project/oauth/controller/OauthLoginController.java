@@ -49,8 +49,6 @@ public class OauthLoginController {
                 + "&redirect_uri="
                 + GOOGLE_REDIRECT_URL;
 
-        System.out.println(reqUrl);
-
         return "redirect:" + reqUrl;
     }
 

@@ -25,7 +25,6 @@ public class GoogleLoginService {
     public ResponseEntity<GoogleInfResponseDto> getGoogleInfo(String authCode) throws Exception {
         RestTemplate restTemplate = new RestTemplate();
 
-        System.out.println(authCode);
         // googleClientId, googleClientPw, authCode를 사용하여 GoogleRequestDto를 빌더패턴으로 생성한다.
         GoogleRequestDto googleOAuthRequestParam = GoogleRequestDto
                 .builder()

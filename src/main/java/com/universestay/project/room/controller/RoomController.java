@@ -146,12 +146,10 @@ public class RoomController {
             // 숙소목록을 조회한 후 모델에 담는다.
             // 룸상태가 R03(숙소폐점)인 숙소는 제외 한다.
             List<RoomManagementDto> roomManagementDtoList = roomService.listHostRoom(userId);
-//            System.out.println("roomManagementDtoList = " + roomManagementDtoList);
 
             model.addAttribute("roomManagementDtoList", roomManagementDtoList);
             // 숙소테이블에 대표사진 컬럼을 추가 하기 전 코드
 //            List<Map<String, Object>> roomDtoList = roomService.listHostRoom(userId);
-//            System.out.println("roomDtoList = " + roomDtoList);
 
             // 헤더에 프로필이미지/토글
             String profileImgUrl = profileImgService.getProfileImgUrl(userDto.getUser_id());
