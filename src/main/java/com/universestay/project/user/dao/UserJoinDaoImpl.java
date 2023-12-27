@@ -17,7 +17,6 @@ public class UserJoinDaoImpl implements UserJoinDao {
         try {
             return session.insert(namespace + "insertUser", userDto);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
             return e.getMessage().length();
         }
     }

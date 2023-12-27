@@ -48,7 +48,7 @@
         </choose>
         ORDER BY b.created_at desc;
     </select>
-    
+
     <insert id="insertReview" parameterType="RoomReviewDto">
         insert into RoomReview (review_id, user_id, room_id, review_writer, review_stars,
                                 review_ctt, created_id)
@@ -77,7 +77,7 @@
 
     <update id="updateRoomStarAvg" parameterType="String">
         UPDATE Room r
-        SET r.room_stars_avg = (SELECT AVG(rr.review_stars)
+        SET r.room_stars_avg = (SELECT truncate(AVG(rr.review_stars), 2)
                                 FROM RoomReview rr
                                 WHERE rr.room_id = #{room_id})
         WHERE r.room_id = #{room_id}
