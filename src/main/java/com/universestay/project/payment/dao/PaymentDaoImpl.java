@@ -38,4 +38,24 @@ public class PaymentDaoImpl implements PaymentDao {
     public int updateOrderById(String paymentId) throws CommonException {
         return session.update(namespace + "updateOrderById", paymentId);
     }
+
+    @Override
+    public Map<String, Object> findBookingById(String bookingId) throws CommonException {
+        return session.selectOne(namespace + "findBookingById", bookingId);
+    }
+
+    @Override
+    public Map<String, Object> findPaymentById(String payment_merchant_uid) throws CommonException {
+        return session.selectOne(namespace + "findPaymentById", payment_merchant_uid);
+    }
+
+    @Override
+    public Integer updatePaymentById(Object paymentId) throws CommonException {
+        return session.update(namespace + "updatePaymentById", paymentId);
+    }
+
+    @Override
+    public Integer updatePaymentStatusByBookingId(String bookingId) throws CommonException {
+        return session.update(namespace + "updatePaymentStatusByBookingId", bookingId);
+    }
 }

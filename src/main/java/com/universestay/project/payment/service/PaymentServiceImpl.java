@@ -37,4 +37,24 @@ public class PaymentServiceImpl implements PaymentService {
     public int updateOrderById(String paymentId) throws CommonException {
         return paymentDao.updateOrderById(paymentId);
     }
+
+    @Override
+    public Map<String, Object> findBookingById(String bookingId) throws CommonException {
+        return paymentDao.findBookingById(bookingId);
+    }
+
+    @Override
+    public Map<String, Object> findPaymentById(String payment_merchant_uid) throws CommonException {
+        return paymentDao.findPaymentById(payment_merchant_uid);
+    }
+
+    @Override
+    public Integer updatePaymentById(Object paymentId) throws CommonException {
+        return paymentDao.updatePaymentById(paymentId);
+    }
+
+    @Override
+    public Integer updatePaymentStatusByBookingId(String bookingId) throws CommonException {
+        return paymentDao.updatePaymentStatusByBookingId(bookingId);
+    }
 }

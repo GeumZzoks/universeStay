@@ -45,4 +45,9 @@ public class BookDaoImpl implements BookDao {
     public UserDto getUserInfo(String userEmail) throws CommonException {
         return session.selectOne(namespace + "selectUserInfo", userEmail);
     }
+
+    @Override
+    public Integer updateStatus(String bookingId) throws CommonException {
+        return session.update(namespace + "updateStatus", bookingId);
+    }
 }
