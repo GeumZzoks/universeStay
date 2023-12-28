@@ -253,33 +253,36 @@ for (let i = 0; i < bookingIdArray.length; i++) {
     const bookingId = bookingIdArray[i].dataset.value;
 
     refundButtons[i].addEventListener("click", function () {
-        // 초기 필요한 데이터 가져오기
-        $.ajax({
-            url: "/payment/getBookingInfo",
-            method: "post",
-            dataType: "json",
-            data: {bookingId: bookingId},
-            success: function (res) {
-                console.log(res);
-                // 결제 취소 환불 API
-                $.ajax({
-                    // 예: http://www.myservice.com/payments/cancel
-                    url: "/payment/refundPay",
-                    type: "POST",
-                    contentType: "application/json",
-                    data: JSON.stringify({
-                        merchant_uid: res.payment_merchant_uid, // 예: ORD20180131-0000011
-                        cancel_request_amount: res.payment_paid_amount, // 환불금
-                        reason: "테스트 결제 환불" // 환불사유
-                    }),
-                    success: function (res) {
-                        alert("결제 취소 처리되었습니다.");
-                        window.location.reload(true);
-                    }
+        if (confirm("결제를 취소하시겠습니까?"))
+                // 초기 필요한 데이터 가져오기
+        {
+            $.ajax({
+                url: "/payment/getBookingInfo",
+                method: "post",
+                dataType: "json",
+                data: {bookingId: bookingId},
+                success: function (res) {
+                    console.log(res);
+                    // 결제 취소 환불 API
+                    $.ajax({
+                        // 예: http://www.myservice.com/payments/cancel
+                        url: "/payment/refundPay",
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify({
+                            merchant_uid: res.payment_merchant_uid, // 예: ORD20180131-0000011
+                            cancel_request_amount: res.payment_paid_amount, // 환불금
+                            reason: "테스트 결제 환불" // 환불사유
+                        }),
+                        success: function (res) {
+                            alert("결제 취소 처리되었습니다.");
+                            window.location.reload(true);
+                        }
 
-                });
-            }
-        });
+                    });
+                }
+            });
+        }
     });
 }
 
@@ -290,20 +293,23 @@ for (let i = 0; i < cancelButtons.length; i++) {
     const bookingId = bookingIdArray[i].dataset.value;
 
     cancelButtons[i].addEventListener("click", function () {
-        // 초기 필요한 데이터 가져오기
-        $.ajax({
-            url: "/payment/canclePay",
-            type: "POST",
-            contentType: "application/json",
-            data: JSON.stringify({
-                bookingId
-            }),
-            success: function (res) {
-                alert("예약 취소 처리되었습니다.");
-                window.location.reload(true);
-            }
+        if (confirm("예약을 취소하시겠습니까?"))
+                // 초기 필요한 데이터 가져오기
+        {
+            $.ajax({
+                url: "/payment/canclePay",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    bookingId
+                }),
+                success: function (res) {
+                    alert("예약 취소 처리되었습니다.");
+                    window.location.reload(true);
+                }
 
-        });
+            });
+        }
     });
 }
 
