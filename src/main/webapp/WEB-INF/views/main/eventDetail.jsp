@@ -103,7 +103,6 @@
     </div>
 </div>
 <jsp:include page="/WEB-INF/views/common/user/footer.jsp"/>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function () {
         $('#getCoupon').on('click', function getCoupon() {
