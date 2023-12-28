@@ -55,4 +55,9 @@ public class BookServiceImpl implements BookService {
     public Integer selectCheckBookingRoom(BookingDto bookingDto) throws CommonException {
         return bookDao.selectCheckBookingRoom(bookingDto);
     }
+
+    @Override
+    public Integer updateStatus(String booking_id) throws CommonException {
+        return bookDao.updateStatus(booking_id);
+    }
 }
