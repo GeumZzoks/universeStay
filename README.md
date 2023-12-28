@@ -2,18 +2,32 @@
 <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/91b1c18c-3dec-4138-8ad2-d7c5a1403db4">
 
 ## 목차 📜
- * [프로젝트 기간](#프로젝트기간) 🗓️
- * [주제](#주제) 📍
- * [기술스택](#기술스택) 🛠️ 
- * [파일구조](#파일구조) 💾
- * [설계문서](#설계문서) 📑
-   * [ERD](#ERD)
-   * [FIGMA](#FIGMA)
-   * [API](#API)
- * [아키텍처](#아키텍처) 🌐
- * [서비스화면](#서비스화면) 🖥️
- * [회의문서](#회의문서) 📝
- * [팀소개](#팀소개) 🩷
+ * [프로젝트 기간](프로젝트-기간) 🗓️
+ * [주제](주제) 📍
+ * [기술 스택](기술-스택) 🛠️ 
+ * [파일 구조](파일-구조) 💾
+ * [설계 문서](설계-문서) 📑
+   * [ERD](ERD)
+   * [FIGMA](FIGMA)
+ * [아키텍처](아키텍처) 🌐
+ * [서비스 화면](서비스-화면) 🖥️
+    * [회원가입/로그인](회원가입/로그인)
+    * [메인페이지(스크롤)](메인페이지(스크롤))
+    * [숙소 등록](숙소-등록)
+    * [관리자 숙소 승인](관리자-숙소-승인)
+    * [숙소 예약](숙소-예약)
+    * [호스트 예약 승인](호스트-예약-승인)
+    * [숙소 결제](숙소-결제)
+    * [위시리스트 추가](위시리스트-추가)
+    * [호스트 게스트 채팅](호스트-게스트-채팅)
+    * [관리자 쿠폰 발급](관리자-쿠폰-발급)
+    * [공지사항](공지사항)
+    * [리뷰](리뷰)
+    * [숙소 상태 관리](숙소-상태-관리)
+    * [유저 관리](유저-관리)
+ * [회의 문서](회의-문서) 📝
+ * [팀 소개](팀-소개) 🩷
+   * [팀 규칙](팀-규칙) 👮
 
 ---
 ## 프로젝트 기간 🗓️
@@ -761,12 +775,8 @@
 
   ---
   ## 회의 문서 📝
-   </details>
-  <details>
-    <summary>데일리 스크럼</summary>
-    <div markdown="4">
-    </div>
-  </details>
+  <a href="https://verbena-scallop-776.notion.site/ecc1a1b152bd424393620b1c54c3be88?v=88cee01f5126410ca97078bf71695319&pvs=4">    데일리 스크럼</a>
+   
 
   --- 
   ## 팀 소개 🩷
@@ -781,13 +791,16 @@
   <tr>
     <td align="center"><a href="https://github.com/ssunghoon"><img src="https://github.com/GeumZzoks/universeStay/assets/105831341/01ca5da2-3cb0-4d2f-b2f7-0a8129258f9e" width="100px;" height="120px;" alt=""/><br /><sub><b>이성훈</b></sub></a></td>
     <td align="center"><a href="https://github.com/Hojin37"><img src="https://github.com/GeumZzoks/universeStay/assets/105831341/a3702372-e0d1-451d-928e-abe9c86312dd" width="100px;" height="120px;" alt=""/><br /><sub><b>장호진</b></sub></a></td>
-    <td align="center"><a href="https://github.com/simplist119"><img src="https://github.com/GeumZzoks/universeStay/assets/105831341/92f5874d-76b9-43f9-90ab-884a880a0917" width="100px;" height="120px;" alt=""/><br /><sub><b>정경민</b></sub></a></td>
+    <td align="center"><a href="https://github.com/simplist119"><img src="https://github.com/GeumZzoks/universeStay/assets/105831341/a32ae475-6a4e-4112-9958-5ead8c06861b" width="100px;" height="120px;" alt=""/><br /><sub><b>정경민</b></sub></a></td>
     <td align="center"><a href="https://github.com/nickhealthy"><img src="https://github.com/GeumZzoks/universeStay/assets/105831341/e3acdc64-99e7-4e95-8b70-bbebc1b79017" width="100px;" height="120px;" alt=""/><br /><sub><b>주성우</b></sub></a></td>
   </tr>
    </table>
 
-  
-
-  
-
-
+---
+### 팀 규칙 👮
+<details>
+  <summary>팀 규칙</summary>
+    <div markdown="2">
+        <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/157bf482-6528-4ccd-9239-46b57750a2d5" width="800px;" height="750px;" >
+    </div>
+  </details>
