@@ -192,19 +192,57 @@
                         <th class="screens-admin-dashboard__table__common">사용자 ID</th>
                         <th class="screens-admin-dashboard__table__common">상세보기</th>
                     </tr>
+                    <%--                    <c:forEach var="item" items="${listInquiry}">--%>
+                    <%--                        <tr>--%>
+                    <%--                            <td class="screens-admin-dashboard__table__common">${item.inquiry_title}</td>--%>
+                    <%--                            <td class="screens-admin-dashboard__table__common">${item.user_nickname}</td>--%>
+                    <%--                            <td class="screens-admin-dashboard__table__common">--%>
+                    <%--                                <span class="screens-admin-dashboard__btn screens-admin-dashboard__btn-span-content"--%>
+                    <%--                                      data-value="${item.inquiry_id}">보러가기</span>--%>
 
-                    <c:forEach var="item" items="${listInquiry}">
-                        <tr>
-                            <td class="screens-admin-dashboard__table__common">${item.inquiry_title}</td>
-                            <td class="screens-admin-dashboard__table__common">${item.user_nickname}</td>
-                            <td class="screens-admin-dashboard__table__common">
+                    <%--                            </td>--%>
+                    <%--                        </tr>--%>
+                    <tr>
+                        <td class="screens-admin-dashboard__table__common screens-admin-dashboard-align-left">호스팅 관련
+                            문의사항 있습니다.
+                        </td>
+                        <td class="screens-admin-dashboard__table__common">최두호</td>
+                        <td class="screens-admin-dashboard__table__common">
                                 <span class="screens-admin-dashboard__btn screens-admin-dashboard__btn-span-content"
                                       data-value="${item.inquiry_id}">보러가기</span>
 
-                            </td>
-                        </tr>
-                    </c:forEach>
-
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="screens-admin-dashboard__table__common screens-admin-dashboard-align-left">예약을 하려고
+                            하는데요...
+                        </td>
+                        <td class="screens-admin-dashboard__table__common">박현성</td>
+                        <td class="screens-admin-dashboard__table__common">
+                                <span class="screens-admin-dashboard__btn screens-admin-dashboard__btn-span-content"
+                                      data-value="${item.inquiry_id}">보러가기</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="screens-admin-dashboard__table__common screens-admin-dashboard-align-left">예약 취소가
+                            안돼요!!
+                        </td>
+                        <td class="screens-admin-dashboard__table__common">함서희</td>
+                        <td class="screens-admin-dashboard__table__common">
+                                <span class="screens-admin-dashboard__btn screens-admin-dashboard__btn-span-content"
+                                      data-value="${item.inquiry_id}">보러가기</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="screens-admin-dashboard__table__common screens-admin-dashboard-align-left">도와주세요
+                        </td>
+                        <td class="screens-admin-dashboard__table__common">마크헌트</td>
+                        <td class="screens-admin-dashboard__table__common">
+                                <span class="screens-admin-dashboard__btn screens-admin-dashboard__btn-span-content"
+                                      data-value="${item.inquiry_id}">보러가기</span>
+                        </td>
+                    </tr>
+                    <%--                    </c:forEach>--%>
                 </table>
             </div>
         </div>
@@ -213,7 +251,6 @@
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
 <script src="/resources/js/admin/dashBoard.js"></script>
 
 </body>

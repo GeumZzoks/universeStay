@@ -284,6 +284,7 @@
     width: 40px;
 }
 
+
 @media screen and (max-width: 1050px) {
     .screens-admin-dashboard__side-menu li {
         font-size: 18px;
@@ -340,8 +341,11 @@
 
 }
 
-screens-admin-dashboard__img-body {
-    width: 20%;
-    height: 20%;
+/*screens-admin-dashboard__img-body {*/
+/*    width: 20%;*/
+/*    height: 20%;*/
+/*}*/
 
+.screens-admin-dashboard-align-left {
+    text-align: left;
 }
