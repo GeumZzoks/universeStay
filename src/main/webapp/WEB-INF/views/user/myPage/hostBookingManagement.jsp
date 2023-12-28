@@ -38,99 +38,99 @@
     <link rel="stylesheet" href="/resources/css2/style.css">
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <style>
-      .screens-hostBookingManagement-flex-row {
-        display: flex;
-        flex-direction: row;
-      }
+        .screens-hostBookingManagement-flex-row {
+            display: flex;
+            flex-direction: row;
+        }
 
-      .screens-hostBookingManagement-flex-column {
-        display: flex;
-        flex-direction: column;
-      }
+        .screens-hostBookingManagement-flex-column {
+            display: flex;
+            flex-direction: column;
+        }
 
-      .screens-user-myPage-hostBookingManagement > section,
-      .screens-user-myPage-hostBookingManagement > section * {
-        box-sizing: border-box;
-      }
+        .screens-user-myPage-hostBookingManagement > section,
+        .screens-user-myPage-hostBookingManagement > section * {
+            box-sizing: border-box;
+        }
 
-      .screens-user-myPage-hostBookingManagement__section {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        width: 100vw;
-        height: 100vh;
-      }
+        .screens-user-myPage-hostBookingManagement__section {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100vw;
+            height: 100vh;
+        }
 
-      .screens-user-myPage-hostBookingManagement__container {
-        position: relative;
-        top: 100px;
-        height: calc(100% - 100px);
-        width: 90%;
-        margin-left: 10%;
-        overflow: auto;
+        .screens-user-myPage-hostBookingManagement__container {
+            position: relative;
+            top: 100px;
+            height: calc(100% - 100px);
+            width: 90%;
+            margin-left: 4%;
+            overflow: auto;
 
-      }
+        }
 
-      .screens-user-myPage-hostBookingManagement__newBookings {
-        margin-left: 0.5rem;
-        width: 40%;
-        height: 100%;
-      }
+        .screens-user-myPage-hostBookingManagement__newBookings {
+            margin-left: 0.5rem;
+            width: 40%;
+            height: 100%;
+        }
 
-      .screens-user-myPage-hostBookingManagement__newBookings-banner1 {
-        margin-top: 2rem;
-        margin-bottom: 2rem;
-        font-size: 1.5rem;
-        font-family: 'NotoSansKR-Medium';
-        color: gray;
-        padding-bottom: 0.5rem;
-        border-bottom: 1px solid gray;
-      }
+        .screens-user-myPage-hostBookingManagement__newBookings-banner1 {
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            font-family: 'NotoSansKR-Bold';
+            color: black;
+            padding-bottom: 0.5rem;
+            /*border-bottom: 1px solid gray;*/
+        }
 
-      .screens-user-myPage-hostBookingManagement__requests {
-        word-wrap: break-word;
-      }
+        .screens-user-myPage-hostBookingManagement__requests {
+            word-wrap: break-word;
+        }
 
-      .screens-user-myPage-hostBookingManagement__request {
-        padding: 1rem;
-        box-shadow: 0px 0px 5px 0px gray;
-        border-radius: 12px;
-        margin-bottom: 1.5rem;
-        display: none;
-      }
+        .screens-user-myPage-hostBookingManagement__request {
+            padding: 1rem;
+            box-shadow: 0px 0px 5px 0px gray;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            display: none;
+        }
 
-      .screens-user-myPage-hostBookingManagement__request__head > div {
-        font-family: 'NotoSansKR-Regular';
-        margin-bottom: 0.5rem;
-      }
+        .screens-user-myPage-hostBookingManagement__request__head > div {
+            font-family: 'NotoSansKR-Regular';
+            margin-bottom: 0.5rem;
+        }
 
-      .screens-user-myPage-hostBookingManagement__request__head > div:nth-child(1) {
-        font-family: 'NotoSansKR-Bold';
-      }
+        .screens-user-myPage-hostBookingManagement__request__head > div:nth-child(1) {
+            font-family: 'NotoSansKR-Bold';
+        }
 
-      .screens-user-myPage-hostBookingManagement__request__telNum {
-        margin-top: 0.5rem;
-      }
+        .screens-user-myPage-hostBookingManagement__request__telNum {
+            margin-top: 0.5rem;
+        }
 
-      .screens-user-myPage-hostBookingManagement__request__roomName {
-        margin-bottom: 1rem;
-        font-size: 1.2rem;
-      }
+        .screens-user-myPage-hostBookingManagement__request__roomName {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
 
-      .screens-user-myPage-hostBookingManagement__request__btn > div {
-        height: 3.2rem;
-        width: 3.2rem;
-      }
+        .screens-user-myPage-hostBookingManagement__request__btn > div {
+            height: 3.2rem;
+            width: 3.2rem;
+        }
 
-      .screens-user-myPage-hostBookingManagement__request__btn > div > img:hover {
-        height: 3.2rem;
-        width: 3.2rem;
-      }
+        .screens-user-myPage-hostBookingManagement__request__btn > div > img:hover {
+            height: 3.2rem;
+            width: 3.2rem;
+        }
 
-      .screens-user-myPage-hostBookingManagement__request__btn > div > img {
-        height: 3rem;
-        width: 3rem;
-      }
+        .screens-user-myPage-hostBookingManagement__request__btn > div > img {
+            height: 3rem;
+            width: 3rem;
+        }
 
     </style>
 </head>
@@ -165,12 +165,9 @@
                     </div>
                     <div class="screens-user-myPage-hostBookingManagement__request__btn screens-hostBookingManagement-flex-row">
                         <div class="screens-user-myPage-hostBookingManagement__request__agreeBtn">
-                            <img
-                                    src="/resources/img/symbol/check-square-svgrepo-com.svg"
-                                    alt="승인"></div>
+                            <img src="/resources/img/symbol/check-square-svgrepo-com.svg" alt="승인"></div>
                         <div class="screens-user-myPage-hostBookingManagement__request__disagreeBtn">
-                            <img
-                                    src="/resources/img/symbol/x-square-svgrepo-com.svg" alt="거부">
+                            <img src="/resources/img/symbol/x-square-svgrepo-com.svg" alt="거부">
                         </div>
                     </div>
                 </div>
@@ -203,41 +200,41 @@
             let checkinDate = convertTimestampToKoreanDate(component.b_booking_checkin_date);
             let checkoutDate = convertTimestampToKoreanDate(component.b_booking_checkout_date);
             cloneElement.querySelector(
-                    '.screens-user-myPage-hostBookingManagement__request__roomName > div:nth-of-type(1) > p').textContent = component.r_room_name;
+                '.screens-user-myPage-hostBookingManagement__request__roomName > div:nth-of-type(1) > p').textContent = component.r_room_name;
             cloneElement.querySelector(
-                    '.screens-user-myPage-hostBookingManagement__request__period > div:nth-of-type(1) > p').textContent = checkinDate
-                    + `\u00a0\u00a0\u00a0~\u00a0\u00a0\u00a0\u00a0` + checkoutDate;
+                '.screens-user-myPage-hostBookingManagement__request__period > div:nth-of-type(1) > p').textContent = checkinDate
+                + `\u00a0\u00a0\u00a0~\u00a0\u00a0\u00a0\u00a0` + checkoutDate;
             cloneElement.querySelector(
-                    '.screens-user-myPage-hostBookingManagement__request__userName > div:nth-of-type(1) > p').textContent = component.u_user_name;
+                '.screens-user-myPage-hostBookingManagement__request__userName > div:nth-of-type(1) > p').textContent = component.u_user_name;
             cloneElement.querySelector(
-                    '.screens-user-myPage-hostBookingManagement__request__peopleNum > div:nth-of-type(1) > p').textContent = component.b_booking_num_of_guest
-                    + " 명 ";
+                '.screens-user-myPage-hostBookingManagement__request__peopleNum > div:nth-of-type(1) > p').textContent = component.b_booking_num_of_guest
+                + " 명 ";
             cloneElement.querySelector(
-                    '.screens-user-myPage-hostBookingManagement__request__totalPay > div:nth-of-type(1) > p').textContent = formatKoreanCurrency(
-                    component.b_booking_total_pay_amount) + "원";
+                '.screens-user-myPage-hostBookingManagement__request__totalPay > div:nth-of-type(1) > p').textContent = formatKoreanCurrency(
+                component.b_booking_total_pay_amount) + "원";
             cloneElement.querySelector(
-                    '.screens-user-myPage-hostBookingManagement__request__telNum > div:nth-of-type(1) > p').textContent = component.u_user_phone_num1;
+                '.screens-user-myPage-hostBookingManagement__request__telNum > div:nth-of-type(1) > p').textContent = component.u_user_phone_num1;
             cloneElement.querySelector(
-                    '.screens-user-myPage-hostBookingManagement__request__agreeBtn > img').addEventListener(
-                    "click", function () {
-                        if (confirm("예약을 승인 하시겠습니까?")) {
-                            clickBtnAjax(component.b_booking_id, "Y");
-                            alert("예약 승인 완료!")
-                        } else {
-                            alert("예약승인을 취소하셨습니다.");
-                        }
+                '.screens-user-myPage-hostBookingManagement__request__agreeBtn > img').addEventListener(
+                "click", function () {
+                    if (confirm("예약을 승인 하시겠습니까?")) {
+                        clickBtnAjax(component.b_booking_id, "Y");
+                        alert("예약 승인 완료!")
+                    } else {
+                        alert("예약승인을 취소하셨습니다.");
+                    }
 
-                    })
+                })
             cloneElement.querySelector(
-                    '.screens-user-myPage-hostBookingManagement__request__disagreeBtn > img').addEventListener(
-                    "click", function () {
-                        if (confirm("예약을 거절 하시겠습니까?")) {
-                            clickBtnAjax(component.b_booking_id, "N");
-                            alert("예약을 거절 하셨습니다.")
-                        } else {
-                            alert("예약거절을 취소하셨습니다.")
-                        }
-                    })
+                '.screens-user-myPage-hostBookingManagement__request__disagreeBtn > img').addEventListener(
+                "click", function () {
+                    if (confirm("예약을 거절 하시겠습니까?")) {
+                        clickBtnAjax(component.b_booking_id, "N");
+                        alert("예약을 거절 하셨습니다.")
+                    } else {
+                        alert("예약거절을 취소하셨습니다.")
+                    }
+                })
             requests.appendChild(cloneElement);
         })
     }
