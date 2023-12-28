@@ -13,4 +13,12 @@ public interface PaymentDao {
     int insertPaymentInfo(PaymentDto paymentDto) throws CommonException;
 
     int updateOrderById(String paymentId) throws CommonException;
+
+    Map<String, Object> findBookingById(String bookingId) throws CommonException;
+
+    Map<String, Object> findPaymentById(String payment_merchant_uid) throws CommonException;
+
+    Integer updatePaymentById(Object paymentId) throws CommonException;
+
+    Integer updatePaymentStatusByBookingId(String bookingId) throws CommonException;
 }
