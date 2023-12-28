@@ -1,5 +1,6 @@
 package com.universestay.project.room.controller;
 
+import com.universestay.project.review.service.RoomReviewService;
 import com.universestay.project.room.dao.BookDao;
 import com.universestay.project.room.dto.SendEmailBookInfoDto;
 import com.universestay.project.room.service.BookService;
@@ -34,14 +35,17 @@ public class BookingRoomController {
     private RoomService roomService;
     private BookService bookService;
     private BookDao bookDao;
+    private RoomReviewService roomReviewService;
 
     @Autowired
     public BookingRoomController(BookShareMailSendService bookShareMailSendService,
-            RoomService roomService, BookService bookService, BookDao bookDao) {
+            RoomService roomService, BookService bookService, BookDao bookDao,
+            RoomReviewService roomReviewService) {
         this.bookShareMailSendService = bookShareMailSendService;
         this.roomService = roomService;
         this.bookService = bookService;
         this.bookDao = bookDao;
+        this.roomReviewService = roomReviewService;
     }
 
 
@@ -60,6 +64,8 @@ public class BookingRoomController {
         Map<String, Object> bookInfo = bookService.selectRoomBookInfo(bookingDto.getRoom_id());
         List<BookingDto> bookingDtos = bookDao.selectUnavailableDates(bookingDto.getRoom_id());
 
+        int roomReviewCount = roomReviewService.getRoomReviewCount(bookingDto.getRoom_id());
+
         model.addAttribute("bookInfo", bookInfo);
         model.addAttribute("bookingDto", bookingDto);
         model.addAttribute("weekdayPrice", weekdayPrice);
@@ -71,6 +77,7 @@ public class BookingRoomController {
         model.addAttribute("weekendCount", weekendCount);
         model.addAttribute("extraPersonCount", extraPersonCount);
         model.addAttribute("totalDay", totalDay);
+        model.addAttribute("roomReviewCount", roomReviewCount);
 
         return "room/book";
     }
