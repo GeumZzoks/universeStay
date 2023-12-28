@@ -757,17 +757,7 @@
 
   ---
   ## 서비스 화면 🖥️
-  <details>
-    <summary>회원가입/로그인</summary>
-    <div markdown="4">
-      
-    
-  </details>
-  <details>
-    <summary>메인페이지</summary>
-    <div markdown="4">
-     
-  </details>
+  
 
   ---
   ## 회의 문서 📝
