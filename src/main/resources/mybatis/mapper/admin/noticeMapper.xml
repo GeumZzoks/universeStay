@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.universestay.project.admin.dao.NoticeDao">
+    <select id="count" resultType="int">
+        SELECT count(*)
+        FROM Notice
+    </select>
+
+    <select id="selectAll" resultType="NoticeDto">
+        select *
+        from Notice
+        order by notice_id DESC
+    </select>
+
+    <select id="select" resultType="NoticeDto">
+        select *
+        from Notice
+        where notice_id = #{notice_id}
+    </select>
+
+    <sql id="selectFromNotice">
+        SELECT notice_id, notice_title, admin_id, created_at, notice_is_open
+        FROM Notice
+    </sql>
+
+    <select id="selectPage" parameterType="map" resultType="map">
+        SELECT n.notice_id,
+               n.notice_title,
+               n.admin_id,
+               n.created_at,
+               n.notice_is_open,
+               a.admin_nickname
+        FROM Notice n,
+             Admin a
+        where n.admin_id = a.admin_id
+        ORDER BY notice_id DESC
+            LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <delete id="delete" parameterType="int">
+        delete
+        from Notice
+        where notice_id = #{notice_id}
+    </delete>
+
+    <insert id="insert" parameterType="NoticeDto">
+        insert into Notice
+        (admin_id, notice_title, notice_ctt, notice_is_open, created_at, created_id, updated_at,
+         updated_id)
+        values (#{admin_id}, #{notice_title}, #{notice_ctt}, #{notice_is_open}, now(), #{admin_id},
+                now(), #{admin_id})
+    </insert>
+
+    <insert id="insertSelectKey" parameterType="NoticeDto">
+        insert into Notice
+        (admin_id, notice_title, notice_ctt, notice_is_open, created_at, created_id, updated_at,
+        updated_id)
+        values (#{admin_id}, #{notice_title}, #{notice_ctt}, #{notice_is_open}, now(), #{admin_id},
+        now(), #{admin_id})
+
+        <selectKey keyProperty="notice_id" order="AFTER" resultType="int">
+            select LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <update id="update" parameterType="NoticeDto">
+        update Notice
+        set notice_title   = #{notice_title},
+            notice_ctt     = #{notice_ctt},
+            notice_is_open = #{notice_is_open},
+            updated_at     = now(),
+            updated_id     = #{updated_id}
+        where notice_id = #{notice_id}
+    </update>
+
+    <select id="selectAdminId" parameterType="String" resultType="String">
+        select admin_id
+        from Admin
+        where admin_email = #{admin_email}
+    </select>
+
+    <select id="selectMainPage" parameterType="map" resultType="map">
+        SELECT n.notice_id,
+               n.notice_title,
+               n.created_at
+        FROM Notice n,
+             Admin a
+        where n.admin_id = a.admin_id
+          and n.notice_is_open = 'Y'
+        ORDER BY notice_id DESC
+            LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="openCount" resultType="int">
+        SELECT count(*)
+        FROM Notice
+        where notice_is_open = 'Y'
+    </select>
+
+    <select id="mainSelect" parameterType="int" resultType="NoticeDto">
+        select notice_title, notice_ctt, created_at
+        from Notice
+        where notice_id = #{notice_id}
+    </select>
+
+</mapper>

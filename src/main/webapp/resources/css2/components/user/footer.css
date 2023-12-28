@@ -1,0 +1,57 @@
+.components-user-footer__wrapper {
+  overflow: hidden;
+  clear: both;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+  padding: 8px 16px 0px 16px;
+  background: rgb(245, 245, 245, 0.95);
+  font-size: 7px;
+  line-height: 14px;
+  color: rgba(0, 0, 0, 0.38);
+}
+
+.components-user-footer__a {
+  color: rgba(0, 0, 0, 0.38);
+  text-decoration: none;
+  outline: none
+}
+
+.components-user-footer__a:hover, .components-user-footer__a:active {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.38);
+}
+
+.components-user-footer__ul, .components-user-footer__li {
+  list-style: none;
+}
+
+.components-user-footer__ul {
+  overflow: hidden;
+}
+
+.components-user-footer__li {
+  display: inline-block;
+}
+
+.components-user-footer__li span {
+  display: inline-block;
+  margin: 0 5px 0 5px;
+}
+
+.components-user-footer__p {
+  margin-bottom: 10px;
+}
+
+.components-user-footer__p b {
+  font-size: 7px;
+  font-weight: bolder;
+  margin-right: 5px;
+}
+
+.components-user-footer__order {
+  display: inline-block;
+  margin-bottom: 10px;
+}

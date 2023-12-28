@@ -1,0 +1,284 @@
+/* 컴포넌트 */
+.screens-room-book__container__div-common {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 24px;
+}
+
+.screens-room-book__container__div-common__span {
+    font-family: NotoSansKR-Medium;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.screens-room-book__border-bound-top {
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: rgb(221, 221, 221);
+    margin-top: 8px;
+}
+
+.screens-room-book__text-size-reservation-room-info-h2 {
+    font-size: var(--text-size-reservation-room-info-h2);
+}
+
+.screens-room-book__container__left-side--info-common {
+    padding-right: 24px;
+}
+
+.screens-room-book__container__left-side--info-common h3 {
+    font-family: NotoSansKR-Medium;
+}
+
+.screens-room-book__container__left-side--info-common div {
+    font-family: NotoSansKR-Light;
+    margin-top: 8px;
+}
+
+.screens-room-book__container__left-side--space-topdown {
+    padding: 32px 0 12px 0;
+}
+
+.screens-room-book__container__left-side--space-topdown__header {
+    margin-bottom: 12px;
+}
+
+.screens-room-book__container__left-side--space-topdown__header > div {
+    margin-bottom: 4px;
+}
+
+.screens-room-book__container__left-side--space-topdown__header__payment {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.screens-room-book__container__left-side--space-topdown__header__select {
+    position: relative;
+    z-index: 3;
+    box-sizing: border-box;
+    margin-top: 24px;
+}
+
+.screens-room-book__container__left-side--space-topdown__header__select button {
+    display: block;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    margin: 0px;
+    padding: 0px;
+    text-align: left;
+    outline: none;
+    transition: border 150ms ease-out 0s;
+    border: 1px solid rgb(176, 176, 176);
+    border-radius: 8px;
+
+}
+
+.screens-room-book__container__left-side--space-topdown__header__select__box {
+    padding: 16px 40px 16px 16px;
+}
+
+.screens-room-book__container__right-side__box-size {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    height: 140px;
+    padding: 10px 0;
+    box-sizing: border-box;
+    margin-bottom: 24px;
+}
+
+.screens-room-book__container__right-side__flex-box-column {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.screens-room-book__container__right-side__second-box__sub-box {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 12px;
+}
+
+/* class 적용 */
+
+.screens-room-book__title {
+    padding: 64px 80px 32px 80px;
+    margin: 0 200px;
+    font-size: 2rem;
+    font-family: NotoSansKR-Medium;
+}
+
+.screens-room-book__container__flex {
+    display: flex;
+    justify-content: space-around;
+}
+
+.screens-room-book__container {
+    font-size: 1rem;
+    line-height: 1.25em;
+    padding: 0 80px;
+    margin: 0 200px;
+}
+
+
+.screens-room-book__container__left-side {
+    position: relative;
+    width: 50%;
+    margin-bottom: 60px;
+}
+
+/* 오른쪽 */
+.screens-room-book__container__right-side {
+    position: relative;
+    width: 40%;
+    margin-left: 8.3333%;
+}
+
+.screens-room-book__container__right-side__inner-container {
+    position: sticky;
+    top: 200px;
+    margin-bottom: 80px;
+    padding: 24px;
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 12px;
+
+    /* 수정 부분 */
+    width: 100%;
+    z-index: 1;
+}
+
+.screens-room-book__container__right-side__box-size__space-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding-left: 12px;
+    height: 100%;
+}
+
+.screens-room-book__right-side__box-size {
+    width: 280px;
+    height: 140px;
+    overflow: hidden;
+}
+
+.screens-room-book__right-side__box-size img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.screens-room-book__container__right-side__review {
+    width: 60px;
+    font-size: 0.7rem;
+    font-family: NotoSansKR-Light;
+}
+
+.screens-room-book__container__right-side__review span {
+    font-family: NotoSansKR-Medium;
+}
+
+.screens-room-book__container__right-side__review--bigger {
+    font-size: 0.875rem;
+}
+
+.screens-room-book__container__right-side__flex-box-column__total-payment {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px 0 10px 0;
+    font-family: NotoSansKR-Bold;
+}
+
+.screens-room-book__container__left-side--space-topdown__header__img {
+    width: 100px;
+    width: 50px;
+    overflow: hidden;
+    margin-right: 6px;
+}
+
+
+.screens-room-book__container__left-side--space-topdown__header__img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.screens-room-book__number-people-toggle {
+    /*display: flex;*/
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px #EBEBEB solid;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 6px, rgba(0, 0, 0, 0.07) 0px 0px 0px 1px;
+    border-radius: 10px;
+    position: absolute;
+    top: 130px;
+    left: 200px;
+    width: 60%;
+    z-index: 100;
+    background: #ffffff;
+    display: none;
+}
+
+.screens-room-book__number-people-toggle.active {
+    display: flex;
+}
+
+
+.screens-room-book__toggle-btn-minus, .screens-room-book__toggle-btn-plus {
+    background: inherit;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    overflow: visible;
+    cursor: pointer;
+    border: 1px solid #B0B0B0;
+    border-radius: 50%;
+    padding: 10px;
+}
+
+.screens-room-book__toggle-btn-minus:hover, .screens-room-book__toggle-btn-plus:hover {
+    outline: 1px black solid;
+}
+
+.screens-room-book__toggle-btn-minus.disable, .screens-room-book__toggle-btn-plus.disable {
+    background: inherit;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    overflow: visible;
+    cursor: pointer;
+    border: 1px solid #B0B0B0;
+    border-radius: 50%;
+    padding: 10px;
+}
+
+.screens-room-book__toggle-btn-minus.disable:hover, .screens-room-book__toggle-btn-plus.disable:hover {
+    cursor: not-allowed;
+    outline: none;
+}
+
+.screens-room-book__toggle-num {
+    border: none;
+    width: 35px;
+    text-align: center;
+    background-color: transparent;
+}
+
+.screens-room-book__reservation__part-6 {
+    display: flex;
+    justify-content: space-between;
+    font-family: NotoSansKR-Regular;
+    font-size: 20px;
+    padding: 30px 0;
+}
+
+.screens-room-book__reservation__part-6__mul {
+    text-decoration: underline;
+}

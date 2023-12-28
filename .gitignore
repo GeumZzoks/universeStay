@@ -4,6 +4,7 @@ target/
 !**/src/test/**/target/
 
 ### IntelliJ IDEA ###
+.idea
 .idea/modules.xml
 .idea/jarRepositories.xml
 .idea/compiler.xml
@@ -275,3 +276,8 @@ $RECYCLE.BIN/
 mvnw
 mvnw.cmd
 src/main/resources/config/*
+/.idea/codeStyles/codeStyleConfig.xml
+log
+/src/main/webapp/WEB-INF/classes/
+/src/main/webapp/WEB-INF/lib/
+/src/main/webapp/META-INF/

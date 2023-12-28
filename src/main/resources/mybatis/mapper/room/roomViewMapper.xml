@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.universestay.project.resources.mybatis.mapper.room.roomViewMapper">
+
+  <insert id="saveRoomView" parameterType="RoomViewDto">
+    INSERT INTO RoomView
+    VALUES (#{room_view_id}, #{room_id}, #{view_status_id}, now(), #{created_id},
+            now(), #{updated_id})
+  </insert>
+
+  <delete id="deleteRoomView">
+    DELETE
+    FROM RoomView
+    WHERE room_id = #{room_id}
+  </delete>
+
+  <select id="selectRoomView" resultType="RoomViewDto">
+    SELECT *
+    FROM RoomView
+    WHERE room_id = #{room_id}
+  </select>
+
+</mapper>

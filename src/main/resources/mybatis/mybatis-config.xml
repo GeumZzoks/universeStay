@@ -4,8 +4,32 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <!--        <typeAlias alias="userDto" type="com.example.mywebsitespring.domain.UserDto"/>-->
-        <!--        <typeAlias alias="studyBoardDto" type="com.example.mywebsitespring.domain.StudyBoardDto"/>-->
-        <!--        <typeAlias alias="commentDto" type="com.example.mywebsitespring.domain.CommentDto"/>-->
+        <typeAlias alias="SearchCondition"
+                   type="com.universestay.project.common.SearchCondition"/>
+        <typeAlias alias="MainSearchCondition"
+                   type="com.universestay.project.common.MainSearchCondition"/>
+        <typeAlias alias="UserDto" type="com.universestay.project.user.dto.UserDto"/>
+        <typeAlias alias="ProfileImg" type="com.universestay.project.user.dto.ProfileImgDto"/>
+        <typeAlias alias="AdminDto" type="com.universestay.project.admin.dto.AdminDto"/>
+        <typeAlias alias="EventDto" type="com.universestay.project.admin.dto.EventDto"/>
+        <typeAlias alias="CouponDto" type="com.universestay.project.admin.dto.CouponDto"/>
+        <typeAlias alias="ReplyDto" type="com.universestay.project.admin.dto.ReplyDto"/>
+        <typeAlias alias="NoticeDto" type="com.universestay.project.admin.dto.NoticeDto"/>
+        <typeAlias alias="RoomDto" type="com.universestay.project.room.dto.RoomDto"/>
+        <typeAlias alias="RoomImgDto" type="com.universestay.project.room.dto.RoomImgDto"/>
+        <typeAlias alias="RoomAmenityDto" type="com.universestay.project.room.dto.RoomAmenityDto"/>
+        <typeAlias alias="RoomViewDto" type="com.universestay.project.room.dto.RoomViewDto"/>
+        <typeAlias alias="RoomManagementDto"
+                   type="com.universestay.project.room.dto.RoomManagementDto"/>
+        <typeAlias alias="BookingDto" type="com.universestay.project.user.dto.BookingDto"/>
+        <typeAlias alias="RoomReviewDto" type="com.universestay.project.review.dto.RoomReviewDto"/>
+        <typeAlias alias="PaymentDto" type="com.universestay.project.payment.dto.PaymentDto"/>
+        <typeAlias alias="ChattingRoomDto" type="com.universestay.project.dto.ChattingRoomDto"/>
+        <typeAlias alias="ChattingMessageDto"
+                   type="com.universestay.project.dto.ChattingMessageDto"/>
+        <typeAlias alias="InquiryChattingRoomDto"
+                   type="com.universestay.project.inquiry.dto.InquiryChattingRoomDto"/>
+        <typeAlias alias="InquiryChattingMessageDto"
+                   type="com.universestay.project.inquiry.dto.InquiryChattingMessageDto"/>
     </typeAliases>
 </configuration>

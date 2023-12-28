@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.universestay.project.mybatis.mapper.admin.EventMapper">
+
+    <insert id="insert" parameterType="EventDto">
+        INSERT into Event (admin_id, status_id, event_title, event_ctt, event_is_open,
+        event_start_date, event_expire_date, created_id, updated_id)
+        VALUES (#{admin_id}, #{status_id}, #{event_title}, #{event_ctt}, #{event_is_open},
+        #{event_start_date}, #{event_expire_date}, #{created_id}, #{updated_id})
+
+        <selectKey keyProperty="event_id" resultType="int" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <insert id="insertImg" parameterType="com.universestay.project.admin.dto.EventImgDto">
+        INSERT into EventImg (event_id, event_img_url, event_img_comment, event_img_is_remove, created_id,
+                              updated_id)
+        VALUES (#{event_id}, #{event_img_url}, #{event_img_comment}, #{event_img_is_remove},
+                #{created_id}, #{updated_id})
+    </insert>
+
+    <select id="select" parameterType="int" resultType="EventDto">
+        SELECT *
+        FROM Event
+        WHERE event_id = #{event_id}
+    </select>
+
+    <select id="selectWithImg" parameterType="int" resultType="map">
+        SELECT e.*, ei.event_img_url as img
+        FROM Event e
+                 LEFT JOIN EventImg ei on e.event_id = ei.event_id
+        WHERE e.event_id = #{event_id}
+    </select>
+
+    <select id="selectMain" resultType="map">
+        SELECT e.event_id,
+               e.event_title,
+               e.event_ctt,
+               e.event_start_date,
+               e.event_expire_date,
+               ei.event_img_url         as img,
+               c.coupon_type            as coupon_type,
+               c.coupon_discount_rate   as coupon_discount_rate,
+               c.coupon_discount_amount as coupon_discount_amount
+        FROM Event e
+                 LEFT JOIN EventImg ei
+                           on e.event_id = ei.event_id
+                 LEFT JOIN Coupon c on e.event_id = c.event_id
+        WHERE e.event_is_open = "Y"
+        ORDER BY e.event_expire_date ASC
+    </select>
+
+    <select id="getAdminUuid" parameterType="String" resultType="String">
+        SELECT admin_id
+        FROM Admin
+        WHERE admin_email = #{admin_email}
+    </select>
+
+    <select id="selectAll" resultType="EventDto">
+        SELECT *
+        FROM Event
+        ORDER BY created_at DESC;
+    </select>
+
+    <sql id="selectFromEvent">
+        SELECT event_id, admin_id, event_title, event_ctt, event_hit, created_at
+        FROM Event
+    </sql>
+
+    <select id="selectPage" parameterType="map" resultType="EventDto">
+        <include refid="selectFromEvent"/>
+        ORDER BY created_at DESC, event_id DESC
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <update id="update" parameterType="EventDto">
+        UPDATE Event
+        SET status_id         = #{status_id},
+            event_title       = #{event_title},
+            event_ctt         = #{event_ctt},
+            event_is_open     = #{event_is_open},
+            event_start_date  = #{event_start_date},
+            event_expire_date = #{event_expire_date},
+            updated_at        = now(),
+            updated_id        = #{updated_id}
+        WHERE event_id = #{event_id}
+    </update>
+
+    <update id="updateImg" parameterType="com.universestay.project.admin.dto.EventImgDto">
+        UPDATE EventImg
+        SET event_img_url     = #{event_img_url},
+            event_img_comment = #{event_img_comment},
+            updated_at        = now(),
+            updated_id        = #{updated_id}
+        WHERE event_id = #{event_id}
+    </update>
+
+    <delete id="delete">
+        DELETE
+        e.*, ei.*
+        FROM Event e LEFT JOIN EventImg ei on e.event_id = ei.event_id
+        WHERE e.event_id =
+        #{event_id}
+    </delete>
+
+    <update id="update_hit" parameterType="EventDto">
+        UPDATE Event
+        SET event_hit = event_hit + 1
+        WHERE event_id = #{event_id}
+    </update>
+
+    <sql id="searchCondition">
+        <choose>
+            <when test='option=="T"'>
+                AND e.event_title LIKE concat('%', #{keyword}, '%')
+            </when>
+            <otherwise>
+                AND e.admin_id LIKE concat('%', #{keyword}, '%')
+            </otherwise>
+        </choose>
+    </sql>
+
+    <select id="searchSelectPage" parameterType="SearchCondition" resultType="map">
+        SELECT e.event_id, e.admin_id, e.status_id, e.event_title, e.event_ctt, e.event_is_open, e.event_start_date,
+        e.event_expire_date, e.event_hit, e.created_at, a.admin_nickname
+        FROM Event e
+        LEFT JOIN Admin a
+        on e.admin_id = a.admin_id
+        WHERE a.admin_id is not null
+        <include refid="searchCondition"/>
+        ORDER BY e.created_at DESC, e.event_id DESC
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="searchResultCnt" parameterType="SearchCondition" resultType="int">
+        SELECT count(*)
+        FROM Event e
+        WHERE true
+        <include refid="searchCondition"/>
+    </select>
+
+</mapper>

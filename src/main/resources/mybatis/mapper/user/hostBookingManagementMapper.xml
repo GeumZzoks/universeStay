@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.universestay.project.resources.mybatis.mapper.user.hostBookingManagementMapper">
+
+    <select id="selectBookingRequestList" resultType="map">
+        select b.booking_id               b_booking_id,
+               b.user_id                  b_user_id,
+               b.room_id                  b_room_id,
+               b.status_id                b_status_id,
+               b.booking_checkin_date     b_booking_checkin_date,
+               b.booking_checkout_date    b_booking_checkout_date,
+               b.booking_num_of_guest     b_booking_num_of_guest,
+               b.booking_date             b_booking_date,
+               b.booking_total_pay_amount b_booking_total_pay_amount,
+               r.room_id                  r_room_id,
+               r.room_status_id           r_room_status_id,
+               r.user_id                  r_user_id,
+               r.room_name                r_room_name,
+               u.user_nickname            u_user_nickname,
+               u.user_name                u_user_name,
+               u.user_phone_num1          u_user_phone_num1,
+               u.user_phone_num2          u_user_phone_num2
+        from Booking b,
+             Room r,
+             User u
+        where b.room_id = r.room_id
+          and b.user_id = u.user_id
+          and r.user_id = #{user_id}
+          and b.status_id = 'B01';
+    </select>
+
+    <update id="aprvBookingRequest">
+        update Booking
+        set status_id = 'B02'
+        where booking_id = #{booking_id}
+    </update>
+
+    <delete id="rjtBookingRequest">
+        delete
+        from Booking
+        where booking_id = #{booking_id}
+    </delete>
+
+<!--    <update id="rjtBookingRequest">-->
+<!--        update Booking-->
+<!--        set status_id = 'B04'-->
+<!--        where booking_id = #{booking_id}-->
+<!--    </update>-->
+</mapper>

@@ -1,34 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns="http://www.springframework.org/schema/beans"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:tx="http://www.springframework.org/schema/tx"
-       xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
-		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
-
-    <context:property-placeholder location="classpath:config/env.properties" />
+<beans
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.springframework.org/schema/beans"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+    <context:property-placeholder location="classpath:config/env.properties"/>
 
     <!-- Root Context: defines shared resources visible to all other web components -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+        <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
 
         <property name="url" value="${DB_HOST}"></property>
         <property name="username" value="${DB_USERNAME}"></property>
         <property name="password" value="${DB_PASSWORD}"></property>
     </bean>
 
-<!--    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">-->
-<!--        <property name="dataSource" ref="dataSource"/>-->
-<!--        <property name="configLocation"  value="classpath:mybatis/mybatis-config.xml"/>-->
-<!--        <property name="mapperLocations" value="classpath:mybatis/mapper/*Mapper.xml"/>-->
-<!--    </bean>-->
 
-<!--    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">-->
-<!--        <constructor-arg ref="sqlSessionFactory"/>-->
-<!--    </bean>-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
+        <property name="mapperLocations" value="classpath:mybatis/mapper/**/*Mapper.xml"/>
+    </bean>
+
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg ref="sqlSessionFactory"/>
+    </bean>
+
+    <!-- 이메일 인증 관련 빈 등록 -->
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="smtp.gmail.com"/>
+        <property name="port" value="587"/>
+        <property name="username" value="${email.account}"/>
+        <property name="password" value="${email.password}"/>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.transport.protocol">smtp</prop>
+                <prop key="mail.smtp.auth">true</prop>
+                <!-- gmail의 경우 보안문제 업데이트로 인해 SSLSocketFactory를 추가해야 smtp 사용 가능. -->
+                <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.debug">false</prop>
+                <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+                <prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!--    이미지 업로드를 위한 multipartResolver 를 bean으로 등록-->
+    <bean id="multipartResolver"
+            class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!--        10메가바이트로 설정-->
+        <property name="maxUploadSize" value="100485760"/>
+        <property name="maxUploadSizePerFile" value="100485760"/>
+        <property name="maxInMemorySize" value="100485760"/>
+    </bean>
+
+
+    <!-- 현재 프로필 이미지파일 저장할 경로 -->
+    <bean id="uploadProfileImgPath" class="java.lang.String">
+        <constructor-arg value="/src/main/webapp/resources/upload-imgs/profileImg/"/>
+    </bean>
+
+    <!-- Oauth.properties를 JS 코드에 넣기 위해 PropertiesFactoryBean 등록 -->
+    <bean id="OauthProperties"
+            class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="location" value="classpath:config/oauth.properties"/>
+    </bean>
+  
+  <!--  <bean id="jedisConnectionFactory"-->
+  <!--    class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">-->
+  <!--    <property name="hostName" value="${redis.host}"/>-->
+  <!--    <property name="port" value="${redis.port}"/>-->
+  <!--    <property name="usePool" value="true"/>-->
+
+  <!--    <property name="poolConfig">-->
+  <!--      <bean class="redis.clients.jedis.JedisPoolConfig">-->
+  <!--        <property name="maxTotal" value="10000"/>-->
+  <!--        <property name="maxIdle" value="100"/>-->
+  <!--        <property name="minIdle" value="30"/>-->
+  <!--        <property name="maxWaitMillis" value="10000"/>-->
+  <!--      </bean>-->
+  <!--    </property>-->
+  <!--  </bean>-->
+
+
+  <!--  &lt;!&ndash; RedisTemplate 설정 &ndash;&gt;-->
+  <!--  <bean id="stringRedisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">-->
+  <!--    <property name="connectionFactory" ref="jedisConnectionFactory"/>-->
+  <!--    <property name="keySerializer" ref="stringRedisSerializer"/>-->
+  <!--    <property name="hashKeySerializer" ref="stringRedisSerializer"/>-->
+  <!--    <property name="hashValueSerializer" ref="stringRedisSerializer"/>-->
+  <!--  </bean>-->
+  <!--  <bean id="stringRedisSerializer"-->
+  <!--    class="org.springframework.data.redis.serializer.StringRedisSerializer"/>-->
+
 
     <context:component-scan base-package="com.universestay.project"/>
 </beans>

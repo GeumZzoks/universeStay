@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.universestay.project.resources.mybatis.mapper.user.myBookingsMapper">
+
+    <select id="selectMyBookings" parameterType="map" resultType="map">
+        select u.user_email, u.user_nickname,
+        uh.user_nickname as host_nickname,
+        r.user_id,
+        r.room_id,
+        r.room_address,
+        r.room_address_detail,
+        r.status_id,
+        r.room_status_id,
+        r.room_main_photo,
+        r.room_weekday_price,
+        r.room_weekend_price,
+        b.booking_id,
+        b.status_id booking_status_id,
+        b.booking_checkin_date,
+        b.booking_checkout_date,
+        b.booking_checkin_time,
+        b.booking_checkout_time,
+        b.booking_total_pay_amount,
+        b.is_user_review,
+        b.created_at,
+        p.payment_id,
+        p.booking_id,
+        p.payment_is_success,
+        p.payment_paid_amount,
+        p.payment_status,
+        p.payment_pg_provider,
+        p.payment_is_approved
+        from Room r
+        join Booking b on r.room_id = b.room_id
+        join User u on u.user_id = b.user_id
+        left join Payment p on b.booking_id = p.booking_id
+        left join User uh on r.user_id = uh.user_id
+        where u.user_email = #{user_email}
+        <choose>
+            <when test="status_id=='이용완료'">
+                and b.status_id = 'B05'
+            </when>
+            <otherwise>
+                and b.status_id != 'B05'
+            </otherwise>
+        </choose>
+        ORDER BY b.created_at desc;
+    </select>
+
+    <insert id="insertReview" parameterType="RoomReviewDto">
+        insert into RoomReview (review_id, user_id, room_id, review_writer, review_stars,
+                                review_ctt, created_id)
+        VALUES (#{review_id}, #{user_id}, #{room_id}, #{review_writer}, #{review_stars},
+                #{review_ctt}, #{created_id});
+    </insert>
+
+    <update id="updateReviewStatus" parameterType="String">
+        UPDATE Booking
+        SET is_user_review = 'Y'
+        Where booking_id = #{booking_id}
+    </update>
+
+    <update id="updateBookingStatus">
+        UPDATE Booking b
+            LEFT JOIN Payment p
+        On b.booking_id = p.booking_id
+            SET b.status_id = 'B05'
+        <![CDATA[
+        WHERE b.booking_checkout_date
+            < CURDATE()
+        ]]>
+        AND b.status_id = 'B02'
+          AND p.payment_is_approved = 'Y';
+    </update>
+
+    <update id="updateRoomStarAvg" parameterType="String">
+        UPDATE Room r
+        SET r.room_stars_avg = (SELECT truncate(AVG(rr.review_stars), 2)
+                                FROM RoomReview rr
+                                WHERE rr.room_id = #{room_id})
+        WHERE r.room_id = #{room_id}
+    </update>
+
+</mapper>

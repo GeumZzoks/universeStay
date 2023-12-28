@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.universestay.project.user.dao.UserLoginDao">
+    <select id="selectUser" resultType="UserDto">
+        select *
+          from User
+         where user_email = #{user_email}
+    </select>
+    
+    <update id="updateLastLogin" parameterType="String">
+        update User set user_last_login = now(), status_id = 'U01'
+         where user_email = #{user_email}
+    </update>
+
+
+</mapper>

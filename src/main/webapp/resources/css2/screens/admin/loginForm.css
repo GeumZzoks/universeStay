@@ -1,0 +1,87 @@
+.screens-admin-loginForm__container {
+  height: 100vh;
+  background-color: #f4847545;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  /*font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,*/
+  /*Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;*/
+
+  font-family: NotoSansKR-Regular;
+}
+
+@keyframes screens-admin-loginForm__logo-img {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, 20px, 0);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.screens-admin-loginForm__left-side {
+  animation: screens-admin-loginForm__logo-img 3s ease-in-out infinite;
+}
+
+.screens-admin-loginForm__middle-side {
+  border: 0.5px solid black;
+  height: 50%;
+  opacity: 0.3;
+}
+
+.screens-admin-loginForm__right-side {
+  width: 500px;
+  text-align: center;
+}
+
+.screens-admin-loginForm__right-side__welcome-header {
+  margin-bottom: 50px;
+}
+
+.screens-admin-loginForm__right-side__welcome-header__title {
+  margin-bottom: 20px;
+  font-size: 30px;
+}
+
+.screens-admin-loginForm__right-side__welcome-header__text {
+  width: 100%;
+  opacity: 0.7;
+}
+
+.screens-admin-loginForm__right-side__login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.screens-admin-loginForm__right-side__login-form input {
+  padding: 15px 10px;
+  font-size: 18px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+
+  border: none;
+  outline: none;
+}
+
+.screens-admin-loginForm__right-side__login-form input:last-child {
+  background-color: #F48475;
+  color: whitesmoke;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.screens-admin-loginForm__right-side__login-form input:last-child:hover {
+  background-color: #3b1c14;
+  cursor: pointer;
+}
+
+.screens-admin-loginForm__right-side__login-form + a {
+  color: inherit;
+  text-decoration: none;
+}
+

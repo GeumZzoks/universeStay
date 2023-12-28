@@ -1,0 +1,206 @@
+.screens-user-login__logo-alink {
+  text-decoration: none;
+}
+
+.screens-user-login {
+  font-family: 'Airbnb-Medium';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #fff;
+}
+
+.screens-user-login__container {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Airbnb-Medium';
+}
+
+screens-user-login__container__inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.screens-user-login__login-wrapper {
+  border: 2px solid rgba(255, 255, 255, .2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+  width: 420px;
+  background: transparent;
+  background: #fff;
+  /* wrapper 아래 모든 폰트 컬러 */
+  color: #F48475;
+  border-radius: 10px;
+  padding: 30px 40px;
+}
+
+.screens-user-login__login-wrapper .screens-user-login__logo-universe {
+  width: 100%;
+}
+
+/* 메인 로그인 */
+.screens-user-login__login-wrapper .screens-user-login__main-login {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  margin: 5px 0;
+}
+
+.screens-user-login__main-login input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  border: 1px solid #F48475;
+  border-radius: 5px;
+  font-size: 13px;
+  padding: 20px 45px 20px 50px;
+  box-sizing: border-box;
+}
+
+.screens-user-login__main-login input::placeholder {
+  color: #bdbdbd;
+}
+
+.screens-user-login__main-login i {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+}
+
+.screens-user-login__btn {
+  margin: 5px 0;
+  position: relative;
+  width: 100%;
+  height: 45px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  background: #F48475;
+}
+
+.screens-user-login__main-login__btn {
+  color: #fff;
+  margin-bottom: 14px;
+}
+
+.screens-user-login__label {
+  color: #bdbdbd;
+}
+
+.screens-user-login__label .screens-user-login__login-wrapper__checkbox {
+  accent-color: #F48475;
+  margin-right: 3px;
+}
+
+/* a 링크 */
+.screens-user-login__linkContainer {
+  justify-content: space-around;
+  font-size: 14px;
+  margin: 4px;
+}
+
+.screens-user-login__linkContainer a {
+  display: inline-block;
+  color: #bdbdbd;
+  text-decoration: none;
+  font-size: 14px;
+  margin: 20px 15px;
+}
+
+.screens-user-login__linkContainer a:hover {
+  text-decoration: underline;
+}
+
+.screens-user-login__linkContainer div {
+  display: inline-block;
+  width: 50%;
+  text-align: center;
+  display: inline-block;
+  float: left;
+}
+
+/* 또는 */
+.screens-user-login__contour {
+  position: relative;
+  height: 40px;
+  margin-top: 50px;
+  margin-bottom: 8px;
+}
+
+.screens-user-login__contour span {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 10;
+  width: 50px;
+  height: 40px;
+  margin: 0 0 0 -25px;
+  background: #fff;
+  font-size: 14px;
+  line-height: 40px;
+  color: rgba(0, 0, 0, 0.38);
+  text-align: center;
+}
+
+/* 또는 */
+.screens-user-login__contour:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.screens-user-login__sns-login__kakao {
+  color: #3b1c14;
+}
+
+.screens-user-login__sns-login__goolgle {
+  background-color: #fff;
+}
+
+/* 버튼 텍스트 가운데 정렬 */
+.screens-user-login__login-wrapper .screens-user-login__sns-login__kakao div {
+  padding-left: 29px;
+}
+
+.screens-user-login__sns-login__goolgle div {
+  padding-left: 29px;
+}
+
+.screens-user-login__sns-login__kakao {
+  background-color: #fee426;
+}
+
+.screens-user-login__sns-login__icon-kakao {
+  position: absolute;
+  left: 122px;
+  width: 21px;
+  height: 20px;
+  top: 55%;
+  transform: translateY(-50%);
+  font-size: 20px;
+}
+
+.screens-user-login__sns-login__icon-google {
+  position: absolute;
+  left: 135px;
+  width: 20px;
+  height: 20px;
+  top: 50%; /*아이콘 위아래 조정*/
+  transform: translateY(-50%);
+  font-size: 20px;
+}

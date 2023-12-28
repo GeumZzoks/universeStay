@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.universestay.project.resources.mybatis.mapper.room.bookRoomMapper">
+    <select id="selectRoomBookInfo" parameterType="String" resultType="map">
+        SELECT *
+        FROM Room R
+                 INNER JOIN User U ON R.user_id = U.user_id
+                 INNER JOIN ProfileImg P ON U.user_id = P.user_id
+        WHERE R.room_id = #{room_id}
+          and P.profile_img_is_remove = 'N';
+    </select>
+
+    <insert id="bookRoom" parameterType="BookingDto">
+        INSERT INTO Booking ( booking_id, user_id, room_id, booking_checkin_date
+                            , booking_checkout_date, booking_num_of_guest, booking_date
+                            , booking_checkin_time, booking_checkout_time, booking_total_pay_amount
+                            , created_id, updated_id)
+        VALUES (#{booking_id},
+                #{user_id},
+                #{room_id},
+                #{booking_checkin_date},
+                #{booking_checkout_date},
+                #{booking_num_of_guest},
+                #{booking_date},
+                #{booking_checkin_time},
+                #{booking_checkout_time},
+                #{booking_total_pay_amount},
+                #{created_id},
+                #{updated_id})
+    </insert>
+
+    <select id="selectCheckBookingRoom" parameterType="BookingDto" resultType="Integer">
+        select count(*)
+        from Booking
+        where room_id = #{room_id}
+          and (
+                (booking_checkin_date between #{booking_checkin_date} and #{booking_checkout_date})
+                or
+                (booking_checkout_date between #{booking_checkin_date} and #{booking_checkout_date})
+                or (#{booking_checkin_date} BETWEEN booking_checkin_date AND booking_checkout_date)
+                or (#{booking_checkout_date} BETWEEN booking_checkin_date AND booking_checkout_date)
+            )
+          and (status_id = 'B01' or status_id = 'B02' or status_id = 'B05')
+    </select>
+
+    <select id="findByRoom" resultType="BookingDto">
+        select *
+        FROM Booking
+        WHERE room_id = #{room_id} and
+    </select>
+
+    <select id="selectUnavailableDates" resultType="BookingDto">
+        SELECT *
+        FROM Booking
+        WHERE room_id = #{room_id}
+          AND (status_id = 'B01' OR status_id = 'B02')
+    </select>
+
+    <select id="selectUserInfo" parameterType="String" resultType="UserDto">
+        select *
+        from User
+        where user_email = #{user_email}
+    </select>
+
+    <update id="updateStatus" parameterType="String">
+        UPDATE Booking
+        SET status_id = 'B03'
+        WHERE booking_id = #{booking_id}
+    </update>
+
+</mapper>

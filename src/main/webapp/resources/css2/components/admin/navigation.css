@@ -1,0 +1,39 @@
+.components-admin-navigation {
+  position: fixed;
+  width: 200px;
+  top: 70px;
+  bottom: 20px;
+  left: 10px;
+  border-radius: 10px;
+  background-color: dimgrey;
+  z-index: 1;
+}
+
+.components-admin-navigation__ul {
+  margin: 70px 0 0 40px;
+}
+
+.components-admin-navigation__ul-li {
+  list-style-type: none;
+  margin-top: 40px;
+  text-align: left;
+}
+
+.components-admin-navigation__ul-li__a {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.components-admin-navigation__ul-li__a:hover {
+  transition-duration: 200ms;
+  color: black;
+}
+
+.components-admin-navigation__ul-li__img {
+  width: 20px;
+  height: 20px;
+  vertical-align: bottom;
+  margin-right: 20px;
+}
