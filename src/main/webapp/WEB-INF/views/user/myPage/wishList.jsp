@@ -77,15 +77,22 @@
                         <span class="screens-user-wishlist__room-title">${wishListDto.room_name}</span>
                     </div>
                     <div class="screens-user-wishlist__room-price__wrapper">
-                        <span class="screens-user-wishlist__room-stars">✭${wishListDto.room_stars_avg}</span><br>
-                        <span class="screens-user-wishlist__room-price">₩${wishListDto.room_weekend_price} /박</span>
+                        <c:choose>
+                            <c:when test="${wishListDto.room_stars_avg eq null}">
+                                <span class="screens-user-wishlist__room-stars">✭ new!</span><br>
+                            </c:when>
+                            <c:otherwise>
+                                <span class="screens-user-wishlist__room-stars">✭ ${wishListDto.room_stars_avg}</span><br>
+                            </c:otherwise>
+                        </c:choose>
+                        <span class="screens-user-wishlist__room-price">₩${wishListDto.room_weekend_price}/박</span>
                     </div>
                 </div>
             </div>
             <div id="${wishListDto.room_id}" class="modal-div"
                  style="position: fixed; bottom: 5%; left: 3%; width: 250px; height: 60px; display: none; z-index: 5;
                          box-shadow: 1px 1px 4px 0 darkgray; border-radius: 10px; background-color: white;
-                        font-size: 12px; padding: 10px 10px 0 10px;">
+                        font-size: 12px; padding: 10px 10px 0 10px; z-index: 100;">
                 <img class="modal-img" src="${wishListDto.room_main_photo}"
                      style="float: left; width: 50px; height: 50px; margin-right: 10px; border-radius: 5px;">
                 <h4 style="float: left; color: #717171; margin-top: 6px; width: 190px;"><br><br>
@@ -103,17 +110,17 @@
 <script>
     //슬라이더 생성하는 JS 코드
     const mySwiper = new Swiper('.mySwiper',
-            {
-                pagination: {
-                    el: ".swiper-pagination",
-                },
-                loop: true,
-                direction: 'horizontal',
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                }
-            });
+        {
+            pagination: {
+                el: ".swiper-pagination",
+            },
+            loop: true,
+            direction: 'horizontal',
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            }
+        });
 
     const swiperButtons = document.querySelectorAll(".swiper-button");
     for (const swiperButton of swiperButtons) {

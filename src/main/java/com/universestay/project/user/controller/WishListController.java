@@ -2,10 +2,6 @@ package com.universestay.project.user.controller;
 
 import com.universestay.project.user.dto.WishListDto;
 import com.universestay.project.user.service.WishListService;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpSession;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/user/myPage/wishLists")
@@ -32,7 +33,14 @@ public class WishListController {
                 String roomImgUrl = (String) wishList.get(i).get("room_img_url_list");
                 String[] roomImg = roomImgUrl.split(", ");
 
-                wishList.get(i).put("room_img_url_list", roomImg);
+                // room_main_photo 값을 배열의 맨 앞에 추가
+                String roomMainPhoto = (String) wishList.get(i).get("room_main_photo");
+                String[] updatedRoomImg = new String[roomImg.length + 1];
+                updatedRoomImg[0] = roomMainPhoto;
+                System.arraycopy(roomImg, 0, updatedRoomImg, 1, roomImg.length);
+
+                // room_img_url_list를 업데이트된 배열로 설정
+                wishList.get(i).put("room_img_url_list", updatedRoomImg);
             }
 
             m.addAttribute("list", wishList);
@@ -44,7 +52,7 @@ public class WishListController {
 
     @PostMapping("/active")
     public ResponseEntity<String> insert(String room_id, WishListDto wishListDto,
-            HttpSession session) {
+                                         HttpSession session) {
         try {
             String user_email = (String) session.getAttribute("user_email");
             String user_id = wishListService.getUserUuid(user_email);
