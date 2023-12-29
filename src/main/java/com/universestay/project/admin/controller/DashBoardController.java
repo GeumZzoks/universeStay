@@ -29,12 +29,12 @@ public class DashBoardController {
 
         Map<String, String> summaryDashBoardMap = Map.of("totalUser",
                 dashBoardService.countTotalUser(), "totalHost", dashBoardService.countTotalHost(),
-                "totalAccommodation", String.valueOf(dashBoardService.selectListRoom().size()));
-//                , "totalinquiry", dashBoardService.countTotalInquiries());
+                "totalAccommodation", String.valueOf(dashBoardService.selectListRoom().size())
+                , "totalinquiry", dashBoardService.countTotalInquiries());
 
         model.addAttribute("summaryDashBoardMap", summaryDashBoardMap);
         model.addAttribute("listRoom", dashBoardService.selectListRoom());
-//        model.addAttribute("listInquiry", dashBoardService.selectListInquiry());
+        model.addAttribute("listInquiry", dashBoardService.selectListInquiry());
 
         return "/admin/dashboard";
     }
@@ -58,5 +58,5 @@ public class DashBoardController {
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("N");
     }
-    
+
 }
