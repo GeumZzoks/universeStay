@@ -15,6 +15,8 @@ import java.net.URL;
 import java.util.Map;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -28,7 +30,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/payment")
 @CrossOrigin(origins = "https://api.iamport.kr")
+@PropertySource("classpath:config/env.properties")
 public class PaymentController {
+
+    @Value("${PORT_ONE_IMP_KEY}")
+    private String IMP_KEY; // REST API 키
+
+    @Value("${PORT_ONE_IMP_SECRET}")
+    private String IMP_SECRET;
 
     private PaymentService paymentService;
 
@@ -49,13 +58,7 @@ public class PaymentController {
      */
     @PostMapping("/getAccessToken")
     @ResponseBody
-//    public ResponseEntity getAccessToken(@RequestParam("imp_uid") String imp_uid,
-//            @RequestParam("merchant_uid") String merchant_uid) throws IOException {
     public ResponseEntity getAccessToken() throws IOException {
-
-        // TODO: 환경변수로 빼기
-        final String IMP_KEY = "5372858343674204"; // REST API 키
-        final String IMP_SECRET = "jc6Sxc1cbULMvRP40c7cnkPkj73i2VSJWzor9RpxLTSzjkbhnASK4d4Uf5gobqPDl4UIrdCdSiZUbBBm";
 
         String jsonData =
                 "{ \"imp_key\": \"" + IMP_KEY + "\", \"imp_secret\": \"" + IMP_SECRET + "\" }";
