@@ -182,7 +182,7 @@
 
                 <%-- 마이프로필 버튼 눌렀을때 나오는 드롭다운--%>
                 <div class="components-user-header__header__profile__option components-user-header__dropdown-div">
-                        <%if (session.getAttribute("user_email") != null) {%>
+                    <%if (session.getAttribute("user_email") != null) {%>
                     <div onclick="location.href='/chatting/chattingRoomList'"
                          class="components-user-header__dropdown__option dropdown__option-msg">
                         <span>메시지</span>
@@ -206,29 +206,29 @@
                         <span>이벤트</span></div>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-account"
                          onclick="location.href ='/user/myPage/info'">
-                        <%--                        <span>계정</span></div>--%>
-                        <%--                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-inquiry"--%>
-                        <%--                         onclick="location.href ='/user/myPage/inquiry'">--%>
-                        <%--                        <span>문의내역</span></div>--%>
-                        <div class="components-user-header__dropdown__option components-user-header__dropdown__option-log-out"
-                             onclick="location.href ='/user/userLogout'">
-                            <span>로그아웃</span></div>
-                        <%} else {%>
-                        <div class="components-user-header__dropdown__option components-user-header__dropdown__option-sign-up"
-                             onclick="location.href = '/user/join'">
-                            <span>회원가입</span></div>
-                        <div class="components-user-header__dropdown__option components-user-header__dropdown__option-sign-in"
-                             onclick="location.href = '/user/loginForm'">
-                            <span>로그인</span></div>
-                        <div class="components-user-header__dropdown__option components-user-header__dropdown__option-notice"
-                             onclick="location.href='/notice'">
-                            <span>공지사항</span></div>
-                        <div class="components-user-header__dropdown__option components-user-header__dropdown__option-event"
-                             onclick="location.href ='/event'">
-                            <span>이벤트</span></div>
-                        <%}%>
+                        <span>계정</span></div>
+                    <%--                                            <div class="components-user-header__dropdown__option components-user-header__dropdown__option-inquiry"--%>
+                    <%--                                                 onclick="location.href ='/user/myPage/inquiry'">--%>
+                    <%--                                                <span>문의내역</span></div>--%>
+                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-log-out"
+                         onclick="location.href ='/user/userLogout'">
+                        <span>로그아웃</span></div>
+                    <%} else {%>
+                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-sign-up"
+                         onclick="location.href = '/user/join'">
+                        <span>회원가입</span></div>
+                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-sign-in"
+                         onclick="location.href = '/user/loginForm'">
+                        <span>로그인</span></div>
+                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-notice"
+                         onclick="location.href='/notice'">
+                        <span>공지사항</span></div>
+                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-event"
+                         onclick="location.href ='/event'">
+                        <span>이벤트</span></div>
+                    <%}%>
 
-                    </div>
+                </div>
             </button>
         </div>
 
