@@ -782,7 +782,6 @@
   ---
   ## 회의 문서 📝
   <a href="https://verbena-scallop-776.notion.site/ecc1a1b152bd424393620b1c54c3be88?v=88cee01f5126410ca97078bf71695319&pvs=4">    데일리 스크럼</a>
-   
 
   --- 
   ## 팀 소개 🩷

@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    String isHost = (String) request.getAttribute("isHost");
+    String sessionIsHost = (String) session.getAttribute("isHost");
     String sessionProfileImgUrl = (String) session.getAttribute("profileImgUrl");
 %>
 
@@ -162,10 +162,10 @@
     <!--헤더 프로필 영역-->
     <div class="components-user-header__header__profile">
         <div class="components-user-header__header__profile__to-host">
-            <% if ("Y".equals(isHost)
+            <% if ("Y".equals(sessionIsHost)
             ) { %>
             <div><a class="components-user-header__a" href="/room/management">호스트 모드로 전환</a></div>
-            <% } else if ("N".equals(isHost) || isHost == null) { %>
+            <% } else if ("N".equals(sessionIsHost) || sessionIsHost == null) { %>
             <div><a class="components-user-header__a" href="/room/enroll">당신의 공간을 공유하세요.</a></div>
             <% } %>
 
@@ -207,9 +207,9 @@
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-account"
                          onclick="location.href ='/user/myPage/info'">
                         <span>계정</span></div>
-                    <div class="components-user-header__dropdown__option components-user-header__dropdown__option-inquiry"
-                         onclick="location.href ='/user/myPage/inquiry'">
-                        <span>문의내역</span></div>
+                    <%--                                            <div class="components-user-header__dropdown__option components-user-header__dropdown__option-inquiry"--%>
+                    <%--                                                 onclick="location.href ='/user/myPage/inquiry'">--%>
+                    <%--                                                <span>문의내역</span></div>--%>
                     <div class="components-user-header__dropdown__option components-user-header__dropdown__option-log-out"
                          onclick="location.href ='/user/userLogout'">
                         <span>로그아웃</span></div>

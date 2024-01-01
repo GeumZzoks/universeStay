@@ -93,4 +93,28 @@
         WHERE payment_id = #{paymentId}
     </update>
 
+    <select id="findBookingById" parameterType="String" resultType="map">
+        SELECT *
+        FROM Payment
+        WHERE booking_id = #{booking_id}
+    </select>
+
+    <select id="findPaymentById" parameterType="String" resultType="map">
+        SELECT *
+        FROM Payment
+        WHERE payment_merchant_uid = #{payment_merchant_uid}
+    </select>
+
+    <update id="updatePaymentById" parameterType="String">
+        UPDATE Payment
+        SET payment_is_approved = 'C'
+        WHERE payment_id = #{paymentId}
+    </update>
+
+    <update id="updatePaymentStatusByBookingId" parameterType="String">
+        UPDATE Payment
+        SET payment_is_approved = 'C'
+        WHERE booking_id = #{booking_id}
+    </update>
+
 </mapper>

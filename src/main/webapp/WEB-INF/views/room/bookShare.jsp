@@ -152,7 +152,7 @@
                     <div>
                         <div>안전 및 숙소</div>
                         <div>보안 카메라/녹화 장치</div>
-                        <div>출입이 제한되지 않는 수영장/온수 욕조</div>
+                        <div>출입이 제한되지 않는 수영장/욕조</div>
                         <div>근처에 호수, 강, 바다 등이 있음</div>
                     </div>
                 </div>
@@ -229,9 +229,6 @@
         src="https://kit.fontawesome.com/d1e61c2fb7.js"
         crossorigin="anonymous"
 ></script>
-
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="/resources/js/room/bookingShare.js"></script>
 
 
