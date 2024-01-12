@@ -777,11 +777,61 @@
 
   ---
   ## 서비스 화면 🖥️
+  
   <details>
     <summary>메인페이지</summary>
-    <div markdown="11">
-      <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/91f22217-42c8-4d8e-86c8-ebbd0fa2fd75">
-    </div>
+      <div markdown="11">
+        <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/91f22217-42c8-4d8e-86c8-ebbd0fa2fd75">
+      </div>
+  </details>
+
+  <details>
+    <summary>회원가입/로그인</summary>
+      <div markdown="12">
+        <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/3c8f9423-16b8-42c5-bb7c-2bad00661535">
+      </div>
+  </details>
+
+  <details>
+    <summary>숙소 등록</summary>
+      <div markdown="13">
+        <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/b00c2963-702c-43e2-9a25-d0a8eddd66a9">
+      </div>
+  </details>
+
+  <details>
+    <summary>숙소 예약</summary>
+      <div markdown="14">
+        <img src="">
+      </div>
+  </details>
+
+   <details>
+    <summary>호스트 예약 승인</summary>
+      <div markdown="15">
+        <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/2384037f-6c70-4d20-be34-c3d16b7aa943">
+      </div>
+  </details>
+  
+   <details>
+    <summary>결제</summary>
+      <div markdown="16">
+        <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/c7f48c43-0d3d-4f44-ac4a-8233c0beeb31">
+      </div>
+  </details>
+
+   <details>
+    <summary>위시리스트 추가</summary>
+      <div markdown="17">
+        <img src="">
+      </div>
+  </details>
+
+  <details>
+    <summary>호스트 게스트 채팅</summary>
+      <div markdown="18">
+        <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/7997738e-dd2e-4157-95fd-c8c846bad537">
+      </div>
   </details>
 
 
