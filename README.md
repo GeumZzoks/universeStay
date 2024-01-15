@@ -1,5 +1,5 @@
 # UNIVERSE STAY
-<img src="https://github.com/GeumZzoks/universeStay/assets/105831341/91b1c18c-3dec-4138-8ad2-d7c5a1403db4">
+<img src="https://github.com/GeumZzoks/universeStay/assets/105831341/b3dedc1f-5620-40e7-9a39-560e43988efc">
 
 ## 목차 📜
  * [프로젝트 기간](#프로젝트-기간) 🗓️
@@ -802,7 +802,7 @@
   <details>
     <summary>숙소 예약</summary>
       <div markdown="14">
-        <img src="">
+        <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/9d97552e-5aa7-45f1-b905-0c6b0d3c995f">
       </div>
   </details>
 
@@ -823,7 +823,7 @@
    <details>
     <summary>위시리스트 추가</summary>
       <div markdown="17">
-        <img src="">
+        <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/ed2f8cd1-bbf1-46e6-8e86-c05370807c70">
       </div>
   </details>
 
