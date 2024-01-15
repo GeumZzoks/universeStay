@@ -212,18 +212,14 @@
         document.getElementById('status').innerHTML = status1;
         document.getElementById('mylink').addEventListener('click', function () {
 
-            var mybtn = document.getElementById('mybtn');
-            var options = [{U01: '활성'}, {U02: '휴면'}, {U03: '정지'}, {U04: '탈퇴'}];
-            var statusContainer = document.querySelector(
+            const mybtn = document.getElementById('mybtn');
+            const options = [{U01: '활성'}, {U02: '휴면'}, {U03: '정지'}, {U04: '탈퇴'}];
+            const statusContainer = document.querySelector(
                     '.screen-admin-userInfo__container__2 > div:nth-of-type(2)');
-            var selectElement = document.createElement('select');
+            const selectElement = document.createElement('select');
             selectElement.name = 'status_id';
             options.forEach(function (optionValue) {
-                var optionElement = document.createElement('option');
-                // console.log(options);
-                // console.log(optionValue);
-                // console.log(Object.keys(optionValue)[0]);
-                // console.log(optionValue[Object.keys(optionValue)[0]]);
+                const optionElement = document.createElement('option');
                 optionElement.value = Object.keys(optionValue)[0]; // 주의
                 optionElement.text = optionValue[Object.keys(optionValue)[0]]; // 주의
                 selectElement.appendChild(optionElement);
@@ -248,20 +244,19 @@
 
         function updateUser(selectedOptionValue) {
 
-            var f = document.createElement('form');
+            const f = document.createElement('form');
             f.setAttribute('method', 'get');
             f.setAttribute('action', '/admin/user/update');
 
-            var user_id = document.createElement('input');
+            const user_id = document.createElement('input');
             user_id.setAttribute('type', 'hidden');
             user_id.setAttribute('name', 'user_id');
             user_id.setAttribute('value', `${dto.user_id}`);
 
-            var status_id = document.createElement('input');
+            const status_id = document.createElement('input');
             status_id.setAttribute('type', 'hidden');
             status_id.setAttribute('name', 'status_id');
             status_id.setAttribute('value', selectedOptionValue);
-            console.log(selectedOptionValue);
 
             f.appendChild(user_id);
             f.appendChild(status_id);

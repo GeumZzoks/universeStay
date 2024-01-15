@@ -215,7 +215,7 @@
     </div>
 </div>
 <script>
-    var colorPage = document.querySelector(".screens-admin-inquiryList__page-${ph.sc.page}");
+    const colorPage = document.querySelector(".screens-admin-inquiryList__page-${ph.sc.page}");
     colorPage.style.backgroundColor = "white";
 </script>
 </body>
