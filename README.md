@@ -1,20 +1,19 @@
 # UNIVERSE STAY
 
-<img src="https://github.com/GeumZzoks/universeStay/assets/105831341/91b1c18c-3dec-4138-8ad2-d7c5a1403db4">
+<img src="https://github.com/GeumZzoks/universeStay/assets/105831341/b3dedc1f-5620-40e7-9a39-560e43988efc">
 
 ## 목차 📜
-
-* [프로젝트 기간](#프로젝트-기간) 🗓️
-* [주제](#주제) 📍
-* [기술 스택](#기술-스택) 🛠️
-* [파일 구조](#파일-구조) 💾
-* [설계 문서](#설계-문서) 📑
-    * [ERD](#ERD)
-    * [FIGMA](#FIGMA)
-* [아키텍처](#아키텍처) 🌐
-* [서비스 화면](#서비스-화면) 🖥️
+ * [프로젝트 기간](#프로젝트-기간) 🗓️
+ * [주제](#주제) 📍
+ * [기술 스택](#기술-스택) 🛠️ 
+ * [파일 구조](#파일-구조) 💾
+ * [설계 문서](#설계-문서) 📑
+   * [ERD](#ERD)
+   * [FIGMA](#FIGMA)
+ * [아키텍처](#아키텍처) 🌐
+ * [서비스 화면](#서비스-화면) 🖥️
+    * [메인페이지](#메인페이지)
     * [회원가입/로그인](#회원가입/로그인)
-    * [메인페이지(스크롤)](#메인페이지(스크롤))
     * [숙소 등록](#숙소-등록)
     * [관리자 숙소 승인](#관리자-숙소-승인)
     * [숙소 예약](#숙소-예약)
@@ -27,9 +26,9 @@
     * [리뷰](#리뷰)
     * [숙소 상태 관리](#숙소-상태-관리)
     * [유저 관리](#유저-관리)
-* [회의 문서](#회의-문서) 📝
-* [팀 소개](#팀-소개) 🩷
-    * [팀 규칙](#팀-규칙) 👮
+ * [회의 문서](#회의-문서) 📝
+ * [팀 소개](#팀-소개) 🩷
+   * [팀 규칙](#팀-규칙) 👮
 
 ---
 
@@ -790,13 +789,68 @@
   </details>
 
   ---
+  ## 서비스 화면 🖥️
+  
+  <details>
+    <summary>메인페이지</summary>
+      <div markdown="11">
+        <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/91f22217-42c8-4d8e-86c8-ebbd0fa2fd75">
+      </div>
+  </details>
 
-## 서비스 화면 🖥️
+  <details>
+    <summary>회원가입/로그인</summary>
+      <div markdown="12">
+        <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/3c8f9423-16b8-42c5-bb7c-2bad00661535">
+      </div>
+  </details>
+
+
+  <details>
+    <summary>숙소 등록</summary>
+      <div markdown="13">
+        <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/b00c2963-702c-43e2-9a25-d0a8eddd66a9">
+      </div>
+  </details>
+
+  <details>
+    <summary>숙소 예약</summary>
+      <div markdown="14">
+        <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/9d97552e-5aa7-45f1-b905-0c6b0d3c995f">
+      </div>
+  </details>
+
+   <details>
+    <summary>호스트 예약 승인</summary>
+      <div markdown="15">
+        <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/2384037f-6c70-4d20-be34-c3d16b7aa943">
+      </div>
+  </details>
+  
+   <details>
+    <summary>결제</summary>
+      <div markdown="16">
+        <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/c7f48c43-0d3d-4f44-ac4a-8233c0beeb31">
+      </div>
+  </details>
+
+   <details>
+    <summary>위시리스트 추가</summary>
+      <div markdown="17">
+        <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/ed2f8cd1-bbf1-46e6-8e86-c05370807c70">
+      </div>
+  </details>
+
+  <details>
+    <summary>호스트 게스트 채팅</summary>
+      <div markdown="18">
+        <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/7997738e-dd2e-4157-95fd-c8c846bad537">
+      </div>
+  </details>
+
 
   ---
-
-## 회의 문서 📝
-
+  ## 회의 문서 📝
   <a href="https://verbena-scallop-776.notion.site/ecc1a1b152bd424393620b1c54c3be88?v=88cee01f5126410ca97078bf71695319&pvs=4">    데일리 스크럼</a>
 
   --- 
@@ -819,7 +873,6 @@
    </table>
 
 ---
-
 ### 팀 규칙 👮
 
 <details>
