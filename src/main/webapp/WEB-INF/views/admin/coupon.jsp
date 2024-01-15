@@ -279,7 +279,7 @@
                 form.setAttribute('method', 'post'); // 메서드 지정
                 form.setAttribute('action', '/admin/coupon/delete'); // form action url
 
-                var input1 = document.createElement('input');
+                const input1 = document.createElement('input');
                 input1.setAttribute("type", "hidden");
                 input1.setAttribute("name", "coupon_id");
                 input1.setAttribute("value", arr);
@@ -313,7 +313,7 @@
                 form.setAttribute('method', 'post');
                 form.setAttribute('action', '/admin/coupon/issue');
 
-                var input1 = document.createElement('input');
+                const input1 = document.createElement('input');
                 input1.setAttribute("type", "hidden");
                 input1.setAttribute("name", "coupon_id");
                 input1.setAttribute("value", arr);
@@ -347,7 +347,7 @@
                 form.setAttribute('method', 'post');
                 form.setAttribute('action', '/admin/coupon/stopIssue');
 
-                var input1 = document.createElement('input');
+                const input1 = document.createElement('input');
                 input1.setAttribute("type", "hidden");
                 input1.setAttribute("name", "coupon_id");
                 input1.setAttribute("value", arr);

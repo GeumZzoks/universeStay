@@ -143,7 +143,7 @@ function closeModal(modalName) {
 // 숙소 장점, 공간, 기타 설명 더보기 모달창
 const descTexts = document.querySelectorAll(
         ".screens-room-roomDetail__section-3__info-3__desc2");
-var btnsMore = document.querySelectorAll(
+const btnsMore = document.querySelectorAll(
         ".screens-room-roomDetail__section-3__info-3__btn");
 descTexts.forEach(descText => {
     const full = descText.textContent;
@@ -203,9 +203,9 @@ priceWeekday = priceWeekdayDiv.children[2];
 priceWeekend = priceWeekendDiv.children[2];
 priceExtraPerson = extraPersonFeeDiv.children[2];
 
-var priceWeekdayValue = 0;
-var priceWeekendValue = 0;
-var priceExtraPersonValue = 0;
+let priceWeekdayValue = 0;
+let priceWeekendValue = 0;
+let priceExtraPersonValue = 0;
 
 const reservedDates = [];
 

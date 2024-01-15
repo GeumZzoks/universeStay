@@ -120,8 +120,8 @@ $(document).ready(function () {
      */
     function fnSubmit() {
 
-        var email_rule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-        var tel_rule = /^\d{2,3}-\d{3,4}-\d{4}$/;
+        const email_rule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+        const tel_rule = /^\d{2,3}-\d{3,4}-\d{4}$/;
 
         if ($("#screens-admin-register_signup_id").val() == null || $(
                 "#screens-admin-register_signup_id").val() == "") {
@@ -227,7 +227,7 @@ const sendDataToServer = function (inputValue, url) {
 document.getElementById('screens-admin-register_signup_email').addEventListener(
         'blur', function () {
 
-            let inputValue = $('#screens-admin-register_signup_email').val();
+            const inputValue = $('#screens-admin-register_signup_email').val();
 
             // 사용자가 입력을 마치고 포커스를 잃으면 Ajax 요청을 보냄
             sendDataToServer(inputValue, "checkUniqueEmail");
@@ -237,7 +237,8 @@ document.getElementById(
         'screens-admin-register_signup_phone_1').addEventListener('blur',
         function () {
 
-            let inputValue = $('#screens-admin-register_signup_phone_1').val();
+            const inputValue = $(
+                    '#screens-admin-register_signup_phone_1').val();
 
             // 사용자가 입력을 마치고 포커스를 잃으면 Ajax 요청을 보냄
             sendDataToServer(inputValue, "checkUniquePhoneNumber");

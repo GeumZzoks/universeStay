@@ -46,7 +46,6 @@
 </div>
 <jsp:include page="/WEB-INF/views/common/user/footer.jsp"/>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script src="/resources/js/main/main.js"></script>
 <script>
 
     function handleButtonClick(event) {
@@ -77,7 +76,7 @@
             e.stopPropagation();
             // 변수 선언
             // roomID는 list의 각 value값을 가져옴
-            var roomID = $(this).val();
+            const roomID = $(this).val();
             button = $(this);
 
             // WishList ajax
