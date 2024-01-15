@@ -123,7 +123,7 @@ document.body.addEventListener('click', function (event) {
  *
  * @type {Element}
  */
-const btnMinus = document.querySelector(".screens-room-book__toggle-btn-minus");
+let btnMinus = document.querySelector(".screens-room-book__toggle-btn-minus");
 const btnPlus = document.querySelector(".screens-room-book__toggle-btn-plus");
 
 priceWeekday = priceWeekdayDiv.children[2];

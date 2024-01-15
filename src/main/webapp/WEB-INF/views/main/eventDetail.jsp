@@ -106,7 +106,7 @@
 <script>
     $(document).ready(function () {
         $('#getCoupon').on('click', function getCoupon() {
-            var event_id = $(this).val()
+            const event_id = $(this).val()
 
             $.ajax({
                 url: "/user/myPage/coupon/issue",

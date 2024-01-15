@@ -124,7 +124,7 @@ $(function () {
 //프로필 이미지 미리 보여주기
 function readURL(input) {
     if (input.files && input.files[0]) {
-        var reader = new FileReader();
+        const reader = new FileReader();
         reader.onload = function (e) {
             document.querySelector(
                     '.screens-user-userInfo__profile-img-file').src = e.target.result;
@@ -139,10 +139,10 @@ function readURL(input) {
 // 신규 비밀번호 유효성 검사
 $(function () {
     $(".screens-user-userInfo__change-pwd").on('input', function () {
-        var pw = $(".screens-user-userInfo__change-pwd").val();
-        var num = pw.search(/[0-9]/g);
-        var eng = pw.search(/[a-z]/ig);
-        var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+        const pw = $(".screens-user-userInfo__change-pwd").val();
+        const num = pw.search(/[0-9]/g);
+        const eng = pw.search(/[a-z]/ig);
+        const spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
 
         if (pw.length < 8 || pw.length > 20) {
             result = "8자리 ~ 20자리 이내로 입력해주세요.";
@@ -198,11 +198,11 @@ $(function () {
 // 예시jQuery코드
 $('.screens-user-userInfo__user-info-modify-form').submit(function (e) {
     e.preventDefault(); // 기본 제출 행동 방지
-    var formData = new FormData();
-    var img = $('.screens-user-userInfo__img-insert-btn')[0].files[0];
+    const formData = new FormData();
+    const img = $('.screens-user-userInfo__img-insert-btn')[0].files[0];
     formData.append('img', img);
 
-    var user = {
+    const user = {
         user_id: $('.screens-user-userInfo__user-id-input').val(),
         user_nickname: $('.screens-user-userInfo__nickname-input').val(),
         user_bio: $('.screens-user-userInfo__bio-input').val(),

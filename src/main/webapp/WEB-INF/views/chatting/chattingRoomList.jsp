@@ -368,7 +368,6 @@
 </section>
 </body>
 
-<script src="/resources/js/chat/chat.js"></script>
 <script src="${pageContext.request.contextPath}/resources/dist/sockjs.js"></script>
 <script
         src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>

@@ -1,16 +1,18 @@
 # UNIVERSE STAY
+
 <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/91b1c18c-3dec-4138-8ad2-d7c5a1403db4">
 
 ## 목차 📜
- * [프로젝트 기간](#프로젝트-기간) 🗓️
- * [주제](#주제) 📍
- * [기술 스택](#기술-스택) 🛠️ 
- * [파일 구조](#파일-구조) 💾
- * [설계 문서](#설계-문서) 📑
-   * [ERD](#ERD)
-   * [FIGMA](#FIGMA)
- * [아키텍처](#아키텍처) 🌐
- * [서비스 화면](#서비스-화면) 🖥️
+
+* [프로젝트 기간](#프로젝트-기간) 🗓️
+* [주제](#주제) 📍
+* [기술 스택](#기술-스택) 🛠️
+* [파일 구조](#파일-구조) 💾
+* [설계 문서](#설계-문서) 📑
+    * [ERD](#ERD)
+    * [FIGMA](#FIGMA)
+* [아키텍처](#아키텍처) 🌐
+* [서비스 화면](#서비스-화면) 🖥️
     * [회원가입/로그인](#회원가입/로그인)
     * [메인페이지(스크롤)](#메인페이지(스크롤))
     * [숙소 등록](#숙소-등록)
@@ -25,20 +27,26 @@
     * [리뷰](#리뷰)
     * [숙소 상태 관리](#숙소-상태-관리)
     * [유저 관리](#유저-관리)
- * [회의 문서](#회의-문서) 📝
- * [팀 소개](#팀-소개) 🩷
-   * [팀 규칙](#팀-규칙) 👮
+* [회의 문서](#회의-문서) 📝
+* [팀 소개](#팀-소개) 🩷
+    * [팀 규칙](#팀-규칙) 👮
 
 ---
+
 ## 프로젝트 기간 🗓️
+
 `2023.11.18 - 2023.12.27 (약 6주)`
 
 ---
+
 ## 주제 📍
+
 <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/76e593a7-40a6-4c19-9b14-78f569d226e4">
 
 ---
+
 ## 기술 스택 🛠️
+
 <div align=center>
 
   <img src="https://img.shields.io/badge/-Java-007396?style=flat-square&logo=java&logoColor=white">
@@ -71,7 +79,9 @@
 
 
 ---
+
 ## 파일 구조 💾
+
 <details>
 <summary>파일 전체 구조</summary>
 <div markdown="1">
@@ -666,10 +676,8 @@
  ┃ ┃ ┃ ┃ ┃ ┣ 📜hostingManagement.js
  ┃ ┃ ┃ ┃ ┃ ┗ 📜register.js
  ┃ ┃ ┃ ┃ ┣ 📂chat
- ┃ ┃ ┃ ┃ ┃ ┣ 📜chat.js
  ┃ ┃ ┃ ┃ ┃ ┗ 📜contact_host.js
  ┃ ┃ ┃ ┃ ┣ 📂main
- ┃ ┃ ┃ ┃ ┃ ┗ 📜main.js
  ┃ ┃ ┃ ┃ ┣ 📂payment
  ┃ ┃ ┃ ┃ ┃ ┗ 📜payment.js
  ┃ ┃ ┃ ┃ ┣ 📂room
@@ -743,8 +751,11 @@
 </details>
 
 ---
+
 ## 설계 문서 📑
-  ### ERD
+
+### ERD
+
   <details>
     <summary>ERD</summary>
     <div markdown="1">
@@ -752,7 +763,8 @@
     </div>
   </details>
 
-  ### FIGMA
+### FIGMA
+
   <details>
     <summary>FIGMA</summary>
     <div markdown="2">
@@ -767,7 +779,9 @@
   </details>
 
   ---
-  ## 아키텍처 🌐
+
+## 아키텍처 🌐
+
    <details>
     <summary>ARCHITECTURE</summary>
     <div markdown="3">
@@ -776,15 +790,18 @@
   </details>
 
   ---
-  ## 서비스 화면 🖥️
-  
+
+## 서비스 화면 🖥️
 
   ---
-  ## 회의 문서 📝
+
+## 회의 문서 📝
+
   <a href="https://verbena-scallop-776.notion.site/ecc1a1b152bd424393620b1c54c3be88?v=88cee01f5126410ca97078bf71695319&pvs=4">    데일리 스크럼</a>
 
   --- 
-  ## 팀 소개 🩷
+
+## 팀 소개 🩷
 
   <table align="center">
   <tr>
@@ -802,7 +819,9 @@
    </table>
 
 ---
+
 ### 팀 규칙 👮
+
 <details>
   <summary>팀 규칙</summary>
     <div markdown="2">
