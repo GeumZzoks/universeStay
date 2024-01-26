@@ -15,14 +15,20 @@
         order by updated_at desc
     </select>
 
+<!--    <select id="selectSimpleChattingRoomList" resultType="map">-->
+<!--        select r.chatting_room_id r_chatting_room_id, m.chatting_ctt m_chatting_ctt, m.created_at m_created_at-->
+<!--        from InquiryChattingRoom r,-->
+<!--             InquiryChattingMessage m-->
+<!--        where r.user_id = #{user_id} and (r.chatting_room_id, m.chatting_message_id)-->
+<!--            in (select chatting_room_id, max(chatting_message_id) max_id-->
+<!--                from InquiryChattingMessage-->
+<!--                group by chatting_room_id);-->
+<!--    </select>-->
+
     <select id="selectSimpleChattingRoomList" resultType="map">
-        select r.chatting_room_id r_chatting_room_id, m.chatting_ctt m_chatting_ctt, m.created_at m_created_at
-        from InquiryChattingRoom r,
-             InquiryChattingMessage m
-        where r.user_id = #{user_id} and (r.chatting_room_id, m.chatting_message_id)
-            in (select chatting_room_id, max(chatting_message_id) max_id
-                from InquiryChattingMessage
-                group by chatting_room_id);
+        select r.chatting_room_id r_chatting_room_id
+        from InquiryChattingRoom r
+        where r.user_id = #{user_id}
     </select>
     
     <select id="selectUserIdCheck" resultType="String">
@@ -30,9 +36,8 @@
     </select>
 
     <insert id="insertChattingRoom" parameterType="InquiryChattingRoomDto">
-        insert into InquiryChattingRoom (chatting_room_id, user_id, admin_id, status_id, created_at, created_id,
-                                         updated_at, updated_id)
-        values (#{chatting_room_id}, #{user_id}, #{admin_id}, 'I01', #{created_at}, #{created_id}, #{updated_at}, #{updated_id})
+        insert into InquiryChattingRoom (chatting_room_id, user_id, admin_id, status_id, created_id, updated_id)
+        values (#{chatting_room_id}, #{user_id}, #{admin_id}, 'I01', #{created_id}, #{updated_id})
     </insert>
     
     <update id="updateChattingRoomUpdatedAt">

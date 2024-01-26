@@ -12,7 +12,8 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
-        config.enableSimpleBroker("/subscribe"); // 메시지 받을 때 요청 url, 여러개써도됨
+//        config.enableSimpleBroker("/subscribe"); // 메시지 받을 때 요청 url, 여러개써도됨
+        config.enableSimpleBroker("/subscribe/inquiry"); // 메시지 받을 때 요청 url, 여러개써도됨
         config.setApplicationDestinationPrefixes("/app"); // 메시지 보낼 때 요청 url
     }
 

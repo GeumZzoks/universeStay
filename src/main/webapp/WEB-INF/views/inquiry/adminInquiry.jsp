@@ -188,34 +188,6 @@
                 <div>물어볼 게 있습니다!</div>
                 <div>무엇을 도와드릴까요?</div>
                 <div>1111111111111111</div>
-                <div>2222222222222222</div>
-                <div>2222222222222222</div>
-                <div>1111111111111111</div>
-                <div>2222222222222222</div>
-                <div>1111111111111111</div>
-                <div>2222222222222222</div>
-                <div>1111111111111111</div>
-                <div>2222222222222222</div>
-                <div>물어볼 게 있습니다!</div>
-                <div>무엇을 도와드릴까요?</div>
-                <div>1111111111111111</div>
-                <div>2222222222222222</div>
-                <div>2222222222222222</div>
-                <div>1111111111111111</div>
-                <div>2222222222222222</div>
-                <div>1111111111111111</div>
-                <div>2222222222222222</div>
-                <div>1111111111111111</div>
-                <div>2222222222222222</div>
-                <div>물어볼 게 있습니다!</div>
-                <div>무엇을 도와드릴까요?</div>
-                <div>1111111111111111</div>
-                <div>2222222222222222</div>
-                <div>2222222222222222</div>
-                <div>1111111111111111</div>
-                <div>2222222222222222</div>
-                <div>1111111111111111</div>
-                <div>2222222222222222</div>
                 <div>1111111111111111</div>
                 <div>2222222222222222</div>
                 <div>물어볼 게 있습니다!</div>
@@ -256,13 +228,30 @@
 </section>
 </body>
 <script>
-    // 브라우저와 서버 간의 핸드쉐이크, 이 때부터 socket 통신도 가능
-    let socket = new SockJS("/endpoint");
-    // stomp 사용
-    let client = Stomp.over(socket);
+    let socket;
+    let stompClient;
+    let chatting_room_id;
 
-    $(function () {
-    })
+    window.onload = function () {
+
+        connectStomp();
+    };
+    function connectStomp() {
+        if (stompClient != null) {
+            stompClient.disconnect();
+            console.log("기존의 stomp가 종료되었습니다.")
+        }
+        // 브라우저와 서버 간의 핸드쉐이크, 이 때부터 socket 통신도 가능
+        socket = new SockJS("/endpoint");
+        // webSocket을 다루는데 stomp로 다루겠다!
+        stompClient = Stomp.over(socket);
+        stompClient.connect({}, function (frame) {
+            console.log("Connected: " + frame);
+            stompClient.subscribe('/subscribe/inquiry/' + chatting_room_id, function (receivedData) {
+                console.log(receivedData);
+            })
+        })
+    }
 
 </script>
 </html>

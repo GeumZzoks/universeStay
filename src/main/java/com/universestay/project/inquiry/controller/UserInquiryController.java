@@ -1,6 +1,7 @@
 package com.universestay.project.inquiry.controller;
 
 import com.universestay.project.inquiry.dto.InquiryChattingMessageDto;
+import com.universestay.project.inquiry.dto.InquiryChattingRoomDto;
 import com.universestay.project.inquiry.service.UserInquiryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/user/myPage/inquiry")
@@ -26,6 +28,25 @@ public class UserInquiryController {
     public String view(HttpSession session, Model model) {
         System.out.println("*** GET *** /user/myPage/inquiry");
         return "inquiry/userInquiry";
+    }
+
+    @PostMapping("/insert")
+    public String insertInquiry(HttpSession session) {
+        if(session.getAttribute("user_id") != null){
+
+            String uuid = UUID.randomUUID().toString();
+            InquiryChattingRoomDto dto = new InquiryChattingRoomDto();
+            dto.setChatting_room_id(uuid);
+            dto.setUser_id((String) session.getAttribute("user_id"));
+            dto.setCreated_id((String) session.getAttribute("user_id"));
+            dto.setUpdated_id((String) session.getAttribute("user_id"));
+            try {
+                userInquiryService.createChattingRoom(dto);
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return "redirect:/user/myPage/inquiry";
     }
 
     @ResponseBody
@@ -68,9 +89,7 @@ public class UserInquiryController {
     @MessageMapping("/inquiry/{chatting_room_id}")
     @SendTo("/subscribe/inquiry/{chatting_room_id}")
     public String broadcasting(@DestinationVariable String chatting_room_id, @Payload String message) {
-        System.out.println("얄루");
-        System.out.println("11111111111");
-        System.out.println("aaaaaaaaaaa");
+        System.out.println("message = " + message);
 //        Map<String, Object>
         //        List<Map<String, Object>> chattingMessage = chatMessageService.recentlyChatMessage(
 //                chatting_room_id);

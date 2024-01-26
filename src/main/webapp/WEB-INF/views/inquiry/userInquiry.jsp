@@ -43,100 +43,94 @@
     <!-- STOMP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
     <style>
-      .screens-inquiry-flex-row {
-        display: flex;
-        flex-direction: row;
-      }
+        .screens-inquiry-flex-row {
+            display: flex;
+            flex-direction: row;
+        }
 
-      .screens-inquiry-flex-column {
-        display: flex;
-        flex-direction: column;
-      }
+        .screens-inquiry-flex-column {
+            display: flex;
+            flex-direction: column;
+        }
 
-      .screens-inquiry-userInquiry {
-        width: 100vw;
-        height: 100vh;
-      }
+        .screens-inquiry-userInquiry {
+            width: 100vw;
+            height: 100vh;
+        }
 
-      .screens-inquiry-userInquiry * {
-        margin: 0;
-        padding: 0;
-      }
+        .screens-inquiry-userInquiry * {
+            margin: 0;
+            padding: 0;
+        }
 
-      .screens-inquiry-userInquiry > section,
-      .screens-inquiry-userInquiry > section * {
-        box-sizing: border-box;
-        margin: 0px;
-      }
+        .screens-inquiry-userInquiry > section,
+        .screens-inquiry-userInquiry > section * {
+            box-sizing: border-box;
+            margin: 0px;
+        }
 
-      .screens-inquiry-userInquiry__section {
-        position: absolute;
-        top: 100px;
-        width: 100%;
-        height: calc(100% - 100px);
-        border-top: 1px solid #EBEBEB;
-      }
+        .screens-inquiry-userInquiry__section {
+            position: absolute;
+            top: 100px;
+            width: 100%;
+            height: calc(100% - 100px);
+            border-top: 1px solid #EBEBEB;
+        }
 
-      .screens-inquiry-userInquiry__section > div {
-        border-right: 1px solid #EBEBEB;
-      }
+        .screens-inquiry-userInquiry__section > div {
+            border-right: 1px solid #EBEBEB;
+        }
 
-      .screens-inquiry-userInquiry__inquiryList {
-        width: 25%;
-      }
+        .screens-inquiry-userInquiry__inquiryList {
+            width: 25%;
+        }
 
-      .screens-inquiry-userInquiry__inquiryMessage {
-        width: 50%;
-      }
+        .screens-inquiry-userInquiry__inquiryMessage {
+            width: 50%;
+        }
 
-      .screens-inquiry-userInquiry__inquiryEtc {
-        width: 25%;
-      }
+        .screens-inquiry-userInquiry__inquiryEtc {
+            width: 25%;
+        }
 
-      .screens-inquiry-userInquiry-headDiv {
-        height: 7%;
-        border-bottom: 1px solid #EBEBEB;
-      }
+        .screens-inquiry-userInquiry-headDiv {
+            height: 7%;
+            border-bottom: 1px solid #EBEBEB;
+        }
 
-      .screens-inquiry-userInquiry-bodyDiv {
-        height: 93%;
-      }
-
-
-      .screens-inquiry-userInquiry__inquiryList__head__content > div > img {
-        height: 1.3rem;
-        width: 1.3rem;
-      }
-
-      .screens-inquiry-userInquiry__inquiryList-imgDiv > img {
-        width: 5rem;
-        height: 5rem;
-      }
-
-      .screens-inquiry-userInquiry__inquiryMessage-imgDiv > img {
-        width: 5rem;
-        height: 5rem;
-      }
-
-      .screens-inquiry-userInquiry__inquiryEtc-imgDiv > img {
-        width: 5rem;
-        height: 5rem;
-      }
-
-      .screens-inquiry-userInquiry__inquiryMessage__body__content__messageList {
-        overflow: auto;
-      }
-
-      .screens-inquiry-userInquiry__inquiryMessage__body__content {
-        /*width: 50%;*/
-      }
+        .screens-inquiry-userInquiry-bodyDiv {
+            height: 93%;
+        }
 
 
-      /*overflow: auto;*/
-      /*align-items: end;*/
-      /*word-break: break-all;*/
-      /*border-radius: 50px;*/
-      /*font-family: 'NotoSansKR-Bold';*/
+        .screens-inquiry-userInquiry__inquiryList__head__content > div > img {
+            height: 1.3rem;
+            width: 1.3rem;
+        }
+
+        .screens-inquiry-userInquiry__inquiryList-imgDiv > img {
+            width: 5rem;
+            height: 5rem;
+        }
+
+        .screens-inquiry-userInquiry__inquiryMessage-imgDiv > img {
+            width: 5rem;
+            height: 5rem;
+        }
+
+        .screens-inquiry-userInquiry__inquiryEtc-imgDiv > img {
+            width: 5rem;
+            height: 5rem;
+        }
+
+        .screens-inquiry-userInquiry__inquiryMessage__body__content__messageList {
+            overflow: auto;
+        }
+
+        .screens-inquiry-userInquiry__inquiryMessage__body__content {
+            /*width: 50%;*/
+        }
+
     </style>
 </head>
 <jsp:include page="/WEB-INF/views/common/user/header.jsp"/>
@@ -145,9 +139,8 @@
     <div class="screens-inquiry-userInquiry__inquiryList screens-inquiry-flex-column">
         <div class="screens-inquiry-userInquiry__inquiryList__head screens-inquiry-userInquiry-headDiv screens-inquiry-flex-row">
             <div class="screens-inquiry-userInquiry__inquiryList__head__content screens-inquiry-flex-row">
-                <div class="screens-inquiry-userInquiry__inquiryList__head__content-text"><p>문의사항
-                    목록</p></div>
-                <div class="screens-inquiry-userInquiry__inquiryList__head__content-plustmark"><img
+                <div class="screens-inquiry-userInquiry__inquiryList__head__content-text"><p>문의사항 목록</p></div>
+                <div class="screens-inquiry-userInquiry__inquiryList__head__content-plusmark"><img
                         src="/resources/img/symbol/plus-svgrepo-com.svg"></div>
                 <div class="screens-inquiry-userInquiry__inquiryList__head__content-filtermark"><img
                         src="/resources/img/symbol/filter_km.svg"></div>
@@ -265,16 +258,19 @@
 </section>
 </body>
 <script>
+
+    const createChattingRoomBtn = document.querySelector('.screens-inquiry-userInquiry__inquiryList__head__content-plusmark');
+
     const ChattingRoomList = document.querySelector(
-            '.screens-inquiry-userInquiry__inquiryList__body__content');
+        '.screens-inquiry-userInquiry__inquiryList__body__content');
     const ChattingRoom = document.querySelector(
-            '.screens-inquiry-userInquiry__inquiryList__body__content__chattingRoom');
+        '.screens-inquiry-userInquiry__inquiryList__body__content__chattingRoom');
     const copiedChattingRoom = ChattingRoom.cloneNode(true);
 
     const ChattingMessageList = document.querySelector(
-            '.screens-inquiry-userInquiry__inquiryMessage__body__content__messageList');
+        '.screens-inquiry-userInquiry__inquiryMessage__body__content__messageList');
     const ChattingMessage = document.querySelector(
-            '.screens-inquiry-userInquiry__inquiryMessage__body__content__message');
+        '.screens-inquiry-userInquiry__inquiryMessage__body__content__message');
     const copiedChattingMessage = ChattingMessage.cloneNode(true);
 
     const inputText = document.querySelector('.screens-inquiry-userInquiry-sendText');
@@ -283,36 +279,53 @@
     let socket;
     let stompClient;
     let chatting_room_id;
+    let message1;
 
-    socket = new SockJS("/endpoint");
-    // webSocket을 다루는데 stomp로 다루겠다!
-    stompClient = Stomp.over(socket);
-    stompClient.connect({}, function (frame) {
-        console.log("Connected: " + frame);
-        stompClient.subscribe('subscribe/inquiry/' + chatting_room_id, function (receivedData) {
-            console.log('receivedData - out');
-            console.log(receivedData);
-            // var Dto = JSON.parse(chatting)
+    function connectStomp() {
+        if (stompClient != null) {
+            stompClient.disconnect();
+            console.log("기존의 stomp가 종료되었습니다.")
+        }
+        socket = new SockJS("/endpoint");
+        // webSocket을 다루는데 stomp로 다루겠다!
+        stompClient = Stomp.over(socket);
+        stompClient.connect({}, function (frame) {
+            console.log("Connected123: " + frame);
+            stompClient.subscribe('/subscribe/inquiry/' + chatting_room_id, function (receivedData) {
+                console.log('receivedData123' + receivedData);
+                message1 = receivedData;
+                const box = {
+                    writer_id : "나",
+                    chatting_ctt : message1.body,
+                    created_at : new Date().getTime()
+                };
+                appendChattingMessage(box);
+            })
         })
+    }
+
+    createChattingRoomBtn.addEventListener('click', function () {
+
+
+        $.ajax({
+            type: 'post',
+            url: "/user/myPage/inquiry/insert",
+            data: {},
+            success: function () {
+                firstPageAjax();
+                console.log("createChattingRoomAjax 성공");
+            },
+            error: function () {
+                console.log("createChattingRoomAjax 실패");
+            }
+        })
+
+
+
     })
 
-    $(function () {
-        function connect() {
-            // 브라우저와 서버 간의 핸드쉐이크, 이 때부터 socket 통신도 가능
-            socket = new SockJS("/endpoint");
-            // webSocket을 다루는데 stomp로 다루겠다!
-            stompClient = Stomp.over(socket);
-
-            stompClient.connect({}, function (frame) {
-                console.log("Connected: " + frame);
-                stompClient.subscribe('subscribe/inquiry/' + chatting_room_id,
-                        function (receivedData) {
-                            console.log('receivedData - in');
-                            console.log(receivedData);
-                            // var Dto = JSON.parse(chatting)
-                        })
-            })
-        }
+    inputBtn.addEventListener('click', function () {
+        stompClient.send('/app/inquiry/' + chatting_room_id, {}, JSON.stringify(inputText.value));
     })
 
     window.onload = function () {
@@ -339,9 +352,9 @@
         list.forEach(function (component) {
             const cloneElement = copiedChattingRoom.cloneNode(true);
             cloneElement.querySelector(
-                    '.screens-inquiry-userInquiry__inquiryList__body__content__chattingRoom > div:nth-of-type(2) > div:nth-of-type(2) > p').textContent = component.m_chatting_ctt;
+                '.screens-inquiry-userInquiry__inquiryList__body__content__chattingRoom > div:nth-of-type(2) > div:nth-of-type(2) > p').textContent = component.m_chatting_ctt;
             cloneElement.querySelector(
-                    '.screens-inquiry-userInquiry__inquiryList__body__content__chattingRoom > div:nth-of-type(2) > div:nth-of-type(3) > p').textContent = component.m_created_at;
+                '.screens-inquiry-userInquiry__inquiryList__body__content__chattingRoom > div:nth-of-type(2) > div:nth-of-type(3) > p').textContent = component.m_created_at;
             cloneElement.addEventListener("click", function () {
                 clickChattingRoomAjax(component.r_chatting_room_id);
             })
@@ -357,16 +370,19 @@
 
     function fillChattingMessageList(list) {
         list.forEach(function (component) {
-            const cloneElement = copiedChattingMessage.cloneNode(true);
-            console.log(cloneElement);
-            cloneElement.querySelector(
-                    '.screens-inquiry-userInquiry__inquiryMessage__body__content__message-right > div:nth-of-type(1) > p').textContent = component.writer_id;
-            cloneElement.querySelector(
-                    '.screens-inquiry-userInquiry__inquiryMessage__body__content__message-right > div:nth-of-type(2) > p').textContent = component.chatting_ctt;
-            cloneElement.querySelector(
-                    '.screens-inquiry-userInquiry__inquiryMessage__body__content__message-right > div:nth-of-type(3) > p').textContent = component.created_at;
-            ChattingMessageList.appendChild(cloneElement);
+            appendChattingMessage(component);
         })
+    }
+
+    function appendChattingMessage(component) {
+        const cloneElement = copiedChattingMessage.cloneNode(true);
+        cloneElement.querySelector(
+            '.screens-inquiry-userInquiry__inquiryMessage__body__content__message-right > div:nth-of-type(1) > p').textContent = component.writer_id;
+        cloneElement.querySelector(
+            '.screens-inquiry-userInquiry__inquiryMessage__body__content__message-right > div:nth-of-type(2) > p').textContent = component.chatting_ctt;
+        cloneElement.querySelector(
+            '.screens-inquiry-userInquiry__inquiryMessage__body__content__message-right > div:nth-of-type(3) > p').textContent = component.created_at;
+        ChattingMessageList.appendChild(cloneElement);
     }
 
     function clickChattingRoomAjax(r_chatting_room_id) {
@@ -377,7 +393,9 @@
             success: function (result) {
                 emptyChattingMessageList();
                 fillChattingMessageList(result);
-                chatting_room_id = r_chatting_room_id
+                chatting_room_id = r_chatting_room_id;
+                connectStomp();
+
                 console.log("clickChattingRoomAjax() 성공");
             },
             error: function () {
@@ -404,27 +422,6 @@
         })
     }
 
-    inputBtn.addEventListener('click', function () {
-        // send 함수
-        // 첫번째 인자는 어디로 보낼지를 적는다.
-        // 두번째 인자는 서버로 보낼 때 추가하고 싶은 stomp헤더이다. 여러개 쓸 수 있는듯?
-        // 세번째 인자는 보내고 싶은 body
-        console.log("123111");
-        stompClient.send('/app/inquiry/' + chatting_room_id, {}, JSON.stringify(inputText.value));
-        console.log("ddd");
-    })
 
-    function stompDisconnect() {
-        if (stompClient != null) {
-            stompClient.disconnect();
-            console.log("stompClient.disconnect() 성공")
-        }
-    }
-
-    // function pressEnter(event) {
-    //     if (event.key === 'Enter') {
-    //         sendmsg();
-    //     }
-    // }
 </script>
 </html>
