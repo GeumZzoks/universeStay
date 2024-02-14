@@ -5,7 +5,9 @@
 <mapper namespace="com.universestay.project.resources.mybatis.mapper.inquiry.UserInquiryMapper">
 
     <select id="selectChattingRoom" resultType="InquiryChattingRoomDto">
-        select * from InquiryChattingRoom where chatting_room_id = #{chatting_room_id}
+        select *
+        from InquiryChattingRoom
+        where chatting_room_id = #{chatting_room_id}
     </select>
 
     <select id="selectChattingRoomList" resultType="InquiryChattingRoomDto">
@@ -15,41 +17,75 @@
         order by updated_at desc
     </select>
 
-<!--    <select id="selectSimpleChattingRoomList" resultType="map">-->
-<!--        select r.chatting_room_id r_chatting_room_id, m.chatting_ctt m_chatting_ctt, m.created_at m_created_at-->
-<!--        from InquiryChattingRoom r,-->
-<!--             InquiryChattingMessage m-->
-<!--        where r.user_id = #{user_id} and (r.chatting_room_id, m.chatting_message_id)-->
-<!--            in (select chatting_room_id, max(chatting_message_id) max_id-->
-<!--                from InquiryChattingMessage-->
-<!--                group by chatting_room_id);-->
-<!--    </select>-->
-
     <select id="selectSimpleChattingRoomList" resultType="map">
-        select r.chatting_room_id r_chatting_room_id
-        from InquiryChattingRoom r
-        where r.user_id = #{user_id}
+        SELECT r.chatting_room_id AS r_chatting_room_id,
+               r.user_id          AS r_user_id,
+               r.admin_id         AS r_admin_id,
+               m.chatting_ctt     AS m_chatting_ctt,
+               m.created_at       AS m_created_at,
+               m.writer_id        AS m_writer_id,
+               u.user_nickname    AS u_user_nickname,
+               a.admin_nickname   AS a_admin_nickname
+        FROM InquiryChattingRoom r
+                 LEFT JOIN InquiryChattingMessage m ON r.chatting_room_id = m.chatting_room_id
+                 LEFT JOIN User u ON r.user_id = u.user_id
+                 LEFT JOIN Admin a ON r.admin_id = a.admin_id
+        WHERE r.user_id = #{user_id}
+          AND (r.chatting_room_id, m.chatting_message_id) IN (SELECT chatting_room_id, MAX(chatting_message_id) max_id
+                                                              FROM InquiryChattingMessage
+                                                              GROUP BY chatting_room_id)
+        ORDER BY m.created_at DESC
     </select>
-    
+
+    <!--        <select id="selectSimpleChattingRoomList" resultType="map">-->
+    <!--        select r.chatting_room_id r_chatting_room_id,-->
+    <!--               r.user_id          r_user_id,-->
+    <!--               r.admin_id         r_admin_id,-->
+    <!--               m.chatting_ctt     m_chatting_ctt,-->
+    <!--               m.created_at       m_created_at,-->
+    <!--               m.writer_id        m_writer_id,-->
+    <!--               u.user_nickname    u_user_nickname,-->
+    <!--               a.admin_nickname   a_admin_nickname-->
+    <!--        from InquiryChattingRoom r,-->
+    <!--             InquiryChattingMessage m,-->
+    <!--             User u,-->
+    <!--             Admin a-->
+    <!--        where r.user_id = u.user_id-->
+    <!--          and r.admin_id = a.admin_id-->
+    <!--          and r.user_id = #{user_id}-->
+    <!--          and (r.chatting_room_id, m.chatting_message_id) in (select chatting_room_id, max(chatting_message_id) max_id-->
+    <!--                                                              from InquiryChattingMessage-->
+    <!--                                                              group by chatting_room_id)-->
+    <!--        order by m.created_at desc-->
+    <!--    </select>-->
+
     <select id="selectUserIdCheck" resultType="String">
-        select user_id from InquiryChattingRoom where chatting_room_id = #{chatting_room_id}
+        select user_id
+        from InquiryChattingRoom
+        where chatting_room_id = #{chatting_room_id}
     </select>
 
     <insert id="insertChattingRoom" parameterType="InquiryChattingRoomDto">
         insert into InquiryChattingRoom (chatting_room_id, user_id, admin_id, status_id, created_id, updated_id)
         values (#{chatting_room_id}, #{user_id}, #{admin_id}, 'I01', #{created_id}, #{updated_id})
     </insert>
-    
+
     <update id="updateChattingRoomUpdatedAt">
-        update InquiryChattingRoom set updated_at = CURRENT_TIMESTAMP where chatting_room_id = #{chatting_room_id}
+        update InquiryChattingRoom
+        set updated_at = CURRENT_TIMESTAMP
+        where chatting_room_id = #{chatting_room_id}
     </update>
 
     <delete id="deleteChattingRoom">
-        delete from InquiryChattingRoom where chatting_room_id = #{chatting_room_id}
+        delete
+        from InquiryChattingRoom
+        where chatting_room_id = #{chatting_room_id}
     </delete>
 
     <select id="selectChattingMessage" resultType="InquiryChattingMessageDto">
-        select * from InquiryChattingMessage where chatting_message_id = #{chatting_message_id}
+        select *
+        from InquiryChattingMessage
+        where chatting_message_id = #{chatting_message_id}
     </select>
 
     <select id="selectChattingMessageLastOne" resultType="InquiryChattingMessageDto">
@@ -60,13 +96,31 @@
 
     </select>
 
-    <select id="selectChattingMessageList" resultType="InquiryChattingMessageDto">
-        select * from InquiryChattingMessage where chatting_room_id = #{chatting_room_id} order by chatting_message_id desc
+    <!--    <select id="selectChattingMessageList" resultType="InquiryChattingMessageDto">-->
+    <!--        select *-->
+    <!--        from InquiryChattingMessage-->
+    <!--        where chatting_room_id = #{chatting_room_id}-->
+    <!--        order by chatting_message_id asc-->
+    <!--    </select>-->
+
+    <select id="selectChattingMessageList" resultType="map">
+        select m.writer_id     m_writer_id,
+               m.chatting_ctt  m_chatting_ctt,
+               m.created_at    m_created_at,
+               m.created_id    m_created_id,
+               u.user_id       u_user_id,
+               u.user_nickname u_user_nickname,
+               u.user_name     u_user_name,
+               u.user_email    u_user_email
+        from InquiryChattingMessage m
+                 left join User u on m.writer_id = u.user_id
+        where m.chatting_room_id = #{chatting_room_id}
+        order by m.chatting_message_id asc
     </select>
 
     <insert id="insertChattingMessage" parameterType="InquiryChattingMessageDto">
-        insert into InquiryChattingMessage (chatting_message_id, chatting_room_id, writer_id, chatting_ctt, created_id)
-        values (#{chatting_message_id}, #{chatting_room_id}, #{writer_id}, #{chatting_ctt}, #{created_id})
+        insert into InquiryChattingMessage (chatting_room_id, writer_id, chatting_ctt, created_id)
+        values (#{chatting_room_id}, #{writer_id}, #{chatting_ctt}, #{created_id})
     </insert>
 
 </mapper>

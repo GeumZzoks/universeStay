@@ -37,7 +37,12 @@ public class UserInquiryServiceImpl implements UserInquiryService {
 
     @Override
     public int createChattingRoom(InquiryChattingRoomDto dto) throws Exception {
-        return userInquiryDao.insertChattingRoom(dto);
+        InquiryChattingMessageDto MessageDto = new InquiryChattingMessageDto();
+        MessageDto.setChatting_room_id(dto.getChatting_room_id());
+        MessageDto.setWriter_id(dto.getUser_id());
+        MessageDto.setChatting_ctt("문의");
+        MessageDto.setCreated_id(dto.getCreated_id());
+        return (userInquiryDao.insertChattingRoom(dto) & userInquiryDao.insertChattingMessage(MessageDto));
     }
 
     @Override
@@ -51,7 +56,7 @@ public class UserInquiryServiceImpl implements UserInquiryService {
     }
 
     @Override
-    public List<InquiryChattingMessageDto> getChattingMessageList(String chatting_room_id) throws Exception {
+    public List<Map<String, Object>> getChattingMessageList(String chatting_room_id) throws Exception {
         return userInquiryDao.selectChattingMessageList(chatting_room_id);
     }
 

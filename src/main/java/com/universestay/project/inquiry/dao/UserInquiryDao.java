@@ -29,7 +29,7 @@ public interface UserInquiryDao {
 
     InquiryChattingMessageDto selectChattingMessageLastOne(String chatting_room_id) throws Exception;
 
-    List<InquiryChattingMessageDto> selectChattingMessageList(String chatting_room_id) throws Exception;
+    List<Map<String, Object>> selectChattingMessageList(String chatting_room_id) throws Exception;
 
     int insertChattingMessage(InquiryChattingMessageDto dto) throws Exception;
 }
