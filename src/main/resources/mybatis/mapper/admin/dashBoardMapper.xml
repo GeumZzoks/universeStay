@@ -31,17 +31,23 @@
                  left join User U on R.user_id = U.user_id
         WHERE U.user_nickname IS NOT NULL
           AND R.status_id = 'RA01'
-        ORDER BY R.created_at DESC LIMIT 20;
+        ORDER BY R.created_at DESC
+        LIMIT 20;
     </select>
 
-    <!-- 문의사항 관리 -->
-<!--    <select id="selectListInquiry" resultType="map">-->
-<!--        SELECT I.inquiry_title, I.inquiry_id, U.user_nickname-->
-<!--        FROM Inquiry I-->
-<!--                 left join User U on I.user_id = U.user_id-->
-<!--        WHERE I.inquiry_is_answered = 'N'-->
-<!--        ORDER BY I.created_at DESC LIMIT 20;-->
-<!--    </select>-->
+<!--     문의사항 관리 -->
+    <select id="selectListInquiry" resultType="map">
+        select i.chatting_room_id, i.created_at, i.status_id, u.user_nickname, i.user_id
+        from InquiryChattingRoom i, User u
+        where i.user_id = u.user_id and i.status_id = 'I01'
+        order by created_at asc;
+    </select>
+
+    <update id="updateInquiryStatus" parameterType="hashMap">
+        update InquiryChattingRoom
+        set status_id = 'I02', admin_id = #{admin_id}
+        where chatting_room_id = #{chatting_room_id}
+    </update>
 
     <!-- 숙소 신청한 호스팅 개별 승인 처리 -->
     <update id="updateConfirmIndividualRoom" parameterType="String">
@@ -73,7 +79,6 @@
 
     </select>
 
-
     <!-- 공지사항 -->
     <!-- 최근 생성한 공지사항 20개 출력 -->
     <select id="selectNotice" resultType="NoticeDto">
@@ -81,7 +86,6 @@
         FROM Notice
         ORDER BY created_at DESC LIMIT 20;
     </select>
-
 
     <!-- 이벤트 -->
     <!-- 최근 생성한 이벤트 중 진행 중인 이벤트 20개 출력 -->
