@@ -40,11 +40,11 @@
                 class="components-admin-navigation__ul-li__img"
                 src="/resources/img/admin/navigation/event.png">이벤트</a>
         </li>
-        <%--        <li class="components-admin-navigation__ul-li"><a--%>
-        <%--                class="components-admin-navigation__ul-li__a" href="/admin/inquiry/list"><img--%>
-        <%--                class="components-admin-navigation__ul-li__img"--%>
-        <%--                src="/resources/img/admin/navigation/inquiry.png">문의사항</a>--%>
-        <%--        </li>--%>
+                <li class="components-admin-navigation__ul-li"><a
+                        class="components-admin-navigation__ul-li__a" href="/admin/inquiry"><img
+                        class="components-admin-navigation__ul-li__img"
+                        src="/resources/img/admin/navigation/inquiry.png">문의사항</a>
+                </li>
         <li class="components-admin-navigation__ul-li"><a
                 class="components-admin-navigation__ul-li__a" href="/admin/coupon"><img
                 class="components-admin-navigation__ul-li__img"
