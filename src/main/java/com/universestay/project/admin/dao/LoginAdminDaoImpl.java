@@ -22,4 +22,9 @@ public class LoginAdminDaoImpl implements LoginAdminDao {
     public AdminDto selectUser(String admin_email) throws CommonException {
         return session.selectOne(namespace + "select", admin_email);
     }
+
+    @Override
+    public String selectAdminId(String admin_email) throws CommonException {
+        return session.selectOne(namespace + "selectAdminId", admin_email);
+    }
 }

@@ -31,10 +31,9 @@ public class LoginAdminServiceImpl implements LoginAdminService {
             throws CommonException {
 
         // username을 UUID로 변환하는 UUID 클래스(임의로 정한 숫자, Object.hashCode 조합)
-//        String admin_id = Uuid.generateUUID(userEmail);
-//        AdminDto adminDto = loginAdminDao.selectUser(admin_id);
         String admin_id = UUID.randomUUID().toString();
         AdminDto adminDto = loginAdminDao.selectUser(userEmail);
+        String user_id = loginAdminDao.selectAdminId(userEmail);
 
         // ID, PASSWORD 확인 및 세션 객체 생성
         if (checkUserAccountIdPwd(adminDto, userEmail, password)) {
@@ -43,8 +42,8 @@ public class LoginAdminServiceImpl implements LoginAdminService {
             // 세션 객체 생성 및 1시간 동안 유효
             HttpSession session = request.getSession();
             session.setAttribute("admin_email", userEmail);
+            session.setAttribute("admin_id", user_id);
             session.setMaxInactiveInterval(3600);
-
             return true;
         }
 
