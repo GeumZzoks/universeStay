@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class AdminInquiryDaoImpl implements AdminInquiryDao {
@@ -46,12 +47,17 @@ public class AdminInquiryDaoImpl implements AdminInquiryDao {
     }
 
     @Override
-    public List<InquiryChattingMessageDto> selectChattingMessageList(String chatting_room_id) throws Exception {
+    public List<Map<String, Object>> selectChattingMessageList(String chatting_room_id) throws Exception {
         return session.selectList(namespace + "selectChattingMessageList", chatting_room_id);
     }
 
     @Override
     public int insertChattingMessage(InquiryChattingMessageDto dto) throws Exception {
-        return session.insert(namespace+"insertChattingMessage", dto);
+        return session.insert(namespace + "insertChattingMessage", dto);
+    }
+
+    @Override
+    public List<Map<String, Object>> selectMyChattingRoomList(String admin_id) throws Exception {
+        return session.selectList(namespace + "selectMyChattingRoomList", admin_id);
     }
 }
