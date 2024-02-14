@@ -18,10 +18,17 @@
     </select>
 
     <!-- 문의사항 수 -->
+    <!--    // TODO: 채팅으로 바꾸기-->
+    <!--    <select id="countTotalInquiries" resultType="String">-->
+    <!--        SELECT COUNT(*)-->
+    <!--        FROM InquiryChattingRoom-->
+    <!--        WHERE status_id = 'I01';-->
+    <!--    </select>-->
+
     <select id="countTotalInquiries" resultType="String">
         SELECT COUNT(*)
-        FROM InquiryChattingRoom
-        WHERE status_id = 'I01';
+        FROM Inquiry
+        WHERE inquiry_is_answered = 'N';
     </select>
 
     <!-- 숙소 신청한 호스팅 관리 -->

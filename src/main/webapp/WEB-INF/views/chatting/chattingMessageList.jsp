@@ -404,7 +404,6 @@
 </section>
 </body>
 
-<script src="/resources/js/chat/chat.js"></script>
 <script src="${pageContext.request.contextPath}/resources/dist/sockjs.js"></script>
 <script
         src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
@@ -414,201 +413,201 @@
 
 <script>
 
-  var client;
-  var user_id2 = "<%= request.getAttribute("user_id") %>";
-  var chat_room_id2 = "<%= request.getAttribute("chat_room_id") %>";
+    var client;
+    var user_id2 = "<%= request.getAttribute("user_id") %>";
+    var chat_room_id2 = "<%= request.getAttribute("chat_room_id") %>";
 
-  //채팅 저장
-  function insertChat() {
+    //채팅 저장
+    function insertChat() {
 
-    var user_id = "${user_id}";
-    var chat_room_id = chat_room_id2;
-    var chat_ctt = $("#msgi").val();
+        var user_id = "${user_id}";
+        var chat_room_id = chat_room_id2;
+        var chat_ctt = $("#msgi").val();
 
-    if (!chat_ctt) {
-      alert("메시지 입력 후 전송하세요");
-      return;
-    }
-
-    // 서버로 전송할 데이터를 객체화
-    var insertChatDto = {
-      user_id: user_id,
-      chatting_room_id: chat_room_id2,
-      chat_ctt: chat_ctt
-    };
-
-    $.ajax({
-      url: "/chat/insertChat.do",
-      type: "post",
-      data: JSON.stringify(insertChatDto),
-      contentType: "application/json",
-      success: function (result) {
-
-        if (result == 1) {
-          console.log("채팅 전송 성공");
-          var messageInput = $('textarea[name="msg"]');
-          client.send('/app/hello/' + chat_room_id,
-              function (error) {
-                console.error("error message = " + error);
-              }
-          );
-          messageInput.val('');
+        if (!chat_ctt) {
+            alert("메시지 입력 후 전송하세요");
+            return;
         }
-      },
-      error: function (xhr, status, err) {
-        console.log("처리실패!");
-        console.log(xhr);
-        console.log(status);
-        console.log(err);
-      }
-    });
-  }
 
-  // function moveDown() {
-  //   $(".chat_ctt").scrollTop($(".chat_ctt")[0].scrollHeight);
-  //   // $('#alertK').css('display', 'none');
-  //
-  // }
-  function moveDown() {
-    var chatWrap = $(".screens-chat-chattingRoomPage__chatWrap");
-    chatWrap.scrollTop(chatWrap[0].scrollHeight);
-  }
+        // 서버로 전송할 데이터를 객체화
+        var insertChatDto = {
+            user_id: user_id,
+            chatting_room_id: chat_room_id2,
+            chat_ctt: chat_ctt
+        };
 
-  // 실시간 채팅 내용 렌더링
-  var renderList = function (contentDto) {
-    // 리스트 html을 정의
-    //var date = moment(contentDto.chat_date).format('YY/MM/DD HH:mm');
-    var originalDate = moment(contentDto.chat_date);
-    var newDate = originalDate.add(9, 'hours');
-    var formattedDate = newDate.format('YY/MM/DD HH:mm');
+        $.ajax({
+            url: "/chat/insertChat.do",
+            type: "post",
+            data: JSON.stringify(insertChatDto),
+            contentType: "application/json",
+            success: function (result) {
 
-    console.log(formattedDate);
+                if (result == 1) {
+                    console.log("채팅 전송 성공");
+                    var messageInput = $('textarea[name="msg"]');
+                    client.send('/app/hello/' + chat_room_id,
+                            function (error) {
+                                console.error("error message = " + error);
+                            }
+                    );
+                    messageInput.val('');
+                }
+            },
+            error: function (xhr, status, err) {
+                console.log("처리실패!");
+                console.log(xhr);
+                console.log(status);
+                console.log(err);
+            }
+        });
+    }
 
-    var html = "";
-
-    content = "<p class='otherChat bg-light p-2'>" + contentDto.chat_ctt
-        + "</p>";
-
-    var html = "<div class='chat_message_item' style='margin-bottom: 20px;'>" +
-        "<div style='display: flex; align-items: center;'>" +
-        "<div>" +
-        "<img src='" + contentDto.profile_img_url
-        + "' style='width: 30px; height: 30px; border-radius: 50%;'>" +
-        "</div>" +
-        "<div style='margin-left: 10px;'>" +
-        "<strong>" + contentDto.user_name + "님</strong>" +
-        "<div class='me'>" +
-        content +
-        "<p style='display: inline;'>" + formattedDate + "</p>" +
-        "</div>" +
-        "</div>" +
-        "</div>" +
-        "</div>";
-
-    return html;
-
-  }
-  let messageInput = '';
-  $(function () {
-    messageInput = $('textarea[name="msg"]');
-    var sock = new SockJS(
-        "/endpoint");
-    client = Stomp.over(sock);
-
-    client.connect({}, function () {
-      var chat_room_id = chat_room_id2;
-
-      // 메세지 들어오는곳
-      client.subscribe('/subscribe/chat/' + chat_room_id,
-          function (chatMessage) {
-            //받은 데이터
-            var contentDto = JSON.parse(chatMessage.body);
-
-            var html = renderList(contentDto);
-            $("#list-guestbook").append(html);
-            moveDown();
-          });
-    });
-
-    //	         대화시
-    $('.send').click(function () {
-      //sendmsg();
-      var msgInput = document.getElementById('msgi');
-
-      msgInput.value = '';
-    });
-
-    // $('.send').onkeydown(function () {
-    //   sendmsg();
-    //   var msgInput = document.getElementById('msgi');
+    // function moveDown() {
+    //   $(".chat_ctt").scrollTop($(".chat_ctt")[0].scrollHeight);
+    //   // $('#alertK').css('display', 'none');
     //
-    //   msgInput.value = '';
-    // });
-
-    //채팅창 떠날시에
-    function disconnect() {
-      if (client != null) {
-        client.disconnect();
-      }
+    // }
+    function moveDown() {
+        var chatWrap = $(".screens-chat-chattingRoomPage__chatWrap");
+        chatWrap.scrollTop(chatWrap[0].scrollHeight);
     }
 
-    window.onbeforeunload = function (e) {
-      disconnect();
+    // 실시간 채팅 내용 렌더링
+    var renderList = function (contentDto) {
+        // 리스트 html을 정의
+        //var date = moment(contentDto.chat_date).format('YY/MM/DD HH:mm');
+        var originalDate = moment(contentDto.chat_date);
+        var newDate = originalDate.add(9, 'hours');
+        var formattedDate = newDate.format('YY/MM/DD HH:mm');
+
+        console.log(formattedDate);
+
+        var html = "";
+
+        content = "<p class='otherChat bg-light p-2'>" + contentDto.chat_ctt
+                + "</p>";
+
+        var html = "<div class='chat_message_item' style='margin-bottom: 20px;'>" +
+                "<div style='display: flex; align-items: center;'>" +
+                "<div>" +
+                "<img src='" + contentDto.profile_img_url
+                + "' style='width: 30px; height: 30px; border-radius: 50%;'>" +
+                "</div>" +
+                "<div style='margin-left: 10px;'>" +
+                "<strong>" + contentDto.user_name + "님</strong>" +
+                "<div class='me'>" +
+                content +
+                "<p style='display: inline;'>" + formattedDate + "</p>" +
+                "</div>" +
+                "</div>" +
+                "</div>" +
+                "</div>";
+
+        return html;
+
+    }
+    let messageInput = '';
+    $(function () {
+        messageInput = $('textarea[name="msg"]');
+        var sock = new SockJS(
+                "/endpoint");
+        client = Stomp.over(sock);
+
+        client.connect({}, function () {
+            var chat_room_id = chat_room_id2;
+
+            // 메세지 들어오는곳
+            client.subscribe('/subscribe/chat/' + chat_room_id,
+                    function (chatMessage) {
+                        //받은 데이터
+                        var contentDto = JSON.parse(chatMessage.body);
+
+                        var html = renderList(contentDto);
+                        $("#list-guestbook").append(html);
+                        moveDown();
+                    });
+        });
+
+        //	         대화시
+        $('.send').click(function () {
+            //sendmsg();
+            var msgInput = document.getElementById('msgi');
+
+            msgInput.value = '';
+        });
+
+        // $('.send').onkeydown(function () {
+        //   sendmsg();
+        //   var msgInput = document.getElementById('msgi');
+        //
+        //   msgInput.value = '';
+        // });
+
+        //채팅창 떠날시에
+        function disconnect() {
+            if (client != null) {
+                client.disconnect();
+            }
+        }
+
+        window.onbeforeunload = function (e) {
+            disconnect();
+        }
+
+        // function closeConnection() {
+        //   sock.close();
+        // }
+
+    });
+
+    $(document).ready(function () {
+        $('.screens-chat-chattingRoomPage__chat_list').click(function () {
+            var chatting_room_id = $(this).data('chat-room-id');
+            var room_id = $(this).data('room-id');
+            location.href = '/enter/chattingRoomList/' + chatting_room_id + '?room_id='
+                    + room_id;
+        });
+    });
+
+    function addNewMessage(message) {
+        var messageContainer = document.getElementById('messageContainer');
+
+        var newMessageElement = document.createElement('div');
+        newMessageElement.textContent = message;
+        messageContainer.appendChild(newMessageElement);
+
+        newMessageElement.scrollIntoView({behavior: 'smooth', block: 'end'});
     }
 
-    // function closeConnection() {
-    //   sock.close();
+    // function checkEnter(event) {
+    //   console.log(event);
+    //   if (event.key === 'Enter') {
+    //     sendmsg();
+    //     const msgInput = document.getElementById('msgi');
+    //     msgInput.value = '';
+    //   }
     // }
 
-  });
+    //  input keydown 한글이 두번 찍힐 때 막는 함수
+    const textField = document.querySelector(".msgi");
 
-  $(document).ready(function () {
-    $('.screens-chat-chattingRoomPage__chat_list').click(function () {
-      var chatting_room_id = $(this).data('chat-room-id');
-      var room_id = $(this).data('room-id');
-      location.href = '/enter/chattingRoomList/' + chatting_room_id + '?room_id='
-          + room_id;
+    textField.addEventListener("keydown", (event) => {
+        if (event.isComposing || event.key !== 'Enter') return;
+
+        sendmsg();
+
+        const msgInput = document.getElementById('msgi');
+        msgInput.value = '';
     });
-  });
 
-  function addNewMessage(message) {
-    var messageContainer = document.getElementById('messageContainer');
-
-    var newMessageElement = document.createElement('div');
-    newMessageElement.textContent = message;
-    messageContainer.appendChild(newMessageElement);
-
-    newMessageElement.scrollIntoView({behavior: 'smooth', block: 'end'});
-  }
-
-  // function checkEnter(event) {
-  //   console.log(event);
-  //   if (event.key === 'Enter') {
-  //     sendmsg();
-  //     const msgInput = document.getElementById('msgi');
-  //     msgInput.value = '';
-  //   }
-  // }
-
-  //  input keydown 한글이 두번 찍힐 때 막는 함수
-  const textField = document.querySelector(".msgi");
-
-  textField.addEventListener("keydown", (event) => {
-    if (event.isComposing || event.key !== 'Enter') return;
-
-    sendmsg();
-
-    const msgInput = document.getElementById('msgi');
-    msgInput.value = '';
-  });
-
-  function sendmsg() {
-    var message = messageInput.val();
-    if (message == "") {
-      return false;
+    function sendmsg() {
+        var message = messageInput.val();
+        if (message == "") {
+            return false;
+        }
+        insertChat();
     }
-    insertChat();
-  }
 </script>
 
 </html>

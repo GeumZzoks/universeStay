@@ -309,7 +309,7 @@
 </article>
 <jsp:include page="/WEB-INF/views/common/admin/footer.jsp" flush="false"/>
 <script>
-    var colorPage = document.getElementById("pagenum${ph.sc.page}");
+    const colorPage = document.getElementById("pagenum${ph.sc.page}");
     colorPage.style.color = "indianred";
 
     if ('${ph.sc.page}' == 1) document.getElementById("prevbtn").href = "";

@@ -134,7 +134,7 @@
 
     function readURL(input) {
         if (input.files && input.files[0]) {
-            var reader = new FileReader();
+            const reader = new FileReader();
             reader.onload = function (e) {
                 document.getElementById('preview').src = e.target.result;
             };
@@ -145,7 +145,7 @@
     }
 
     $("#file").on('change', function () {
-        var fileName = $("#file").val();
+        const fileName = $("#file").val();
         $(".upload-name").val(fileName);
     });
 

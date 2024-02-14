@@ -1,30 +1,51 @@
 # UNIVERSE STAY
-<img src="https://github.com/GeumZzoks/universeStay/assets/105831341/91b1c18c-3dec-4138-8ad2-d7c5a1403db4">
+
+<img src="https://github.com/GeumZzoks/universeStay/assets/105831341/b3dedc1f-5620-40e7-9a39-560e43988efc">
 
 ## 목차 📜
- * [프로젝트 기간](#프로젝트기간) 🗓️
+ * [프로젝트 기간](#프로젝트-기간) 🗓️
  * [주제](#주제) 📍
- * [기술스택](#기술스택) 🛠️ 
- * [파일구조](#파일구조) 💾
- * [설계문서](#설계문서) 📑
+ * [기술 스택](#기술-스택) 🛠️ 
+ * [파일 구조](#파일-구조) 💾
+ * [설계 문서](#설계-문서) 📑
    * [ERD](#ERD)
    * [FIGMA](#FIGMA)
-   * [API](#API)
  * [아키텍처](#아키텍처) 🌐
- * [서비스화면](#서비스화면) 🖥️
- * [회의문서](#회의문서) 📝
- * [팀소개](#팀소개) 🩷
+ * [서비스 화면](#서비스-화면) 🖥️
+    * [메인페이지](#메인페이지)
+    * [회원가입/로그인](#회원가입/로그인)
+    * [숙소 등록](#숙소-등록)
+    * [관리자 숙소 승인](#관리자-숙소-승인)
+    * [숙소 예약](#숙소-예약)
+    * [호스트 예약 승인](#호스트-예약-승인)
+    * [숙소 결제](#숙소-결제)
+    * [위시리스트 추가](#위시리스트-추가)
+    * [호스트 게스트 채팅](#호스트-게스트-채팅)
+    * [관리자 쿠폰 발급](#관리자-쿠폰-발급)
+    * [공지사항](#공지사항)
+    * [리뷰](#리뷰)
+    * [숙소 상태 관리](#숙소-상태-관리)
+    * [유저 관리](#유저-관리)
+ * [회의 문서](#회의-문서) 📝
+ * [팀 소개](#팀-소개) 🩷
+   * [팀 규칙](#팀-규칙) 👮
 
 ---
+
 ## 프로젝트 기간 🗓️
+
 `2023.11.18 - 2023.12.27 (약 6주)`
 
 ---
+
 ## 주제 📍
+
 <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/76e593a7-40a6-4c19-9b14-78f569d226e4">
 
 ---
+
 ## 기술 스택 🛠️
+
 <div align=center>
 
   <img src="https://img.shields.io/badge/-Java-007396?style=flat-square&logo=java&logoColor=white">
@@ -38,7 +59,6 @@
   <img src="https://img.shields.io/badge/-Stomp-008000?style=flat-square">
   <img src="https://img.shields.io/badge/-AWS_EC2-232F3E?style=flat-square&logo=amazon-aws&logoColor=white">
   <img src="https://img.shields.io/badge/-AWS_S3-569A31?style=flat-square&logo=amazon-s3&logoColor=white">
-  <img src="https://img.shields.io/badge/-Lambda-FF9900?style=flat-square">
   <img src="https://img.shields.io/badge/apache tomcat-F8DC75?style=flat-square&logo=apachetomcat&logoColor=white">
   <img src="https://img.shields.io/badge/html5-E34F26?style=flat-square&logo=html5&logoColor=white"> 
   <img src="https://img.shields.io/badge/css-1572B6?style=flat-square&logo=css3&logoColor=white"> 
@@ -58,7 +78,9 @@
 
 
 ---
+
 ## 파일 구조 💾
+
 <details>
 <summary>파일 전체 구조</summary>
 <div markdown="1">
@@ -653,10 +675,8 @@
  ┃ ┃ ┃ ┃ ┃ ┣ 📜hostingManagement.js
  ┃ ┃ ┃ ┃ ┃ ┗ 📜register.js
  ┃ ┃ ┃ ┃ ┣ 📂chat
- ┃ ┃ ┃ ┃ ┃ ┣ 📜chat.js
  ┃ ┃ ┃ ┃ ┃ ┗ 📜contact_host.js
  ┃ ┃ ┃ ┃ ┣ 📂main
- ┃ ┃ ┃ ┃ ┃ ┗ 📜main.js
  ┃ ┃ ┃ ┃ ┣ 📂payment
  ┃ ┃ ┃ ┃ ┃ ┗ 📜payment.js
  ┃ ┃ ┃ ┃ ┣ 📂room
@@ -730,8 +750,11 @@
 </details>
 
 ---
+
 ## 설계 문서 📑
-  ### ERD
+
+### ERD
+
   <details>
     <summary>ERD</summary>
     <div markdown="1">
@@ -739,15 +762,25 @@
     </div>
   </details>
 
-  ### FIGMA
+### FIGMA
+
   <details>
     <summary>FIGMA</summary>
     <div markdown="2">
+      <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/80ce260c-4b37-49b6-9b8c-c913129dabfb" width="400px" height="300px"><img src="https://github.com/GeumZzoks/universeStay/assets/105831341/66389a31-f6c7-4620-9785-3b9c7f6983f3" width="400px" height="300px"><img src="https://github.com/GeumZzoks/universeStay/assets/105831341/3405e43a-56fa-406c-870a-b95e275695db" width="400px" height="300px">
+      <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/3bc1474e-51d0-4c21-9fad-137e028cdcb6b" width="400px" height="300px"><img src="https://github.com/GeumZzoks/universeStay/assets/105831341/a192d7dc-90c9-4f4d-8ff1-9bd0391e4a99" width="400px" height="300px"><img src="https://github.com/GeumZzoks/universeStay/assets/105831341/bb481f57-9fc1-47c2-bfb0-e8383d420f5b" width="400px" height="300px">
+      <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/cdc8357b-df98-423a-a798-31ee6fd663ae" width="400px" height="300px"><img src="https://github.com/GeumZzoks/universeStay/assets/105831341/77f3a9d4-a159-426c-b43c-5c9293ae59d7" width="400px" height="300px"><img src="https://github.com/GeumZzoks/universeStay/assets/105831341/33a2acca-004d-43f3-b56d-c1515307811e" width="400px" height="300px">
+      <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/6244250c-3988-4f33-bf7f-685f74763a72" width="400px" height="300px"><img src="https://github.com/GeumZzoks/universeStay/assets/105831341/d31805b8-4d44-4a75-b01c-6feca1e481e4" width="400px" height="300px"><img src="https://github.com/GeumZzoks/universeStay/assets/105831341/2dc2283b-c49f-4fb0-8ae1-2efb5a496c94" width="400px" height="300px">
+      <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/90e0a2bd-f474-4788-9687-b4cd540cbaa0" width="400px" height="300px"><img src="https://github.com/GeumZzoks/universeStay/assets/105831341/78af6275-d5f6-4cf1-8804-75ac50aa4673" width="400px" height="300px"><img src="https://github.com/GeumZzoks/universeStay/assets/105831341/c60063c6-6445-4872-871f-a1faaf4e35b3" width="400px" height="300px">
+      <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/7158db11-c79b-490d-b0e0-9582fe6f23be" width="400px" height="300px"><img src="https://github.com/GeumZzoks/universeStay/assets/105831341/d8abf8f4-43f7-4457-b707-87f8977a2fff" width="400px" height="300px"><img src="https://github.com/GeumZzoks/universeStay/assets/105831341/5c57e113-2d46-423b-b4ce-b32d2c74ab60" width="400px" height="300px">
+      <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/5f4f019a-3e8b-4ade-b527-517e9e3aaf42" width="400px" height="300px"><img src="https://github.com/GeumZzoks/universeStay/assets/105831341/c14ec967-2795-4694-8ca8-400a41170632" width="400px" height="300px"> 
     </div>
   </details>
 
   ---
-  ## 아키텍처 🌐
+
+## 아키텍처 🌐
+
    <details>
     <summary>ARCHITECTURE</summary>
     <div markdown="3">
@@ -758,18 +791,71 @@
   ---
   ## 서비스 화면 🖥️
   
+  <details>
+    <summary>메인페이지</summary>
+      <div markdown="11">
+        <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/91f22217-42c8-4d8e-86c8-ebbd0fa2fd75">
+      </div>
+  </details>
+
+  <details>
+    <summary>회원가입/로그인</summary>
+      <div markdown="12">
+        <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/3c8f9423-16b8-42c5-bb7c-2bad00661535">
+      </div>
+  </details>
+
+
+  <details>
+    <summary>숙소 등록</summary>
+      <div markdown="13">
+        <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/b00c2963-702c-43e2-9a25-d0a8eddd66a9">
+      </div>
+  </details>
+
+  <details>
+    <summary>숙소 예약</summary>
+      <div markdown="14">
+        <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/9d97552e-5aa7-45f1-b905-0c6b0d3c995f">
+      </div>
+  </details>
+
+   <details>
+    <summary>호스트 예약 승인</summary>
+      <div markdown="15">
+        <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/2384037f-6c70-4d20-be34-c3d16b7aa943">
+      </div>
+  </details>
+  
+   <details>
+    <summary>결제</summary>
+      <div markdown="16">
+        <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/c7f48c43-0d3d-4f44-ac4a-8233c0beeb31">
+      </div>
+  </details>
+
+   <details>
+    <summary>위시리스트 추가</summary>
+      <div markdown="17">
+        <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/ed2f8cd1-bbf1-46e6-8e86-c05370807c70">
+      </div>
+  </details>
+
+  <details>
+    <summary>호스트 게스트 채팅</summary>
+      <div markdown="18">
+        <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/7997738e-dd2e-4157-95fd-c8c846bad537">
+      </div>
+  </details>
+
 
   ---
   ## 회의 문서 📝
-   </details>
-  <details>
-    <summary>데일리 스크럼</summary>
-    <div markdown="4">
-    </div>
-  </details>
+  <a href="https://verbena-scallop-776.notion.site/ecc1a1b152bd424393620b1c54c3be88?v=88cee01f5126410ca97078bf71695319&pvs=4">    데일리 스크럼</a>
 
   --- 
-  ## 팀 소개 🩷
+
+## 팀 소개 🩷
 
   <table align="center">
   <tr>
@@ -781,13 +867,17 @@
   <tr>
     <td align="center"><a href="https://github.com/ssunghoon"><img src="https://github.com/GeumZzoks/universeStay/assets/105831341/01ca5da2-3cb0-4d2f-b2f7-0a8129258f9e" width="100px;" height="120px;" alt=""/><br /><sub><b>이성훈</b></sub></a></td>
     <td align="center"><a href="https://github.com/Hojin37"><img src="https://github.com/GeumZzoks/universeStay/assets/105831341/a3702372-e0d1-451d-928e-abe9c86312dd" width="100px;" height="120px;" alt=""/><br /><sub><b>장호진</b></sub></a></td>
-    <td align="center"><a href="https://github.com/simplist119"><img src="https://github.com/GeumZzoks/universeStay/assets/105831341/92f5874d-76b9-43f9-90ab-884a880a0917" width="100px;" height="120px;" alt=""/><br /><sub><b>정경민</b></sub></a></td>
+    <td align="center"><a href="https://github.com/simplist119"><img src="https://github.com/GeumZzoks/universeStay/assets/105831341/a32ae475-6a4e-4112-9958-5ead8c06861b" width="100px;" height="120px;" alt=""/><br /><sub><b>정경민</b></sub></a></td>
     <td align="center"><a href="https://github.com/nickhealthy"><img src="https://github.com/GeumZzoks/universeStay/assets/105831341/e3acdc64-99e7-4e95-8b70-bbebc1b79017" width="100px;" height="120px;" alt=""/><br /><sub><b>주성우</b></sub></a></td>
   </tr>
    </table>
 
-  
+---
+### 팀 규칙 👮
 
-  
-
-
+<details>
+  <summary>팀 규칙</summary>
+    <div markdown="2">
+        <img src="https://github.com/GeumZzoks/universeStay/assets/105831341/157bf482-6528-4ccd-9239-46b57750a2d5" width="800px;" height="750px;" >
+    </div>
+  </details>

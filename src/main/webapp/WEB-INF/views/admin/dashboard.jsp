@@ -193,7 +193,6 @@
                         <th class="screens-admin-dashboard__table__common">등록일</th>
                         <th class="screens-admin-dashboard__table__common" style="max-width: 5px">선택</th>
                     </tr>
-
                     <c:forEach var="item" items="${listInquiry}">
                         <tr>
                             <td class="screens-admin-dashboard__table__common screens-admin-dashboard-align-left"
@@ -215,6 +214,6 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="/resources/js/admin/dashBoard.js"></script>
-
+  
 </body>
 </html>

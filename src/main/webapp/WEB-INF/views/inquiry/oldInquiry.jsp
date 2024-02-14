@@ -325,21 +325,21 @@
 
         function deleteReply(replyId) {
 
-            var f = document.createElement('form');
+            const f = document.createElement('form');
             f.setAttribute('method', 'post');
             f.setAttribute('action', '/admin/inquiry/deletereply');
 
-            var sc = document.createElement('input');
+            const sc = document.createElement('input');
             sc.setAttribute('type', 'hidden');
             sc.setAttribute('name', 'sc');
             sc.setAttribute('value', `${sc}`);
 
-            var reply_id = document.createElement('input');
+            const reply_id = document.createElement('input');
             reply_id.setAttribute('type', 'hidden');
             reply_id.setAttribute('name', 'reply_id');
             reply_id.setAttribute('value', replyId)
 
-            var inquiry_id = document.createElement('input');
+            const inquiry_id = document.createElement('input');
             inquiry_id.setAttribute('type', 'hidden');
             inquiry_id.setAttribute('name', 'inquiry_id');
             inquiry_id.setAttribute('value', ${dto.inquiry_id})
