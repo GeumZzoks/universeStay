@@ -1,11 +1,12 @@
 package com.universestay.project.admin.dao;
 
 import com.universestay.project.common.exception.CommonException;
-import java.util.List;
-import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Map;
 
 @Repository
 public class DashBoardDaoImpl implements DashBoardDao {
@@ -17,7 +18,6 @@ public class DashBoardDaoImpl implements DashBoardDao {
     public DashBoardDaoImpl(SqlSession session) {
         this.session = session;
     }
-
 
     @Override
     public String countTotalUser() throws CommonException {
@@ -42,6 +42,11 @@ public class DashBoardDaoImpl implements DashBoardDao {
     @Override
     public List<Map<String, Object>> selectListInquiry() throws CommonException {
         return session.selectList(namespace + "selectListInquiry");
+    }
+
+    @Override
+    public Integer updateInquiryStatus(Map<String, Object> map) throws CommonException {
+        return session.update(namespace + "updateInquiryStatus", map);
     }
 
     @Override

@@ -29,7 +29,7 @@ public class LoginController {
 
 
     @PostMapping("/loginForm")
-    public String loginForm(String userEmail, String password, HttpServletRequest request)
+    public String loginForm(String userEmail, String password, HttpServletRequest request, HttpSession session)
             throws Exception {
 
         if (!loginCheck(userEmail, password, request)) {
@@ -38,7 +38,6 @@ public class LoginController {
             // TODO: Exception Handler 에러 페이지 반환
             return "redirect:/adminLogin/loginForm";
         }
-
         return "redirect:/admin/main/dashboard";
     }
 
@@ -53,6 +52,7 @@ public class LoginController {
             throws Exception {
 
         boolean result = loginAdminService.confirmUser(userEmail, password, request);
+
 
         return result;
     }

@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
+
 @Service
-public class AdminInquiryServiceImpl implements AdminInquiryService{
+public class AdminInquiryServiceImpl implements AdminInquiryService {
 
     @Autowired
     AdminInquiryDao adminInquiryDao;
@@ -34,12 +36,17 @@ public class AdminInquiryServiceImpl implements AdminInquiryService{
     }
 
     @Override
-    public List<InquiryChattingMessageDto> getChattingMessageList(String chatting_room_id) throws Exception {
+    public List<Map<String, Object>> getChattingMessageList(String chatting_room_id) throws Exception {
         return adminInquiryDao.selectChattingMessageList(chatting_room_id);
     }
 
     @Override
     public int createChattingMessage(InquiryChattingMessageDto dto) throws Exception {
         return adminInquiryDao.insertChattingMessage(dto);
+    }
+
+    @Override
+    public List<Map<String, Object>> getMyChattingRoomList(String admin_id) throws Exception {
+        return adminInquiryDao.selectMyChattingRoomList(admin_id);
     }
 }

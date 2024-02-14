@@ -72,7 +72,7 @@ public class UserInquiryDaoImpl implements UserInquiryDao {
     }
 
     @Override
-    public List<InquiryChattingMessageDto> selectChattingMessageList(String chatting_room_id) throws Exception {
+    public List<Map<String, Object>> selectChattingMessageList(String chatting_room_id) throws Exception {
         return session.selectList(namespace + "selectChattingMessageList", chatting_room_id);
     }
 

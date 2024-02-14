@@ -2,10 +2,11 @@ package com.universestay.project.admin.service;
 
 import com.universestay.project.admin.dao.DashBoardDao;
 import com.universestay.project.common.exception.CommonException;
-import java.util.List;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class DashBoardServiceImpl implements DashBoardService {
@@ -16,7 +17,6 @@ public class DashBoardServiceImpl implements DashBoardService {
     public DashBoardServiceImpl(DashBoardDao dashBoardDao) {
         this.dashBoardDao = dashBoardDao;
     }
-
 
     @Override
     public String countTotalUser() throws CommonException {
@@ -44,6 +44,11 @@ public class DashBoardServiceImpl implements DashBoardService {
     }
 
     @Override
+    public Integer updateInquiryStatus(Map<String, Object> map) throws CommonException {
+        return dashBoardDao.updateInquiryStatus(map);
+    }
+
+    @Override
     public Integer updateConfirmIndividualRoom(String roomId) throws CommonException {
         return dashBoardDao.updateConfirmIndividualRoom(roomId);
     }
@@ -52,5 +57,4 @@ public class DashBoardServiceImpl implements DashBoardService {
     public Integer updateRejectIndividualRoom(String roomId) throws CommonException {
         return dashBoardDao.updateRejectIndividualRoom(roomId);
     }
-
 }

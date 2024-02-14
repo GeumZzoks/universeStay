@@ -1,6 +1,7 @@
 package com.universestay.project.inquiry.controller;
 
 import com.universestay.project.inquiry.dto.InquiryChattingMessageDto;
+import com.universestay.project.inquiry.dto.InquiryChattingRoomDto;
 import com.universestay.project.inquiry.service.UserInquiryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/user/myPage/inquiry")
@@ -28,6 +30,7 @@ public class UserInquiryController {
         return "inquiry/userInquiry";
     }
 
+
     @ResponseBody
     @PostMapping()
     public List<Map<String, Object>> ChattingRoomList(HttpSession session) {
@@ -38,45 +41,67 @@ public class UserInquiryController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("session = " + session.getAttribute("user_id"));
-        for(Map<String, Object> dto : list){
-            System.out.println("dto = " + dto);
-        }
         return list;
     }
 
     @ResponseBody
     @GetMapping("/{chatting_room_id}")
-    public List<InquiryChattingMessageDto> ChattingMessageList(@PathVariable String chatting_room_id, HttpSession session) {
+    public List<Map<String, Object>> ChattingMessageList(@PathVariable String chatting_room_id, HttpSession session) {
         System.out.println("*** GET *** /user/myPage/inquiry/{chatting_room_id}");
-        List<InquiryChattingMessageDto> list = null;
+        List<Map<String, Object>> list = null;
         try {
             String user_id = userInquiryService.getUserId(chatting_room_id);
             if (!(session.getAttribute("user_id").equals(user_id))) {
                 return list;
             }
             list = userInquiryService.getChattingMessageList(chatting_room_id);
-            for(InquiryChattingMessageDto dto : list){
-                System.out.println("dto = " + dto);
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return list;
     }
 
-    @MessageMapping("/inquiry/{chatting_room_id}")
-    @SendTo("/subscribe/inquiry/{chatting_room_id}")
-    public String broadcasting(@DestinationVariable String chatting_room_id, @Payload String message) {
-        System.out.println("얄루");
-        System.out.println("11111111111");
-        System.out.println("aaaaaaaaaaa");
-//        Map<String, Object>
-        //        List<Map<String, Object>> chattingMessage = chatMessageService.recentlyChatMessage(
-//                chatting_room_id);
-//        return chattingMessage.get(0);
-        return message;
+    @PostMapping("/insert")
+    public String insertInquiry(HttpSession session) {
+        if (session.getAttribute("user_id") != null) {
+            String uuid = UUID.randomUUID().toString();
+            InquiryChattingRoomDto dto = new InquiryChattingRoomDto();
+            dto.setChatting_room_id(uuid);
+            dto.setUser_id((String) session.getAttribute("user_id"));
+            dto.setCreated_id((String) session.getAttribute("user_id"));
+            dto.setUpdated_id((String) session.getAttribute("user_id"));
+            try {
+                userInquiryService.createChattingRoom(dto);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return "redirect:/user/myPage/inquiry";
     }
 
+    @ResponseBody
+    @PostMapping("/savemessage")
+    public String saveMessage(String chatting_room_id, String message, String writer_id, HttpSession session) {
+        if (session.getAttribute("user_id") == null) {
+            return "메시지 저장 실패!";
+        }
+        InquiryChattingMessageDto dto = new InquiryChattingMessageDto();
+        dto.setChatting_room_id(chatting_room_id);
+        dto.setWriter_id((String) session.getAttribute("user_id"));
+        dto.setChatting_ctt(message);
+        dto.setCreated_id((String) session.getAttribute("user_id"));
+        try {
+            userInquiryService.createChattingMessage(dto);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "메시지 저장 실패!";
+        }
+        return "메시지 저장 성공!";
+    }
 
+    @MessageMapping("/inquiry/{chatting_room_id}")
+    @SendTo("/subscribe/inquiry/{chatting_room_id}")
+    public String broadcasting(@DestinationVariable String chatting_room_id, @Payload String message, String writer_id) {
+        return message;
+    }
 }

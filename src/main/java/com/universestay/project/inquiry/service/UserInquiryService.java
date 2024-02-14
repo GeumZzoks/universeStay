@@ -21,7 +21,7 @@ public interface UserInquiryService {
 
     InquiryChattingMessageDto readLastChattingMessage(String chatting_room_id) throws Exception;
 
-    List<InquiryChattingMessageDto> getChattingMessageList(String chatting_room_id) throws Exception;
+    List<Map<String, Object>> getChattingMessageList(String chatting_room_id) throws Exception;
 
     int createChattingMessage(InquiryChattingMessageDto dto) throws Exception;
 }
